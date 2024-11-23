@@ -54,7 +54,7 @@ function ServiceCard() {
       > 
         <Grid container spacing={6}> {/* Increase the spacing to 6 for more gap between cards */}
           {products.map((product) => ( 
-            <Grid item xs={12} sm={6} md={3} key={product.id} sx={{ paddingLeft: '50px', paddingLeft: '60px' }}> 
+            <Grid item xs={12} sm={6} md={3} key={product.id} sx={{paddingLeft: '60px' }}> 
               {/* Wrap the card with Link component */}
               <Link to={product.link} style={{ textDecoration: 'none' }}>
                 <Card 
