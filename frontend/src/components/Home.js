@@ -1,6 +1,8 @@
 import AboutSection from "./AboutSection";
 import Herosection from "./Herosection";
+import ServiceCard from "./ServiceCard";
 import FadeCarousel from "./Slider";
+import VisionandMission from "./vision_and_Mission";
 
 export default function Home() {
     return (
@@ -8,6 +10,8 @@ export default function Home() {
       <FadeCarousel/>
       <Herosection/>
       <AboutSection/>
+      <VisionandMission/>
+      <ServiceCard/>
       </>
     );
   }

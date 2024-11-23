@@ -118,7 +118,7 @@ function AboutSection() {
         <Typography variant="body1" sx={typographyBodyStyles}>
           مما أكسبتنا بأن نكون من
         </Typography>
-        <Typography variant="body1" sx={{ fontSize: '40px',color:'#FFFFFF' }}>
+        <Typography variant="body1" sx={{ fontSize: '30px',color:'#FFFFFF' }}>
           صناع الإعلان بالمملكة
         </Typography>
       </Container>
