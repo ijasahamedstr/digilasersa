@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  font-family: 'Changa', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Changa', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;700&display=swap');
