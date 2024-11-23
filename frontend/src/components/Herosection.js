@@ -30,7 +30,7 @@ function Herosection() {
             fontWeight: 'bold',
           }}
         >
-         <span style={{fontSize:'50px',color:'#0ff5ec'}}>قصتنا </span>صناع الإعلان بالمملكة
+         <span style={{fontSize:'50px',color:'#0f3341'}}>قصتنا </span>صناع الإعلان بالمملكة
         </Typography>
         <Typography
           variant="h6"
