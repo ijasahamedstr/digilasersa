@@ -41,7 +41,7 @@ function ServiceCard() {
         alignItems: 'center', 
         height: 'auto', 
         paddingTop: '50px', 
-        paddingBottom: '20px', 
+        paddingBottom: '50px', 
         background:'#040404' 
       }} 
     > 
