@@ -27,6 +27,7 @@ function VisionandMission() {
           padding: "10px",
           textAlign: "center",
         },
+        marginTop:'-30px' 
       }}
     >
       <Container

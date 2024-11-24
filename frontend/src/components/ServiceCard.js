@@ -42,7 +42,7 @@ function ServiceCard() {
         height: 'auto', 
         paddingTop: '50px', 
         paddingBottom: '50px', 
-        background:'#040404' 
+        background:'#040404',
       }} 
     > 
       <Container 
