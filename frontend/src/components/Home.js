@@ -1,6 +1,7 @@
 import AboutSection from "./AboutSection";
 import Herosection from "./Herosection";
 import Newssection from "./news_section";
+import Partner from "./Partner";
 import Progress from "./progress";
 import ServiceCard from "./ServiceCard";
 import FadeCarousel from "./Slider";
@@ -16,6 +17,7 @@ export default function Home() {
       <ServiceCard/>
       <Progress/>
       <Newssection/>
+      <Partner/>
       </>
     );
   }
