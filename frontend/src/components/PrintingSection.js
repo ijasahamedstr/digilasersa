@@ -1,0 +1,219 @@
+import React, { useState } from "react";  // Import useState hook
+import { Container, Box, Typography, Card, Dialog, DialogTitle, IconButton, DialogContent, DialogActions } from "@mui/material"; // Import missing MUI components
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaTimes } from "react-icons/fa";  // Import FaTimes for close button
+import { Carousel } from "react-bootstrap";
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css"; // Swiper default styles
+import "swiper/css/pagination"; // Pagination styles (if used)
+import "swiper/css/navigation"; // Navigation styles (if used)
+
+const carouselItems = [
+  {
+    id: 1,
+    img: "https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png",
+    title: "Welcome to Our Adventure",
+    content: "Explore the beauty of nature with us.",
+  },
+  {
+    id: 2,
+    img: "https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png",
+    title: "Unforgettable Moments",
+    content: "Create memories that last a lifetime.",
+  },
+  {
+    id: 3,
+    img: "https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png",
+    title: "Join Our Community",
+    content: "Be part of something special.",
+  },
+];
+
+const products = [
+  {
+    imageUrl: "https://i.ibb.co/cCXf1Xt/table-with-paper-that-says-personal-care-it.png",
+  },
+  {
+    imageUrl: "https://i.ibb.co/chQ7t5j/black-box-with-gold-bow-it-that-says-esk-it.png",
+  },
+  {
+    imageUrl: "https://i.ibb.co/Bg7MWmJ/brochure-business-called-city-city.png",
+  },
+  {
+    imageUrl: "https://i.ibb.co/gjDYDGD/magazine-cover-with-picture-house-words-house-bottom.png",
+  },
+  {
+    imageUrl: "https://i.ibb.co/gjDYDGD/magazine-cover-with-picture-house-words-house-bottom.png",
+  },
+  {
+    imageUrl: "https://i.ibb.co/chQ7t5j/black-box-with-gold-bow-it-that-says-esk-it.png",
+  },
+];
+
+const PrintingSection = () => {
+  const [open, setOpen] = useState(false);  // useState hook for dialog
+  const [selectedImage, setSelectedImage] = useState(null);  // useState hook for selected image
+
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "0px" }}>
+      {/* Carousel Section */}
+      <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+        <Carousel
+          fade
+          nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
+          prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: "black" }} />}
+        >
+          {carouselItems.map((item) => (
+            <Carousel.Item key={item.id}>
+              <img
+                className="d-block w-100"
+                src={item.img}
+                alt={item.title}
+                style={{
+                  height: "80vh",
+                  objectFit: "cover",
+                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                }}
+              />
+              <Carousel.Caption>
+                <Typography variant="h4" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}>
+                  {item.title}
+                </Typography>
+                <Typography variant="body1" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}>
+                  {item.content}
+                </Typography>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+
+        {/* Social Media Icons on the Left Side */}
+        <Box sx={{ position: "absolute", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "30px", zIndex: 2, paddingLeft: 2 }}>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#3b5998", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+              <FaFacebook size={25} />
+            </Box>
+          </a>
+          <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#00acee", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+              <FaTwitter size={25} />
+            </Box>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#C13584", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+              <FaInstagram size={25} />
+            </Box>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#0077b5", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+              <FaLinkedin size={25} />
+            </Box>
+          </a>
+        </Box>
+      </Box>
+
+      <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
+        <Typography
+          variant="h4"
+          component="h2"
+          sx={{
+            fontFamily: 'Noto Kufi Arabic, sans-serif',
+            fontWeight: 'bold',
+            color: '#333',
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+            textAlign: 'center',
+          }}
+        >
+        <span style={{ color: '#015057' }}>مطـبوعات ورقـية</span>
+        </Typography>
+        <hr
+          style={{
+            border: 'none',
+            height: '4px',
+            backgroundColor: '#015057',
+            width: '5%',
+            alignSelf: 'center',
+            margin: '20px auto',
+          }}
+        />
+        <Swiper
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          centeredSlides={true}
+          grabCursor={true}
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            600: { slidesPerView: 2 },
+            900: { slidesPerView: 3 },
+            1024: { slidesPerView: 5 },
+          }}
+        >
+          {products.map((product, index) => (
+            <SwiperSlide key={index}>
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                  borderRadius: '20px',
+                  overflow: 'hidden', // Ensure images don't overflow the corners
+                  '&:hover': {
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
+                  },
+                }}
+              >
+                <img
+                  src={product.imageUrl}
+                  alt={product.title}
+                  style={{
+                    height: '300px',
+                    width: '100%',
+                    objectFit: 'cover',
+                    cursor: 'pointer', // Cursor style to indicate clickable images
+                    transition: 'transform 0.3s ease', // Smooth transition for zoom effect
+                  }}
+                  onClick={() => handleImageClick(product.imageUrl)} // Click to preview image
+                />
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Dialog for image preview */}
+        <Dialog open={open} onClose={handleClose} maxWidth="xl">
+          <DialogTitle>
+            <IconButton
+              edge="end"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+              sx={{ position: 'absolute', right: '8px', top: '8px' }}
+            >
+              <FaTimes />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent>
+            <img
+              src={selectedImage}
+              alt="Selected"
+              style={{ width: '100%', maxHeight: '500px', objectFit: 'contain' }}
+            />
+          </DialogContent>
+          <DialogActions>
+          </DialogActions>
+        </Dialog>
+      </Box>
+    </Container>
+  );
+};
+
+export default PrintingSection;

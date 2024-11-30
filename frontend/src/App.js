@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Products from './components/Products';
 import Aboutus from './components/About';
 import ScreensSection from './components/ScreensSection';
+import PrintingSection from './components/PrintingSection';
 
 
 const theme = createTheme({
@@ -28,6 +29,7 @@ function App() {
         <Route path="/الرئيسية" element={<Products/>} />
         <Route path="/من نحن" element={<Aboutus/>} />
         <Route path="/الشاشات" element={<ScreensSection/>} />
+        <Route path="/الطباعة" element={<PrintingSection/>} />
       </Routes>
       <Footer/>
     </Router>
