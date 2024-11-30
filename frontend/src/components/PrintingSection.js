@@ -50,6 +50,27 @@ const products = [
   },
 ];
 
+const products1 = [
+    {
+      imageUrl: "https://i.ibb.co/Jvs0hFq/image.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/WzVJkzf/image.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/hymkf17/premium-gym-banner-design-template.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/c8vrRNb/Ed7b1q9-WAAAUQgb.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/Jvs0hFq/image.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/hymkf17/premium-gym-banner-design-template.png",
+    },
+  ];
+
 const PrintingSection = () => {
   const [open, setOpen] = useState(false);  // useState hook for dialog
   const [selectedImage, setSelectedImage] = useState(null);  // useState hook for selected image
@@ -211,6 +232,72 @@ const PrintingSection = () => {
           <DialogActions>
           </DialogActions>
         </Dialog>
+      </Box>
+      <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
+        <Typography
+          variant="h4"
+          component="h2"
+          sx={{
+            fontFamily: 'Noto Kufi Arabic, sans-serif',
+            fontWeight: 'bold',
+            color: '#333',
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+            textAlign: 'center',
+          }}
+        >
+        <span style={{ color: '#015057' }}>بنـر وسـتيكر</span>
+        </Typography>
+        <hr
+          style={{
+            border: 'none',
+            height: '4px',
+            backgroundColor: '#015057',
+            width: '5%',
+            alignSelf: 'center',
+            margin: '20px auto',
+          }}
+        />
+        <Swiper
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          centeredSlides={true}
+          grabCursor={true}
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            600: { slidesPerView: 2 },
+            900: { slidesPerView: 3 },
+            1024: { slidesPerView: 5 },
+          }}
+        >
+          {products1.map((product1, index) => (
+            <SwiperSlide key={index}>
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                  borderRadius: '20px',
+                  overflow: 'hidden', // Ensure images don't overflow the corners
+                  '&:hover': {
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
+                  },
+                }}
+              >
+                <img
+                  src={product1.imageUrl}
+                  style={{
+                    height: '300px',
+                    width: '100%',
+                    objectFit: 'cover',
+                    cursor: 'pointer', // Cursor style to indicate clickable images
+                    transition: 'transform 0.3s ease', // Smooth transition for zoom effect
+                  }}
+                  onClick={() => handleImageClick(product1.imageUrl)} // Click to preview image
+                />
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Box>
     </Container>
   );
