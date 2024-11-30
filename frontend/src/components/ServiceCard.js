@@ -19,13 +19,13 @@ const pumpAnimation = keyframes`
 function ServiceCard() { 
   // Sample product data (you can replace this with real data)
   const products = [ 
-    { id: 1, name: "قسم الهدايا الدعائية", imageUrl: "https://via.placeholder.com/300", iconUrl: "https://via.placeholder.com/50", link: "/gift-department" }, 
-    { id: 2, name: "قسم الطباعة", imageUrl: "https://via.placeholder.com/300", iconUrl: "https://via.placeholder.com/50", link: "/printing-department" }, 
-    { id: 3, name: "قسم الفن التشكيلي", imageUrl: "https://via.placeholder.com/300", iconUrl: "https://via.placeholder.com/50", link: "/art-department" }, 
-    { id: 4, name: "قسم الشاشات", imageUrl: "https://via.placeholder.com/300", iconUrl: "https://via.placeholder.com/50", link: "/screens-department" }, 
-    { id: 5, name: "قسم الخط العربي", imageUrl: "https://via.placeholder.com/300", iconUrl: "https://via.placeholder.com/50", link: "/arabic-calligraphy-department" }, 
-    { id: 6, name: "قسم البرمجيات", imageUrl: "https://via.placeholder.com/300", iconUrl: "https://via.placeholder.com/50", link: "/software-department" }, 
-    { id: 7, name: "قسم السوشيال ميديا", imageUrl: "https://via.placeholder.com/300", iconUrl: "https://via.placeholder.com/50", link: "/social-media-department" }, 
+    { id: 1, name: "قسم الهدايا الدعائية", imageUrl: "https://i.ibb.co/cw7NSNV/Background-copy.png", iconUrl: "https://via.placeholder.com/50", link: "/gift-department" }, 
+    { id: 2, name: "قسم الطباعة", imageUrl: "https://i.ibb.co/fxjzrPM/Layer-34.png", iconUrl: "https://via.placeholder.com/50", link: "/printing-department" }, 
+    { id: 3, name: "قسم الفن التشكيلي", imageUrl: "https://i.ibb.co/KDtCSBc/8.png", iconUrl: "https://via.placeholder.com/50", link: "/art-department" }, 
+    { id: 4, name: "قسم الشاشات", imageUrl: "https://i.ibb.co/WfWQH8V/Layer-32.png", iconUrl: "https://via.placeholder.com/50", link: "/screens-department" }, 
+    { id: 5, name: "قسم الخط العربي", imageUrl: "https://i.ibb.co/Z2Fs83F/07.png", iconUrl: "https://via.placeholder.com/50", link: "/arabic-calligraphy-department" }, 
+    { id: 6, name: "قسم البرمجيات", imageUrl: "https://i.ibb.co/2ZZrk6M/Layer-39.png", iconUrl: "https://via.placeholder.com/50", link: "/software-department" }, 
+    { id: 7, name: "قسم السوشيال ميديا", imageUrl: "https://i.ibb.co/6Jt2Lg1/Background-copy-3.png", iconUrl: "https://via.placeholder.com/50", link: "/social-media-department" }, 
     { id: 8, name: "قسم الإعلام والميديا", imageUrl: "https://via.placeholder.com/300", iconUrl: "https://via.placeholder.com/50", link: "/media-department" }, 
   ];
 

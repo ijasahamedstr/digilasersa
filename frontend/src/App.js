@@ -9,6 +9,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from './components/Footer';
 import Products from './components/Products';
 import Aboutus from './components/About';
+import ScreensSection from './components/ScreensSection';
 
 
 const theme = createTheme({
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/الرئيسية" element={<Products/>} />
         <Route path="/من نحن" element={<Aboutus/>} />
+        <Route path="/الشاشات" element={<ScreensSection/>} />
       </Routes>
       <Footer/>
     </Router>

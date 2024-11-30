@@ -11,17 +11,17 @@ function Eventsection() {
     {
       title: 'الشاشة التفاعلية الجديدة',
       description: 'تجربة لنظام تشغيل الشاشة التفاعلية الجديدة يجريها مدير قسم السوشيال ميديا قبل البدأ في تفعيل حملة تسويقية.',
-      image: 'https://via.placeholder.com/500x300',
+      image: 'https://i.ibb.co/0n3Q45Y/0-C7-A7765-MP4-snapshot-00-02-166.png',
     },
     {
       title: 'الشاشة التفاعلية الجديدة',
       description: 'تجربة لنظام تشغيل الشاشة التفاعلية الجديدة يجريها مدير قسم السوشيال ميديا قبل البدأ في تفعيل حملة تسويقية.',
-      image: 'https://via.placeholder.com/500x300',
+      image: 'https://i.ibb.co/0n3Q45Y/0-C7-A7765-MP4-snapshot-00-02-166.png',
     },
     {
       title: 'الشاشة التفاعلية الجديدة',
       description: 'تجربة لنظام تشغيل الشاشة التفاعلية الجديدة يجريها مدير قسم السوشيال ميديا قبل البدأ في تفعيل حملة تسويقية.',
-      image: 'https://via.placeholder.com/500x300',
+      image: 'https://i.ibb.co/0n3Q45Y/0-C7-A7765-MP4-snapshot-00-02-166.png',
     },
   ];
 

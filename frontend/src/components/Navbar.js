@@ -10,15 +10,27 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
+import Menu from '@mui/material/Menu'; // Import Menu
+import { useState } from 'react';
 
 const pages1 = ['الرئيسية', 'من نحن', 'أقسامنا', 'شركائنا', 'اخبار الليزر', 'إتصل بنا']; // Pages
+const sections = ['الشاشات', 'الطباعة', 'الهدايا الدعائية','الإعلام والإنتاج','التواصل الإجتماعي','تصميم المواقع','الفن التشكيلي','الخط العربي']; // Sample sections for the dropdown menu
 
 function ResponsiveAppBar() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = useState(null); // State for managing dropdown menu anchor
   const navigate = useNavigate();
   const location = useLocation(); // Get current location
 
   const toggleDrawer = (open) => () => setDrawerOpen(open);
+
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget); // Open the dropdown menu when clicked
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null); // Close the dropdown menu when an item is clicked or menu is closed
+  };
 
   const drawerList = () => (
     <Box
@@ -109,40 +121,62 @@ function ResponsiveAppBar() {
           {/* Desktop Menu (Navigation Pages) */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-start', paddingRight: '20px', marginRight: '100px' }} dir="rtl">
             {pages1.map((page) => (
-              <Button
-                key={page}
-                component={Link}
-                to={`/${page.toLowerCase()}`}
-                sx={{
-                  my: 0.5,
-                  mx: 1,
-                  color: 'white',
-                  display: 'block',
-                  fontFamily: 'Noto Kufi Arabic',
-                  fontSize: '17px', // Set font size for buttons
-                  borderRadius: '50px',
-                  backgroundColor: location.pathname === `/${page.toLowerCase()}` ? '#06f9f3' : 'transparent', // Highlight active link
-                  '&:hover': {
-                    backgroundColor: '#444',
-                  },
-                }}
-              >
-                {page}
-              </Button>
+              page === 'أقسامنا' ? (
+                <Button
+                  key={page}
+                  onClick={handleMenuClick} // Open dropdown on click
+                  sx={{
+                    my: 0.5,
+                    mx: 1,
+                    color: 'white',
+                    display: 'block',
+                    fontFamily: 'Noto Kufi Arabic',
+                    fontSize: '17px',
+                    borderRadius: '50px',
+                    backgroundColor: location.pathname === `/${page.toLowerCase()}` ? '#06f9f3' : 'transparent',
+                    '&:hover': {
+                      backgroundColor: '#444',
+                    },
+                  }}
+                >
+                  {page}
+                </Button>
+              ) : (
+                <Button
+                  key={page}
+                  component={Link}
+                  to={`/${page.toLowerCase()}`}
+                  sx={{
+                    my: 0.5,
+                    mx: 1,
+                    color: 'white',
+                    display: 'block',
+                    fontFamily: 'Noto Kufi Arabic',
+                    fontSize: '17px',
+                    borderRadius: '50px',
+                    backgroundColor: location.pathname === `/${page.toLowerCase()}` ? '#06f9f3' : 'transparent',
+                    '&:hover': {
+                      backgroundColor: '#444',
+                    },
+                  }}
+                >
+                  {page}
+                </Button>
+              )
             ))}
           </Box>
 
-          {/* "Contact Us" Button (on the right side, visible for all screen sizes except mobile) */}
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}> {/* Added gap for space between buttons */}
+          {/* Contact Us Button */}
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
             <Button
               sx={{
                 color: 'white',
                 fontFamily: 'Noto Kufi Arabic',
                 borderRadius: '50px',
-                display: { xs: 'none', sm: 'flex' }, // Hide on mobile (xs), show on sm and larger
-                direction: 'ltr', // Correct way to set the text direction to LTR
-                fontSize:'20px',
-                fontWeight:'600'
+                display: { xs: 'none', sm: 'flex' },
+                direction: 'ltr',
+                fontSize: '20px',
+                fontWeight: '600'
               }}
             >
               966 57 1883194
@@ -154,13 +188,13 @@ function ResponsiveAppBar() {
               sx={{
                 color: 'white',
                 fontFamily: 'Noto Kufi Arabic',
-                fontSize: '15px', // Set font size for the contact button
+                fontSize: '15px',
                 borderRadius: '50px',
-                backgroundColor: '#0ff5ec', // Set background color for the button
+                backgroundColor: '#0ff5ec',
                 '&:hover': {
                   backgroundColor: '#444',
                 },
-                display: { xs: 'none', sm: 'flex' }, // Hide on mobile (xs), show on sm and larger
+                display: { xs: 'none', sm: 'flex' },
               }}
             >
               متجر الليزر
@@ -178,7 +212,7 @@ function ResponsiveAppBar() {
               <MenuIcon />
             </IconButton>
             <Drawer
-              anchor="right"  // Drawer opens from the right for RTL
+              anchor="right"
               open={drawerOpen}
               onClose={toggleDrawer(false)}
               sx={{
@@ -193,6 +227,36 @@ function ResponsiveAppBar() {
           </Box>
         </Toolbar>
       </Container>
+
+      {/* Dropdown Menu for "أقسامنا" */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        sx={{
+          '& .MuiMenu-paper': {
+            backgroundColor: '#000',
+            color: '#fff',
+          },
+        }}
+      >
+        {sections.map((section) => (
+          <MenuItem
+            key={section}
+            component={Link}
+            to={`/${section.toLowerCase()}`}
+            onClick={handleClose}
+            sx={{
+              color: 'inherit',
+              '&:hover': {
+                backgroundColor: '#444',
+              },
+            }}
+          >
+            {section}
+          </MenuItem>
+        ))}
+      </Menu>
     </AppBar>
   );
 }
