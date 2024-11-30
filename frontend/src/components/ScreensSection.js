@@ -1,6 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography, useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery, Grid, Card, CardContent, Paper } from '@mui/material';
 import Container from '@mui/material/Container';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
@@ -32,8 +32,9 @@ const ScreensSection = () => {
   return (
     <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '0px' }}>
       <Box sx={{ width: '100%', position: 'relative', overflow: 'hidden' }}>
-        <Carousel 
-          fade 
+        {/* Carousel Section */}
+        <Carousel
+          fade
           nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: 'black' }} />}
           prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: 'black' }} />}
         >
@@ -88,9 +89,9 @@ const ScreensSection = () => {
                   alignItems: 'center',
                   color: 'white',
                   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.3s ease', // Adds animation on hover
+                  transition: 'transform 0.3s ease',
                   '&:hover': {
-                    transform: 'scale(1.2)', // Increases size when hovered
+                    transform: 'scale(1.2)',
                   },
                 }}
               >
@@ -109,9 +110,9 @@ const ScreensSection = () => {
                   alignItems: 'center',
                   color: 'white',
                   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.3s ease', // Adds animation on hover
+                  transition: 'transform 0.3s ease',
                   '&:hover': {
-                    transform: 'scale(1.2)', // Increases size when hovered
+                    transform: 'scale(1.2)',
                   },
                 }}
               >
@@ -130,9 +131,9 @@ const ScreensSection = () => {
                   alignItems: 'center',
                   color: 'white',
                   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.3s ease', // Adds animation on hover
+                  transition: 'transform 0.3s ease',
                   '&:hover': {
-                    transform: 'scale(1.2)', // Increases size when hovered
+                    transform: 'scale(1.2)',
                   },
                 }}
               >
@@ -151,9 +152,9 @@ const ScreensSection = () => {
                   alignItems: 'center',
                   color: 'white',
                   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.3s ease', // Adds animation on hover
+                  transition: 'transform 0.3s ease',
                   '&:hover': {
-                    transform: 'scale(1.2)', // Increases size when hovered
+                    transform: 'scale(1.2)',
                   },
                 }}
               >
@@ -163,7 +164,510 @@ const ScreensSection = () => {
           </Box>
         )}
       </Box>
+
+      {/* Dashboard Grid Section */}
+        <Paper sx={{ p: 2, width: '100%' }}>
+        <Container maxWidth={false} sx={{ padding: 0 }}>
+          <Grid container spacing={2} sx={{ marginTop: '40px' }}>
+            {/* Left Column - 30% width on medium and larger screens, full width on smaller screens */}
+            <Grid
+              item
+              xs={12}  // Full width on mobile
+              md={4}   // 30% width on medium and larger screens
+              sx={{ order: { xs: 1, md: 1 } }}  // Left column is first on all screens
+            >
+              <Card
+                sx={{
+                  borderRadius: '20px', // Rounded corners for the card
+                  boxShadow: 3,         // Subtle shadow
+                  overflow: 'hidden',   // Prevents image overflow
+                  display: 'flex',      // Flex container
+                  flexDirection: 'column',  // Stacks content vertically
+                  height: '100%',       // Full height
+                }}
+              >
+                <CardContent sx={{ flex: 1 }}>
+                  <Box
+                    component="img"
+                    src="https://i.ibb.co/djPgHLc/Waterproof-P6-66-Outdoor-LED-Screen-Signboard.webp"
+                    alt="description"
+                    sx={{
+                      width: '100%',       // Responsive image
+                      height: 'auto',      // Maintain aspect ratio
+                      objectFit: 'cover',  // Covers container without distortion
+                      borderRadius: '20px', // Rounded corners for the image
+                    }}
+                  />
+                </CardContent>
+              </Card>
+            </Grid>
+
+            {/* Right Column - 70% width on medium and larger screens, full width on smaller screens */}
+            <Grid
+              item
+              xs={12}  // Full width on mobile
+              md={8}   // 70% width on medium and larger screens
+              sx={{ direction: 'rtl', order: { xs: 2, md: 2 } }}  // Right column is second on all screens
+            >
+              <Card sx={{
+                borderRadius: '20px',
+                boxShadow: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+              }}>
+                <CardContent sx={{ flex: 1 }}>
+                  <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
+                    <CardContent>
+                      {/* Box to ensure proper alignment */}
+                      <Box sx={{ padding: '16px' }}>
+                        <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333' }}>
+                          الشاشات الإلكترونية الخارجية
+                        </Typography>
+                      </Box>
+                    </CardContent>
+                  </Card>
+                  <Typography variant="body1" sx={{ fontSize: '23px' }}>
+                    تعتبر شاشات العرض الإلكترونية الخارجية المتخصصة في عرض الصور ومقاطع الفيديو من احدث طرق التسويق حاليا لأنها تعتبر الوسيلة الافضل في جذب ولفت انتباه العملاء ..
+                    كما تتميز هذه الشاشات بأنها شديدة الوضوح في وقت النهار ، كما أنها موفرة للكهرباء .كذلك تتميز بتنوعها من حيث المقاسات كي تناسب جميع المجالات .تستخدم هذه الشاشات في عرض الإعلانات مما يعمل على الترويج لمنتجاتك وخدماتك مجانا 24/7 بطريقة ملفته وجذابة .. وتحقق زياده الوعي والانتشار لعلامتك التجارية ووصولها لأكبر عدد من العملاء ..ويتم تغيير وتحديث المحتوى الإعلاني عليها من خلال التحكم عن بعد وبكل يسر و سهولة . كما يتم تعزيز علاقتك بالعملاء من خلال عرض وسائل الاتصال والتواصل على الشاشات وبالتالي زيادة إيراداتك وأرباحك وذلك من خلال استغلال الشاشة في عرض إعلانات لشركات تجارية اخرى.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+
+          </Grid>
+        </Container>
+      </Paper>
+
+      {/* Repeat the same structure for the next section */}
+      <Paper sx={{ p: 2, width: '100%' }}>
+        <Container maxWidth={false} sx={{ padding: 0 }}>
+          <Grid container spacing={2} sx={{ marginTop: '40px' }}>
+
+            {/* Left Column - 70% width on medium and larger screens, full width on smaller screens */}
+            <Grid item xs={12} md={7} sx={{ order: { xs: 2, md: 1 } }}> {/* Added order for responsiveness */}
+              <Card sx={{
+                borderRadius: '20px',
+                boxShadow: 3,
+                display: 'flex',
+                flexDirection: 'column', 
+                height: '100%',
+                direction: 'rtl',
+              }}>
+                <CardContent sx={{ flex: 1 }}>
+                  <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
+                    <CardContent>
+                      <Box sx={{ padding: { xs: '8px', md: '16px' } }}> {/* Adjust padding for mobile */}
+                        <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: 'h5', md: 'h3' } }}>
+                        الشاشات الإلكترونية الداخلية
+                        </Typography>
+                      </Box>
+                    </CardContent>
+                  </Card>
+                  <Typography variant="body1" sx={{ fontSize: { xs: '16px', md: '23px' }, lineHeight: 1.5 }}>
+                  تعتبر شاشات العرض الداخلية هي الوسيلة الأفضل في زيادة معدل التواصل المباشر مع العملاء طوال فترة تواجدهم في المكان كونها تجذب الانتباه بشكل كبير .. كما يمكن من خلالها عرض جميع المحتويات الإعلانية المرئية سواء كانت صور أو مقاطع فيديو.
+                  </Typography>
+                  <Typography variant="body1" sx={{ fontSize: { xs: '16px', md: '23px' }, lineHeight: 1.5,marginTop:'10px' }}>
+                  كما تتميز هذه الشاشات بدقة الوضوح و توفر أحجام ومقاسات مختلفة.
+                  </Typography>
+                  <Typography variant="body1" sx={{ fontSize: { xs: '16px', md: '23px' }, lineHeight: 1.5,marginTop:'10px'}}>
+                  وللعلم قامت شركة الأبحاث Nielsen بالتحقيق في تأثير العروض الرقمية والمحتوى المرئي في نقاط البيع فتبين أن الشركات التي استخدمت شاشات العرض الإلكترونية داخل المتاجر حسنت معدلات الوعي بالعلامات التجارية الخاصة بها بنسبة تصل إلى 14٪.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+
+            {/* Right Column - 30% width on medium and larger screens, full width on smaller screens */}
+            <Grid item xs={12} md={5} sx={{ direction: 'rtl', order: { xs: 1, md: 2 } }}> {/* Set order for right column */}
+              <Card
+                sx={{
+                  borderRadius: '20px',
+                  boxShadow: 3,
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: '100%',
+                }}
+              >
+                <CardContent sx={{ flex: 1 }}>
+                  <Box
+                    component="img"
+                    src="https://i.ibb.co/1RwMSG8/P1-95-Indoor-High-Definition-Front-Maintenance-Fixed-LED-Display-Screen-with-1000mm-250mm-Aluminum-C.jpg"
+                    alt="description"
+                    sx={{
+                      width: '100%',
+                      height: 'auto',
+                      objectFit: 'cover',
+                      borderRadius: '20px',
+                    }}
+                  />
+                </CardContent>
+              </Card>
+            </Grid>
+
+          </Grid>
+        </Container>
+      </Paper>
+     {/* Dashboard Grid Section */}
+      <Paper sx={{ p: 2, width: '100%' }}>
+        <Container maxWidth={false} sx={{ padding: 0 }}>
+          <Grid container spacing={2} sx={{ marginTop: '40px' }}>
+
+            {/* Left Column - 30% width on medium and larger screens, full width on smaller screens */}
+            <Grid
+              item
+              xs={12}  // Full width on mobile
+              md={4}   // 30% width on medium and larger screens
+              sx={{ order: { xs: 1, md: 1 } }}  // Left column is first on all screens
+            >
+              <Card
+                sx={{
+                  borderRadius: '20px', // Adds rounded corners to the card
+                  boxShadow: 3,         // Adds a subtle shadow around the card
+                  overflow: 'hidden',   // Ensures the image doesn't overflow the rounded corners
+                  display: 'flex',      // Makes the card a flex container
+                  flexDirection: 'column', // Ensures the content is vertically stacked
+                  height: '100%',       // Ensures the card takes up full height of the container
+                }}
+              >
+                <CardContent sx={{ flex: 1 }}>
+                  <Box
+                    component="img"
+                    src="https://i.ibb.co/9y22tyR/68881793-2416484458675252-6626241936149708800-n.jpg"
+                    alt="description"
+                    sx={{
+                      width: '100%',       // Makes the image responsive
+                      height: 'auto',      // Maintains aspect ratio
+                      objectFit: 'cover',  // Ensures the image covers the container without distorting
+                      borderRadius: '20px', // Ensures the image also has rounded corners
+                    }}
+                  />
+                </CardContent>
+              </Card>
+            </Grid>
+
+            {/* Right Column - 70% width on medium and larger screens, full width on smaller screens */}
+            <Grid
+              item
+              xs={12}  // Full width on mobile
+              md={8}   // 70% width on medium and larger screens
+              sx={{ direction: 'rtl', order: { xs: 2, md: 2 } }}  // Right column is second on all screens
+            >
+              <Card sx={{
+                borderRadius: '20px',
+                boxShadow: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+              }}>
+                <CardContent sx={{ flex: 1 }}>
+                  <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
+                    <CardContent>
+                      {/* Box to ensure proper alignment */}
+                      <Box sx={{ padding: '16px' }}>
+                        <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333' }}>
+                          شــاشة العـــرض النصـــية
+                        </Typography>
+                      </Box>
+                    </CardContent>
+                  </Card>
+                  <Typography variant="body1" sx={{ fontSize: '23px' }}>
+                    يتميز هذ النوع من الشاشات بسهولة التركيب  بحيث يمكن من خلالها تقديم معلومات واضحة ومباشرة للعميل بطريقة مبتكرة .. كذلك تمكنك من عرض المحتوى بأكثر من طريقة .كما تتميز هذه الشاشات ببرنامج تشغيل سهل يحتوي على عدد كبير من تأثيرات الحركة كما أنها تعرض جميع اللغات المكتوبة من جهاز الكمبيوتر مما يعمل علي زيادة فرص الاتصال والتواصل مع عملاءك بشكل أفضل .
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+
+          </Grid>
+        </Container>
+      </Paper>
+
+      {/* Repeat the same structure for the next section */}
+      <Paper sx={{ p: 2, width: '100%' }}>
+      <Container maxWidth={false} sx={{ padding: 0 }}>
+        <Grid container spacing={2} sx={{ marginTop: '40px' }}>
+
+          {/* Left Column - 70% width on medium and larger screens, full width on smaller screens */}
+          <Grid item xs={12} md={7} sx={{ order: { xs: 2, md: 1 } }}> {/* Order for responsiveness */}
+            <Card sx={{
+              borderRadius: '20px',
+              boxShadow: 3,
+              display: 'flex',
+              flexDirection: 'column', 
+              height: '100%',
+              direction: 'rtl',
+            }}>
+              <CardContent sx={{ flex: 1 }}>
+                <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
+                  <CardContent>
+                    <Box sx={{ padding: { xs: '8px', md: '16px' } }}> {/* Adjust padding for mobile */}
+                      <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: 'h5', md: 'h3' } }}>
+                        شـــــاشات الاســـــــتاند
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+                <Typography variant="body1" sx={{ fontSize: { xs: '16px', md: '23px' }, lineHeight: 1.5 }}>
+                  تستخدم شاشات الاستاند عادة لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية ..
+                  كما يمكن استخدامها أيضًا في المؤتمرات و العروض التقديمية وذلك للعرض بشكل بارز ومميز ..
+                  و تعتبر شاشات الاستاند وسيلة فعالة لجذب انتباه العملاء والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب ..
+                  هذا المنتج يدعم الصيغ المتنوعة من الصور والفيديوهات .. و يمكن عرضها بنجاح .وبفضل التقنية المتقدمة تستخدم لضمان طبقات الصورة الواضحة .. والعمق اللوني وعرض الألوان الطبيعية.
+                  الشاشة الدعائية العمودية صُنعت باستخدام خط المعالجة LED الجديد .. وجُهزت برقاقة تحكم ذكية رئيسية للتقليل من التكلفة وتبديد القدرة .الشاشة الدعائية العمودية تنفذ التشغيل الدوري HD 1080P الكامل .كما أنها تدعم وظيفة التوقيت الزمني فالإعلانات يمكن عرضها في الوقت المختار مسبقاً وكذلك يمكن لكافة المستخدمين ضبط بداية ووقت إيقاف الإعلان..
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Right Column - 30% width on medium and larger screens, full width on smaller screens */}
+          <Grid item xs={12} md={5} sx={{ direction: 'rtl', order: { xs: 1, md: 2 } }}> {/* Set order for right column */}
+            <Card
+              sx={{
+                borderRadius: '20px',
+                boxShadow: 3,
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+              }}
+            >
+              <CardContent sx={{ flex: 1 }}>
+                <Box
+                  component="img"
+                  src="https://i.ibb.co/ZTqV7j9/floor-tand.webp"
+                  alt="description"
+                  sx={{
+                    width: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    borderRadius: '20px',
+                  }}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
+    </Paper>
+    <Paper sx={{ p: 2, width: '100%' }}>
+        <Container maxWidth={false} sx={{ padding: 0 }}>
+          <Grid container spacing={2} sx={{ marginTop: '40px' }}>
+            {/* Left Column - 30% width on medium and larger screens, full width on smaller screens */}
+            <Grid
+              item
+              xs={12}  // Full width on mobile
+              md={4}   // 30% width on medium and larger screens
+              sx={{ order: { xs: 1, md: 1 } }}  // Left column is first on all screens
+            >
+              <Card
+                sx={{
+                  borderRadius: '20px', // Rounded corners for the card
+                  boxShadow: 3,         // Subtle shadow
+                  overflow: 'hidden',   // Prevents image overflow
+                  display: 'flex',      // Flex container
+                  flexDirection: 'column',  // Stacks content vertically
+                  height: '100%',       // Full height
+                }}
+              >
+                <CardContent sx={{ flex: 1 }}>
+                  <Box
+                    component="img"
+                    src="https://i.ibb.co/nL7ySyg/digital-wayfinding-screen-kiosk-signbox-b.jpg"
+                    alt="description"
+                    sx={{
+                      width: '100%',       // Responsive image
+                      height: 'auto',      // Maintain aspect ratio
+                      objectFit: 'cover',  // Covers container without distortion
+                      borderRadius: '20px', // Rounded corners for the image
+                    }}
+                  />
+                </CardContent>
+              </Card>
+            </Grid>
+
+            {/* Right Column - 70% width on medium and larger screens, full width on smaller screens */}
+            <Grid
+              item
+              xs={12}  // Full width on mobile
+              md={8}   // 70% width on medium and larger screens
+              sx={{ direction: 'rtl', order: { xs: 2, md: 2 } }}  // Right column is second on all screens
+            >
+              <Card sx={{
+                borderRadius: '20px',
+                boxShadow: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+              }}>
+                <CardContent sx={{ flex: 1 }}>
+                  <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
+                    <CardContent>
+                      {/* Box to ensure proper alignment */}
+                      <Box sx={{ padding: '16px' }}>
+                        <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333' }}>
+                        الشـــــاشات التفــــاعلـية
+                        </Typography>
+                      </Box>
+                    </CardContent>
+                  </Card>
+                  <Typography variant="body1" sx={{ fontSize: '23px' }}>
+                  تعد الشاشة التفاعلية أحدث ما توصلت إليه التكنولوجيا كوسيلة حديثة ومتطورة للدعاية المميزة .. حيث تساعد بشكل كبير ومؤثر في عملية الدعاية والإعلان للمنتجات والخدمات للجهات الحكومية والشركات والمجتمعات.
+                  </Typography>
+                  <Typography variant="body1" sx={{ fontSize: '23px',marginTop:'10px'}}>
+                  وهذا ما جعل الشاشة التفاعلية أهمية بالغة في عصر الرسائل الإعلانية .. وبناء علي ذلك قررت الشركة توفير الكثير من الشاشات التفاعلية ذات مقاسات وألوان مختلفة بالإضافة إلى توفير أجهزة النداء الآلي والشاشات التفاعلية للبنوك والجهات الحكومية والمستشفيات .كما يتم استخدامها كشاشة إعلانات تفاعلية في المولات والمجمعات التجارية والاستهلاكية.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+
+          </Grid>
+        </Container>
+      </Paper>
+           {/* Repeat the same structure for the next section */}
+      <Paper sx={{ p: 2, width: '100%' }}>
+      <Container maxWidth={false} sx={{ padding: 0 }}>
+        <Grid container spacing={2} sx={{ marginTop: '40px' }}>
+
+          {/* Left Column - 70% width on medium and larger screens, full width on smaller screens */}
+          <Grid item xs={12} md={7} sx={{ order: { xs: 2, md: 1 } }}> {/* Order for responsiveness */}
+            <Card sx={{
+              borderRadius: '20px',
+              boxShadow: 3,
+              display: 'flex',
+              flexDirection: 'column', 
+              height: '100%',
+              direction: 'rtl',
+            }}>
+              <CardContent sx={{ flex: 1 }}>
+                <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
+                  <CardContent>
+                    <Box sx={{ padding: { xs: '8px', md: '16px' } }}> {/* Adjust padding for mobile */}
+                      <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: 'h5', md: 'h3' } }}>
+                      شـــاشات عـــدادات المشــاريع
+                      والساعات الرقمية ومحطات البنزين 
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+                <Typography variant="body1" sx={{ fontSize: { xs: '16px', md: '23px' }, lineHeight: 1.5 }}>
+                شاشات عدادات؟ المشاريع والساعات الرقمية ومحطات البنزين :شاشات مخصصة لنظام محطات الوقود حيث تعرض أسعار الوقود بطريقه احترافية وسهلة التحكمعداد المشاريع عبارة عن عداد ديجتال يعمل عن طريق العد التنازلي بعدد الايام المتبقي علي انتهاء المشروع الساعات الرقمية تعرض الوقت والتاريخ عن طريق الاتصال بالقمر الصناعي.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Right Column - 30% width on medium and larger screens, full width on smaller screens */}
+          <Grid item xs={12} md={5} sx={{ direction: 'rtl', order: { xs: 1, md: 2 } }}> {/* Set order for right column */}
+            <Card
+              sx={{
+                borderRadius: '20px',
+                boxShadow: 3,
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+              }}
+            >
+              <CardContent sx={{ flex: 1 }}>
+                <Box
+                  component="img"
+                  src="https://i.ibb.co/FD7MxFj/H5ec7985e4ee74eb0808a9de5a92c9290o-jpg-720x720q50.png"
+                  alt="description"
+                  sx={{
+                    width: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    borderRadius: '20px',
+                  }}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
+    </Paper>
+    <Paper sx={{ p: 2, width: '100%' }}>
+    <Container maxWidth={false} sx={{ padding: 0 }}>
+      <Grid container spacing={2} sx={{ marginTop: '40px' }}>
+
+        {/* Left Column - 30% width on medium and larger screens, full width on smaller screens */}
+        <Grid
+          item
+          xs={12}  // Full width on mobile
+          md={4}   // 30% width on medium and larger screens
+          sx={{ order: { xs: 1, md: 1 } }}  // Left column is first on all screens
+        >
+          <Card
+            sx={{
+              borderRadius: '20px', // Rounded corners for the card
+              boxShadow: 3,         // Subtle shadow
+              overflow: 'hidden',   // Prevents image overflow
+              display: 'flex',      // Flex container
+              flexDirection: 'column',  // Stacks content vertically
+              height: '100%',       // Full height
+            }}
+          >
+            <CardContent sx={{ flex: 1 }}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/R0Z6RYR/images-3.png"
+                alt="description"
+                sx={{
+                  width: '100%',       // Makes the image responsive
+                  height: 'auto',      // Maintain aspect ratio
+                  objectFit: 'cover',  // Ensures the image covers the container without distortion
+                  borderRadius: '20px', // Rounded corners for the image
+                }}
+              />
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Right Column - 70% width on medium and larger screens, full width on smaller screens */}
+        <Grid
+          item
+          xs={12}  // Full width on mobile
+          md={8}   // 70% width on medium and larger screens
+          sx={{ direction: 'rtl', order: { xs: 2, md: 2 } }}  // Right column is second on all screens
+        >
+          <Card sx={{
+            borderRadius: '20px',
+            boxShadow: 3,
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+          }}>
+            <CardContent sx={{ flex: 1 }}>
+              <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
+                <CardContent>
+                  <Box sx={{ padding: '16px' }}>
+                    <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333' }}>
+                      جهاز ارقام الانتظار
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+              <Typography variant="body1" sx={{ fontSize: '23px' }}>
+                تعمل شاشات الاستدعاء بمفردها لا تحتاج إلى أجهزة كمبيوتر للعمل معها.
+              </Typography>
+              <Typography variant="body1" sx={{ fontSize: '23px', marginTop: '10px' }}>
+                تبدا بــ 4 خدمات مختلفة حسب رغبة العميل و يمكن زيادة الخدمات مستقبلا الى 12 خدمة.
+              </Typography>
+              <Typography variant="body1" sx={{ fontSize: '23px', marginTop: '10px' }}>
+                النظام يعمل بنغمة Ding Dong والنداء برقم العميل والشباك.
+              </Typography>
+              <Typography variant="body1" sx={{ fontSize: '23px', marginTop: '10px' }}>
+                تحتفظ باخر رقم تم طلبه عند انقطاع التيار الكهربائي للبدء من هذا الرقم بعد عودة التيار.
+              </Typography>
+              <Typography variant="body1" sx={{ fontSize: '23px', marginTop: '10px' }}>
+                النظام مزود بوحدة برنتر لطباعة الأرقام المسلسلة متعددة المهام النظام لا يحتاج إلى أي وحدات تحكم أو وحدات تشغيل إضافية.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
     </Container>
+  </Paper>
+  </Container>
   );
 };
 
