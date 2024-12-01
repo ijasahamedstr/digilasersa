@@ -71,6 +71,73 @@ const products1 = [
     },
   ];
 
+  const products2 = [
+    {
+      imageUrl: "https://i.ibb.co/B3mBwNq/01.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/RgvkMxC/assortment-with-minimal-tumbler-drinks.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/LSVgLTg/bohemian-poster-collection-with-wildflowers-botanical-illustrations-your-wall-art-gallery.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/JR8B6pH/Screenshot-2024-08-20-135119.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/LSVgLTg/bohemian-poster-collection-with-wildflowers-botanical-illustrations-your-wall-art-gallery.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/JR8B6pH/Screenshot-2024-08-20-135119.png",
+    },
+  ];
+
+  
+  const products3 = [
+    {
+      imageUrl: "https://i.ibb.co/dbpkVFH/interior-kids-room-decoration-with-clothes-23-2149096030.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/PYmj4L7/light-rag-bag-with-flowers-hangs-white-wooden-wall-92795-1426.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/BByHjvs/nike-liverpool-fc-stadium-home-21-22-t-shirt.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/qpyjHp6/Wqe0qf-OC1-Hoyqnh-Bb-Mry-Bn-RMHj-Lw-F2-Sl-YECX4-MJx1596729580.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/bRSwkKT/shirt-mockup-concept-with-plain-clothing.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/qpyjHp6/Wqe0qf-OC1-Hoyqnh-Bb-Mry-Bn-RMHj-Lw-F2-Sl-YECX4-MJx1596729580.png",
+    },
+  ];
+
+  const products4 = [
+    {
+      imageUrl: "https://i.ibb.co/NSxkRJ9/UV-DTF-transfers-magic-film-waterbottle-e-Print-Online34.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/QDYNR15/close-up-hand-holding-mobile-phone.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/3YCTRz9/uv-dtf-stickers.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/TR1zWp9/CUSTOM-DTF-UV-TRANSFER-DECAL-FOR-HARD-HAT-HELMET-2-430x430.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/3YCTRz9/uv-dtf-stickers.png",
+    },
+    {
+      imageUrl: "https://i.ibb.co/QDYNR15/close-up-hand-holding-mobile-phone.png",
+    },
+  ];
+
+
+
+
 const PrintingSection = () => {
   const [open, setOpen] = useState(false);  // useState hook for dialog
   const [selectedImage, setSelectedImage] = useState(null);  // useState hook for selected image
@@ -181,30 +248,33 @@ const PrintingSection = () => {
         >
           {products.map((product, index) => (
             <SwiperSlide key={index}>
-              <Card
-                sx={{
-                  maxWidth: 345,
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                  borderRadius: '20px',
-                  overflow: 'hidden', // Ensure images don't overflow the corners
-                  '&:hover': {
-                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
-                  },
+             <Card
+              sx={{
+                maxWidth: 345,
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                borderRadius: '20px',
+                overflow: 'hidden', // Ensure images don't overflow the corners
+                '&:hover': {
+                  boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
+                  transform: 'scale(1.05)', // Zoom effect
+                },
+                transition: 'transform 0.3s ease', // Smooth transition for zoom effect
+              }}
+            >
+              <img
+                src={product.imageUrl}
+                alt={product.title}
+                style={{
+                  height: '300px',
+                  width: '100%',
+                  objectFit: 'cover',
+                  cursor: 'pointer', // Cursor style to indicate clickable images
+                  transition: 'transform 0.3s ease', // Smooth transition for zoom effect
                 }}
-              >
-                <img
-                  src={product.imageUrl}
-                  alt={product.title}
-                  style={{
-                    height: '300px',
-                    width: '100%',
-                    objectFit: 'cover',
-                    cursor: 'pointer', // Cursor style to indicate clickable images
-                    transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-                  }}
-                  onClick={() => handleImageClick(product.imageUrl)} // Click to preview image
-                />
-              </Card>
+                onClick={() => handleImageClick(product.imageUrl)} // Click to preview image
+              />
+            </Card>
+
             </SwiperSlide>
           ))}
         </Swiper>
@@ -280,7 +350,213 @@ const PrintingSection = () => {
                   overflow: 'hidden', // Ensure images don't overflow the corners
                   '&:hover': {
                     boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
+                    transform: 'scale(1.05)', // Zoom effect
                   },
+                  transition: 'transform 0.3s ease', // Smooth transition for zoom effect
+                }}
+              >
+                <img
+                  src={product1.imageUrl}
+                  style={{
+                    height: '300px',
+                    width: '100%',
+                    objectFit: 'cover',
+                    cursor: 'pointer', // Cursor style to indicate clickable images
+                    transition: 'transform 0.3s ease', // Smooth transition for zoom effect
+                  }}
+                  onClick={() => handleImageClick(product1.imageUrl)} // Click to preview image
+                />
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Box>
+      <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
+        <Typography
+          variant="h4"
+          component="h2"
+          sx={{
+            fontFamily: 'Noto Kufi Arabic, sans-serif',
+            fontWeight: 'bold',
+            color: '#333',
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+            textAlign: 'center',
+          }}
+        >
+        <span style={{ color: '#015057' }}>طباعه مسطحات  UV</span>
+        </Typography>
+        <hr
+          style={{
+            border: 'none',
+            height: '4px',
+            backgroundColor: '#015057',
+            width: '5%',
+            alignSelf: 'center',
+            margin: '20px auto',
+          }}
+        />
+        <Swiper
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          centeredSlides={true}
+          grabCursor={true}
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            600: { slidesPerView: 2 },
+            900: { slidesPerView: 3 },
+            1024: { slidesPerView: 5 },
+          }}
+        >
+          {products2.map((product1, index) => (
+            <SwiperSlide key={index}>
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                  borderRadius: '20px',
+                  overflow: 'hidden', // Ensure images don't overflow the corners
+                  '&:hover': {
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
+                    transform: 'scale(1.05)', // Zoom effect
+                  },
+                  transition: 'transform 0.3s ease', // Smooth transition for zoom effect
+                }}
+              >
+                <img
+                  src={product1.imageUrl}
+                  style={{
+                    height: '300px',
+                    width: '100%',
+                    objectFit: 'cover',
+                    cursor: 'pointer', // Cursor style to indicate clickable images
+                    transition: 'transform 0.3s ease', // Smooth transition for zoom effect
+                  }}
+                  onClick={() => handleImageClick(product1.imageUrl)} // Click to preview image
+                />
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Box>
+      <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
+        <Typography
+          variant="h4"
+          component="h2"
+          sx={{
+            fontFamily: 'Noto Kufi Arabic, sans-serif',
+            fontWeight: 'bold',
+            color: '#333',
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+            textAlign: 'center',
+          }}
+        >
+        <span style={{ color: '#015057' }}>طباعه منسوجات dtf</span>
+        </Typography>
+        <hr
+          style={{
+            border: 'none',
+            height: '4px',
+            backgroundColor: '#015057',
+            width: '5%',
+            alignSelf: 'center',
+            margin: '20px auto',
+          }}
+        />
+        <Swiper
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          centeredSlides={true}
+          grabCursor={true}
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            600: { slidesPerView: 2 },
+            900: { slidesPerView: 3 },
+            1024: { slidesPerView: 5 },
+          }}
+        >
+          {products3.map((product1, index) => (
+            <SwiperSlide key={index}>
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                  borderRadius: '20px',
+                  overflow: 'hidden', // Ensure images don't overflow the corners
+                  '&:hover': {
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
+                    transform: 'scale(1.05)', // Zoom effect
+                  },
+                  transition: 'transform 0.3s ease', // Smooth transition for zoom effect
+                }}
+              >
+                <img
+                  src={product1.imageUrl}
+                  style={{
+                    height: '300px',
+                    width: '100%',
+                    objectFit: 'cover',
+                    cursor: 'pointer', // Cursor style to indicate clickable images
+                    transition: 'transform 0.3s ease', // Smooth transition for zoom effect
+                  }}
+                  onClick={() => handleImageClick(product1.imageUrl)} // Click to preview image
+                />
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Box>
+      <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
+        <Typography
+          variant="h4"
+          component="h2"
+          sx={{
+            fontFamily: 'Noto Kufi Arabic, sans-serif',
+            fontWeight: 'bold',
+            color: '#333',
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+            textAlign: 'center',
+          }}
+        >
+        <span style={{ color: '#015057' }}>طبــاعة dtf-uv</span>
+        </Typography>
+        <hr
+          style={{
+            border: 'none',
+            height: '4px',
+            backgroundColor: '#015057',
+            width: '5%',
+            alignSelf: 'center',
+            margin: '20px auto',
+          }}
+        />
+        <Swiper
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          centeredSlides={true}
+          grabCursor={true}
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            600: { slidesPerView: 2 },
+            900: { slidesPerView: 3 },
+            1024: { slidesPerView: 5 },
+          }}
+        >
+          {products4.map((product1, index) => (
+            <SwiperSlide key={index}>
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                  borderRadius: '20px',
+                  overflow: 'hidden', // Ensure images don't overflow the corners
+                  '&:hover': {
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
+                    transform: 'scale(1.05)', // Zoom effect
+                  },
+                  transition: 'transform 0.3s ease', // Smooth transition for zoom effect
                 }}
               >
                 <img
