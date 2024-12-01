@@ -12,6 +12,7 @@ import Aboutus from './components/About';
 import ScreensSection from './components/ScreensSection';
 import PrintingSection from './components/PrintingSection';
 import GiftsSection from './components/GiftsSection';
+import SocialSection from './components/SocialSection';
 
 
 const theme = createTheme({
@@ -32,6 +33,7 @@ function App() {
         <Route path="/الشاشات" element={<ScreensSection/>} />
         <Route path="/الطباعة" element={<PrintingSection/>} />
         <Route path="/الهدايا الدعائية" element={<GiftsSection/>} />
+        <Route path="/الإعلام والإنتاج" element={<SocialSection/>} />
       </Routes>
       <Footer/>
     </Router>
