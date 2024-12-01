@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const carouselItems = [
   {
@@ -29,18 +30,11 @@ const carouselItems = [
   },
 ];
 
-const imageUrls = [
-  'https://i.ibb.co/Y2YL6Sw/3b76025704ab1da5d342fa24fb810899.png',
-  'https://i.ibb.co/bmqWtns/BLG02x-feature-image-edited.png',
-  'https://i.ibb.co/C8XPJNP/hands-holding-smartphone-social-media-concept-1.png',
-  'https://i.ibb.co/f9Rvg8t/custom-illustrations-personalizing-web-design.png'
-];
-
-const cardTitles = [
-  "تحسين محركات البحث",
-  "تحليل اداء الحسابات",
-  "التفاعل الجماهيرى",
-  "إنشاء وتطوير الحسابات",
+const products = [
+  { cardTitles: "تحسين محركات البحث", imageUrls: "https://i.ibb.co/Y2YL6Sw/3b76025704ab1da5d342fa24fb810899.png"},
+  { cardTitles: "تحليل اداء الحسابات", imageUrls: "https://i.ibb.co/bmqWtns/BLG02x-feature-image-edited.png"},
+  { cardTitles: "التفاعل الجماهيرى", imageUrls: "https://i.ibb.co/C8XPJNP/hands-holding-smartphone-social-media-concept-1.png" },
+  { cardTitles: "إنشاء وتطوير الحسابات", imageUrls: "https://i.ibb.co/f9Rvg8t/custom-illustrations-personalizing-web-design.png"}
 ];
 
 const SocialSection = () => {
@@ -140,40 +134,66 @@ const SocialSection = () => {
       <Paper sx={{ p: 2, width: '100%' }}>
         <Container maxWidth={false} sx={{ padding: 0 }}>
           <Grid container spacing={2} sx={{ marginTop: '40px' }}>
-            <Grid item xs={12} md={4}>
-              <Card sx={{ borderRadius: '20px', boxShadow: 3, display: 'flex', flexDirection: 'column' }}>
-                <CardContent>
+            {/* Left Column - 30% width on medium and larger screens, full width on smaller screens */}
+            <Grid
+              item
+              xs={12}  // Full width on mobile
+              md={4}   // 30% width on medium and larger screens
+              sx={{ order: { xs: 1, md: 1 } }}  // Left column is first on all screens
+            >
+              <Card
+                sx={{
+                  borderRadius: '20px', // Rounded corners for the card
+                  boxShadow: 3,         // Subtle shadow
+                  overflow: 'hidden',   // Prevents image overflow
+                  display: 'flex',      // Flex container
+                  flexDirection: 'column',  // Stacks content vertically
+                  height: '100%',       // Full height
+                }}
+              >
+                <CardContent sx={{ flex: 1 }}>
                   <Box
                     component="img"
                     src="https://i.ibb.co/NVpdBJQ/roi-calculation-for-saas-seo-campaigns.png"
                     alt="description"
                     sx={{
-                      width: '100%',
-                      height: 'auto',
-                      objectFit: 'cover',
-                      borderRadius: '20px',
+                      width: '100%',       // Responsive image
+                      height: 'auto',      // Maintain aspect ratio
+                      objectFit: 'cover',  // Covers container without distortion
+                      borderRadius: '20px', // Rounded corners for the image
                     }}
                   />
                 </CardContent>
               </Card>
             </Grid>
 
-            <Grid item xs={12} md={8}>
-              <Card sx={{ borderRadius: '20px', boxShadow: 3, display: 'flex', flexDirection: 'column' }}>
-                <CardContent>
+            {/* Right Column - 70% width on medium and larger screens, full width on smaller screens */}
+            <Grid
+              item
+              xs={12}  // Full width on mobile
+              md={8}   // 70% width on medium and larger screens
+              sx={{ direction: 'rtl', order: { xs: 2, md: 2 } }}  // Right column is second on all screens
+            >
+              <Card sx={{
+                borderRadius: '20px',
+                boxShadow: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+              }}>
+                <CardContent sx={{ flex: 1 }}>
                   <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
                     <CardContent>
+                      {/* Box to ensure proper alignment */}
                       <Box sx={{ padding: '16px' }}>
                         <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333' }}>
-                          التسويق الالكتروني والسوشيال ميديا
+                        التسويق الالكتروني والسوشيال ميديا
                         </Typography>
                       </Box>
                     </CardContent>
                   </Card>
                   <Typography variant="body1" sx={{ fontSize: '23px' }}>
-                    نعمل بجد لتحقيق أقصى استفادة من وجودك الرقمي لكى نضمن لك تفاعل جمهورك، وتعزيز مكانتك في السوق
-                    ونلبي احتياجاتك بفريق يتابع عن كثب أحدث التطورات في عالم السوشيال ميديا ليضمن لك البقاء في
-                    الصدارة.
+                  نعمل بجد لتحقيق أقصى استفادة من وجودك الرقمي لكى نضمن لك تفاعل جمهورك، وتعزيز مكانتك في السوق ونلبي احتياجاتك بفريق يتابع عن كثب أحدث التطورات في عالم السوشيال ميديا ليضمن لك البقاء في الصدارة.
                   </Typography>
                 </CardContent>
               </Card>
@@ -214,39 +234,41 @@ const SocialSection = () => {
 
       {/* Swiper Section */}
       <Container maxWidth="xl" sx={{ marginTop: '40px', marginBottom: '40px' }}>
-      <Box sx={{ backgroundColor: '#f4f4f4', borderRadius: '16px', padding: '20px', boxShadow: 2, textAlign: 'center', marginBottom: '20px' }}>
-        <Typography
-          variant="h6"
-          sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
-        >
-          <span style={{ color: '#015057' }}>إدارة حسابات السوشيال ميديا</span>
-        </Typography>
-      </Box>
+        <Box sx={{ backgroundColor: '#f4f4f4', borderRadius: '16px', padding: '20px', boxShadow: 2, textAlign: 'center', marginBottom: '20px' }}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
+          >
+            <span style={{ color: '#015057' }}>إدارة حسابات السوشيال ميديا</span>
+          </Typography>
+        </Box>
 
-      <Swiper
-        spaceBetween={20}
-        slidesPerView="auto"
-        loop={true}
-        breakpoints={{
-          640: { slidesPerView: 1, spaceBetween: 10 },
-          768: { slidesPerView: 2, spaceBetween: 20 },
-          1024: { slidesPerView: 4, spaceBetween: 30 }
-        }}
-      >
-        {imageUrls.map((url, index) => (
-          <SwiperSlide key={index}>
-            <Card sx={{ maxWidth: 345, boxShadow: 3, '&:hover': { boxShadow: 6 } }}>
-              <CardMedia component="img" alt={`Service ${index}`} image={url} sx={{ height: 200 }} />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
-                  {cardTitles[index]}
-                </Typography>
-              </CardContent>
-            </Card>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </Container>
+        <Swiper
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          breakpoints={{
+            640: { slidesPerView: 1, spaceBetween: 10 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 4, spaceBetween: 30 }
+          }}
+        >
+          {products.map((product, index) => (
+            <SwiperSlide key={index}>
+              <Link to={`/service/${index + 1}`} style={{ textDecoration: 'none' }}>
+                <Card sx={{ maxWidth: 345, boxShadow: 3, '&:hover': { boxShadow: 6 }, marginBottom: '20px' }}>
+                  <CardMedia component="img" alt={`Service ${index}`} image={product.imageUrls} sx={{ height: 200 }} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
+                      {product.cardTitles}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Container>
     </Container>
   );
 };
