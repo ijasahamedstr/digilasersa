@@ -1,6 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography, useMediaQuery, Grid, Card, CardContent, Paper, CardMedia } from '@mui/material';
+import { Box, Typography, useMediaQuery, Grid, Card, CardContent, Paper, CardMedia,TextField,Button } from '@mui/material';
 import Container from '@mui/material/Container';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -36,6 +36,35 @@ const products = [
   { cardTitles: "التفاعل الجماهيرى", imageUrls: "https://i.ibb.co/C8XPJNP/hands-holding-smartphone-social-media-concept-1.png" },
   { cardTitles: "إنشاء وتطوير الحسابات", imageUrls: "https://i.ibb.co/f9Rvg8t/custom-illustrations-personalizing-web-design.png"}
 ];
+
+const products1 = [
+  { cardTitles: "تصميم حملات بريدية", imageUrls: "https://i.ibb.co/wMF8Hm2/hand-pressing-envelope-that-is-sent-world.png"},
+  { cardTitles: "تصميم خطط الترويج", imageUrls: "https://i.ibb.co/859f8mH/businessman-holding-blank-screen-smartphone.png"},
+  { cardTitles: "تصميم خطط إنتشار", imageUrls: "https://i.ibb.co/0MCT8X6/social-media-marketing-concept-marketing-with-applications-1.png" },
+  { cardTitles: "تصميم حملات إعلانية", imageUrls: "https://i.ibb.co/jvhx99T/social-media-concept-composition-1.png"}
+];
+
+const products2 = [
+  { cardTitles: "إنتاج وتصوير الفيديو", imageUrls: "https://i.ibb.co/NVDMdFy/the-camera-lens-canon-eos-5d-mark-ii-wallpaper-preview.png"},
+  { cardTitles: "تصميمات الجرافيك", imageUrls: "https://i.ibb.co/3cZsmBh/r-shutterstock-2083434319.png"},
+  { cardTitles: "كتابة المحتوس الابداعي", imageUrls: "https://i.ibb.co/Gnxn8k4/creativity-creative-ideas-imagination-inspiration-design-concept.png" },
+  { cardTitles: "بناء الهوية التجارية", imageUrls: "https://i.ibb.co/h9PYvR1/33.png"}
+];
+
+const products3 = [
+  { cardTitles: "تحليل متغيرات العملاء", imageUrls: "https://i.ibb.co/cwB6rvw/advertising-plan.png"},
+  { cardTitles: "تحليل المنافسين", imageUrls: "https://i.ibb.co/FVpwZyG/How-a-Competitive-Analysis-Affects-Your-Website-s-Design.png"},
+  { cardTitles: "تحليل سلوك المستخدم", imageUrls: "https://i.ibb.co/1m2MY8G/1684982244581.png" },
+  { cardTitles: "تحليل أداء الحسابات", imageUrls: "https://i.ibb.co/R9dy01t/how-to-do-behavioral-analysis.png"}
+];
+
+const products4 = [
+  { cardTitles: "خدمة العملاء", imageUrls: "https://i.ibb.co/crGY2Sp/customerservice.png"},
+  { cardTitles: "تدريب الموظفين", imageUrls: "https://i.ibb.co/S3NJmq0/1632994991100.png"},
+  { cardTitles: "الحلول المتكاملة", imageUrls: "https://i.ibb.co/g9pw3RB/649dd33f3c4d970a7923f531-strategic-project-management-article-cascade-strategy-blog.png" },
+  { cardTitles: "الاستراتيجيات والخطط", imageUrls: "https://i.ibb.co/89whNqm/How-to-Analyze-a-Digital-Ad-for-Performance-Results.png"}
+];
+
 
 const SocialSection = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
@@ -238,7 +267,6 @@ const SocialSection = () => {
         </Container>
       </section>
 
-
       {/* Swiper Section */}
       <Container maxWidth="xl" sx={{ marginTop: '40px', marginBottom: '40px' }}>
         <Box sx={{ backgroundColor: '#f4f4f4', borderRadius: '16px', padding: '20px', boxShadow: 2, textAlign: 'center', marginBottom: '20px' }}>
@@ -276,6 +304,305 @@ const SocialSection = () => {
           ))}
         </Swiper>
       </Container>
+
+       {/* Swiper Section */}
+      <Container maxWidth="xl" sx={{ marginTop: '40px', marginBottom: '40px' }}>
+        <Box sx={{ backgroundColor: '#f4f4f4', borderRadius: '16px', padding: '20px', boxShadow: 2, textAlign: 'center', marginBottom: '20px' }}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
+          >
+            <span style={{ color: '#015057' }}>إدارة الإعلانات المدفوعة</span>
+          </Typography>
+        </Box>
+
+        <Swiper
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          breakpoints={{
+            640: { slidesPerView: 1, spaceBetween: 10 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 4, spaceBetween: 30 }
+          }}
+        >
+          {products1.map((product, index) => (
+            <SwiperSlide key={index}>
+              <Link to={`/service/${index + 1}`} style={{ textDecoration: 'none' }}>
+                <Card sx={{ maxWidth: 345, boxShadow: 3, '&:hover': { boxShadow: 6 }, marginBottom: '20px' }}>
+                  <CardMedia component="img" alt={`Service ${index}`} image={product.imageUrls} sx={{ height: 200 }} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
+                      {product.cardTitles}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Container>
+
+       {/* Swiper Section */}
+      <Container maxWidth="xl" sx={{ marginTop: '40px', marginBottom: '40px' }}>
+        <Box sx={{ backgroundColor: '#f4f4f4', borderRadius: '16px', padding: '20px', boxShadow: 2, textAlign: 'center', marginBottom: '20px' }}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
+          >
+            <span style={{ color: '#015057' }}>إنشاء المحتوى الإبداعي</span>
+          </Typography>
+        </Box>
+
+        <Swiper
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          breakpoints={{
+            640: { slidesPerView: 1, spaceBetween: 10 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 4, spaceBetween: 30 }
+          }}
+        >
+          {products2.map((product, index) => (
+            <SwiperSlide key={index}>
+              <Link to={`/service/${index + 1}`} style={{ textDecoration: 'none' }}>
+                <Card sx={{ maxWidth: 345, boxShadow: 3, '&:hover': { boxShadow: 6 }, marginBottom: '20px' }}>
+                  <CardMedia component="img" alt={`Service ${index}`} image={product.imageUrls} sx={{ height: 200 }} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
+                      {product.cardTitles}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Container>
+
+       {/* Swiper Section */}
+      <Container maxWidth="xl" sx={{ marginTop: '40px', marginBottom: '40px' }}>
+        <Box sx={{ backgroundColor: '#f4f4f4', borderRadius: '16px', padding: '20px', boxShadow: 2, textAlign: 'center', marginBottom: '20px' }}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
+          >
+            <span style={{ color: '#015057' }}>تحليل البيانات المختلفة</span>
+          </Typography>
+        </Box>
+
+        <Swiper
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          breakpoints={{
+            640: { slidesPerView: 1, spaceBetween: 10 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 4, spaceBetween: 30 }
+          }}
+        >
+          {products3.map((product, index) => (
+            <SwiperSlide key={index}>
+              <Link to={`/service/${index + 1}`} style={{ textDecoration: 'none' }}>
+                <Card sx={{ maxWidth: 345, boxShadow: 3, '&:hover': { boxShadow: 6 }, marginBottom: '20px' }}>
+                  <CardMedia component="img" alt={`Service ${index}`} image={product.imageUrls} sx={{ height: 200 }} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
+                      {product.cardTitles}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Container>
+
+       {/* Swiper Section */}
+      <Container maxWidth="xl" sx={{ marginTop: '40px', marginBottom: '40px' }}>
+        <Box sx={{ backgroundColor: '#f4f4f4', borderRadius: '16px', padding: '20px', boxShadow: 2, textAlign: 'center', marginBottom: '20px' }}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
+          >
+            <span style={{ color: '#015057' }}>الإستشارات التسويقية</span>
+          </Typography>
+        </Box>
+
+        <Swiper
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          breakpoints={{
+            640: { slidesPerView: 1, spaceBetween: 10 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 4, spaceBetween: 30 }
+          }}
+        >
+          {products4.map((product, index) => (
+            <SwiperSlide key={index}>
+              <Link to={`/service/${index + 1}`} style={{ textDecoration: 'none' }}>
+                <Card sx={{ maxWidth: 345, boxShadow: 3, '&:hover': { boxShadow: 6 }, marginBottom: '20px' }}>
+                  <CardMedia component="img" alt={`Service ${index}`} image={product.imageUrls} sx={{ height: 200 }} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
+                      {product.cardTitles}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Container>
+      <section
+      style={{
+        backgroundColor: '#000000',
+        width: '100%',
+        margin: '0 auto',
+        marginBottom: '0px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: '50px',
+        paddingBottom: '50px',
+        marginTop: '-30px',
+        direction: 'ltr', // Set the section to RTL direction
+      }}
+    >
+      <Container
+        maxWidth="xl"
+        sx={{
+          paddingX: { xs: 2, sm: 3, md: 5 },
+          textAlign: 'center',
+        }}
+      >
+        <Grid container spacing={4}>
+          {/* Text Section on the Right */}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            order={{ xs: 1, sm: 1 }} // Keep this section first on all screen sizes
+            sx={{ direction: 'rtl' }}
+          >
+            <Typography variant="h4" color="white" paragraph>
+              Contact Us
+            </Typography>
+            <Typography variant="h5" color="#00fffc">
+              للطلب والإستفسار /
+            </Typography>
+            <Typography variant="h6" color="white" sx={{ marginTop: '50px' }}>
+            مدير السوشيال ميديا  : <span style={{ fontWeight: 'bold' }}>9999 084 057</span>
+            </Typography>
+          </Grid>
+
+          {/* Contact Form Section on the Left */}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            order={{ xs: 2, sm: 2 }} // Move this section to the bottom on mobile (order 2)
+          >
+            <form
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+                direction: 'rtl', // Set the form to right-to-left direction
+              }}
+            >
+              <TextField
+                label="الاسم"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                required
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
+              />
+              <TextField
+                label="جوال"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                required
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
+              />
+              <TextField
+                label="بريد الكتروني"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                required
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
+              />
+              <TextField
+                label="رسالتك"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                required
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  marginTop: '15px',
+                  background: '#00fffc',
+                  color: '#1e272e',
+                  padding: { xs: '10px', sm: '15px' }, // Responsive padding
+                }}
+              >
+                Submit
+              </Button>
+            </form>
+          </Grid>
+        </Grid>
+      </Container>
+    </section>      
     </Container>
   );
 };
