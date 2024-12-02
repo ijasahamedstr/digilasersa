@@ -1,5 +1,5 @@
 import React, { useState } from "react";  // Import useState hook
-import { Container, Box, Typography, Card, Dialog, DialogTitle, IconButton, DialogContent, DialogActions } from "@mui/material"; // Import missing MUI components
+import { Container, Box, Typography, Card, Dialog, DialogTitle, IconButton, DialogContent, DialogActions, CardContent } from "@mui/material"; // Import missing MUI components
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaTimes } from "react-icons/fa";  // Import FaTimes for close button
 import { Carousel } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -210,29 +210,33 @@ const PrintingSection = () => {
       </Box>
 
       <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
-        <Typography
-          variant="h4"
-          component="h2"
+        <Card
           sx={{
-            fontFamily: 'Noto Kufi Arabic, sans-serif',
-            fontWeight: 'bold',
-            color: '#333',
-            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-            textAlign: 'center',
+            backgroundColor: '#f5f5f5', // Background color of the card
+            padding: 0, // Padding around the content
+            borderRadius: 2, // Optional: rounded corners
+            boxShadow: 3, // Optional: card shadow
+            maxWidth: '100%', // Make sure the card is responsive
+            textAlign: 'center', // Center align content
+            marginBottom:'20px'
           }}
         >
-        <span style={{ color: '#015057' }}>مطـبوعات ورقـية</span>
-        </Typography>
-        <hr
-          style={{
-            border: 'none',
-            height: '4px',
-            backgroundColor: '#015057',
-            width: '5%',
-            alignSelf: 'center',
-            margin: '20px auto',
-          }}
-        />
+          <CardContent>
+            <Typography
+              variant="h4"
+              component="h2"
+              sx={{
+                fontFamily: 'Noto Kufi Arabic, sans-serif',
+                fontWeight: 'bold',
+                color: '#333',
+                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+                textAlign: 'center',
+              }}
+            >
+              <span style={{ color: '#015057' }}>مطـبوعات ورقـية</span>
+            </Typography>
+          </CardContent>
+        </Card>
         <Swiper
           spaceBetween={20}
           slidesPerView="auto"
@@ -304,29 +308,33 @@ const PrintingSection = () => {
         </Dialog>
       </Box>
       <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
-        <Typography
-          variant="h4"
-          component="h2"
+      <Card
           sx={{
-            fontFamily: 'Noto Kufi Arabic, sans-serif',
-            fontWeight: 'bold',
-            color: '#333',
-            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-            textAlign: 'center',
+            backgroundColor: '#f5f5f5', // Background color of the card
+            padding: 0, // Padding around the content
+            borderRadius: 2, // Optional: rounded corners
+            boxShadow: 3, // Optional: card shadow
+            maxWidth: '100%', // Make sure the card is responsive
+            textAlign: 'center', // Center align content
+             marginBottom:'20px'
           }}
         >
-        <span style={{ color: '#015057' }}>بنـر وسـتيكر</span>
-        </Typography>
-        <hr
-          style={{
-            border: 'none',
-            height: '4px',
-            backgroundColor: '#015057',
-            width: '5%',
-            alignSelf: 'center',
-            margin: '20px auto',
-          }}
-        />
+          <CardContent>
+            <Typography
+              variant="h4"
+              component="h2"
+              sx={{
+                fontFamily: 'Noto Kufi Arabic, sans-serif',
+                fontWeight: 'bold',
+                color: '#333',
+                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+                textAlign: 'center',
+              }}
+            >
+              <span style={{ color: '#015057' }}>بنـر وسـتيكر</span>
+            </Typography>
+          </CardContent>
+        </Card>
         <Swiper
           spaceBetween={20}
           slidesPerView="auto"
@@ -372,29 +380,33 @@ const PrintingSection = () => {
         </Swiper>
       </Box>
       <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
-        <Typography
-          variant="h4"
-          component="h2"
+      <Card
           sx={{
-            fontFamily: 'Noto Kufi Arabic, sans-serif',
-            fontWeight: 'bold',
-            color: '#333',
-            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-            textAlign: 'center',
+            backgroundColor: '#f5f5f5', // Background color of the card
+            padding: 0, // Padding around the content
+            borderRadius: 2, // Optional: rounded corners
+            boxShadow: 3, // Optional: card shadow
+            maxWidth: '100%', // Make sure the card is responsive
+            textAlign: 'center', // Center align content
+            marginBottom:'20px'
           }}
         >
-        <span style={{ color: '#015057' }}>طباعه مسطحات  UV</span>
-        </Typography>
-        <hr
-          style={{
-            border: 'none',
-            height: '4px',
-            backgroundColor: '#015057',
-            width: '5%',
-            alignSelf: 'center',
-            margin: '20px auto',
-          }}
-        />
+          <CardContent>
+            <Typography
+              variant="h4"
+              component="h2"
+              sx={{
+                fontFamily: 'Noto Kufi Arabic, sans-serif',
+                fontWeight: 'bold',
+                color: '#333',
+                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+                textAlign: 'center',
+              }}
+            >
+              <span style={{ color: '#015057' }}>طباعه مسطحات  UV</span>
+            </Typography>
+          </CardContent>
+        </Card>
         <Swiper
           spaceBetween={20}
           slidesPerView="auto"
@@ -440,19 +452,33 @@ const PrintingSection = () => {
         </Swiper>
       </Box>
       <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
-        <Typography
-          variant="h4"
-          component="h2"
-          sx={{
-            fontFamily: 'Noto Kufi Arabic, sans-serif',
-            fontWeight: 'bold',
-            color: '#333',
-            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-            textAlign: 'center',
-          }}
-        >
-        <span style={{ color: '#015057' }}>طباعه منسوجات dtf</span>
-        </Typography>
+      <Card
+        sx={{
+          backgroundColor: '#f5f5f5', // Background color of the card
+          padding: 0, // Padding around the content
+          borderRadius: 2, // Optional: rounded corners
+          boxShadow: 3, // Optional: card shadow
+          maxWidth: '100%', // Make sure the card is responsive
+          textAlign: 'center', // Center align content
+          marginBottom:'20px'
+        }}
+      >
+        <CardContent>
+          <Typography
+            variant="h4"
+            component="h2"
+            sx={{
+              fontFamily: 'Noto Kufi Arabic, sans-serif',
+              fontWeight: 'bold',
+              color: '#333',
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+              textAlign: 'center',
+            }}
+          >
+            <span style={{ color: '#015057' }}>طباعه منسوجات dtf</span>
+          </Typography>
+        </CardContent>
+      </Card>
         <hr
           style={{
             border: 'none',
@@ -508,29 +534,33 @@ const PrintingSection = () => {
         </Swiper>
       </Box>
       <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
-        <Typography
-          variant="h4"
-          component="h2"
+      <Card
           sx={{
-            fontFamily: 'Noto Kufi Arabic, sans-serif',
-            fontWeight: 'bold',
-            color: '#333',
-            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-            textAlign: 'center',
+            backgroundColor: '#f5f5f5', // Background color of the card
+            padding: 0, // Padding around the content
+            borderRadius: 2, // Optional: rounded corners
+            boxShadow: 3, // Optional: card shadow
+            maxWidth: '100%', // Make sure the card is responsive
+            textAlign: 'center', // Center align content
+            marginBottom:'20px'
           }}
         >
-        <span style={{ color: '#015057' }}>طبــاعة dtf-uv</span>
-        </Typography>
-        <hr
-          style={{
-            border: 'none',
-            height: '4px',
-            backgroundColor: '#015057',
-            width: '5%',
-            alignSelf: 'center',
-            margin: '20px auto',
-          }}
-        />
+          <CardContent>
+            <Typography
+              variant="h4"
+              component="h2"
+              sx={{
+                fontFamily: 'Noto Kufi Arabic, sans-serif',
+                fontWeight: 'bold',
+                color: '#333',
+                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+                textAlign: 'center',
+              }}
+            >
+              <span style={{ color: '#015057' }}>طبــاعة dtf-uv</span>
+            </Typography>
+          </CardContent>
+        </Card>
         <Swiper
           spaceBetween={20}
           slidesPerView="auto"
