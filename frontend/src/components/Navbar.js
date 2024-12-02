@@ -10,35 +10,34 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
-import Menu from '@mui/material/Menu'; // Import Menu
-import { useState } from 'react';
+import Menu from '@mui/material/Menu';  // Import Menu and MenuItem for the dropdown
 
 const pages1 = ['الرئيسية', 'من نحن', 'أقسامنا', 'شركائنا', 'اخبار الليزر', 'إتصل بنا']; // Pages
 const sections = ['الشاشات', 'الطباعة', 'الهدايا الدعائية','الإعلام والإنتاج','التواصل الإجتماعي','تصميم المواقع','الفن التشكيلي','الخط العربي']; // Sample sections for the dropdown menu
 
 function ResponsiveAppBar() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = useState(null); // State for managing dropdown menu anchor
+  const [anchorEl, setAnchorEl] = React.useState(null); // State to handle dropdown menu
   const navigate = useNavigate();
   const location = useLocation(); // Get current location
 
   const toggleDrawer = (open) => () => setDrawerOpen(open);
 
   const handleMenuClick = (event) => {
-    setAnchorEl(event.currentTarget); // Open the dropdown menu when clicked
+    setAnchorEl(event.currentTarget); // Open the menu when the button is clicked
   };
 
-  const handleClose = () => {
-    setAnchorEl(null); // Close the dropdown menu when an item is clicked or menu is closed
+  const handleMenuClose = () => {
+    setAnchorEl(null); // Close the menu when an item is selected or clicked outside
   };
 
   const drawerList = () => (
     <Box
-      sx={{ width: 250, fontFamily: 'Noto Kufi Arabic' }}
+      sx={{ width: 250, fontFamily: 'Noto Kufi Arabic' }} // Apply font-family here
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
-      dir="rtl" // Set direction to RTL for drawer content
+      dir="rtl" // Set RTL for Drawer content
     >
       {/* Logo */}
       <Box sx={{ padding: 2, textAlign: 'center' }}>
@@ -56,19 +55,20 @@ function ResponsiveAppBar() {
           <MenuItem
             key={page}
             component={Link}
-            to={`/${page.toLowerCase()}`}
+            to={`/${page.toLowerCase()}`}  // Corrected the path interpolation
             onClick={toggleDrawer(false)}
             sx={{
               backgroundColor: location.pathname === `/${page.toLowerCase()}` ? '#06f9f3' : 'transparent',
               '&:hover': {
                 backgroundColor: '#444',
               },
-              color: location.pathname === `/${page.toLowerCase()}` ? '#000' : 'inherit',
+              color: location.pathname === `/${page.toLowerCase()}` ? 'white' : 'inherit',  // Active text color white
+              padding: '10px', // Add padding for better click target
             }}
           >
-            <Typography sx={{ textAlign: 'center', fontFamily: 'Noto Kufi Arabic', fontSize: '18px' }}>
+            <Typography sx={{ textAlign: 'center', fontFamily: 'Noto Kufi Arabic', fontSize: '14px' }} >
               {page}
-            </Typography>
+            </Typography> {/* Smaller font size */}
           </MenuItem>
         ))}
       </Box>
@@ -76,19 +76,16 @@ function ResponsiveAppBar() {
   );
 
   return (
-    <AppBar position="static" sx={{ background: '#000', height: '100px' }} dir="rtl"> {/* Set direction to RTL for entire app bar */}
+    <AppBar position="static" sx={{ background: '#000', height: '100px' }} dir="rtl"> {/* Set AppBar to RTL */}
       <Container
-        maxWidth="xl" // Ensure the container extends fully on xl screens
+        maxWidth="xxl"
         sx={{
           '@media (min-width: 1600px)': {
-            maxWidth: '100%', // Make container full width for extra-large screens
-          },
-          '@media (max-width: 1280px)': {
-            maxWidth: 'lg', // Constrain container width on large screens (lg)
+            maxWidth: '1900px', // Simulate XXL breakpoint for larger screens
           },
         }}
       >
-        <Toolbar disableGutters sx={{ height: '100px', display: 'flex', justifyContent: 'space-between' }}>
+        <Toolbar disableGutters sx={{ height: '100px', display: 'flex', justifyContent: 'space-between' }}> {/* Flex container */}
 
           {/* Logo */}
           <Typography
@@ -100,9 +97,10 @@ function ResponsiveAppBar() {
               display: 'flex',
               alignItems: 'center',
               fontFamily: 'monospace',
+              fontWeight: 700,
               color: 'inherit',
               textDecoration: 'none',
-              fontSize: '15px', // Set font size for logo
+              fontSize: { xs: '16px', sm: '20px', md: '25px' },  // Reduced font size for the logo text
               paddingRight: '16px', // Adjust padding for RTL
             }}
           >
@@ -119,44 +117,45 @@ function ResponsiveAppBar() {
           </Typography>
 
           {/* Desktop Menu (Navigation Pages) */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-start', paddingRight: '20px', marginRight: '100px' }} dir="rtl">
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-start', paddingRight: '40px' }} dir="rtl"> {/* Adjust right padding for RTL */}
             {pages1.map((page) => (
               page === 'أقسامنا' ? (
+                // Dropdown for "أقسامنا" button
                 <Button
-                  key={page}
-                  onClick={handleMenuClick} // Open dropdown on click
+                  key="أقسامنا"
+                  onClick={handleMenuClick}
                   sx={{
                     my: 0.5,
-                    mx: 1,
-                    color: 'white',
+                    mx: 2,
+                    color: location.pathname.includes('/sections') ? 'white' : 'inherit', // Active text color
                     display: 'block',
                     fontFamily: 'Noto Kufi Arabic',
-                    fontSize: '17px',
+                    fontSize: { xs: '12px', sm: '14px', md: '16px' },
                     borderRadius: '50px',
-                    backgroundColor: location.pathname === `/${page.toLowerCase()}` ? '#06f9f3' : 'transparent',
+                    backgroundColor: location.pathname.includes('/sections') ? '#0b5097' : 'transparent',
                     '&:hover': {
-                      backgroundColor: '#444',
+                      backgroundColor: location.pathname !== '/sections' ? '#444' : '#0b5097',
                     },
                   }}
                 >
-                  {page}
+                  أقسامنا
                 </Button>
               ) : (
                 <Button
                   key={page}
                   component={Link}
-                  to={`/${page.toLowerCase()}`}
+                  to={`/${page.toLowerCase()}`}  // Corrected the path interpolation
                   sx={{
                     my: 0.5,
-                    mx: 1,
-                    color: 'white',
+                    mx: 2,
+                    color: location.pathname === `/${page.toLowerCase()}` ? 'white' : 'inherit',  // Active text color white
                     display: 'block',
                     fontFamily: 'Noto Kufi Arabic',
-                    fontSize: '17px',
+                    fontSize: { xs: '12px', sm: '14px', md: '16px' },  // Smaller font size
                     borderRadius: '50px',
-                    backgroundColor: location.pathname === `/${page.toLowerCase()}` ? '#06f9f3' : 'transparent',
+                    backgroundColor: location.pathname === `/${page.toLowerCase()}` ? '#0b5097' : 'transparent',  // Active page background
                     '&:hover': {
-                      backgroundColor: '#444',
+                      backgroundColor: location.pathname !== `/${page.toLowerCase()}` ? '#444' : '#0b5097',
                     },
                   }}
                 >
@@ -166,43 +165,47 @@ function ResponsiveAppBar() {
             ))}
           </Box>
 
-          {/* Contact Us Button */}
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
-            <Button
-              sx={{
-                color: 'white',
-                fontFamily: 'Noto Kufi Arabic',
-                borderRadius: '50px',
-                display: { xs: 'none', sm: 'flex' },
-                direction: 'ltr',
-                fontSize: '20px',
-                fontWeight: '600'
-              }}
-            >
-              966 57 1883194
-            </Button>
+          {/* Register Online Button with Linear Gradient */}
+          <Button
+            component={Link}
+            to="/register"  // Link to the register page or trigger a function
+            sx={{
+              color: 'white',
+              fontFamily: 'Noto Kufi Arabic',
+              fontSize: { xs: '12px', sm: '14px', md: '16px' },
+              borderRadius: '50px',
+              padding: '10px 20px',  // Add padding to make it more prominent
+              ml: 2,  // Margin left to add space between this button and the others
+              display: { xs: 'none', md: 'block' },  // Hide on mobile (xs) and show on medium (md) and up
+              direction:'ltr',
+              fontWeight:'600'
+            }}
+          >
+          966 57 1883194
+          </Button>
 
-            <Button
-              component={Link}
-              to="/contact"
-              sx={{
-                color: 'white',
-                fontFamily: 'Noto Kufi Arabic',
-                fontSize: '15px',
-                borderRadius: '50px',
-                backgroundColor: '#0ff5ec',
-                '&:hover': {
-                  backgroundColor: '#444',
-                },
-                display: { xs: 'none', sm: 'flex' },
-              }}
-            >
-              متجر الليزر
-            </Button>
-          </Box>
+          <Button
+            component={Link}
+            to="/register"  // Link to the register page or trigger a function
+            sx={{
+              color: 'white',
+              background:'rgb(15, 245, 236)',
+              fontFamily: 'Noto Kufi Arabic',
+              fontSize: { xs: '12px', sm: '14px', md: '16px' },
+              borderRadius: '50px',
+              padding: '10px 20px',  // Add padding to make it more prominent
+              '&:hover': {
+                backgroundImage: 'linear-gradient(to right, #005bb5, #003f8e)',  // Darker gradient on hover
+              },
+              ml: 2,  // Margin left to add space between this button and the others
+              display: { xs: 'none', md: 'block' },  // Hide on mobile (xs) and show on medium (md) and up
+            }}
+          >
+            متجر الليزر
+          </Button>
 
           {/* Mobile Menu (Drawer) */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} dir="ltr">
             <IconButton
               size="large"
               aria-label="open navigation menu"
@@ -212,7 +215,7 @@ function ResponsiveAppBar() {
               <MenuIcon />
             </IconButton>
             <Drawer
-              anchor="right"
+              anchor="right" // Change drawer opening direction for RTL
               open={drawerOpen}
               onClose={toggleDrawer(false)}
               sx={{
@@ -225,32 +228,25 @@ function ResponsiveAppBar() {
               {drawerList()}
             </Drawer>
           </Box>
+
         </Toolbar>
       </Container>
 
-      {/* Dropdown Menu for "أقسامنا" */}
+      {/* Dropdown Menu for أقسامنا */}
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
-        onClose={handleClose}
-        sx={{
-          '& .MuiMenu-paper': {
-            backgroundColor: '#000',
-            color: '#fff',
-          },
-        }}
+        onClose={handleMenuClose}
+        sx={{ direction: 'rtl' }} // Set the direction to RTL for the menu
       >
         {sections.map((section) => (
           <MenuItem
             key={section}
             component={Link}
-            to={`/${section.toLowerCase()}`}
-            onClick={handleClose}
+            to={`/${section.toLowerCase()}`} // Link to the specific section page
+            onClick={handleMenuClose}
             sx={{
-              color: 'inherit',
-              '&:hover': {
-                backgroundColor: '#444',
-              },
+              fontFamily: 'Noto Kufi Arabic',
             }}
           >
             {section}
