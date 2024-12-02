@@ -130,77 +130,83 @@ const SocialSection = () => {
         )}
       </Box>
 
-      {/* Dashboard Grid Section */}
       <Paper sx={{ p: 2, width: '100%' }}>
-        <Container maxWidth={false} sx={{ padding: 0 }}>
-          <Grid container spacing={2} sx={{ marginTop: '40px' }}>
-            {/* Left Column - 30% width on medium and larger screens, full width on smaller screens */}
-            <Grid
-              item
-              xs={12}  // Full width on mobile
-              md={4}   // 30% width on medium and larger screens
-              sx={{ order: { xs: 1, md: 1 } }}  // Left column is first on all screens
+      <Container maxWidth={false} sx={{ padding: 0 }}>
+        <Grid container spacing={2} sx={{ marginTop: '40px' }}>
+          {/* Left Column - 30% width on medium and larger screens, full width on smaller screens */}
+          <Grid
+            item
+            xs={12}  // Full width on mobile
+            md={4}   // 30% width on medium and larger screens
+            sx={{ order: { xs: 1, md: 1 } }}  // Left column is first on all screens
+          >
+            <Card
+              sx={{
+                borderRadius: '20px',  // Rounded corners for the card
+                boxShadow: 3,          // Subtle shadow
+                overflow: 'hidden',    // Prevents image overflow
+                display: 'flex',       // Flex container
+                flexDirection: 'column',  // Stacks content vertically
+                height: '100%',        // Full height
+              }}
             >
-              <Card
-                sx={{
-                  borderRadius: '20px', // Rounded corners for the card
-                  boxShadow: 3,         // Subtle shadow
-                  overflow: 'hidden',   // Prevents image overflow
-                  display: 'flex',      // Flex container
-                  flexDirection: 'column',  // Stacks content vertically
-                  height: '100%',       // Full height
-                }}
-              >
-                <CardContent sx={{ flex: 1 }}>
-                  <Box
-                    component="img"
-                    src="https://i.ibb.co/NVpdBJQ/roi-calculation-for-saas-seo-campaigns.png"
-                    alt="description"
-                    sx={{
-                      width: '100%',       // Responsive image
-                      height: 'auto',      // Maintain aspect ratio
-                      objectFit: 'cover',  // Covers container without distortion
-                      borderRadius: '20px', // Rounded corners for the image
-                    }}
-                  />
-                </CardContent>
-              </Card>
-            </Grid>
-
-            {/* Right Column - 70% width on medium and larger screens, full width on smaller screens */}
-            <Grid
-              item
-              xs={12}  // Full width on mobile
-              md={8}   // 70% width on medium and larger screens
-              sx={{ direction: 'rtl', order: { xs: 2, md: 2 } }}  // Right column is second on all screens
-            >
-              <Card sx={{
-                borderRadius: '20px',
-                boxShadow: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                height: '100%',
-              }}>
-                <CardContent sx={{ flex: 1 }}>
-                  <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
-                    <CardContent>
-                      {/* Box to ensure proper alignment */}
-                      <Box sx={{ padding: '16px' }}>
-                        <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333' }}>
-                        التسويق الالكتروني والسوشيال ميديا
-                        </Typography>
-                      </Box>
-                    </CardContent>
-                  </Card>
-                  <Typography variant="body1" sx={{ fontSize: '23px' }}>
-                  نعمل بجد لتحقيق أقصى استفادة من وجودك الرقمي لكى نضمن لك تفاعل جمهورك، وتعزيز مكانتك في السوق ونلبي احتياجاتك بفريق يتابع عن كثب أحدث التطورات في عالم السوشيال ميديا ليضمن لك البقاء في الصدارة.
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+              <CardContent sx={{ flex: 1 }}>
+                <Box
+                  component="img"
+                  src="https://i.ibb.co/NVpdBJQ/roi-calculation-for-saas-seo-campaigns.png"
+                  alt="description"
+                  sx={{
+                    width: '100%',      // Responsive image
+                    height: 'auto',     // Maintain aspect ratio
+                    objectFit: 'cover', // Covers container without distortion
+                    borderRadius: '20px',  // Rounded corners for the image
+                  }}
+                />
+              </CardContent>
+            </Card>
           </Grid>
-        </Container>
-      </Paper>
+
+          {/* Right Column - 70% width on medium and larger screens, full width on smaller screens */}
+          <Grid
+            item
+            xs={12}  // Full width on mobile
+            md={8}   // 70% width on medium and larger screens
+            sx={{ direction: 'rtl', order: { xs: 2, md: 2 } }}  // Right column is second on all screens
+          >
+            <Card sx={{
+              borderRadius: '20px',
+              boxShadow: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%',
+            }}>
+              <CardContent sx={{ flex: 1 }}>
+                <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
+                  <CardContent>
+                    {/* Box to ensure proper alignment */}
+                    <Box sx={{ padding: '16px' }}>
+                      <Typography variant="h3" sx={{
+                        fontWeight: 'bold',
+                        color: '#333',
+                        fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }, // Responsive font size
+                      }}>
+                        التسويق الالكتروني والسوشيال ميديا
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+                <Typography variant="body1" sx={{
+                  fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' }, // Adjust font size for different screen sizes
+                }}>
+                  نعمل بجد لتحقيق أقصى استفادة من وجودك الرقمي لكى نضمن لك تفاعل جمهورك، وتعزيز مكانتك في السوق ونلبي احتياجاتك بفريق يتابع عن كثب أحدث التطورات في عالم السوشيال ميديا ليضمن لك البقاء في الصدارة.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
+    </Paper>
+
 
       {/* Service Section */}
       <section
@@ -224,13 +230,14 @@ const SocialSection = () => {
               fontWeight: 'bold',
               fontFamily: 'Changa, sans-serif',
               color: 'white',
-              fontSize: '50px',
+              fontSize: { xs: '30px', sm: '40px', md: '50px' },  // Responsive font size for typography
             }}
           >
             خدمـات التسويق الالكتروني والسوشيال ميديا
           </Typography>
         </Container>
       </section>
+
 
       {/* Swiper Section */}
       <Container maxWidth="xl" sx={{ marginTop: '40px', marginBottom: '40px' }}>
