@@ -21,6 +21,7 @@ function ContactUs() {
         paddingTop: '50px',
         paddingBottom: '50px',
         marginTop: '-30px',
+        direction: 'ltr', // Set the section to RTL direction
       }}
     >
       <Container
@@ -32,25 +33,49 @@ function ContactUs() {
       >
         <Grid container spacing={4}>
           {/* Text Section on the Right */}
-          <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
-            <Typography variant="h4" color="white" paragraph>
-              Contact Us
-            </Typography>
-            <Typography variant="body1" color="white">
-              We’d love to hear from you! Please fill out the form below or reach out to us via email.
-            </Typography>
-          </Grid>
+          <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }} sx={{ direction: 'rtl' }}>
+          <Typography variant="h4" color="white" paragraph>
+            Contact Us
+          </Typography>
+          <Typography variant="h5" color="#00fffc">
+            للتواصل السريع /
+          </Typography>
+          <Typography variant="h6" color="white" sx={{ marginTop: '50px' }}>
+            قسم الشاشات : <span style={{ fontWeight: 'bold' }}>2222 026 057</span>
+          </Typography>
+          <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
+          قسم الطباعة  : <span style={{ fontWeight: 'bold' }}>8888 190 057</span>
+          </Typography>
+        </Grid>
 
           {/* Contact Form Section on the Left */}
           <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
-            <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <form
+              onSubmit={handleFormSubmit}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+                direction: 'rtl', // Set the form to right-to-left direction
+              }}
+            >
               <TextField
                 label="الاسم"
                 variant="outlined"
                 fullWidth
                 margin="normal"
                 required
-                sx={{ input: { color: 'white' }, label: { color: 'white' }, '& .MuiOutlinedInput-root': { color: 'white', borderColor: 'white' }}}
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
               />
               <TextField
                 label="جوال"
@@ -58,19 +83,55 @@ function ContactUs() {
                 fullWidth
                 margin="normal"
                 required
-                sx={{ input: { color: 'white' }, label: { color: 'white' }, '& .MuiOutlinedInput-root': { color: 'white', borderColor: 'white' }}}
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
               />
               <TextField
                 label="بريد الكتروني"
                 variant="outlined"
                 fullWidth
                 margin="normal"
-                multiline
-                rows={4}
                 required
-                sx={{ input: { color: 'white' }, label: { color: 'white' }, '& .MuiOutlinedInput-root': { color: 'white', borderColor: 'white' }}}
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
               />
-              <Button type="submit" variant="contained" color="primary" sx={{ marginTop: '15px' }}>
+              <TextField
+                label="رسالتك"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                required
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
+              />
+              <Button type="submit" variant="contained" color="primary" sx={{ marginTop: '15px',background:'#00fffc',color:'#1e272e' }}>
                 Submit
               </Button>
             </form>
