@@ -10,10 +10,11 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
-import Menu from '@mui/material/Menu';  // Import Menu and MenuItem for the dropdown
+import Menu from '@mui/material/Menu';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';  // Import dropdown icon
 
 const pages1 = ['الرئيسية', 'من نحن', 'أقسامنا', 'شركائنا', 'اخبار الليزر', 'إتصل بنا']; // Pages
-const sections = ['الشاشات', 'الطباعة', 'الهدايا الدعائية','الإعلام والإنتاج','التواصل الإجتماعي','تصميم المواقع','الفن التشكيلي','الخط العربي']; // Sample sections for the dropdown menu
+const sections = ['الشاشات', 'الطباعة', 'الهدايا الدعائية', 'الإعلام والإنتاج', 'التواصل الإجتماعي', 'تصميم المواقع', 'الفن التشكيلي', 'الخط العربي']; // Sample sections for the dropdown menu
 
 function ResponsiveAppBar() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -52,24 +53,49 @@ function ResponsiveAppBar() {
       {/* Navigation Pages 1 */}
       <Box sx={{ marginBottom: 2 }}>
         {pages1.map((page) => (
-          <MenuItem
-            key={page}
-            component={Link}
-            to={`/${page.toLowerCase()}`}  // Corrected the path interpolation
-            onClick={toggleDrawer(false)}
-            sx={{
-              backgroundColor: location.pathname === `/${page.toLowerCase()}` ? '#06f9f3' : 'transparent',
-              '&:hover': {
-                backgroundColor: '#444',
-              },
-              color: location.pathname === `/${page.toLowerCase()}` ? 'white' : 'inherit',  // Active text color white
-              padding: '10px', // Add padding for better click target
-            }}
-          >
-            <Typography sx={{ textAlign: 'center', fontFamily: 'Noto Kufi Arabic', fontSize: '14px' }} >
-              {page}
-            </Typography> {/* Smaller font size */}
-          </MenuItem>
+          page === 'أقسامنا' ? (
+            // "أقسامنا" dropdown for mobile
+            <Button
+              key="أقسامنا"
+              onClick={handleMenuClick}
+              sx={{
+                my: 0.5,
+                mx: 2,
+                color: location.pathname.includes('/sections') ? 'white' : 'inherit', // Active text color
+                display: 'flex', // Flex to align icon next to text
+                fontFamily: 'Noto Kufi Arabic',
+                fontSize: { xs: '12px', sm: '14px', md: '16px' },
+                borderRadius: '50px',
+                backgroundColor: location.pathname.includes('/sections') ? '#0b5097' : 'transparent',
+                '&:hover': {
+                  backgroundColor: location.pathname !== '/sections' ? '#444' : '#0b5097',
+                },
+                alignItems: 'center',
+              }}
+            >
+              أقسامنا
+              <ArrowDropDownIcon sx={{ ml: 1 }} /> {/* Add dropdown arrow */}
+            </Button>
+          ) : (
+            <MenuItem
+              key={page}
+              component={Link}
+              to={`/${page.toLowerCase()}`}  // Corrected the path interpolation
+              onClick={toggleDrawer(false)}
+              sx={{
+                backgroundColor: location.pathname === `/${page.toLowerCase()}` ? '#06f9f3' : 'transparent',
+                '&:hover': {
+                  backgroundColor: '#444',
+                },
+                color: location.pathname === `/${page.toLowerCase()}` ? 'white' : 'inherit',  // Active text color white
+                padding: '10px', // Add padding for better click target
+              }}
+            >
+              <Typography sx={{ textAlign: 'center', fontFamily: 'Noto Kufi Arabic', fontSize: '14px' }} >
+                {page}
+              </Typography>
+            </MenuItem>
+          )
         ))}
       </Box>
     </Box>
@@ -128,7 +154,7 @@ function ResponsiveAppBar() {
                     my: 0.5,
                     mx: 2,
                     color: location.pathname.includes('/sections') ? 'white' : 'inherit', // Active text color
-                    display: 'block',
+                    display: 'flex', // Flex to align icon next to text
                     fontFamily: 'Noto Kufi Arabic',
                     fontSize: { xs: '12px', sm: '14px', md: '16px' },
                     borderRadius: '50px',
@@ -136,9 +162,11 @@ function ResponsiveAppBar() {
                     '&:hover': {
                       backgroundColor: location.pathname !== '/sections' ? '#444' : '#0b5097',
                     },
+                    alignItems: 'center',
                   }}
                 >
                   أقسامنا
+                  <ArrowDropDownIcon sx={{ ml: 1 }} /> {/* Add dropdown arrow */}
                 </Button>
               ) : (
                 <Button
