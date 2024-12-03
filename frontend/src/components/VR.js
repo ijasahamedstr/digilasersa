@@ -790,6 +790,60 @@ const VRSection = () => {
     </Container>
 </section>
 
+<section
+    style={{
+        backgroundColor: '#eaecee', // Fallback background color
+        backgroundImage: 'url("https://i.ibb.co/8jDmqv6/image.png")', // Replace with your image URL
+        backgroundSize: 'cover', // Ensure the image covers the entire section
+        width: '100%',
+        margin: '0 auto',
+        marginBottom: '30px',
+        display: 'flex',
+        justifyContent: 'flex-end', // Align content to the bottom of the section
+        alignItems: 'center',
+        height: '50vh', // Set height to 100% of the viewport height
+        paddingTop: '20px',
+        paddingBottom: '20px',
+        marginTop: '-30px',
+    }}
+>
+    <Container
+        maxWidth="xl"
+        sx={{
+            paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
+            textAlign: 'center',
+        }}
+    >
+        {/* Heading */}
+        <h2
+            style={{
+                fontSize: window.innerWidth <= 600
+                    ? '1.5rem' // For small screens (xs)
+                    : window.innerWidth <= 960
+                    ? '2rem' // For medium screens (sm)
+                    : '2.5rem', // For large screens (md)
+                color: '#fdfefe',
+                fontFamily: 'Noto Kufi Arabic',
+                marginBottom: '20px', // Space between heading and buttons
+            }}
+        >
+            معرض أعمالنا
+        </h2>
+
+        {/* Icon Cards Row */}
+        <div
+            style={{
+                display: 'flex',
+                justifyContent: 'center', // Center the button container horizontally
+                flexWrap: 'wrap',
+                gap: '20px', // Spacing between the cards, if needed
+            }}
+        >
+            
+        </div>
+    </Container>
+</section>
+
 </Container>
   );
 };
