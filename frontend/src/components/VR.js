@@ -249,7 +249,6 @@ const VRSection = () => {
         </Container>
         </section>
 
-   
       {/* Service Section */}
       <section
         style={{
@@ -432,6 +431,48 @@ const VRSection = () => {
             </div>
         </Container>
     </section>
+    <section
+  style={{
+    backgroundColor: '#eaecee', // Fallback background color
+    backgroundImage: 'url("https://i.ibb.co/JkNJH14/image.png")', // Replace with your image URL
+    backgroundSize: 'cover', // Ensure the image covers the entire section
+    width: '100%',
+    margin: '0 auto',
+    marginBottom: '30px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '70vh', // Set height to 100% of the viewport height
+    paddingTop: '20px',
+    paddingBottom: '20px',
+  }}
+>
+  <Container
+    maxWidth="xl"
+    sx={{
+      paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
+      textAlign: 'center',
+    }}
+  >
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-start', // Align the text to the left
+        alignItems: 'center',
+        width: '100%',
+        height: '100%', // Take full height of the section
+        textAlign: 'left', // Align text to the left inside the div
+        padding: '0 20px', // Add padding to avoid text sticking to the edges
+      }}
+    >
+      <h2 style={{ color: '#fdfefe', fontFamily: 'Arial, sans-serif' }}>
+      استشارات مجانية
+      </h2>
+    </div>
+  </Container>
+</section>
+
+
     </Container>
   );
 };

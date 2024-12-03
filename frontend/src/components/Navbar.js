@@ -106,7 +106,7 @@ function ResponsiveAppBar() {
   );
 
   return (
-    <AppBar position="static" sx={{ background: '#000', height: '100px' }} dir="rtl"> {/* Set AppBar to RTL */}
+    <AppBar  position="fixed"  sx={{ background: '#000', height: '100px' }} dir="rtl"> {/* Set AppBar to RTL */}
       <Container
         maxWidth="xxl"
         sx={{
