@@ -12,19 +12,19 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 const carouselItems = [
   {
     id: 1,
-    img: 'https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png',
+    img: 'https://i.ibb.co/nctCcv4/Bar-one.png',
     title: 'Welcome to Our Adventure',
     content: 'Explore the beauty of nature with us.'
   },
   {
     id: 2,
-    img: 'https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png',
+    img: 'https://i.ibb.co/nctCcv4/Bar-one.png',
     title: 'Unforgettable Moments',
     content: 'Create memories that last a lifetime.'
   },
   {
     id: 3,
-    img: 'https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png',
+    img: 'https://i.ibb.co/nctCcv4/Bar-one.png',
     title: 'Join Our Community',
     content: 'Be part of something special.'
   },

@@ -26,7 +26,7 @@ function ServiceCard() {
     { id: 5, name: "قسم الخط العربي", imageUrl: "https://i.ibb.co/Z2Fs83F/07.png", iconUrl: "https://via.placeholder.com/50", link: "/arabic-calligraphy-department" }, 
     { id: 6, name: "قسم البرمجيات", imageUrl: "https://i.ibb.co/2ZZrk6M/Layer-39.png", iconUrl: "https://via.placeholder.com/50", link: "/software-department" }, 
     { id: 7, name: "قسم السوشيال ميديا", imageUrl: "https://i.ibb.co/6Jt2Lg1/Background-copy-3.png", iconUrl: "https://via.placeholder.com/50", link: "/social-media-department" }, 
-    { id: 8, name: "قسم الإعلام والميديا", imageUrl: "https://via.placeholder.com/300", iconUrl: "https://via.placeholder.com/50", link: "/media-department" }, 
+    { id: 8, name: "قسم الإعلام والميديا", imageUrl: "https://i.ibb.co/VTXyn8R/Background-copy-2.png", iconUrl: "https://via.placeholder.com/50", link: "/media-department" }, 
   ];
 
   return ( 
