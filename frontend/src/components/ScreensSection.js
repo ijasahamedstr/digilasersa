@@ -66,7 +66,7 @@ const ScreensSection = () => {
         {!isMobile && (
           <Box
             sx={{
-              position: 'absolute',
+              position: 'fixed',
               top: '50%', // Centers vertically
               left: 0, // Positions the icons to the left
               transform: 'translateY(-50%)', // Vertically centers them by shifting up 50% of their height

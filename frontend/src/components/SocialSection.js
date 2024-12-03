@@ -107,7 +107,7 @@ const SocialSection = () => {
         {!isMobile && (
           <Box
             sx={{
-              position: 'absolute',
+              position: 'fixed',
               top: '50%',
               left: 0,
               transform: 'translateY(-50%)',
