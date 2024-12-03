@@ -30,32 +30,6 @@ const carouselItems = [
 
 const VRSection = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
-
-  const sectionStyles = {
-    backgroundColor: '#f2f3f4',
-    backgroundImage: 'url(https://i.ibb.co/6R5BLw7/image.png)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    width: '100%',
-    margin: '0 auto',
-    marginBottom: '30px',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    minHeight: '80vh',
-    paddingTop: '20px',
-    paddingBottom: '20px',
-    marginTop: '-30px',
-    position: 'relative',
-    flexDirection: 'column',
-    textAlign: 'right',
-    '@media (max-width: 600px)': {
-      minHeight: '60vh',
-      marginTop: '0',
-      padding: '10px',
-    },
-  };
   
   return (
     <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '0px' }}>
