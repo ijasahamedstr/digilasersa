@@ -927,13 +927,13 @@ const VRSection = () => {
               للطلب والإستفسار /
             </Typography>
             <Typography variant="h6" color="white" sx={{ marginTop: '50px' }}>
-              المدير العام للطباعة بالمملكة : <span style={{ fontWeight: 'bold' }}>8888 190 057</span>
+            مدير قسم الميديا  : <span style={{ fontWeight: 'bold' }}>9999 065 057</span>
             </Typography>
             <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
-              المدير الفني للطباعة بالمملكة : <span style={{ fontWeight: 'bold' }}>8888 193 057</span>
+            مدير فرع الشرقية  : <span style={{ fontWeight: 'bold' }}>9999 064 057</span>
             </Typography>
             <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
-              واتساب الطباعة : <span style={{ fontWeight: 'bold' }}>8888 194 057</span>
+            مدير تسويق الميديا  : <span style={{ fontWeight: 'bold' }}>8888 093 057</span>
             </Typography>
           </Grid>
 

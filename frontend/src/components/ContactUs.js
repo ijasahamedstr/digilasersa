@@ -47,13 +47,10 @@ function ContactUs() {
               للطلب والإستفسار /
             </Typography>
             <Typography variant="h6" color="white" sx={{ marginTop: '50px' }}>
-              المدير العام للطباعة بالمملكة : <span style={{ fontWeight: 'bold' }}>8888 190 057</span>
+            قسم الشاشات  : <span style={{ fontWeight: 'bold' }}>2222 026 057</span>
             </Typography>
             <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
-              المدير الفني للطباعة بالمملكة : <span style={{ fontWeight: 'bold' }}>8888 193 057</span>
-            </Typography>
-            <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
-              واتساب الطباعة : <span style={{ fontWeight: 'bold' }}>8888 194 057</span>
+            قسم الطباعة  : <span style={{ fontWeight: 'bold' }}>8888 190 057</span>
             </Typography>
           </Grid>
 
