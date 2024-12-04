@@ -9,7 +9,7 @@ function ContactUs() {
   };
 
   return (
-    <section
+<section
       style={{
         backgroundColor: '#000000',
         width: '100%',
@@ -33,25 +33,38 @@ function ContactUs() {
       >
         <Grid container spacing={4}>
           {/* Text Section on the Right */}
-          <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }} sx={{ direction: 'rtl' }}>
-          <Typography variant="h4" color="white" paragraph>
-            Contact Us
-          </Typography>
-          <Typography variant="h5" color="#00fffc">
-            للتواصل السريع /
-          </Typography>
-          <Typography variant="h6" color="white" sx={{ marginTop: '50px' }}>
-            قسم الشاشات : <span style={{ fontWeight: 'bold' }}>2222 026 057</span>
-          </Typography>
-          <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
-          قسم الطباعة  : <span style={{ fontWeight: 'bold' }}>8888 190 057</span>
-          </Typography>
-        </Grid>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            order={{ xs: 1, sm: 1 }} // Keep this section first on all screen sizes
+            sx={{ direction: 'rtl' }}
+          >
+            <Typography variant="h4" color="white" paragraph>
+              Contact Us
+            </Typography>
+            <Typography variant="h5" color="#00fffc">
+              للطلب والإستفسار /
+            </Typography>
+            <Typography variant="h6" color="white" sx={{ marginTop: '50px' }}>
+              المدير العام للطباعة بالمملكة : <span style={{ fontWeight: 'bold' }}>8888 190 057</span>
+            </Typography>
+            <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
+              المدير الفني للطباعة بالمملكة : <span style={{ fontWeight: 'bold' }}>8888 193 057</span>
+            </Typography>
+            <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
+              واتساب الطباعة : <span style={{ fontWeight: 'bold' }}>8888 194 057</span>
+            </Typography>
+          </Grid>
 
           {/* Contact Form Section on the Left */}
-          <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            order={{ xs: 2, sm: 2 }} // Move this section to the bottom on mobile (order 2)
+          >
             <form
-              onSubmit={handleFormSubmit}
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -131,7 +144,17 @@ function ContactUs() {
                   },
                 }}
               />
-              <Button type="submit" variant="contained" color="primary" sx={{ marginTop: '15px',background:'#00fffc',color:'#1e272e' }}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  marginTop: '15px',
+                  background: '#00fffc',
+                  color: '#1e272e',
+                  padding: { xs: '10px', sm: '15px' }, // Responsive padding
+                }}
+              >
                 Submit
               </Button>
             </form>
