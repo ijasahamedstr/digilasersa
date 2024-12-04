@@ -1,6 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography, useMediaQuery,CardContent,CardMedia,Card} from '@mui/material';
+import { Box, Typography, useMediaQuery,CardContent,CardMedia,Card,Grid,TextField,Button} from '@mui/material';
 import Container from '@mui/material/Container';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,19 +12,19 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 const carouselItems = [
   {
     id: 1,
-    img: 'https://i.ibb.co/bHpMRSN/image.png',
+    img: 'https://i.ibb.co/ZdsqLHF/image.png',
     title: 'Welcome to Our Adventure',
     content: 'Explore the beauty of nature with us.'
   },
   {
     id: 2,
-    img: 'https://i.ibb.co/bHpMRSN/image.png',
+    img: 'https://i.ibb.co/ZdsqLHF/image.png',
     title: 'Unforgettable Moments',
     content: 'Create memories that last a lifetime.'
   },
   {
     id: 3,
-    img: 'https://i.ibb.co/bHpMRSN/image.png',
+    img: 'https://i.ibb.co/ZdsqLHF/image.png',
     title: 'Join Our Community',
     content: 'Be part of something special.'
   },
@@ -36,6 +36,18 @@ const products = [
     { cardTitles: "تصميمات إبداعية", imageUrls: "https://i.ibb.co/LRjJLJH/DALL-E-2024-09-30-00-33-16-A-giant-whimsical-fountain-pen-sitting-confidently-in-a-traditional-direc.png" },
     { cardTitles: "محتـوي حصـري", imageUrls: "https://i.ibb.co/sRHjCqx/piclumen-1727383323200.png"}
   ];
+
+  const images = [
+    { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/HRSD.svg" },
+    { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/mci.svg" },
+    { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOE.svg" },
+    { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOH.svg" },
+    { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/SAMA.svg" },
+    { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOF.svg" },
+    { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOI.svg" },
+    { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/NC.svg" },
+  ];
+  
   
 
 const VRSection = () => {
@@ -701,7 +713,7 @@ const VRSection = () => {
 <section
     style={{
         backgroundColor: '#eaecee', // Fallback background color
-        backgroundImage: 'url("https://i.ibb.co/WP9hGvq/image.png")', // Replace with your image URL
+        backgroundImage: 'url("https://i.ibb.co/rt2jr0M/image.png")', // Replace with your image URL
         backgroundSize: 'cover', // Ensure the image covers the entire section
         backgroundPosition: 'center', // Ensure the image is centered
         width: '100%',
@@ -789,61 +801,247 @@ const VRSection = () => {
         </div>
     </Container>
 </section>
-
 <section
     style={{
         backgroundColor: '#eaecee', // Fallback background color
-        backgroundImage: 'url("https://i.ibb.co/8jDmqv6/image.png")', // Replace with your image URL
+        backgroundImage: 'url("https://i.ibb.co/zmVWw4Y/image.png")', // Replace with your image URL
         backgroundSize: 'cover', // Ensure the image covers the entire section
         width: '100%',
         margin: '0 auto',
         marginBottom: '30px',
         display: 'flex',
-        justifyContent: 'flex-end', // Align content to the bottom of the section
-        alignItems: 'center',
-        height: '50vh', // Set height to 100% of the viewport height
+        justifyContent: 'center', // Center content horizontally
+        alignItems: 'center', // Center content vertically
+        height: '80vh', // Set height to 50% of the viewport height
         paddingTop: '20px',
         paddingBottom: '20px',
         marginTop: '-30px',
     }}
 >
-    <Container
-        maxWidth="xl"
-        sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-            textAlign: 'center',
-        }}
-    >
-        {/* Heading */}
-        <h2
-            style={{
-                fontSize: window.innerWidth <= 600
-                    ? '1.5rem' // For small screens (xs)
-                    : window.innerWidth <= 960
-                    ? '2rem' // For medium screens (sm)
-                    : '2.5rem', // For large screens (md)
-                color: '#fdfefe',
-                fontFamily: 'Noto Kufi Arabic',
-                marginBottom: '20px', // Space between heading and buttons
-            }}
-        >
-            معرض أعمالنا
-        </h2>
-
-        {/* Icon Cards Row */}
+    <Container maxWidth="xl" style={{ marginBottom: '60px', marginTop: '60px' }}>
         <div
             style={{
                 display: 'flex',
-                justifyContent: 'center', // Center the button container horizontally
-                flexWrap: 'wrap',
-                gap: '20px', // Spacing between the cards, if needed
+                justifyContent: 'center', // Center text horizontally
+                alignItems: 'center', // Center text vertically
+                width: '100%',
+                height: '100%', // Take full height of the section
+                textAlign: 'center', // Align text to the center
+                padding: '0 20px', // Add padding to avoid text sticking to the edges
+                '@media (max-width: 768px)': {
+                    padding: '0 10px', // Adjust padding for smaller screens
+                },
             }}
         >
-            
+            <h2
+                style={{
+                    color: '#fdfefe',
+                    marginBottom:'20px',
+                    fontFamily: 'Noto Kufi Arabic, sans-serif',
+                    fontSize: '1.8rem', // Default font size for larger screens
+                    padding: '10px 20px', // Add padding inside the box
+                    backgroundColor: '#333', // Box background color
+                    border: '2px solid #f05322', // Border color and thickness
+                    borderRadius: '8px', // Rounded corners for the box
+                    display: 'inline-block', // Ensure the box only wraps the text
+                    '@media (max-width: 768px)': {
+                        fontSize: '1.5rem', // Font size for medium screens
+                    },
+                    '@media (max-width: 600px)': {
+                        fontSize: '1.3rem', // Font size for smaller screens (smaller devices)
+                    },
+                    '@media (max-width: 400px)': {
+                        fontSize: '1.2rem', // Further reduction for very small screens
+                    },
+                }}
+            >
+                استشارات مجانية
+            </h2>
         </div>
+        <Grid container spacing={4} justifyContent="center"> {/* Increased spacing to 4 */}
+            {images.map((image, index) => (
+                <Grid item key={index} sx={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
+                    <Card
+                        sx={{
+                            width: 145,
+                            height: 90,
+                            position: 'relative',
+                            overflow: 'hidden',
+                            '&:hover .zoom-image': {
+                                transform: 'scale(1.1)', // Apply zoom effect on hover
+                            },
+                        }}
+                    >
+                        <CardMedia
+                            component="img"
+                            image={image.src}
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                transition: 'transform 0.3s ease', // Smooth transition for zoom
+                            }}
+                            className="zoom-image"
+                        />
+                    </Card>
+                </Grid>
+            ))}
+        </Grid>
     </Container>
 </section>
+<section
+      style={{
+        backgroundColor: '#000000',
+        width: '100%',
+        margin: '0 auto',
+        marginBottom: '0px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: '50px',
+        paddingBottom: '50px',
+        marginTop: '-30px',
+        direction: 'ltr', // Set the section to RTL direction
+      }}
+    >
+      <Container
+        maxWidth="xl"
+        sx={{
+          paddingX: { xs: 2, sm: 3, md: 5 },
+          textAlign: 'center',
+        }}
+      >
+        <Grid container spacing={4}>
+          {/* Text Section on the Right */}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            order={{ xs: 1, sm: 1 }} // Keep this section first on all screen sizes
+            sx={{ direction: 'rtl' }}
+          >
+            <Typography variant="h4" color="white" paragraph>
+              Contact Us
+            </Typography>
+            <Typography variant="h5" color="#00fffc">
+              للطلب والإستفسار /
+            </Typography>
+            <Typography variant="h6" color="white" sx={{ marginTop: '50px' }}>
+              المدير العام للطباعة بالمملكة : <span style={{ fontWeight: 'bold' }}>8888 190 057</span>
+            </Typography>
+            <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
+              المدير الفني للطباعة بالمملكة : <span style={{ fontWeight: 'bold' }}>8888 193 057</span>
+            </Typography>
+            <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
+              واتساب الطباعة : <span style={{ fontWeight: 'bold' }}>8888 194 057</span>
+            </Typography>
+          </Grid>
 
+          {/* Contact Form Section on the Left */}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            order={{ xs: 2, sm: 2 }} // Move this section to the bottom on mobile (order 2)
+          >
+            <form
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+                direction: 'rtl', // Set the form to right-to-left direction
+              }}
+            >
+              <TextField
+                label="الاسم"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                required
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
+              />
+              <TextField
+                label="جوال"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                required
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
+              />
+              <TextField
+                label="بريد الكتروني"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                required
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
+              />
+              <TextField
+                label="رسالتك"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                required
+                sx={{
+                  input: {
+                    color: 'white',
+                    textAlign: 'right', // Align text to the right
+                  },
+                  label: { color: 'white' },
+                  '& .MuiOutlinedInput-root': {
+                    color: 'white',
+                    borderColor: 'white',
+                  },
+                }}
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  marginTop: '15px',
+                  background: '#00fffc',
+                  color: '#1e272e',
+                  padding: { xs: '10px', sm: '15px' }, // Responsive padding
+                }}
+              >
+                Submit
+              </Button>
+            </form>
+          </Grid>
+        </Grid>
+      </Container>
+    </section>
 </Container>
   );
 };
