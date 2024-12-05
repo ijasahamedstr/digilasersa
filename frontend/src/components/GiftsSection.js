@@ -11,19 +11,19 @@ import "swiper/css/navigation"; // Navigation styles (if used)
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png",
+    img: "https://i.ibb.co/M1DpWzb/New-Web-Gifts.png",
     title: "Welcome to Our Adventure",
     content: "Explore the beauty of nature with us.",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png",
+    img: "https://i.ibb.co/M1DpWzb/New-Web-Gifts.png",
     title: "Unforgettable Moments",
     content: "Create memories that last a lifetime.",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png",
+    img: "https://i.ibb.co/M1DpWzb/New-Web-Gifts.png",
     title: "Join Our Community",
     content: "Be part of something special.",
   },
