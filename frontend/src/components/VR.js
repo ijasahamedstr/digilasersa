@@ -272,21 +272,7 @@ const VRSection = () => {
                 }}
             >
                 {/* Card 1 */}
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: '#333',
-                        padding: '20px',
-                        borderRadius: '8px',
-                        color: '#fff',
-                        textAlign: 'center',
-                        maxWidth: '250px',
-                        flex: '1 1 22%',
-                    }}
-                >
+                <div>
                     <div
                         style={{
                             fontSize: '40px',
@@ -296,7 +282,7 @@ const VRSection = () => {
                         <i className="fas fa-cogs"></i> {/* Example icon */}
                     </div>
                     <img
-                        src="your-image-url-1.jpg" // Replace with your actual image URL
+                        src="https://i.ibb.co/5rFRKP8/8888.png" // Replace with your actual image URL
                         alt="Content Creation"
                         style={{
                             width: '80%', // Adjust size
@@ -311,21 +297,7 @@ const VRSection = () => {
                 </div>
 
                 {/* Card 2 */}
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: '#333',
-                        padding: '20px',
-                        borderRadius: '8px',
-                        color: '#fff',
-                        textAlign: 'center',
-                        maxWidth: '250px',
-                        flex: '1 1 22%',
-                    }}
-                >
+                <div>
                     <div
                         style={{
                             fontSize: '40px',
@@ -335,7 +307,7 @@ const VRSection = () => {
                         <i className="fas fa-wrench"></i> {/* Example icon */}
                     </div>
                     <img
-                        src="your-image-url-2.jpg" // Replace with your actual image URL
+                        src="https://i.ibb.co/VCSWsK1/999.png" // Replace with your actual image URL
                         alt="Graphic Design"
                         style={{
                             width: '80%', // Adjust size
@@ -350,21 +322,7 @@ const VRSection = () => {
                 </div>
 
                 {/* Card 3 */}
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: '#333',
-                        padding: '20px',
-                        borderRadius: '8px',
-                        color: '#fff',
-                        textAlign: 'center',
-                        maxWidth: '250px',
-                        flex: '1 1 22%',
-                    }}
-                >
+                <div>
                     <div
                         style={{
                             fontSize: '40px',
@@ -374,7 +332,7 @@ const VRSection = () => {
                         <i className="fas fa-cogs"></i> {/* Example icon */}
                     </div>
                     <img
-                        src="your-image-url-3.jpg" // Replace with your actual image URL
+                        src="https://i.ibb.co/v1q6M6x/5251.png" // Replace with your actual image URL
                         alt="Filming and Direction"
                         style={{
                             width: '80%', // Adjust size
@@ -389,21 +347,7 @@ const VRSection = () => {
                 </div>
 
                 {/* Card 4 */}
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: '#333',
-                        padding: '20px',
-                        borderRadius: '8px',
-                        color: '#fff',
-                        textAlign: 'center',
-                        maxWidth: '250px',
-                        flex: '1 1 22%',
-                    }}
-                >
+                <div>
                     <div
                         style={{
                             fontSize: '40px',
@@ -413,7 +357,7 @@ const VRSection = () => {
                         <i className="fas fa-cogs"></i> {/* Example icon */}
                     </div>
                     <img
-                        src="your-image-url-4.jpg" // Replace with your actual image URL
+                        src="https://i.ibb.co/Kjj6dBM/Screenshot-2024-08-13-171715.png" // Replace with your actual image URL
                         alt="Podcast and Audio Production"
                         style={{
                             width: '80%', // Adjust size
