@@ -40,6 +40,12 @@ function App() {
         <Route path="/التواصل الإجتماعي" element={<SocialSection/>} />
         <Route path="/Web-Media-photo" element={<WebMediaphoto/>} />
         <Route path="/Web-Media-Video" element={<WebMediaVideo/>} />
+        <Route path="/screens-department" element={<ScreensSection/>} />
+        <Route path="/printing-department" element={<PrintingSection/>} />
+        <Route path="/gift-department" element={<GiftsSection/>} />
+        <Route path="/media-department" element={<VRSection/>} />
+        <Route path="/media-department" element={<VRSection/>} />
+        <Route path="/social-media-department" element={<SocialSection/>} />
       </Routes>
       <Footer/>
     </Router>

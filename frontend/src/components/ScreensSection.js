@@ -87,7 +87,7 @@ const ScreensSection = () => {
       </Box>
 
       {/* Dashboard Grid Section */}
-      <Paper sx={{ p: 2, width: '100%' }}>
+      <Paper sx={{ p: 2, width: '100%', }} >
         <Container maxWidth={false} sx={{ padding: 0 }}>
           <Grid container spacing={2} sx={{ marginTop: '40px' }}>
             

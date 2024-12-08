@@ -8,20 +8,14 @@ const carouselItems = [
   {
     id: 1,
     img: 'https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png',
-    title: 'Welcome to Our Adventure',
-    content: 'Explore the beauty of nature with us.'
   },
   {
     id: 2,
     img: 'https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png',
-    title: 'Unforgettable Moments',
-    content: 'Create memories that last a lifetime.'
   },
   {
     id: 3,
     img: 'https://i.ibb.co/P4Z5Z41/New-Web-Final-2.png',
-    title: 'Join Our Community',
-    content: 'Be part of something special.'
   },
 ];
 
@@ -49,14 +43,6 @@ const FadeCarousel = () => {
                   boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                 }}
               />
-              <Carousel.Caption>
-                <Typography variant="h4" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}>
-                  {item.title}
-                </Typography>
-                <Typography variant="body1" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}>
-                  {item.content}
-                </Typography>
-              </Carousel.Caption>
             </Carousel.Item>
           ))}
         </Carousel>
@@ -64,22 +50,22 @@ const FadeCarousel = () => {
         {/* Social Media Icons on the Left Side */}
         <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "30px", zIndex: 2, paddingLeft: 2 }}>
           <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#3b5998", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
               <FaFacebook size={25} />
             </Box>
           </a>
           <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#00acee", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
               <FaTwitter size={25} />
             </Box>
           </a>
           <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#C13584", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
               <FaInstagram size={25} />
             </Box>
           </a>
           <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#0077b5", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
               <FaLinkedin size={25} />
             </Box>
           </a>

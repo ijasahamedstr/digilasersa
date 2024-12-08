@@ -25,7 +25,7 @@ function ServiceCard() {
     { id: 4, name: "قسم الشاشات", imageUrl: "https://i.ibb.co/WfWQH8V/Layer-32.png", iconUrl: "https://i.ibb.co/9cZ0Wvh/image.png", link: "/screens-department" }, 
     { id: 5, name: "قسم الخط العربي", imageUrl: "https://i.ibb.co/Z2Fs83F/07.png", iconUrl: "https://i.ibb.co/2N5JH3g/image.png", link: "/arabic-calligraphy-department" }, 
     { id: 6, name: "قسم البرمجيات", imageUrl: "https://i.ibb.co/2ZZrk6M/Layer-39.png", iconUrl: "https://i.ibb.co/X39jQZR/image.png", link: "/software-department" }, 
-    { id: 7, name: "قسم السوشيال ميديا", imageUrl: "https://i.ibb.co/6Jt2Lg1/Background-copy-3.png", iconUrl: "https://i.ibb.co/dt5Fsm8/image.png", link: "/social-media-department" }, 
+    { id: 7, name: "قسم السوشيال ميديا", imageUrl: "https://i.ibb.co/Rjdqc46/social-media-test-3.png", iconUrl: "https://i.ibb.co/dt5Fsm8/image.png", link: "/social-media-department" }, 
     { id: 8, name: "قسم الإعلام والميديا", imageUrl: "https://i.ibb.co/VTXyn8R/Background-copy-2.png", iconUrl: "https://i.ibb.co/myQR303/image.png", link: "/media-department" }, 
   ];
 
