@@ -142,111 +142,115 @@ const VRSection = () => {
           </Box>
         )}
       </Box>
-
-      <section
-    style={{
-        backgroundColor: '#eaecee', // Fallback background color
-        backgroundImage: 'url("https://i.ibb.co/6R5BLw7/image.png")', // Replace with your image URL
-        backgroundSize: 'cover', // Ensure the image covers the entire section
-        width: '100%',
-        margin: '0 auto',
-        marginBottom: '30px',
-        display: 'flex',
-        justifyContent: 'flex-end', // Align content to the bottom of the section
-        alignItems: 'center',
-        height: '70vh', // Set height to 100% of the viewport height
-        paddingTop: '20px',
-        paddingBottom: '20px',
-    }}
->
-    <Container
-        maxWidth="xl"
-        sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-            textAlign: 'center',
-        }}
-    >
-        {/* Icon Cards Row */}
-        <div
+        <section
             style={{
+                backgroundColor: '#eaecee',
+                backgroundImage: 'url("https://i.ibb.co/6R5BLw7/image.png")',
+                backgroundSize: 'cover',
+                width: '100%',
+                margin: '0 auto',
+                marginBottom: '30px',
                 display: 'flex',
-                justifyContent: 'center', // Center the button container horizontally
-                flexWrap: 'wrap',
-                gap: '20px', // Spacing between the cards, if needed
-                marginTop:'200px'
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+                height: '70vh',
+                paddingTop: '20px',
+                paddingBottom: '20px',
             }}
         >
-            {/* Buttons in a row */}
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-evenly', // Distribute buttons with more space
-                    gap: '20px', // Default space between buttons
-                    width: '100%', // Ensure buttons stretch across container
-                    flexDirection: 'row', // Row by default
-                    flexWrap: 'wrap', // Allow buttons to wrap on smaller screens
+            <Container
+                maxWidth="xl"
+                sx={{
+                    paddingX: { xs: 2, sm: 3, md: 5 },
+                    textAlign: 'center',
                 }}
             >
-                <button
+                {/* Icon Cards Row */}
+                <div
                     style={{
-                        padding: '12px 25px',
-                        backgroundColor: '#17202a',
-                        color: 'white',
-                        border: '2px solid #f05322', // Outline color
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        width: 'auto', // Adjust width automatically on different screen sizes
-                        fontFamily: 'Noto Kufi Arabic',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        flexWrap: 'wrap',
+                        gap: '20px',
+                        marginTop: '200px',
                     }}
                 >
-                    فيديو
-                </button>
-                <button
-                    style={{
-                        padding: '12px 25px',
-                        backgroundColor: '#17202a',
-                        color: 'white',
-                        border: '2px solid #f05322', // Outline color
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        width: 'auto', // Adjust width automatically on different screen sizes
-                    }}
-                >
-                    <span
+                    {/* Buttons in a row */}
+                    <div
                         style={{
-                            fontSize: window.innerWidth <= 600
-                                ? '2rem' // For small screens (xs)
-                                : window.innerWidth <= 960
-                                ? '2.5rem' // For medium screens (sm)
-                                : '3rem', // For large screens (md)
-                            fontFamily: 'Noto Kufi Arabic',
+                            display: 'flex',
+                            justifyContent: 'space-evenly',
+                            gap: '20px',
+                            width: '100%',
+                            flexDirection: 'row',
+                            flexWrap: 'wrap',
                         }}
                     >
-                        VR 
-                    </span>
-                    <span> Videos</span>
-                </button>
-                <button
-                    style={{
-                        padding: '12px 25px',
-                        backgroundColor: '#17202a',
-                        color: 'white',
-                        border: '2px solid #f05322', // Outline color
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        width: 'auto', // Adjust width automatically on different screen sizes
-                        fontFamily: 'Noto Kufi Arabic',
-                    }}
-                >
-                    فـوتـو
-                </button>
-            </div>
-        </div>
-    </Container>
-</section>
+                        <Link to="/video-page" style={{ textDecoration: 'none' }}>
+                            <button
+                                style={{
+                                    padding: '12px 25px',
+                                    backgroundColor: '#17202a',
+                                    color: 'white',
+                                    border: '2px solid #f05322',
+                                    borderRadius: '5px',
+                                    cursor: 'pointer',
+                                    width: 'auto',
+                                    fontFamily: 'Noto Kufi Arabic',
+                                }}
+                            >
+                                فيديو
+                            </button>
+                        </Link>
 
+                        <Link to="/vr-videos" style={{ textDecoration: 'none' }}>
+                            <button
+                                style={{
+                                    padding: '12px 25px',
+                                    backgroundColor: '#17202a',
+                                    color: 'white',
+                                    border: '2px solid #f05322',
+                                    borderRadius: '5px',
+                                    cursor: 'pointer',
+                                    width: 'auto',
+                                }}
+                            >
+                                <span
+                                    style={{
+                                        fontSize: window.innerWidth <= 600
+                                            ? '2rem'
+                                            : window.innerWidth <= 960
+                                            ? '2.5rem'
+                                            : '3rem',
+                                        fontFamily: 'Noto Kufi Arabic',
+                                    }}
+                                >
+                                    VR 
+                                </span>
+                                <span> Videos</span>
+                            </button>
+                        </Link>
 
-
+                        <Link to="/Web-Media-photo" style={{ textDecoration: 'none' }}>
+                            <button
+                                style={{
+                                    padding: '12px 25px',
+                                    backgroundColor: '#17202a',
+                                    color: 'white',
+                                    border: '2px solid #f05322',
+                                    borderRadius: '5px',
+                                    cursor: 'pointer',
+                                    width: 'auto',
+                                    fontFamily: 'Noto Kufi Arabic',
+                                }}
+                            >
+                                فـوتـو
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </Container>
+        </section>
       {/* Service Section */}
       <section
         style={{

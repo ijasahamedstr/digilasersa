@@ -14,6 +14,7 @@ import PrintingSection from './components/PrintingSection';
 import GiftsSection from './components/GiftsSection';
 import SocialSection from './components/SocialSection';
 import VRSection from './components/VR';
+import WebMediaphoto from './components/Web-Media-photo';
 
 
 const theme = createTheme({
@@ -36,6 +37,7 @@ function App() {
         <Route path="/الهدايا الدعائية" element={<GiftsSection/>} />
         <Route path="/الإعلام والإنتاج" element={<VRSection/>} />
         <Route path="/التواصل الإجتماعي" element={<SocialSection/>} />
+        <Route path="/Web-Media-photo" element={<WebMediaphoto/>} />
       </Routes>
       <Footer/>
     </Router>
