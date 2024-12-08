@@ -31,30 +31,29 @@ const ScreensSection = () => {
 
   return (
     <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>
-      <Box sx={{ width: '100%', position: 'relative', overflow: 'hidden' }}>
-        {/* Carousel Section */}
+            <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
         <Carousel
           fade
-          nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: 'black' }} />}
-          prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: 'black' }} />}
+          nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
+          prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: "black" }} />}
         >
-          {carouselItems.map(item => (
+          {carouselItems.map((item) => (
             <Carousel.Item key={item.id}>
               <img
                 className="d-block w-100"
                 src={item.img}
                 alt={item.title}
                 style={{
-                  height: '80vh',
-                  objectFit: 'cover',
-                  boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.8)',
+                  height: "80vh",
+                  objectFit: "cover",
+                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                 }}
               />
               <Carousel.Caption>
-                <Typography variant="h4" sx={{ color: 'white', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}>
+                <Typography variant="h4" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}>
                   {item.title}
                 </Typography>
-                <Typography variant="body1" sx={{ color: 'white', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}>
+                <Typography variant="body1" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}>
                   {item.content}
                 </Typography>
               </Carousel.Caption>
@@ -63,106 +62,28 @@ const ScreensSection = () => {
         </Carousel>
 
         {/* Social Media Icons on the Left Side */}
-        {!isMobile && (
-          <Box
-            sx={{
-              position: 'fixed',
-              top: '50%', // Centers vertically
-              left: 0, // Positions the icons to the left
-              transform: 'translateY(-50%)', // Vertically centers them by shifting up 50% of their height
-              display: 'flex',
-              flexDirection: 'column', // Stacks the icons vertically
-              gap: '30px', // Sets the gap between icons to 50px
-              zIndex: 2, // Ensures it appears in front of carousel images
-              paddingLeft: 2, // Adds space to the left side of the screen
-            }}
-          >
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-              <Box
-                sx={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: '50%',
-                  backgroundColor: '#3b5998',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  color: 'white',
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.2)',
-                  },
-                }}
-              >
-                <FaFacebook size={25} />
-              </Box>
-            </a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-              <Box
-                sx={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: '50%',
-                  backgroundColor: '#00acee',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  color: 'white',
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.2)',
-                  },
-                }}
-              >
-                <FaTwitter size={25} />
-              </Box>
-            </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-              <Box
-                sx={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: '50%',
-                  backgroundColor: '#C13584',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  color: 'white',
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.2)',
-                  },
-                }}
-              >
-                <FaInstagram size={25} />
-              </Box>
-            </a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-              <Box
-                sx={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: '50%',
-                  backgroundColor: '#0077b5',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  color: 'white',
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.2)',
-                  },
-                }}
-              >
-                <FaLinkedin size={25} />
-              </Box>
-            </a>
-          </Box>
-        )}
+        <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "30px", zIndex: 2, paddingLeft: 2 }}>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#3b5998", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+              <FaFacebook size={25} />
+            </Box>
+          </a>
+          <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#00acee", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+              <FaTwitter size={25} />
+            </Box>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#C13584", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+              <FaInstagram size={25} />
+            </Box>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#0077b5", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+              <FaLinkedin size={25} />
+            </Box>
+          </a>
+        </Box>
       </Box>
 
       {/* Dashboard Grid Section */}
