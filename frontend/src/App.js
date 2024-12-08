@@ -15,6 +15,7 @@ import GiftsSection from './components/GiftsSection';
 import SocialSection from './components/SocialSection';
 import VRSection from './components/VR';
 import WebMediaphoto from './components/Web-Media-photo';
+import WebMediaVideo from './components/Web-Media-Video';
 
 
 const theme = createTheme({
@@ -38,6 +39,7 @@ function App() {
         <Route path="/الإعلام والإنتاج" element={<VRSection/>} />
         <Route path="/التواصل الإجتماعي" element={<SocialSection/>} />
         <Route path="/Web-Media-photo" element={<WebMediaphoto/>} />
+        <Route path="/Web-Media-Video" element={<WebMediaVideo/>} />
       </Routes>
       <Footer/>
     </Router>

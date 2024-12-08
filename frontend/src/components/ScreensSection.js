@@ -30,7 +30,7 @@ const ScreensSection = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
 
   return (
-    <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '0px' }}>
+    <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>
       <Box sx={{ width: '100%', position: 'relative', overflow: 'hidden' }}>
         {/* Carousel Section */}
         <Carousel
