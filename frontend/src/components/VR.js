@@ -264,119 +264,116 @@ const VRSection = () => {
             paddingBottom: '20px',
             marginTop: '30px',
         }}
-    >
+        >
         <Container maxWidth="xl" sx={{ paddingX: { xs: 2, sm: 3, md: 5 }, textAlign: 'center' }}>
             {/* Icon Cards Row */}
             <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    flexWrap: 'wrap',
-                    gap: '20px',  // Spacing between the cards
-                }}
+            style={{
+                display: 'flex',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                gap: '20px', // Spacing between the cards
+            }}
             >
-                {/* Card 1 */}
-                <div>
-                    <div
-                        style={{
-                            fontSize: '40px',
-                            marginBottom: '10px',
-                        }}
-                    >
-                        <i className="fas fa-cogs"></i> {/* Example icon */}
-                    </div>
-                    <img
-                        src="https://i.ibb.co/5rFRKP8/8888.png" // Replace with your actual image URL
-                        alt="Content Creation"
-                        style={{
-                            width: '80%', // Adjust size
-                            height: 'auto',
-                            borderRadius: '8px',
-                            marginBottom: '10px', // Add space between image and title
-                        }}
-                    />
-                    <h4 style={{ fontSize: '15px', marginBottom: '10px', fontFamily: 'Noto Kufi Arabic' }}>
-                        الإعداد وصناعة المحتوي
-                    </h4>
+            {/* Card 1 */}
+            <div style={{ flex: '1 1 calc(25% - 20px)', minWidth: '250px' }}>
+                <div
+                style={{
+                    fontSize: '40px',
+                    marginBottom: '10px',
+                }}
+                >
+                <i className="fas fa-cogs"></i> {/* Example icon */}
                 </div>
+                <img
+                src="https://i.ibb.co/5rFRKP8/8888.png" // Replace with your actual image URL
+                alt="Content Creation"
+                style={{
+                    height: 'auto',
+                    borderRadius: '8px',
+                    marginBottom: '10px', // Add space between image and title
+                }}
+                />
+                <h4 style={{ fontSize: '15px', marginBottom: '10px', fontFamily: 'Noto Kufi Arabic' }}>
+                الإعداد وصناعة المحتوي
+                </h4>
+            </div>
 
-                {/* Card 2 */}
-                <div>
-                    <div
-                        style={{
-                            fontSize: '40px',
-                            marginBottom: '10px',
-                        }}
-                    >
-                        <i className="fas fa-wrench"></i> {/* Example icon */}
-                    </div>
-                    <img
-                        src="https://i.ibb.co/VCSWsK1/999.png" // Replace with your actual image URL
-                        alt="Graphic Design"
-                        style={{
-                            width: '80%', // Adjust size
-                            height: 'auto',
-                            borderRadius: '8px',
-                            marginBottom: '10px',
-                        }}
-                    />
-                    <h4 style={{ fontSize: '15px', marginBottom: '10px', fontFamily: 'Noto Kufi Arabic' }}>
-                        المونتاج والجرافيك
-                    </h4>
+            {/* Card 2 */}
+            <div style={{ flex: '1 1 calc(25% - 20px)', minWidth: '250px' }}>
+                <div
+                style={{
+                    fontSize: '40px',
+                    marginBottom: '10px',
+                }}
+                >
+                <i className="fas fa-wrench"></i> {/* Example icon */}
                 </div>
+                <img
+                src="https://i.ibb.co/VCSWsK1/999.png" // Replace with your actual image URL
+                alt="Graphic Design"
+                style={{
+                    height: 'auto',
+                    borderRadius: '8px',
+                    marginBottom: '10px',
+                }}
+                />
+                <h4 style={{ fontSize: '15px', marginBottom: '10px', fontFamily: 'Noto Kufi Arabic' }}>
+                المونتاج والجرافيك
+                </h4>
+            </div>
 
-                {/* Card 3 */}
-                <div>
-                    <div
-                        style={{
-                            fontSize: '40px',
-                            marginBottom: '10px',
-                        }}
-                    >
-                        <i className="fas fa-cogs"></i> {/* Example icon */}
-                    </div>
-                    <img
-                        src="https://i.ibb.co/v1q6M6x/5251.png" // Replace with your actual image URL
-                        alt="Filming and Direction"
-                        style={{
-                            width: '80%', // Adjust size
-                            height: 'auto',
-                            borderRadius: '8px',
-                            marginBottom: '10px',
-                        }}
-                    />
-                    <h4 style={{ fontSize: '15px', marginBottom: '10px', fontFamily: 'Noto Kufi Arabic' }}>
-                        التصوير والإخراج
-                    </h4>
+            {/* Card 3 */}
+            <div style={{ flex: '1 1 calc(25% - 20px)', minWidth: '250px' }}>
+                <div
+                style={{
+                    fontSize: '40px',
+                    marginBottom: '10px',
+                }}
+                >
+                <i className="fas fa-cogs"></i> {/* Example icon */}
                 </div>
+                <img
+                src="https://i.ibb.co/v1q6M6x/5251.png" // Replace with your actual image URL
+                alt="Filming and Direction"
+                style={{
+                    height: 'auto',
+                    borderRadius: '8px',
+                    marginBottom: '10px',
+                }}
+                />
+                <h4 style={{ fontSize: '15px', marginBottom: '10px', fontFamily: 'Noto Kufi Arabic' }}>
+                التصوير والإخراج
+                </h4>
+            </div>
 
-                {/* Card 4 */}
-                <div>
-                    <div
-                        style={{
-                            fontSize: '40px',
-                            marginBottom: '10px',
-                        }}
-                    >
-                        <i className="fas fa-cogs"></i> {/* Example icon */}
-                    </div>
-                    <img
-                        src="https://i.ibb.co/Kjj6dBM/Screenshot-2024-08-13-171715.png" // Replace with your actual image URL
-                        alt="Podcast and Audio Production"
-                        style={{
-                            width: '80%', // Adjust size
-                            height: 'auto',
-                            borderRadius: '8px',
-                            marginBottom: '10px',
-                        }}
-                    />
-                    <h4 style={{ fontSize: '15px', marginBottom: '10px', fontFamily: 'Noto Kufi Arabic' }}>
-                        الإنتاج الصوتي والبودكاست
-                    </h4>
+            {/* Card 4 */}
+            <div style={{ flex: '1 1 calc(25% - 20px)', minWidth: '250px' }}>
+                <div
+                style={{
+                    fontSize: '40px',
+                    marginBottom: '10px',
+                }}
+                >
+                <i className="fas fa-cogs"></i> {/* Example icon */}
                 </div>
+                <img
+                src="https://i.ibb.co/Kjj6dBM/Screenshot-2024-08-13-171715.png" // Replace with your actual image URL
+                alt="Podcast and Audio Production"
+                style={{
+                    height: 'auto',
+                    borderRadius: '8px',
+                    marginBottom: '10px',
+                }}
+                />
+                <h4 style={{ fontSize: '15px', marginBottom: '10px', fontFamily: 'Noto Kufi Arabic' }}>
+                الإنتاج الصوتي والبودكاست
+                </h4>
+            </div>
             </div>
         </Container>
-    </section>
+        </section>
+
     <section
     style={{
         backgroundColor: '#eaecee', // Fallback background color
