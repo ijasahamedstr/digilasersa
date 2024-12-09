@@ -62,7 +62,7 @@ function ServiceCard() {
                     display: 'flex', 
                     flexDirection: 'column', 
                     height: '100%', 
-                    borderRadius: '30px', // Add this line for the border radius
+                    borderRadius: '20px', // Add this line for the border radius
                     overflow: 'hidden', // To ensure the content stays within the rounded corners
                   }} 
                 > 
