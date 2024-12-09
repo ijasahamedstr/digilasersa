@@ -1,146 +1,135 @@
-import React, { useState } from "react";  // Import useState hook
-import { Container, Box, Typography, Card, Dialog, DialogTitle, IconButton, DialogContent, DialogActions, CardContent,Grid,TextField,Button } from "@mui/material"; // Import missing MUI components
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaTimes } from "react-icons/fa";  // Import FaTimes for close button
+import React, { useState, useRef } from "react";
+import { Container, Box, Typography, Card, Dialog, DialogTitle, IconButton, DialogContent, DialogActions, Button, CardMedia,TextField,Grid,CardContent } from "@mui/material";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaTimes } from "react-icons/fa";
 import { Carousel } from "react-bootstrap";
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css"; // Swiper default styles
-import "swiper/css/pagination"; // Pagination styles (if used)
-import "swiper/css/navigation"; // Navigation styles (if used)
+
+const sliderItems = [
+  {
+    img: "https://i.ibb.co/cCXf1Xt/table-with-paper-that-says-personal-care-it.png",
+  },
+  {
+    img: "https://i.ibb.co/chQ7t5j/black-box-with-gold-bow-it-that-says-esk-it.png",
+  },
+  {
+    img: "https://i.ibb.co/Bg7MWmJ/brochure-business-called-city-city.png",
+  },
+  {
+    img: "https://i.ibb.co/gjDYDGD/magazine-cover-with-picture-house-words-house-bottom.png",
+  },
+  {
+    img: "https://i.ibb.co/gjDYDGD/magazine-cover-with-picture-house-words-house-bottom.png",
+  },
+  {
+    img: "https://i.ibb.co/chQ7t5j/black-box-with-gold-bow-it-that-says-esk-it.png",
+  },
+];
+
+const sliderItems1 = [
+  {
+    img: "https://i.ibb.co/Jvs0hFq/image.png",
+  },
+  {
+    img: "https://i.ibb.co/WzVJkzf/image.png",
+  },
+  {
+    img: "https://i.ibb.co/hymkf17/premium-gym-banner-design-template.png",
+  },
+  {
+    img: "https://i.ibb.co/c8vrRNb/Ed7b1q9-WAAAUQgb.png",
+  },
+  {
+    img: "https://i.ibb.co/Jvs0hFq/image.png",
+  },
+  {
+    img: "https://i.ibb.co/hymkf17/premium-gym-banner-design-template.png",
+  },
+];
+
+const sliderItems2 = [
+  {
+    img: "https://i.ibb.co/B3mBwNq/01.png",
+  },
+  {
+    img: "https://i.ibb.co/RgvkMxC/assortment-with-minimal-tumbler-drinks.png",
+  },
+  {
+    img: "https://i.ibb.co/LSVgLTg/bohemian-poster-collection-with-wildflowers-botanical-illustrations-your-wall-art-gallery.png",
+  },
+  {
+    img: "https://i.ibb.co/JR8B6pH/Screenshot-2024-08-20-135119.png",
+  },
+  {
+    img: "https://i.ibb.co/LSVgLTg/bohemian-poster-collection-with-wildflowers-botanical-illustrations-your-wall-art-gallery.png",
+  },
+  {
+    img: "https://i.ibb.co/JR8B6pH/Screenshot-2024-08-20-135119.png",
+  },
+];
+
+const sliderItems3 = [
+  {
+    img: "https://i.ibb.co/dbpkVFH/interior-kids-room-decoration-with-clothes-23-2149096030.png",
+  },
+  {
+    img: "https://i.ibb.co/PYmj4L7/light-rag-bag-with-flowers-hangs-white-wooden-wall-92795-1426.png",
+  },
+  {
+    img: "https://i.ibb.co/BByHjvs/nike-liverpool-fc-stadium-home-21-22-t-shirt.png",
+  },
+  {
+    img: "https://i.ibb.co/qpyjHp6/Wqe0qf-OC1-Hoyqnh-Bb-Mry-Bn-RMHj-Lw-F2-Sl-YECX4-MJx1596729580.png",
+  },
+  {
+    img: "https://i.ibb.co/bRSwkKT/shirt-mockup-concept-with-plain-clothing.png",
+  },
+  {
+    img: "https://i.ibb.co/qpyjHp6/Wqe0qf-OC1-Hoyqnh-Bb-Mry-Bn-RMHj-Lw-F2-Sl-YECX4-MJx1596729580.png",
+  },
+];
+
+const sliderItems4 = [
+  {
+    img: "https://i.ibb.co/NSxkRJ9/UV-DTF-transfers-magic-film-waterbottle-e-Print-Online34.png",
+  },
+  {
+    img: "https://i.ibb.co/QDYNR15/close-up-hand-holding-mobile-phone.png",
+  },
+  {
+    img: "https://i.ibb.co/3YCTRz9/uv-dtf-stickers.png",
+  },
+  {
+    img: "https://i.ibb.co/TR1zWp9/CUSTOM-DTF-UV-TRANSFER-DECAL-FOR-HARD-HAT-HELMET-2-430x430.png",
+  },
+  {
+    img: "https://i.ibb.co/3YCTRz9/uv-dtf-stickers.png",
+  },
+  {
+    img: "https://i.ibb.co/QDYNR15/close-up-hand-holding-mobile-phone.png",
+  },
+];
 
 const carouselItems = [
   {
     id: 1,
     img: "https://i.ibb.co/PT3HdtJ/New-Web-Print.png",
-    title: "Welcome to Our Adventure",
-    content: "Explore the beauty of nature with us.",
   },
   {
     id: 2,
     img: "https://i.ibb.co/PT3HdtJ/New-Web-Print.png",
-    title: "Unforgettable Moments",
-    content: "Create memories that last a lifetime.",
   },
   {
     id: 3,
     img: "https://i.ibb.co/PT3HdtJ/New-Web-Print.png",
-    title: "Join Our Community",
-    content: "Be part of something special.",
   },
 ];
-
-const products = [
-  {
-    imageUrl: "https://i.ibb.co/cCXf1Xt/table-with-paper-that-says-personal-care-it.png",
-  },
-  {
-    imageUrl: "https://i.ibb.co/chQ7t5j/black-box-with-gold-bow-it-that-says-esk-it.png",
-  },
-  {
-    imageUrl: "https://i.ibb.co/Bg7MWmJ/brochure-business-called-city-city.png",
-  },
-  {
-    imageUrl: "https://i.ibb.co/gjDYDGD/magazine-cover-with-picture-house-words-house-bottom.png",
-  },
-  {
-    imageUrl: "https://i.ibb.co/gjDYDGD/magazine-cover-with-picture-house-words-house-bottom.png",
-  },
-  {
-    imageUrl: "https://i.ibb.co/chQ7t5j/black-box-with-gold-bow-it-that-says-esk-it.png",
-  },
-];
-
-const products1 = [
-    {
-      imageUrl: "https://i.ibb.co/Jvs0hFq/image.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/WzVJkzf/image.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/hymkf17/premium-gym-banner-design-template.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/c8vrRNb/Ed7b1q9-WAAAUQgb.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/Jvs0hFq/image.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/hymkf17/premium-gym-banner-design-template.png",
-    },
-  ];
-
-  const products2 = [
-    {
-      imageUrl: "https://i.ibb.co/B3mBwNq/01.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/RgvkMxC/assortment-with-minimal-tumbler-drinks.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/LSVgLTg/bohemian-poster-collection-with-wildflowers-botanical-illustrations-your-wall-art-gallery.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/JR8B6pH/Screenshot-2024-08-20-135119.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/LSVgLTg/bohemian-poster-collection-with-wildflowers-botanical-illustrations-your-wall-art-gallery.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/JR8B6pH/Screenshot-2024-08-20-135119.png",
-    },
-  ];
-
-  
-  const products3 = [
-    {
-      imageUrl: "https://i.ibb.co/dbpkVFH/interior-kids-room-decoration-with-clothes-23-2149096030.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/PYmj4L7/light-rag-bag-with-flowers-hangs-white-wooden-wall-92795-1426.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/BByHjvs/nike-liverpool-fc-stadium-home-21-22-t-shirt.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/qpyjHp6/Wqe0qf-OC1-Hoyqnh-Bb-Mry-Bn-RMHj-Lw-F2-Sl-YECX4-MJx1596729580.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/bRSwkKT/shirt-mockup-concept-with-plain-clothing.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/qpyjHp6/Wqe0qf-OC1-Hoyqnh-Bb-Mry-Bn-RMHj-Lw-F2-Sl-YECX4-MJx1596729580.png",
-    },
-  ];
-
-  const products4 = [
-    {
-      imageUrl: "https://i.ibb.co/NSxkRJ9/UV-DTF-transfers-magic-film-waterbottle-e-Print-Online34.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/QDYNR15/close-up-hand-holding-mobile-phone.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/3YCTRz9/uv-dtf-stickers.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/TR1zWp9/CUSTOM-DTF-UV-TRANSFER-DECAL-FOR-HARD-HAT-HELMET-2-430x430.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/3YCTRz9/uv-dtf-stickers.png",
-    },
-    {
-      imageUrl: "https://i.ibb.co/QDYNR15/close-up-hand-holding-mobile-phone.png",
-    },
-  ];
-
-
-
 
 const PrintingSection = () => {
-  const [open, setOpen] = useState(false);  // useState hook for dialog
-  const [selectedImage, setSelectedImage] = useState(null);  // useState hook for selected image
+  const [open, setOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const sliderRef = useRef(null);
 
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);
@@ -151,8 +140,24 @@ const PrintingSection = () => {
     setOpen(false);
   };
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    responsive: [
+      { breakpoint: 1200, settings: { slidesToShow: 4 } },
+      { breakpoint: 900, settings: { slidesToShow: 3 } },
+      { breakpoint: 600, settings: { slidesToShow: 2 } },
+    ],
+  };
+
   return (
-    <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}>
+    <>
+      <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}>
       {/* Carousel Section */}
       <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
         <Carousel
@@ -208,8 +213,11 @@ const PrintingSection = () => {
           </a>
         </Box>
       </Box>
-
-      <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
+    </Container>
+    <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+      {/* Carousel Section */}
+      <section style={{ width: "100%", margin: "0 auto", paddingTop: "50px", paddingBottom: "50px" }}>
+        <Container maxWidth="xl" sx={{ padding: 3 }}>
         <Card
           sx={{
             backgroundColor: '#f5f5f5', // Background color of the card
@@ -229,7 +237,7 @@ const PrintingSection = () => {
                 fontFamily: 'Noto Kufi Arabic, sans-serif',
                 fontWeight: 'bold',
                 color: '#333',
-                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+                fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
                 textAlign: 'center',
               }}
             >
@@ -237,150 +245,36 @@ const PrintingSection = () => {
             </Typography>
           </CardContent>
         </Card>
-        <Swiper
-          spaceBetween={20}
-          slidesPerView="auto"
-          loop={true}
-          centeredSlides={true}
-          grabCursor={true}
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            600: { slidesPerView: 2 },
-            900: { slidesPerView: 3 },
-            1024: { slidesPerView: 5 },
-          }}
-        >
-          {products.map((product, index) => (
-            <SwiperSlide key={index}>
-             <Card
-              sx={{
-                maxWidth: 345,
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                borderRadius: '20px',
-                overflow: 'hidden', // Ensure images don't overflow the corners
-                '&:hover': {
-                  boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
-                  transform: 'scale(1.05)', // Zoom effect
-                },
-                transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-              }}
-            >
-              <img
-                src={product.imageUrl}
-                alt={product.title}
-                style={{
-                  height: '300px',
-                  width: '100%',
-                  objectFit: 'cover',
-                  cursor: 'pointer', // Cursor style to indicate clickable images
-                  transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-                }}
-                onClick={() => handleImageClick(product.imageUrl)} // Click to preview image
-              />
-            </Card>
+          <Slider ref={sliderRef} {...settings}>
+            {sliderItems.map((item, index) => (
+              <div key={index}>
+                <Card sx={{ 
+                  transition: "0.3s", 
+                  "&:hover": { boxShadow: 4, transform: "scale(1.02)" }, 
+                  borderRadius: 2,
+                  marginRight: "16px",  // Gap between the cards
+                  marginLeft: index === 0 ? "0" : "16px", // Avoid extra margin for the first card
+                }}>
+                  <CardMedia
+                    component="img"
+                    image={item.img}
+                    alt={`Slide ${index + 1}`}
+                    sx={{
+                      height: { xs: 150, sm: 200 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 2,
+                      borderTopRightRadius: 2,
+                    }}
+                    onClick={() => handleImageClick(item.img)}
+                  />
+                </Card>
+              </div>
+            ))}
+          </Slider>
+        </Container>
 
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        {/* Dialog for image preview */}
-        <Dialog open={open} onClose={handleClose} maxWidth="xl">
-          <DialogTitle>
-            <IconButton
-              edge="end"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-              sx={{ position: 'absolute', right: '8px', top: '8px' }}
-            >
-              <FaTimes />
-            </IconButton>
-          </DialogTitle>
-          <DialogContent>
-            <img
-              src={selectedImage}
-              alt="Selected"
-              style={{ width: '100%', maxHeight: '500px', objectFit: 'contain' }}
-            />
-          </DialogContent>
-          <DialogActions>
-          </DialogActions>
-        </Dialog>
-      </Box>
-      <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
-      <Card
-          sx={{
-            backgroundColor: '#f5f5f5', // Background color of the card
-            padding: 0, // Padding around the content
-            borderRadius: 2, // Optional: rounded corners
-            boxShadow: 3, // Optional: card shadow
-            maxWidth: '100%', // Make sure the card is responsive
-            textAlign: 'center', // Center align content
-             marginBottom:'20px'
-          }}
-        >
-          <CardContent>
-            <Typography
-              variant="h4"
-              component="h2"
-              sx={{
-                fontFamily: 'Noto Kufi Arabic, sans-serif',
-                fontWeight: 'bold',
-                color: '#333',
-                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-                textAlign: 'center',
-              }}
-            >
-              <span style={{ color: '#015057' }}>بنـر وسـتيكر</span>
-            </Typography>
-          </CardContent>
-        </Card>
-        <Swiper
-          spaceBetween={20}
-          slidesPerView="auto"
-          loop={true}
-          centeredSlides={true}
-          grabCursor={true}
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            600: { slidesPerView: 2 },
-            900: { slidesPerView: 3 },
-            1024: { slidesPerView: 5 },
-          }}
-        >
-          {products1.map((product1, index) => (
-            <SwiperSlide key={index}>
-              <Card
-                sx={{
-                  maxWidth: 345,
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                  borderRadius: '20px',
-                  overflow: 'hidden', // Ensure images don't overflow the corners
-                  '&:hover': {
-                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
-                    transform: 'scale(1.05)', // Zoom effect
-                  },
-                  transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-                }}
-              >
-                <img
-                  src={product1.imageUrl}
-                  style={{
-                    height: '300px',
-                    width: '100%',
-                    objectFit: 'cover',
-                    cursor: 'pointer', // Cursor style to indicate clickable images
-                    transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-                  }}
-                  onClick={() => handleImageClick(product1.imageUrl)} // Click to preview image
-                />
-              </Card>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Box>
-      <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
-      <Card
+        <Container maxWidth="xl" sx={{ padding: 3 }}>
+        <Card
           sx={{
             backgroundColor: '#f5f5f5', // Background color of the card
             padding: 0, // Padding around the content
@@ -399,142 +293,44 @@ const PrintingSection = () => {
                 fontFamily: 'Noto Kufi Arabic, sans-serif',
                 fontWeight: 'bold',
                 color: '#333',
-                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+                fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
                 textAlign: 'center',
               }}
             >
-              <span style={{ color: '#015057' }}>طباعه مسطحات  UV</span>
+             <span style={{ color: '#015057' }}>بنـر وسـتيكر</span>
             </Typography>
           </CardContent>
         </Card>
-        <Swiper
-          spaceBetween={20}
-          slidesPerView="auto"
-          loop={true}
-          centeredSlides={true}
-          grabCursor={true}
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            600: { slidesPerView: 2 },
-            900: { slidesPerView: 3 },
-            1024: { slidesPerView: 5 },
-          }}
-        >
-          {products2.map((product1, index) => (
-            <SwiperSlide key={index}>
-              <Card
-                sx={{
-                  maxWidth: 345,
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                  borderRadius: '20px',
-                  overflow: 'hidden', // Ensure images don't overflow the corners
-                  '&:hover': {
-                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
-                    transform: 'scale(1.05)', // Zoom effect
-                  },
-                  transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-                }}
-              >
-                <img
-                  src={product1.imageUrl}
-                  style={{
-                    height: '300px',
-                    width: '100%',
-                    objectFit: 'cover',
-                    cursor: 'pointer', // Cursor style to indicate clickable images
-                    transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-                  }}
-                  onClick={() => handleImageClick(product1.imageUrl)} // Click to preview image
-                />
-              </Card>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Box>
-      <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px' }}>
-      <Card
-        sx={{
-          backgroundColor: '#f5f5f5', // Background color of the card
-          padding: 0, // Padding around the content
-          borderRadius: 2, // Optional: rounded corners
-          boxShadow: 3, // Optional: card shadow
-          maxWidth: '100%', // Make sure the card is responsive
-          textAlign: 'center', // Center align content
-          marginBottom:'20px'
-        }}
-      >
-        <CardContent>
-          <Typography
-            variant="h4"
-            component="h2"
-            sx={{
-              fontFamily: 'Noto Kufi Arabic, sans-serif',
-              fontWeight: 'bold',
-              color: '#333',
-              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-              textAlign: 'center',
-            }}
-          >
-            <span style={{ color: '#015057' }}>طباعه منسوجات dtf</span>
-          </Typography>
-        </CardContent>
-      </Card>
-        <hr
-          style={{
-            border: 'none',
-            height: '4px',
-            backgroundColor: '#015057',
-            width: '5%',
-            alignSelf: 'center',
-            margin: '20px auto',
-          }}
-        />
-        <Swiper
-          spaceBetween={20}
-          slidesPerView="auto"
-          loop={true}
-          centeredSlides={true}
-          grabCursor={true}
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            600: { slidesPerView: 2 },
-            900: { slidesPerView: 3 },
-            1024: { slidesPerView: 5 },
-          }}
-        >
-          {products3.map((product1, index) => (
-            <SwiperSlide key={index}>
-              <Card
-                sx={{
-                  maxWidth: 345,
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                  borderRadius: '20px',
-                  overflow: 'hidden', // Ensure images don't overflow the corners
-                  '&:hover': {
-                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
-                    transform: 'scale(1.05)', // Zoom effect
-                  },
-                  transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-                }}
-              >
-                <img
-                  src={product1.imageUrl}
-                  style={{
-                    height: '300px',
-                    width: '100%',
-                    objectFit: 'cover',
-                    cursor: 'pointer', // Cursor style to indicate clickable images
-                    transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-                  }}
-                  onClick={() => handleImageClick(product1.imageUrl)} // Click to preview image
-                />
-              </Card>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Box>
-      <Box sx={{ paddingTop: '50px', px: { xs: '16px', sm: '32px', md: '50px' }, paddingBottom: '40px',marginBottom:'40px'}}>
-      <Card
+          <Slider ref={sliderRef} {...settings}>
+            {sliderItems1.map((item, index) => (
+              <div key={index}>
+                <Card sx={{ 
+                  transition: "0.3s", 
+                  "&:hover": { boxShadow: 4, transform: "scale(1.02)" }, 
+                  borderRadius: 2,
+                  marginRight: "16px",  // Gap between the cards
+                  marginLeft: index === 0 ? "0" : "16px", // Avoid extra margin for the first card
+                }}>
+                  <CardMedia
+                    component="img"
+                    image={item.img}
+                    alt={`Slide ${index + 1}`}
+                    sx={{
+                      height: { xs: 150, sm: 200 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 2,
+                      borderTopRightRadius: 2,
+                    }}
+                    onClick={() => handleImageClick(item.img)}
+                  />
+                </Card>
+              </div>
+            ))}
+          </Slider>
+        </Container>
+
+        <Container maxWidth="xl" sx={{ padding: 3 }}>
+        <Card
           sx={{
             backgroundColor: '#f5f5f5', // Background color of the card
             padding: 0, // Padding around the content
@@ -553,58 +349,154 @@ const PrintingSection = () => {
                 fontFamily: 'Noto Kufi Arabic, sans-serif',
                 fontWeight: 'bold',
                 color: '#333',
-                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+                fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
                 textAlign: 'center',
               }}
             >
-              <span style={{ color: '#015057' }}>طبــاعة dtf-uv</span>
+               <span style={{ color: '#015057' }}>طباعه مسطحات  UV</span>
             </Typography>
           </CardContent>
         </Card>
-        <Swiper
-          spaceBetween={20}
-          slidesPerView="auto"
-          loop={true}
-          centeredSlides={true}
-          grabCursor={true}
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            600: { slidesPerView: 2 },
-            900: { slidesPerView: 3 },
-            1024: { slidesPerView: 5 },
+          <Slider ref={sliderRef} {...settings}>
+            {sliderItems2.map((item, index) => (
+              <div key={index}>
+                <Card sx={{ 
+                  transition: "0.3s", 
+                  "&:hover": { boxShadow: 4, transform: "scale(1.02)" }, 
+                  borderRadius: 2,
+                  marginRight: "16px",  // Gap between the cards
+                  marginLeft: index === 0 ? "0" : "16px", // Avoid extra margin for the first card
+                }}>
+                  <CardMedia
+                    component="img"
+                    image={item.img}
+                    alt={`Slide ${index + 1}`}
+                    sx={{
+                      height: { xs: 150, sm: 200 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 2,
+                      borderTopRightRadius: 2,
+                    }}
+                    onClick={() => handleImageClick(item.img)}
+                  />
+                </Card>
+              </div>
+            ))}
+          </Slider>
+        </Container>
+
+      <Container maxWidth="xl" sx={{ padding: 3 }}>
+        <Card
+          sx={{
+            backgroundColor: '#f5f5f5', // Background color of the card
+            padding: 0, // Padding around the content
+            borderRadius: 2, // Optional: rounded corners
+            boxShadow: 3, // Optional: card shadow
+            maxWidth: '100%', // Make sure the card is responsive
+            textAlign: 'center', // Center align content
+            marginBottom:'20px'
           }}
         >
-          {products4.map((product1, index) => (
-            <SwiperSlide key={index}>
-              <Card
-                sx={{
-                  maxWidth: 345,
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                  borderRadius: '20px',
-                  overflow: 'hidden', // Ensure images don't overflow the corners
-                  '&:hover': {
-                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover shadow
-                    transform: 'scale(1.05)', // Zoom effect
-                  },
-                  transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-                }}
-              >
-                <img
-                  src={product1.imageUrl}
-                  style={{
-                    height: '300px',
-                    width: '100%',
-                    objectFit: 'cover',
-                    cursor: 'pointer', // Cursor style to indicate clickable images
-                    transition: 'transform 0.3s ease', // Smooth transition for zoom effect
-                  }}
-                  onClick={() => handleImageClick(product1.imageUrl)} // Click to preview image
-                />
-              </Card>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Box>
+          <CardContent>
+            <Typography
+              variant="h4"
+              component="h2"
+              sx={{
+                fontFamily: 'Noto Kufi Arabic, sans-serif',
+                fontWeight: 'bold',
+                color: '#333',
+                fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
+                textAlign: 'center',
+              }}
+            >
+               <span style={{ color: '#015057' }}>طباعه منسوجات dtf</span>
+            </Typography>
+          </CardContent>
+        </Card>
+          <Slider ref={sliderRef} {...settings}>
+            {sliderItems3.map((item, index) => (
+              <div key={index}>
+                <Card sx={{ 
+                  transition: "0.3s", 
+                  "&:hover": { boxShadow: 4, transform: "scale(1.02)" }, 
+                  borderRadius: 2,
+                  marginRight: "16px",  // Gap between the cards
+                  marginLeft: index === 0 ? "0" : "16px", // Avoid extra margin for the first card
+                }}>
+                  <CardMedia
+                    component="img"
+                    image={item.img}
+                    alt={`Slide ${index + 1}`}
+                    sx={{
+                      height: { xs: 150, sm: 200 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 2,
+                      borderTopRightRadius: 2,
+                    }}
+                    onClick={() => handleImageClick(item.img)}
+                  />
+                </Card>
+              </div>
+            ))}
+          </Slider>
+        </Container>
+
+        <Container maxWidth="xl" sx={{ padding: 3 }}>
+        <Card
+          sx={{
+            backgroundColor: '#f5f5f5', // Background color of the card
+            padding: 0, // Padding around the content
+            borderRadius: 2, // Optional: rounded corners
+            boxShadow: 3, // Optional: card shadow
+            maxWidth: '100%', // Make sure the card is responsive
+            textAlign: 'center', // Center align content
+            marginBottom:'20px'
+          }}
+        >
+          <CardContent>
+            <Typography
+              variant="h4"
+              component="h2"
+              sx={{
+                fontFamily: 'Noto Kufi Arabic, sans-serif',
+                fontWeight: 'bold',
+                color: '#333',
+                fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
+                textAlign: 'center',
+              }}
+            >
+               <span style={{ color: '#015057' }}>طبــاعة dtf-uv</span>
+            </Typography>
+          </CardContent>
+        </Card>
+          <Slider ref={sliderRef} {...settings}>
+            {sliderItems4.map((item, index) => (
+              <div key={index}>
+                <Card sx={{ 
+                  transition: "0.3s", 
+                  "&:hover": { boxShadow: 4, transform: "scale(1.02)" }, 
+                  borderRadius: 2,
+                  marginRight: "16px",  // Gap between the cards
+                  marginLeft: index === 0 ? "0" : "16px", // Avoid extra margin for the first card
+                }}>
+                  <CardMedia
+                    component="img"
+                    image={item.img}
+                    alt={`Slide ${index + 1}`}
+                    sx={{
+                      height: { xs: 150, sm: 200 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 2,
+                      borderTopRightRadius: 2,
+                    }}
+                    onClick={() => handleImageClick(item.img)}
+                  />
+                </Card>
+              </div>
+            ))}
+          </Slider>
+        </Container>                                      
+      </section>
       <section
       style={{
         backgroundColor: '#000000',
@@ -758,7 +650,29 @@ const PrintingSection = () => {
         </Grid>
       </Container>
     </section>
+      {/* Dialog for Image View */}
+      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+        <DialogTitle>
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="h6"></Typography>
+            <IconButton onClick={handleClose}>
+              <FaTimes />
+            </IconButton>
+          </Box>
+        </DialogTitle>
+        <DialogContent>
+          <Box sx={{ textAlign: "center" }}>
+            <img src={selectedImage} alt="Selected" style={{ width: "100%", maxHeight: "60vh", objectFit: "contain" }} />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
+    </>
   );
 };
 

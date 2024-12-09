@@ -1,6 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography, useMediaQuery } from '@mui/material';
+import { Box } from '@mui/material';
 import Container from '@mui/material/Container';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
@@ -21,7 +21,6 @@ const carouselItems = [
 
 const FadeCarousel = () => {
   // Hook to detect mobile screen size
-  const isMobile = useMediaQuery('(max-width:600px)');
 
   return (
     <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>

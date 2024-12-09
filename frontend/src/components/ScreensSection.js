@@ -1,6 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography, useMediaQuery, Grid, Card, CardContent, Paper,TextField,Button } from '@mui/material';
+import { Box, Typography, Grid, Card, CardContent, Paper,TextField,Button } from '@mui/material';
 import Container from '@mui/material/Container';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
@@ -26,9 +26,6 @@ const carouselItems = [
 ];
 
 const ScreensSection = () => {
-  // Hook to detect mobile screen size
-  const isMobile = useMediaQuery('(max-width:600px)');
-
   return (
     <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>
             <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
