@@ -28,7 +28,7 @@ function Herosection() {
           variant="h5"
           sx={{
             fontWeight: 'bold',
-            fontFamily: 'Changa, sans-serif', // Apply Changa font family
+            fontFamily: 'Tajawal', // Apply Changa font family
           }}
         >
          <span style={{fontSize:'50px', color:''}}>قصتنا </span>صناع الإعلان بالمملكة
@@ -38,7 +38,7 @@ function Herosection() {
           sx={{
             marginTop: '15px',
             fontSize: { xs: '14px', sm: '16px', md: '18px' }, // Responsive font size
-            fontFamily: 'Changa, sans-serif', // Apply Changa font family
+            fontFamily: 'Tajawal', // Apply Changa font family
           }}
         >
           نسرد قصة الإعلان بشكل مختلف تبصره العين وينبهر به العقل ، ويجد مكانا في خيال الناس

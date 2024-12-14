@@ -25,6 +25,7 @@ const sectionStyles = {
     marginTop: '0',
     padding: '10px',
   },
+  fontFamily: 'Tajawal'
 };
 
 const containerStyles = {
@@ -35,6 +36,7 @@ const containerStyles = {
   alignItems: 'flex-end',
   padding: '0 20px',
   boxSizing: 'border-box',
+  fontFamily: 'Tajawal'
 };
 
 const typographyHeadingStyles = {
@@ -47,6 +49,7 @@ const typographyHeadingStyles = {
     fontSize: '30px',
     paddingRight: '10px',
   },
+  fontFamily: 'Tajawal'
 };
 
 const typographyBodyStyles = {
@@ -58,6 +61,7 @@ const typographyBodyStyles = {
     fontSize: '20px',
     paddingRight: '10px',
   },
+  fontFamily: 'Tajawal'
 };
 
 const cornerCutBoxStyles = {
@@ -66,6 +70,7 @@ const cornerCutBoxStyles = {
   paddingRight: '20px',
   marginBottom: '30px',
   backgroundColor: '#0f3341',
+  fontFamily: 'Tajawal'
 };
 
 function AboutSection() {
@@ -118,7 +123,7 @@ function AboutSection() {
         <Typography variant="body1" sx={typographyBodyStyles}>
           مما أكسبتنا بأن نكون من
         </Typography>
-        <Typography variant="body1" sx={{ fontSize: '35px',color:'#b5dff0' }}>
+        <Typography variant="body1" sx={{ fontSize: '35px',color:'#b5dff0',fontFamily: 'Tajawal' }}>
           صناع الإعلان بالمملكة
         </Typography>
       </Container>

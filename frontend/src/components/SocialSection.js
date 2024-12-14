@@ -13,20 +13,14 @@ const carouselItems = [
   {
     id: 1,
     img: 'https://i.ibb.co/nctCcv4/Bar-one.png',
-    title: 'Welcome to Our Adventure',
-    content: 'Explore the beauty of nature with us.'
   },
   {
     id: 2,
     img: 'https://i.ibb.co/nctCcv4/Bar-one.png',
-    title: 'Unforgettable Moments',
-    content: 'Create memories that last a lifetime.'
   },
   {
     id: 3,
     img: 'https://i.ibb.co/nctCcv4/Bar-one.png',
-    title: 'Join Our Community',
-    content: 'Be part of something special.'
   },
 ];
 
@@ -227,6 +221,7 @@ const SocialSection = () => {
               fontFamily: 'Changa, sans-serif',
               color: 'white',
               fontSize: { xs: '30px', sm: '40px', md: '50px' },  // Responsive font size for typography
+              fontFamily: 'Tajawal'
             }}
           >
             خدمـات التسويق الالكتروني والسوشيال ميديا
@@ -241,7 +236,7 @@ const SocialSection = () => {
             variant="h6"
             sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
           >
-            <span style={{ color: '#015057' }}>إدارة حسابات السوشيال ميديا</span>
+            <span style={{ color: '#015057',fontFamily: 'Tajawal' }}>إدارة حسابات السوشيال ميديا</span>
           </Typography>
         </Box>
 
@@ -279,7 +274,7 @@ const SocialSection = () => {
             variant="h6"
             sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
           >
-            <span style={{ color: '#015057' }}>إدارة الإعلانات المدفوعة</span>
+            <span style={{ color: '#015057',fontFamily: 'Tajawal' }}>إدارة الإعلانات المدفوعة</span>
           </Typography>
         </Box>
 
@@ -317,7 +312,7 @@ const SocialSection = () => {
             variant="h6"
             sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
           >
-            <span style={{ color: '#015057' }}>إنشاء المحتوى الإبداعي</span>
+            <span style={{ color: '#015057',fontFamily: 'Tajawal' }}>إنشاء المحتوى الإبداعي</span>
           </Typography>
         </Box>
 
@@ -355,7 +350,7 @@ const SocialSection = () => {
             variant="h6"
             sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
           >
-            <span style={{ color: '#015057' }}>تحليل البيانات المختلفة</span>
+            <span style={{ color: '#015057',fontFamily: 'Tajawal' }}>تحليل البيانات المختلفة</span>
           </Typography>
         </Box>
 
@@ -393,7 +388,7 @@ const SocialSection = () => {
             variant="h6"
             sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '1.8rem' } }}
           >
-            <span style={{ color: '#015057' }}>الإستشارات التسويقية</span>
+            <span style={{ color: '#015057',fontFamily: 'Tajawal' }}>الإستشارات التسويقية</span>
           </Typography>
         </Box>
 
@@ -457,10 +452,10 @@ const SocialSection = () => {
             <Typography variant="h4" color="white" paragraph>
               Contact Us
             </Typography>
-            <Typography variant="h5" color="#00fffc">
+            <Typography variant="h5" color="#00fffc" style={{fontFamily: 'Tajawal'}}>
               للطلب والإستفسار /
             </Typography>
-            <Typography variant="h6" color="white" sx={{ marginTop: '50px' }}>
+            <Typography variant="h6" color="white" sx={{ marginTop: '50px',fontFamily: 'Tajawal' }}>
             مدير السوشيال ميديا  : <span style={{ fontWeight: 'bold' }}>9999 084 057</span>
             </Typography>
           </Grid>

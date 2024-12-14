@@ -234,7 +234,7 @@ const PrintingSection = () => {
               variant="h4"
               component="h2"
               sx={{
-                fontFamily: 'Noto Kufi Arabic, sans-serif',
+                fontFamily: 'Tajawal',
                 fontWeight: 'bold',
                 color: '#333',
                 fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
@@ -290,11 +290,11 @@ const PrintingSection = () => {
               variant="h4"
               component="h2"
               sx={{
-                fontFamily: 'Noto Kufi Arabic, sans-serif',
                 fontWeight: 'bold',
                 color: '#333',
                 fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
                 textAlign: 'center',
+                fontFamily: 'Tajawal'
               }}
             >
              <span style={{ color: '#015057' }}>بنـر وسـتيكر</span>
@@ -346,11 +346,11 @@ const PrintingSection = () => {
               variant="h4"
               component="h2"
               sx={{
-                fontFamily: 'Noto Kufi Arabic, sans-serif',
                 fontWeight: 'bold',
                 color: '#333',
                 fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
                 textAlign: 'center',
+                fontFamily: 'Tajawal'
               }}
             >
                <span style={{ color: '#015057' }}>طباعه مسطحات  UV</span>
@@ -402,7 +402,7 @@ const PrintingSection = () => {
               variant="h4"
               component="h2"
               sx={{
-                fontFamily: 'Noto Kufi Arabic, sans-serif',
+                fontFamily: 'Tajawal',
                 fontWeight: 'bold',
                 color: '#333',
                 fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
@@ -458,7 +458,7 @@ const PrintingSection = () => {
               variant="h4"
               component="h2"
               sx={{
-                fontFamily: 'Noto Kufi Arabic, sans-serif',
+                fontFamily: 'Tajawal',
                 fontWeight: 'bold',
                 color: '#333',
                 fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
@@ -531,16 +531,16 @@ const PrintingSection = () => {
             <Typography variant="h4" color="white" paragraph>
               Contact Us
             </Typography>
-            <Typography variant="h5" color="#00fffc">
+            <Typography variant="h5" color="#00fffc" style={{fontFamily: 'Tajawal'}}>
               للطلب والإستفسار /
             </Typography>
-            <Typography variant="h6" color="white" sx={{ marginTop: '50px' }}>
+            <Typography variant="h6" color="white" sx={{ marginTop: '50px',fontFamily: 'Tajawal' }}>
               المدير العام للطباعة بالمملكة : <span style={{ fontWeight: 'bold' }}>8888 190 057</span>
             </Typography>
-            <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
+            <Typography variant="h6" color="white" sx={{ marginTop: '10px',fontFamily: 'Tajawal' }}>
               المدير الفني للطباعة بالمملكة : <span style={{ fontWeight: 'bold' }}>8888 193 057</span>
             </Typography>
-            <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
+            <Typography variant="h6" color="white" sx={{ marginTop: '10px',fontFamily: 'Tajawal' }}>
               واتساب الطباعة : <span style={{ fontWeight: 'bold' }}>8888 194 057</span>
             </Typography>
           </Grid>

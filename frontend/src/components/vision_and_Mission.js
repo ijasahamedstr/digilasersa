@@ -60,10 +60,10 @@ function VisionandMission() {
           }}
         >
           <CardContent>
-            <Typography variant="h4" sx={{ fontSize: "1.8rem", color: '#0f3341' }}>
+            <Typography variant="h4" sx={{ fontSize: "1.8rem", color: '#0f3341',fontFamily: 'Tajawal'  }}>
               رؤيتنا
             </Typography>
-            <Typography sx={{ fontSize: "1rem", marginTop: "15px", color:'#154360' }}>
+            <Typography sx={{ fontSize: "1rem", marginTop: "15px", color:'#154360',fontFamily: 'Tajawal'  }}>
               تصنيع تكنولوجيا المستقبل، وإبهار العملاء بتقنياتنا الحديثة ومنتجاتنا عالية الجودة. وخدماتنا المتميزة، نحن نؤمن بأن الابتكار والتطوير هما الطريقة الأمثل لتحقيق أهدافنا
             </Typography>
           </CardContent>
@@ -83,10 +83,10 @@ function VisionandMission() {
           }}
         >
           <CardContent>
-            <Typography variant="h4" sx={{ fontSize: "1.8rem", color: '#0f3341' }}>
+            <Typography variant="h4" sx={{ fontSize: "1.8rem", color: '#0f3341',fontFamily: 'Tajawal'  }}>
               هدفنا
             </Typography>
-            <Typography sx={{ fontSize: "1rem", marginTop: "15px",color:'#154360' }}>
+            <Typography sx={{ fontSize: "1rem", marginTop: "15px",color:'#154360',fontFamily: 'Tajawal'  }}>
               تعد شركة الليزر الرقمي من دعائم الإعلام في المملكة منذ نشأتها وغير أكثر من ثلاثين عاماً تتبني إستراتيجية التطور لمواكبة احتياجات عملائنا وتطلعاتهم نحو مستقبل
             </Typography>
           </CardContent>

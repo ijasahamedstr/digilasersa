@@ -36,7 +36,7 @@ function ResponsiveAppBar() {
     <Box
       sx={{
         width: 250,
-        fontFamily: 'Noto Kufi Arabic',  // Apply the font family globally
+        fontFamily: 'Tajawal',  // Apply the font family globally
       }} 
       role="presentation"
       onClick={toggleDrawer(false)}
@@ -66,7 +66,7 @@ function ResponsiveAppBar() {
                 mx: 2,
                 color: location.pathname.includes('/sections') ? 'white' : 'inherit', // Active text color
                 display: 'flex', // Flex to align icon next to text
-                fontFamily: 'Noto Kufi Arabic', // Apply the font here as well
+                fontFamily: 'Tajawal', // Apply the font here as well
                 fontSize: { xs: '12px', sm: '14px', md: '16px' },
                 borderRadius: '50px',
                 backgroundColor: location.pathname.includes('/sections') ? '#0b5097' : 'transparent',
@@ -92,10 +92,10 @@ function ResponsiveAppBar() {
                 },
                 color: location.pathname === `/${page.toLowerCase()}` ? 'white' : 'inherit',  // Active text color white
                 padding: '10px', // Add padding for better click target
-                fontFamily: 'Noto Kufi Arabic', // Apply font-family to menu items
+                fontFamily: 'Tajawal', // Apply font-family to menu items
               }}
             >
-              <Typography sx={{ textAlign: 'center', fontFamily: 'Noto Kufi Arabic', fontSize: '14px' }} >
+              <Typography sx={{ textAlign: 'center', fontFamily: 'Tajawal', fontSize: '14px' }} >
                 {page}
               </Typography>
             </MenuItem>
@@ -159,7 +159,7 @@ function ResponsiveAppBar() {
                     mx: 2,
                     color: location.pathname.includes('/sections') ? 'white' : 'inherit', // Active text color
                     display: 'flex', // Flex to align icon next to text
-                    fontFamily: 'Noto Kufi Arabic', // Apply the font here
+                    fontFamily: 'Tajawal', // Apply the font here
                     fontSize: { xs: '12px', sm: '14px', md: '16px' },
                     borderRadius: '50px',
                     backgroundColor: location.pathname.includes('/sections') ? '#0b5097' : 'transparent',
@@ -182,7 +182,7 @@ function ResponsiveAppBar() {
                     mx: 2,
                     color: location.pathname === `/${page.toLowerCase()}` ? 'white' : 'inherit',  // Active text color white
                     display: 'block',
-                    fontFamily: 'Noto Kufi Arabic', // Apply the font here
+                    fontFamily: 'Tajawal', // Apply the font here
                     fontSize: { xs: '12px', sm: '14px', md: '16px' },  // Smaller font size
                     borderRadius: '50px',
                     backgroundColor: location.pathname === `/${page.toLowerCase()}` ? '#0b5097' : 'transparent',  // Active page background
@@ -203,7 +203,7 @@ function ResponsiveAppBar() {
             to="/register"  // Link to the register page or trigger a function
             sx={{
               color: 'white',
-              fontFamily: 'Noto Kufi Arabic', // Apply the font here as well
+              fontFamily: 'Tajawal', // Apply the font here as well
               fontSize: { xs: '12px', sm: '14px', md: '16px' },
               borderRadius: '50px',
               padding: '10px 20px',  // Add padding to make it more prominent
@@ -222,7 +222,7 @@ function ResponsiveAppBar() {
             sx={{
               color: 'white',
               background:'rgb(15, 245, 236)',
-              fontFamily: 'Noto Kufi Arabic', // Apply the font here as well
+              fontFamily: 'Tajawal', // Apply the font here as well
               fontSize: { xs: '12px', sm: '14px', md: '16px' },
               borderRadius: '50px',
               padding: '10px 20px',  // Add padding to make it more prominent
@@ -278,7 +278,7 @@ function ResponsiveAppBar() {
             to={`/${section.toLowerCase()}`} // Link to the specific section page
             onClick={handleMenuClose}
             sx={{
-              fontFamily: 'Noto Kufi Arabic', // Apply font-family here as well
+              fontFamily: 'Tajawal', // Apply font-family here as well
             }}
           >
             {section}
