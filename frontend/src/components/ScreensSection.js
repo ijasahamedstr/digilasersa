@@ -159,7 +159,6 @@ const ScreensSection = () => {
                 height: '100%',
               }}>
                 <CardContent sx={{ flex: 1 }}>
-                  <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
                     <CardContent>
                       {/* Box to ensure proper alignment */}
                       <Box sx={{ padding: '16px' }}>
@@ -174,7 +173,6 @@ const ScreensSection = () => {
                         </Typography>
                       </Box>
                     </CardContent>
-                  </Card>
                   <Typography variant="body1" sx={{
                     fontSize: { xs: '1rem', sm: '1.3rem', md: '1.3rem' }, // Responsive font size
                     fontFamily: 'Tajawal'
@@ -207,7 +205,6 @@ const ScreensSection = () => {
                 direction: 'rtl',
               }}>
                 <CardContent sx={{ flex: 1 }}>
-                  <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
                     <CardContent>
                       <Box sx={{ padding: { xs: '8px', sm: '12px', md: '16px' } }}> {/* Adjust padding for mobile */}
                         <Typography
@@ -223,7 +220,6 @@ const ScreensSection = () => {
                         </Typography>
                       </Box>
                     </CardContent>
-                  </Card>
                   <Typography
                     variant="body1"
                     sx={{
@@ -350,7 +346,6 @@ const ScreensSection = () => {
               height: '100%',
             }}>
               <CardContent sx={{ flex: 1 }}>
-                <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
                   <CardContent>
                     <Box sx={{ padding: { xs: '8px', sm: '12px', md: '16px' } }}> {/* Responsive padding */}
                       <Typography
@@ -366,7 +361,6 @@ const ScreensSection = () => {
                       </Typography>
                     </Box>
                   </CardContent>
-                </Card>
                 <Typography
                   variant="body1"
                   sx={{
@@ -399,7 +393,6 @@ const ScreensSection = () => {
               direction: 'rtl',
             }}>
               <CardContent sx={{ flex: 1 }}>
-                <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
                   <CardContent>
                     <Box sx={{ padding: { xs: '8px', md: '16px' } }}> {/* Adjust padding for mobile */}
                       <Typography 
@@ -415,7 +408,6 @@ const ScreensSection = () => {
                       </Typography>
                     </Box>
                   </CardContent>
-                </Card>
                 <Typography 
                   variant="body1" 
                   sx={{
@@ -517,7 +509,6 @@ const ScreensSection = () => {
             height: '100%',
           }}>
             <CardContent sx={{ flex: 1 }}>
-              <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
                 <CardContent>
                   {/* Box to ensure proper alignment */}
                   <Box sx={{ padding: { xs: '8px', md: '16px' } }}> {/* Padding adjusts for mobile */}
@@ -534,7 +525,6 @@ const ScreensSection = () => {
                     </Typography>
                   </Box>
                 </CardContent>
-              </Card>
               <Typography 
                 variant="body1" 
                 sx={{
@@ -581,7 +571,6 @@ const ScreensSection = () => {
               direction: 'rtl',
             }}>
               <CardContent sx={{ flex: 1 }}>
-                <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
                   <CardContent>
                     <Box sx={{ padding: { xs: '8px', md: '16px' } }}> {/* Adjust padding for mobile */}
                       <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#333', fontFamily: 'Tajawal', fontSize: {  xs: '1.5rem', sm: '2rem', md: '2.5rem' } }}>
@@ -590,7 +579,6 @@ const ScreensSection = () => {
                       </Typography>
                     </Box>
                   </CardContent>
-                </Card>
                 <Typography variant="body1" 
                     sx={{
                       fontSize: { xs: '1rem', sm: '1.3rem', md: '1.3rem' }, // Adjusted for smaller devices
@@ -684,7 +672,6 @@ const ScreensSection = () => {
             height: '100%',
           }}>
             <CardContent sx={{ flex: 1 }}>
-              <Card sx={{ backgroundColor: '#f5f5f5', borderRadius: '20px', boxShadow: 3 }}>
                 <CardContent>
                   {/* Box to ensure proper alignment */}
                   <Box sx={{ padding: { xs: '8px', md: '16px' } }}> {/* Adjust padding for mobile */}
@@ -701,7 +688,6 @@ const ScreensSection = () => {
                     </Typography>
                   </Box>
                 </CardContent>
-              </Card>
               <Typography 
                 variant="body1" 
                 sx={{
