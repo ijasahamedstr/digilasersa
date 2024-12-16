@@ -84,8 +84,8 @@ function ServiceCard() {
                         top: '90%',   // Adjust the top position if necessary 
                         left: '50%', 
                         transform: 'translate(-50%, -10%)', // Centers the icon 
-                        width: 80, 
-                        height: 80, 
+                        width: 70, 
+                        height: 70, 
                         border: '3px solid white', // Optional: add a border to the icon 
                         zIndex: 10,  // Make sure the avatar is in front of the content 
                         background:'#0a6d6a' 
@@ -93,16 +93,29 @@ function ServiceCard() {
                     /> 
                   </Box> 
                   <CardContent 
-                    sx={{ 
-                      display: 'flex', 
-                      flexDirection: 'column', 
-                      justifyContent: 'space-between', 
-                      flexGrow: 1, 
-                      background: '#0a6d6a', 
-                      animation: `${pumpAnimation} 1s ease-in-out infinite`  // Apply the pumping effect 
-                    }} 
+                      sx={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        justifyContent: 'space-between', 
+                        flexGrow: 1, 
+                        background: '#0a6d6a', 
+                        animation: `${pumpAnimation} 1s ease-in-out infinite`,
+                        padding: '1px',  // General padding
+                        '&:last-child': { 
+                          paddingBottom: '10px',  // Remove bottom padding for the last child 
+                        },
+                      }}                    
                   > 
-                    <Typography variant="h6" sx={{ color: 'white', marginTop: '35px' }}> 
+                    <Typography 
+                      variant="h6" 
+                      sx={{ 
+                        color: 'white', 
+                        marginTop: '32px', // Reduce the top margin
+                        fontSize: '0.875rem',  // Reduce the font size
+                        fontWeight: 500,  // Slightly lighter font weight
+                        fontFamily: 'Tajawal'
+                      }} 
+                    > 
                       {product.name} 
                     </Typography> 
                   </CardContent> 
@@ -116,4 +129,4 @@ function ServiceCard() {
   ); 
 } 
 
-export default ServiceCard; 
+export default ServiceCard;

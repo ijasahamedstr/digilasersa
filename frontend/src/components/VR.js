@@ -1,6 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography, useMediaQuery,CardContent,CardMedia,Card,Grid,TextField,Button} from '@mui/material';
+import { Box, Typography,CardContent,CardMedia,Card,Grid,TextField,Button} from '@mui/material';
 import Container from '@mui/material/Container';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,19 +12,19 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 const carouselItems = [
   {
     id: 1,
-    img: 'https://i.ibb.co/ZdsqLHF/image.png',
+    img: 'https://i.ibb.co/NjnKh2Q/Untitled-1.jpg',
     title: 'Welcome to Our Adventure',
     content: 'Explore the beauty of nature with us.'
   },
   {
     id: 2,
-    img: 'https://i.ibb.co/ZdsqLHF/image.png',
+    img: 'https://i.ibb.co/NjnKh2Q/Untitled-1.jpg',
     title: 'Unforgettable Moments',
     content: 'Create memories that last a lifetime.'
   },
   {
     id: 3,
-    img: 'https://i.ibb.co/ZdsqLHF/image.png',
+    img: 'https://i.ibb.co/NjnKh2Q/Untitled-1.jpg',
     title: 'Join Our Community',
     content: 'Be part of something special.'
   },
@@ -51,7 +51,6 @@ const products = [
   
 
 const VRSection = () => {
-  const isMobile = useMediaQuery('(max-width:600px)');
   
   return (
     <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>
@@ -220,16 +219,19 @@ const VRSection = () => {
         </section>
       {/* Service Section */}
       <section
-        style={{
+         style={{
+            backgroundColor: '#eaecee',
+            backgroundImage: 'url("https://i.ibb.co/tQp108Y/Final-Web-Media-VR-line-bk.png")',
+            backgroundSize: 'cover',
             width: '100%',
-            margin: '0 auto',
             marginBottom: '30px',
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'flex-end',
             alignItems: 'center',
-            height: 'auto',
+            height: '45vh',
+            paddingTop: '20px',
             paddingBottom: '20px',
-            marginTop: '30px',
+            marginTop:'-30px'
         }}
         >
         <Container maxWidth="xl" sx={{ paddingX: { xs: 2, sm: 3, md: 5 }, textAlign: 'center' }}>
@@ -244,12 +246,7 @@ const VRSection = () => {
             >
             {/* Card 1 */}
             <div style={{ flex: '1 1 calc(25% - 20px)', minWidth: '250px' }}>
-                <div
-                style={{
-                    fontSize: '40px',
-                    marginBottom: '10px',
-                }}
-                >
+                <div style={{ fontSize: '40px', marginBottom: '10px' }}>
                 <i className="fas fa-cogs"></i> {/* Example icon */}
                 </div>
                 <img
@@ -268,12 +265,7 @@ const VRSection = () => {
 
             {/* Card 2 */}
             <div style={{ flex: '1 1 calc(25% - 20px)', minWidth: '250px' }}>
-                <div
-                style={{
-                    fontSize: '40px',
-                    marginBottom: '10px',
-                }}
-                >
+                <div style={{ fontSize: '40px', marginBottom: '10px' }}>
                 <i className="fas fa-wrench"></i> {/* Example icon */}
                 </div>
                 <img
@@ -292,12 +284,7 @@ const VRSection = () => {
 
             {/* Card 3 */}
             <div style={{ flex: '1 1 calc(25% - 20px)', minWidth: '250px' }}>
-                <div
-                style={{
-                    fontSize: '40px',
-                    marginBottom: '10px',
-                }}
-                >
+                <div style={{ fontSize: '40px', marginBottom: '10px' }}>
                 <i className="fas fa-cogs"></i> {/* Example icon */}
                 </div>
                 <img
@@ -316,12 +303,7 @@ const VRSection = () => {
 
             {/* Card 4 */}
             <div style={{ flex: '1 1 calc(25% - 20px)', minWidth: '250px' }}>
-                <div
-                style={{
-                    fontSize: '40px',
-                    marginBottom: '10px',
-                }}
-                >
+                <div style={{ fontSize: '40px', marginBottom: '10px' }}>
                 <i className="fas fa-cogs"></i> {/* Example icon */}
                 </div>
                 <img
@@ -340,6 +322,7 @@ const VRSection = () => {
             </div>
         </Container>
         </section>
+
 
     <section
     style={{
@@ -364,6 +347,7 @@ const VRSection = () => {
         '@media (max-width: 480px)': {
             height: 'auto', // Adjust the height for smaller screens
         },
+         marginTop:'-30px'
     }}
 >
     <Container
@@ -519,9 +503,17 @@ const VRSection = () => {
             >
                 <CardMedia component="img" alt={`Service ${index}`} image={product.imageUrls} sx={{ height: 200 }} />
                 <CardContent>
+                <Card sx={{ 
+                maxWidth: 345, 
+                border: '1px solid rgb(240, 83, 34)', 
+                borderRadius: '8px', 
+                boxShadow: 2 
+                }}>
                 <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
                     {product.cardTitles}
                 </Typography>
+                </Card>
+
                 </CardContent>
             </Card>
             </Link>
