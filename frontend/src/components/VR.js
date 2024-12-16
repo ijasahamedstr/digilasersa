@@ -507,7 +507,9 @@ const VRSection = () => {
                 maxWidth: 345, 
                 border: '1px solid rgb(240, 83, 34)', 
                 borderRadius: '8px', 
-                boxShadow: 2 
+                boxShadow: 2,
+                background:'#000000',
+                color:'#FFFFFF'
                 }}>
                 <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
                     {product.cardTitles}

@@ -31,6 +31,7 @@ function App() {
       <ResponsiveAppBar />
       <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/الرئيسية" element={<Home/>} />
         <Route path="/الرئيسية" element={<Products/>} />
         <Route path="/من نحن" element={<Aboutus/>} />
         <Route path="/الشاشات" element={<ScreensSection/>} />
