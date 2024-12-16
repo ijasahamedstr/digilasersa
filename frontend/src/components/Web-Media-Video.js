@@ -178,7 +178,7 @@ const WebMediaVideo = () => {
               variant="h5"
               component="h5"
               sx={{
-                fontFamily: 'Noto Kufi Arabic, sans-serif',
+                fontFamily: 'Tajawal',
                 color: '#333',
                 fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
                 textAlign: 'center',
@@ -219,7 +219,7 @@ const WebMediaVideo = () => {
                         variant="h3"
                         component="span"
                         sx={{
-                          fontFamily: 'Noto Kufi Arabic, sans-serif',
+                          fontFamily: 'Tajawal',
                           fontSize: '1.5rem',
                           textAlign: 'center',  // Ensure text is centered
                           display: 'block', 
