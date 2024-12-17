@@ -2,7 +2,9 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import { Box } from '@mui/material';
 import Container from '@mui/material/Container';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp  } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
 
 const carouselItems = [
   {
@@ -54,8 +56,9 @@ const FadeCarousel = () => {
             </Box>
           </a>
           <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-              <FaTwitter size={25} />
+            <Box sx={{ width: 40, height: 40, borderRadius
+              : "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+              <FontAwesomeIcon icon={faXTwitter} size={25} />
             </Box>
           </a>
           <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
@@ -81,6 +84,11 @@ const FadeCarousel = () => {
           <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
             <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
               <FaTiktok size={25} />
+            </Box>
+          </a>
+          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
+            <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+              <FaWhatsapp size={25} />
             </Box>
           </a>
         </Box>

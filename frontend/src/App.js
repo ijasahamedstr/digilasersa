@@ -16,6 +16,7 @@ import SocialSection from './components/SocialSection';
 import VRSection from './components/VR';
 import WebMediaphoto from './components/Web-Media-photo';
 import WebMediaVideo from './components/Web-Media-Video';
+import Undercontration from './components/undercontration';
 
 
 const theme = createTheme({
@@ -47,6 +48,7 @@ function App() {
         <Route path="/media-department" element={<VRSection/>} />
         <Route path="/media-department" element={<VRSection/>} />
         <Route path="/social-media-department" element={<SocialSection/>} />
+        <Route path="/شركائنا" element={<Undercontration/>} />
       </Routes>
       <Footer/>
     </Router>

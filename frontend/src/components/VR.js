@@ -279,9 +279,7 @@ const VRSection = () => {
             display: 'flex',
             justifyContent: 'center', // Horizontally center the content
             alignItems: 'center', // Vertically center the content
-            height: '600px', // Increased height of the section
-            paddingTop: '50px', // Increased padding for the top
-            paddingBottom: '50px', // Increased padding for the bottom
+            height: '560px', // Increased height of the section
             marginTop: '-80px',
         }}
         >
@@ -744,7 +742,6 @@ const VRSection = () => {
                         style={{
                             color: '#fdfefe',
                             fontFamily: 'Tajawal',
-                            fontSize: '1.8rem', // Default font size for larger screens
                             padding: '10px 20px', // Add padding inside the box
                             backgroundColor: '#333', // Box background color
                             border: '2px solid #f05322', // Border color and thickness
