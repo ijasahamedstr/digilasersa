@@ -2,10 +2,9 @@ import React from "react";
 import { Container, Typography } from "@mui/material";
 
 const sectionStyles = {
-  backgroundColor: '#f2f3f4',
-  backgroundImage: 'url(https://i.ibb.co/dMJPKys/New-Web-5.png)',
+  backgroundColor: 'Black',
+  backgroundImage: 'url(https://i.ibb.co/q1qcZZq/New-Web-5-copy.jpg)', // Default background image
   backgroundSize: 'cover',
-  backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
   width: '100%',
   margin: '0 auto',
@@ -20,12 +19,14 @@ const sectionStyles = {
   position: 'relative',
   flexDirection: 'column',
   textAlign: 'right',
+  fontFamily: 'Tajawal',
   '@media (max-width: 600px)': {
     minHeight: '60vh',
     marginTop: '0',
     padding: '10px',
+    backgroundColor: 'black',  // Keep background color black
+    backgroundImage: 'none',   // Remove background image on small screens
   },
-  fontFamily: 'Tajawal'
 };
 
 const containerStyles = {
@@ -34,9 +35,12 @@ const containerStyles = {
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'flex-end',
-  padding: '0 20px',
+  padding: '0 20px', // Default padding
   boxSizing: 'border-box',
-  fontFamily: 'Tajawal'
+  fontFamily: 'Tajawal',
+  '@media (min-width: 1024px)': { // For desktop view (larger screens)
+    paddingRight: '80px', // Change padding-right for desktop
+  },
 };
 
 const typographyHeadingStyles = {
@@ -76,13 +80,13 @@ const cornerCutBoxStyles = {
 function AboutSection() {
   return (
     <section style={sectionStyles}>
-      <Container maxWidth="xl" sx={containerStyles}>
+      <Container maxWidth="xxl" sx={containerStyles}>
         <Typography variant="h4" sx={typographyHeadingStyles}>
           1992 منذ
         </Typography>
 
         <div className="corner-cut-box" style={cornerCutBoxStyles}>
-          <Typography variant="h4" sx={{ ...typographyHeadingStyles, paddingLeft: '70px' }}>
+          <Typography variant="h4" sx={{ ...typographyHeadingStyles, paddingLeft: '60px' }}>
             من نحن
           </Typography>
         </div>
@@ -104,7 +108,6 @@ function AboutSection() {
               marginTop: '20px',
               direction: 'rtl',
               fontSize: '20px',
-              listStyle: 'square',
               '@media (max-width: 600px)': {
                 fontSize: '15px',
                 paddingRight: '10px',
@@ -123,7 +126,7 @@ function AboutSection() {
         <Typography variant="body1" sx={typographyBodyStyles}>
           مما أكسبتنا بأن نكون من
         </Typography>
-        <Typography variant="body1" sx={{ fontSize: '35px',color:'#b5dff0',fontFamily: 'Tajawal' }}>
+        <Typography variant="body1" sx={{ fontSize: '35px', color: '#b5dff0', fontFamily: 'Tajawal' }}>
           صناع الإعلان بالمملكة
         </Typography>
       </Container>
