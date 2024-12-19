@@ -3,7 +3,9 @@ import { Container, Box, Typography, Card, Dialog, DialogTitle, IconButton, Dial
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaTimes } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp,FaTimes} from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
 import { Carousel } from "react-bootstrap";
 
 const sliderItems = [
@@ -167,30 +169,50 @@ const GiftsSection = () => {
             </Carousel.Item>
           ))}
         </Carousel>
-
         {/* Social Media Icons on the Left Side */}
-        <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "30px", zIndex: 2, paddingLeft: 2 }}>
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#3b5998", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-              <FaFacebook size={25} />
-            </Box>
-          </a>
-          <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#00acee", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-              <FaTwitter size={25} />
-            </Box>
-          </a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#C13584", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-              <FaInstagram size={25} />
-            </Box>
-          </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#0077b5", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-              <FaLinkedin size={25} />
-            </Box>
-          </a>
-        </Box>
+       <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "15px", zIndex: 2, paddingLeft: 2 }}>
+                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                        <FaFacebook size={25} />
+                      </Box>
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                      <Box sx={{ width: 40, height: 40, borderRadius
+                        : "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                        <FontAwesomeIcon icon={faXTwitter} size={25} />
+                      </Box>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                        <FaInstagram size={25} />
+                      </Box>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                        <FaLinkedin size={25} />
+                      </Box>
+                    </a>
+                    <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                        <FaYoutube  size={25} />
+                      </Box>
+                    </a>
+                    <a href="https://www.snapchat.com/" target="_blank" rel="noopener noreferrer">
+                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                        <FaSnapchat size={25} />
+                      </Box>
+                    </a>
+                    <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
+                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                        <FaTiktok size={25} />
+                      </Box>
+                    </a>
+                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
+                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                        <FaWhatsapp size={25} />
+                      </Box>
+                    </a>
+                  </Box>
       </Box>
     </Container>
     <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: "0px", paddingRight: "0px" }}>

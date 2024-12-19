@@ -2,12 +2,14 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import { Box, Typography,CardContent,CardMedia,Card,Grid,TextField,Button} from '@mui/material';
 import Container from '@mui/material/Container';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp  } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
 
 const carouselItems = [
   {
@@ -84,30 +86,51 @@ const VRSection = () => {
           ))}
         </Carousel>
 
-        {/* Social Media Icons on the Left Side */}
-        <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "30px", zIndex: 2, paddingLeft: 2 }}>
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#3b5998", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-              <FaFacebook size={25} />
+         {/* Social Media Icons on the Left Side */}
+                <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "15px", zIndex: 2, paddingLeft: 2 }}>
+                  <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                      <FaFacebook size={25} />
+                    </Box>
+                  </a>
+                  <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                    <Box sx={{ width: 40, height: 40, borderRadius
+                      : "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                      <FontAwesomeIcon icon={faXTwitter} size={25} />
+                    </Box>
+                  </a>
+                  <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                      <FaInstagram size={25} />
+                    </Box>
+                  </a>
+                  <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                      <FaLinkedin size={25} />
+                    </Box>
+                  </a>
+                  <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                      <FaYoutube  size={25} />
+                    </Box>
+                  </a>
+                  <a href="https://www.snapchat.com/" target="_blank" rel="noopener noreferrer">
+                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                      <FaSnapchat size={25} />
+                    </Box>
+                  </a>
+                  <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
+                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                      <FaTiktok size={25} />
+                    </Box>
+                  </a>
+                  <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
+                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                      <FaWhatsapp size={25} />
+                    </Box>
+                  </a>
+                </Box>
             </Box>
-          </a>
-          <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#00acee", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-              <FaTwitter size={25} />
-            </Box>
-          </a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#C13584", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-              <FaInstagram size={25} />
-            </Box>
-          </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-            <Box sx={{ width: 50, height: 50, borderRadius: "50%", backgroundColor: "#0077b5", display: "flex", justifyContent: "center", alignItems: "center", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-              <FaLinkedin size={25} />
-            </Box>
-          </a>
-        </Box>
-      </Box>
 
       <section
         style={{
@@ -151,68 +174,87 @@ const VRSection = () => {
                 justifyContent="center"
                 style={{ marginTop: '20px' }} // Reduced marginTop for better alignment
             >
-                {/* First row of buttons */}
-                <Grid item xs={6} sm={6} md={4}>
-                <Link to="/Web-Media-Video" style={{ textDecoration: 'none' }}>
-                    <Button variant="contained" color="primary" fullWidth size="small"
-                        style={{
-                            padding: '12px 25px',
-                            backgroundColor: '#17202a',
-                            color: 'white',
-                            border: '2px solid #f05322',
-                            borderRadius: '5px',
-                            cursor: 'pointer',
-                            width: '100%',
-                            fontFamily: 'Tajawal',
-                            textAlign: 'center',
-                            fontSize:'18px'
-                        }}>
-                        فيديو
-                    </Button>
+                {/* First button */}
+                <Grid item xs={6} sm={6} md={2}>
+                    <Link to="/Web-Media-Video" style={{ textDecoration: 'none' }}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            size="small"
+                            style={{
+                                padding: '12px 25px',
+                                backgroundColor: '#17202a',
+                                color: 'white',
+                                border: '2px solid #f05322',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                                width: '100%',
+                                fontFamily: 'Tajawal',
+                                textAlign: 'center',
+                                fontSize: '18px',
+                            }}
+                        >
+                            فيديو
+                        </Button>
                     </Link>
                 </Grid>
-                <Grid item xs={6} sm={6} md={4}>
+                {/* Second button */}
+                <Grid item xs={6} sm={6} md={2}>
                     <Link to="/vr-videos" style={{ textDecoration: 'none' }}>
-                    <Button variant="contained" color="primary" fullWidth size="small"
-                       style={{
-                        padding: '12px 25px',
-                        backgroundColor: '#17202a',
-                        color: 'white',
-                        border: '2px solid #f05322',
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        width: '100%',
-                        fontFamily: 'Tajawal',
-                        textAlign: 'center',
-                        fontSize:'18px'
-                    }}>
-                        VR Videos
-                    </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            size="small"
+                            style={{
+                                padding: '12px 25px',
+                                backgroundColor: '#17202a',
+                                color: 'white',
+                                border: '2px solid #f05322',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                                width: '100%',
+                                fontFamily: 'Tajawal',
+                                textAlign: 'center',
+                                fontSize: '18px',
+                            }}
+                        >
+                            VR Videos
+                        </Button>
                     </Link>
                 </Grid>
-
-                {/* Second row of buttons */}
-                <Grid item xs={6} sm={6} md={4}>
-                <Link to="/Web-Media-photo" style={{ textDecoration: 'none' }}>
-                    <Button variant="contained" color="secondary" fullWidth size="small"
-                       style={{
-                        padding: '12px 25px',
-                        backgroundColor: '#17202a',
-                        color: 'white',
-                        border: '2px solid #f05322',
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        width: '100%',
-                        fontFamily: 'Tajawal',
-                        textAlign: 'center',
-                        fontSize:'18px'
-                    }}>
-                        فـوتـو
-                    </Button>
+                <Grid item xs={6} sm={6} md={2}>
+                    <Link to="/Web-Media-photo" style={{ textDecoration: 'none' }}>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            fullWidth
+                            size="small"
+                            style={{
+                                padding: '12px 25px',
+                                backgroundColor: '#17202a',
+                                color: 'white',
+                                border: '2px solid #f05322',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                                width: '100%',
+                                fontFamily: 'Tajawal',
+                                textAlign: 'center',
+                                fontSize: '18px',
+                            }}
+                        >
+                            فـوتـو
+                        </Button>
                     </Link>
                 </Grid>
-                <Grid item xs={6} sm={6} md={4}>
-                    <Button variant="contained" color="secondary" fullWidth size="small"
+                {/* Fourth button */}
+                <Grid item xs={6} sm={6} md={2}>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        fullWidth
+                        size="small"
                         style={{
                             padding: '12px 25px',
                             backgroundColor: '#17202a',
@@ -223,15 +265,19 @@ const VRSection = () => {
                             width: '100%',
                             fontFamily: 'Tajawal',
                             textAlign: 'center',
-                            fontSize:'18px'
-                        }}>
+                            fontSize: '18px',
+                        }}
+                    >
                         Button 4
                     </Button>
                 </Grid>
-
-                {/* Third row of buttons */}
-                <Grid item xs={6} sm={6} md={4}>
-                    <Button variant="contained" color="primary" fullWidth size="small"
+                {/* Fifth button */}
+                <Grid item xs={6} sm={6} md={2}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        size="small"
                         style={{
                             padding: '12px 25px',
                             backgroundColor: '#17202a',
@@ -242,32 +288,40 @@ const VRSection = () => {
                             width: '100%',
                             fontFamily: 'Tajawal',
                             textAlign: 'center',
-                            fontSize:'18px'
-                        }}>
+                            fontSize: '18px',
+                        }}
+                    >
                         Button 5
                     </Button>
                 </Grid>
-                <Grid item xs={6} sm={6} md={4}>
-                    <Button variant="contained" color="secondary" fullWidth size="small"
-                       style={{
-                        padding: '12px 25px',
-                        backgroundColor: '#17202a',
-                        color: 'white',
-                        border: '2px solid #f05322',
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        width: '100%',
-                        fontFamily: 'Tajawal',
-                        textAlign: 'center',
-                        fontSize:'18px'
-                    }}>
+                {/* Sixth button */}
+                <Grid item xs={6} sm={6} md={2}>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        fullWidth
+                        size="small"
+                        style={{
+                            padding: '12px 25px',
+                            backgroundColor: '#17202a',
+                            color: 'white',
+                            border: '2px solid #f05322',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            width: '100%',
+                            fontFamily: 'Tajawal',
+                            textAlign: 'center',
+                            fontSize: '18px',
+                        }}
+                    >
                         Button 6
                     </Button>
                 </Grid>
             </Grid>
         </Container>
     </section>
-        <section
+     
+    <section
         style={{
             backgroundColor: '#030909',
             backgroundImage: 'url("https://i.ibb.co/JQKW6v8/Final-Web-Media-VR-line-bk.jpg")', // Background image URL
@@ -553,31 +607,45 @@ const VRSection = () => {
                 <SwiperSlide key={index}>
                     <Link to={`/service/${index + 1}`} style={{ textDecoration: 'none' }}>
                     <Card
-                        sx={{
+                    sx={{
                         maxWidth: 345,
                         boxShadow: 3,
-                        border: '2px solid #f05322',  // Add the outline color here
+                        border: '2px solid #f05322',
                         '&:hover': { boxShadow: 6 },
                         marginBottom: '20px',
-                        }}
+                        position: 'relative', // Required for absolute positioning of the text
+                    }}
                     >
-                        <CardMedia component="img" alt={`Service ${index}`} image={product.imageUrls} sx={{ height: 200 }} />
-                        <CardContent>
-                        <Card sx={{ 
-                        maxWidth: 345, 
-                        border: '1px solid rgb(240, 83, 34)', 
-                        borderRadius: '8px', 
-                        boxShadow: 2,
-                        background:'#000000',
-                        color:'#FFFFFF',
-                        fontFamily: 'Tajawal',
-                        }}>
-                        <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center', fontFamily: 'Tajawal', }}>
-                            {product.cardTitles}
-                        </Typography>
-                        </Card>
-
-                        </CardContent>
+                    <CardMedia
+                        component="img"
+                        alt={`Service ${index}`}
+                        image={product.imageUrls}
+                        sx={{
+                        height: 300,
+                        objectFit: 'cover', // Ensures image covers the area without stretching
+                        }}
+                    />
+                    
+                    {/* Text overlay on top of the image */}
+                    <Typography
+                    variant="h6"
+                    sx={{
+                        position: 'absolute',
+                        bottom: '20px',
+                        left: '50%',
+                        transform: 'translateX(-50%)', // This centers the text horizontally
+                        color: 'white',
+                        // backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional: Adds a background to the text for better visibility
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        padding: '10px',
+                        borderRadius: '4px',
+                        textAlign: 'center', // Ensures the text inside is centered
+                        width:'100%',
+                        border: '2px solid #f05322'
+                    }}
+                >
+                    {product.cardTitles}
+                </Typography>
                     </Card>
                     </Link>
                 </SwiperSlide>
