@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, IconButton, Container, Typography, Grid } from '@mui/material';
-import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
+import { Facebook, Twitter, Instagram, LinkedIn, YouTube, WhatsApp } from '@mui/icons-material';
+import { FaSnapchat,FaTiktok  } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -13,6 +14,10 @@ export default function Footer() {
               { icon: <Twitter />, label: 'twitter' },
               { icon: <Instagram />, label: 'instagram' },
               { icon: <LinkedIn />, label: 'linkedin' },
+              { icon: <YouTube />, label: 'youtube' },
+              { icon: <WhatsApp />, label: 'whatsapp' },
+              { icon: <FaTiktok />, label: 'whatsapp' },
+              { icon: <FaSnapchat />, label: 'whatsapp' },
             ].map(({ icon, label }) => (
               <Grid item key={label} sx={{ margin: '0 8px' }}>
                 <IconButton

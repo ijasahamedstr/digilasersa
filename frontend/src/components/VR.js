@@ -1,6 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography,CardContent,CardMedia,Card,Grid,TextField,Button} from '@mui/material';
+import { Box, Typography,CardMedia,Card,Grid,TextField,Button} from '@mui/material';
 import Container from '@mui/material/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';

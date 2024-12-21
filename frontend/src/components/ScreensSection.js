@@ -27,19 +27,7 @@ const carouselItems = [
   },
 ];
 
-// Social Media Button Styles
-const socialButtonStyles = {
-  width: 50,
-  height: 50,
-  borderRadius: '50%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  color: 'white',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-  transition: 'transform 0.3s ease',
-  '&:hover': { transform: 'scale(1.2)' },
-};
+
 
 // Form styles
 const textFieldStyles = {
@@ -161,137 +149,141 @@ const ScreensSection = () => {
                   </Box>
               </Box>
             </Container>
-
-      <section
-        style={{
-          width: '100%',
-          margin: '0 auto',
-          marginBottom: '30px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: 'auto',
-          paddingTop: '20px',
-          paddingBottom: '20px',
-        }}
-      >
-        <Container
-          maxWidth="xxl"
+            <section
+  style={{
+    width: '100%',
+    margin: '0 auto',
+    marginBottom: '30px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '20px',
+    paddingBottom: '20px',
+  }}
+>
+  <Container
+    maxWidth="xxl"
+    sx={{
+      marginBottom: '80px',
+      paddingRight: { xs: '20px', sm: '100px' },
+      paddingLeft: { xs: '20px', sm: '100px' },
+    }}
+  >
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        marginTop: '40px',
+        borderTop: '2px solid #d5d8dc',
+        borderLeft: '2px solid #d5d8dc',
+        position: 'relative',
+        height: 'auto',
+      }}
+    >
+      <Grid item xs={12} md={8}>
+        <Box
+          component="img"
+          src="https://i.ibb.co/FXmW0NC/download.png"
+          alt="Waterproof Outdoor LED Screen"
           sx={{
-            marginBottom: '80px',
-            paddingRight: { xs: '20px', sm: '100px' }, // Apply smaller padding on mobile
-            paddingLeft: { xs: '20px', sm: '100px' },  // Apply smaller padding on mobile
+            width: '100%',  // Set the width to 1115px
+            height: '500px',  // Set the height to 400px
+            objectFit: 'cover',
+            borderRadius: '20px',
+            paddingBottom: '30px',
           }}
-        >
-          <Grid
-            container
-            spacing={2}
+        />
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <Box sx={{ padding: '16px' }}>
+          <Card
             sx={{
-              marginTop: '40px',
-              borderTop: '2px solid #d5d8dc',
-              borderLeft: '2px solid #d5d8dc',
-              position: 'relative',
+              backgroundColor: '#f5f5f5',
+              padding: '1rem',
+              borderRadius: '8px',
+              boxShadow: 3,
+              maxWidth: '100%',
             }}
           >
-            <Grid item xs={12} md={8}> {/* Changed from 7 to 8 to give it 70% width */}
-              <Box
-                component="img"
-                src="https://i.ibb.co/djPgHLc/Waterproof-P6-66-Outdoor-LED-Screen-Signboard.webp"
-                alt="Waterproof Outdoor LED Screen"
-                sx={{
-                  width: '100%',
-                  height: 'auto',
-                  objectFit: 'cover',
-                  borderRadius: '20px',
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} md={4}> {/* Changed from 5 to 4 to give it 30% width */}
-              <Box sx={{ padding: '16px' }}>
-                <Card
-                  sx={{
-                    backgroundColor: '#f5f5f5',
-                    padding: '1rem',
-                    borderRadius: '8px',
-                    boxShadow: 3,
-                    maxWidth: '100%',
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: 'bold',
-                      color: '#333',
-                      fontSize: { xs: '1.5rem', sm: '2rem', md: '2rem' },
-                      textAlign: 'justify',
-                      direction: 'rtl',
-                    }}
-                  >
-                    الشاشات الإلكترونية الخارجية
-                  </Typography>
-                </Card>
-              </Box>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: '1rem', sm: '1rem', md: '1rem' },
-                  textAlign: 'justify',
-                  direction: 'rtl',
-                  paddingRight:'20px'
-                }}
-              >
-                تعتبر شاشات العرض الإلكترونية الخارجية المتخصصة في عرض الصور
-                ومقاطع الفيديو من احدث طرق التسويق حاليا...
-              </Typography>
-            </Grid>
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 'bold',
+                color: '#333',
+                fontSize: { xs: '1.5rem', sm: '2rem', md: '2rem' },
+                textAlign: 'justify',
+                direction: 'rtl',
+              }}
+            >
+              الشاشات الإلكترونية الخارجية
+            </Typography>
+          </Card>
+        </Box>
+        <Typography
+          variant="body1"
+          sx={{
+            fontSize: { xs: '1rem', sm: '1rem', md: '1rem' },
+            textAlign: 'justify',
+            direction: 'rtl',
+            paddingRight: '20px',
+            marginTop: '15px',
+          }}
+        >
+          تعتبر شاشات العرض الإلكترونية الخارجية المتخصصة في عرض الصور
+          ومقاطع الفيديو من احدث طرق التسويق حاليا...
+        </Typography>
+      </Grid>
 
-            {/* Bottom and Right Borders */}
-            <Box
-              sx={{
-                position: 'absolute',
-                bottom: 0,
-                left: '0%',
-                width: '30%',
-                borderBottom: '2px solid #d5d8dc',
-              }}
-            />
-            <Box
-              sx={{
-                position: 'absolute',
-                top: 0,
-                right: '0%',
-                height: '9%',
-                width: '9%',
-                borderRight: '2px solid #d5d8dc',
-              }}
-            />
+      {/* Bottom and Right Borders */}
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 0,
+          left: '0%',
+          width: '30%',
+          borderBottom: '2px solid #d5d8dc',
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          right: '0%',
+          height: '9%',
+          width: '9%',
+          borderRight: '2px solid #d5d8dc',
+        }}
+      />
 
-            {/* Vertical Border at Bottom Center */}
-            <Box
-              sx={{
-                position: 'absolute',
-                bottom: '0',
-                left: '30%',
-                transform: 'translateX(-22%)',
-                height: '22px',
-                borderLeft: '2px solid #d5d8dc',
-              }}
-            />
+      {/* Vertical Border at Bottom Center */}
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '0',
+          left: '30%',
+          transform: 'translateX(-22%)',
+          height: '22px',
+          borderLeft: '2px solid #d5d8dc',
+        }}
+      />
 
-            {/* Horizontal Border at Right Center */}
-            <Box
-              sx={{
-                position: 'absolute',
-                right: '0',
-                top: '9%',
-                transform: 'translateY(-1%)',
-                width: '1%',
-                borderTop: '2px solid #d5d8dc',
-              }}
-            />
-          </Grid>
-        </Container>
-      </section>
+      {/* Horizontal Border at Right Center */}
+      <Box
+        sx={{
+          position: 'absolute',
+          right: '0',
+          top: '9%',
+          transform: 'translateY(-1%)',
+          width: '1%',
+          borderTop: '2px solid #d5d8dc',
+        }}
+      />
+    </Grid>
+  </Container>
+</section>
+
+
+
     
       <section
         style={{
@@ -392,11 +384,11 @@ const ScreensSection = () => {
             <Grid item xs={12} md={8}> {/* Changed from 7 to 8 to give it 70% width */}
               <Box
                 component="img"
-                src="https://i.ibb.co/1RwMSG8/P1-95-Indoor-High-Definition-Front-Maintenance-Fixed-LED-Display-Screen-with-1000mm-250mm-Aluminum-C.jpg"
+                src="https://i.ibb.co/pP9Tm8q/Indoor-LED-Screens-3.png"
                 alt="Waterproof Outdoor LED Screen"
                 sx={{
-                  width: '100%',
-                  height: 'auto',
+                  width: '100%',  // Set the width to 1115px
+                  height: '500px',  // Set the height to 400px
                   objectFit: 'cover',
                   borderRadius: '20px',
                   paddingBottom:'30px',
@@ -490,11 +482,11 @@ const ScreensSection = () => {
             <Grid item xs={12} md={8}> {/* Changed from 7 to 8 to give it 70% width */}
               <Box
                 component="img"
-                src="https://i.ibb.co/9y22tyR/68881793-2416484458675252-6626241936149708800-n.jpg"
+                src="https://i.ibb.co/4ZRSqZR/images-1-1.png"
                 alt="Waterproof Outdoor LED Screen"
                 sx={{
-                  width: '100%',
-                  height: 'auto',
+                  width: '100%',  // Set the width to 1115px
+                  height: '500px',  // Set the height to 400px
                   objectFit: 'cover',
                   borderRadius: '20px',
                   paddingBottom:'30px'
@@ -664,7 +656,7 @@ const ScreensSection = () => {
             <Grid item xs={12} md={8}> {/* Changed from 7 to 8 to give it 70% width */}
               <Box
                 component="img"
-                src="https://i.ibb.co/ZTqV7j9/floor-tand.webp"
+                src="https://i.ibb.co/cQ60b37/ba98a6a8fcff86f3c8a44e5e92deeba6.png"
                 alt="Waterproof Outdoor LED Screen"
                 sx={{
                   width: '100%',
@@ -761,7 +753,7 @@ const ScreensSection = () => {
             <Grid item xs={12} md={8}> {/* Changed from 7 to 8 to give it 70% width */}
               <Box
                 component="img"
-                src="https://i.ibb.co/nL7ySyg/digital-wayfinding-screen-kiosk-signbox-b.jpg"
+                src="https://i.ibb.co/wp6cW3d/images-2.png"
                 alt="Waterproof Outdoor LED Screen"
                 sx={{
                   width: '100%',
@@ -934,7 +926,7 @@ const ScreensSection = () => {
             <Grid item xs={12} md={8}> {/* Changed from 7 to 8 to give it 70% width */}
               <Box
                 component="img"
-                src="https://i.ibb.co/FD7MxFj/H5ec7985e4ee74eb0808a9de5a92c9290o-jpg-720x720q50.png"
+                src="https://i.ibb.co/khVdR4G/H373531b9588744f68ab5fc76071a9825-C-jpg-300x300.png"
                 alt="Waterproof Outdoor LED Screen"
                 sx={{
                   width: '100%',
