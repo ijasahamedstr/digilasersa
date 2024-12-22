@@ -1,5 +1,5 @@
 import React from "react"; 
-import { Container, Grid, Card, CardContent, Typography, CardMedia, Avatar, Box } from "@mui/material"; 
+import { Container, Grid, Card, CardContent, Typography, CardMedia, Avatar, Box,Button } from "@mui/material"; 
 import { keyframes } from '@emotion/react';  // Import keyframes 
 import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 
@@ -52,6 +52,24 @@ function ServiceCard() {
           textAlign: 'center', 
         }} 
       > 
+        {/* Heading */}
+        <Button
+          variant="contained"
+          sx={{
+            background: 'rgb(15, 245, 236)',  // Custom background color
+            color: '#000000', // Text color
+            padding: '10px 20px',  // Padding
+            fontFamily: 'Tajawal',  // Same font family as Typography
+            fontWeight: 600,  // Same font weight as Typography
+            borderRadius: '50px',  // Rounded corners
+            fontSize: { xs: '18px', sm: '20px', md: '40px' },
+            marginBottom: '30px',
+            width: '100%'  // Full width
+          }}
+        >
+          أقسامنا
+        </Button>
+
         <Grid container spacing={6}> {/* Increase the spacing to 6 for more gap between cards */}
           {products.map((product) => ( 
             <Grid item xs={12} sm={6} md={3} key={product.id} sx={{paddingLeft: '60px' }}> 
@@ -111,7 +129,7 @@ function ServiceCard() {
                       sx={{ 
                         color: 'white', 
                         marginTop: '32px', // Reduce the top margin
-                        fontSize: '0.875rem',  // Reduce the font size
+                        fontSize: '1.2rem',  // Reduce the font size
                         fontWeight: 500,  // Slightly lighter font weight
                         fontFamily: 'Tajawal'
                       }} 

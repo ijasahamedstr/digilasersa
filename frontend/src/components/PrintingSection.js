@@ -7,6 +7,7 @@ import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWha
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
 import { Carousel } from "react-bootstrap";
+import Form from 'react-bootstrap/Form'; 
 
 const sliderItems = [
   {
@@ -156,6 +157,36 @@ const PrintingSection = () => {
       { breakpoint: 600, settings: { slidesToShow: 1 } },
     ],
   };
+
+    const [formData, setFormData] = useState({
+      name: '',
+      phone: '',
+      email: '',
+      message: '',
+    });
+  
+   
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      };
+    
+      const handleFormSubmit = (event) => {
+        event.preventDefault();
+    
+        // Add simple validation
+        if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+          alert("Please fill out all fields.");
+          return;
+        }
+    
+        // Redirect to another site (Example: External site)
+        window.location.href = 'https://another-site.com/contact';
+      };
+  
 
   return (
     <>
@@ -531,7 +562,7 @@ const PrintingSection = () => {
         paddingTop: '50px',
         paddingBottom: '50px',
         marginTop: '-30px',
-        direction: 'ltr', // Set the section to RTL direction
+        direction: 'rtl',
       }}
     >
       <Container
@@ -567,93 +598,144 @@ const PrintingSection = () => {
             </Typography>
           </Grid>
 
+
           {/* Contact Form Section on the Left */}
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            order={{ xs: 2, sm: 2 }} // Move this section to the bottom on mobile (order 2)
-          >
+          <Grid item xs={12} sm={6} order={{ xs: 2, sm: 2 }}>
+            <h2
+              style={{
+                color: 'white',
+                fontFamily: 'Tajawal',
+                fontSize: '26px',
+                textAlign: 'right',
+                marginBottom: '20px',
+                direction: 'rtl',
+              }}
+            >
+              للإستفسارات العامة ..
+            </h2>
+
             <form
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '10px',
-                direction: 'rtl', // Set the form to right-to-left direction
+                direction: 'rtl',
               }}
+              onSubmit={handleFormSubmit}
             >
-              <TextField
-                label="الاسم"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                required
-                sx={{
-                  input: {
+              <Form.Group
+                controlId="name"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
                     color: 'white',
-                    textAlign: 'right', // Align text to the right
-                  },
-                  label: { color: 'white' },
-                  '& .MuiOutlinedInput-root': {
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  الاسم
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="phone"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
                     color: 'white',
-                    borderColor: 'white',
-                  },
-                }}
-              />
-              <TextField
-                label="جوال"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                required
-                sx={{
-                  input: {
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  جـوال
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="email"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
                     color: 'white',
-                    textAlign: 'right', // Align text to the right
-                  },
-                  label: { color: 'white' },
-                  '& .MuiOutlinedInput-root': {
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  بريد الكتروني
+                </Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="message"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
                     color: 'white',
-                    borderColor: 'white',
-                  },
-                }}
-              />
-              <TextField
-                label="بريد الكتروني"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                required
-                sx={{
-                  input: {
-                    color: 'white',
-                    textAlign: 'right', // Align text to the right
-                  },
-                  label: { color: 'white' },
-                  '& .MuiOutlinedInput-root': {
-                    color: 'white',
-                    borderColor: 'white',
-                  },
-                }}
-              />
-              <TextField
-                label="رسالتك"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                required
-                sx={{
-                  input: {
-                    color: 'white',
-                    textAlign: 'right', // Align text to the right
-                  },
-                  label: { color: 'white' },
-                  '& .MuiOutlinedInput-root': {
-                    color: 'white',
-                    borderColor: 'white',
-                  },
-                }}
-              />
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  رسالتك
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
               <Button
                 type="submit"
                 variant="contained"
@@ -662,7 +744,7 @@ const PrintingSection = () => {
                   marginTop: '15px',
                   background: '#00fffc',
                   color: '#1e272e',
-                  padding: { xs: '10px', sm: '15px' }, // Responsive padding
+                  padding: { xs: '10px', sm: '15px' },
                 }}
               >
                 Submit

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography, Grid, Card, TextField, Button } from '@mui/material';
+import { Box, Typography, Grid, Card, Button } from '@mui/material';
 import Container from '@mui/material/Container';
 import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp  } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import Form from 'react-bootstrap/Form'; 
 
 const carouselItems = [
   {
@@ -27,50 +28,36 @@ const carouselItems = [
   },
 ];
 
-
-
-// Form styles
-const textFieldStyles = {
-  input: { color: 'white', textAlign: 'right' },
-  label: { color: 'white' },
-  '& .MuiOutlinedInput-root': { color: 'white', borderColor: 'white' },
-};
-
 const ScreensSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
+    message: '',
   });
-  const [formErrors, setFormErrors] = useState({});
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+ 
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    };
+  
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+  
+      // Add simple validation
+      if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+        alert("Please fill out all fields.");
+        return;
+      }
+  
+      // Redirect to another site (Example: External site)
+      window.location.href = 'https://another-site.com/contact';
+    };
 
-  const validateForm = () => {
-    const errors = {};
-    if (!formData.name) errors.name = 'Name is required';
-    if (!formData.phone) errors.phone = 'Phone number is required';
-    if (!formData.email) errors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) errors.email = 'Email is invalid';
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      alert('Form submitted successfully');
-      // Replace with actual form submission logic (API call, etc.)
-    } else {
-      alert('Please correct the errors before submitting');
-    }
-  };
 
   return (
     <>
@@ -1126,13 +1113,32 @@ const ScreensSection = () => {
           </Grid>
         </Container>
       </section>
-
-
-
-      <section style={{ backgroundColor: '#000000', width: '100%', margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '50px', paddingBottom: '50px' }}>
-        <Container maxWidth="xl" sx={{ paddingX: { xs: 2, sm: 3, md: 5 }, textAlign: 'center' }}>
-          <Grid container spacing={4}>
-            <Grid item xs={12} sm={6}>
+      
+      <section
+      style={{
+        backgroundColor: '#000000',
+        width: '100%',
+        margin: '0 auto',
+        marginBottom: '0px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: '50px',
+        paddingBottom: '50px',
+        marginTop: '-30px',
+        direction: 'rtl',
+      }}
+    >
+      <Container
+        maxWidth="xl"
+        sx={{
+          paddingX: { xs: 2, sm: 3, md: 5 },
+          textAlign: 'center',
+        }}
+      >
+        <Grid container spacing={4}>
+          {/* Text Section on the Right */}
+           <Grid item xs={12} sm={6}>
               <Typography variant="h4" color="white" paragraph>
                 Contact Us
               </Typography>
@@ -1155,68 +1161,163 @@ const ScreensSection = () => {
                 مدير قسم الشاشات    : <span style={{ fontWeight: 'bold' }}>2222 026 057</span>
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <form style={{ display: 'flex', flexDirection: 'column', gap: '10px', direction: 'rtl' }} onSubmit={handleSubmit}>
-                <TextField
-                  label="الاسم"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  error={Boolean(formErrors.name)}
-                  helperText={formErrors.name}
-                  sx={textFieldStyles}
-                />
-                <TextField
-                  label="جوال"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                  error={Boolean(formErrors.phone)}
-                  helperText={formErrors.phone}
-                  sx={textFieldStyles}
-                />
-                <TextField
-                  label="البريد الالكتروني"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  error={Boolean(formErrors.email)}
-                  helperText={formErrors.email}
-                  sx={textFieldStyles}
-                />
-                <Button
-                  type="submit"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: '#00fffc',
-                    color: 'black',
-                    padding: '12px 24px',
-                    borderRadius: '8px',
-                    textTransform: 'none',
-                    '&:hover': {
-                      backgroundColor: '#00b8c6',
-                    },
+
+
+          {/* Contact Form Section on the Left */}
+          <Grid item xs={12} sm={6} order={{ xs: 2, sm: 2 }}>
+            <h2
+              style={{
+                color: 'white',
+                fontFamily: 'Tajawal',
+                fontSize: '26px',
+                textAlign: 'right',
+                marginBottom: '20px',
+                direction: 'rtl',
+              }}
+            >
+              للإستفسارات العامة ..
+            </h2>
+
+            <form
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+                direction: 'rtl',
+              }}
+              onSubmit={handleFormSubmit}
+            >
+              <Form.Group
+                controlId="name"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
                   }}
                 >
-                  إرسال
-                </Button>
-              </form>
-            </Grid>
+                  الاسم
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="phone"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  جـوال
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="email"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  بريد الكتروني
+                </Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="message"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  رسالتك
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  marginTop: '15px',
+                  background: '#00fffc',
+                  color: '#1e272e',
+                  padding: { xs: '10px', sm: '15px' },
+                }}
+              >
+                Submit
+              </Button>
+            </form>
           </Grid>
-        </Container>
-      </section>
+        </Grid>
+      </Container>
+    </section>
     </>
   );
 };

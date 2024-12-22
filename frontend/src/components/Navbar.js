@@ -220,7 +220,7 @@ function ResponsiveAppBar() {
             component={Link}
             to="/register"  // Link to the register page or trigger a function
             sx={{
-              color: 'white',
+              color: '#000000',
               background:'rgb(15, 245, 236)',
               fontFamily: 'Tajawal', // Apply the font here as well
               fontSize: { xs: '12px', sm: '14px', md: '16px' },

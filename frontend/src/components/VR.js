@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Carousel } from 'react-bootstrap';
 import { Box, Typography,CardMedia,Card,Grid,TextField,Button} from '@mui/material';
 import Container from '@mui/material/Container';
@@ -10,25 +10,20 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp  } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
+import Form from 'react-bootstrap/Form'; 
 
 const carouselItems = [
   {
     id: 1,
     img: 'https://i.ibb.co/NjnKh2Q/Untitled-1.jpg',
-    title: 'Welcome to Our Adventure',
-    content: 'Explore the beauty of nature with us.'
   },
   {
     id: 2,
     img: 'https://i.ibb.co/NjnKh2Q/Untitled-1.jpg',
-    title: 'Unforgettable Moments',
-    content: 'Create memories that last a lifetime.'
   },
   {
     id: 3,
     img: 'https://i.ibb.co/NjnKh2Q/Untitled-1.jpg',
-    title: 'Join Our Community',
-    content: 'Be part of something special.'
   },
 ];
 
@@ -47,12 +42,41 @@ const products = [
     { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/SAMA.svg" },
     { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOF.svg" },
     { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOI.svg" },
-    { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/NC.svg" },
   ];
   
   
 
 const VRSection = () => {
+
+     const [formData, setFormData] = useState({
+          name: '',
+          phone: '',
+          email: '',
+          message: '',
+        });
+      
+       
+          const handleChange = (e) => {
+            const { name, value } = e.target;
+            setFormData({
+              ...formData,
+              [name]: value,
+            });
+          };
+        
+          const handleFormSubmit = (event) => {
+            event.preventDefault();
+        
+            // Add simple validation
+            if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+              alert("Please fill out all fields.");
+              return;
+            }
+        
+            // Redirect to another site (Example: External site)
+            window.location.href = 'https://another-site.com/contact';
+          };
+      
   
   return (
     <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>
@@ -131,196 +155,218 @@ const VRSection = () => {
                   </a>
                 </Box>
             </Box>
+            <section
+    style={{
+        backgroundColor: '#eaecee', // Fallback background color
+        backgroundImage: 'url("https://i.ibb.co/6R5BLw7/image.png")', // Replace with your image URL
+        backgroundSize: 'cover', // Ensure the image covers the entire section
+        backgroundPosition: 'center', // Center the background image
+        width: '100%',
+        margin: '0 auto',
+        marginBottom: '30px',
+        display: 'flex',
+        justifyContent: 'center', // Center content horizontally
+        alignItems: 'center', // Center content vertically
+        height: '800px', // Set height to 70% of the viewport height
+        paddingTop: '250px',
+        paddingBottom: '0px',
+    }}
+>
+    <Container maxWidth="xl" style={{ marginTop: '130px' }}>
+        <div
+            style={{
+                display: 'flex',
+                justifyContent: 'center', // Center text horizontally
+                alignItems: 'center', // Center text vertically
+                width: '100%',
+                height: '100%', // Take full height of the section
+                textAlign: 'center', // Align text to the center
+                padding: '0 20px', // Add padding to avoid text sticking to the edges
+            }}
+        >
+            {/* Optional content like heading */}
+        </div>
 
-      <section
-        style={{
-            backgroundColor: '#eaecee', // Fallback background color
-            backgroundImage: 'url("https://i.ibb.co/6R5BLw7/image.png")', // Replace with your image URL
-            backgroundSize: 'cover', // Ensure the image covers the entire section
-            backgroundPosition: 'center', // Center the background image
-            width: '100%',
-            margin: '0 auto',
-            marginBottom: '30px',
-            display: 'flex',
-            justifyContent: 'center', // Center content horizontally
-            alignItems: 'center', // Center content vertically
-            height: '800px', // Set height to 70% of the viewport height
-            paddingTop: '20px',
-            paddingBottom: '20px',
-        }}
-    >
-        <Container maxWidth="xl" style={{ marginTop: '130px' }}>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center', // Center text horizontally
-                    alignItems: 'center', // Center text vertically
-                    width: '100%',
-                    height: '100%', // Take full height of the section
-                    textAlign: 'center', // Align text to the center
-                    padding: '0 20px', // Add padding to avoid text sticking to the edges
-                    '@media (max-width: 768px)': {
-                        padding: '0 10px', // Adjust padding for smaller screens
-                    },
-                }}
-            >
-                {/* Optional content like heading */}
-            </div>
-
-            {/* Adjusted marginTop for buttons */}
-            <Grid
-                container
-                spacing={4}
-                justifyContent="center"
-                style={{ marginTop: '20px' }} // Reduced marginTop for better alignment
-            >
-                {/* First button */}
-                <Grid item xs={6} sm={6} md={2}>
-                    <Link to="/Web-Media-Video" style={{ textDecoration: 'none' }}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            fullWidth
-                            size="small"
-                            style={{
-                                padding: '12px 25px',
-                                backgroundColor: '#17202a',
-                                color: 'white',
-                                border: '2px solid #f05322',
-                                borderRadius: '5px',
-                                cursor: 'pointer',
-                                width: '100%',
-                                fontFamily: 'Tajawal',
-                                textAlign: 'center',
-                                fontSize: '18px',
-                            }}
-                        >
-                            فيديو
-                        </Button>
-                    </Link>
-                </Grid>
-                {/* Second button */}
-                <Grid item xs={6} sm={6} md={2}>
-                    <Link to="/vr-videos" style={{ textDecoration: 'none' }}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            fullWidth
-                            size="small"
-                            style={{
-                                padding: '12px 25px',
-                                backgroundColor: '#17202a',
-                                color: 'white',
-                                border: '2px solid #f05322',
-                                borderRadius: '5px',
-                                cursor: 'pointer',
-                                width: '100%',
-                                fontFamily: 'Tajawal',
-                                textAlign: 'center',
-                                fontSize: '18px',
-                            }}
-                        >
-                            VR Videos
-                        </Button>
-                    </Link>
-                </Grid>
-                <Grid item xs={6} sm={6} md={2}>
-                    <Link to="/Web-Media-photo" style={{ textDecoration: 'none' }}>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            fullWidth
-                            size="small"
-                            style={{
-                                padding: '12px 25px',
-                                backgroundColor: '#17202a',
-                                color: 'white',
-                                border: '2px solid #f05322',
-                                borderRadius: '5px',
-                                cursor: 'pointer',
-                                width: '100%',
-                                fontFamily: 'Tajawal',
-                                textAlign: 'center',
-                                fontSize: '18px',
-                            }}
-                        >
-                            فـوتـو
-                        </Button>
-                    </Link>
-                </Grid>
-                {/* Fourth button */}
-                <Grid item xs={6} sm={6} md={2}>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        fullWidth
-                        size="small"
-                        style={{
-                            padding: '12px 25px',
-                            backgroundColor: '#17202a',
-                            color: 'white',
-                            border: '2px solid #f05322',
-                            borderRadius: '5px',
-                            cursor: 'pointer',
-                            width: '100%',
-                            fontFamily: 'Tajawal',
-                            textAlign: 'center',
-                            fontSize: '18px',
-                        }}
-                    >
-                        Button 4
-                    </Button>
-                </Grid>
-                {/* Fifth button */}
-                <Grid item xs={6} sm={6} md={2}>
+        {/* Adjusted marginTop for buttons */}
+        <Grid
+            container
+            spacing={2} // Reduced spacing for better alignment on mobile
+            justifyContent="center"
+            style={{ marginTop: '20px' }} // Reduced marginTop for better alignment
+        >
+            {/* First button */}
+            <Grid item xs={6} sm={6} md={2}>
+                <Link to="/Web-Media-Video" style={{ textDecoration: 'none' }}>
                     <Button
                         variant="contained"
                         color="primary"
                         fullWidth
-                        size="small"
+                        size="small" // Small size for mobile responsiveness
                         style={{
-                            padding: '12px 25px',
+                            padding: '8px 18px',
                             backgroundColor: '#17202a',
                             color: 'white',
                             border: '2px solid #f05322',
-                            borderRadius: '5px',
+                            borderRadius: '50px',
                             cursor: 'pointer',
                             width: '100%',
                             fontFamily: 'Tajawal',
                             textAlign: 'center',
-                            fontSize: '18px',
+                            fontSize: '25px', // Smaller font size for mobile
+                            '@media (max-width: 600px)': { // For small screens like mobile
+                                fontSize: '14px', // Adjust font size for smaller screens
+                            },
                         }}
                     >
-                        Button 5
+                        فيديو
                     </Button>
-                </Grid>
-                {/* Sixth button */}
-                <Grid item xs={6} sm={6} md={2}>
+                </Link>
+            </Grid>
+
+            {/* Second button */}
+            <Grid item xs={6} sm={6} md={2}>
+                <Link to="/vr-videos" style={{ textDecoration: 'none' }}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        size="small" // Small size for mobile responsiveness
+                        style={{
+                            padding: '8px 18px',
+                            backgroundColor: '#17202a',
+                            color: 'white',
+                            border: '2px solid #f05322',
+                            borderRadius: '50px',
+                            cursor: 'pointer',
+                            width: '100%',
+                            fontFamily: 'Tajawal',
+                            textAlign: 'center',
+                            fontSize: '25px', // Smaller font size for mobile
+                            '@media (max-width: 600px)': { // For small screens like mobile
+                                fontSize: '14px', // Adjust font size for smaller screens
+                            },
+                        }}
+                    >
+                        VR Videos
+                    </Button>
+                </Link>
+            </Grid>
+
+            {/* Third button */}
+            <Grid item xs={6} sm={6} md={2}>
+                <Link to="/Web-Media-photo" style={{ textDecoration: 'none' }}>
                     <Button
                         variant="contained"
                         color="secondary"
                         fullWidth
-                        size="small"
+                        size="small" // Small size for mobile responsiveness
                         style={{
-                            padding: '12px 25px',
+                            padding: '8px 18px',
                             backgroundColor: '#17202a',
                             color: 'white',
                             border: '2px solid #f05322',
-                            borderRadius: '5px',
+                            borderRadius: '50px',
                             cursor: 'pointer',
                             width: '100%',
                             fontFamily: 'Tajawal',
                             textAlign: 'center',
-                            fontSize: '18px',
+                            fontSize: '25px', // Smaller font size for mobile
+                            '@media (max-width: 600px)': { // For small screens like mobile
+                                fontSize: '14px', // Adjust font size for smaller screens
+                            },
                         }}
                     >
-                        Button 6
+                        فـوتـو
                     </Button>
-                </Grid>
+                </Link>
             </Grid>
-        </Container>
-    </section>
-     
+
+            {/* Fourth button */}
+            <Grid item xs={6} sm={6} md={2}>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    fullWidth
+                    size="small" // Small size for mobile responsiveness
+                    style={{
+                        padding: '8px 18px',
+                        backgroundColor: '#17202a',
+                        color: 'white',
+                        border: '2px solid #f05322',
+                        borderRadius: '50px',
+                        cursor: 'pointer',
+                        width: '100%',
+                        fontFamily: 'Tajawal',
+                        textAlign: 'center',
+                        fontSize: '25px', // Smaller font size for mobile
+                        '@media (max-width: 600px)': { // For small screens like mobile
+                            fontSize: '14px', // Adjust font size for smaller screens
+                        },
+                    }}
+                >
+                    Button 4
+                </Button>
+            </Grid>
+
+            {/* Fifth button */}
+            <Grid item xs={6} sm={6} md={2}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    size="small" // Small size for mobile responsiveness
+                    style={{
+                        padding: '8px 18px',
+                        backgroundColor: '#17202a',
+                        color: 'white',
+                        border: '2px solid #f05322',
+                        borderRadius: '50px',
+                        cursor: 'pointer',
+                        width: '100%',
+                        fontFamily: 'Tajawal',
+                        textAlign: 'center',
+                        fontSize: '25px', // Smaller font size for mobile
+                        '@media (max-width: 600px)': { // For small screens like mobile
+                            fontSize: '14px', // Adjust font size for smaller screens
+                        },
+                    }}
+                >
+                    Button 5
+                </Button>
+            </Grid>
+
+            {/* Sixth button */}
+            <Grid item xs={6} sm={6} md={2}>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    fullWidth
+                    size="small" // Small size for mobile responsiveness
+                    style={{
+                        padding: '8px 18px',
+                        backgroundColor: '#17202a',
+                        color: 'white',
+                        border: '2px solid #f05322',
+                        borderRadius: '50px',
+                        cursor: 'pointer',
+                        width: '100%',
+                        fontFamily: 'Tajawal',
+                        textAlign: 'center',
+                        fontSize: '25px', // Smaller font size for mobile
+                        '@media (max-width: 600px)': { // For small screens like mobile
+                            fontSize: '14px', // Adjust font size for smaller screens
+                        },
+                    }}
+                >
+                    Button 6
+                </Button>
+            </Grid>
+        </Grid>
+    </Container>
+</section>
+
+
+
     <section
         style={{
             backgroundColor: '#030909',
@@ -333,7 +379,7 @@ const VRSection = () => {
             display: 'flex',
             justifyContent: 'center', // Horizontally center the content
             alignItems: 'center', // Vertically center the content
-            height: '560px', // Increased height of the section
+            height: '350px', // Increased height of the section
             marginTop: '-80px',
         }}
         >
@@ -342,8 +388,6 @@ const VRSection = () => {
             sx={{
             paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
             textAlign: 'center', // Center text for all screen sizes
-            marginTop: '30px',
-            marginBottom: '30px',
             }}
         >
             {/* Grid for Icon Cards */}
@@ -365,7 +409,7 @@ const VRSection = () => {
                     }}
                 />
                 </div>
-                <Typography variant="h6" sx={{ color: '#fdfefe', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
+                <Typography variant="h6" sx={{ color: '#000000',fontWeight:'700', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
                 الإعداد وصناعة المحتوي
                 </Typography>
             </Grid>
@@ -387,7 +431,7 @@ const VRSection = () => {
                     }}
                 />
                 </div>
-                <Typography variant="h6" sx={{ color: '#fdfefe', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
+                <Typography variant="h6" sx={{ color: '#000000',fontWeight:'700', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
                 المونتاج والجرافيك
                 </Typography>
             </Grid>
@@ -409,7 +453,7 @@ const VRSection = () => {
                     }}
                 />
                 </div>
-                <Typography variant="h6" sx={{ color: '#fdfefe', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
+                <Typography variant="h6" sx={{ color: '#000000',fontWeight:'700', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
                 التصوير والإخراج
                 </Typography>
             </Grid>
@@ -431,13 +475,14 @@ const VRSection = () => {
                     }}
                 />
                 </div>
-                <Typography variant="h6" sx={{ color: '#fdfefe', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
+                <Typography variant="h6" sx={{ color: '#000000', fontWeight:'700', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
                 الإنتاج الصوتي والبودكاست
                 </Typography>
             </Grid>
             </Grid>
         </Container>
-        </section>
+        </section><br/>
+
 
     <section
         style={{
@@ -636,7 +681,7 @@ const VRSection = () => {
                         transform: 'translateX(-50%)', // This centers the text horizontally
                         color: 'white',
                         // backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional: Adds a background to the text for better visibility
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        backgroundColor: '#000000',
                         padding: '10px',
                         borderRadius: '4px',
                         textAlign: 'center', // Ensures the text inside is centered
@@ -654,97 +699,100 @@ const VRSection = () => {
             </Container>
         </section>
         <section
-            style={{
-                backgroundColor: '#eaecee', // Fallback background color
-                backgroundImage: 'url("https://i.ibb.co/fY5Kt72/image.png")', // Replace with your image URL
-                backgroundSize: 'cover', // Ensure the image covers the entire section
-                width: '100%',
-                margin: '0 auto',
-                marginBottom: '30px',
-                display: 'flex',
-                justifyContent: 'flex-end', // Align content to the bottom of the section
-                alignItems: 'center',
-                height: '50vh', // Set height to 100% of the viewport height
-                paddingTop: '20px',
-                paddingBottom: '20px',
-                marginTop: '-30px',
+        style={{
+            backgroundColor: '#eaecee', // Fallback background color
+            backgroundImage: 'url("https://i.ibb.co/fY5Kt72/image.png")', // Replace with your image URL
+            backgroundSize: 'cover', // Ensure the image covers the entire section
+            width: '100%',
+            margin: '0 auto',
+            marginBottom: '30px',
+            display: 'flex',
+            justifyContent: 'flex-end', // Align content to the bottom of the section
+            alignItems: 'center',
+            height: '50vh', // Set height to 100% of the viewport height
+            paddingTop: '20px',
+            paddingBottom: '20px',
+            marginTop: '-30px',
+        }}
+    >
+        <Container
+            maxWidth="xl"
+            sx={{
+                paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
+                textAlign: 'center',
             }}
         >
-            <Container
-                maxWidth="xl"
-                sx={{
-                    paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-                    textAlign: 'center',
+            {/* Heading */}
+            <h2
+                style={{
+                    fontSize: window.innerWidth <= 600
+                        ? '1.25rem' // Slightly smaller font size for mobile (xs)
+                        : window.innerWidth <= 960
+                        ? '1.75rem' // Medium screens (sm)
+                        : '3.5rem', // Large screens (md)
+                    color: '#fdfefe',
+                    fontFamily: 'Tajawal',
+                    marginBottom: '20px', // Space between heading and buttons
                 }}
             >
-                {/* Heading */}
-                <h2
-                    style={{
-                        fontSize: window.innerWidth <= 600
-                            ? '1.5rem' // For small screens (xs)
-                            : window.innerWidth <= 960
-                            ? '2rem' // For medium screens (sm)
-                            : '2.5rem', // For large screens (md)
-                        color: '#fdfefe',
-                        fontFamily: 'Tajawal',
-                        marginBottom: '20px', // Space between heading and buttons
-                    }}
-                >
-                    معرض أعمالنا
-                </h2>
+                معرض أعمالنا
+            </h2>
 
-                {/* Icon Cards Row */}
+            {/* Icon Cards Row */}
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center', // Center the button container horizontally
+                    flexWrap: 'wrap',
+                    gap: '20px', // Spacing between the cards, if needed
+                }}
+            >
+                {/* Buttons in a row */}
                 <div
                     style={{
                         display: 'flex',
-                        justifyContent: 'center', // Center the button container horizontally
-                        flexWrap: 'wrap',
-                        gap: '20px', // Spacing between the cards, if needed
+                        justifyContent: 'space-evenly', // Distribute buttons with more space
+                        gap: '20px', // Default space between buttons
+                        width: '100%', // Ensure buttons stretch across container
+                        flexDirection: 'row', // Row by default
+                        flexWrap: 'wrap', // Allow buttons to wrap on smaller screens
                     }}
                 >
-                    {/* Buttons in a row */}
-                    <div
+                    <button
                         style={{
-                            display: 'flex',
-                            justifyContent: 'space-evenly', // Distribute buttons with more space
-                            gap: '20px', // Default space between buttons
-                            width: '100%', // Ensure buttons stretch across container
-                            flexDirection: 'row', // Row by default
-                            flexWrap: 'wrap', // Allow buttons to wrap on smaller screens
+                            padding: '12px 25px',
+                            backgroundColor: '#17202a',
+                            color: 'white',
+                            border: '2px solid #f05322', // Outline color
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            width: 'auto', // Adjust width automatically on different screen sizes
+                            fontFamily: 'Tajawal',
+                            fontSize: window.innerWidth <= 600 ? '18px' : '30px', // Smaller font size on mobile
                         }}
                     >
-                        <button
-                            style={{
-                                padding: '12px 25px',
-                                backgroundColor: '#17202a',
-                                color: 'white',
-                                border: '2px solid #f05322', // Outline color
-                                borderRadius: '5px',
-                                cursor: 'pointer',
-                                width: 'auto', // Adjust width automatically on different screen sizes
-                                fontFamily: 'Tajawal',
-                            }}
-                        >
-                            معرض مشاريع الفيديو
-                        </button>
-                        <button
-                            style={{
-                                padding: '12px 25px',
-                                backgroundColor: '#17202a',
-                                color: 'white',
-                                border: '2px solid #f05322', // Outline color
-                                borderRadius: '5px',
-                                cursor: 'pointer',
-                                width: 'auto', // Adjust width automatically on different screen sizes
-                                fontFamily: 'Tajawal',
-                            }}
-                        >
-                            معرض أعمال الفوتوغرافيا
-                        </button>
-                    </div>
+                        معرض مشاريع الفيديو
+                    </button>
+                    <button
+                        style={{
+                            padding: '12px 25px',
+                            backgroundColor: '#17202a',
+                            color: 'white',
+                            border: '2px solid #f05322', // Outline color
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            width: 'auto', // Adjust width automatically on different screen sizes
+                            fontFamily: 'Tajawal',
+                            fontSize: window.innerWidth <= 600 ? '18px' : '30px', // Smaller font size on mobile
+                        }}
+                    >
+                        معرض أعمال الفوتوغرافيا
+                    </button>
                 </div>
-            </Container>
-        </section>
+            </div>
+        </Container>
+    </section>
+
         <section
             style={{
                 backgroundColor: '#eaecee', // Fallback background color
@@ -835,109 +883,101 @@ const VRSection = () => {
                 </div>
             </Container>
         </section>
+
         <section
+    style={{
+        backgroundColor: '#eaecee', // Fallback background color
+        backgroundImage: 'url("https://i.ibb.co/zmVWw4Y/image.png")', // Replace with your image URL
+        backgroundSize: 'cover', // Ensure the image covers the entire section
+        backgroundPosition: 'center', // Center the background image
+        width: '100%',
+        margin: '0 auto',
+        marginBottom: '30px',
+        display: 'flex',
+        justifyContent: 'center', // Center content horizontally
+        alignItems: 'center', // Center content vertically
+        paddingTop: '20px',
+        paddingBottom: '20px',
+        marginTop: '-30px',
+    }}
+>
+    <Container maxWidth="xl" style={{ marginBottom: '60px', marginTop: '60px' }}>
+        <div
             style={{
-                backgroundColor: '#eaecee', // Fallback background color
-                backgroundImage: 'url("https://i.ibb.co/zmVWw4Y/image.png")', // Replace with your image URL
-                backgroundSize: 'cover', // Ensure the image covers the entire section
-                width: '100%',
-                margin: '0 auto',
-                marginBottom: '30px',
                 display: 'flex',
-                justifyContent: 'center', // Center content horizontally
-                alignItems: 'center', // Center content vertically
-                height: '80vh', // Set height to 50% of the viewport height
-                paddingTop: '20px',
-                paddingBottom: '20px',
-                marginTop: '-30px',
+                justifyContent: 'center', // Center text horizontally
+                alignItems: 'center', // Center text vertically
+                width: '100%',
+                height: '100%', // Take full height of the section
+                textAlign: 'center', // Align text to the center
+                padding: '0 20px', // Add padding to avoid text sticking to the edges
             }}
         >
-            <Container maxWidth="xl" style={{ marginBottom: '60px', marginTop: '60px' }}>
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center', // Center text horizontally
-                        alignItems: 'center', // Center text vertically
-                        width: '100%',
-                        height: '100%', // Take full height of the section
-                        textAlign: 'center', // Align text to the center
-                        padding: '0 20px', // Add padding to avoid text sticking to the edges
-                        '@media (max-width: 768px)': {
-                            padding: '0 10px', // Adjust padding for smaller screens
-                        },
-                    }}
-                >
-                    <h2
-                        style={{
-                            color: '#fdfefe',
-                            marginBottom:'20px',
-                            fontFamily: 'Tajawal',
-                            padding: '10px 20px', // Add padding inside the box
-                            backgroundColor: '#333', // Box background color
-                            border: '2px solid #f05322', // Border color and thickness
-                            borderRadius: '8px', // Rounded corners for the box
-                            fontSize:'30px'
-                        }}
-                    >
-                        استشارات مجانية
-                    </h2>
-                </div>
-                <Grid container spacing={4} justifyContent="center"> {/* Increased spacing to 4 */}
-                    {images.map((image, index) => (
-                        <Grid item key={index} sx={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
-                            <Card
-                                sx={{
-                                    width: 145,
-                                    height: 90,
-                                    position: 'relative',
-                                    overflow: 'hidden',
-                                    '&:hover .zoom-image': {
-                                        transform: 'scale(1.1)', // Apply zoom effect on hover
-                                    },
-                                }}
-                            >
-                                <CardMedia
-                                    component="img"
-                                    image={image.src}
-                                    sx={{
-                                        width: '100%',
-                                        height: '100%',
-                                        objectFit: 'contain',
-                                        transition: 'transform 0.3s ease', // Smooth transition for zoom
-                                    }}
-                                    className="zoom-image"
-                                />
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-            </Container>
-        </section>
-        <section
-            style={{
-                backgroundColor: '#000000',
-                width: '100%',
-                margin: '0 auto',
-                marginBottom: '0px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingTop: '50px',
-                paddingBottom: '50px',
-                marginTop: '-30px',
-                direction: 'ltr', // Set the section to RTL direction
-            }}
-            >
-            <Container
-                maxWidth="xl"
-                sx={{
-                paddingX: { xs: 2, sm: 3, md: 5 },
-                textAlign: 'center',
+            <h2
+                style={{
+                    color: '#fdfefe',
+                    marginBottom: '20px',
+                    fontFamily: 'Tajawal',
+                    padding: '10px 20px',
+                    backgroundColor: '#333',
+                    border: '2px solid #f05322',
+                    borderRadius: '8px',
+                    fontSize: window.innerWidth <= 768 ? '28px' : '40px', // Adjust font size for mobile
                 }}
             >
-                <Grid container spacing={4}>
-                {/* Text Section on the Right */}
-                <Grid
+                استشارات مجانية
+            </h2>
+        </div>
+
+        <Grid container spacing={4} justifyContent="center"> {/* Adjusted spacing for mobile */}
+            {images.map((image, index) => (
+                <Grid item key={index} sx={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
+                    <CardMedia
+                        component="img"
+                        image={image.src}
+                        sx={{
+                            width: '100%',
+                            height: 'auto', // Adjust height automatically to maintain aspect ratio
+                            objectFit: 'contain',
+                            transition: 'transform 0.3s ease', // Smooth transition for zoom
+                            '&:hover': {
+                                transform: 'scale(1.05)', // Zoom effect on hover
+                            },
+                        }}
+                        className="zoom-image"
+                    />
+                </Grid>
+            ))}
+        </Grid>
+    </Container>
+</section>
+
+
+<section
+      style={{
+        backgroundColor: '#000000',
+        width: '100%',
+        margin: '0 auto',
+        marginBottom: '0px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: '50px',
+        paddingBottom: '50px',
+        marginTop: '-30px',
+        direction: 'rtl',
+      }}
+    >
+      <Container
+        maxWidth="xl"
+        sx={{
+          paddingX: { xs: 2, sm: 3, md: 5 },
+          textAlign: 'center',
+        }}
+      >
+        <Grid container spacing={4}>
+          {/* Text Section on the Right */}
+          <Grid
                     item
                     xs={12}
                     sm={6}
@@ -961,111 +1001,162 @@ const VRSection = () => {
                     </Typography>
                 </Grid>
 
-                {/* Contact Form Section on the Left */}
-                <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    order={{ xs: 2, sm: 2 }} // Move this section to the bottom on mobile (order 2)
+
+          {/* Contact Form Section on the Left */}
+          <Grid item xs={12} sm={6} order={{ xs: 2, sm: 2 }}>
+            <h2
+              style={{
+                color: 'white',
+                fontFamily: 'Tajawal',
+                fontSize: '26px',
+                textAlign: 'right',
+                marginBottom: '20px',
+                direction: 'rtl',
+              }}
+            >
+              للإستفسارات العامة ..
+            </h2>
+
+            <form
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+                direction: 'rtl',
+              }}
+              onSubmit={handleFormSubmit}
+            >
+              <Form.Group
+                controlId="name"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
                 >
-                    <form
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '10px',
-                        direction: 'rtl', // Set the form to right-to-left direction
-                    }}
-                    >
-                    <TextField
-                        label="الاسم"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        sx={{
-                        input: {
-                            color: 'white',
-                            textAlign: 'right', // Align text to the right
-                        },
-                        label: { color: 'white' },
-                        '& .MuiOutlinedInput-root': {
-                            color: 'white',
-                            borderColor: 'white',
-                        },
-                        }}
-                    />
-                    <TextField
-                        label="جوال"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        sx={{
-                        input: {
-                            color: 'white',
-                            textAlign: 'right', // Align text to the right
-                        },
-                        label: { color: 'white' },
-                        '& .MuiOutlinedInput-root': {
-                            color: 'white',
-                            borderColor: 'white',
-                        },
-                        }}
-                    />
-                    <TextField
-                        label="بريد الكتروني"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        sx={{
-                        input: {
-                            color: 'white',
-                            textAlign: 'right', // Align text to the right
-                        },
-                        label: { color: 'white' },
-                        '& .MuiOutlinedInput-root': {
-                            color: 'white',
-                            borderColor: 'white',
-                        },
-                        }}
-                    />
-                    <TextField
-                        label="رسالتك"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        sx={{
-                        input: {
-                            color: 'white',
-                            textAlign: 'right', // Align text to the right
-                        },
-                        label: { color: 'white' },
-                        '& .MuiOutlinedInput-root': {
-                            color: 'white',
-                            borderColor: 'white',
-                        },
-                        }}
-                    />
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                        marginTop: '15px',
-                        background: '#00fffc',
-                        color: '#1e272e',
-                        padding: { xs: '10px', sm: '15px' }, // Responsive padding
-                        }}
-                    >
-                        Submit
-                    </Button>
-                    </form>
-                </Grid>
-                </Grid>
-            </Container>
-            </section>
+                  الاسم
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="phone"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  جـوال
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="email"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  بريد الكتروني
+                </Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="message"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  رسالتك
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  marginTop: '15px',
+                  background: '#00fffc',
+                  color: '#1e272e',
+                  padding: { xs: '10px', sm: '15px' },
+                }}
+              >
+                Submit
+              </Button>
+            </form>
+          </Grid>
+        </Grid>
+      </Container>
+    </section>
         </Container>
   );
 };
