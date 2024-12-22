@@ -12,7 +12,6 @@ const sectionStyles = {
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  minHeight: '80vh',
   paddingTop: '20px',
   paddingBottom: '20px',
   marginTop: '-30px',
@@ -21,7 +20,6 @@ const sectionStyles = {
   textAlign: 'right',
   fontFamily: 'Tajawal',
   '@media (max-width: 600px)': {
-    minHeight: '60vh',
     marginTop: '0',
     padding: '10px',
     backgroundColor: 'black',  // Keep background color black
