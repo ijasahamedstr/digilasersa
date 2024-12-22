@@ -32,12 +32,13 @@ const Partner = () => {
       </Typography>
       <Grid container spacing={4} justifyContent="center">
         {images.map((image, index) => (
-          <Grid item xs={2} key={index} sx={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
+          <Grid item xs={6} sm={4} md={2} key={index} sx={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
             <CardMedia
               component="img"
               image={image.src}
               sx={{
-                width: '150px', // Set width to control size
+                width: '100%', // Make the image take the full width of its container
+                maxWidth: '150px', // Cap the width to 150px
                 height: 'auto', // Maintain aspect ratio
                 objectFit: 'contain',
                 transition: 'transform 0.3s ease', // Smooth transition for zoom
