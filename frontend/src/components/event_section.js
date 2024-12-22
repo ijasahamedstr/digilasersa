@@ -57,8 +57,8 @@ function Eventsection() {
                   borderRadius: '8px',
                   boxShadow: 3,
                   backgroundColor: 'transparent',
-                  border: 'none',
-                  outline: 'none',
+                  border: 'none', // Explicitly set border to none
+                  outline: 'none', // Ensure outline is removed
                   width: '100%', // Full width of the container
                   maxWidth: '100%', // Allow cards to scale with container width
                   margin: '0 auto', // Center align the card horizontally
@@ -71,7 +71,7 @@ function Eventsection() {
                     width: { xs: '100%', sm: '50%' }, // Full width on small screens
                     height: { xs: 200, sm: '100%' }, // Fixed height for images on small screens, full height on large
                     objectFit: 'cover',
-                    border: '2px solid #ddd', // Solid border with a light gray color
+                    border: 'none', // Explicitly set border to none
                     borderRadius: '8px', // Apply rounded corners to the image
                   }}
                   image={event.image} // Dynamic image URL
@@ -91,10 +91,10 @@ function Eventsection() {
                   }}
                 >
                   <CardContent sx={{ height: '100%' }}>
-                    <Typography variant="h4" gutterBottom>
+                    <Typography variant="h3" gutterBottom>
                       {event.title} {/* Dynamic title */}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph sx={{ fontSize: '20px' }}>
                       {event.description} {/* Dynamic description */}
                     </Typography>
                   </CardContent>

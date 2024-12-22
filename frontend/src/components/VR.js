@@ -156,216 +156,69 @@ const VRSection = () => {
                 </Box>
             </Box>
             <section
-    style={{
-        backgroundColor: '#eaecee', // Fallback background color
-        backgroundImage: 'url("https://i.ibb.co/6R5BLw7/image.png")', // Replace with your image URL
-        backgroundSize: 'cover', // Ensure the image covers the entire section
-        backgroundPosition: 'center', // Center the background image
-        width: '100%',
-        margin: '0 auto',
-        marginBottom: '30px',
-        display: 'flex',
-        justifyContent: 'center', // Center content horizontally
-        alignItems: 'center', // Center content vertically
-        height: '800px', // Set height to 70% of the viewport height
-        paddingTop: '250px',
-        paddingBottom: '0px',
-    }}
->
-    <Container maxWidth="xl" style={{ marginTop: '130px' }}>
-        <div
-            style={{
-                display: 'flex',
-                justifyContent: 'center', // Center text horizontally
-                alignItems: 'center', // Center text vertically
-                width: '100%',
-                height: '100%', // Take full height of the section
-                textAlign: 'center', // Align text to the center
-                padding: '0 20px', // Add padding to avoid text sticking to the edges
-            }}
-        >
-            {/* Optional content like heading */}
-        </div>
-
-        {/* Adjusted marginTop for buttons */}
-        <Grid
-            container
-            spacing={2} // Reduced spacing for better alignment on mobile
-            justifyContent="center"
-            style={{ marginTop: '20px' }} // Reduced marginTop for better alignment
-        >
-            {/* First button */}
-            <Grid item xs={6} sm={6} md={2}>
-                <Link to="/Web-Media-Video" style={{ textDecoration: 'none' }}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        fullWidth
-                        size="small" // Small size for mobile responsiveness
-                        style={{
-                            padding: '8px 18px',
-                            backgroundColor: '#17202a',
-                            color: 'white',
-                            border: '2px solid #f05322',
-                            borderRadius: '50px',
-                            cursor: 'pointer',
-                            width: '100%',
-                            fontFamily: 'Tajawal',
-                            textAlign: 'center',
-                            fontSize: '25px', // Smaller font size for mobile
-                            '@media (max-width: 600px)': { // For small screens like mobile
-                                fontSize: '14px', // Adjust font size for smaller screens
-                            },
-                        }}
-                    >
-                        فيديو
-                    </Button>
-                </Link>
-            </Grid>
-
-            {/* Second button */}
-            <Grid item xs={6} sm={6} md={2}>
-                <Link to="/vr-videos" style={{ textDecoration: 'none' }}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        fullWidth
-                        size="small" // Small size for mobile responsiveness
-                        style={{
-                            padding: '8px 18px',
-                            backgroundColor: '#17202a',
-                            color: 'white',
-                            border: '2px solid #f05322',
-                            borderRadius: '50px',
-                            cursor: 'pointer',
-                            width: '100%',
-                            fontFamily: 'Tajawal',
-                            textAlign: 'center',
-                            fontSize: '25px', // Smaller font size for mobile
-                            '@media (max-width: 600px)': { // For small screens like mobile
-                                fontSize: '14px', // Adjust font size for smaller screens
-                            },
-                        }}
-                    >
-                        VR Videos
-                    </Button>
-                </Link>
-            </Grid>
-
-            {/* Third button */}
-            <Grid item xs={6} sm={6} md={2}>
-                <Link to="/Web-Media-photo" style={{ textDecoration: 'none' }}>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        fullWidth
-                        size="small" // Small size for mobile responsiveness
-                        style={{
-                            padding: '8px 18px',
-                            backgroundColor: '#17202a',
-                            color: 'white',
-                            border: '2px solid #f05322',
-                            borderRadius: '50px',
-                            cursor: 'pointer',
-                            width: '100%',
-                            fontFamily: 'Tajawal',
-                            textAlign: 'center',
-                            fontSize: '25px', // Smaller font size for mobile
-                            '@media (max-width: 600px)': { // For small screens like mobile
-                                fontSize: '14px', // Adjust font size for smaller screens
-                            },
-                        }}
-                    >
-                        فـوتـو
-                    </Button>
-                </Link>
-            </Grid>
-
-            {/* Fourth button */}
-            <Grid item xs={6} sm={6} md={2}>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    fullWidth
-                    size="small" // Small size for mobile responsiveness
-                    style={{
-                        padding: '8px 18px',
-                        backgroundColor: '#17202a',
-                        color: 'white',
-                        border: '2px solid #f05322',
-                        borderRadius: '50px',
-                        cursor: 'pointer',
-                        width: '100%',
-                        fontFamily: 'Tajawal',
-                        textAlign: 'center',
-                        fontSize: '25px', // Smaller font size for mobile
-                        '@media (max-width: 600px)': { // For small screens like mobile
-                            fontSize: '14px', // Adjust font size for smaller screens
-                        },
-                    }}
-                >
-                    Button 4
-                </Button>
-            </Grid>
-
-            {/* Fifth button */}
-            <Grid item xs={6} sm={6} md={2}>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    size="small" // Small size for mobile responsiveness
-                    style={{
-                        padding: '8px 18px',
-                        backgroundColor: '#17202a',
-                        color: 'white',
-                        border: '2px solid #f05322',
-                        borderRadius: '50px',
-                        cursor: 'pointer',
-                        width: '100%',
-                        fontFamily: 'Tajawal',
-                        textAlign: 'center',
-                        fontSize: '25px', // Smaller font size for mobile
-                        '@media (max-width: 600px)': { // For small screens like mobile
-                            fontSize: '14px', // Adjust font size for smaller screens
-                        },
-                    }}
-                >
-                    Button 5
-                </Button>
-            </Grid>
-
-            {/* Sixth button */}
-            <Grid item xs={6} sm={6} md={2}>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    fullWidth
-                    size="small" // Small size for mobile responsiveness
-                    style={{
-                        padding: '8px 18px',
-                        backgroundColor: '#17202a',
-                        color: 'white',
-                        border: '2px solid #f05322',
-                        borderRadius: '50px',
-                        cursor: 'pointer',
-                        width: '100%',
-                        fontFamily: 'Tajawal',
-                        textAlign: 'center',
-                        fontSize: '25px', // Smaller font size for mobile
-                        '@media (max-width: 600px)': { // For small screens like mobile
-                            fontSize: '14px', // Adjust font size for smaller screens
-                        },
-                    }}
-                >
-                    Button 6
-                </Button>
-            </Grid>
-        </Grid>
-    </Container>
-</section>
-
-
+              style={{
+                  backgroundColor: '#eaecee', // Fallback background color
+                  backgroundImage: 'url("https://i.ibb.co/6R5BLw7/image.png")', // Replace with your image URL
+                  backgroundSize: 'cover', // Ensure the image covers the entire section
+                  backgroundPosition: 'center', // Center the background image
+                  width: '100%',
+                  margin: '0 auto',
+                  marginBottom: '30px',
+                  display: 'flex',
+                  justifyContent: 'center', // Center content horizontally
+                  alignItems: 'center', // Center content vertically
+                  height: '800px', // Set height to 70% of the viewport height
+                  paddingTop: '250px',
+                  paddingBottom: '0px',
+              }}
+          >
+              <Container maxWidth="xl" style={{ marginTop: '130px' }}>
+                  <Grid
+                      container
+                      spacing={2} // Reduced spacing for better alignment on mobile
+                      justifyContent="center"
+                      style={{ marginTop: '20px' }} // Reduced marginTop for better alignment
+                  >
+                      {/* Buttons */}
+                      {[
+                          { to: "/Web-Media-Video", label: "فيديو", color: "primary" },
+                          { to: "/vr-videos", label: "VR Videos", color: "primary" },
+                          { to: "/Web-Media-photo", label: "فـوتـو", color: "secondary" },
+                          { to: "#", label: "Motion graphics", color: "secondary" },
+                          { to: "#", label: "Ai Videos", color: "primary" },
+                          { to: "#", label: "3D Animation", color: "secondary" },
+                      ].map((button, index) => (
+                          <Grid item xs={6} sm={6} md={2} key={index}>
+                              <Link to={button.to} style={{ textDecoration: 'none' }}>
+                                  <Button
+                                      variant="contained"
+                                      color={button.color}
+                                      fullWidth
+                                      size="small" // Small size for mobile responsiveness
+                                      style={{
+                                          padding: '8px 18px',
+                                          backgroundColor: '#17202a',
+                                          color: 'white',
+                                          border: '2px solid #f05322',
+                                          borderRadius: '50px',
+                                          cursor: 'pointer',
+                                          width: '100%',
+                                          fontFamily: 'Tajawal',
+                                          textAlign: 'center',
+                                          fontSize: '23px', // Smaller font size for mobile
+                                          '@media (max-width: 600px)': { // For small screens like mobile
+                                              fontSize: '14px', // Adjust font size for smaller screens
+                                          },
+                                      }}
+                                  >
+                                      {button.label}
+                                  </Button>
+                              </Link>
+                          </Grid>
+                      ))}
+                  </Grid>
+              </Container>
+          </section>
 
     <section
         style={{
@@ -613,7 +466,7 @@ const VRSection = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '70vh', // Set height to 70% of the viewport height
+                height: '80vh', // Set height to 70% of the viewport height
                 paddingTop: '20px',
                 paddingBottom: '20px',
                 '@media (max-width: 768px)': {

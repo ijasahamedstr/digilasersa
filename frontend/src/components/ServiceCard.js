@@ -54,21 +54,24 @@ function ServiceCard() {
       > 
         {/* Heading */}
         <Button
-          variant="contained"
+          variant="outlined"  // Change variant to outlined for a transparent background
           sx={{
-            background: 'rgb(15, 245, 236)',  // Custom background color
-            color: '#000000', // Text color
+            background: 'transparent',  // Transparent background
+            color: 'White',  // Text color (red)
             padding: '10px 20px',  // Padding
             fontFamily: 'Tajawal',  // Same font family as Typography
             fontWeight: 600,  // Same font weight as Typography
             borderRadius: '50px',  // Rounded corners
             fontSize: { xs: '18px', sm: '20px', md: '40px' },
             marginBottom: '30px',
-            width: '100%'  // Full width
+            width: '50%',  // Full width
+            border: '2px solid #00fefc',  // Red border for the outlined button
           }}
         >
-          أقسامنا
+          أقســــامنـــــا
         </Button>
+
+
 
         <Grid container spacing={6}> {/* Increase the spacing to 6 for more gap between cards */}
           {products.map((product) => ( 

@@ -44,8 +44,8 @@ function Newssection() {
                 image="https://via.placeholder.com/300x200"
               />
               <CardContent>
-                <Typography variant="h6">عنوان أخبار الصورة</Typography>
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="h5" sx={{marginBottom:'10px'}}>عنوان أخبار الصورة</Typography>
+                <Typography variant="body2" color="textSecondary" sx={{fontSize:'18px'}}>
                 هذا وصف مختصر للأخبار المصورة. يمكن أن يكون هذا ملخصًا موجزًا ​​للمقالة.
                 </Typography>
               </CardContent>
@@ -62,8 +62,8 @@ function Newssection() {
                 image="https://via.placeholder.com/300x200"
               />
               <CardContent>
-                <Typography variant="h6">عنوان أخبار الصورة</Typography>
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="h5" sx={{marginBottom:'10px'}}>عنوان أخبار الصورة</Typography>
+                <Typography variant="body2" color="textSecondary" sx={{fontSize:'18px'}}>
                 هذا وصف مختصر للأخبار المصورة. يمكن أن يكون هذا ملخصًا موجزًا ​​للمقالة.
                 </Typography>
               </CardContent>
@@ -85,8 +85,8 @@ function Newssection() {
                 ></iframe>
               </CardMedia>
               <CardContent>
-                <Typography variant="h6">عنوان أخبار الصورة</Typography>
-                <Typography variant="body2" color="textSecondary" >
+                <Typography variant="h5" sx={{marginBottom:'10px'}}>عنوان أخبار الصورة</Typography>
+                <Typography variant="body2" color="textSecondary" sx={{fontSize:'18px'}} >
                 هذا وصف مختصر للأخبار المصورة. يمكن أن يكون هذا ملخصًا موجزًا ​​للمقالة.
                 </Typography>
               </CardContent>
