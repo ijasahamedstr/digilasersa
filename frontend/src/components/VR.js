@@ -477,7 +477,7 @@ const VRSection = () => {
         <section
             style={{
                 backgroundColor: '#eaecee', // Fallback background color
-                backgroundImage: 'url("https://i.ibb.co/j5jnj8s/image.png")', // Replace with your image URL
+                backgroundImage: 'url("https://i.ibb.co/K67CXbD/image-1.png")', // Replace with your image URL
                 backgroundSize: 'cover', // Ensure the image covers the entire section
                 backgroundPosition: 'center', // Ensure the image is centered
                 width: '100%',
@@ -669,7 +669,7 @@ const VRSection = () => {
         <section
             style={{
                 backgroundColor: '#eaecee', // Fallback background color
-                backgroundImage: 'url("https://i.ibb.co/rt2jr0M/image.png")', // Replace with your image URL
+                backgroundImage: 'url("https://i.ibb.co/G3sNNNk/imageh.png")', // Replace with your image URL
                 backgroundSize: 'cover', // Ensure the image covers the entire section
                 backgroundPosition: 'center', // Ensure the image is centered
                 width: '100%',
