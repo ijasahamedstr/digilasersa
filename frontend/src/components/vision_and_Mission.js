@@ -31,76 +31,158 @@ function VisionandMission() {
       }}
     >
       <Container
+        maxWidth="xl"
         sx={{
-          maxWidth: "lg", // Use a larger container size
-          display: "flex",
-          justifyContent: "center", // Center cards horizontally
-          alignItems: "center",
-          gap: "80px", // Increased gap between the cards
-          flexDirection: "row",
+          paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
+          textAlign: 'center', // Center text for all screen sizes
+          marginTop: '30px',
+          marginBottom: '30px',
+          display: 'flex',
+          justifyContent: 'space-between', // Ensure the cards are spaced evenly
+          gap: '20px', // Add some space between cards
+          flexWrap: "wrap", // Allow wrapping of cards on smaller screens
           "@media (max-width: 600px)": {
             flexDirection: "column", // Stack the cards vertically on smaller screens
-            textAlign: "center", // Center text on smaller screens
-            gap: "40px", // Reduce gap between stacked cards on smaller screens
-            marginBottom: '0px',
-          },
+            gap: "15px", // Adjust gap for mobile
+          }
         }}
       >
         <Card
           sx={{
-            background: "rgba(255, 255, 255, 0.8)",
-            padding: "30px", // Increased padding for a larger card
+            background: "rgba(0, 0, 0, 0.5)", // Black transparent background
             borderRadius: "8px",
-            width: "45%", // Slightly reduced width for more space between cards
-            height: "400px", // Fixed height to ensure both cards are the same size
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", // Larger shadow for emphasis
+            width: "35%", // Adjusted width for side-by-side layout
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", // Larger shadow for emphasis
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center", // Center content vertically
             "@media (max-width: 600px)": {
-              width: "90%", // Increased width on mobile
+              width: "100%", // Increased width on mobile
               height: "auto", // Allow height to adjust on smaller screens
             },
           }}
         >
           <CardContent>
-            <Typography variant="h4" sx={{ fontSize: "2.5rem", color: '#0f3341', fontFamily: 'Tajawal', fontWeight: '500' }}>
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: "2.5rem",
+                color: 'white', // Change text color to white
+                fontFamily: 'Tajawal',
+                fontWeight: '500',
+              }}
+            >
               رؤيتنا
             </Typography>
-            <Typography sx={{ fontSize: "1.5rem", marginTop: "15px", color: '#154360', fontFamily: 'Tajawal', fontWeight: '500' }}>
-              تصنيع تكنولوجيا المستقبل، وإبهار العملاء بتقنياتنا الحديثة ومنتجاتنا عالية الجودة. وخدماتنا المتميزة، نحن نؤمن بأن الابتكار والتطوير هما الطريقة الأمثل لتحقيق أهدافنا
+            <Typography
+              sx={{
+                fontSize: "1.5rem",
+                marginTop: "15px",
+                color: 'white', // Change text color to white
+                fontFamily: 'Tajawal',
+                fontWeight: '500',
+              }}
+            >
+              تصنيع تكنولوجيا المستقبل، وإبهار العملاء بتقنياتنا الحديثة ومنتجاتنا عالية الجودة. وخدماتنا المتميزة، نحن نؤمن بأن الابتكار والتطوير هما الطريقة لتحقيق أهدافنا
             </Typography>
           </CardContent>
         </Card>
 
         <Card
           sx={{
-            background: "rgba(255, 255, 255, 0.8)",
-            padding: "30px", // Increased padding for a larger card
+            background: "rgba(0, 0, 0, 0.5)", // Black transparent background
             borderRadius: "8px",
-            width: "45%", // Slightly reduced width for more space between cards
-            height: "400px", // Fixed height to ensure both cards are the same size
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", // Larger shadow for emphasis
+            width: "35%", // Adjusted width for side-by-side layout
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", // Larger shadow for emphasis
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center", // Center content vertically
             "@media (max-width: 600px)": {
-              width: "90%", // Increased width on mobile
+              width: "100%", // Increased width on mobile
               height: "auto", // Allow height to adjust on smaller screens
             },
           }}
         >
           <CardContent>
-            <Typography variant="h4" sx={{ fontSize: "2.5rem", color: '#0f3341', fontFamily: 'Tajawal', fontWeight: '500' }}>
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: "2.5rem",
+                color: 'white', // Change text color to white
+                fontFamily: 'Tajawal',
+                fontWeight: '500',
+              }}
+            >
               هدفنا
             </Typography>
-            <Typography sx={{ fontSize: "1.5rem", marginTop: "15px", color: '#154360', fontFamily: 'Tajawal', fontWeight: '500' }}>
+            <Typography
+              sx={{
+                fontSize: "1.5rem",
+                marginTop: "15px",
+                color: 'white', // Change text color to white
+                fontFamily: 'Tajawal',
+                fontWeight: '500',
+              }}
+            >
               تعد شركة الليزر الرقمي من دعائم الإعلام في المملكة منذ نشأتها وغير أكثر من ثلاثين عاماً تتبني إستراتيجية التطور لمواكبة احتياجات عملائنا وتطلعاتهم نحو مستقبل
             </Typography>
           </CardContent>
         </Card>
+
+        {/* New Centered Card with Increased Margin Bottom */}
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center", // Center the card horizontally
+            marginTop: "30px", // Space between the cards
+            marginBottom: "50px", // Increased bottom margin for extra spacing
+          }}
+        >
+           <Card
+          sx={{
+            background: "rgba(0, 0, 0, 0.5)", // Black transparent background
+            borderRadius: "8px",
+            width: "35%", // Adjusted width for side-by-side layout
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", // Larger shadow for emphasis
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center", // Center content vertically
+            "@media (max-width: 600px)": {
+              width: "100%", // Increased width on mobile
+              height: "auto", // Allow height to adjust on smaller screens
+            },
+          }}
+        >
+          <CardContent>
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: "2.5rem",
+                color: 'white', // Change text color to white
+                fontFamily: 'Tajawal',
+                fontWeight: '500',
+              }}
+            >
+              هدفنا
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "1.5rem",
+                marginTop: "15px",
+                color: 'white', // Change text color to white
+                fontFamily: 'Tajawal',
+                fontWeight: '500',
+              }}
+            >
+              تعد شركة الليزر الرقمي من دعائم الإعلام في المملكة منذ نشأتها وغير أكثر من ثلاثين عاماً تتبني إستراتيجية التطور لمواكبة احتياجات عملائنا وتطلعاتهم نحو مستقبل
+            </Typography>
+          </CardContent>
+        </Card>
+        </Box>
       </Container>
     </Box>
   );

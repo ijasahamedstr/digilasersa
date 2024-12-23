@@ -10,7 +10,8 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp  } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
-import Form from 'react-bootstrap/Form'; 
+import Form from 'react-bootstrap/Form';
+import Slider from 'react-slick'; // Import Slider from react-slick 
 
 const carouselItems = [
   {
@@ -76,6 +77,25 @@ const VRSection = () => {
             // Redirect to another site (Example: External site)
             window.location.href = 'https://another-site.com/contact';
           };
+
+          const settings = {
+            dots: true, // Show navigation dots
+            infinite: true, // Infinite scroll
+            speed: 500, // Transition speed in ms
+            autoplay: true, // Enable autoplay
+            autoplaySpeed: 3000, // Set autoplay speed (3 seconds in this example)
+            slidesToShow: 3, // Number of slides to show at once
+            slidesToScroll: 1, // Number of slides to scroll at once
+            responsive: [
+                {
+                    breakpoint: 768, // For mobile screens
+                    settings: {
+                        slidesToShow: 1, // Show 1 slide at a time
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
+        };
       
   
   return (
@@ -736,77 +756,103 @@ const VRSection = () => {
                 </div>
             </Container>
         </section>
-
         <section
-    style={{
-        backgroundColor: '#eaecee', // Fallback background color
-        backgroundImage: 'url("https://i.ibb.co/zmVWw4Y/image.png")', // Replace with your image URL
-        backgroundSize: 'cover', // Ensure the image covers the entire section
-        backgroundPosition: 'center', // Center the background image
-        width: '100%',
-        margin: '0 auto',
-        marginBottom: '30px',
-        display: 'flex',
-        justifyContent: 'center', // Center content horizontally
-        alignItems: 'center', // Center content vertically
-        paddingTop: '20px',
-        paddingBottom: '20px',
-        marginTop: '-30px',
-    }}
->
-    <Container maxWidth="xl" style={{ marginBottom: '60px', marginTop: '60px' }}>
-        <div
-            style={{
-                display: 'flex',
-                justifyContent: 'center', // Center text horizontally
-                alignItems: 'center', // Center text vertically
-                width: '100%',
-                height: '100%', // Take full height of the section
-                textAlign: 'center', // Align text to the center
-                padding: '0 20px', // Add padding to avoid text sticking to the edges
-            }}
-        >
-            <h2
-                style={{
-                    color: '#fdfefe',
-                    marginBottom: '20px',
-                    fontFamily: 'Tajawal',
-                    padding: '10px 20px',
-                    backgroundColor: '#333',
-                    border: '2px solid #f05322',
-                    borderRadius: '8px',
-                    fontSize: window.innerWidth <= 768 ? '28px' : '40px', // Adjust font size for mobile
-                }}
-            >
-                استشارات مجانية
-            </h2>
-        </div>
+          style={{
+              backgroundColor: '#eaecee',
+              backgroundImage: 'url("https://i.ibb.co/zmVWw4Y/image.png")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              width: '100%',
+              margin: '0 auto',
+              marginBottom: '30px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingTop: '20px',
+              paddingBottom: '20px',
+              marginTop: '-30px',
+          }}
+      >
+          <Container maxWidth="xl" style={{ marginBottom: '60px', marginTop: '60px' }}>
+              <div
+                  style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '100%',
+                      height: '100%',
+                      textAlign: 'center',
+                      padding: '0 20px',
+                  }}
+              >
+                  <h2
+                      style={{
+                          color: '#fdfefe',
+                          marginBottom: '20px',
+                          fontFamily: 'Tajawal',
+                          padding: '10px 20px',
+                          backgroundColor: '#333',
+                          border: '2px solid #f05322',
+                          borderRadius: '8px',
+                          fontSize: window.innerWidth <= 768 ? '28px' : '40px',
+                      }}
+                  >
+                      استشارات مجانية
+                  </h2>
+              </div>
 
-        <Grid container spacing={4} justifyContent="center"> {/* Adjusted spacing for mobile */}
-            {images.map((image, index) => (
-                <Grid item key={index} sx={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
-                    <CardMedia
-                        component="img"
-                        image={image.src}
-                        sx={{
-                            width: '100%',
-                            height: 'auto', // Adjust height automatically to maintain aspect ratio
-                            objectFit: 'contain',
-                            transition: 'transform 0.3s ease', // Smooth transition for zoom
-                            '&:hover': {
-                                transform: 'scale(1.05)', // Zoom effect on hover
-                            },
-                        }}
-                        className="zoom-image"
-                    />
-                </Grid>
-            ))}
-        </Grid>
-    </Container>
-</section>
+              <Slider
+                  {...{
+                      slidesToShow: 5,   // Show 5 images per slide
+                      slidesToScroll: 1, // Scroll 1 image at a time
+                      infinite: true,    // Loop infinitely
+                      centerMode: false, // Disable center mode for better image alignment
+                      responsive: [
+                          {
+                              breakpoint: 1024,
+                              settings: {
+                                  slidesToShow: 3, // Show 3 images on medium screens
+                              },
+                          },
+                          {
+                              breakpoint: 768,
+                              settings: {
+                                  slidesToShow: 2, // Show 2 images on smaller screens
+                              },
+                          },
+                          {
+                              breakpoint: 480,
+                              settings: {
+                                  slidesToShow: 1, // Show 1 image on very small screens
+                              },
+                          },
+                      ],
+                  }}
+              >
+                  {images.map((image, index) => (
+                      <div key={index} style={{ paddingTop: '30px', display: 'flex', justifyContent: 'center' }}>
+                          <CardMedia
+                              component="img"
+                              image={image.src}
+                              sx={{
+                                  width: '200px', // Set a fixed smaller width
+                                  height: '200px', // Set a fixed smaller height
+                                  objectFit: 'contain', // Ensure image maintains aspect ratio and doesn't stretch
+                                  transition: 'transform 0.3s ease', // Smooth transition for zoom
+                                  '&:hover': {
+                                      transform: 'scale(1.1)', // Zoom effect on hover
+                                  },
+                              }}
+                              className="zoom-image"
+                          />
+                      </div>
+                  ))}
+              </Slider>
+          </Container>
+      </section>
 
 
-<section
+    <section
       style={{
         backgroundColor: '#000000',
         width: '100%',

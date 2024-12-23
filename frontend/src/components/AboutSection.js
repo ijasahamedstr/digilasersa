@@ -8,7 +8,7 @@ const sectionStyles = {
   backgroundRepeat: 'no-repeat',
   width: '100%',
   margin: '0 auto',
-  marginBottom: '30px',
+  marginBottom: '0px',
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
@@ -35,9 +35,11 @@ const containerStyles = {
   alignItems: 'flex-end',
   padding: '0 20px', // Default padding
   boxSizing: 'border-box',
+  paddingBottom:'40px',
   fontFamily: 'Tajawal',
   '@media (min-width: 1024px)': { // For desktop view (larger screens)
     paddingRight: '80px', // Change padding-right for desktop
+
   },
 };
 

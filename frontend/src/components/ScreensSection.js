@@ -5,7 +5,8 @@ import Container from '@mui/material/Container';
 import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp  } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import Form from 'react-bootstrap/Form'; 
+import Form from 'react-bootstrap/Form';
+import Slider from "react-slick"; 
 
 const carouselItems = [
   {
@@ -27,6 +28,16 @@ const carouselItems = [
     content: 'Your content here for screen 3',
   },
 ];
+
+const sliderSettings = {
+  dots: true,  // Display navigation dots
+  infinite: true,  // Infinite scroll
+  speed: 500,  // Speed of slide transition
+  autoplay: true,  // Enable autoplay
+  autoplaySpeed: 3000,  // Time between slides in ms
+  slidesToShow: 1,  // Show one image at a time
+  slidesToScroll: 1,  // Scroll one image at a time
+};
 
 const ScreensSection = () => {
   const [formData, setFormData] = useState({
@@ -169,7 +180,7 @@ const ScreensSection = () => {
                   <Grid item xs={12} md={7}>
                     <Box
                       component="img"
-                      src="https://i.ibb.co/FXmW0NC/download.png"
+                      src="https://via.placeholder.com/800x600.png"
                       alt="Waterproof Outdoor LED Screen"
                       sx={{
                         width: '100%',
@@ -980,147 +991,155 @@ const ScreensSection = () => {
             </Container>
           </section>
 
-
           <section
-            style={{
-              width: '100%',
-              margin: '0 auto',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom:'30px'
-            }}
-          >
-            <Container
-              maxWidth="xxl"
+      style={{
+        width: '100%',
+        margin: '0 auto',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: '30px',
+      }}
+    >
+      <Container
+        maxWidth="xxl"
+        sx={{
+          marginBottom: '30px',
+          paddingRight: { xs: '20px', sm: '100px' },
+          paddingLeft: { xs: '20px', sm: '100px' },
+        }}
+      >
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            marginTop: '40px',
+            borderTop: '2px solid #979a9a',
+            borderLeft: '2px solid #979a9a',
+            position: 'relative',
+            height: 'auto',
+          }}
+        >
+          {/* Left Section: Image Carousel */}
+          <Grid item xs={12} md={7}>
+            <Slider {...sliderSettings}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/R0Z6RYR/images-3.png"
+                alt="Waterproof Outdoor LED Screen"
+                sx={{
+                  width: '100%',
+                  height: '350px',
+                  objectFit: 'cover',
+                }}
+              />
+              <Box
+                component="img"
+                src="https://i.ibb.co/XXzZ4rk/another-image.png" // Add your second image here
+                alt="Second Image"
+                sx={{
+                  width: '100%',
+                  height: '350px',
+                  objectFit: 'cover',
+                }}
+              />
+              {/* Add more images as needed */}
+            </Slider>
+          </Grid>
+
+          {/* Right Section: Text and Card */}
+          <Grid item xs={12} md={5}>
+            <Box sx={{ padding: '16px' }}>
+              <Card
+                sx={{
+                  backgroundColor: '#b0b0b0',
+                  padding: '1rem',
+                  borderRadius: '8px',
+                  boxShadow: 3,
+                  maxWidth: '100%',
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 'bold',
+                    color: '#333',
+                    fontSize: { xs: '1.5rem', sm: '2rem', md: '2rem' },
+                    textAlign: 'center',
+                    direction: 'rtl',
+                  }}
+                >
+                  الشاشات الإلكترونية الخارجية
+                </Typography>
+              </Card>
+            </Box>
+
+            <Typography
+              variant="body1"
               sx={{
-                marginBottom: '30px',
-                paddingRight: { xs: '20px', sm: '100px' },
-                paddingLeft: { xs: '20px', sm: '100px' },
+                fontSize: { xs: '1rem', sm: '1rem', md: '1rem' },
+                textAlign: 'justify',
+                direction: 'rtl',
+                paddingRight: '20px',
+                paddingLeft: '20px',
               }}
             >
-              <Grid
-                container
-                spacing={2}
-                sx={{
-                  marginTop: '40px',
-                  borderTop: '2px solid #979a9a',
-                  borderLeft: '2px solid #979a9a',
-                  position: 'relative',
-                  height: 'auto',
-                }}
-              >
-                {/* Left Section: Image */}
-                <Grid item xs={12} md={7}>
-                  <Box
-                    component="img"
-                    src="https://i.ibb.co/R0Z6RYR/images-3.png"
-                    alt="Waterproof Outdoor LED Screen"
-                    sx={{
-                      width: '100%',  // Set the width to 1115px
-                      height: '350px',  // Set the height to 400px
-                      objectFit: 'cover',
-                      paddingBottom: '30px',
-                      paddingRight: { xs: '0', sm: '150px' }, // Adjust padding for small screens
-                    }}
-                  />
-                </Grid>
-
-                {/* Right Section: Text and Card */}
-                <Grid item xs={12} md={5}>
-                  <Box sx={{ padding: '16px' }}>
-                    <Card
-                      sx={{
-                        backgroundColor: '#b0b0b0',
-                        padding: '1rem',
-                        borderRadius: '8px',
-                        boxShadow: 3,
-                        maxWidth: '100%',
-                      }}
-                    >
-                      <Typography
-                        variant="h3"
-                        sx={{
-                          fontWeight: 'bold',
-                          color: '#333',
-                          fontSize: { xs: '1.5rem', sm: '2rem', md: '2rem' },
-                          textAlign:'center',
-                          direction: 'rtl',
-                        }}
-                      >
-                        الشاشات الإلكترونية الخارجية
-                      </Typography>
-                    </Card>
-                  </Box>
-
-                  <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: '1rem', sm: '1rem', md: '1rem' },
-                  textAlign: 'justify',
-                  direction: 'rtl',
-                  paddingRight:'20px',
-                  paddingLeft:'20px'
-                }}
-              >
               تعمل شاشات الاستدعاء بمفردها لا تحتاج إلى أجهزة كمبيوتر للعمل معها.
-              تبدا بــ 4 خدمات مختلفة حسب رغبة العميل و يمكن زيادة الخدمات مسـتقبلا الى 12 خدمـة.
+              تبدا بــ 4 خدمات مختلفة حسب رغبة العميل و يمكن زيادة الخدمات مسـتقبلا الى 12 خدمـة.
               النظام يعمل بنغمة Ding Dong والنداء برقم العميل والشباك.
               تحتفظ باخر رقم تم طلبه عند انقطاع التيار الكهربائي للبدء من هذا الرقم بعد عودة التيار.
-              النظام مزود بوحدة برنتر لطباعة الأرقام المسلسلة متعددة المهام النظام لا يحتاج إلى أي وحدات   تحكم
+              النظام مزود بوحدة برنتر لطباعة الأرقام المسلسلة متعددة المهام النظام لا يحتاج إلى أي وحدات تحكم
               أو وحدات تشغيل اضافية.
+            </Typography>
+          </Grid>
 
-              </Typography>
-                </Grid>
+          {/* Bottom and Right Borders */}
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: 0,
+              left: '0%',
+              width: '30%',
+              borderBottom: '2px solid #979a9a',
+            }}
+          />
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              right: '0%',
+              height: '20%',
+              width: '20%',
+              borderRight: '2px solid #979a9a',
+            }}
+          />
 
-                {/* Bottom and Right Borders */}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: '0%',
-                    width: '30%',
-                    borderBottom: '2px solid #979a9a',
-                  }}
-                />
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    right: '0%',
-                    height: '20%',
-                    width: '20%',
-                    borderRight: '2px solid #979a9a',
-                  }}
-                />
+          {/* Vertical Border at Bottom Center */}
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: '0',
+              left: '30%',
+              transform: 'translateX(-22%)',
+              height: '22px',
+              borderLeft: '2px solid #979a9a',
+            }}
+          />
 
-                {/* Vertical Border at Bottom Center */}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    bottom: '0',
-                    left: '30%',
-                    transform: 'translateX(-22%)',
-                    height: '22px',
-                    borderLeft: '2px solid #979a9a',
-                  }}
-                />
-
-                {/* Horizontal Border at Right Center */}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    right: '0',
-                    top: '20%',
-                    transform: 'translateY(-1%)',
-                    width: '1%',
-                    borderTop: '2px solid #979a9a',
-                  }}
-                />
-              </Grid>
-            </Container>
-          </section>
-
+          {/* Horizontal Border at Right Center */}
+          <Box
+            sx={{
+              position: 'absolute',
+              right: '0',
+              top: '20%',
+              transform: 'translateY(-1%)',
+              width: '1%',
+              borderTop: '2px solid #979a9a',
+            }}
+          />
+        </Grid>
+      </Container>
+    </section>
       
       <section
       style={{
