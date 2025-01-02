@@ -25,7 +25,7 @@ const carouselItems = [
 ];
 
 
-const Outdoorled = () => {
+const IndoorScreen = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -681,4 +681,4 @@ const Outdoorled = () => {
         );
       };
 
-export default Outdoorled;
+export default IndoorScreen;

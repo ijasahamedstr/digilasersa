@@ -300,6 +300,7 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },
               }}
             >
+              <Link to="/Indoor-Screen" style={{ textDecoration: 'none' }}>
               <Grid
                 container
                 spacing={2}
@@ -415,6 +416,7 @@ const ScreensSection = () => {
                   }}
                 />
               </Grid>
+            </Link>
             </Container>
           </section>      
           
@@ -435,6 +437,7 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },
               }}
             >
+              <Link to="/TextDisplay-Screen" style={{ textDecoration: 'none' }}>
               <Grid
                 container
                 spacing={2}
@@ -553,6 +556,7 @@ const ScreensSection = () => {
                   }}
                 />
               </Grid>
+              </Link>
             </Container>
           </section>
 
@@ -575,6 +579,7 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },  // Apply smaller padding on mobile
               }}
             >
+              <Link to="/Internal-Electronic-Screens" style={{ textDecoration: 'none' }}>
               <Grid
                 container
                 spacing={2}
@@ -689,6 +694,7 @@ const ScreensSection = () => {
                   }}
                 />
               </Grid>
+              </Link>
             </Container>
           </section>
 

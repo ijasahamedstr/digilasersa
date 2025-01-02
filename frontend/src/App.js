@@ -18,6 +18,8 @@ import Undercontration from './components/undercontration';
 import Outdoorled from './components/screen/outdoorled';
 import WebMediaphoto from './components/Media/Web-Media-photo';
 import WebMediaVideo from './components/Media/Web-Media-Video';
+import IndoorScreen from './components/screen/IndoorScreen';
+import TextDisplayScreen from './components/screen/TextDisplayScreen';
 
 
 const theme = createTheme({
@@ -51,6 +53,9 @@ function App() {
         <Route path="/social-media-department" element={<SocialSection/>} />
         <Route path="/شركائنا" element={<Undercontration/>} />
         <Route path="/Outdoor-LED" element={<Outdoorled/>} />
+        <Route path="/Indoor-Screen" element={<IndoorScreen/>} />
+        <Route path="/TextDisplay-Screen" element={<TextDisplayScreen/>} />
+        <Route path="/InternalElectronicScreens" element={<TextDisplayScreen/>} />
       </Routes>
       <Footer/>
     </Router>

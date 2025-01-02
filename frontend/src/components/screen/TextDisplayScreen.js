@@ -25,7 +25,7 @@ const carouselItems = [
 ];
 
 
-const Outdoorled = () => {
+const TextDisplayScreen = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -468,10 +468,7 @@ const Outdoorled = () => {
                     </Grid>
                   </Container>
                 </section>
-
-
-
-              
+                            
               <section
               style={{
                 backgroundColor: '#000000',
@@ -681,4 +678,4 @@ const Outdoorled = () => {
         );
       };
 
-export default Outdoorled;
+export default TextDisplayScreen;
