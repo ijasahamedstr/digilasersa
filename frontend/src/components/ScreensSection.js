@@ -173,8 +173,8 @@ const ScreensSection = () => {
                   <Grid item xs={12} md={7}>
                     <Box
                       component="img"
-                      src="https://via.placeholder.com/800x400"
-                      alt="Waterproof Outdoor LED Screen"
+                      src="https://i.ibb.co/6tj2L8K/Waterproof-P6-66-Outdoor-LED-Screen-Signboard.webp"
+                      alt="https://via.placeholder.com/800x400"
                       sx={{
                         width: '100%',
                         height: 'auto', // Maintain aspect ratio
@@ -357,7 +357,7 @@ const ScreensSection = () => {
                 <Grid item xs={12} sm={7}>
                   <Box
                     component="img"
-                    src="https://i.ibb.co/pP9Tm8q/Indoor-LED-Screens-3.png"
+                    src="https://i.ibb.co/Y8cDXch/Indoor-LED-Screens-3.webp"
                     alt="Waterproof Outdoor LED Screen"
                     sx={{
                       width: '100%',
@@ -450,7 +450,7 @@ const ScreensSection = () => {
                 <Grid item xs={12} md={7}>
                   <Box
                     component="img"
-                    src="https://i.ibb.co/4ZRSqZR/images-1-1.png"
+                    src="https://i.ibb.co/ThHxYZj/images-1-1.webp"
                     alt="Waterproof Outdoor LED Screen"
                     sx={{
                       width: '100%',
@@ -631,7 +631,7 @@ const ScreensSection = () => {
                 <Grid item xs={12} md={7}> {/* Changed from 8 to 7 to give it 60% width */}
                   <Box
                     component="img"
-                    src="https://i.ibb.co/cQ60b37/ba98a6a8fcff86f3c8a44e5e92deeba6.png"
+                    src="https://i.ibb.co/rx40DsL/webp.webp"
                     alt="Waterproof Outdoor LED Screen"
                     sx={{
                       width: '100%',  // Set the width to 100%
@@ -727,7 +727,7 @@ const ScreensSection = () => {
                 <Grid item xs={12} md={7}>
                   <Box
                     component="img"
-                    src="https://i.ibb.co/wp6cW3d/images-2.png"
+                    src="https://i.ibb.co/0V0BFpy/43inch-capacitive-touch-screen-4-1.webp"
                     alt="Waterproof Outdoor LED Screen"
                     sx={{
                       width: '100%',  // Set the width to 1115px
