@@ -20,6 +20,11 @@ import WebMediaphoto from './components/Media/Web-Media-photo';
 import WebMediaVideo from './components/Media/Web-Media-Video';
 import IndoorScreen from './components/screen/IndoorScreen';
 import TextDisplayScreen from './components/screen/TextDisplayScreen';
+import ElectronicScreens from './components/screen/ElectronicScreens';
+import InteractiveScreens from './components/screen/InteractiveScreens';
+import MeterScreens from './components/screen/Meterscreens';
+import CountingScreen from './components/screen/CountingScreen';
+
 
 
 const theme = createTheme({
@@ -55,7 +60,10 @@ function App() {
         <Route path="/Outdoor-LED" element={<Outdoorled/>} />
         <Route path="/Indoor-Screen" element={<IndoorScreen/>} />
         <Route path="/TextDisplay-Screen" element={<TextDisplayScreen/>} />
-        <Route path="/InternalElectronicScreens" element={<TextDisplayScreen/>} />
+        <Route path="/ElectronicScreens" element={<ElectronicScreens/>} />
+        <Route path="/InteractiveScreens" element={<InteractiveScreens/>} />
+        <Route path="/Meterscreens" element={<MeterScreens/>} />
+        <Route path="/CountingScreen" element={<CountingScreen/>} />
       </Routes>
       <Footer/>
     </Router>

@@ -579,7 +579,7 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },  // Apply smaller padding on mobile
               }}
             >
-              <Link to="/Internal-Electronic-Screens" style={{ textDecoration: 'none' }}>
+              <Link to="/ElectronicScreens" style={{ textDecoration: 'none' }}>
               <Grid
                 container
                 spacing={2}
@@ -718,6 +718,7 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },
               }}
             >
+            <Link to="/InteractiveScreens" style={{ textDecoration: 'none' }}>
               <Grid
                 container
                 spacing={2}
@@ -834,6 +835,7 @@ const ScreensSection = () => {
                   }}
                 />
               </Grid>
+              </Link>
             </Container>
           </section>
 
@@ -857,6 +859,7 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },  // Apply smaller padding on mobile
               }}
             >
+               <Link to="/CountingScreen" style={{ textDecoration: 'none' }}>
               <Grid
                 container
                 spacing={2}
@@ -972,6 +975,7 @@ const ScreensSection = () => {
                   }}
                 />
               </Grid>
+              </Link>
             </Container>
           </section>
 
@@ -993,6 +997,7 @@ const ScreensSection = () => {
                   paddingLeft: { xs: '20px', sm: '100px' },
                 }}
               >
+                <Link to="/Meterscreens" style={{ textDecoration: 'none' }}>
                 <Grid
                   container
                   spacing={2}
@@ -1116,6 +1121,7 @@ const ScreensSection = () => {
                     }}
                   />
                 </Grid>
+                </Link>
               </Container>
             </section>
       

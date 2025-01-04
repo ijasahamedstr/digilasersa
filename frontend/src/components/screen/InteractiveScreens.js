@@ -25,7 +25,7 @@ const carouselItems = [
 ];
 
 
-const InternalElectronicScreens = () => {
+const InteractiveScreens = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -678,4 +678,4 @@ const InternalElectronicScreens = () => {
         );
       };
 
-export default InternalElectronicScreens;
+export default InteractiveScreens;
