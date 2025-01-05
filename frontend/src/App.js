@@ -24,6 +24,7 @@ import ElectronicScreens from './components/screen/ElectronicScreens';
 import InteractiveScreens from './components/screen/InteractiveScreens';
 import MeterScreens from './components/screen/Meterscreens';
 import CountingScreen from './components/screen/CountingScreen';
+import ArabicCalligraphy from './components/ArabicCalligraphy';
 
 
 
@@ -64,6 +65,7 @@ function App() {
         <Route path="/InteractiveScreens" element={<InteractiveScreens/>} />
         <Route path="/Meterscreens" element={<MeterScreens/>} />
         <Route path="/CountingScreen" element={<CountingScreen/>} />
+        <Route path="/الخط العربي" element={<ArabicCalligraphy/>} />
       </Routes>
       <Footer/>
     </Router>
