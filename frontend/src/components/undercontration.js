@@ -4,7 +4,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaSnapchat, FaTiktok, F
 
 const Undercontration = () => {
   return (
-    <Container maxWidth={false} sx={{ padding: 0, height: '100vh', background: 'linear-gradient(45deg, #6a11cb 0%, #2575fc 100%)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Container maxWidth={false} sx={{ padding: 0, height: '100vh',  backgroundImage: 'url("https://i.ibb.co/8Y6ZJJk/HD-wallpaper-under-construction-humor-sayings-sign-yellow.webp")', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       {/* Main Content Box */}
       <Box sx={{ textAlign: 'center', color: '#fff', zIndex: 2 }}>
         {/* Under Construction Text */}

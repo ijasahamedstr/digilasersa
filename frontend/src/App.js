@@ -66,6 +66,8 @@ function App() {
         <Route path="/Meterscreens" element={<MeterScreens/>} />
         <Route path="/CountingScreen" element={<CountingScreen/>} />
         <Route path="/الخط العربي" element={<ArabicCalligraphy/>} />
+
+        <Route path="/إتصل بنا" element={<Undercontration/>} />
       </Routes>
       <Footer/>
     </Router>

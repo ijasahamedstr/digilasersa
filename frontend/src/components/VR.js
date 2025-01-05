@@ -176,92 +176,112 @@ const VRSection = () => {
                 </Box>
             </Box>
             <section
-              style={{
-                  backgroundColor: '#eaecee',
-                  backgroundImage: 'url("https://i.ibb.co/0myG6zf/image.webp")',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  width: '100%',
-                  margin: '0 auto',
-                  marginBottom: '30px',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: '800px',
-                  paddingTop: '250px',
-                  paddingBottom: '0px',
-              }}
-          >
-              <Container maxWidth="xl" style={{ marginTop: '130px' }}>
-                  <Grid
-                      container
-                      spacing={2}
-                      justifyContent="center"
-                      style={{
-                          marginTop: '20px',
-                      }}
-                  >
-                      {/* Buttons */}
-                      {[{
-                          to: "/Web-Media-Video",
-                          label: "فيديو",
-                          color: "primary"
-                      }, {
-                          to: "/vr-videos",
-                          label: "VR Videos",
-                          color: "primary"
-                      }, {
-                          to: "/Web-Media-photo",
-                          label: "فـوتـو",
-                          color: "secondary"
-                      }, {
-                          to: "#",
-                          label: "Motion graphics",
-                          color: "secondary"
-                      }, {
-                          to: "#",
-                          label: "Ai Videos",
-                          color: "primary"
-                      }, {
-                          to: "#",
-                          label: "3D Animation",
-                          color: "secondary"
-                      }].map((button, index) => (
-                          <Grid
-                              item
-                              xs={6} // Ensures 2 items per row on mobile
-                              sm={6} // On small screens, maintain 2 items per row
-                              md={2} // On medium and larger screens, 3 items per row
-                              key={index}
-                          >
-                              <Link to={button.to} style={{ textDecoration: 'none' }}>
-                                  <Button
-                                      variant="contained"
-                                      color={button.color}
-                                      fullWidth
-                                      size="small" // Default to small for mobile
-                                      style={{
-                                          padding: '8px 18px',
-                                          backgroundColor: '#17202a',
-                                          color: 'white',
-                                          border: '2px solid #f05322',
-                                          borderRadius: '50px',
-                                          cursor: 'pointer',
-                                          width: '100%',
-                                          fontFamily: 'Tajawal',
-                                          textAlign: 'center',
-                                          fontSize: '16px', // Adjusted base font size for smaller screens
-                                          transition: 'all 0.3s ease-in-out',
-                                      }}
-                                  >
-                                      {button.label}
-                                  </Button>
-                              </Link>
-                          </Grid>
-                      ))}
-                  </Grid>
-              </Container>
-          </section>
+    style={{
+        backgroundColor: '#eaecee',
+        backgroundImage: 'url("https://i.ibb.co/0myG6zf/image.webp")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        width: '100%',
+        margin: '0 auto',
+        marginBottom: '30px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '800px',
+        paddingTop: '250px',
+        paddingBottom: '0px',
+    }}
+>
+    <Container maxWidth="xl" style={{ marginTop: '130px' }}>
+        <Grid
+            container
+            spacing={2}
+            justifyContent="center"
+            style={{
+                marginTop: '20px',
+            }}
+        >
+            {/* Buttons */}
+            {[{
+                to: "/Web-Media-Video",
+                label: "فيديو",
+                color: "primary"
+            }, {
+                to: "/vr-videos",
+                label: "VR Videos",
+                color: "primary"
+            }, {
+                to: "/Web-Media-photo",
+                label: "فـوتـو",
+                color: "secondary"
+            }, {
+                to: "#",
+                label: "Motion graphics",
+                color: "secondary"
+            }, {
+                to: "#",
+                label: "Ai Videos",
+                color: "primary"
+            }, {
+                to: "#",
+                label: "3D Animation",
+                color: "secondary"
+            }].map((button, index) => (
+                <Grid
+                    item
+                    xs={6} // Ensures 2 items per row on mobile
+                    sm={6} // On small screens, maintain 2 items per row
+                    md={2} // On medium and larger screens, 3 items per row
+                    key={index}
+                >
+                    <Link to={button.to} style={{ textDecoration: 'none' }}>
+                        <Button
+                            variant="contained"
+                            color={button.color}
+                            fullWidth
+                            size="small" // Default to small for mobile
+                            style={{
+                                padding: '8px 18px',
+                                backgroundColor: '#17202a',
+                                color: 'white',
+                                border: '2px solid #f05322',
+                                borderRadius: '50px',
+                                cursor: 'pointer',
+                                width: '100%',
+                                fontFamily: 'Tajawal',
+                                textAlign: 'center',
+                                fontSize: '25px', // Default font size for desktop
+                                transition: 'all 0.3s ease-in-out',
+                            }}
+                        >
+                            {button.label}
+                        </Button>
+                    </Link>
+                </Grid>
+            ))}
+        </Grid>
+    </Container>
+</section>
+
+<style jsx>
+    {`
+        /* Mobile responsiveness: Adjust font size for smaller screens */
+        @media (max-width: 768px) {
+            .MuiButton-root {
+                font-size: 14px !important;  /* Reduce font size for mobile */
+            }
+        }
+
+        /* Desktop responsiveness: Increase font size for larger screens */
+        @media (min-width: 769px) {
+            .MuiButton-root {
+                font-size: 23px !important;  /* Font size for desktop */
+            }
+        }
+    `}
+</style>
+
+          
 
 
     <section
