@@ -15,15 +15,15 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/MNxWNW1/Group-12.webp", // Replace with your image URL
+    img: "https://i.ibb.co/tz5KpcW/Motion-Graphics-Banner.webp", // Replace with your image URL
   },
   {
     id: 2,
-    img: "https://i.ibb.co/MNxWNW1/Group-12.webp", // Replace with your image URL
+    img: "https://i.ibb.co/tz5KpcW/Motion-Graphics-Banner.webp", // Replace with your image URL
   },
   {
     id: 3,
-    img: "https://i.ibb.co/MNxWNW1/Group-12.webp", // Replace with your image URL
+    img: "https://i.ibb.co/tz5KpcW/Motion-Graphics-Banner.webp", // Replace with your image URL
   },
 ];
 

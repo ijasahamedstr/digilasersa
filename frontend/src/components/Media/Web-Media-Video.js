@@ -19,15 +19,15 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/MNxWNW1/Group-12.webp",
+    img: "https://i.ibb.co/GpC6cmy/Group-12.webp",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/MNxWNW1/Group-12.webp",
+    img: "https://i.ibb.co/GpC6cmy/Group-12.webp",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/MNxWNW1/Group-12.webp",
+    img: "https://i.ibb.co/GpC6cmy/Group-12.webp",
   },
 ];
 
