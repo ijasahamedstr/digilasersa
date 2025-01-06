@@ -1,14 +1,16 @@
-import React from "react";
-import { Container, Box, Typography, Card, CardContent, Grid, CardMedia,TextField,Button } from "@mui/material"; // Removed Pagination and other unnecessary imports
+import React, { useState } from "react";
+import { Carousel } from 'react-bootstrap';
+import { Box, Typography,Grid,Button,CardMedia,Card,Pagination,TextField} from '@mui/material';
+import Container from '@mui/material/Container';
 import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp  } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
-import { Carousel } from "react-bootstrap";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+
 
 const carouselItems = [
   {
@@ -25,71 +27,109 @@ const carouselItems = [
   },
 ];
 
-const products = [
-  {
-    imageUrl: "https://i.ibb.co/KyyGLjT/perfume-creative-product-photography-04-1.webp",
-    title:"المنتجات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/nCLwpf3/Whats-App-Image-2024-09-01-at-12-48-57-d84d659d.webp",
-    title:"الأعراس والمناسبات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/Hz3M5LK/delicious-burger-nature.webp",
-    title:"المنيوهات الأطعمة المشروبات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/FzfZsXc/0C7A1084.webp",
-    title:"تصوير المؤتمرات والإجتماعات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/Mg0txLm/0-C7-A9702-2.webp",
-    title:"فوتوسيشن وبورتريه"
-  },
-  {
-    imageUrl: "https://i.ibb.co/1bq4LjL/living-room-with-blue-couch-white-wall-with-painting-it.webp",
-    title:"الديكور و السكني"
-  },
-  {
-    imageUrl: "https://i.ibb.co/DtNPTd2/changan-cs35-plus-front-side-view-721761.webp",
-    title:"تصوير السيارات والمركبات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/ZKbJ3Zk/0-C7-A9797-MP4-snapshot-00-03-389.webp",
-    title:"تصوير المدارس والجامعات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/cgxWWwY/NJ2A9623.webp",
-     title:"تغطية الأنشطه والمسابقات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/NZ8GGgb/0C7A1302.webp",
-    title:"تصوير المعارض والفعاليات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/n1W62X1/457360285-18454402690050545-1982192899392339643-n.webp",
-     title:"المعماري والهندسي"
-  },
-  {
-    imageUrl: "https://i.ibb.co/3yzqh1D/15.webp",
-     title:"الأنشطة التعليمية والدينية"
-  },
-];
-
-const products1 = [
-  { cardTitles: "أعمال فنية وإنتاج", imageUrls: "https://i.ibb.co/w0c1Yzr/Write-lede.webp"},
-  { cardTitles: "كتابة محتوي وتأليف", imageUrls: "https://i.ibb.co/48mQr3n/dfba4c19cde988c07930123097f49c78.webp"},
-  { cardTitles: "تصميمات إبداعية", imageUrls: "https://i.ibb.co/85pqszg/DALL-E-2024-09-30-00-33-16-A-giant-whimsical-fountain-pen-sitting-confidently-in-a-traditional-direc.webp" },
-  { cardTitles: "محتـوي حصـري", imageUrls: "https://i.ibb.co/J7Gp115/piclumen-1727383323200.webp"}
-];
-
-
-
 const WebMediaphoto = () => {
+
+     const [formData, setFormData] = useState({
+          name: '',
+          phone: '',
+          email: '',
+          message: '',
+        });
+      
+          const products = [
+            {
+              img: "https://i.ibb.co/KyyGLjT/perfume-creative-product-photography-04-1.webp",
+              title:"المنتجات"
+            },
+            {
+              img: "https://i.ibb.co/nCLwpf3/Whats-App-Image-2024-09-01-at-12-48-57-d84d659d.webp",
+              title:"الأعراس والمناسبات"
+            },
+            {
+              img: "https://i.ibb.co/Hz3M5LK/delicious-burger-nature.webp",
+              title:"المنيوهات الأطعمة المشروبات"
+            },
+            {
+              img: "https://i.ibb.co/FzfZsXc/0C7A1084.webp",
+              title:"تصوير المؤتمرات والإجتماعات"
+            },
+            {
+              img: "https://i.ibb.co/Mg0txLm/0-C7-A9702-2.webp",
+              title:"فوتوسيشن وبورتريه"
+            },
+            {
+              img: "https://i.ibb.co/1bq4LjL/living-room-with-blue-couch-white-wall-with-painting-it.webp",
+              title:"الديكور و السكني"
+            },
+            {
+              img: "https://i.ibb.co/DtNPTd2/changan-cs35-plus-front-side-view-721761.webp",
+              title:"تصوير السيارات والمركبات"
+            },
+            {
+              img: "https://i.ibb.co/ZKbJ3Zk/0-C7-A9797-MP4-snapshot-00-03-389.webp",
+              title:"تصوير المدارس والجامعات"
+            },
+            {
+              img: "https://i.ibb.co/cgxWWwY/NJ2A9623.webp",
+               title:"تغطية الأنشطه والمسابقات"
+            },
+            {
+              img: "https://i.ibb.co/NZ8GGgb/0C7A1302.webp",
+              title:"تصوير المعارض والفعاليات"
+            },
+            {
+              img: "https://i.ibb.co/n1W62X1/457360285-18454402690050545-1982192899392339643-n.webp",
+               title:"المعماري والهندسي"
+            },
+            {
+              img: "https://i.ibb.co/3yzqh1D/15.webp",
+               title:"الأنشطة التعليمية والدينية"
+            },
+          ];
+
+          const products1 = [
+            { cardTitles: "أعمال فنية وإنتاج", imageUrls: "https://i.ibb.co/w0c1Yzr/Write-lede.webp"},
+            { cardTitles: "كتابة محتوي وتأليف", imageUrls: "https://i.ibb.co/48mQr3n/dfba4c19cde988c07930123097f49c78.webp"},
+            { cardTitles: "تصميمات إبداعية", imageUrls: "https://i.ibb.co/85pqszg/DALL-E-2024-09-30-00-33-16-A-giant-whimsical-fountain-pen-sitting-confidently-in-a-traditional-direc.webp" },
+            { cardTitles: "محتـوي حصـري", imageUrls: "https://i.ibb.co/J7Gp115/piclumen-1727383323200.webp"}
+          ];
+          
+        
+          // Pagination states
+          const [page, setPage] = useState(1);
+          const itemsPerPage = 16; // Number of items per page
+        
+          // Calculate the current products to display
+          const indexOfLastProduct = page * itemsPerPage;
+          const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+          const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+          const totalPages = Math.ceil(products.length / itemsPerPage);
+        
+          // Handle page change
+          const handlePageChange = (event, value) => {
+            setPage(value);
+          };
+
+          const [isZoomed, setIsZoomed] = useState(false);
+          const [zoomedImageSrc, setZoomedImageSrc] = useState("");
+        
+          // Handle the zoom on image click
+          const handleImageClick = (src) => {
+            setIsZoomed(true);
+            setZoomedImageSrc(src);
+          };
+        
+          // Close zoomed image when clicked outside
+          const handleCloseZoom = () => {
+            setIsZoomed(false);
+            setZoomedImageSrc("");
+          };
+
+
+  
   return (
-    <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}>
-      {/* Carousel Section */}
-      <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+    <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>
+            <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
         <Carousel
           fade
           nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
@@ -102,14 +142,13 @@ const WebMediaphoto = () => {
                 src={item.img}
                 alt={item.title}
                 style={{
-                  width: "1200px",  // Set the width to 1200px (or any desired width)
-                  height: "800px",  // Set the height to 800px (or any desired height)
-                  objectFit: "cover",  // Ensures the image maintains aspect ratio and covers the space
-                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",  // Keeps the shadow effect
+                  height: "80vh",
+                  objectFit: "cover",
+                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                 }}
               />
               <Carousel.Caption>
-                <Typography variant="h4" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", }}>
+                <Typography variant="h4" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}>
                   {item.title}
                 </Typography>
                 <Typography variant="body1" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}>
@@ -120,7 +159,8 @@ const WebMediaphoto = () => {
           ))}
         </Carousel>
 
-        <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "15px", zIndex: 2, paddingLeft: 2 }}>
+         {/* Social Media Icons on the Left Side */}
+                <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "15px", zIndex: 2, paddingLeft: 2 }}>
                   <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
                     <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
                       <FaFacebook size={25} />
@@ -163,93 +203,146 @@ const WebMediaphoto = () => {
                     </Box>
                   </a>
                 </Box>
-              </Box>
-
-{/* Products Section */}
-<section style={{ backgroundColor: '#f2f3f4', width: '100%', margin: '0 auto', background: '#17202a', marginBottom: '30px' }}>
-  <Container maxWidth="xl" sx={{ padding: 3 }}>
-    <Box
-      sx={{
-        backgroundColor: '#f5f5f5', // Background color
-        padding: 0, // Padding around the content
-        borderRadius: 2, // Optional: rounded corners
-        boxShadow: 3, // Optional: card shadow
-        maxWidth: '100%', // Make sure it's responsive
-        textAlign: 'center', // Center align content
-        marginBottom: '20px',
-      }}
-    >
-      <Typography
-        variant="h5"
-        component="h5"
-        sx={{
-          fontFamily: 'Tajawal',
-          color: '#333',
-          fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-          textAlign: 'center',
-        }}
-      >
-        <span style={{ color: '#015057' }}>فوتوغرافيا</span>
-      </Typography>
-    </Box>
-
-    <Grid container spacing={4}>
-      {products.map((product, index) => (
-        <Grid item xs={12} sm={6} md={4} lg={4} key={index}>
-          <Box
-            sx={{
-              maxWidth: '100%',
-              boxShadow: 3,
-              borderRadius: 2,
-              overflow: 'hidden',
-            }}
-          >
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}> {/* Align image to the right */}
-              <CardMedia
-                component="img"
-                image={product.imageUrl}
-                alt="Product Image"
-                sx={{
-                  height: { xs: 120, sm: 150, md: 180 }, // Reduced size of the image
-                  objectFit: "cover",
-                  borderTopLeftRadius: 2,
-                  borderTopRightRadius: 2,
-                  // Adding 3D outline effect
-                  border: '4px solid transparent',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)', // shadow for 3D effect
-                  transition: 'all 0.3s ease-in-out', // Smooth transition for hover effect
-                  '&:hover': {
-                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover effect to enhance the 3D look
-                    border: '4px solid #e99b19', // Border highlight on hover
-                  }
-                }}
-              />
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 1 }}>
+
+            <section  
+            style={{
+                backgroundColor: '#f2f3f4',
+                background: '#17202a',
+                backgroundSize: 'cover', // Ensure the image covers the entire section
+                backgroundPosition: 'center', // Ensure the image is centered
+                width: '100%',
+                margin: '0 auto',
+                marginBottom: '30px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                paddingTop: '20px',
+                paddingBottom: '20px',
+                '@media (max-width: 768px)': {
+                    height: 'auto', // Adjust the height for medium screens
+                    paddingTop: '10px',
+                    paddingBottom: '10px',
+                },
+                '@media (max-width: 480px)': {
+                    height: 'auto', // Adjust the height for smaller screens
+                },
+                marginTop:'-30px'
+            }}>
+            <Container maxWidth="xl" sx={{ padding: 3, marginTop:'50px' }}>
+            <Box
+              sx={{
+                backgroundColor: '#f5f5f5', // Background color
+                padding: 0, // Padding around the content
+                borderRadius: 2, // Optional: rounded corners
+                boxShadow: 3, // Optional: card shadow
+                maxWidth: '100%', // Make sure it's responsive
+                textAlign: 'center', // Center align content
+                marginBottom: '20px',
+              }}
+            >
               <Typography
-                variant="h3"
-                component="span"
+                variant="h2"
+                component="h3"
                 sx={{
                   fontFamily: 'Tajawal',
-                  fontSize: '1.5rem',
+                  color: '#333',
+                  fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
                   textAlign: 'center',
-                  display: 'block',
-                  color: '#e99b19', // Ensures the Typography component takes full width
                 }}
               >
-                {product.title}
+                <span style={{ color: '#015057' }}>فوتوغرافيا</span>
               </Typography>
             </Box>
-          </Box>
-        </Grid>
-      ))}
-    </Grid>
-  </Container>
-</section>
 
+                <Grid container spacing={2}>
+                {currentProducts.map((product, index) => (
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+          
+                        <CardMedia
+                        component="img"
+                        alt={`Service ${index}`}
+                        image={product.img}
+                        sx={{
+                          height: { xs: 120, sm: 150, md: 180 }, // Reduced size of the image
+                          objectFit: 'cover',
+                          cursor: 'zoom-in', 
+                          borderTopLeftRadius: 2,
+                          borderTopRightRadius: 2,
+                          // Adding 3D outline effect
+                          border: '4px solid transparent',
+                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)', // shadow for 3D effect
+                          transition: 'all 0.3s ease-in-out', // Smooth transition for hover effect
+                          '&:hover': {
+                            boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover effect to enhance the 3D look
+                            border: '4px solid #e99b19', // Border highlight on hover
+                          }
+                        }}
+                        onClick={() => handleImageClick(product.img)}
+                        />
+                       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 1 }}>
+                        <Typography
+                          variant="h3"
+                          component="span"
+                          sx={{
+                            fontFamily: 'Tajawal',
+                            fontSize: '1.5rem',
+                            textAlign: 'center',
+                            display: 'block',
+                            color: '#e99b19', // Ensures the Typography component takes full width
+                          }}
+                        >
+                          {product.title}
+                        </Typography>
+                      </Box>
+                    </Grid>
+                ))}
+                </Grid>
 
+                {/* Zoomed image view (modal style) */}
+                {isZoomed && (
+                <Box
+                    sx={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    zIndex: 1000,
+                    }}
+                    onClick={handleCloseZoom}
+                >
+                    <img
+                    src={zoomedImageSrc}
+                    alt="Zoomed"
+                    style={{
+                        maxWidth: '90%',
+                        maxHeight: '90%',
+                        objectFit: 'contain',
+                        cursor: 'zoom-out', // Change cursor to indicate it can be closed
+                    }}
+                    />
+                </Box>
+                )}
 
-      <section
+                <Box display="flex" justifyContent="center" sx={{ marginTop: 3 }}>
+                <Pagination
+                    count={totalPages}
+                    page={page}
+                    onChange={handlePageChange}
+                    color="primary"
+                    variant="outlined"
+                    shape="rounded"
+                />
+                </Box>
+            </Container>
+            </section>
+
+            <section
                   style={{
                       backgroundColor: '#eaecee', // Fallback background color
                       backgroundImage: 'url("https://i.ibb.co/w0p131X/image.webp")', // Replace with your image URL
@@ -501,8 +594,8 @@ const WebMediaphoto = () => {
                 </Grid>
               </Container>
             </section>
-            </Container>
-          );
-        };
+        </Container>
+  );
+};
 
 export default WebMediaphoto;
