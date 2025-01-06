@@ -1,94 +1,110 @@
-import React from "react";
-import { Container, Box, Typography, Card, CardContent, Grid, CardMedia,TextField,Button } from "@mui/material"; // Removed Pagination and other unnecessary imports
-import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp  } from 'react-icons/fa';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
-import { Carousel } from "react-bootstrap";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useState } from "react";
+import { Carousel } from 'react-bootstrap';
+import { Box, Typography, Grid, Pagination, CardMedia, Container, IconButton,Card } from '@mui/material';
+import ReactPlayer from 'react-player'; // Ensure to import ReactPlayer
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';  // Importing the play icon
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import {Button,TextField} from '@mui/material';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+
 
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/1Xkpqpc/Group-12.webp", // Replace with your image URL
+    img: "https://i.ibb.co/MNxWNW1/Group-12.webp",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/1Xkpqpc/Group-12.webp", // Replace with your image URL
+    img: "https://i.ibb.co/MNxWNW1/Group-12.webp",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/1Xkpqpc/Group-12.webp", // Replace with your image URL
+    img: "https://i.ibb.co/MNxWNW1/Group-12.webp",
   },
 ];
-
-const products = [
-  {
-    imageUrl: "https://i.ibb.co/KyyGLjT/perfume-creative-product-photography-04-1.webp",
-    title:"المنتجات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/nCLwpf3/Whats-App-Image-2024-09-01-at-12-48-57-d84d659d.webp",
-    title:"الأعراس والمناسبات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/Hz3M5LK/delicious-burger-nature.webp",
-    title:"المنيوهات الأطعمة المشروبات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/FzfZsXc/0C7A1084.webp",
-    title:"تصوير المؤتمرات والإجتماعات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/Mg0txLm/0-C7-A9702-2.webp",
-    title:"فوتوسيشن وبورتريه"
-  },
-  {
-    imageUrl: "https://i.ibb.co/1bq4LjL/living-room-with-blue-couch-white-wall-with-painting-it.webp",
-    title:"الديكور و السكني"
-  },
-  {
-    imageUrl: "https://i.ibb.co/DtNPTd2/changan-cs35-plus-front-side-view-721761.webp",
-    title:"تصوير السيارات والمركبات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/ZKbJ3Zk/0-C7-A9797-MP4-snapshot-00-03-389.webp",
-    title:"تصوير المدارس والجامعات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/cgxWWwY/NJ2A9623.webp",
-     title:"تغطية الأنشطه والمسابقات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/NZ8GGgb/0C7A1302.webp",
-    title:"تصوير المعارض والفعاليات"
-  },
-  {
-    imageUrl: "https://i.ibb.co/n1W62X1/457360285-18454402690050545-1982192899392339643-n.webp",
-     title:"المعماري والهندسي"
-  },
-  {
-    imageUrl: "https://i.ibb.co/3yzqh1D/15.webp",
-     title:"الأنشطة التعليمية والدينية"
-  },
-];
-
-const products1 = [
-  { cardTitles: "أعمال فنية وإنتاج", imageUrls: "https://i.ibb.co/w0c1Yzr/Write-lede.webp"},
-  { cardTitles: "كتابة محتوي وتأليف", imageUrls: "https://i.ibb.co/48mQr3n/dfba4c19cde988c07930123097f49c78.webp"},
-  { cardTitles: "تصميمات إبداعية", imageUrls: "https://i.ibb.co/85pqszg/DALL-E-2024-09-30-00-33-16-A-giant-whimsical-fountain-pen-sitting-confidently-in-a-traditional-direc.webp" },
-  { cardTitles: "محتـوي حصـري", imageUrls: "https://i.ibb.co/J7Gp115/piclumen-1727383323200.webp"}
-];
-
-
 
 const WebMediaVideo = () => {
+  const products = [
+    {
+      img: "https://i.ibb.co/KyyGLjT/perfume-creative-product-photography-04-1.webp",
+      title: "المنتجات",
+      videoUrl: "https://youtu.be/C-KyHvm521c" // New video URL
+    },
+    {
+      img: "https://i.ibb.co/nCLwpf3/Whats-App-Image-2024-09-01-at-12-48-57-d84d659d.webp",
+      title: "الأعراس والمناسبات",
+      videoUrl: "https://youtu.be/BhX6dU3tH3s" // New video URL
+    },
+    {
+      img: "https://i.ibb.co/Hz3M5LK/delicious-burger-nature.webp",
+      title: "المنيوهات الأطعمة المشروبات",
+      videoUrl: "https://youtu.be/lN1V_g1RhvQ" // New video URL
+    },
+    {
+      img: "https://i.ibb.co/KyyGLjT/perfume-creative-product-photography-04-1.webp",
+      title: "المنتجات",
+      videoUrl: "https://youtu.be/C-KyHvm521c" // New video URL
+    },
+    {
+      img: "https://i.ibb.co/nCLwpf3/Whats-App-Image-2024-09-01-at-12-48-57-d84d659d.webp",
+      title: "الأعراس والمناسبات",
+      videoUrl: "https://youtu.be/BhX6dU3tH3s" // New video URL
+    },
+    {
+      img: "https://i.ibb.co/Hz3M5LK/delicious-burger-nature.webp",
+      title: "المنيوهات الأطعمة المشروبات",
+      videoUrl: "https://youtu.be/lN1V_g1RhvQ" // New video URL
+    },
+    {
+      img: "https://i.ibb.co/nCLwpf3/Whats-App-Image-2024-09-01-at-12-48-57-d84d659d.webp",
+      title: "الأعراس والمناسبات",
+      videoUrl: "https://youtu.be/BhX6dU3tH3s" // New video URL
+    },
+    {
+      img: "https://i.ibb.co/Hz3M5LK/delicious-burger-nature.webp",
+      title: "المنيوهات الأطعمة المشروبات",
+      videoUrl: "https://youtu.be/lN1V_g1RhvQ" // New video URL
+    },
+    // Add more products as needed...
+  ];
+
+  const products1 = [
+    { cardTitles: "أعمال فنية وإنتاج", imageUrls: "https://i.ibb.co/w0c1Yzr/Write-lede.webp"},
+    { cardTitles: "كتابة محتوي وتأليف", imageUrls: "https://i.ibb.co/48mQr3n/dfba4c19cde988c07930123097f49c78.webp"},
+    { cardTitles: "تصميمات إبداعية", imageUrls: "https://i.ibb.co/85pqszg/DALL-E-2024-09-30-00-33-16-A-giant-whimsical-fountain-pen-sitting-confidently-in-a-traditional-direc.webp" },
+    { cardTitles: "محتـوي حصـري", imageUrls: "https://i.ibb.co/J7Gp115/piclumen-1727383323200.webp"}
+  ];
+  
+
+  // Video player state
+  const [currentVideoUrl, setCurrentVideoUrl] = useState("");
+
+  // Pagination states
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 16; // Number of items per page
+
+  const indexOfLastProduct = page * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  // Handle page change
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  // Handle card click to play video
+  const handleVideoClick = (videoUrl) => {
+    setCurrentVideoUrl(videoUrl); // Update the current video URL to play
+  };
+
   return (
-    <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}>
-      {/* Carousel Section */}
+    <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>
       <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
         <Carousel
           fade
@@ -102,154 +118,233 @@ const WebMediaVideo = () => {
                 src={item.img}
                 alt={item.title}
                 style={{
-                  width: "1200px",  // Set the width to 1200px (or any desired width)
-                  height: "800px",  // Set the height to 800px (or any desired height)
-                  objectFit: "cover",  // Ensures the image maintains aspect ratio and covers the space
-                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",  // Keeps the shadow effect
+                  height: "80vh",
+                  objectFit: "cover",
+                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                 }}
               />
               <Carousel.Caption>
-                <Typography variant="h4" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", }}>
+                <Typography variant="h4" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}>
                   {item.title}
-                </Typography>
-                <Typography variant="body1" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}>
-                  {item.content}
                 </Typography>
               </Carousel.Caption>
             </Carousel.Item>
           ))}
         </Carousel>
 
-        <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "15px", zIndex: 2, paddingLeft: 2 }}>
-                  <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                      <FaFacebook size={25} />
-                    </Box>
-                  </a>
-                  <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-                    <Box sx={{ width: 40, height: 40, borderRadius
-                      : "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                      <FontAwesomeIcon icon={faXTwitter} size={25} />
-                    </Box>
-                  </a>
-                  <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                      <FaInstagram size={25} />
-                    </Box>
-                  </a>
-                  <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                      <FaLinkedin size={25} />
-                    </Box>
-                  </a>
-                  <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                      <FaYoutube  size={25} />
-                    </Box>
-                  </a>
-                  <a href="https://www.snapchat.com/" target="_blank" rel="noopener noreferrer">
-                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                      <FaSnapchat size={25} />
-                    </Box>
-                  </a>
-                  <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
-                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                      <FaTiktok size={25} />
-                    </Box>
-                  </a>
-                  <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
-                    <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                      <FaWhatsapp size={25} />
-                    </Box>
-                  </a>
-                </Box>
+        {/* Video Player */}
+        <section style={{ backgroundColor: '#f2f3f4', background: '#17202a', paddingTop: '20px', paddingBottom: '20px' }}>
+          <Container maxWidth="xl" sx={{ padding: 3 }}>
+            {currentVideoUrl && (
+              <Box sx={{
+                display: "flex",
+                justifyContent: "center",
+                padding: 3,
+                border: '4px solid #f05322',
+                borderRadius: 2,
+              }}>
+                <ReactPlayer
+                  url={currentVideoUrl}
+                  playing={true}  // Auto play the video
+                  controls
+                  width="100%"
+                  height="60vh"  // Responsive height
+                />
               </Box>
+            )}
 
-{/* Products Section */}
-<section style={{ backgroundColor: '#f2f3f4', width: '100%', margin: '0 auto', background: '#17202a', marginBottom: '30px' }}>
-  <Container maxWidth="xl" sx={{ padding: 3 }}>
-    <Box
-      sx={{
-        backgroundColor: '#f5f5f5', // Background color
-        padding: 0, // Padding around the content
-        borderRadius: 2, // Optional: rounded corners
-        boxShadow: 3, // Optional: card shadow
-        maxWidth: '100%', // Make sure it's responsive
-        textAlign: 'center', // Center align content
-        marginBottom: '20px',
-      }}
-    >
-      <Typography
-        variant="h5"
-        component="h5"
-        sx={{
-          fontFamily: 'Tajawal',
-          color: '#333',
-          fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-          textAlign: 'center',
-        }}
-      >
-        <span style={{ color: '#015057' }}>فوتوغرافيا</span>
-      </Typography>
-    </Box>
-
-    <Grid container spacing={4}>
-      {products.map((product, index) => (
-        <Grid item xs={12} sm={6} md={4} lg={4} key={index}>
-          <Box
-            sx={{
-              maxWidth: '100%',
-              boxShadow: 3,
-              borderRadius: 2,
-              overflow: 'hidden',
-            }}
-          >
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}> {/* Align image to the right */}
-              <CardMedia
-                component="img"
-                image={product.imageUrl}
-                alt="Product Image"
-                sx={{
-                  height: { xs: 120, sm: 150, md: 180 }, // Reduced size of the image
-                  objectFit: "cover",
-                  borderTopLeftRadius: 2,
-                  borderTopRightRadius: 2,
-                  // Adding 3D outline effect
-                  border: '4px solid transparent',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)', // shadow for 3D effect
-                  transition: 'all 0.3s ease-in-out', // Smooth transition for hover effect
-                  '&:hover': {
-                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)', // Hover effect to enhance the 3D look
-                    border: '4px solid #e99b19', // Border highlight on hover
-                  }
-                }}
-              />
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 1 }}>
-              <Typography
-                variant="h3"
-                component="span"
-                sx={{
-                  fontFamily: 'Tajawal',
-                  fontSize: '1.5rem',
-                  textAlign: 'center',
-                  display: 'block',
-                  color: '#e99b19', // Ensures the Typography component takes full width
-                }}
-              >
-                {product.title}
+            <Box
+              sx={{
+                backgroundColor: '#f5f5f5',
+                padding: 0,
+                borderRadius: 2,
+                boxShadow: 3,
+                maxWidth: '100%',
+                textAlign: 'center',
+                marginBottom: '20px',
+              }}
+            >
+              <Typography variant="h2" component="h3" sx={{ fontFamily: 'Tajawal', color: '#333', marginTop: '60px', fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }, textAlign: 'center' }}>
+                <span style={{ color: '#015057' }}>فوتوغرافيا</span>
               </Typography>
             </Box>
-          </Box>
-        </Grid>
-      ))}
-    </Grid>
-  </Container>
-</section>
 
+            <Grid container spacing={2}>
+              {currentProducts.map((product, index) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                  <Box sx={{ position: 'relative' }}>
+                    <CardMedia
+                      component="img"
+                      alt={`Service ${index}`}
+                      image={product.img}
+                      sx={{
+                        height: { xs: 120, sm: 150, md: 180 },
+                        objectFit: 'cover',
+                        cursor: 'pointer',
+                        borderTopLeftRadius: 2,
+                        borderTopRightRadius: 2,
+                        border: '4px solid transparent',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
+                        transition: 'all 0.3s ease-in-out',
+                        '&:hover': {
+                          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
+                          border: '4px solid #e99b19',
+                        }
+                      }}
+                      onClick={() => handleVideoClick(product.videoUrl)}
+                    />
+                    <IconButton
+                      sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        color: '#fff',
+                        '&:hover': {
+                          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        }
+                      }}
+                      onClick={() => handleVideoClick(product.videoUrl)}
+                    >
+                      <PlayCircleIcon sx={{ fontSize: 50 }} />
+                    </IconButton>
+                  </Box>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 1 }}>
+                    <Typography variant="h3" component="span" sx={{ fontFamily: 'Tajawal', fontSize: '1.5rem', textAlign: 'center', display: 'block', color: '#e99b19' }}>
+                      {product.title}
+                    </Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
 
-
-      <section
+            <Box display="flex" justifyContent="center" sx={{ marginTop: 3 }}>
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={handlePageChange}
+                color="primary"
+                variant="outlined"
+                shape="rounded"
+              />
+            </Box>
+          </Container>
+        </section>
+      </Box>
+       <section
+              style={{
+                  backgroundColor: '#030909',
+                  backgroundImage: 'url("https://i.ibb.co/1rmQDz3/Final-Web-Media-VR-line-bk-1.webp")', // Background image URL
+                  backgroundSize: 'cover', // Ensures the image covers the entire section
+                  backgroundPosition: 'center', // Centers the background image
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center', // Horizontally center the content
+                  alignItems: 'center', // Vertically center the content
+                  height: '450px', // Increased height of the section
+              }}
+              >
+              <Container
+                  maxWidth="xl"
+                  sx={{
+                  paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
+                  textAlign: 'center', // Center text for all screen sizes
+                  }}
+              >
+                  {/* Grid for Icon Cards */}
+                  <Grid container spacing={4}>
+                  {/* Icon Card 1 */}
+                  <Grid item xs={6} sm={3}>
+                      <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+                      <img
+                          src="https://i.ibb.co/HtjnCTB/8888.webp" // Replace with your actual image URL
+                          alt="Content Creation"
+                          style={{
+                          width: '50%', // Adjusted size for mobile responsiveness
+                          height: 'auto', // Maintain aspect ratio
+                          borderRadius: '8px',
+                          marginBottom: '10px', // Add space between image and title
+                          display: 'block', // Makes the image block-level for centering
+                          marginLeft: 'auto', // Centers image horizontally
+                          marginRight: 'auto', // Centers image horizontally
+                          }}
+                      />
+                      </div>
+                      <Typography variant="h6" sx={{ color: '#000000',fontWeight:'700', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
+                      الإعداد وصناعة المحتوي
+                      </Typography>
+                  </Grid>
+      
+                  {/* Icon Card 2 */}
+                  <Grid item xs={6} sm={3}>
+                      <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+                      <img
+                          src="https://i.ibb.co/w04Sjqp/999.webp" // Replace with your actual image URL
+                          alt="Content Creation"
+                          style={{
+                          width: '50%', // Adjusted size for mobile responsiveness
+                          height: 'auto', // Maintain aspect ratio
+                          borderRadius: '8px',
+                          marginBottom: '10px', // Add space between image and title
+                          display: 'block', // Makes the image block-level for centering
+                          marginLeft: 'auto', // Centers image horizontally
+                          marginRight: 'auto', // Centers image horizontally
+                          }}
+                      />
+                      </div>
+                      <Typography variant="h6" sx={{ color: '#000000',fontWeight:'700', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
+                      المونتاج والجرافيك
+                      </Typography>
+                  </Grid>
+      
+                  {/* Icon Card 3 */}
+                  <Grid item xs={6} sm={3}>
+                      <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+                      <img
+                          src="https://i.ibb.co/C7nsTj6/5251.webp" // Replace with your actual image URL
+                          alt="Content Creation"
+                          style={{
+                          width: '50%', // Adjusted size for mobile responsiveness
+                          height: 'auto', // Maintain aspect ratio
+                          borderRadius: '8px',
+                          marginBottom: '10px', // Add space between image and title
+                          display: 'block', // Makes the image block-level for centering
+                          marginLeft: 'auto', // Centers image horizontally
+                          marginRight: 'auto', // Centers image horizontally
+                          }}
+                      />
+                      </div>
+                      <Typography variant="h6" sx={{ color: '#000000',fontWeight:'700', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
+                      التصوير والإخراج
+                      </Typography>
+                  </Grid>
+      
+                  {/* Icon Card 4 */}
+                  <Grid item xs={6} sm={3}>
+                      <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+                      <img
+                          src="https://i.ibb.co/4J3ZdPT/Screenshot-2024-08-13-171715.webp" // Replace with your actual image URL
+                          alt="Content Creation"
+                          style={{
+                          width: '50%', // Adjusted size for mobile responsiveness
+                          height: 'auto', // Maintain aspect ratio
+                          borderRadius: '8px',
+                          marginBottom: '10px', // Add space between image and title
+                          display: 'block', // Makes the image block-level for centering
+                          marginLeft: 'auto', // Centers image horizontally
+                          marginRight: 'auto', // Centers image horizontally
+                          }}
+                      />
+                      </div>
+                      <Typography variant="h6" sx={{ color: '#000000', fontWeight:'700', fontFamily: 'Tajawal', fontSize: { xs: '12px', sm: '13px', md: '20px' } }}>
+                      الإنتاج الصوتي والبودكاست
+                      </Typography>
+                  </Grid>
+                  </Grid>
+              </Container>
+              </section><br/>
+             <section
                   style={{
                       backgroundColor: '#eaecee', // Fallback background color
                       backgroundImage: 'url("https://i.ibb.co/w0p131X/image.webp")', // Replace with your image URL
@@ -501,8 +596,8 @@ const WebMediaVideo = () => {
                 </Grid>
               </Container>
             </section>
-            </Container>
-          );
-        };
+    </Container>
+  );
+};
 
 export default WebMediaVideo;
