@@ -28,14 +28,7 @@ const carouselItems = [
 ];
 
 const WebMediaphoto = () => {
-
-     const [formData, setFormData] = useState({
-          name: '',
-          phone: '',
-          email: '',
-          message: '',
-        });
-      
+  
           const products = [
             {
               img: "https://i.ibb.co/KyyGLjT/perfume-creative-product-photography-04-1.webp",
