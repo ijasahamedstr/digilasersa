@@ -215,15 +215,15 @@ const VRSection = () => {
                 label: "فـوتـو",
                 color: "secondary"
             }, {
-                to: "#",
+                to: "/Motion-graphics",
                 label: "Motion graphics",
                 color: "secondary"
             }, {
-                to: "#",
+                to: "/AIVideos",
                 label: "Ai Videos",
                 color: "primary"
             }, {
-                to: "#",
+                to: "/3D-Animation",
                 label: "3D Animation",
                 color: "secondary"
             }].map((button, index) => (
@@ -250,7 +250,7 @@ const VRSection = () => {
                                 width: '100%',
                                 fontFamily: 'Tajawal',
                                 textAlign: 'center',
-                                fontSize: '25px', // Default font size for desktop
+                                fontSize: '23px', // Default font size for desktop
                                 transition: 'all 0.3s ease-in-out',
                             }}
                         >
@@ -271,18 +271,8 @@ const VRSection = () => {
                 font-size: 14px !important;  /* Reduce font size for mobile */
             }
         }
-
-        /* Desktop responsiveness: Increase font size for larger screens */
-        @media (min-width: 769px) {
-            .MuiButton-root {
-                font-size: 23px !important;  /* Font size for desktop */
-            }
-        }
     `}
 </style>
-
-          
-
 
     <section
         style={{

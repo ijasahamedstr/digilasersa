@@ -25,6 +25,10 @@ import InteractiveScreens from './components/screen/InteractiveScreens';
 import MeterScreens from './components/screen/Meterscreens';
 import CountingScreen from './components/screen/CountingScreen';
 import ArabicCalligraphy from './components/ArabicCalligraphy';
+import VRVideos from './components/Media/VRVideos';
+import Motiongraphics from './components/Media/Motiongraphics';
+import AIVideos from './components/Media/AIVideos';
+import Animation from './components/Media/3DAnimation';
 
 
 
@@ -66,6 +70,10 @@ function App() {
         <Route path="/Meterscreens" element={<MeterScreens/>} />
         <Route path="/CountingScreen" element={<CountingScreen/>} />
         <Route path="/الخط العربي" element={<ArabicCalligraphy/>} />
+        <Route path="/vr-videos" element={<VRVideos/>} />
+        <Route path="/Motion-graphics" element={<Motiongraphics/>} />
+        <Route path="/AIVideos" element={<AIVideos/>} />
+        <Route path="/3D-Animation" element={<Animation/>} />
 
         <Route path="/إتصل بنا" element={<Undercontration/>} />
       </Routes>
