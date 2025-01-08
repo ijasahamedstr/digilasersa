@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography,CardMedia,Card,Grid,Button} from '@mui/material';
+import { Box, Typography,CardMedia,Card,Grid,Button,Avatar,CardContent} from '@mui/material';
 import Container from '@mui/material/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
 import Form from 'react-bootstrap/Form';
 import Slider from 'react-slick'; // Import Slider from react-slick 
+import { keyframes } from '@emotion/react';  // Import keyframes 
 
 const carouselItems = [
   {
@@ -43,6 +44,15 @@ const products = [
     { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/SAMA.svg" },
     { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOF.svg" },
     { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOI.svg" },
+  ];
+
+  const products1 = [ 
+    { id: 1, name: "قسم الهدايا الدعائية", imageUrl: "https://i.ibb.co/JRj0pBd/Background-copy.webp", iconUrl: "https://i.ibb.co/HdgVtF5/image.webp", link: "/gift-department" }, 
+    { id: 2, name: "قسم الطباعة", imageUrl: "https://i.ibb.co/27jQ6C2/Layer-34.webp", iconUrl: "https://i.ibb.co/dmvyMMn/image-1.webp", link: "/printing-department" }, 
+    { id: 3, name: "قسم الفن التشكيلي", imageUrl: "https://i.ibb.co/NpYW2Jx/8.webp", iconUrl: "https://i.ibb.co/LP17MwP/image-6.webp", link: "/art-department" }, 
+    { id: 4, name: "قسم الشاشات", imageUrl: "https://i.ibb.co/K7RGQ4C/Layer-32.webp", iconUrl: "https://i.ibb.co/dmvyMMn/image-1.webp", link: "/screens-department" }, 
+    { id: 5, name: "قسم الخط العربي", imageUrl: "https://i.ibb.co/2KzrMyy/07.webp", iconUrl: "https://i.ibb.co/5vHKmx1/image-2.webp", link: "/arabic-calligraphy-department" }, 
+    { id: 6, name: "قسم البرمجيات", imageUrl: "https://i.ibb.co/d72GNR5/Layer-39.webp", iconUrl: "https://i.ibb.co/DDCFSm4/image-3.webp", link: "/software-department" }, 
   ];
   
   
@@ -78,24 +88,18 @@ const VRSection = () => {
             window.location.href = 'https://another-site.com/contact';
           };
 
-          const settings = {
-            dots: true, // Show navigation dots
-            infinite: true, // Infinite scroll
-            speed: 500, // Transition speed in ms
-            autoplay: true, // Enable autoplay
-            autoplaySpeed: 3000, // Set autoplay speed (3 seconds in this example)
-            slidesToShow: 3, // Number of slides to show at once
-            slidesToScroll: 1, // Number of slides to scroll at once
-            responsive: [
-                {
-                    breakpoint: 768, // For mobile screens
-                    settings: {
-                        slidesToShow: 1, // Show 1 slide at a time
-                        slidesToScroll: 1,
-                    },
-                },
-            ],
-        };
+
+        const pumpAnimation = keyframes` 
+          0% { 
+            transform: scale(1); 
+          } 
+          50% { 
+            transform: scale(1.05); 
+          } 
+          100% { 
+            transform: scale(1); 
+          } 
+        `;
       
   
   return (
@@ -175,6 +179,125 @@ const VRSection = () => {
                   </a>
                 </Box>
             </Box>
+
+            <section 
+            style={{ 
+              backgroundColor: '#f2f3f4', 
+              width: '100%', 
+              margin: '0 auto', 
+              marginBottom: '30px', 
+              display: 'flex', 
+              justifyContent: 'center', 
+              alignItems: 'center', 
+              height: 'auto', 
+              paddingTop: '50px', 
+              paddingBottom: '50px', 
+              background:'#040404',
+            }} 
+          > 
+            <Container 
+              maxWidth="xl" 
+              sx={{ 
+                paddingX: { xs: 2, sm: 3, md: 5 }, 
+                textAlign: 'center', 
+              }} 
+            > 
+              {/* Heading */}
+              <Button
+                variant="outlined"  // Change variant to outlined for a transparent background
+                sx={{
+                  background: 'transparent',  // Transparent background
+                  color: 'White',  // Text color (red)
+                  padding: '10px 20px',  // Padding
+                  fontFamily: 'Tajawal',  // Same font family as Typography
+                  fontWeight: 600,  // Same font weight as Typography
+                  borderRadius: '50px',  // Rounded corners
+                  fontSize: { xs: '18px', sm: '20px', md: '40px' },
+                  marginBottom: '30px',
+                  width: '50%',  // Full width
+                  border: '2px solid #00fefc',  // Red border for the outlined button
+                }}
+              >
+                أقســــامنـــــا
+              </Button>
+
+
+
+              <Grid container spacing={6}> {/* Increase the spacing to 6 for more gap between cards */}
+                {products1.map((product) => ( 
+                  <Grid item xs={12} sm={6} md={4} key={product.id} sx={{paddingLeft: '60px' }}> 
+                    {/* Wrap the card with Link component */}
+                    <Link to={product.link} style={{ textDecoration: 'none' }}>
+                      <Card 
+                        sx={{ 
+                          display: 'flex', 
+                          flexDirection: 'column', 
+                          height: '100%', 
+                          borderRadius: '20px', // Add this line for the border radius
+                          overflow: 'hidden', // To ensure the content stays within the rounded corners
+                        }} 
+                      > 
+                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}> 
+                          <CardMedia 
+                            component="img" 
+                            height="300"  // Set height to 300px 
+                            width="300"   // Set width to 300px 
+                            image={product.imageUrl} 
+                            alt={product.name} 
+                            sx={{ objectFit: 'cover', flexShrink: 0}}  // Match the border-radius of the image
+                          /> 
+                          {/* Position the Avatar icon in front of the CardContent */} 
+                          <Avatar 
+                            src={product.iconUrl} 
+                            alt={product.name} 
+                            sx={{ 
+                              position: 'absolute', 
+                              top: '90%',   // Adjust the top position if necessary 
+                              left: '50%', 
+                              transform: 'translate(-50%, -10%)', // Centers the icon 
+                              width: 70, 
+                              height: 70, 
+                              border: '3px solid white', // Optional: add a border to the icon 
+                              zIndex: 10,  // Make sure the avatar is in front of the content 
+                              background:'#0a6d6a' 
+                            }} 
+                          /> 
+                        </Box> 
+                        <CardContent 
+                            sx={{ 
+                              display: 'flex', 
+                              flexDirection: 'column', 
+                              justifyContent: 'space-between', 
+                              flexGrow: 1, 
+                              background: '#0a6d6a', 
+                              animation: `${pumpAnimation} 1s ease-in-out infinite`,
+                              padding: '1px',  // General padding
+                              '&:last-child': { 
+                                paddingBottom: '10px',  // Remove bottom padding for the last child 
+                              },
+                            }}                    
+                        > 
+                          <Typography 
+                            variant="h6" 
+                            sx={{ 
+                              color: 'white', 
+                              marginTop: '32px', // Reduce the top margin
+                              fontSize: '1.2rem',  // Reduce the font size
+                              fontWeight: 500,  // Slightly lighter font weight
+                              fontFamily: 'Tajawal'
+                            }} 
+                          > 
+                            {product.name} 
+                          </Typography> 
+                        </CardContent> 
+                      </Card> 
+                    </Link> {/* Close Link */}
+                  </Grid> 
+                ))} 
+              </Grid> 
+            </Container> 
+          </section> 
+            
             <section
     style={{
         backgroundColor: '#eaecee',
@@ -605,100 +728,7 @@ const VRSection = () => {
             </Swiper>
             </Container>
         </section>
-        <section
-        style={{
-            backgroundColor: '#eaecee', // Fallback background color
-            backgroundImage: 'url("https://i.ibb.co/NZX6qLm/image-3.webp")', // Replace with your image URL
-            backgroundSize: 'cover', // Ensure the image covers the entire section
-            width: '100%',
-            margin: '0 auto',
-            marginBottom: '30px',
-            display: 'flex',
-            justifyContent: 'flex-end', // Align content to the bottom of the section
-            alignItems: 'center',
-            height: '50vh', // Set height to 100% of the viewport height
-            paddingTop: '20px',
-            paddingBottom: '20px',
-            marginTop: '-30px',
-        }}
-    >
-        <Container
-            maxWidth="xl"
-            sx={{
-                paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-                textAlign: 'center',
-            }}
-        >
-            {/* Heading */}
-            <h2
-                style={{
-                    fontSize: window.innerWidth <= 600
-                        ? '1.25rem' // Slightly smaller font size for mobile (xs)
-                        : window.innerWidth <= 960
-                        ? '1.75rem' // Medium screens (sm)
-                        : '3.5rem', // Large screens (md)
-                    color: '#fdfefe',
-                    fontFamily: 'Tajawal',
-                    marginBottom: '20px', // Space between heading and buttons
-                }}
-            >
-                معرض أعمالنا
-            </h2>
 
-            {/* Icon Cards Row */}
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center', // Center the button container horizontally
-                    flexWrap: 'wrap',
-                    gap: '20px', // Spacing between the cards, if needed
-                }}
-            >
-                {/* Buttons in a row */}
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-evenly', // Distribute buttons with more space
-                        gap: '20px', // Default space between buttons
-                        width: '100%', // Ensure buttons stretch across container
-                        flexDirection: 'row', // Row by default
-                        flexWrap: 'wrap', // Allow buttons to wrap on smaller screens
-                    }}
-                >
-                    <button
-                        style={{
-                            padding: '12px 25px',
-                            backgroundColor: '#17202a',
-                            color: 'white',
-                            border: '2px solid #f05322', // Outline color
-                            borderRadius: '5px',
-                            cursor: 'pointer',
-                            width: 'auto', // Adjust width automatically on different screen sizes
-                            fontFamily: 'Tajawal',
-                            fontSize: window.innerWidth <= 600 ? '18px' : '30px', // Smaller font size on mobile
-                        }}
-                    >
-                        معرض مشاريع الفيديو
-                    </button>
-                    <button
-                        style={{
-                            padding: '12px 25px',
-                            backgroundColor: '#17202a',
-                            color: 'white',
-                            border: '2px solid #f05322', // Outline color
-                            borderRadius: '5px',
-                            cursor: 'pointer',
-                            width: 'auto', // Adjust width automatically on different screen sizes
-                            fontFamily: 'Tajawal',
-                            fontSize: window.innerWidth <= 600 ? '18px' : '30px', // Smaller font size on mobile
-                        }}
-                    >
-                        معرض أعمال الفوتوغرافيا
-                    </button>
-                </div>
-            </div>
-        </Container>
-    </section>
 
         <section
             style={{
