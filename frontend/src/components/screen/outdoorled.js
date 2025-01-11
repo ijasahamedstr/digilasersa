@@ -65,14 +65,15 @@ const Outdoorled = () => {
   
 
     const [mainImage, setMainImage] = useState("https://i.ibb.co/SfvVkdQ/IMG-20241222-WA0003.webp");
-    const [mainImage1, setMainImage1] = useState("https://i.ibb.co/kKgmDtH/IMG-20241222-WA0010.webp");
+  const [mainImage1, setMainImage1] = useState("https://i.ibb.co/kKgmDtH/IMG-20241222-WA0010.webp");
 
-    // Function to handle the click on the slider images
-    const handleImageClick = (imageSrc) => {
-      setMainImage(imageSrc);
-      setMainImage1(imageSrc);
-    };
+  const handleImageClick = (imageSrc) => {
+    setMainImage(imageSrc); // Update the main image for the first section
+  };
 
+  const handleImageClick1 = (imageSrc) => {
+    setMainImage1(imageSrc); // Update the main image for the second section
+  };
   
     // Slick slider settings for vertical slider
     const sliderSettings = {
@@ -458,7 +459,7 @@ const Outdoorled = () => {
                                     borderRadius: '5px',
                                     cursor: 'pointer', // Add a cursor to indicate it's clickable
                                   }}
-                                  onClick={() => handleImageClick(image)} // Update the main image on click
+                                  onClick={() => handleImageClick1(image)} // Update the main image on click
                                 />
                               </div>
                             ))}
