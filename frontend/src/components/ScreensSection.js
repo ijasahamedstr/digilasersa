@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { Box, Typography, Grid, Card, Button } from '@mui/material';
 import Container from '@mui/material/Container';
-import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp  } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaSnapchat, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
-
+import { Modal } from 'react-bootstrap';
 
 const carouselItems = [
   {
@@ -38,32 +38,62 @@ const ScreensSection = () => {
     message: '',
   });
 
- 
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    };
-  
-    const handleFormSubmit = (event) => {
-      event.preventDefault();
-  
-      // Add simple validation
-      if (!formData.name || !formData.phone || !formData.email || !formData.message) {
-        alert("Please fill out all fields.");
-        return;
-      }
-  
-      // Redirect to another site (Example: External site)
-      window.location.href = 'https://another-site.com/contact';
-    };
-    
+  const [showModal, setShowModal] = useState(true); // To show video modal on page load
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    // Add simple validation
+    if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    // Redirect to another site (Example: External site)
+    window.location.href = 'https://another-site.com/contact';
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <>
+      {/* Introduction Video Modal */}
+      <Modal 
+        show={showModal} 
+        onHide={handleCloseModal} 
+        centered 
+        size="lg" // Makes the modal extra large
+        dialogClassName="modal-90w"
+        aria-labelledby="example-custom-modal-styling-title"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-custom-modal-styling-title">
+            Video Introduction
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <video
+            width="100%"
+            height="auto"
+            controls
+            autoPlay
+            onEnded={handleCloseModal}  // Close the modal when the video ends
+          >
+            <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </Modal.Body>
+      </Modal>
       <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>
         <Box sx={{ width: '100%', position: 'relative', overflow: 'hidden' }}>
           <Carousel fade nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: 'black' }} />} prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: 'black' }} />} aria-live="polite">
@@ -139,7 +169,7 @@ const ScreensSection = () => {
                   </Box>
               </Box>
             </Container>
-            <section
+      <section
               style={{
                 width: '100%',
                 margin: '0 auto',

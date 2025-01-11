@@ -10,6 +10,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import Form from 'react-bootstrap/Form';
 
 
 const carouselItems = [
@@ -28,6 +29,35 @@ const carouselItems = [
 ];
 
 const WebMediaphoto = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: '',
+  });
+
+ 
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    };
+  
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+  
+      // Add simple validation
+      if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+        alert("Please fill out all fields.");
+        return;
+      }
+  
+      // Redirect to another site (Example: External site)
+      window.location.href = 'https://another-site.com/contact';
+    };
+
   
           const products = [
             {
@@ -197,6 +227,67 @@ const WebMediaphoto = () => {
                   </a>
                 </Box>
             </Box>
+                                <Box sx={{
+                                    position: "fixed",
+                                    top: "10%",
+                                    right: 0,
+                                    zIndex: 2,
+                                    backgroundColor: "#06f9f3",
+                                    padding: "20px",
+                                    borderRadius: "5px",
+                                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+                                  }}>
+                                    <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+                                      <Button
+                                        variant="contained"
+                                        component={Link} // Use Link component here
+                                        to="/Web-Media-Video" // Correct route path
+                                        sx={{ backgroundColor: "#17202a", color: "#fff" }}
+                                      >
+                                        فيديو
+                                      </Button>
+                                      <Button
+                                        variant="contained"
+                                        component={Link}
+                                        to="/vr-videos"
+                                        sx={{ backgroundColor: "#17202a", color: "#fff" }}
+                                      >
+                                        VR Videos
+                                      </Button>
+                                      <Button
+                                        variant="contained"
+                                        component={Link}
+                                        to="/Web-Media-photo"
+                                        sx={{ backgroundColor: "#17202a", color: "#fff" }}
+                                      >
+                                        فـوتـو
+                                      </Button>
+                                      <Button
+                                        variant="contained"
+                                        component={Link}
+                                        to="/Motion-graphics"
+                                        sx={{ backgroundColor: "#17202a", color: "#fff" }}
+                                      >
+                                        Motion graphics
+                                      </Button>
+                                      <Button
+                                        variant="contained"
+                                        component={Link}
+                                        to="/AIVideos"
+                                        sx={{ backgroundColor: "#17202a", color: "#fff" }}
+                                      >
+                                        Ai Videos
+                                      </Button>
+                                      <Button
+                                        variant="contained"
+                                        component={Link}
+                                        to="/3D-Animation"
+                                        sx={{ backgroundColor: "#17202a", color: "#fff" }}
+                                      >
+                                        3D Animation
+                                      </Button>
+                                    </Box>
+                                  </Box>
 
             <section  
             style={{
@@ -224,29 +315,32 @@ const WebMediaphoto = () => {
             }}>
             <Container maxWidth="xl" sx={{ padding: 3, marginTop:'50px' }}>
             <Box
+            sx={{
+              padding: 0,
+              borderRadius: 2,
+              boxShadow: 3,
+              maxWidth: '100%',
+              textAlign: 'center',
+              marginBottom: '20px',
+              border: '2px solid white',  // Add this line to create a white border
+              marginTop:'30px'
+            }}
+          >
+            <Typography
+              variant="h2"
+              component="h3"
               sx={{
-                backgroundColor: '#f5f5f5', // Background color
-                padding: 0, // Padding around the content
-                borderRadius: 2, // Optional: rounded corners
-                boxShadow: 3, // Optional: card shadow
-                maxWidth: '100%', // Make sure it's responsive
-                textAlign: 'center', // Center align content
-                marginBottom: '20px',
+                fontFamily: 'Tajawal',
+                color: '#333',
+                paddingTop: '15px',
+                paddingBottom: '15px',
+                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+                textAlign: 'center',
               }}
             >
-              <Typography
-                variant="h2"
-                component="h3"
-                sx={{
-                  fontFamily: 'Tajawal',
-                  color: '#333',
-                  fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-                  textAlign: 'center',
-                }}
-              >
-                <span style={{ color: '#015057' }}>فوتوغرافيا</span>
-              </Typography>
-            </Box>
+              <span style={{ color: '#FFFFFF' }}>فوتوغرافيا</span>
+            </Typography>
+          </Box>
 
                 <Grid container spacing={2}>
                 {currentProducts.map((product, index) => (
@@ -433,43 +527,43 @@ const WebMediaphoto = () => {
                   </Container>
               </section>
 
-            <section
-              style={{
-                backgroundColor: '#000000',
-                backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
-                width: '100%',
-                margin: '0 auto',
-                marginBottom: '0px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingTop: '50px',
-                paddingBottom: '50px',
-                marginTop: '-30px',
-                direction: 'ltr', // Set the section to RTL direction
-              }}
-            >
-              <Container
-                maxWidth="xl"
-                sx={{
-                  paddingX: { xs: 2, sm: 3, md: 5 },
-                  textAlign: 'center',
-                }}
-              >
-                <Grid container spacing={4}>
-                  {/* Text Section on the Right */}
-                  <Grid
+              <section
+      style={{
+        backgroundColor: '#000000',
+        backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
+        width: '100%',
+        margin: '0 auto',
+        marginBottom: '0px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: '50px',
+        paddingBottom: '50px',
+        marginTop: '-30px',
+        direction: 'rtl',
+      }}
+    >
+      <Container
+        maxWidth="xl"
+        sx={{
+          paddingX: { xs: 2, sm: 3, md: 5 },
+          textAlign: 'center',
+        }}
+      >
+        <Grid container spacing={4}>
+          {/* Text Section on the Right */}
+          <Grid
                     item
                     xs={12}
                     sm={6}
                     order={{ xs: 1, sm: 1 }} // Keep this section first on all screen sizes
                     sx={{ direction: 'rtl' }}
-                  >
+                >
                     <Typography variant="h4" color="white" paragraph>
-                      Contact Us
+                    Contact Us
                     </Typography>
                     <Typography variant="h5" color="#00fffc">
-                      للطلب والإستفسار /
+                    للطلب والإستفسار /
                     </Typography>
                     <Typography variant="h6" color="white" sx={{ marginTop: '50px' }}>
                     مدير قسم الميديا  : <span style={{ fontWeight: 'bold' }}>9999 065 057</span>
@@ -480,113 +574,165 @@ const WebMediaphoto = () => {
                     <Typography variant="h6" color="white" sx={{ marginTop: '10px' }}>
                     مدير تسويق الميديا  : <span style={{ fontWeight: 'bold' }}>8888 093 057</span>
                     </Typography>
-                  </Grid>
-
-                  {/* Contact Form Section on the Left */}
-                  <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    order={{ xs: 2, sm: 2 }} // Move this section to the bottom on mobile (order 2)
-                  >
-                    <form
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '10px',
-                        direction: 'rtl', // Set the form to right-to-left direction
-                      }}
-                    >
-                      <TextField
-                        label="الاسم"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        sx={{
-                          input: {
-                            color: 'white',
-                            textAlign: 'right', // Align text to the right
-                          },
-                          label: { color: 'white' },
-                          '& .MuiOutlinedInput-root': {
-                            color: 'white',
-                            borderColor: 'white',
-                          },
-                        }}
-                      />
-                      <TextField
-                        label="جوال"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        sx={{
-                          input: {
-                            color: 'white',
-                            textAlign: 'right', // Align text to the right
-                          },
-                          label: { color: 'white' },
-                          '& .MuiOutlinedInput-root': {
-                            color: 'white',
-                            borderColor: 'white',
-                          },
-                        }}
-                      />
-                      <TextField
-                        label="بريد الكتروني"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        sx={{
-                          input: {
-                            color: 'white',
-                            textAlign: 'right', // Align text to the right
-                          },
-                          label: { color: 'white' },
-                          '& .MuiOutlinedInput-root': {
-                            color: 'white',
-                            borderColor: 'white',
-                          },
-                        }}
-                      />
-                      <TextField
-                        label="رسالتك"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        sx={{
-                          input: {
-                            color: 'white',
-                            textAlign: 'right', // Align text to the right
-                          },
-                          label: { color: 'white' },
-                          '& .MuiOutlinedInput-root': {
-                            color: 'white',
-                            borderColor: 'white',
-                          },
-                        }}
-                      />
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                          marginTop: '15px',
-                          background: '#00fffc',
-                          color: '#1e272e',
-                          padding: { xs: '10px', sm: '15px' }, // Responsive padding
-                        }}
-                      >
-                        Submit
-                      </Button>
-                    </form>
-                  </Grid>
                 </Grid>
-              </Container>
-            </section>
+
+
+          {/* Contact Form Section on the Left */}
+          <Grid item xs={12} sm={6} order={{ xs: 2, sm: 2 }}>
+            <h2
+              style={{
+                color: 'white',
+                fontFamily: 'Tajawal',
+                fontSize: '26px',
+                textAlign: 'right',
+                marginBottom: '20px',
+                direction: 'rtl',
+              }}
+            >
+              للإستفسارات العامة ..
+            </h2>
+
+            <form
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+                direction: 'rtl',
+              }}
+              onSubmit={handleFormSubmit}
+            >
+              <Form.Group
+                controlId="name"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  الاسم
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="phone"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  جـوال
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="email"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  بريد الكتروني
+                </Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="message"
+                className="d-flex align-items-center"
+                style={{ gap: '10px' }}
+              >
+                <Form.Label
+                  style={{
+                    color: 'white',
+                    fontFamily: 'Tajawal',
+                    fontSize: '22px',
+                    width: '150px',
+                    textAlign: 'right',
+                  }}
+                >
+                  رسالتك
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  style={{
+                    background: '#17202a',
+                    border: 'none',
+                    outline: 'none',
+                  }}
+                />
+              </Form.Group>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  marginTop: '15px',
+                  background: '#00fffc',
+                  color: '#1e272e',
+                  padding: { xs: '10px', sm: '15px' },
+                }}
+              >
+                Submit
+              </Button>
+            </form>
+          </Grid>
+        </Grid>
+      </Container>
+    </section>
+
         </Container>
   );
 };
