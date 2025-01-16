@@ -100,6 +100,11 @@ const Animation = () => {
       title: "المنيوهات الأطعمة المشروبات",
       videoUrl: "https://youtu.be/lN1V_g1RhvQ" // New video URL
     },
+    {
+      img: "https://i.ibb.co/Hz3M5LK/delicious-burger-nature.webp",
+      title: "المنيوهات الأطعمة المشروبات",
+      videoUrl: "https://youtu.be/lN1V_g1RhvQ" // New video URL
+    },
     // Add more products as needed...
   ];
 
@@ -319,55 +324,56 @@ const Animation = () => {
           </Box>
 
 
-            <Grid container spacing={2}>
-              {currentProducts.map((product, index) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                  <Box sx={{ position: 'relative' }}>
-                    <CardMedia
-                      component="img"
-                      alt={`Service ${index}`}
-                      image={product.img}
-                      sx={{
-                        height: { xs: 120, sm: 150, md: 180 },
-                        objectFit: 'cover',
-                        cursor: 'pointer',
-                        borderTopLeftRadius: 2,
-                        borderTopRightRadius: 2,
-                        border: '4px solid transparent',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-                        transition: 'all 0.3s ease-in-out',
-                        '&:hover': {
-                          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
-                          border: '4px solid #e99b19',
-                        }
-                      }}
-                      onClick={() => handleVideoClick(product.videoUrl)}
-                    />
-                    <IconButton
-                      sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                        color: '#fff',
-                        '&:hover': {
-                          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        }
-                      }}
-                      onClick={() => handleVideoClick(product.videoUrl)}
-                    >
-                      <PlayCircleIcon sx={{ fontSize: 50 }} />
-                    </IconButton>
-                  </Box>
-                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 1 }}>
-                    <Typography variant="h3" component="span" sx={{ fontFamily: 'Tajawal', fontSize: '1.5rem', textAlign: 'center', display: 'block', color: '#e99b19' }}>
-                      {product.title}
-                    </Typography>
-                  </Box>
-                </Grid>
-              ))}
+          <Grid container spacing={2}>
+          {currentProducts.map((product, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Box sx={{ position: 'relative' }}>
+                <CardMedia
+                  component="img"
+                  alt={`Service ${index}`}
+                  image={product.img}
+                  sx={{
+                    height: { xs: 120, sm: 150, md: 180 },
+                    objectFit: 'cover',
+                    cursor: 'pointer',
+                    borderTopLeftRadius: 2,
+                    borderTopRightRadius: 2,
+                    border: '4px solid transparent',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
+                      border: '4px solid #e99b19',
+                    }
+                  }}
+                  onClick={() => handleVideoClick(product.videoUrl)}
+                />
+                <IconButton
+                  sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    }
+                  }}
+                  onClick={() => handleVideoClick(product.videoUrl)}
+                >
+                  <PlayCircleIcon sx={{ fontSize: 50 }} />
+                </IconButton>
+              </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 1 }}>
+                <Typography variant="h3" component="span" sx={{ fontFamily: 'Tajawal', fontSize: '1.5rem', textAlign: 'center', display: 'block', color: '#e99b19' }}>
+                  {product.title}
+                </Typography>
+              </Box>
             </Grid>
+          ))}
+        </Grid>
+
 
             <Box display="flex" justifyContent="center" sx={{ marginTop: 3 }}>
               <Pagination
