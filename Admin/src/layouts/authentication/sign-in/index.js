@@ -2,19 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // For navigation after login
 import axios from "axios"; // For API requests
 
-// react-router-dom components
-import { Link } from "react-router-dom";
-
 // @mui material components
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
-import Grid from "@mui/material/Grid";
-import MuiLink from "@mui/material/Link";
-
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -92,7 +82,7 @@ function Basic() {
       <Card>
         <MDBox
           variant="gradient"
-          bgColor="info"
+          bgColor="dark"
           borderRadius="lg"
           coloredShadow="info"
           mx={2}
@@ -102,7 +92,14 @@ function Basic() {
           textAlign="center"
         >
           <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Sign in
+            <img
+              src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+              alt="Responsive Image"
+              style={{
+                width: "50%",
+                height: "auto",
+              }}
+            />
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
@@ -138,7 +135,7 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth type="submit">
+              <MDButton variant="gradient" color="dark" fullWidth type="submit">
                 Sign in
               </MDButton>
             </MDBox>
