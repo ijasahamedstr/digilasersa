@@ -3,14 +3,13 @@ import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
-import { ShoppingCart, Storefront, PersonAdd, LocalMall } from "@mui/icons-material";
+import { ShoppingCart, Storefront, PersonAdd } from "@mui/icons-material";
 import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import CategoryIcon from "@mui/icons-material/Category";
 import React, { useState, useEffect } from "react";
 
 function Dashboard() {
-  const [citiesCount, setCitiesCount] = useState(0); // To store cities count
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -47,12 +46,7 @@ function Dashboard() {
             {/* Product Statistics */}
             <Grid item xs={12} md={6} lg={3}>
               <MDBox mb={1.5}>
-                <ComplexStatisticsCard
-                  icon={<ShoppingCart />}
-                  title="Products"
-                  count={281}
-                  color="primary"
-                />
+                <ComplexStatisticsCard icon={<ShoppingCart />} title="Products" color="primary" />
               </MDBox>
             </Grid>
 
@@ -62,7 +56,6 @@ function Dashboard() {
                 <ComplexStatisticsCard
                   icon={<HourglassEmptyIcon />}
                   title="Pending Orders"
-                  count="23"
                   color="warning"
                 />
               </MDBox>
@@ -75,7 +68,6 @@ function Dashboard() {
                   color="success"
                   icon={<Storefront />}
                   title="Completed Orders"
-                  count="345"
                 />
               </MDBox>
             </Grid>
@@ -87,7 +79,6 @@ function Dashboard() {
                   color="error"
                   icon={<DeliveryDiningIcon />}
                   title="Completed Shipping"
-                  count="91"
                 />
               </MDBox>
             </Grid>
@@ -95,12 +86,7 @@ function Dashboard() {
             {/* Active Customers */}
             <Grid item xs={12} md={6} lg={3}>
               <MDBox mb={1.5}>
-                <ComplexStatisticsCard
-                  icon={<PersonAdd />}
-                  title="Active Customers"
-                  count={citiesCount || 0} // Fallback to 0 if citiesCount is invalid
-                  color="info"
-                />
+                <ComplexStatisticsCard icon={<PersonAdd />} title="Active Customers" color="info" />
               </MDBox>
             </Grid>
 
@@ -110,7 +96,6 @@ function Dashboard() {
                 <ComplexStatisticsCard
                   icon={<CategoryIcon />}
                   title="Top Categories"
-                  count={281}
                   color="primary"
                 />
               </MDBox>
@@ -121,7 +106,6 @@ function Dashboard() {
                 <ComplexStatisticsCard
                   icon={<CategoryIcon />}
                   title="Mid Categories"
-                  count="2,300"
                   color="secondary"
                 />
               </MDBox>
@@ -133,7 +117,6 @@ function Dashboard() {
                   color="success"
                   icon={<CategoryIcon />}
                   title="End Categories"
-                  count="34k"
                 />
               </MDBox>
             </Grid>

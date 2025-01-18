@@ -145,7 +145,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         </MDBox>
         <MDBox component={NavLink} to="/" display="flex" alignItems="center">
           <img
-            src="https://i.ibb.co/d5BgnvM/Asset-6-1.png"
+            src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
             alt="Responsive Image"
             style={{
               width: "100%",
