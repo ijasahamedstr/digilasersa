@@ -17,7 +17,7 @@ connectDB();
 
 // Define a route handler for the default home page
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('Server is running');
 });
 
 app.use(cors({
