@@ -58,27 +58,19 @@ function Promotionalgiftssection() {
       Categoriesstatus: "Yes",
       imgpath: "image1.jpg",
     },
-    {
-      _id: "2",
-      newsheading: "News Headline 2",
-      newsdec: "Description of News 2",
-      Categoriedec: "Category 2",
-      Categoriesstatus: "No",
-      imgpath: "image2.jpg",
-    },
   ]);
 
   const columns = [
-    { Header: "News", accessor: "News", width: "20%", align: "left" },
-    { Header: "News Description", accessor: "News_description", width: "20%", align: "left" },
-    { Header: "Background Image", accessor: "BackgroundImage", align: "center" },
+    { Header: "Gift Name", accessor: "Gift_Name", width: "20%", align: "left" },
+    { Header: "Gift Type", accessor: "Gift_Type", width: "20%", align: "left" },
+    { Header: "Gift Image", accessor: "Gift_Image", align: "center" },
     { Header: "Action", accessor: "action", align: "center" },
   ];
 
   const rows = News.map((item) => ({
-    News: <Author name={item.newsheading} />,
-    News_description: <Author name={item.newsdec} />,
-    News_des: <Job title={item.Categoriedec} />,
+    Gift_Name: <Author name={item.newsheading} />,
+    Gift_Type: <Author name={item.newsdec} />,
+    Gift_Image: <Job title={item.Categoriedec} />,
     Categoriesstatus: (
       <MDBadge
         badgeContent={item.Categoriesstatus === "Yes" ? "Yes" : "No"}
@@ -183,7 +175,7 @@ function Promotionalgiftssection() {
                 <MDTypography variant="h6" color="white">
                   Promotional Gifts Section
                 </MDTypography>
-                <Link to="/new-News">
+                <Link to="/Add-Promotional-gifts-section">
                   <Button
                     variant="contained"
                     color="primary"

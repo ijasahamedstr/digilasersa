@@ -5,6 +5,10 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import { Editor } from "@tinymce/tinymce-react";
 
 import MDBox from "components/MDBox";
@@ -12,47 +16,62 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-function AddNews() {
+function AddPromotionalgifts() {
   const [loading, setLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [newsheading, setNewsheading] = useState("");
   const [newsdec, setNewsdec] = useState("");
   const [file, setFile] = useState(null);
+  const [Categoriesstatus, setCategoriesstatus] = useState("Yes");
   const editorRef = useRef(null);
 
-  // Handle input field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "newsheading") setNewsheading(value);
     if (name === "newsdec") setNewsdec(value);
   };
 
-  // Handle image file change
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-
-    // Preview image
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
-    }
+  const handleCategoryStatusChange = (e) => {
+    setCategoriesstatus(e.target.value);
   };
 
-  // Handle TinyMCE editor changes
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile && !selectedFile.type.startsWith("image/")) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid File Type",
+        text: "Please select an image file!",
+      });
+      return;
+    }
+
+    if (selectedFile && selectedFile.size > 5 * 1024 * 1024) {
+      Swal.fire({
+        icon: "error",
+        title: "File Size Too Large",
+        text: "The file size exceeds the limit of 5 MB.",
+      });
+      return;
+    }
+
+    setFile(selectedFile);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+    };
+    reader.readAsDataURL(selectedFile);
+  };
+
   const handleEditorChange = (content) => {
     setNewsdec(content);
   };
 
-  // Submit the form
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    // Basic validation
     if (!newsheading || !newsdec || !file) {
       Swal.fire({
         icon: "error",
@@ -67,12 +86,13 @@ function AddNews() {
     formData.append("photo", file);
     formData.append("newsheading", newsheading);
     formData.append("newsdec", newsdec);
+    formData.append("Categoriesstatus", Categoriesstatus);
+
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_HOST}/News`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      // Check response status and display appropriate message
       if (res.data.status === 401 || !res.data) {
         Swal.fire({
           icon: "error",
@@ -86,7 +106,6 @@ function AddNews() {
           text: "Category added successfully!",
         });
 
-        // Clear the form
         setNewsheading("");
         setNewsdec("");
         setFile(null);
@@ -125,69 +144,58 @@ function AddNews() {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Add New News
+                  Add Promotional gifts section
                 </MDTypography>
               </MDBox>
 
-              {/* Form for adding category */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
                 <form onSubmit={handleSubmit}>
                   <TextField
-                    label="News Heading"
+                    label="Gift Name"
                     variant="outlined"
                     fullWidth
                     sx={{ mb: 2 }}
-                    name="newsheading"
+                    name="GiftName"
                     value={newsheading}
                     onChange={handleChange}
                   />
-                  <div style={{ marginBottom: "20px" }}>
-                    <Editor
-                      apiKey="hkk12ec9ohtvvpvn8nqjjmlq7gec9klnt54dk767ewll5f09"
-                      value={newsdec}
-                      onEditorChange={handleEditorChange}
-                      init={{
-                        height: 300,
-                        menubar: false,
-                        plugins: [
-                          "a11ychecker",
-                          "advlist",
-                          "advcode",
-                          "advtable",
-                          "autolink",
-                          "checklist",
-                          "export",
-                          "lists",
-                          "link",
-                          "image",
-                          "charmap",
-                          "preview",
-                          "anchor",
-                          "searchreplace",
-                          "visualblocks",
-                          "powerpaste",
-                          "fullscreen",
-                          "formatpainter",
-                          "insertdatetime",
-                          "media",
-                          "table",
-                          "help",
-                          "wordcount",
-                          "emoticons", // Add emoticons plugin
-                          "spellchecker", // Add spellchecker plugin
-                          "mediaembed", // Add media embed plugin
-                          "autosave", // Add autosave plugin
-                        ],
-                        toolbar:
-                          "undo redo | casechange blocks | bold italic backcolor | " +
-                          "alignleft aligncenter alignright alignjustify | " +
-                          "bullist numlist checklist outdent indent | removeformat | a11ycheck code table help",
-                        content_style:
-                          "body { font-family:Helvetica,Arial,sans-serif; font-size:14px; margin-bottom: 20px; }",
-                      }}
-                    />
-                  </div>
-                  {/* Image Upload Button */}
+
+                  <FormControl fullWidth sx={{ mb: 2 }}>
+                    <InputLabel>Promotional gifts Type</InputLabel>
+                    <Select
+                      label="Promotional gifts Type"
+                      sx={{ height: "40px" }}
+                      name="Categoriesstatus"
+                      value={Categoriesstatus}
+                      onChange={handleCategoryStatusChange}
+                    >
+                      <MenuItem
+                        value="دروع ومجسمات"
+                        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
+                      >
+                        دروع ومجسمات
+                      </MenuItem>
+                      <MenuItem
+                        value="خشـبيات"
+                        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
+                      >
+                        خشـبيات
+                      </MenuItem>
+                      <MenuItem
+                        value="مكتـبيات"
+                        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
+                      >
+                        مكتـبيات
+                      </MenuItem>
+                      <MenuItem
+                        value="اكسسوارات"
+                        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "20px" }}
+                      >
+                        اكسسوارات
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+
                   <label htmlFor="file-upload">
                     <input
                       id="file-upload"
@@ -216,7 +224,6 @@ function AddNews() {
                     </Button>
                   </label>
 
-                  {/* Image Preview */}
                   {imagePreview && (
                     <MDBox
                       display="flex"
@@ -242,7 +249,6 @@ function AddNews() {
                     </MDBox>
                   )}
 
-                  {/* Submit Button */}
                   <Button
                     type="submit"
                     variant="contained"
@@ -263,4 +269,4 @@ function AddNews() {
   );
 }
 
-export default AddNews;
+export default AddPromotionalgifts;

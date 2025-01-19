@@ -1,6 +1,7 @@
 import Dashboard from "layouts/dashboard";
 import SignIn from "layouts/authentication/sign-in";
 import Promotionalgiftssection from "layouts/Promotional-gifts-section";
+import AddPromotionalgifts from "layouts/Promotional-gifts-section/AddPromotionalgifts";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -30,6 +31,11 @@ const routes = [
     icon: <Icon fontSize="small">login</Icon>,
     route: "/authentication/sign-in",
     component: <SignIn />,
+  },
+  {
+    type: "collapse",
+    route: "/Add-Promotional-gifts-section",
+    component: <AddPromotionalgifts />,
   },
 ];
 
