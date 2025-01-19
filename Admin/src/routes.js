@@ -1,8 +1,10 @@
 import Dashboard from "layouts/dashboard";
 import SignIn from "layouts/authentication/sign-in";
+import Promotionalgiftssection from "layouts/Promotional-gifts-section";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 
 const routes = [
   {
@@ -12,6 +14,14 @@ const routes = [
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
     component: <Dashboard />,
+  },
+  {
+    type: "collapse",
+    name: "Promotional gifts section",
+    key: "Promotional-gifts-section",
+    icon: <CardGiftcardIcon />,
+    route: "/Promotional-gifts-section",
+    component: <Promotionalgiftssection />,
   },
   {
     type: "collapse",

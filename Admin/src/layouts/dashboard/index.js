@@ -3,10 +3,6 @@ import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
-import { ShoppingCart, Storefront, PersonAdd, LocalMall } from "@mui/icons-material";
-import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
-import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
-import CategoryIcon from "@mui/icons-material/Category";
 import React, { useState, useEffect } from "react";
 
 function Dashboard() {
@@ -44,24 +40,37 @@ function Dashboard() {
           <p>Loading...</p> // Display loading text while data is being fetched
         ) : (
           <Grid container spacing={3}>
-            {/* Product Statistics */}
+            {/* Promotional gifts section */}
             <Grid item xs={12} md={6} lg={3}>
               <MDBox mb={1.5}>
                 <ComplexStatisticsCard
-                  icon={<ShoppingCart />}
                   title="Promotional gifts section"
-                  count={0}
+                  count={0} // Set the count to 0 or dynamic if required
                   color="primary"
                   sx={{ fontSize: "1.2rem" }} // Setting font size for the count text
+                  icon={
+                    <img
+                      src="https://i.ibb.co/HdgVtF5/image.webp"
+                      alt="Promotional Gifts"
+                      style={{ width: "40px", height: "40px", objectFit: "cover" }} // Set size and fit the image
+                    />
+                  }
                 />
               </MDBox>
             </Grid>
 
-            {/* Today's Users */}
+            {/* Printing section */}
             <Grid item xs={12} md={6} lg={3}>
               <MDBox mb={1.5}>
                 <ComplexStatisticsCard
-                  icon={<HourglassEmptyIcon />}
+                  // Replacing icon with an image
+                  icon={
+                    <img
+                      src="https://i.ibb.co/dmvyMMn/image-1.webp"
+                      alt="Printing"
+                      style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                    />
+                  }
                   title="Printing section"
                   count="0"
                   color="warning"
@@ -70,12 +79,19 @@ function Dashboard() {
               </MDBox>
             </Grid>
 
-            {/* Revenue */}
+            {/* Department of Fine Arts section */}
             <Grid item xs={12} md={6} lg={3}>
               <MDBox mb={1.5}>
                 <ComplexStatisticsCard
+                  // Replacing icon with an image
+                  icon={
+                    <img
+                      src="https://i.ibb.co/LP17MwP/image-6.webp"
+                      alt="Fine Arts"
+                      style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                    />
+                  }
                   color="success"
-                  icon={<Storefront />}
                   title="Department of Fine Arts section"
                   count="0"
                   sx={{ fontSize: "1.2rem" }} // Setting font size for the count text
@@ -83,12 +99,19 @@ function Dashboard() {
               </MDBox>
             </Grid>
 
-            {/* Followers */}
+            {/* Screens section */}
             <Grid item xs={12} md={6} lg={3}>
               <MDBox mb={1.5}>
                 <ComplexStatisticsCard
+                  // Replacing icon with an image
+                  icon={
+                    <img
+                      src="https://i.ibb.co/dmvyMMn/image-1.webp"
+                      alt="Screens"
+                      style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                    />
+                  }
                   color="error"
-                  icon={<DeliveryDiningIcon />}
                   title="Screens section"
                   count="0"
                   sx={{ fontSize: "1.2rem" }} // Setting font size for the count text
@@ -96,11 +119,18 @@ function Dashboard() {
               </MDBox>
             </Grid>
 
-            {/* Active Customers */}
+            {/* Department of Arabic Calligraphy section */}
             <Grid item xs={12} md={6} lg={3}>
               <MDBox mb={1.5}>
                 <ComplexStatisticsCard
-                  icon={<PersonAdd />}
+                  // Replacing icon with an image
+                  icon={
+                    <img
+                      src="https://i.ibb.co/5vHKmx1/image-2.webp"
+                      alt="Calligraphy"
+                      style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                    />
+                  }
                   title="Department of Arabic Calligraphy section"
                   count={citiesCount || 0} // Fallback to 0 if citiesCount is invalid
                   color="info"
@@ -109,11 +139,18 @@ function Dashboard() {
               </MDBox>
             </Grid>
 
-            {/* Categories (Example repetition) */}
+            {/* Software department section */}
             <Grid item xs={12} md={6} lg={3}>
               <MDBox mb={1.5}>
                 <ComplexStatisticsCard
-                  icon={<CategoryIcon />}
+                  // Replacing icon with an image
+                  icon={
+                    <img
+                      src="https://i.ibb.co/DDCFSm4/image-3.webp"
+                      alt="Software"
+                      style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                    />
+                  }
                   title="Software department section"
                   count={0}
                   color="primary"
@@ -122,10 +159,18 @@ function Dashboard() {
               </MDBox>
             </Grid>
 
+            {/* Social media section */}
             <Grid item xs={12} md={6} lg={3}>
               <MDBox mb={1.5}>
                 <ComplexStatisticsCard
-                  icon={<CategoryIcon />}
+                  // Replacing icon with an image
+                  icon={
+                    <img
+                      src="https://i.ibb.co/K5khVnQ/image-4.webp"
+                      alt="Social Media"
+                      style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                    />
+                  }
                   title="Social media section"
                   count="0"
                   color="secondary"
@@ -134,11 +179,19 @@ function Dashboard() {
               </MDBox>
             </Grid>
 
+            {/* Media and Communications Department */}
             <Grid item xs={12} md={6} lg={3}>
               <MDBox mb={1.5}>
                 <ComplexStatisticsCard
+                  // Replacing icon with an image
+                  icon={
+                    <img
+                      src="https://i.ibb.co/8BD4CKD/image-5.webp"
+                      alt="Media & Communications"
+                      style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                    />
+                  }
                   color="success"
-                  icon={<CategoryIcon />}
                   title="Media and Communications Department"
                   count="0"
                   sx={{ fontSize: "1.2rem" }} // Setting font size for the count text

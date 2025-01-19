@@ -25,7 +25,8 @@ function ComplexStatisticsCard({ color, title, count, icon }) {
           height="4rem"
           mt={-3}
         >
-          <Icon fontSize="medium" color="inherit">
+          {/* Update: Added sx prop to set the Icon's size */}
+          <Icon fontSize="small" sx={{ width: "2em", height: "2em" }}>
             {icon}
           </Icon>
         </MDBox>
