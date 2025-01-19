@@ -36,7 +36,6 @@ app.use(express.urlencoded({extended:true}))
 
 //ADMIN -> MIDDLEWARE -> SERVER
 app.use('/Adminlogin', AccountAdminloginrouter);
-
 app.use('/Adminregister',AccountAdminrouter);
 
 // Start the Express server
