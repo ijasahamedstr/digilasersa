@@ -1,99 +1,79 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { Editor } from "@tinymce/tinymce-react";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
 
+// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+
+// Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-function AddPromotionalgifts() {
+const AddPromotionalgifts = () => {
   const [loading, setLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
-  const [newsheading, setNewsheading] = useState("");
-  const [newsdec, setNewsdec] = useState("");
-  const [file, setFile] = useState(null);
-  const [Categoriesstatus, setCategoriesstatus] = useState("Yes");
-  const editorRef = useRef(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "newsheading") setNewsheading(value);
-    if (name === "newsdec") setNewsdec(value);
+  // Seller Form field states
+  const [giftDetails, setGiftDetails] = useState({
+    giftname: "",
+    gifttype: "",
+    file: null,
+  });
+
+  // Handle changes in input fields
+  const handleChange = ({ target: { name, value } }) => {
+    setGiftDetails((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
-  const handleCategoryStatusChange = (e) => {
-    setCategoriesstatus(e.target.value);
-  };
-
+  // Handle file input change
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    if (selectedFile && !selectedFile.type.startsWith("image/")) {
-      Swal.fire({
-        icon: "error",
-        title: "Invalid File Type",
-        text: "Please select an image file!",
-      });
-      return;
+    setGiftDetails((prevState) => ({
+      ...prevState,
+      file: selectedFile,
+    }));
+
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => setImagePreview(reader.result);
+      reader.readAsDataURL(selectedFile);
     }
-
-    if (selectedFile && selectedFile.size > 5 * 1024 * 1024) {
-      Swal.fire({
-        icon: "error",
-        title: "File Size Too Large",
-        text: "The file size exceeds the limit of 5 MB.",
-      });
-      return;
-    }
-
-    setFile(selectedFile);
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreview(reader.result);
-    };
-    reader.readAsDataURL(selectedFile);
   };
 
-  const handleEditorChange = (content) => {
-    setNewsdec(content);
-  };
-
+  // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    if (!newsheading || !newsdec || !file) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "All fields must be filled out, and an image must be uploaded!",
-      });
-      setLoading(false);
-      return;
-    }
-
     const formData = new FormData();
-    formData.append("photo", file);
-    formData.append("newsheading", newsheading);
-    formData.append("newsdec", newsdec);
-    formData.append("Categoriesstatus", Categoriesstatus);
+    formData.append("photo", giftDetails.file);
+    formData.append("giftname", giftDetails.giftname);
+    formData.append("gifttype", giftDetails.gifttype);
 
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_HOST}/News`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_HOST}/Promotionalgifts`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-      if (res.data.status === 401 || !res.data) {
+      if (response.data.status === 401 || !response.data) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -105,19 +85,15 @@ function AddPromotionalgifts() {
           title: "Success!",
           text: "Category added successfully!",
         });
-
-        setNewsheading("");
-        setNewsdec("");
-        setFile(null);
+        setGiftDetails({ giftname: "", gifttype: "", file: null });
         setImagePreview(null);
       }
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "An error occurred during the submission. Please try again.",
+        text: "Category addition failed. Please try again!",
       });
-      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -144,58 +120,50 @@ function AddPromotionalgifts() {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Add Promotional gifts section
+                  Add New Category
                 </MDTypography>
               </MDBox>
 
+              {/* Add Category Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
                 <form onSubmit={handleSubmit}>
+                  {/* Category Name */}
                   <TextField
-                    label="Gift Name"
+                    label="Category Name"
                     variant="outlined"
                     fullWidth
                     sx={{ mb: 2 }}
-                    name="GiftName"
-                    value={newsheading}
+                    name="giftname"
+                    value={giftDetails.giftname}
                     onChange={handleChange}
                   />
 
+                  {/* Dropdown for Promotional Gifts Type */}
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <InputLabel>Promotional gifts Type</InputLabel>
                     <Select
                       label="Promotional gifts Type"
                       sx={{ height: "40px" }}
-                      name="Categoriesstatus"
-                      value={Categoriesstatus}
-                      onChange={handleCategoryStatusChange}
+                      name="gifttype"
+                      value={giftDetails.gifttype}
+                      onChange={handleChange}
                     >
-                      <MenuItem
-                        value="دروع ومجسمات"
-                        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
-                      >
+                      <MenuItem value="دروع ومجسمات" style={{ fontFamily: "Tajawal, sans-serif" }}>
                         دروع ومجسمات
                       </MenuItem>
-                      <MenuItem
-                        value="خشـبيات"
-                        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
-                      >
+                      <MenuItem value="خشـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
                         خشـبيات
                       </MenuItem>
-                      <MenuItem
-                        value="مكتـبيات"
-                        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
-                      >
+                      <MenuItem value="مكتـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
                         مكتـبيات
                       </MenuItem>
-                      <MenuItem
-                        value="اكسسوارات"
-                        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "20px" }}
-                      >
+                      <MenuItem value="اكسسوارات" style={{ fontFamily: "Tajawal, sans-serif" }}>
                         اكسسوارات
                       </MenuItem>
                     </Select>
                   </FormControl>
 
+                  {/* Image Upload Field */}
                   <label htmlFor="file-upload">
                     <input
                       id="file-upload"
@@ -224,6 +192,7 @@ function AddPromotionalgifts() {
                     </Button>
                   </label>
 
+                  {/* Image Preview */}
                   {imagePreview && (
                     <MDBox
                       display="flex"
@@ -249,6 +218,7 @@ function AddPromotionalgifts() {
                     </MDBox>
                   )}
 
+                  {/* Submit Button */}
                   <Button
                     type="submit"
                     variant="contained"
@@ -267,6 +237,6 @@ function AddPromotionalgifts() {
       </MDBox>
     </DashboardLayout>
   );
-}
+};
 
 export default AddPromotionalgifts;

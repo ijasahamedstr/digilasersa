@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-
 // Define the schema
 const AccountRegisterAdminSchema = new Schema({
     name: String,

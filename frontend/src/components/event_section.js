@@ -46,6 +46,18 @@ function Eventsection() {
           textAlign: 'center',
         }}
       >
+            <Typography
+                variant="h4"
+                align="center"
+                gutterBottom
+                style={{
+                  fontFamily: 'Noto Kufi Arabic, sans-serif',
+                  fontSize: '2rem',
+                  marginBottom: '30px',
+                }}
+              >
+                 آخر أعمالنا
+              </Typography>
         <Swiper spaceBetween={30} slidesPerView={1} loop>
           {/* SwiperSlide for each card */}
           {events.map((event, index) => (

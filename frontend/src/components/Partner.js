@@ -59,7 +59,7 @@ const Partner = () => {
           marginBottom: '30px',
         }}
       >
-        البائعين عبر الفئات
+        شركاء النجاح
       </Typography>
       <Slider {...settings}>
         {images.map((image, index) => (

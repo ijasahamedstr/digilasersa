@@ -29,6 +29,7 @@ import VRVideos from './components/Media/VRVideos';
 import Motiongraphics from './components/Media/Motiongraphics';
 import AIVideos from './components/Media/AIVideos';
 import Animation from './components/Media/3DAnimation';
+import UpdateFild from './components/Update';
 
 const theme = createTheme({
   typography: {
@@ -73,6 +74,7 @@ function App() {
         <Route path="/AIVideos" element={<AIVideos/>} />
         <Route path="/3D-Animation" element={<Animation/>} />
         <Route path="/إتصل بنا" element={<Undercontration/>} />
+        <Route path="/update/:id" element={<UpdateFild/>} />
       </Routes>
       <Footer/>
     </Router>

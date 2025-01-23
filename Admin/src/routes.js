@@ -6,6 +6,7 @@ import AddPromotionalgifts from "layouts/Promotional-gifts-section/AddPromotiona
 // @mui icons
 import Icon from "@mui/material/Icon";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+import EditPromotionalgifts from "layouts/Promotional-gifts-section/EditPromotionalgifts";
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     type: "collapse",
     route: "/Add-Promotional-gifts-section",
     component: <AddPromotionalgifts />,
+  },
+  {
+    type: "collapse",
+    route: "/Edit-Promotional-gifts-section/:id",
+    component: <EditPromotionalgifts />,
   },
 ];
 

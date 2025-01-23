@@ -76,25 +76,25 @@ export default function Progress() {
       >
         <Grid item xs={6} sm={3} lg={2}> {/* Added responsive width for grid items */}
           <CircularProgressWithLabel value={progress1} color="primary" size={progressSize} />
-          <Typography variant="body2" color="#324933" style={{ marginTop: '10px',fontSize:'20px' }}>
+          <Typography variant="body2" color="#ffffff" style={{ marginTop: '10px',fontSize:'26px',fontFamily: 'Tajawal' }}>
           نسبة المبيعات السنوية
           </Typography>
         </Grid>
         <Grid item xs={6} sm={3} lg={2}> {/* Added responsive width for grid items */}
           <CircularProgressWithLabel value={progress2} color="secondary" size={progressSize} />
-          <Typography variant="body2" color="#324933" style={{ marginTop: '10px',fontSize:'20px' }}>
+          <Typography variant="body2" color="#ffffff" style={{ marginTop: '10px',fontSize:'26px',fontFamily: 'Tajawal' }}>
           الخدمات والصيانة
           </Typography>
         </Grid>
         <Grid item xs={6} sm={3} lg={2}> {/* Added responsive width for grid items */}
           <CircularProgressWithLabel value={progress3} sx={{ color: '#ff9800' }} size={progressSize} />
-          <Typography variant="body2" color="#324933" style={{ marginTop: '10px',fontSize:'20px' }}>
+          <Typography variant="body2" color="#ffffff" style={{ marginTop: '10px',fontSize:'26px',fontFamily: 'Tajawal' }}>
           الدعم الفني والتقني
           </Typography>
         </Grid>
         <Grid item xs={6} sm={3} lg={2}> {/* Added responsive width for grid items */}
           <CircularProgressWithLabel value={progress4} sx={{ color: '#4caf50' }} size={progressSize} />
-          <Typography variant="body2" color="#324933" style={{ marginTop: '10px',fontSize:'20px' }}>
+          <Typography variant="body2" color="#ffffff" style={{ marginTop: '10px',fontSize:'26px',fontFamily: 'Tajawal' }}>
           الجودة
           </Typography>
         </Grid>

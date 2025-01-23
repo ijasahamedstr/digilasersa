@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
@@ -7,59 +7,73 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDBadge from "components/MDBadge";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import DataTable from "examples/Tables/DataTable";
 
-// Helper function to create Author data
-const Author = ({ name }) => (
+// Helper component for displaying Author information
+const Author = ({ name, style }) => (
   <MDBox display="flex" alignItems="center" lineHeight={1}>
     <MDBox ml={2} lineHeight={1}>
-      <MDTypography display="block" variant="button" fontWeight="medium">
+      <MDTypography variant="button" fontWeight="medium" style={style}>
         {name}
       </MDTypography>
     </MDBox>
   </MDBox>
 );
 
-// Add PropTypes validation
 Author.propTypes = {
   name: PropTypes.string.isRequired,
+  style: PropTypes.object,
 };
 
-// Helper function to create Job data
+// Helper component for displaying Job information
 const Job = ({ title }) => (
   <MDBox lineHeight={1} textAlign="left">
-    <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
+    <MDTypography variant="caption" color="text" fontWeight="medium">
       {title}
     </MDTypography>
   </MDBox>
 );
 
-// Add PropTypes validation
 Job.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
 function Promotionalgiftssection() {
-  const [News, setNews] = useState([
-    {
-      _id: "1",
-      newsheading: "News Headline 1",
-      newsdec: "Description of News 1",
-      Categoriedec: "Category 1",
-      Categoriesstatus: "Yes",
-      imgpath: "image1.jpg",
-    },
-  ]);
+  const [promotionalGifts, setPromotionalGifts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Fetch data on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Promotionalgifts`);
+        setPromotionalGifts(response.data); // Set the fetched gifts
+      } catch (err) {
+        console.error("Error fetching data: ", err);
+        setError("Failed to fetch data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
+  // Define the columns for the DataTable
   const columns = [
     { Header: "Gift Name", accessor: "Gift_Name", width: "20%", align: "left" },
     { Header: "Gift Type", accessor: "Gift_Type", width: "20%", align: "left" },
@@ -67,46 +81,65 @@ function Promotionalgiftssection() {
     { Header: "Action", accessor: "action", align: "center" },
   ];
 
-  const rows = News.map((item) => ({
-    Gift_Name: <Author name={item.newsheading} />,
-    Gift_Type: <Author name={item.newsdec} />,
-    Gift_Image: <Job title={item.Categoriedec} />,
-    Categoriesstatus: (
-      <MDBadge
-        badgeContent={item.Categoriesstatus === "Yes" ? "Yes" : "No"}
-        color={item.Categoriesstatus === "Yes" ? "success" : "error"}
-        variant="gradient"
-        size="sm"
+  // Handle delete action with SweetAlert2 confirmation
+  const handleDelete = async (id) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This action cannot be undone!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await axios.delete(`${process.env.REACT_APP_API_HOST}/Promotionalgifts/${id}`);
+        setPromotionalGifts(promotionalGifts.filter((gift) => gift._id !== id));
+        Swal.fire("Deleted!", "The gift has been deleted.", "success");
+      } catch (err) {
+        console.error("Error deleting gift: ", err);
+        Swal.fire("Error!", "There was an issue deleting the gift.", "error");
+      }
+    }
+  };
+
+  // Map through promotional gifts data to build table rows
+  const rows = promotionalGifts.map((item) => ({
+    Gift_Name: (
+      <Author
+        name={item.giftname}
+        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
       />
     ),
-    BackgroundImage: (
+    Gift_Type: (
+      <Author
+        name={item.gifttype}
+        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
+      />
+    ),
+    Gift_Image: (
       <MDBox>
-        {item.imgpath ? (
+        {item.gifttimage ? (
           <img
-            src={`/uploads/News/${item.imgpath}`}
-            alt="Background"
-            style={{
-              maxWidth: "150px",
-              borderRadius: "8px",
-              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-            }}
+            src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
+            alt="Gift"
+            style={{ maxWidth: "100px", borderRadius: "8px" }}
           />
         ) : (
           <img
             src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
-            alt="Default Background"
-            style={{
-              maxWidth: "50px",
-              borderRadius: "8px",
-            }}
+            alt="No Image"
+            style={{ maxWidth: "50px", borderRadius: "8px" }}
           />
         )}
       </MDBox>
     ),
     action: (
       <MDBox display="flex" justifyContent="center" alignItems="center" gap={2}>
-        {/* Edit button with icon */}
-        <Link to={`/edit-category/${item._id}`} style={{ textDecoration: "none" }}>
+        {/* Edit button */}
+        <Link to={`/Edit-Promotional-gifts-section/${item._id}`} style={{ textDecoration: "none" }}>
           <Button
             variant="outlined"
             color="primary"
@@ -115,30 +148,25 @@ function Promotionalgiftssection() {
             sx={{
               backgroundColor: "#3f51b5",
               color: "white",
-              "&:hover": {
-                backgroundColor: "#303f9f",
-              },
+              "&:hover": { backgroundColor: "#303f9f" },
               padding: "6px 10px",
             }}
           >
             Edit
           </Button>
         </Link>
+
         {/* Delete button */}
         <Button
           variant="outlined"
           color="error"
           size="small"
           startIcon={<DeleteIcon />}
-          onClick={() => {
-            setNews(News.filter((newsItem) => newsItem._id !== item._id));
-          }}
+          onClick={() => handleDelete(item._id)}
           sx={{
             backgroundColor: "red",
             color: "white",
-            "&:hover": {
-              backgroundColor: "#ff4d4d",
-            },
+            "&:hover": { backgroundColor: "#ff4d4d" },
             padding: "6px 10px",
           }}
         >
@@ -148,6 +176,7 @@ function Promotionalgiftssection() {
     ),
   }));
 
+  // Handle the 'Add New' button click
   const handleNewFieldClick = () => {
     console.log("New Field button clicked");
   };
@@ -173,7 +202,7 @@ function Promotionalgiftssection() {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Promotional Gifts Section
+                  Promotional Gifts Table
                 </MDTypography>
                 <Link to="/Add-Promotional-gifts-section">
                   <Button
@@ -185,9 +214,7 @@ function Promotionalgiftssection() {
                     sx={{
                       backgroundColor: "#FFFFFF",
                       color: "black",
-                      "&:hover": {
-                        backgroundColor: "#f5f5f5",
-                      },
+                      "&:hover": { backgroundColor: "#f5f5f5" },
                     }}
                   >
                     Add New

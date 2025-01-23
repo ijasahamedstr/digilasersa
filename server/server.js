@@ -5,6 +5,10 @@ import cors from "cors";
 import cookiParser from "cookie-parser";
 import AccountAdminloginrouter from './routes/AccountLogin.route.js';
 import AccountAdminrouter from "./routes/AccountRegisterAdmin.route.js";
+import path from 'path';
+import { fileURLToPath } from 'url';
+import Promotionalgifts from "./routes/Promotionalgiftssection.route.js";
+import Printingdepartment from "./routes/Printingdepartment.route.js";
 
 
 // Create an instance of Express
@@ -29,14 +33,24 @@ app.use(cors({
 //Data understanding middleware
 app.use(express.json());
 
+
 //Validate your Data
 app.use(express.urlencoded({extended:true}))
+
+// Get __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use('/uploads/Promotionalgifts', express.static(path.join(__dirname, '/uploads/Promotionalgifts')));
+app.use('/uploads/Printingdepartment', express.static(path.join(__dirname, '/uploads/Printingdepartment')));
+
 
 //CLIENT -> MIDDLEWARE -> SERVER
 
 //ADMIN -> MIDDLEWARE -> SERVER
 app.use('/Adminlogin', AccountAdminloginrouter);
 app.use('/Adminregister',AccountAdminrouter);
+app.use('/Promotionalgifts',Promotionalgifts);
+app.use('/Printingdepartment',Printingdepartment);
 
 
 // Start the Express server
