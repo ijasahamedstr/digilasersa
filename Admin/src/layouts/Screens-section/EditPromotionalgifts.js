@@ -139,7 +139,7 @@ const EditPromotionalgifts = () => {
 
               {/* Edit Category Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} encType="multipart/form-data">
                   {/* Category Name */}
                   <TextField
                     label="Category Name"

@@ -48,8 +48,8 @@ Job.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-function Promotionalgiftssection() {
-  const [promotionalGifts, setPromotionalGifts] = useState([]);
+function PrintingDepartment() {
+  const [Printing, setPrinting] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -57,8 +57,8 @@ function Promotionalgiftssection() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Promotionalgifts`);
-        setPromotionalGifts(response.data); // Set the fetched gifts
+        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Printingdepartment`);
+        setPrinting(response.data); // Set the fetched gifts
       } catch (err) {
         console.error("Error fetching data: ", err);
         setError("Failed to fetch data");
@@ -75,9 +75,9 @@ function Promotionalgiftssection() {
 
   // Define the columns for the DataTable
   const columns = [
-    { Header: "Gift Name", accessor: "Gift_Name", width: "20%", align: "left" },
-    { Header: "Gift Type", accessor: "Gift_Type", width: "20%", align: "left" },
-    { Header: "Gift Image", accessor: "Gift_Image", align: "center" },
+    { Header: "Printing Name", accessor: "Printing_Name", width: "20%", align: "left" },
+    { Header: "Printing Type", accessor: "Printing_Type", width: "20%", align: "left" },
+    { Header: "Printing Image", accessor: "Printing_Image", align: "center" },
     { Header: "Action", accessor: "action", align: "center" },
   ];
 
@@ -95,36 +95,36 @@ function Promotionalgiftssection() {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`${process.env.REACT_APP_API_HOST}/Promotionalgifts/${id}`);
-        setPromotionalGifts(promotionalGifts.filter((gift) => gift._id !== id));
-        Swal.fire("Deleted!", "The gift has been deleted.", "success");
+        await axios.delete(`${process.env.REACT_APP_API_HOST}/Printingdepartment/${id}`);
+        setPrinting(Printing.filter((Printing) => Printing._id !== id));
+        Swal.fire("Deleted!", "The Printing has been deleted.", "success");
       } catch (err) {
-        console.error("Error deleting gift: ", err);
-        Swal.fire("Error!", "There was an issue deleting the gift.", "error");
+        console.error("Error deleting Printing: ", err);
+        Swal.fire("Error!", "There was an issue deleting the Printing.", "error");
       }
     }
   };
 
   // Map through promotional gifts data to build table rows
-  const rows = promotionalGifts.map((item) => ({
-    Gift_Name: (
+  const rows = Printing.map((item) => ({
+    Printing_Name: (
       <Author
-        name={item.giftname}
+        name={item.Printingname}
         style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
       />
     ),
-    Gift_Type: (
+    Printing_Type: (
       <Author
-        name={item.gifttype}
+        name={item.Printingtype}
         style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
       />
     ),
-    Gift_Image: (
+    Printing_Image: (
       <MDBox>
-        {item.gifttimage ? (
+        {item.Printingimage ? (
           <img
-            src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
-            alt="Gift"
+            src={`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`}
+            alt="Printingimage"
             style={{ maxWidth: "100px", borderRadius: "8px" }}
           />
         ) : (
@@ -140,7 +140,7 @@ function Promotionalgiftssection() {
       <MDBox display="flex" justifyContent="center" alignItems="center" gap={2}>
         {/* Edit button */}
         <Link
-          to={`/Edit-Promotional-gifts-section/${item._id}`}
+          to={`/Edit-PrintingDepartment/${item._id}`}
           style={{ textDecoration: "none" }} // Ensure no style interference
         >
           <Button
@@ -207,7 +207,7 @@ function Promotionalgiftssection() {
                 <MDTypography variant="h6" color="white">
                   Promotional Gifts Table
                 </MDTypography>
-                <Link to="/Add-Promotional-gifts-section">
+                <Link to="/Add-PrintingDepartment">
                   <Button
                     variant="contained"
                     color="primary"
@@ -242,4 +242,4 @@ function Promotionalgiftssection() {
   );
 }
 
-export default Promotionalgiftssection;
+export default PrintingDepartment;

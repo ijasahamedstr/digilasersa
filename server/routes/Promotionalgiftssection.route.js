@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { PromotionalgiftDelete, PromotionalgiftIndex, Promotionalgiftscreate, PromotionalgiftSingleDetails, PromotionalgiftUpdates } from '../controller/Promotionalgiftssection.Controller.js';
+import { PromotionalgiftDelete, PromotionalgiftIndex, Promotionalgiftscreate, PromotionalgiftSingleDetails, Promotionalgiftsupdate } from '../controller/Promotionalgiftssection.Controller.js';
 
 // Create a new router instance
 const Promotionalgifts = express.Router();
@@ -30,7 +30,7 @@ const upload = multer({
 });
 
 // Create the Data Register
-Promotionalgifts.post('/', upload.single('photo'),Promotionalgiftscreate );
+Promotionalgifts.post('/', upload.single('photo'),Promotionalgiftscreate);
 
 // View the Data Register
 Promotionalgifts.get('/',PromotionalgiftIndex);
@@ -42,7 +42,7 @@ Promotionalgifts.get("/:id",PromotionalgiftSingleDetails);
 Promotionalgifts.delete('/:id',PromotionalgiftDelete);
 
 //Update Data Register
-Promotionalgifts.put('/:id',upload.single('photo'),PromotionalgiftUpdates);
+Promotionalgifts.put('/:id',upload.single('file'),Promotionalgiftsupdate);
 
 
 export default Promotionalgifts;

@@ -18,13 +18,13 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-const EditPromotionalgifts = () => {
+const EditPrintingDepartment = () => {
   const [imagePreview, setImagePreview] = useState(null); // State to hold image preview
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    giftname: "",
-    gifttype: "",
-    gifttimage: null,
+    Printingname: "",
+    Printingtype: "",
+    Printingimage: null,
   });
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(null); // Error state
@@ -36,7 +36,7 @@ const EditPromotionalgifts = () => {
     if (file) {
       const previewUrl = URL.createObjectURL(file); // Create a URL for the selected file
       setImagePreview(previewUrl); // Set the preview URL
-      setFormData({ ...formData, gifttimage: file }); // Update the formData with the selected file
+      setFormData({ ...formData, Printingimage: file }); // Update the formData with the selected file
     }
   };
 
@@ -51,7 +51,7 @@ const EditPromotionalgifts = () => {
     event.preventDefault();
 
     // Basic validation
-    if (!formData.giftname || !formData.gifttype) {
+    if (!formData.Printingname || !formData.Printingtype) {
       alert("Please fill in all required fields.");
       return;
     }
@@ -62,14 +62,14 @@ const EditPromotionalgifts = () => {
       setSuccess(null); // Reset success before making the request
 
       const formDataToSend = new FormData();
-      formDataToSend.append("giftname", formData.giftname);
-      formDataToSend.append("gifttype", formData.gifttype);
-      if (formData.gifttimage) {
-        formDataToSend.append("gifttimage", formData.gifttimage);
+      formDataToSend.append("Printingname", formData.Printingname);
+      formDataToSend.append("Printingtype", formData.Printingtype);
+      if (formData.Printingimage) {
+        formDataToSend.append("Printingimage", formData.Printingimage);
       }
 
       const response = await axios.put(
-        `${process.env.REACT_APP_API_HOST}/Promotionalgifts/${id}`,
+        `${process.env.REACT_APP_API_HOST}/Printingdepartment/${id}`,
         formDataToSend,
         {
           headers: {
@@ -84,32 +84,32 @@ const EditPromotionalgifts = () => {
       // window.location.href = "/some-path"; // Redirect to a different page
     } catch (err) {
       setLoading(false);
-      setError("Error updating gift data. Please try again.");
-      console.error("Error updating gift data: ", err);
+      setError("Error updating Printing data. Please try again.");
+      console.error("Error updating Printing data: ", err);
     }
   };
 
   useEffect(() => {
-    const fetchGift = async () => {
+    const fetchPrinting = async () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/Promotionalgifts/${id}`
+          `${process.env.REACT_APP_API_HOST}/Printingdepartment/${id}`
         );
         setFormData({
-          giftname: response.data.giftname,
-          gifttype: response.data.gifttype,
-          gifttimage: response.data.gifttimage, // Keep existing image data
+          Printingname: response.data.Printingname,
+          Printingtype: response.data.Printingtype,
+          Printingimage: response.data.Printingimage, // Keep existing image data
         });
         setLoading(false);
       } catch (err) {
         setLoading(false);
-        setError("Error fetching gift data. Please try again.");
-        console.error("Error fetching gift data: ", err);
+        setError("Error fetching Printing data. Please try again.");
+        console.error("Error fetching Printing data: ", err);
       }
     };
 
-    fetchGift();
+    fetchPrinting();
   }, [id]);
 
   return (
@@ -139,15 +139,15 @@ const EditPromotionalgifts = () => {
 
               {/* Edit Category Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} encType="multipart/form-data">
                   {/* Category Name */}
                   <TextField
-                    label="Category Name"
+                    label="Printing Name"
                     variant="outlined"
                     fullWidth
                     sx={{ mb: 2 }}
-                    name="giftname"
-                    value={formData.giftname}
+                    name="Printingname"
+                    value={formData.Printingname}
                     onChange={handleInputChange} // Handle change
                   />
 
@@ -155,23 +155,38 @@ const EditPromotionalgifts = () => {
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <InputLabel>Promotional gifts Type</InputLabel>
                     <Select
-                      label="Promotional gifts Type"
+                      label="Printing Type"
                       sx={{ height: "40px" }}
-                      name="gifttype"
-                      value={formData.gifttype}
-                      onChange={handleInputChange} // Handle change
+                      name="Printingtype"
+                      value={formData.Printingtype} // Corrected value here
+                      onChange={handleInputChange} // Corrected to handleInputChange
                     >
-                      <MenuItem value="دروع ومجسمات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        دروع ومجسمات
+                      <MenuItem
+                        value="مطـبوعات ورقـية"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        مطـبوعات ورقـية
                       </MenuItem>
-                      <MenuItem value="خشـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        خشـبيات
+                      <MenuItem value="بنـر وسـتيكر" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        بنـر وسـتيكر
                       </MenuItem>
-                      <MenuItem value="مكتـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        مكتـبيات
+                      <MenuItem
+                        value="طباعه مسطحات UV"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        طباعه مسطحات UV
                       </MenuItem>
-                      <MenuItem value="اكسسوارات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        اكسسوارات
+                      <MenuItem
+                        value="طباعه منسوجات dtf"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        طباعه منسوجات dtf
+                      </MenuItem>
+                      <MenuItem
+                        value="طبــاعة dtf-uv"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        طبــاعة dtf-uv
                       </MenuItem>
                     </Select>
                   </FormControl>
@@ -180,7 +195,7 @@ const EditPromotionalgifts = () => {
                   <label htmlFor="file-upload">
                     <input
                       id="file-upload"
-                      name="gifttimage"
+                      name="Printingimage"
                       accept="image/*"
                       type="file"
                       style={{ display: "none" }}
@@ -226,9 +241,9 @@ const EditPromotionalgifts = () => {
                           borderRadius: "8px",
                         }}
                       />
-                    ) : formData.gifttimage ? (
+                    ) : formData.Printingimage ? (
                       <img
-                        src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${formData.gifttimage}`}
+                        src={`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${formData.Printingimage}`}
                         alt="Gift"
                         style={{
                           maxWidth: "150px", // Set a smaller size for the image
@@ -285,4 +300,4 @@ const EditPromotionalgifts = () => {
   );
 };
 
-export default EditPromotionalgifts;
+export default EditPrintingDepartment;

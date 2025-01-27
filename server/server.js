@@ -9,6 +9,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Promotionalgifts from "./routes/Promotionalgiftssection.route.js";
 import Printingdepartment from "./routes/Printingdepartment.route.js";
+import Screenssection from "./routes/Screenssection.route.js";
 
 
 // Create an instance of Express
@@ -51,6 +52,7 @@ app.use('/Adminlogin', AccountAdminloginrouter);
 app.use('/Adminregister',AccountAdminrouter);
 app.use('/Promotionalgifts',Promotionalgifts);
 app.use('/Printingdepartment',Printingdepartment);
+app.use('/Screensdepartment',Screenssection);
 
 
 // Start the Express server

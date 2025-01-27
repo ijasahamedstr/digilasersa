@@ -3,7 +3,7 @@ import multer from 'multer';
 // Storage config
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        callback(null, './useruploads');
+        callback(null, './uploads/Screenssection');
     },
     filename: (req, file, callback) => {
         callback(null, `image-${Date.now()}.${file.originalname}`);

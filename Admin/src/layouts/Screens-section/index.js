@@ -48,8 +48,8 @@ Job.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-function Promotionalgiftssection() {
-  const [promotionalGifts, setPromotionalGifts] = useState([]);
+function Screenssection() {
+  const [Screens, setScreens] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -57,8 +57,8 @@ function Promotionalgiftssection() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Promotionalgifts`);
-        setPromotionalGifts(response.data); // Set the fetched gifts
+        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Screensdepartment`);
+        setScreens(response.data); // Set the fetched gifts
       } catch (err) {
         console.error("Error fetching data: ", err);
         setError("Failed to fetch data");
@@ -75,9 +75,10 @@ function Promotionalgiftssection() {
 
   // Define the columns for the DataTable
   const columns = [
-    { Header: "Gift Name", accessor: "Gift_Name", width: "20%", align: "left" },
-    { Header: "Gift Type", accessor: "Gift_Type", width: "20%", align: "left" },
-    { Header: "Gift Image", accessor: "Gift_Image", align: "center" },
+    { Header: "Screens Name", accessor: "Screens_Name", width: "20%", align: "left" },
+    { Header: "Screens Type", accessor: "Screens_Type", width: "20%", align: "left" },
+    { Header: "Screens description", accessor: "Screens_dec", width: "20%", align: "left" },
+    { Header: "Screens Image", accessor: "Screens_Image", align: "center" },
     { Header: "Action", accessor: "action", align: "center" },
   ];
 
@@ -95,43 +96,62 @@ function Promotionalgiftssection() {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`${process.env.REACT_APP_API_HOST}/Promotionalgifts/${id}`);
-        setPromotionalGifts(promotionalGifts.filter((gift) => gift._id !== id));
-        Swal.fire("Deleted!", "The gift has been deleted.", "success");
+        await axios.delete(`${process.env.REACT_APP_API_HOST}/Screensdepartment/${id}`);
+        setScreens(Screens.filter((Screen) => Screen._id !== id));
+        Swal.fire("Deleted!", "The Screen has been deleted.", "success");
       } catch (err) {
-        console.error("Error deleting gift: ", err);
-        Swal.fire("Error!", "There was an issue deleting the gift.", "error");
+        console.error("Error deleting Screen: ", err);
+        Swal.fire("Error!", "There was an issue deleting the Screen.", "error");
       }
     }
   };
 
   // Map through promotional gifts data to build table rows
-  const rows = promotionalGifts.map((item) => ({
-    Gift_Name: (
+  const rows = Screens.map((item) => ({
+    Screens_Name: (
       <Author
-        name={item.giftname}
+        name={item.projectname}
         style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
       />
     ),
-    Gift_Type: (
+    Screens_Type: (
       <Author
-        name={item.gifttype}
+        name={item.projectype}
         style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
       />
     ),
-    Gift_Image: (
-      <MDBox>
-        {item.gifttimage ? (
-          <img
-            src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
-            alt="Gift"
-            style={{ maxWidth: "100px", borderRadius: "8px" }}
-          />
+    Screens_dec: (
+      <Author
+        name={
+          item.projectdec.length > 100 ? item.projectdec.substring(0, 70) + "..." : item.projectdec
+        }
+        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
+      />
+    ),
+    Screens_Image: (
+      <MDBox display="flex" gap={1} flexWrap="wrap">
+        {item.projectimage && item.projectimage.length > 0 ? (
+          item.projectimage.map((profile, index) => (
+            <img
+              key={index}
+              src={`${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${profile}`}
+              alt={`Screen Image ${index + 1}`}
+              style={{
+                maxWidth: "100px",
+                borderRadius: "8px",
+                marginBottom: "8px",
+                objectFit: "cover",
+              }}
+            />
+          ))
         ) : (
           <img
             src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
             alt="No Image"
-            style={{ maxWidth: "50px", borderRadius: "8px" }}
+            style={{
+              maxWidth: "50px",
+              borderRadius: "8px",
+            }}
           />
         )}
       </MDBox>
@@ -207,7 +227,7 @@ function Promotionalgiftssection() {
                 <MDTypography variant="h6" color="white">
                   Promotional Gifts Table
                 </MDTypography>
-                <Link to="/Add-Promotional-gifts-section">
+                <Link to="/Add-Screenssection">
                   <Button
                     variant="contained"
                     color="primary"
@@ -242,4 +262,4 @@ function Promotionalgiftssection() {
   );
 }
 
-export default Promotionalgiftssection;
+export default Screenssection;

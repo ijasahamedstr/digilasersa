@@ -1,103 +1,191 @@
-import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Table, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import Swal from "sweetalert2"; // Import SweetAlert2
-import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
-const Undercontration = () => {
-  const [Printingdepartment, setPrintingdepartment] = useState([]);
+function Undercontration() {
+  const [gamename, setGamename] = useState("");
+  const [gametype, setGametype] = useState("");
+  const [gamedec, setGamedec] = useState("");
+  const [files, setFiles] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
+  const navigate = useNavigate();
 
-  // Fetch data when the component mounts
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Printingdepartment`);
-        setPrintingdepartment(response.data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    const formData = new FormData();
+    formData.append("gamename", gamename);
+    formData.append("gametype", gametype);
+    formData.append("gamedec", gamedec);
+    files.forEach(file => formData.append("userimg", file));
 
-    fetchData();
-  }, []);
-
-    // Function to handle delete action with SweetAlert2
-    const handleDelete = async (id) => {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Yes, delete it!",
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_HOST}/Screensdepartment`, formData, {
+        headers: { "Content-Type": "multipart/form-data" }
       });
-  
-      if (result.isConfirmed) {
-        try {
-          await axios.delete(`${process.env.REACT_APP_API_HOST}/Printingdepartment/${id}`);
-          setPrintingdepartment(Printingdepartment.filter((Printingdepartment) => Printingdepartment._id !== id));
-          Swal.fire("Deleted!", "Your category has been deleted.", "success");
-        } catch (error) {
-          console.error("Error deleting category: ", error);
-          Swal.fire("Error!", "There was an issue deleting the category.", "error");
-        }
+      if (response.status === 200) {
+        resetForm();
+        Swal.fire({
+          title: 'Success!',
+          text: 'Your operation was successful.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+        navigate("/");
       }
-    };
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: error.response?.data.error || "An error occurred",
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+    }
+  };
+
+  const handleFileChange = (event) => {
+    const selectedFiles = Array.from(event.target.files);
+    setFiles(selectedFiles);
+
+    const previews = selectedFiles.map(file => {
+      const reader = new FileReader();
+      return new Promise(resolve => {
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+      });
+    });
+
+    Promise.all(previews).then(results => setImagePreviews(results));
+  };
+
+  const resetForm = () => {
+    setGamename("");
+    setGametype("");
+    setGamedec("");
+    setFiles([]);
+    setImagePreviews([]);
+  };
 
   return (
-    <Container>
-      <br/><br/><br/><br/>
-      <h2 className="text-center mt-4">Promotional Gifts Data Table</h2>
-      <Table striped bordered hover responsive>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Gift Name</th>
-            <th>Gift Type</th>
-            <th>Gift Image</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Printingdepartment.map((Printing, index) => (
-            <tr key={Printing.id}>
-              <td>{index + 1}</td>
-              <td>{Printing.Printingname}</td>
-              <td>{Printing.Printingtype}</td>
-              <td>
-              {Printing.Printingimage ? (
-                  <img
-                    src={`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${Printing.Printingimage}`}
-                    alt="Gift"
-                    style={{
-                      maxWidth: "150px", // Set a smaller size for the image
-                      borderRadius: "8px",
-                    }}
-                  />
-                ) : (
-                  <img
-                    src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
-                    alt="Default Image"
-                    style={{
-                      maxWidth: "50px", // Set a smaller size for the image
-                      borderRadius: "8px",
-                    }}
-                  />
-                )}
-              </td>
-              <td>
-                {/* Add your actions here, such as Edit or Delete buttons */}
-                <Button variant="info" className="me-2" as={Link} to={`/update/${Printing._id}`}>Edit</Button>
-                <Button variant="danger" onClick={() => handleDelete(Printing._id)}>Delete</Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </Container>
+    <>
+      <br /><br /><br /><br /><br />
+      <Container>
+        <Row>
+          <div style={{ marginTop: '50px', marginBottom: '20px' }}>
+            <h2 style={{ textAlign: 'center', fontSize: '20px', color: 'white', background: 'red', padding: '15px' }}>
+              منصة يوزر لن تطلب منك بيانات الحساب خارج هذه الصفحة بشكل نهائي | ولن تطلب منك تسليم أي بيانات عبر الواتس اب او منصات أخرى
+            </h2>
+          </div>
+          <Col style={{ backgroundColor: '#FFFFFF' }}>
+            <h4>بيع حساب لعبة</h4>
+            <Container>
+              <Row>
+                <Col style={{ backgroundColor: '#FFFFFF' }}></Col>
+              </Row>
+              <Row style={{ background: '#F7F9F9', padding: '30px' }}>
+                <h5>تختلف رسوم بيع حساب الألعاب عن رسوم بيع حسابات التواصل الإجتماعي والخدمات | الرجاء مراجعة صفحة الشروط والأحكام</h5>
+                <br />
+                <Col>
+                  <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3" controlId="formTitle">
+                      <Form.Label>العنوان</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={gamename}
+                        onChange={e => setGamename(e.target.value)}
+                        aria-label="gamename"
+                      />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formGame">
+                      <Form.Label>اللعبة</Form.Label>
+                      <Form.Select
+                        required
+                        value={gametype}
+                        onChange={e => setGametype(e.target.value)}
+                        aria-label="gametype"
+                      >
+                        <option value="PUBG">PUBG Mobile</option>
+                        <option value="Fortnite">Fortnite</option>
+                        <option value="Other">Other</option>
+                      </Form.Select>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formDescription">
+                      <Form.Label>وصف الحساب</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={3}
+                        required
+                        value={gamedec}
+                        onChange={e => setGamedec(e.target.value)}
+                        aria-label="Account description"
+                      />
+                      <p>لاتقم بوضع أي طريقة تواصل خارج المنصة في الوصف بشكل نهائي لأنها قد تعرض حسابك للحظر!</p>
+                    </Form.Group>
+
+                    <Form.Group controlId="formFile" className="mb-3">
+                      <Form.Label>ملف الصورة</Form.Label>
+                      <Form.Control
+                        type="file"
+                        multiple
+                        onChange={handleFileChange}
+                        aria-label="Upload images"
+                      />
+                      {imagePreviews.length > 0 && (
+                        <div style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+                          {imagePreviews.map((preview, index) => (
+                            <img
+                              key={index}
+                              src={preview}
+                              alt={`Preview ${index}`}
+                              style={{ maxWidth: '200px', height: 'auto', margin: '10px' }}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" style={{ color: 'red' }}>
+                      <Form.Check
+                        type="checkbox"
+                        label="اتعهد بخلو وصف المنتج من أي وسيلة تواصل خارج المنصة بأي طريقة كانت سواء مباشرة أو غير مباشرة"
+                        required
+                        aria-label="Commitment to no external contact"
+                      />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" style={{ color: 'red' }}>
+                      <Form.Check
+                        type="checkbox"
+                        label="اتعهد بتحمل كامل المسؤوليه القانونية بما مضى او صدر من الحساب المعروض من تاريخ انشاءه او شراءه الى تاريخ بيعه بمنصة يوزر واتعهد بخلوه من اي جرائم إلكترونيه"
+                        required
+                        aria-label="Legal responsibility commitment"
+                      />
+                    </Form.Group>
+
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      style={{ fontFamily: 'Noto Kufi Arabic', fontSize: '13px' }}
+                    >
+                      عرض الحساب
+                    </Button>
+                  </Form>
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
-};
+}
 
 export default Undercontration;
