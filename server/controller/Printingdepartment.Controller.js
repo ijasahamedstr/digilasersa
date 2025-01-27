@@ -79,9 +79,7 @@ export const  PrintingdepartmentSingleDelete = async (req, res) => {
 
 
 // All Acccount Update
-
 export const PrintingdepartmentUpdates  = async (req, res) => {
-
     const { id } = req.params;
     const { Printingname } = req.body;
     const { Printingtype } = req.body;
@@ -89,27 +87,26 @@ export const PrintingdepartmentUpdates  = async (req, res) => {
 
     try {
         // Find the user by ID
-        const Printingdepartmentupdate = await Printingdepartment.findById(id);
-
-        if (!Printingdepartmentupdate) {
-            return res.status(404).json({ status: 404, message: "Promotionalgifts not found" });
+        const user = await Printingdepartment.findById(id);
+        if (!user) {
+            return res.status(404).json({ status: 404, message: "User not found" });
         }
-
         // Update user details
         if (Printingname) {
-            Promotionalgiftsupdate.giftname = giftname;
+            user.Printingname = Printingname;
         }
         if (Printingtype) {
-            Promotionalgiftsupdate.gifttype = gifttype;
+            user.Printingtype = Printingtype;
         }
+        // Update image if a new file is uploaded
         if (file) {
-            Promotionalgiftsupdate.gifttimage = file.filename;
+            user.Printingimage = file.filename;
         }
 
         // Save the updated user data
-        const updatedPrintingdepartment = await user.save();
+        const updatedUser = await user.save();
 
-        res.status(200).json({ status: 200, updatedPrintingdepartment });
+        res.status(200).json({ status: 200, updatedUser });
     } catch (error) {
         res.status(401).json({ status: 401, error });
     }

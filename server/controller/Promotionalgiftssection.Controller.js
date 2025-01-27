@@ -79,9 +79,7 @@ export const PromotionalgiftDelete = async (req, res) => {
 
 
 // All Acccount Update
-
-export const PromotionalgiftUpdates  = async (req, res) => {
-
+export const Promotionalgiftsupdate  = async (req, res) => {
     const { id } = req.params;
     const { giftname } = req.body;
     const { gifttype } = req.body;
@@ -89,27 +87,26 @@ export const PromotionalgiftUpdates  = async (req, res) => {
 
     try {
         // Find the user by ID
-        const Promotionalgiftsupdate = await Promotionalgifts.findById(id);
-
-        if (!Promotionalgiftsupdate) {
-            return res.status(404).json({ status: 404, message: "Promotionalgifts not found" });
+        const user = await Promotionalgifts.findById(id);
+        if (!user) {
+            return res.status(404).json({ status: 404, message: "User not found" });
         }
-
         // Update user details
         if (giftname) {
-            Promotionalgiftsupdate.giftname = giftname;
+            user.giftname = giftname;
         }
         if (gifttype) {
-            Promotionalgiftsupdate.gifttype = gifttype;
+            user.gifttype = gifttype;
         }
+        // Update image if a new file is uploaded
         if (file) {
-            Promotionalgiftsupdate.gifttimage = file.filename;
+            user.gifttimage = file.filename;
         }
 
         // Save the updated user data
-        const updatedPromotionalgift = await user.save();
+        const updatedUser = await user.save();
 
-        res.status(200).json({ status: 200, updatedPromotionalgift });
+        res.status(200).json({ status: 200, updatedUser });
     } catch (error) {
         res.status(401).json({ status: 401, error });
     }

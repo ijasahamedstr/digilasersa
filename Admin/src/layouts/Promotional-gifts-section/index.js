@@ -19,6 +19,9 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import DataTable from "examples/Tables/DataTable";
 
+// Import Ant Design's Image and PreviewGroup components
+import { Image } from "antd";
+
 // Helper component for displaying Author information
 const Author = ({ name, style }) => (
   <MDBox display="flex" alignItems="center" lineHeight={1}>
@@ -122,13 +125,15 @@ function Promotionalgiftssection() {
     Gift_Image: (
       <MDBox>
         {item.gifttimage ? (
-          <img
-            src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
-            alt="Gift"
-            style={{ maxWidth: "100px", borderRadius: "8px" }}
-          />
+          <Image.PreviewGroup>
+            <Image
+              src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
+              alt="Gift"
+              style={{ maxWidth: "100px", borderRadius: "8px" }}
+            />
+          </Image.PreviewGroup>
         ) : (
-          <img
+          <Image
             src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
             alt="No Image"
             style={{ maxWidth: "50px", borderRadius: "8px" }}

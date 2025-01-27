@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-
 // react-router-dom components
 import { Link } from "react-router-dom";
 

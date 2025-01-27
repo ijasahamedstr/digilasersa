@@ -30,7 +30,7 @@ const upload = multer({
 });
 
 // Create the Data Register
-Promotionalgifts.post('/', upload.single('photo'),Promotionalgiftscreate);
+Promotionalgifts.post('/', upload.single('photo'),Promotionalgiftscreate );
 
 // View the Data Register
 Promotionalgifts.get('/',PromotionalgiftIndex);
@@ -42,7 +42,7 @@ Promotionalgifts.get("/:id",PromotionalgiftSingleDetails);
 Promotionalgifts.delete('/:id',PromotionalgiftDelete);
 
 //Update Data Register
-Promotionalgifts.put('/:id',upload.single('file'),Promotionalgiftsupdate);
+Promotionalgifts.put('/:id',upload.single('photo'),Promotionalgiftsupdate);
 
 
 export default Promotionalgifts;

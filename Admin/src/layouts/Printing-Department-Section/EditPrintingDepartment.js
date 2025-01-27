@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
@@ -8,7 +9,6 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -17,6 +17,12 @@ import MDTypography from "components/MDTypography";
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+
+// Import Ant Design components
+import { Image } from "antd";
+
+// Import SweetAlert2
+import Swal from "sweetalert2";
 
 const EditPrintingDepartment = () => {
   const [imagePreview, setImagePreview] = useState(null); // State to hold image preview
@@ -52,7 +58,12 @@ const EditPrintingDepartment = () => {
 
     // Basic validation
     if (!formData.Printingname || !formData.Printingtype) {
-      alert("Please fill in all required fields.");
+      Swal.fire({
+        title: "Error!",
+        text: "Please fill in all required fields.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
       return;
     }
 
@@ -65,7 +76,7 @@ const EditPrintingDepartment = () => {
       formDataToSend.append("Printingname", formData.Printingname);
       formDataToSend.append("Printingtype", formData.Printingtype);
       if (formData.Printingimage) {
-        formDataToSend.append("Printingimage", formData.Printingimage);
+        formDataToSend.append("photo", formData.Printingimage);
       }
 
       const response = await axios.put(
@@ -79,13 +90,25 @@ const EditPrintingDepartment = () => {
       );
 
       setLoading(false);
-      setSuccess("Category updated successfully!");
-      // Optionally, you can redirect the user after success
-      // window.location.href = "/some-path"; // Redirect to a different page
+
+      // SweetAlert success message
+      Swal.fire({
+        title: "Success!",
+        text: "Category updated successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
     } catch (err) {
       setLoading(false);
       setError("Error updating Printing data. Please try again.");
-      console.error("Error updating Printing data: ", err);
+
+      // SweetAlert error message
+      Swal.fire({
+        title: "Error!",
+        text: "Error updating Printing data. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -195,7 +218,7 @@ const EditPrintingDepartment = () => {
                   <label htmlFor="file-upload">
                     <input
                       id="file-upload"
-                      name="Printingimage"
+                      name="photo"
                       accept="image/*"
                       type="file"
                       style={{ display: "none" }}
@@ -232,24 +255,21 @@ const EditPrintingDepartment = () => {
                       padding: "8px",
                     }}
                   >
-                    {imagePreview ? (
-                      <img
-                        src={imagePreview}
-                        alt="Gift"
-                        style={{
-                          maxWidth: "150px", // Set a smaller size for the image
-                          borderRadius: "8px",
-                        }}
-                      />
-                    ) : formData.Printingimage ? (
-                      <img
-                        src={`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${formData.Printingimage}`}
-                        alt="Gift"
-                        style={{
-                          maxWidth: "150px", // Set a smaller size for the image
-                          borderRadius: "8px",
-                        }}
-                      />
+                    {imagePreview || formData.Printingimage ? (
+                      <Image.PreviewGroup>
+                        <Image
+                          src={
+                            imagePreview
+                              ? imagePreview
+                              : `${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${formData.Printingimage}`
+                          }
+                          alt="Printing Image"
+                          style={{
+                            maxWidth: "150px", // Set a smaller size for the image
+                            borderRadius: "8px",
+                          }}
+                        />
+                      </Image.PreviewGroup>
                     ) : (
                       <img
                         src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"

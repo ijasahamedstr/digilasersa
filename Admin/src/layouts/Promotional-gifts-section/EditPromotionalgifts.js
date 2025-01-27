@@ -18,6 +18,9 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
+// SweetAlert2
+import Swal from "sweetalert2";
+
 const EditPromotionalgifts = () => {
   const [imagePreview, setImagePreview] = useState(null); // State to hold image preview
   const { id } = useParams();
@@ -27,8 +30,6 @@ const EditPromotionalgifts = () => {
     gifttimage: null,
   });
   const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(null); // Error state
-  const [success, setSuccess] = useState(null); // Success message state
 
   // Handle file upload and preview
   const handleFileChange = (event) => {
@@ -52,20 +53,22 @@ const EditPromotionalgifts = () => {
 
     // Basic validation
     if (!formData.giftname || !formData.gifttype) {
-      alert("Please fill in all required fields.");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Please fill in all required fields.",
+      });
       return;
     }
 
     try {
       setLoading(true);
-      setError(null); // Reset error before making the request
-      setSuccess(null); // Reset success before making the request
 
       const formDataToSend = new FormData();
       formDataToSend.append("giftname", formData.giftname);
       formDataToSend.append("gifttype", formData.gifttype);
       if (formData.gifttimage) {
-        formDataToSend.append("gifttimage", formData.gifttimage);
+        formDataToSend.append("photo", formData.gifttimage);
       }
 
       const response = await axios.put(
@@ -79,13 +82,18 @@ const EditPromotionalgifts = () => {
       );
 
       setLoading(false);
-      setSuccess("Category updated successfully!");
-      // Optionally, you can redirect the user after success
-      // window.location.href = "/some-path"; // Redirect to a different page
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Category updated successfully!",
+      });
     } catch (err) {
       setLoading(false);
-      setError("Error updating gift data. Please try again.");
-      console.error("Error updating gift data: ", err);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error updating gift data. Please try again.",
+      });
     }
   };
 
@@ -104,8 +112,11 @@ const EditPromotionalgifts = () => {
         setLoading(false);
       } catch (err) {
         setLoading(false);
-        setError("Error fetching gift data. Please try again.");
-        console.error("Error fetching gift data: ", err);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Error fetching gift data. Please try again.",
+        });
       }
     };
 
@@ -139,7 +150,7 @@ const EditPromotionalgifts = () => {
 
               {/* Edit Category Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} encType="multipart/form-data">
                   {/* Category Name */}
                   <TextField
                     label="Category Name"
@@ -180,7 +191,7 @@ const EditPromotionalgifts = () => {
                   <label htmlFor="file-upload">
                     <input
                       id="file-upload"
-                      name="gifttimage"
+                      name="photo"
                       accept="image/*"
                       type="file"
                       style={{ display: "none" }}
@@ -246,23 +257,6 @@ const EditPromotionalgifts = () => {
                       />
                     )}
                   </MDBox>
-
-                  {/* Display Loading or Error/Success Messages */}
-                  {loading && (
-                    <MDTypography variant="body1" color="info">
-                      Loading...
-                    </MDTypography>
-                  )}
-                  {error && (
-                    <MDTypography variant="body1" color="error">
-                      {error}
-                    </MDTypography>
-                  )}
-                  {success && (
-                    <MDTypography variant="body1" color="success">
-                      {success}
-                    </MDTypography>
-                  )}
 
                   {/* Submit Button */}
                   <Button

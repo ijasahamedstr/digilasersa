@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Image } from "antd";
+import CircularProgress from "@mui/material/CircularProgress";
+import Snackbar from "@mui/material/Snackbar";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -54,30 +57,30 @@ function Screenssection() {
   const [error, setError] = useState(null);
 
   // Fetch data on component mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Screensdepartment`);
-        setScreens(response.data); // Set the fetched gifts
-      } catch (err) {
-        console.error("Error fetching data: ", err);
-        setError("Failed to fetch data");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Screensdepartment`);
+      setScreens(response.data); // Set the fetched screens
+    } catch (err) {
+      console.error("Error fetching data: ", err);
+      setError("Failed to fetch data");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <CircularProgress />;
+  if (error) return <Snackbar open={true} message={error} />;
 
   // Define the columns for the DataTable
   const columns = [
     { Header: "Screens Name", accessor: "Screens_Name", width: "20%", align: "left" },
     { Header: "Screens Type", accessor: "Screens_Type", width: "20%", align: "left" },
-    { Header: "Screens description", accessor: "Screens_dec", width: "20%", align: "left" },
+    { Header: "Screens Description", accessor: "Screens_dec", width: "20%", align: "left" },
     { Header: "Screens Image", accessor: "Screens_Image", align: "center" },
     { Header: "Action", accessor: "action", align: "center" },
   ];
@@ -97,7 +100,8 @@ function Screenssection() {
     if (result.isConfirmed) {
       try {
         await axios.delete(`${process.env.REACT_APP_API_HOST}/Screensdepartment/${id}`);
-        setScreens(Screens.filter((Screen) => Screen._id !== id));
+        // Re-fetch data after delete to update state
+        fetchData();
         Swal.fire("Deleted!", "The Screen has been deleted.", "success");
       } catch (err) {
         console.error("Error deleting Screen: ", err);
@@ -123,44 +127,38 @@ function Screenssection() {
     Screens_dec: (
       <Author
         name={
-          item.projectdec.length > 100 ? item.projectdec.substring(0, 70) + "..." : item.projectdec
+          item.projectdec.length > 100 ? item.projectdec.substring(0, 50) + "..." : item.projectdec
         }
         style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
       />
     ),
     Screens_Image: (
-      <MDBox display="flex" gap={1} flexWrap="wrap">
-        {item.projectimage && item.projectimage.length > 0 ? (
-          item.projectimage.map((profile, index) => (
-            <img
-              key={index}
-              src={`${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${profile}`}
-              alt={`Screen Image ${index + 1}`}
-              style={{
-                maxWidth: "100px",
-                borderRadius: "8px",
-                marginBottom: "8px",
-                objectFit: "cover",
-              }}
+      <MDBox>
+        <Image.PreviewGroup>
+          {item.projectimage && item.projectimage.length > 0 ? (
+            item.projectimage.map((image, index) => (
+              <Image
+                key={index}
+                width={200}
+                src={`${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${image}`}
+                alt={`User Profile ${index}`}
+              />
+            ))
+          ) : (
+            <Image
+              width={200}
+              src="https://via.placeholder.com/200" // Placeholder image URL
+              alt="No images available"
             />
-          ))
-        ) : (
-          <img
-            src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
-            alt="No Image"
-            style={{
-              maxWidth: "50px",
-              borderRadius: "8px",
-            }}
-          />
-        )}
+          )}
+        </Image.PreviewGroup>
       </MDBox>
     ),
     action: (
       <MDBox display="flex" justifyContent="center" alignItems="center" gap={2}>
         {/* Edit button */}
         <Link
-          to={`/Edit-Promotional-gifts-section/${item._id}`}
+          to={`/Edit-Screenssection/${item._id}`}
           style={{ textDecoration: "none" }} // Ensure no style interference
         >
           <Button
@@ -247,7 +245,7 @@ function Screenssection() {
               <MDBox pt={3}>
                 <DataTable
                   table={{ columns, rows }}
-                  isSorted={false}
+                  isSorted={true} // Enable sorting
                   entriesPerPage={5}
                   showTotalEntries={true}
                   pagination

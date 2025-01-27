@@ -14,6 +14,7 @@ import EditPrintingDepartment from "layouts/Printing-Department-Section/EditPrin
 import Screenssection from "layouts/Screens-section";
 import SmartScreenIcon from "@mui/icons-material/SmartScreen";
 import AddScreenssection from "layouts/Screens-section/AddScreenssection";
+import EditScreenssection from "layouts/Screens-section/EditScreenssection";
 
 const routes = [
   {
@@ -75,6 +76,10 @@ const routes = [
   {
     route: "/Add-Screenssection",
     component: <AddScreenssection />,
+  },
+  {
+    route: "/Edit-Screenssection/:id",
+    component: <EditScreenssection />,
   },
 ];
 
