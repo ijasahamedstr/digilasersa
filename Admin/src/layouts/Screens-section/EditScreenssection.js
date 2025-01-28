@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
@@ -6,121 +7,110 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { Image } from "antd"; // Import Ant Design Image component
-
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-
-// Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import Swal from "sweetalert2";
+import axios from "axios"; // Add axios import
+import { useNavigate, useParams } from "react-router-dom"; // Add useParams import for getting the ID
 
 const EditScreenssection = () => {
-  const [imagePreviews, setImagePreviews] = useState([]); // Store multiple image previews
-  const { id } = useParams();
-  const [formData, setFormData] = useState({
-    projectname: "",
-    projectype: "",
-    projectdec: "",
-    projectimages: [], // Store multiple images
-  });
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(null); // Error state
-  const [success, setSuccess] = useState(null); // Success message state
+  const [imagePreviews, setImagePreviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState([]);
+  const [projectname, setProjectname] = useState("");
+  const [projectype, setProjectype] = useState("");
+  const [projectdec, setProjectdec] = useState("");
+  const navigate = useNavigate(); // Initialize navigate
+  const { id } = useParams(); // Get the id from URL params (assuming the route contains an 'id' param)
 
-  // Handle file upload and preview for multiple files
-  const handleFileChange = (event) => {
-    const files = event.target.files;
-    const newPreviews = [];
-    const newFiles = [];
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      newPreviews.push(URL.createObjectURL(file)); // Generate preview URL
-      newFiles.push(file); // Add the file to the new files array
+  // Use useEffect to fetch the data for the existing project if the component is used for editing.
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`${process.env.REACT_APP_API_HOST}/Screensdepartment/${id}`)
+        .then((response) => {
+          const data = response.data;
+          setProjectname(data.projectname);
+          setProjectype(data.projectype);
+          setProjectdec(data.projectdec);
+          // Optionally, you could set images from the response if you want to preview them
+        })
+        .catch((error) => {
+          Swal.fire({
+            title: "Error!",
+            text: error?.response?.data?.error || "Failed to fetch project data",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        });
     }
+  }, [id]);
 
-    setImagePreviews(newPreviews); // Update the preview URLs
-    setFormData({ ...formData, projectimages: newFiles }); // Update form data with the selected files
-  };
-
-  // Handle input field changes
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  // Handle form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    // Basic validation
-    if (!formData.projectname || !formData.projectype || !formData.projectdec) {
-      alert("Please fill in all required fields.");
-      return;
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true); // Set loading to true before submission
+    const formData = new FormData();
+    formData.append("projectname", projectname);
+    formData.append("projectype", projectype);
+    formData.append("projectdec", projectdec);
+    files.forEach((file) => formData.append("userimg", file));
 
     try {
-      setLoading(true);
-      setError(null); // Reset error before making the request
-      setSuccess(null); // Reset success before making the request
+      const method = id ? "put" : "post"; // If there's an id, we do an update (PUT), otherwise create (POST)
+      const url = id
+        ? `${process.env.REACT_APP_API_HOST}/Screensdepartment/${id}`
+        : `${process.env.REACT_APP_API_HOST}/Screensdepartment`; // If updating, target the specific id
 
-      const formDataToSend = new FormData();
-      formDataToSend.append("projectname", formData.projectname);
-      formDataToSend.append("projectype", formData.projectype);
-      formDataToSend.append("projectdec", formData.projectdec);
-
-      // Append each image file to FormData
-      formData.projectimages.forEach((file, index) => {
-        formDataToSend.append(`projectimages[${index}]`, file); // Send files as projectimages[0], projectimages[1], etc.
+      const response = await axios[method](url, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
-      const response = await axios.put(
-        `${process.env.REACT_APP_API_HOST}/Screensdepartment/${id}`,
-        formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Important for file uploads
-          },
-        }
-      );
-
-      setLoading(false);
-      setSuccess("Category updated successfully!");
-    } catch (err) {
-      setLoading(false);
-      setError("Error updating Screensdepartment data. Please try again.");
-      console.error("Error updating Screensdepartment data: ", err);
+      if (response.status === 200 || response.status === 201) {
+        resetForm();
+        Swal.fire({
+          title: "Success!",
+          text: "Your operation was successful.",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        if (!id) navigate("/your/redirect/route"); // If it's a new creation, redirect after success
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: error?.response?.data?.error || "An error occurred",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    } finally {
+      setLoading(false); // Reset loading state
     }
   };
 
-  useEffect(() => {
-    const fetchScreensdepartment = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/Screensdepartment/${id}`
-        );
-        setFormData({
-          projectname: response.data.projectname,
-          projectype: response.data.projectype,
-          projectdec: response.data.projectdec,
-          projectimages: response.data.projectimages || [], // Keep existing image data
-        });
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-        setError("Error fetching Screensdepartment data. Please try again.");
-        console.error("Error fetching Screensdepartment data: ", err);
-      }
-    };
+  const handleFileChange = (event) => {
+    const selectedFiles = Array.from(event.target.files);
+    setFiles(selectedFiles);
 
-    fetchScreensdepartment();
-  }, [id]);
+    const previews = selectedFiles.map((file) => {
+      const reader = new FileReader();
+      return new Promise((resolve) => {
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+      });
+    });
+
+    Promise.all(previews).then((results) => setImagePreviews(results));
+  };
+
+  const resetForm = () => {
+    setProjectname("");
+    setProjectype("");
+    setProjectdec("");
+    setFiles([]);
+    setImagePreviews([]);
+  };
 
   return (
     <DashboardLayout>
@@ -143,50 +133,38 @@ const EditScreenssection = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Edit Category
+                  {id ? "Update Category" : "Add New Category"}
                 </MDTypography>
               </MDBox>
 
-              {/* Edit Category Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
-                  {/* Project Name */}
+                <form onSubmit={handleSubmit}>
                   <TextField
                     label="Project Name"
                     variant="outlined"
                     fullWidth
                     sx={{ mb: 2 }}
                     name="projectname"
-                    value={formData.projectname}
-                    onChange={handleInputChange}
+                    value={projectname}
+                    onChange={(e) => setProjectname(e.target.value)}
                   />
 
-                  {/* Project Type Dropdown */}
                   <FormControl fullWidth sx={{ mb: 2 }}>
-                    <InputLabel>Promotional gifts Type</InputLabel>
+                    <InputLabel>Project Type</InputLabel>
                     <Select
                       label="Project Type"
                       sx={{ height: "40px" }}
                       name="projectype"
-                      value={formData.projectype}
-                      onChange={handleInputChange}
+                      value={projectype}
+                      onChange={(e) => setProjectype(e.target.value)}
                     >
-                      <MenuItem value="دروع ومجسمات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        دروع ومجسمات
-                      </MenuItem>
-                      <MenuItem value="خشـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        خشـبيات
-                      </MenuItem>
-                      <MenuItem value="مكتـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        مكتـبيات
-                      </MenuItem>
-                      <MenuItem value="اكسسوارات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        اكسسوارات
-                      </MenuItem>
+                      <MenuItem value="دروع ومجسمات">دروع ومجسمات</MenuItem>
+                      <MenuItem value="خشـبيات">خشـبيات</MenuItem>
+                      <MenuItem value="مكتـبيات">مكتـبيات</MenuItem>
+                      <MenuItem value="اكسسوارات">اكسسوارات</MenuItem>
                     </Select>
                   </FormControl>
 
-                  {/* Project Description */}
                   <TextField
                     label="Project Description"
                     variant="outlined"
@@ -195,18 +173,17 @@ const EditScreenssection = () => {
                     name="projectdec"
                     multiline
                     rows={4}
-                    value={formData.projectdec}
-                    onChange={handleInputChange}
+                    value={projectdec}
+                    onChange={(e) => setProjectdec(e.target.value)}
                   />
 
-                  {/* Image Upload Field */}
                   <label htmlFor="file-upload">
                     <input
                       id="file-upload"
-                      name="projectimages"
+                      name="projectimage"
                       accept="image/*"
                       type="file"
-                      multiple // Allow multiple file uploads
+                      multiple
                       style={{ display: "none" }}
                       onChange={handleFileChange}
                     />
@@ -229,61 +206,31 @@ const EditScreenssection = () => {
                     </Button>
                   </label>
 
-                  {/* Image Previews with Ant Design Image.PreviewGroup */}
-                  <MDBox
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                      mb: 2,
-                      border: "1px solid #e0e0e0",
-                      borderRadius: "8px",
-                      padding: "8px",
-                      flexWrap: "wrap", // Wrap images if there are too many
-                    }}
-                  >
-                    <Image.PreviewGroup>
-                      {imagePreviews.length > 0 ? (
-                        imagePreviews.map((preview, index) => (
-                          <Image key={index} width={200} src={preview} alt={`Preview ${index}`} />
-                        ))
-                      ) : formData.projectimages.length > 0 ? (
-                        formData.projectimages.map((image, index) => (
-                          <Image
-                            key={index}
-                            width={200}
-                            src={`${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${image}`}
-                            alt={`Existing Image ${index}`}
-                          />
-                        ))
-                      ) : (
-                        <Image
-                          width={200}
-                          src="https://via.placeholder.com/200" // Placeholder image URL
-                          alt="No images available"
+                  {imagePreviews.length > 0 && (
+                    <div
+                      style={{
+                        marginTop: "20px",
+                        display: "flex",
+                        flexWrap: "wrap",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {imagePreviews.map((preview, index) => (
+                        <img
+                          key={index}
+                          src={preview}
+                          alt={`Preview ${index}`}
+                          style={{
+                            maxWidth: "150px",
+                            height: "auto",
+                            margin: "10px",
+                            borderRadius: "4px",
+                          }}
                         />
-                      )}
-                    </Image.PreviewGroup>
-                  </MDBox>
-
-                  {/* Display Loading or Error/Success Messages */}
-                  {loading && (
-                    <MDTypography variant="body1" color="info">
-                      Loading...
-                    </MDTypography>
-                  )}
-                  {error && (
-                    <MDTypography variant="body1" color="error">
-                      {error}
-                    </MDTypography>
-                  )}
-                  {success && (
-                    <MDTypography variant="body1" color="success">
-                      {success}
-                    </MDTypography>
+                      ))}
+                    </div>
                   )}
 
-                  {/* Submit Button */}
                   <Button
                     type="submit"
                     variant="contained"
@@ -292,7 +239,7 @@ const EditScreenssection = () => {
                     sx={{ color: "#FFFFFF" }}
                     disabled={loading}
                   >
-                    Update
+                    {loading ? "Submitting..." : id ? "Update" : "Submit"}
                   </Button>
                 </form>
               </MDBox>

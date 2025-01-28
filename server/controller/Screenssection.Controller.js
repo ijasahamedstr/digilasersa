@@ -71,3 +71,36 @@ export const ScreenssectionDelete = async (req, res) => {
     }
 };
  
+// All Acccount Update
+export const Screenssectionupdate = async (req, res) => {
+    const { id } = req.params;
+    const { projectname, projectype, projectdec } = req.body; // Destructured all at once
+    const files = req.files && req.files.length > 0 ? req.files : [];
+
+    try {
+        // Find the user by ID
+        const user = await Screenssection.findById(id);
+        if (!user) {
+            return res.status(404).json({ status: 404, message: "User not found" });
+        }
+
+        // Update fields if present
+        if (projectname) user.projectname = projectname;
+        if (projectype) user.projectype = projectype;
+        if (projectdec) user.projectdec = projectdec;
+
+        // Handle file upload and update projectimage if files are present
+        if (files.length > 0) {
+            const fileUrls = files.map((file) => file.filename); // Getting filenames from uploaded files
+            user.projectimage = fileUrls; // Assuming projectimage can store an array of file URLs
+        }
+
+        // Save the updated user data
+        const updatedUser = await user.save();
+
+        res.status(200).json({ status: 200, updatedUser });
+    } catch (error) {
+        // Sending more descriptive error message
+        res.status(500).json({ status: 500, message: "Error updating promotional gift", error: error.message });
+    }
+};
