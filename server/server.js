@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url';
 import Promotionalgifts from "./routes/Promotionalgiftssection.route.js";
 import Printingdepartment from "./routes/Printingdepartment.route.js";
 import Screenssection from "./routes/Screenssection.route.js";
+import ArabicCalligraphy from "./routes/ArabicCalligraphy.route.js";
 
 
 // Create an instance of Express
@@ -43,6 +44,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/uploads/Promotionalgifts', express.static(path.join(__dirname, '/uploads/Promotionalgifts')));
 app.use('/uploads/Printingdepartment', express.static(path.join(__dirname, '/uploads/Printingdepartment')));
+app.use('/uploads/ArabicCalligraphy', express.static(path.join(__dirname, '/uploads/ArabicCalligraphy')));
 
 
 //CLIENT -> MIDDLEWARE -> SERVER
@@ -53,6 +55,7 @@ app.use('/Adminregister',AccountAdminrouter);
 app.use('/Promotionalgifts',Promotionalgifts);
 app.use('/Printingdepartment',Printingdepartment);
 app.use('/Screensdepartment',Screenssection);
+app.use('/ArabicCalligraphy',ArabicCalligraphy);
 
 
 // Start the Express server

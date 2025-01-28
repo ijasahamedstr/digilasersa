@@ -15,6 +15,10 @@ import Screenssection from "layouts/Screens-section";
 import SmartScreenIcon from "@mui/icons-material/SmartScreen";
 import AddScreenssection from "layouts/Screens-section/AddScreenssection";
 import EditScreenssection from "layouts/Screens-section/EditScreenssection";
+import ArabicCalligraphy from "layouts/ArabicCalligraphy-section";
+import TranslateIcon from "@mui/icons-material/Translate";
+import AddArabicCalligraphy from "layouts/ArabicCalligraphy-section/AddArabicCalligraphy";
+import EditArabicCalligraphy from "layouts/ArabicCalligraphy-section/EditArabicCalligraphy";
 
 const routes = [
   {
@@ -51,6 +55,14 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "ArabicCalligraphy",
+    key: "ArabicCalligraphy",
+    icon: <TranslateIcon />,
+    route: "/ArabicCalligraphy",
+    component: <ArabicCalligraphy />,
+  },
+  {
+    type: "collapse",
     name: "Sign Out",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
@@ -80,6 +92,14 @@ const routes = [
   {
     route: "/Edit-Screenssection/:id",
     component: <EditScreenssection />,
+  },
+  {
+    route: "/Add-ArabicCalligraphy",
+    component: <AddArabicCalligraphy />,
+  },
+  {
+    route: "/Edit-ArabicCalligraphy/:id",
+    component: <EditArabicCalligraphy />,
   },
 ];
 
