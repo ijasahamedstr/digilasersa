@@ -21,6 +21,3 @@ Screenssection.put('/:id',userUpload.array('userimg'),Screenssectionupdate);
 
 
 export default Screenssection;
-
-
-

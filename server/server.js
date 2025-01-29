@@ -11,6 +11,8 @@ import Promotionalgifts from "./routes/Promotionalgiftssection.route.js";
 import Printingdepartment from "./routes/Printingdepartment.route.js";
 import Screenssection from "./routes/Screenssection.route.js";
 import ArabicCalligraphy from "./routes/ArabicCalligraphy.route.js";
+import Socialmediasection from "./routes/Socialmedia-section.route.js";
+import MediaCommunicationsphoto from "./routes/MediaCommunicationsphoto.route.js";
 
 
 // Create an instance of Express
@@ -45,6 +47,7 @@ const __dirname = path.dirname(__filename);
 app.use('/uploads/Promotionalgifts', express.static(path.join(__dirname, '/uploads/Promotionalgifts')));
 app.use('/uploads/Printingdepartment', express.static(path.join(__dirname, '/uploads/Printingdepartment')));
 app.use('/uploads/ArabicCalligraphy', express.static(path.join(__dirname, '/uploads/ArabicCalligraphy')));
+app.use('/uploads/MediaCommunications/Photo', express.static(path.join(__dirname, '/uploads/MediaCommunications/Photo')));
 
 
 //CLIENT -> MIDDLEWARE -> SERVER
@@ -56,6 +59,8 @@ app.use('/Promotionalgifts',Promotionalgifts);
 app.use('/Printingdepartment',Printingdepartment);
 app.use('/Screensdepartment',Screenssection);
 app.use('/ArabicCalligraphy',ArabicCalligraphy);
+app.use('/Socialmedia',Socialmediasection);
+app.use('/MediaCommunicationsphoto',MediaCommunicationsphoto);
 
 
 // Start the Express server

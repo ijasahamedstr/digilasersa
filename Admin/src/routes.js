@@ -19,6 +19,15 @@ import ArabicCalligraphy from "layouts/ArabicCalligraphy-section";
 import TranslateIcon from "@mui/icons-material/Translate";
 import AddArabicCalligraphy from "layouts/ArabicCalligraphy-section/AddArabicCalligraphy";
 import EditArabicCalligraphy from "layouts/ArabicCalligraphy-section/EditArabicCalligraphy";
+import Socialmediasection from "layouts/Social-media-section";
+import Diversity2Icon from "@mui/icons-material/Diversity2";
+import AddSocialmediasection from "layouts/Social-media-section/AddSocialmediasection";
+import EditSocialmediasection from "layouts/Social-media-section/EditSocialmediasection";
+import NotStartedIcon from "@mui/icons-material/NotStarted";
+import MediaCommunicationsSection from "layouts/MediaCommunications";
+import MediaCommunicationsphoto from "layouts/MediaCommunications/Photo";
+import AddMediaCommunications from "layouts/MediaCommunications/Photo/AddMediaCommunications";
+import EditMediaCommunications from "layouts/MediaCommunications/Photo/EditMediaCommunications";
 
 const routes = [
   {
@@ -63,6 +72,22 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Socialmediasection",
+    key: "Socialmediasection",
+    icon: <Diversity2Icon />,
+    route: "/Socialmediasection",
+    component: <Socialmediasection />,
+  },
+  {
+    type: "collapse",
+    name: "Media Communications",
+    key: "MediaCommunications",
+    icon: <NotStartedIcon />,
+    route: "/MediaCommunications",
+    component: <MediaCommunicationsSection />,
+  },
+  {
+    type: "collapse",
     name: "Sign Out",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
@@ -100,6 +125,26 @@ const routes = [
   {
     route: "/Edit-ArabicCalligraphy/:id",
     component: <EditArabicCalligraphy />,
+  },
+  {
+    route: "/Add-Socialmediasection",
+    component: <AddSocialmediasection />,
+  },
+  {
+    route: "/Edit-Socialmediasection/:id",
+    component: <EditSocialmediasection />,
+  },
+  {
+    route: "/MediaCommunications-photo-section",
+    component: <MediaCommunicationsphoto />,
+  },
+  {
+    route: "/Add-MediaCommunications-photo-section",
+    component: <AddMediaCommunications />,
+  },
+  {
+    route: "/Edit-MediaCommunications-photo-section/:id",
+    component: <EditMediaCommunications />,
   },
 ];
 
