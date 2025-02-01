@@ -132,7 +132,7 @@ const EditSocialmediasection = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  {id ? "Update Category" : "Add New Category"}
+                  {id ? "Update Social media section" : "Add New Category"}
                 </MDTypography>
               </MDBox>
 

@@ -120,7 +120,7 @@ const AddPromotionalgifts = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Add New Category
+                  Add New Promotional Gifts
                 </MDTypography>
               </MDBox>
 
@@ -129,7 +129,7 @@ const AddPromotionalgifts = () => {
                 <form onSubmit={handleSubmit}>
                   {/* Category Name */}
                   <TextField
-                    label="Category Name"
+                    label="Gifts Name"
                     variant="outlined"
                     fullWidth
                     sx={{ mb: 2 }}

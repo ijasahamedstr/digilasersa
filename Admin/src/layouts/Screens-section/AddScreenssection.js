@@ -106,7 +106,7 @@ const AddScreenssection = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Add New Category
+                  Add New Screens section
                 </MDTypography>
               </MDBox>
 

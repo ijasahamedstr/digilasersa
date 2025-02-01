@@ -133,7 +133,7 @@ const EditScreenssection = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  {id ? "Update Category" : "Add New Category"}
+                  {id ? "Update Screens section" : "Add New Category"}
                 </MDTypography>
               </MDBox>
 

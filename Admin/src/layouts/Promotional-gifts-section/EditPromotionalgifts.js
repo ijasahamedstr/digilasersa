@@ -144,7 +144,7 @@ const EditPromotionalgifts = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Edit Category
+                  Edit Promotional gifts section
                 </MDTypography>
               </MDBox>
 

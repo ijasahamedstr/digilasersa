@@ -13,6 +13,7 @@ import Screenssection from "./routes/Screenssection.route.js";
 import ArabicCalligraphy from "./routes/ArabicCalligraphy.route.js";
 import Socialmediasection from "./routes/Socialmedia-section.route.js";
 import MediaCommunicationsphoto from "./routes/MediaCommunicationsphoto.route.js";
+import MediaCommunicationsvideo from "./routes/MediaCommunicationsvideo.route.js";
 
 
 // Create an instance of Express
@@ -48,6 +49,7 @@ app.use('/uploads/Promotionalgifts', express.static(path.join(__dirname, '/uploa
 app.use('/uploads/Printingdepartment', express.static(path.join(__dirname, '/uploads/Printingdepartment')));
 app.use('/uploads/ArabicCalligraphy', express.static(path.join(__dirname, '/uploads/ArabicCalligraphy')));
 app.use('/uploads/MediaCommunications/Photo', express.static(path.join(__dirname, '/uploads/MediaCommunications/Photo')));
+app.use('/uploads/MediaCommunications/Video', express.static(path.join(__dirname, '/uploads/MediaCommunications/Video')));
 
 
 //CLIENT -> MIDDLEWARE -> SERVER
@@ -61,6 +63,7 @@ app.use('/Screensdepartment',Screenssection);
 app.use('/ArabicCalligraphy',ArabicCalligraphy);
 app.use('/Socialmedia',Socialmediasection);
 app.use('/MediaCommunicationsphoto',MediaCommunicationsphoto);
+app.use('/MediaCommunicationsvideo',MediaCommunicationsvideo);
 
 
 // Start the Express server

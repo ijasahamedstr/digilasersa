@@ -100,7 +100,7 @@ const AddSocialmediasection = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Add New Category
+                  Add New Social media section
                 </MDTypography>
               </MDBox>
 

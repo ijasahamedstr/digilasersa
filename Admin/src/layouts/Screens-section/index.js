@@ -223,7 +223,7 @@ function Screenssection() {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Promotional Gifts Table
+                  Screens section Table
                 </MDTypography>
                 <Link to="/Add-Screenssection">
                   <Button

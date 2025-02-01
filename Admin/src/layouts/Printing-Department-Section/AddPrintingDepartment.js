@@ -120,7 +120,7 @@ const AddPrintingDepartment = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Add New Category
+                  Add New Printing Department
                 </MDTypography>
               </MDBox>
 

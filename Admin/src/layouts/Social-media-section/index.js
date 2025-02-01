@@ -231,7 +231,7 @@ function Socialmediasection() {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Promotional Gifts Table
+                  Social media section Table
                 </MDTypography>
                 <Link to="/Add-Socialmediasection">
                   <Button

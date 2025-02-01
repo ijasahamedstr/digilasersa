@@ -212,7 +212,7 @@ function MediaCommunicationsphoto() {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Printing Department Table
+                  Media Communications Photo Table
                 </MDTypography>
                 <Link to="/Add-MediaCommunications-photo-section">
                   <Button

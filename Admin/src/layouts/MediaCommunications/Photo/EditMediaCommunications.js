@@ -153,7 +153,7 @@ const EditMediaCommunications = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Edit Category
+                  Edit Media Communications Photo
                 </MDTypography>
               </MDBox>
 

@@ -210,7 +210,7 @@ function ArabicCalligraphy() {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Promotional Gifts Table
+                  Department of Arabic Calligraphy section Table
                 </MDTypography>
                 <Link to="/Add-ArabicCalligraphy">
                   <Button

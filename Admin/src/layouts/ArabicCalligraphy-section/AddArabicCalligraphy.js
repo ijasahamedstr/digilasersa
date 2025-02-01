@@ -114,7 +114,7 @@ const AddArabicCalligraphy = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Add New Category
+                  Add New Department of Arabic Calligraphy section
                 </MDTypography>
               </MDBox>
 

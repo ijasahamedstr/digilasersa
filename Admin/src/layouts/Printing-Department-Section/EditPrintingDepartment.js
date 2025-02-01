@@ -156,7 +156,7 @@ const EditPrintingDepartment = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Edit Category
+                  Edit Printing section
                 </MDTypography>
               </MDBox>
 

@@ -141,7 +141,7 @@ const EditArabicCalligraphy = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Edit Category
+                  Edit Department of Arabic Calligraphy section
                 </MDTypography>
               </MDBox>
 

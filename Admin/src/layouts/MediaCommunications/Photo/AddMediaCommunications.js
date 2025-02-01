@@ -117,7 +117,7 @@ const AddMediaCommunications = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Add New Category
+                  Add New Media Communications Photo
                 </MDTypography>
               </MDBox>
 

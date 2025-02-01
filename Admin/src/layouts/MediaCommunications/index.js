@@ -75,18 +75,18 @@ function MediaCommunicationsSection() {
                   gap={2} // Adds space between the buttons
                   mb={4} // Adds margin to the bottom (30px equivalent in Material-UI's spacing scale, 1 unit = 8px)
                 >
-                  {/* Wrap each button with Link to navigate to different pages */}
+                  {/* Photo Section Button with blue background */}
                   <Link to="/MediaCommunications-photo-section" style={{ textDecoration: "none" }}>
                     <Button
                       variant="contained"
-                      size="large"
+                      size="medium" // Set button size to medium
                       sx={{
-                        padding: "16px 32px", // Increases the padding for larger buttons
-                        fontSize: "1.25rem", // Increases the font size
-                        backgroundColor: "black", // Sets the background color to black
-                        color: "white", // Ensures the text color is white
+                        padding: "12px 24px", // Adjust padding for medium button size
+                        fontSize: "1rem", // Adjust font size for medium size
+                        backgroundColor: "#17202a", // Blue background color
+                        color: "white", // White text color
                         "&:hover": {
-                          backgroundColor: "gray", // Optional: Hover effect with gray background
+                          backgroundColor: "#17202a", // Dark blue on hover
                         },
                       }}
                     >
@@ -94,17 +94,18 @@ function MediaCommunicationsSection() {
                     </Button>
                   </Link>
 
+                  {/* Video Section Button with green background */}
                   <Link to="/MediaCommunications-video-section" style={{ textDecoration: "none" }}>
                     <Button
                       variant="contained"
-                      size="large"
+                      size="medium" // Set button size to medium
                       sx={{
-                        padding: "16px 32px", // Increases the padding for larger buttons
-                        fontSize: "1.25rem", // Increases the font size
-                        backgroundColor: "black", // Sets the background color to black
-                        color: "white", // Ensures the text color is white
+                        padding: "12px 24px", // Adjust padding for medium button size
+                        fontSize: "1rem", // Adjust font size for medium size
+                        backgroundColor: "#17202a", // Green background color
+                        color: "white", // White text color
                         "&:hover": {
-                          backgroundColor: "gray", // Optional: Hover effect with gray background
+                          backgroundColor: "#17202a", // Dark green on hover
                         },
                       }}
                     >
