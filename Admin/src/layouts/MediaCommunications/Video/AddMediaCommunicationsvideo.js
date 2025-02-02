@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import LinearProgress from "@mui/material/LinearProgress";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -17,6 +18,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 const AddMediaCommunicationsVideo = () => {
   const [loading, setLoading] = useState(false);
   const [videoPreview, setVideoPreview] = useState(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   // Seller Form field states
   const [MediaCommunications, setMediaCommunications] = useState({
@@ -61,6 +63,7 @@ const AddMediaCommunicationsVideo = () => {
     }
 
     setLoading(true);
+    setUploadProgress(0); // Reset progress when a new upload starts
 
     const formData = new FormData();
     formData.append(
@@ -76,6 +79,11 @@ const AddMediaCommunicationsVideo = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: (progressEvent) => {
+            // Calculate the percentage of upload progress
+            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setUploadProgress(percent); // Update the progress state
           },
         }
       );
@@ -94,6 +102,7 @@ const AddMediaCommunicationsVideo = () => {
         });
         setMediaCommunications({ MediaCommunicationsvideoname: "", file: null });
         setVideoPreview(null);
+        setUploadProgress(0); // Reset progress after successful upload
       }
     } catch (error) {
       Swal.fire({
@@ -199,6 +208,13 @@ const AddMediaCommunicationsVideo = () => {
                         <source src={videoPreview} type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
+                    </MDBox>
+                  )}
+
+                  {/* Upload Progress Bar */}
+                  {uploadProgress > 0 && uploadProgress < 100 && (
+                    <MDBox sx={{ mb: 2 }}>
+                      <LinearProgress variant="determinate" value={uploadProgress} />
                     </MDBox>
                   )}
 

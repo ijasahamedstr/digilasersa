@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { MediaCommunicationvideocreate } from '../controller/MediaCommunicationsvideo.Controller.js';
+import { MediaCommunicationvideocreate, MediaCommunicationVideoDelete, MediaCommunicationVideoIndex, MediaCommunicationVideoSingleDetails } from '../controller/MediaCommunicationsvideo.Controller.js';
 
 // Create a new router instance
 const MediaCommunicationsvideo = express.Router();
@@ -31,5 +31,14 @@ const videoUpload = multer({
 
 // Create the Data Register
 MediaCommunicationsvideo.post('/', videoUpload.single('Video'), MediaCommunicationvideocreate);
+
+// View the Data Register
+MediaCommunicationsvideo.get('/',MediaCommunicationVideoIndex);
+
+// View the Single Data Register
+MediaCommunicationsvideo.get("/:id",MediaCommunicationVideoSingleDetails);
+
+//Delete Data Register
+MediaCommunicationsvideo.delete('/:id',MediaCommunicationVideoDelete);
 
 export default MediaCommunicationsvideo;

@@ -40,3 +40,43 @@ export const MediaCommunicationvideocreate = async (req, res) => {
         });
     }
 };
+
+
+// All Acccount View 
+export const MediaCommunicationVideoIndex = async (req, res) => {
+    try {
+        const MediaCommunicationVideoview = await MediaCommunicationsvideo.find();
+        res.json(MediaCommunicationVideoview);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+  };
+
+  // single Acccount View 
+export const MediaCommunicationVideoSingleDetails = async (req, res) => {
+    try {
+        const MediaCommunicationVideoSingleView = await MediaCommunicationsvideo.findById(req.params.id);
+        if (MediaCommunicationVideoSingleView  == null) {
+            return res.status(404).json({ message: "Cannot Find The MediaCommunication department" });
+        }
+        else {
+            res.json(MediaCommunicationVideoSingleView);
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+  };
+
+  // All Acccount Delete
+export const  MediaCommunicationVideoDelete = async (req, res) => {
+    const MediaCommunicationVideoId =  req.params.id;
+
+    try {
+         await MediaCommunicationsvideo.deleteOne({_id: MediaCommunicationVideoId})
+         res.json({message:"User MediaCommunication Video deleted!"});
+    } catch (error) {
+     res.status(500).json({message:error.message})
+    }
+};
+
+
