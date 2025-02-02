@@ -2,6 +2,7 @@ import AboutSection from "./AboutSection";
 import ContactUs from "./ContactUs";
 import Eventsection from "./event_section";
 import Herosection from "./Herosection";
+import Hr from "./hr";
 import Imagesection from "./Imagesection";
 import Newssection from "./news_section";
 import Partner from "./Partner";
@@ -21,7 +22,9 @@ export default function Home() {
       <Progress/>
       <Newssection/>
       <Imagesection/>
+      <Hr/>
       <Partner/>
+      <Hr/>
       <Eventsection/>
       <ContactUs/>
       </>
