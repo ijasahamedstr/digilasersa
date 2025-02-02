@@ -52,7 +52,7 @@ Job.propTypes = {
 };
 
 function MediaCommunicationsvideo() {
-  const [MediaCommunications, setMediaCommunications] = useState([]);
+  const [MediaCommunicationsvideo, setMediaCommunicationsvideo] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -61,9 +61,9 @@ function MediaCommunicationsvideo() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/MediaCommunicationsphoto`
+          `${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo`
         );
-        setMediaCommunications(response.data); // Set the fetched gifts
+        setMediaCommunicationsvideo(response.data); // Set the fetched gifts
       } catch (err) {
         console.error("Error fetching data: ", err);
         setError("Failed to fetch data");
@@ -81,12 +81,12 @@ function MediaCommunicationsvideo() {
   // Define the columns for the DataTable
   const columns = [
     {
-      Header: "MediaCommunications Name",
-      accessor: "MediaCommunications_Name",
+      Header: "MediaCommunications Video Name",
+      accessor: "MediaCommunications_video_Name",
       width: "20%",
       align: "left",
     },
-    { Header: "MediaCommunications Image", accessor: "MediaCommunications_Image", align: "center" },
+    { Header: "MediaCommunications Video", accessor: "MediaCommunications_video", align: "center" },
     { Header: "Action", accessor: "action", align: "center" },
   ];
 
@@ -104,36 +104,53 @@ function MediaCommunicationsvideo() {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`${process.env.REACT_APP_API_HOST}/MediaCommunicationsphoto/${id}`);
-        setMediaCommunications(
-          MediaCommunications.filter((MediaCommunications) => MediaCommunications._id !== id)
+        await axios.delete(`${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo/${id}`);
+        setMediaCommunicationsvideo(
+          MediaCommunicationsvideo.filter(
+            (MediaCommunicationsvideo) => MediaCommunicationsvideo._id !== id
+          )
         );
-        Swal.fire("Deleted!", "The MediaCommunications has been deleted.", "success");
+        Swal.fire("Deleted!", "The MediaCommunications Video has been deleted.", "success");
       } catch (err) {
-        console.error("Error deleting MediaCommunications: ", err);
-        Swal.fire("Error!", "There was an issue deleting the MediaCommunications.", "error");
+        console.error("Error deleting MediaCommunications Video: ", err);
+        Swal.fire("Error!", "There was an issue deleting the MediaCommunications Video.", "error");
       }
     }
   };
 
   // Map through printing department data to build table rows
-  const rows = MediaCommunications.map((item) => ({
-    MediaCommunications_Name: (
+  const rows = MediaCommunicationsvideo.map((item) => ({
+    MediaCommunications_video_Name: (
       <Author
-        name={item.MediaCommunicationsphotoname}
+        name={item.MediaCommunicationsvideoname}
         style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
       />
     ),
-    MediaCommunications_Image: (
+    MediaCommunications_video: (
       <MDBox>
-        {item.MediaCommunicationsphotoimage ? (
-          <Image.PreviewGroup>
-            <Image
-              src={`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Photo/${item.MediaCommunicationsphotoimage}`}
-              alt="MediaCommunicationsphotoimage"
-              style={{ maxWidth: "100px", borderRadius: "8px" }}
-            />
-          </Image.PreviewGroup>
+        {item.MediaCommunicationsvideo ? (
+          // Check if the file is a video and display the video player inside the PreviewGroup
+          item.MediaCommunicationsvideo.endsWith(".mp4") ||
+          item.MediaCommunicationsvideo.endsWith(".webm") ? (
+            <Image.PreviewGroup>
+              <video width="400px" controls style={{ borderRadius: "8px" }}>
+                <source
+                  src={`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Video/${item.MediaCommunicationsvideo}`}
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </Image.PreviewGroup>
+          ) : (
+            // Fallback to image preview if not a video
+            <Image.PreviewGroup>
+              <Image
+                src={`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Video/${item.MediaCommunicationsvideo}`}
+                alt="MediaCommunicationsphotoimage"
+                style={{ maxWidth: "100px", borderRadius: "8px" }}
+              />
+            </Image.PreviewGroup>
+          )
         ) : (
           <Image
             src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
@@ -148,7 +165,7 @@ function MediaCommunicationsvideo() {
         {/* Edit button */}
         <Link
           to={`/Edit-MediaCommunications-photo-section/${item._id}`}
-          style={{ textDecoration: "none" }} // Ensure no style interference
+          style={{ textDecoration: "none" }}
         >
           <Button
             variant="outlined"
@@ -212,7 +229,7 @@ function MediaCommunicationsvideo() {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Media Communications Photo Table
+                  Media Communications Video Table
                 </MDTypography>
                 <Link to="/Add-MediaCommunications-video-section">
                   <Button

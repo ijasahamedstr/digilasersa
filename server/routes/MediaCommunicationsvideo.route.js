@@ -41,4 +41,6 @@ MediaCommunicationsvideo.get("/:id",MediaCommunicationVideoSingleDetails);
 //Delete Data Register
 MediaCommunicationsvideo.delete('/:id',MediaCommunicationVideoDelete);
 
+
+
 export default MediaCommunicationsvideo;
