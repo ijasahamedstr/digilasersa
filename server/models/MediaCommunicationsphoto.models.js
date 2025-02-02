@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 
 // Define the schema
 const MediaCommunicationsphotoSchema = new mongoose.Schema({
-    MediaCommunicationsvideoname: {
+    MediaCommunicationsphotoname: {
         type: String,
     },
-    MediaCommunicationsvideo: {
+    MediaCommunicationsphotoimage: {
         type: String,
     },
     date: {
@@ -14,7 +14,7 @@ const MediaCommunicationsphotoSchema = new mongoose.Schema({
 });
 
 // Create the model
-const MediaCommunicationsvideo = mongoose.model('MediaCommunicationsphoto', MediaSchema);
+const MediaCommunicationsphoto = mongoose.model('MediaCommunicationsphoto', MediaCommunicationsphotoSchema);
 
 // Export the model
-export default MediaCommunicationsvideo;
+export default MediaCommunicationsphoto;

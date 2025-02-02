@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { MediaCommunicationcreate, MediaCommunicationIndex, MediaCommunicationSingleDelete, MediaCommunicationSingleDetails, MediaCommunicationUpdates } from '../controller/MediaCommunicationsphoto..Controller.js';
+import { MediaCommunicationcreate, MediaCommunicationIndex, MediaCommunicationSingleDelete, MediaCommunicationSingleDetails, MediaCommunicationUpdates } from '../controller/MediaCommunicationsphoto.Controller.js';
 
 // Create a new router instance
 const MediaCommunicationsphoto = express.Router();
