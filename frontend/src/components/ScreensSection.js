@@ -67,13 +67,22 @@ const ScreensSection = () => {
 
   return (
     <>
-      {/* Introduction Video Modal */}
+      {/* Full-Screen Video Modal */}
       <Modal 
         show={showModal} 
         onHide={handleCloseModal} 
         centered 
-        size="lg" // Makes the modal extra large
-        dialogClassName="modal-90w"
+        size="xl" // Makes the modal extra large
+        style={{ // Inline CSS for full-screen modal
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          margin: 0,
+          padding: 0,
+        }}
+        dialogClassName="modal-fullscreen" // Custom class for full-screen styling
         aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Header closeButton>
@@ -81,19 +90,33 @@ const ScreensSection = () => {
             Video Introduction
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ // Inline CSS for modal body
+          width: '100%',
+          height: 'calc(100vh - 60px)', // Adjust for header height
+          padding: 0,
+          margin: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'black',
+        }}>
           <video
             width="100%"
-            height="auto"
+            height="100%"
             controls
             autoPlay
             onEnded={handleCloseModal}  // Close the modal when the video ends
+            style={{ // Inline CSS for video
+              objectFit: 'cover',
+            }}
           >
             <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </Modal.Body>
       </Modal>
+
+      {/* Rest of the code remains unchanged */}
       <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>
         <Box sx={{ width: '100%', position: 'relative', overflow: 'hidden' }}>
           <Carousel fade nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: 'black' }} />} prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: 'black' }} />} aria-live="polite">
@@ -123,52 +146,51 @@ const ScreensSection = () => {
             ))}
           </Carousel>
 
-               {/* Social Media Icons on the Left Side */}
-                  <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "15px", zIndex: 2, paddingLeft: 2 }}>
-                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                        <FaFacebook size={25} />
-                      </Box>
-                    </a>
-                    <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-                      <Box sx={{ width: 40, height: 40, borderRadius
-                        : "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                        <FontAwesomeIcon icon={faXTwitter} size={25} />
-                      </Box>
-                    </a>
-                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                        <FaInstagram size={25} />
-                      </Box>
-                    </a>
-                    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                        <FaLinkedin size={25} />
-                      </Box>
-                    </a>
-                    <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                        <FaYoutube  size={25} />
-                      </Box>
-                    </a>
-                    <a href="https://www.snapchat.com/" target="_blank" rel="noopener noreferrer">
-                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                        <FaSnapchat size={25} />
-                      </Box>
-                    </a>
-                    <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
-                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                        <FaTiktok size={25} />
-                      </Box>
-                    </a>
-                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
-                      <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
-                        <FaWhatsapp size={25} />
-                      </Box>
-                    </a>
-                  </Box>
+          {/* Social Media Icons on the Left Side */}
+          <Box sx={{ position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "15px", zIndex: 2, paddingLeft: 2 }}>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                <FaFacebook size={25} />
               </Box>
-            </Container>
+            </a>
+            <a href="https://x.com/digilasersa" target="_blank" rel="noopener noreferrer">
+              <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                <FontAwesomeIcon icon={faXTwitter} size={25} />
+              </Box>
+            </a>
+            <a href="https://www.instagram.com/digilasersa" target="_blank" rel="noopener noreferrer">
+              <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                <FaInstagram size={25} />
+              </Box>
+            </a>
+            <a href="https://www.linkedin.com/company/digilasersa/" target="_blank" rel="noopener noreferrer">
+              <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                <FaLinkedin size={25} />
+              </Box>
+            </a>
+            <a href="https://youtube.com/@digilaserSa" target="_blank" rel="noopener noreferrer">
+              <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                <FaYoutube size={25} />
+              </Box>
+            </a>
+            <a href="https://www.snapchat.com/add/digilasersa" target="_blank" rel="noopener noreferrer">
+              <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                <FaSnapchat size={25} />
+              </Box>
+            </a>
+            <a href="https://www.tiktok.com/@digilasersa" target="_blank" rel="noopener noreferrer">
+              <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                <FaTiktok size={25} />
+              </Box>
+            </a>
+            <a href="http://wa.me/966571978888" target="_blank" rel="noopener noreferrer">
+              <Box sx={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "#06f9f3", display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" } }}>
+                <FaWhatsapp size={25} />
+              </Box>
+            </a>
+          </Box>
+        </Box>
+      </Container>
       <section
               style={{
                 width: '100%',
@@ -186,7 +208,7 @@ const ScreensSection = () => {
                   paddingLeft: { xs: '20px', sm: '100px' },
                 }}
               >
-              <Link to="/Outdoor-LED" style={{ textDecoration: 'none' }}>
+              
                 <Grid
                   container
                   spacing={2}
@@ -229,6 +251,7 @@ const ScreensSection = () => {
                           maxWidth: '100%',
                         }}
                       >
+                        <Link to="/Outdoor-LED" style={{ textDecoration: 'none' }}>
                         <Typography
                           variant="h3"
                           sx={{
@@ -242,6 +265,7 @@ const ScreensSection = () => {
                         >
                           الشاشات الإلكترونية الخارجية
                         </Typography>
+                        </Link>
                       </Card>
                     </Box>
 
@@ -306,7 +330,6 @@ const ScreensSection = () => {
                     }}
                   />
                 </Grid>
-              </Link>
               </Container>
             </section>
 
@@ -330,7 +353,6 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },
               }}
             >
-              <Link to="/Indoor-Screen" style={{ textDecoration: 'none' }}>
               <Grid
                 container
                 spacing={2}
@@ -353,6 +375,7 @@ const ScreensSection = () => {
                         maxWidth: '100%',
                       }}
                     >
+                      <Link to="/Indoor-Screen" style={{ textDecoration: 'none' }}>
                       <Typography
                         variant="h3"
                         sx={{
@@ -366,6 +389,7 @@ const ScreensSection = () => {
                       >
                         الشاشات الإلكترونية الداخلية
                       </Typography>
+                      </Link>
                     </Card>
                   </Box>
                   <Typography
@@ -446,7 +470,6 @@ const ScreensSection = () => {
                   }}
                 />
               </Grid>
-            </Link>
             </Container>
           </section>      
           
@@ -467,7 +490,7 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },
               }}
             >
-              <Link to="/TextDisplay-Screen" style={{ textDecoration: 'none' }}>
+              
               <Grid
                 container
                 spacing={2}
@@ -509,6 +532,7 @@ const ScreensSection = () => {
                         maxWidth: '100%',
                       }}
                     >
+                      <Link to="/TextDisplay-Screen" style={{ textDecoration: 'none' }}>
                       <Typography
                         variant="h3"
                         sx={{
@@ -523,6 +547,7 @@ const ScreensSection = () => {
                         
                     شــاشة العـــرض النصـــية
                       </Typography>
+                      </Link>
                     </Card>
                   </Box>
 
@@ -586,7 +611,6 @@ const ScreensSection = () => {
                   }}
                 />
               </Grid>
-              </Link>
             </Container>
           </section>
 
@@ -609,7 +633,7 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },  // Apply smaller padding on mobile
               }}
             >
-              <Link to="/ElectronicScreens" style={{ textDecoration: 'none' }}>
+             
               <Grid
                 container
                 spacing={2}
@@ -631,6 +655,7 @@ const ScreensSection = () => {
                         maxWidth: '100%',
                       }}
                     >
+                       <Link to="/ElectronicScreens" style={{ textDecoration: 'none' }}>
                       <Typography
                         variant="h3"
                         sx={{
@@ -645,6 +670,7 @@ const ScreensSection = () => {
                         
                   الشاشات الإلكترونية الداخلية
                       </Typography>
+                      </Link>
                     </Card>
                   </Box>
                   <Typography
@@ -724,7 +750,6 @@ const ScreensSection = () => {
                   }}
                 />
               </Grid>
-              </Link>
             </Container>
           </section>
 
@@ -748,7 +773,7 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },
               }}
             >
-            <Link to="/InteractiveScreens" style={{ textDecoration: 'none' }}>
+            
               <Grid
                 container
                 spacing={2}
@@ -788,6 +813,7 @@ const ScreensSection = () => {
                         maxWidth: '100%',
                       }}
                     >
+                      <Link to="/InteractiveScreens" style={{ textDecoration: 'none' }}>
                       <Typography
                         variant="h3"
                         sx={{
@@ -802,6 +828,7 @@ const ScreensSection = () => {
                         
                     الشـــــاشات التفــــاعلـية
                       </Typography>
+                      </Link>
                     </Card>
                   </Box>
 
@@ -865,7 +892,6 @@ const ScreensSection = () => {
                   }}
                 />
               </Grid>
-              </Link>
             </Container>
           </section>
 
@@ -889,7 +915,7 @@ const ScreensSection = () => {
                 paddingLeft: { xs: '20px', sm: '100px' },  // Apply smaller padding on mobile
               }}
             >
-               <Link to="/CountingScreen" style={{ textDecoration: 'none' }}>
+              
               <Grid
                 container
                 spacing={2}
@@ -911,6 +937,7 @@ const ScreensSection = () => {
                         maxWidth: '100%',
                       }}
                     >
+                       <Link to="/CountingScreen" style={{ textDecoration: 'none' }}>
                       <Typography
                         variant="h3"
                         sx={{
@@ -925,6 +952,7 @@ const ScreensSection = () => {
                         
                         شـــاشات العـــدادات والساعات الرقمية
                       </Typography>
+                      </Link>
                     </Card>
                   </Box>
                   <Typography
@@ -1005,7 +1033,6 @@ const ScreensSection = () => {
                   }}
                 />
               </Grid>
-              </Link>
             </Container>
           </section>
 
@@ -1027,7 +1054,7 @@ const ScreensSection = () => {
                   paddingLeft: { xs: '20px', sm: '100px' },
                 }}
               >
-                <Link to="/Meterscreens" style={{ textDecoration: 'none' }}>
+            
                 <Grid
                   container
                   spacing={2}
@@ -1070,6 +1097,7 @@ const ScreensSection = () => {
                           maxWidth: '100%',
                         }}
                       >
+                        <Link to="/Meterscreens" style={{ textDecoration: 'none' }}>
                         <Typography
                           variant="h3"
                           sx={{
@@ -1083,6 +1111,7 @@ const ScreensSection = () => {
                         >
                           جهاز ارقام الانتظار
                         </Typography>
+                        </Link>
                       </Card>
                     </Box>
 
@@ -1151,7 +1180,6 @@ const ScreensSection = () => {
                     }}
                   />
                 </Grid>
-                </Link>
               </Container>
             </section>
       
