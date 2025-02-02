@@ -28,6 +28,8 @@ import MediaCommunicationsSection from "layouts/MediaCommunications";
 import MediaCommunicationsphoto from "layouts/MediaCommunications/Photo";
 import AddMediaCommunications from "layouts/MediaCommunications/Photo/AddMediaCommunications";
 import EditMediaCommunications from "layouts/MediaCommunications/Photo/EditMediaCommunications";
+import MediaCommunicationsvideo from "layouts/MediaCommunications/Video";
+import AddMediaCommunicationsvideo from "layouts/MediaCommunications/Video/AddMediaCommunicationsvideo";
 
 const routes = [
   {
@@ -145,6 +147,14 @@ const routes = [
   {
     route: "/Edit-MediaCommunications-photo-section/:id",
     component: <EditMediaCommunications />,
+  },
+  {
+    route: "/MediaCommunications-video-section",
+    component: <MediaCommunicationsvideo />,
+  },
+  {
+    route: "/Add-MediaCommunications-video-section",
+    component: <AddMediaCommunicationsvideo />,
   },
 ];
 
