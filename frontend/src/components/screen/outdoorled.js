@@ -81,7 +81,9 @@ const Outdoorled = () => {
       speed: 500,
       slidesToShow: 4, 
       slidesToScroll: 1, 
-      vertical: true, 
+      vertical: true,
+      autoplay: true, // Enable autoplay
+      autoplaySpeed: 3000, // Change slide every 3 seconds 
       arrows: true, 
       dots: false, 
       responsive: [

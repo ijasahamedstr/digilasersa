@@ -90,7 +90,9 @@ const ElectronicScreens = () => {
             slidesToShow: 1, 
             slidesToScroll: 1, 
             vertical: true,
-            infinite: true, 
+            infinite: true,
+            autoplay: true, // Enable autoplay
+            autoplaySpeed: 3000, // Change slide every 3 seconds 
             dots: false, 
           },
         },

@@ -81,7 +81,9 @@ const TextDisplayScreen = () => {
       slidesToShow: 4, 
       slidesToScroll: 1, 
       vertical: true, 
-      arrows: true, 
+      arrows: true,
+      autoplay: true, // Enable autoplay
+      autoplaySpeed: 3000, // Change slide every 3 seconds 
       dots: false, 
       responsive: [
         {
