@@ -35,6 +35,10 @@ import News from "layouts/News";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import AddNews from "layouts/News/AddNews";
 import EditNews from "layouts/News/EditNews";
+import SensorOccupiedIcon from "@mui/icons-material/SensorOccupied";
+import Partner from "layouts/partner";
+import AddPartner from "layouts/partner/AddPartner";
+import EditPartner from "layouts/partner/EditPartner";
 
 const routes = [
   {
@@ -100,6 +104,14 @@ const routes = [
     icon: <NewspaperIcon />,
     route: "/News",
     component: <News />,
+  },
+  {
+    type: "collapse",
+    name: "Partner",
+    key: "Partner",
+    icon: <SensorOccupiedIcon />,
+    route: "/Partner",
+    component: <Partner />,
   },
   {
     type: "collapse",
@@ -180,6 +192,14 @@ const routes = [
   {
     route: "/Edit-News/:id",
     component: <EditNews />,
+  },
+  {
+    route: "/Add-Partner",
+    component: <AddPartner />,
+  },
+  {
+    route: "/Edit-Partner/:id",
+    component: <EditPartner />,
   },
 ];
 
