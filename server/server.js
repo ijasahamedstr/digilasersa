@@ -15,6 +15,7 @@ import Socialmediasection from "./routes/Socialmedia-section.route.js";
 import MediaCommunicationsphoto from "./routes/MediaCommunicationsphoto.route.js";
 import MediaCommunicationsvideo from "./routes/MediaCommunicationsvideo.route.js";
 import Newssection from "./routes/News.route.js";
+import Partner from "./routes/Partner.route.js";
 
 
 // Create an instance of Express
@@ -52,6 +53,7 @@ app.use('/uploads/ArabicCalligraphy', express.static(path.join(__dirname, '/uplo
 app.use('/uploads/MediaCommunications/Photo', express.static(path.join(__dirname, '/uploads/MediaCommunications/Photo')));
 app.use('/uploads/MediaCommunications/Video', express.static(path.join(__dirname, '/uploads/MediaCommunications/Video')));
 app.use('/uploads/News', express.static(path.join(__dirname, '/uploads/News')));
+app.use('/uploads/Partner', express.static(path.join(__dirname, '/uploads/Partner')));
 
 
 //CLIENT -> MIDDLEWARE -> SERVER
@@ -67,6 +69,7 @@ app.use('/Socialmedia',Socialmediasection);
 app.use('/MediaCommunicationsphoto',MediaCommunicationsphoto);
 app.use('/MediaCommunicationsvideo',MediaCommunicationsvideo);
 app.use('/News',Newssection);
+app.use('/Partner',Partner);
 
 
 // Start the Express server
