@@ -14,6 +14,7 @@ import ArabicCalligraphy from "./routes/ArabicCalligraphy.route.js";
 import Socialmediasection from "./routes/Socialmedia-section.route.js";
 import MediaCommunicationsphoto from "./routes/MediaCommunicationsphoto.route.js";
 import MediaCommunicationsvideo from "./routes/MediaCommunicationsvideo.route.js";
+import Newssection from "./routes/News.route.js";
 
 
 // Create an instance of Express
@@ -50,6 +51,7 @@ app.use('/uploads/Printingdepartment', express.static(path.join(__dirname, '/upl
 app.use('/uploads/ArabicCalligraphy', express.static(path.join(__dirname, '/uploads/ArabicCalligraphy')));
 app.use('/uploads/MediaCommunications/Photo', express.static(path.join(__dirname, '/uploads/MediaCommunications/Photo')));
 app.use('/uploads/MediaCommunications/Video', express.static(path.join(__dirname, '/uploads/MediaCommunications/Video')));
+app.use('/uploads/News', express.static(path.join(__dirname, '/uploads/News')));
 
 
 //CLIENT -> MIDDLEWARE -> SERVER
@@ -64,6 +66,7 @@ app.use('/ArabicCalligraphy',ArabicCalligraphy);
 app.use('/Socialmedia',Socialmediasection);
 app.use('/MediaCommunicationsphoto',MediaCommunicationsphoto);
 app.use('/MediaCommunicationsvideo',MediaCommunicationsvideo);
+app.use('/News',Newssection);
 
 
 // Start the Express server

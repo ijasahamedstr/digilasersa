@@ -164,7 +164,7 @@ function MediaCommunicationsvideo() {
       <MDBox display="flex" justifyContent="center" alignItems="center" gap={2}>
         {/* Edit button */}
         <Link
-          to={`/Edit-MediaCommunications-photo-section/${item._id}`}
+          to={`/Edit-MediaCommunications-video-section/${item._id}`}
           style={{ textDecoration: "none" }}
         >
           <Button

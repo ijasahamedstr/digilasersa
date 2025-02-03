@@ -79,4 +79,32 @@ export const  MediaCommunicationVideoDelete = async (req, res) => {
     }
 };
 
+// All Acccount Update
+export const MediaCommunicationvideoUpdates  = async (req, res) => {
+    const { id } = req.params;
+    const { MediaCommunicationsvideoname } = req.body;
+    const { file } = req;
 
+    try {
+        // Find the user by ID
+        const user = await MediaCommunicationsvideo.findById(id);
+        if (!user) {
+            return res.status(404).json({ status: 404, message: "User not found" });
+        }
+        // Update user details
+        if (MediaCommunicationsvideoname) {
+            user.MediaCommunicationsvideoname = MediaCommunicationsvideoname;
+        }
+        // Update image if a new file is uploaded
+        if (file) {
+            user.MediaCommunicationsvideoname = file.filename;
+        }
+
+        // Save the updated user data
+        const updatedUser = await user.save();
+
+        res.status(200).json({ status: 200, updatedUser });
+    } catch (error) {
+        res.status(401).json({ status: 401, error });
+    }
+};

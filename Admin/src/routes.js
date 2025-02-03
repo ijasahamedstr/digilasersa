@@ -30,6 +30,11 @@ import AddMediaCommunications from "layouts/MediaCommunications/Photo/AddMediaCo
 import EditMediaCommunications from "layouts/MediaCommunications/Photo/EditMediaCommunications";
 import MediaCommunicationsvideo from "layouts/MediaCommunications/Video";
 import AddMediaCommunicationsvideo from "layouts/MediaCommunications/Video/AddMediaCommunicationsvideo";
+import EditMediaCommunicationsVideo from "layouts/MediaCommunications/Video/EditMediaCommunicationsvideo";
+import News from "layouts/News";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
+import AddNews from "layouts/News/AddNews";
+import EditNews from "layouts/News/EditNews";
 
 const routes = [
   {
@@ -87,6 +92,14 @@ const routes = [
     icon: <NotStartedIcon />,
     route: "/MediaCommunications",
     component: <MediaCommunicationsSection />,
+  },
+  {
+    type: "collapse",
+    name: "News",
+    key: "News",
+    icon: <NewspaperIcon />,
+    route: "/News",
+    component: <News />,
   },
   {
     type: "collapse",
@@ -155,6 +168,18 @@ const routes = [
   {
     route: "/Add-MediaCommunications-video-section",
     component: <AddMediaCommunicationsvideo />,
+  },
+  {
+    route: "/Edit-MediaCommunications-video-section/:id",
+    component: <EditMediaCommunicationsVideo />,
+  },
+  {
+    route: "/Add-News",
+    component: <AddNews />,
+  },
+  {
+    route: "/Edit-News/:id",
+    component: <EditNews />,
   },
 ];
 
