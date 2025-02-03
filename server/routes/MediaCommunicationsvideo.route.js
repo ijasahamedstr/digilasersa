@@ -1,7 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { MediaCommunicationvideocreate, MediaCommunicationVideoDelete, MediaCommunicationVideoIndex, MediaCommunicationVideoSingleDetails } from '../controller/MediaCommunicationsvideo.Controller.js';
-import { MediaCommunicationUpdates } from '../controller/MediaCommunicationsphoto.Controller.js';
+import { MediaCommunicationvideocreate, MediaCommunicationVideoDelete, MediaCommunicationVideoIndex, MediaCommunicationVideoSingleDetails, MediaCommunicationvideoUpdates } from '../controller/MediaCommunicationsvideo.Controller.js';
 
 // Create a new router instance
 const MediaCommunicationsvideo = express.Router();
@@ -43,7 +42,7 @@ MediaCommunicationsvideo.get("/:id",MediaCommunicationVideoSingleDetails);
 MediaCommunicationsvideo.delete('/:id',MediaCommunicationVideoDelete);
 
 //Update Data Register
-MediaCommunicationsvideo.put('/:id',videoUpload.single('Video'),MediaCommunicationUpdates);
+MediaCommunicationsvideo.put('/:id',videoUpload.single('Video'),MediaCommunicationvideoUpdates);
 
 
 

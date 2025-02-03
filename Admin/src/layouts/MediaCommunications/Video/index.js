@@ -105,11 +105,8 @@ function MediaCommunicationsvideo() {
     if (result.isConfirmed) {
       try {
         await axios.delete(`${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo/${id}`);
-        setMediaCommunicationsvideo(
-          MediaCommunicationsvideo.filter(
-            (MediaCommunicationsvideo) => MediaCommunicationsvideo._id !== id
-          )
-        );
+        // Update the state to remove the deleted item
+        setMediaCommunicationsvideo((prevVideos) => prevVideos.filter((video) => video._id !== id));
         Swal.fire("Deleted!", "The MediaCommunications Video has been deleted.", "success");
       } catch (err) {
         console.error("Error deleting MediaCommunications Video: ", err);

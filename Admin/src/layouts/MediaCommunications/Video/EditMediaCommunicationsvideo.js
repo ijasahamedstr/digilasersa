@@ -17,52 +17,24 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 // Import SweetAlert2
 import Swal from "sweetalert2";
 
-const EditMediaCommunicationsVideo = () => {
-  const [videoPreview, setVideoPreview] = useState(null); // State to hold video preview
+const EditMediaCommunications = () => {
+  const [mediaPreview, setMediaPreview] = useState(null); // State to hold video preview
   const { id } = useParams();
   const [formData, setFormData] = useState({
     MediaCommunicationsvideoname: "",
-    MediaCommunicationsvideo: null,
+    MediaCommunicationsvideo: null, // This will store the video file
   });
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(null); // Error state
-  const [success, setSuccess] = useState(null); // Success message state
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
-  // Handle file upload and preview (for video)
+  // Handle file upload and preview (video only)
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      // Check file type (Only allow video files)
-      if (!file.type.startsWith("video/")) {
-        Swal.fire({
-          title: "Error!",
-          text: "Please select a valid video file.",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-        return;
-      }
-
-      // Check file size (For example, limit to 50MB)
-      const MAX_SIZE = 50 * 1024 * 1024; // 50MB
-      if (file.size > MAX_SIZE) {
-        Swal.fire({
-          title: "Error!",
-          text: "File size exceeds the 50MB limit.",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-        return;
-      }
-
-      // Revoke the old preview URL to free up memory
-      if (videoPreview) {
-        URL.revokeObjectURL(videoPreview);
-      }
-
       const previewUrl = URL.createObjectURL(file); // Create a URL for the selected file
-      setVideoPreview(previewUrl); // Set the preview URL for the video
-      setFormData({ ...formData, MediaCommunicationsvideo: file }); // Update the formData with the selected file
+      setMediaPreview(previewUrl); // Set the preview URL
+      setFormData({ ...formData, MediaCommunicationsvideo: file }); // Update formData with selected file
     }
   };
 
@@ -76,7 +48,6 @@ const EditMediaCommunicationsVideo = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Basic validation
     if (!formData.MediaCommunicationsvideoname) {
       Swal.fire({
         title: "Error!",
@@ -89,8 +60,8 @@ const EditMediaCommunicationsVideo = () => {
 
     try {
       setLoading(true);
-      setError(null); // Reset error before making the request
-      setSuccess(null); // Reset success before making the request
+      setError(null);
+      setSuccess(null);
 
       const formDataToSend = new FormData();
       formDataToSend.append("MediaCommunicationsvideoname", formData.MediaCommunicationsvideoname);
@@ -103,14 +74,14 @@ const EditMediaCommunicationsVideo = () => {
         formDataToSend,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Important for file uploads
+            "Content-Type": "multipart/form-data",
           },
         }
       );
 
       setLoading(false);
+      setSuccess("Category updated successfully!");
 
-      // SweetAlert success message
       Swal.fire({
         title: "Success!",
         text: "Category updated successfully!",
@@ -119,15 +90,14 @@ const EditMediaCommunicationsVideo = () => {
       });
     } catch (err) {
       setLoading(false);
-      setError("Error updating Printing data. Please try again.");
-
-      // SweetAlert error message
+      setError("Error updating Media Communications data. Please try again.");
       Swal.fire({
         title: "Error!",
-        text: "Error updating Printing data. Please try again.",
+        text: "Error updating Media Communications data. Please try again.",
         icon: "error",
         confirmButtonText: "OK",
       });
+      console.error("Error updating Media Communications data:", err);
     }
   };
 
@@ -135,24 +105,31 @@ const EditMediaCommunicationsVideo = () => {
     const fetchMediaCommunicationsvideo = async () => {
       setLoading(true);
       try {
+        // Log the ID being fetched
+        console.log("Fetching media communications video with ID:", id);
+
         const response = await axios.get(
           `${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo/${id}`
         );
+
+        if (response.status === 404) {
+          setError("Media Communication video not found.");
+          return;
+        }
+
         setFormData({
           MediaCommunicationsvideoname: response.data.MediaCommunicationsvideoname,
-          MediaCommunicationsvideo: response.data.MediaCommunicationsvideo, // Keep existing video data
+          MediaCommunicationsvideo: response.data.MediaCommunicationsvideo,
         });
-
-        // Set the preview if there's an existing video
-        if (response.data.MediaCommunicationsvideo) {
-          const existingVideoUrl = `${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Video/${response.data.MediaCommunicationsvideo}`;
-          setVideoPreview(existingVideoUrl);
-        }
         setLoading(false);
       } catch (err) {
         setLoading(false);
-        setError("Error fetching MediaCommunicationsvideo data. Please try again.");
-        console.error("Error fetching MediaCommunicationsvideo data: ", err);
+        if (err.response && err.response.status === 404) {
+          setError("Media Communication video not found.");
+        } else {
+          setError("Error fetching MediaCommunicationsvideo data. Please try again.");
+        }
+        console.error("Error fetching MediaCommunicationsvideo data:", err);
       }
     };
 
@@ -187,26 +164,26 @@ const EditMediaCommunicationsVideo = () => {
               {/* Edit Category Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
                 <form onSubmit={handleSubmit} encType="multipart/form-data">
-                  {/* Category Name */}
+                  {/* Media Name */}
                   <TextField
-                    label="MediaCommunications Video Name"
+                    label="Media Name"
                     variant="outlined"
                     fullWidth
                     sx={{ mb: 2 }}
                     name="MediaCommunicationsvideoname"
                     value={formData.MediaCommunicationsvideoname}
-                    onChange={handleInputChange} // Handle change
+                    onChange={handleInputChange}
                   />
 
-                  {/* Video Upload Field */}
+                  {/* File Upload Field */}
                   <label htmlFor="file-upload">
                     <input
                       id="file-upload"
-                      name="video"
-                      accept="video/*"
+                      name="photo"
+                      accept="video/*" // Only allow video files
                       type="file"
                       style={{ display: "none" }}
-                      onChange={handleFileChange} // Handle file selection
+                      onChange={handleFileChange}
                     />
                     <Button
                       variant="outlined"
@@ -228,32 +205,37 @@ const EditMediaCommunicationsVideo = () => {
                   </label>
 
                   {/* Video Preview */}
-                  {videoPreview && (
-                    <MDBox
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      sx={{
-                        mb: 2,
-                        border: "1px solid #e0e0e0",
-                        borderRadius: "8px",
-                        padding: "8px",
-                      }}
-                    >
+                  <MDBox
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{
+                      mb: 2,
+                      border: "1px solid #e0e0e0",
+                      borderRadius: "8px",
+                      padding: "8px",
+                    }}
+                  >
+                    {mediaPreview ? (
                       <video
-                        width="100%"
-                        height="auto"
                         controls
-                        style={{
-                          maxWidth: "300px",
-                          borderRadius: "4px",
-                        }}
-                      >
-                        <source src={videoPreview} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    </MDBox>
-                  )}
+                        src={mediaPreview}
+                        style={{ maxWidth: "400px", borderRadius: "8px" }}
+                      />
+                    ) : formData.MediaCommunicationsvideo ? (
+                      <video
+                        controls
+                        src={`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Video/${formData.MediaCommunicationsvideo}`}
+                        style={{ maxWidth: "400px", borderRadius: "8px" }}
+                      />
+                    ) : (
+                      <video
+                        src="https://www.w3schools.com/html/mov_bbb.mp4"
+                        style={{ maxWidth: "150px", borderRadius: "8px" }}
+                        controls
+                      />
+                    )}
+                  </MDBox>
 
                   {/* Display Loading or Error/Success Messages */}
                   {loading && (
@@ -279,7 +261,7 @@ const EditMediaCommunicationsVideo = () => {
                     color="primary"
                     fullWidth
                     sx={{ color: "#FFFFFF" }}
-                    disabled={loading} // Disable button during loading
+                    disabled={loading}
                   >
                     Update
                   </Button>
@@ -293,4 +275,4 @@ const EditMediaCommunicationsVideo = () => {
   );
 };
 
-export default EditMediaCommunicationsVideo;
+export default EditMediaCommunications;

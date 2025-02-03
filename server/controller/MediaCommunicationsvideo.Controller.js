@@ -97,7 +97,7 @@ export const MediaCommunicationvideoUpdates  = async (req, res) => {
         }
         // Update image if a new file is uploaded
         if (file) {
-            user.MediaCommunicationsvideoname = file.filename;
+            user.MediaCommunicationsvideo = file.filename;
         }
 
         // Save the updated user data
