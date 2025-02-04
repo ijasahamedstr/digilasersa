@@ -14,6 +14,7 @@ function Dashboard() {
   const [MediaCommunicationsphoto, setMediaCommunicationsphoto] = useState([]);
   const [MediaCommunicationsvideo, setMediaCommunicationsvideo] = useState([]);
   const [News, setNews] = useState([]);
+  const [Partner, setPartner] = useState([]);
 
   useEffect(() => {
     // Fetch data from the API (replace with your actual API endpoint)
@@ -105,6 +106,18 @@ function Dashboard() {
       .then((response) => response.json())
       .then((data) => {
         setNews(data); // Store the fetched data in the state
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    // Fetch data from the API (replace with your actual API endpoint)
+    fetch(`${process.env.REACT_APP_API_HOST}/Partner`)
+      .then((response) => response.json())
+      .then((data) => {
+        setPartner(data); // Store the fetched data in the state
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -306,6 +319,24 @@ function Dashboard() {
                 color="error"
                 title="News section"
                 count={News.length}
+                sx={{ fontSize: "1.2rem" }} // Setting font size for the count text
+              />
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                // Replacing icon with an image
+                icon={
+                  <img
+                    src="https://i.ibb.co/7J7PSj28/2dfdbf59-c33c-4ca6-ae20-a6b6a1f40559-removalai-preview.png"
+                    alt="Calligraphy"
+                    style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                  />
+                }
+                title="Partner section"
+                count={Partner.length} // Fallback to 0 if citiesCount is invalid
+                color="info"
                 sx={{ fontSize: "1.2rem" }} // Setting font size for the count text
               />
             </MDBox>
