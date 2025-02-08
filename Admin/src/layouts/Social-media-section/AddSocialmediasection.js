@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
@@ -21,6 +21,49 @@ const AddSocialmediasection = () => {
   const [soicalmedianame, setSoicalmedianame] = useState("");
   const [soicalmediamaintype, setSoicalmediamaintype] = useState("");
   const [soicalmediasubtype, setSoicalmediasubtype] = useState("");
+
+  // Define subtypes for each main type
+  const subTypeOptions = {
+    "إدارة حسابات السوشيال ميديا": [
+      "تحسين محركات البحث",
+      "تحليل اداء الحسابات",
+      "التفاعل الجماهيرى",
+      "إنشاء وتطوير الحسابات",
+    ],
+    "إدارة الإعلانات المدفوعة": [
+      "تصميم حملات بريدية",
+      "تصميم خطط الترويج",
+      "تصميم خطط إنتشار",
+      "تصميم حملات إعلانية",
+    ],
+    "إنشاء المحتوى الإبداعي": [
+      "إنتاج وتصوير الفيديو",
+      "تصميمات الجرافيك",
+      "كتابة المحتوس الابداعي",
+      "بناء الهوية التجارية",
+    ],
+    "تحليل البيانات المختلفة": [
+      "تحليل متغيرات العملاء",
+      "تحليل المنافسين",
+      "تحليل سلوك المستخدم",
+      "تحليل أداء الحسابات",
+    ],
+    "الإستشارات التسويقية": [
+      "خدمة العملاء",
+      "تدريب الموظفين",
+      "الحلول المتكاملة",
+      "الاستراتيجيات والخطط",
+    ],
+  };
+
+  // Handle the change in Main Type and update the Sub Type options accordingly
+  const handleMainTypeChange = (event) => {
+    const selectedMainType = event.target.value;
+    setSoicalmediamaintype(selectedMainType);
+
+    // Reset sub-type whenever the main type changes
+    setSoicalmediasubtype("");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -125,45 +168,58 @@ const AddSocialmediasection = () => {
                       sx={{ height: "40px" }}
                       name="soicalmediamaintype"
                       value={soicalmediamaintype}
-                      onChange={(e) => setSoicalmediamaintype(e.target.value)}
+                      onChange={handleMainTypeChange}
                     >
-                      <MenuItem value="دروع ومجسمات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        دروع ومجسمات
+                      <MenuItem
+                        value="إدارة حسابات السوشيال ميديا"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        إدارة حسابات السوشيال ميديا
                       </MenuItem>
-                      <MenuItem value="خشـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        خشـبيات
+                      <MenuItem
+                        value="إدارة الإعلانات المدفوعة"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        إدارة الإعلانات المدفوعة
                       </MenuItem>
-                      <MenuItem value="مكتـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        مكتـبيات
+                      <MenuItem
+                        value="إنشاء المحتوى الإبداعي"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        إنشاء المحتوى الإبداعي
                       </MenuItem>
-                      <MenuItem value="اكسسوارات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        اكسسوارات
+                      <MenuItem
+                        value="تحليل البيانات المختلفة"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        تحليل البيانات المختلفة
+                      </MenuItem>
+                      <MenuItem
+                        value="الإستشارات التسويقية"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        الإستشارات التسويقية
                       </MenuItem>
                     </Select>
                   </FormControl>
 
-                  {/* Dropdown for Project Type */}
+                  {/* Dropdown for Sub Type */}
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <InputLabel>soicalmedia Sub Type</InputLabel>
                     <Select
-                      label="soicalmedia sub Type"
+                      label="soicalmedia Sub Type"
                       sx={{ height: "40px" }}
                       name="soicalmediasubtype"
                       value={soicalmediasubtype}
                       onChange={(e) => setSoicalmediasubtype(e.target.value)}
+                      disabled={!soicalmediamaintype} // Disable if no Main Type is selected
                     >
-                      <MenuItem value="دروع ومجسمات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        دروع ومجسمات
-                      </MenuItem>
-                      <MenuItem value="خشـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        خشـبيات
-                      </MenuItem>
-                      <MenuItem value="مكتـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        مكتـبيات
-                      </MenuItem>
-                      <MenuItem value="اكسسوارات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        اكسسوارات
-                      </MenuItem>
+                      {soicalmediamaintype &&
+                        subTypeOptions[soicalmediamaintype]?.map((subType) => (
+                          <MenuItem key={subType} value={subType}>
+                            {subType}
+                          </MenuItem>
+                        ))}
                     </Select>
                   </FormControl>
 
