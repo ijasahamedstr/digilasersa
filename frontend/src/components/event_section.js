@@ -1,29 +1,36 @@
-import React from 'react';
-import { Container, Box, Typography, Card, CardContent, CardMedia } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Container, Box, Typography, Card, CardContent, CardMedia, CircularProgress } from '@mui/material';
+import axios from 'axios'; // Ensure axios is imported
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css'; // Swiper core styles
 import 'swiper/css/navigation'; // Navigation styles
 import 'swiper/css/pagination'; // Pagination styles
 
 function Eventsection() {
-  // Array of event data
-  const events = [
-    {
-      title: 'الشاشة التفاعلية الجديدة',
-      description: 'تجربة لنظام تشغيل الشاشة التفاعلية الجديدة يجريها مدير قسم السوشيال ميديا قبل البدأ في تفعيل حملة تسويقية.',
-      image: 'https://i.ibb.co/0n3Q45Y/0-C7-A7765-MP4-snapshot-00-02-166.png',
-    },
-    {
-      title: 'الشاشة التفاعلية الجديدة',
-      description: 'تجربة لنظام تشغيل الشاشة التفاعلية الجديدة يجريها مدير قسم السوشيال ميديا قبل البدأ في تفعيل حملة تسويقية.',
-      image: 'https://i.ibb.co/0n3Q45Y/0-C7-A7765-MP4-snapshot-00-02-166.png',
-    },
-    {
-      title: 'الشاشة التفاعلية الجديدة',
-      description: 'تجربة لنظام تشغيل الشاشة التفاعلية الجديدة يجريها مدير قسم السوشيال ميديا قبل البدأ في تفعيل حملة تسويقية.',
-      image: 'https://i.ibb.co/0n3Q45Y/0-C7-A7765-MP4-snapshot-00-02-166.png',
-    },
-  ];
+  const [Event, setEvent] = useState([]); // State to store event data
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+
+  // Fetch data on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/News`);
+        setEvent(response.data); // Set the fetched events
+      } catch (err) {
+        console.error('Error fetching data: ', err);
+        setError('Failed to fetch data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Handle loading and error states
+  if (loading) return <CircularProgress />;
+  if (error) return <div>{error}</div>;
 
   return (
     <section
@@ -46,21 +53,22 @@ function Eventsection() {
           textAlign: 'center',
         }}
       >
-            <Typography
-                variant="h4"
-                align="center"
-                gutterBottom
-                style={{
-                  fontFamily: 'Noto Kufi Arabic, sans-serif',
-                  fontSize: '2rem',
-                  marginBottom: '30px',
-                }}
-              >
-                 آخر أعمالنا
-              </Typography>
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+          sx={{
+            fontFamily: 'Noto Kufi Arabic, sans-serif',
+            fontSize: '2rem',
+            marginBottom: '30px',
+          }}
+        >
+          آخر أعمالنا
+        </Typography>
+
         <Swiper spaceBetween={30} slidesPerView={1} loop>
-          {/* SwiperSlide for each card */}
-          {events.map((event, index) => (
+          {/* SwiperSlide for each event */}
+          {Event.map((event, index) => (
             <SwiperSlide key={index}>
               <Card
                 sx={{
@@ -85,9 +93,8 @@ function Eventsection() {
                     objectFit: 'cover',
                     border: 'none', // Explicitly set border to none
                     borderRadius: '8px', // Apply rounded corners to the image
-                    fontFamily: 'Tajawal',
                   }}
-                  image={event.image} // Dynamic image URL
+                  src={`${process.env.REACT_APP_API_HOST}/uploads/News/${event.newsimage}`} // Dynamic image URL
                   alt={event.title} // Dynamic alt text
                 />
                 {/* Text part */}
@@ -104,11 +111,11 @@ function Eventsection() {
                   }}
                 >
                   <CardContent sx={{ height: '100%' }}>
-                    <Typography variant="h3" gutterBottom sx={{fontFamily: 'Tajawal'}}>
-                      {event.title} {/* Dynamic title */}
+                    <Typography variant="h3" gutterBottom sx={{ fontFamily: 'Tajawal' }}>
+                      {event.newsname} {/* Dynamic title */}
                     </Typography>
-                    <Typography variant="body1" paragraph sx={{ fontSize: '20px',fontFamily: 'Tajawal' }}>
-                      {event.description} {/* Dynamic description */}
+                    <Typography variant="body1" paragraph sx={{ fontSize: '20px', fontFamily: 'Tajawal' }}>
+                      {event.newsdec} {/* Dynamic description */}
                     </Typography>
                   </CardContent>
                 </Box>

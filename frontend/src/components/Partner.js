@@ -1,6 +1,7 @@
-import React from 'react';
-import { Container, CardMedia, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react'; 
+import { Container, CardMedia, Typography, CircularProgress } from '@mui/material'; 
 import Slider from 'react-slick';
+import axios from 'axios'; 
 
 // Slick carousel settings with Autoplay
 const settings = {
@@ -32,21 +33,32 @@ const settings = {
   ],
 };
 
-const images = [
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/HRSD.svg" },
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOE.svg" },
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOH.svg" },
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOF.svg" },
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOI.svg" },
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/NC.svg" },
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/DGA.svg" },
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/sdaia.svg" },
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/PSS.svg" },
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOMRA.svg" },
-  { src: "https://ehsan.sa/assets/images/homepage/sponser-icons/MOJ.svg" },
-];
-
 const Partner = () => {
+  const [partners, setPartners] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
+
+  // Fetch data on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Partner`);
+        setPartners(response.data); // Set the fetched partner data
+      } catch (err) {
+        console.error('Error fetching data: ', err);
+        setError('Failed to fetch data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Handle loading and error states
+  if (loading) return <CircularProgress />;
+  if (error) return <div>{error}</div>;
+
   return (
     <Container maxWidth="xl" style={{ marginBottom: '60px', marginTop: '60px' }}>
       <Typography
@@ -62,25 +74,28 @@ const Partner = () => {
         شركاء النجاح
       </Typography>
       <Slider {...settings}>
-        {images.map((image, index) => (
-          <div key={index} style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
-            <CardMedia
-              component="img"
-              image={image.src}
-              sx={{
-                width: '100%', // Ensure the image width is responsive
-                maxWidth: '200px', // Adjust max width for mobile screens
-                height: 'auto', // Maintain aspect ratio
-                objectFit: 'contain',
-                transition: 'transform 0.3s ease', // Smooth transition for zoom
-                '&:hover': {
-                  transform: 'scale(1.1)', // Zoom effect on hover
-                },
-              }}
-              className="zoom-image"
-            />
-          </div>
-        ))}
+        {partners.length > 0 ? (
+          partners.map((partner, index) => (
+            <div key={index} style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
+              <CardMedia
+                component="img"
+                src={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`} 
+                sx={{
+                  width: '200px', // Set a fixed width for all images
+                  height: '200px', // Set a fixed height for all images
+                  objectFit: 'contain', // Maintain aspect ratio while scaling
+                  transition: 'transform 0.3s ease', // Smooth transition for zoom
+                  '&:hover': {
+                    transform: 'scale(1.1)', // Zoom effect on hover
+                  },
+                }}
+                className="zoom-image"
+              />
+            </div>
+          ))
+        ) : (
+          <div>No partners available</div>
+        )}
       </Slider>
     </Container>
   );

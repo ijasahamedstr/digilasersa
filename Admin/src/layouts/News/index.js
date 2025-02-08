@@ -117,7 +117,13 @@ function News() {
       />
     ),
     News_dec: (
-      <Author name={item.newsdec} style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }} />
+      <Author
+        name={item.newsdec.slice(0, 50)}
+        style={{
+          fontFamily: "Tajawal, sans-serif",
+          fontSize: "18px",
+        }}
+      />
     ),
     News_Image: (
       <MDBox>

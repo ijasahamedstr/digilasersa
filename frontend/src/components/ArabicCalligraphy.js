@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography,Grid,Button,CardMedia,Card,Pagination,} from '@mui/material';
+import { Box, Typography,Grid,Button,CardMedia,Card,Pagination,CircularProgress } from '@mui/material';
 import Container from '@mui/material/Container';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -9,6 +8,8 @@ import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWha
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
+import React, { useState, useEffect } from "react";
 
 
 const carouselItems = [
@@ -28,91 +29,88 @@ const carouselItems = [
 
 const ArabicCalligraphy = () => {
 
-     const [formData, setFormData] = useState({
-          name: '',
-          phone: '',
-          email: '',
-          message: '',
-        });
-      
-       
-          const handleChange = (e) => {
-            const { name, value } = e.target;
-            setFormData({
-              ...formData,
-              [name]: value,
-            });
-          };
-        
-          const handleFormSubmit = (event) => {
-            event.preventDefault();
-        
-            // Add simple validation
-            if (!formData.name || !formData.phone || !formData.email || !formData.message) {
-              alert("Please fill out all fields.");
-              return;
-            }
-        
-            // Redirect to another site (Example: External site)
-            window.location.href = 'https://another-site.com/contact';
-          };
-
-          const products = [
-            // List of products
-            { title: "الرقعة", img: "https://i.ibb.co/FYDpD6c/image.webp" },
-            { title: "ديوانى", img: "https://i.ibb.co/ccfqp2B/arabic943-1551090582024-gdpkmv.webp" },
-            { title: "نسخ", img: "https://i.ibb.co/0MrtwfG/gsminsark-1.webp"},
-            { title: "ثلث", img: "https://i.ibb.co/WWX6zjz/image.webp"},
-            { title: "طغراء", img: "https://i.ibb.co/pn8yPPX/arabic129-1551092660116-2ltoce.webp" },
-            { title: "حر", img: "https://i.ibb.co/M1vSNpq/3.webp"},
-            { title: "Toshiba B77", img: "https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/5.webp"},
-            { title: "فارسي", img: "https://i.ibb.co/Sn4db4f/arabic833-1551089977696-36kexq.webp" },
-            { title: "جلي", img: "https://i.ibb.co/0jtPKWJ/image.webp"},
-            { title: "طومار", img: "https://i.ibb.co/Mg4db23/image.webp"},
-            { title: "ريحانى", img: "https://i.ibb.co/yQtHzHB/arabic789-1551091360891-ze8tgi.webp"},
-            { title: "سنبلي", img: "https://i.ibb.co/yXKbVSy/arabic121-1551092101096-zetzp2.webp"},
-            { title: "سياقة", img: "https://i.ibb.co/WPhXyf1/arabic143-1551092741429-ly0orlc.webp"},
-            { title: "مغربي", img: "https://i.ibb.co/R6CH4Dn/arabic118-1551091553019-jogew.webp"},
-            { title: "المعلي", img: "https://i.ibb.co/Vq8qTtB/1.webp"},
-            { title: "شكسته", img: "https://i.ibb.co/kgKWs3t/arabic898-1551090348419-l4ik4r.webp"},
-            // ... other products
-          ];
-        
-          // Pagination states
-          const [page, setPage] = useState(1);
-          const itemsPerPage = 16; // Number of items per page
-        
-          // Calculate the current products to display
-          const indexOfLastProduct = page * itemsPerPage;
-          const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-          const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-          const totalPages = Math.ceil(products.length / itemsPerPage);
-        
-          // Handle page change
-          const handlePageChange = (event, value) => {
-            setPage(value);
-          };
-
-          const [isZoomed, setIsZoomed] = useState(false);
-          const [zoomedImageSrc, setZoomedImageSrc] = useState("");
-        
-          // Handle the zoom on image click
-          const handleImageClick = (src) => {
-            setIsZoomed(true);
-            setZoomedImageSrc(src);
-          };
-        
-          // Close zoomed image when clicked outside
-          const handleCloseZoom = () => {
-            setIsZoomed(false);
-            setZoomedImageSrc("");
-          };
-
-
+    const [ArabicCalligraphy, setArabicCalligraphy] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [formData, setFormData] = useState({
+      name: '',
+      phone: '',
+      email: '',
+      message: '',
+    });
+    const [page, setPage] = useState(1);
+    const [isZoomed, setIsZoomed] = useState(false);
+    const [zoomedImageSrc, setZoomedImageSrc] = useState("");
+  
+    // Fetch data on component mount
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`${process.env.REACT_APP_API_HOST}/ArabicCalligraphy`);
+          setArabicCalligraphy(response.data); // Set the fetched Arabic calligraphy data
+        } catch (err) {
+          console.error('Error fetching data: ', err);
+          setError('Failed to fetch data');
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchData();
+    }, []);
+  
+    // Pagination logic
+    const itemsPerPage = 12; // Number of items per page
+    const indexOfLastProduct = page * itemsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+    const currentProducts = ArabicCalligraphy.slice(indexOfFirstProduct, indexOfLastProduct);
+    const totalPages = Math.ceil(ArabicCalligraphy.length / itemsPerPage);
+  
+    // Handle page change
+    const handlePageChange = (event, value) => {
+      setPage(value);
+    };
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    };
+  
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+  
+      // Add simple validation
+      if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+        alert("Please fill out all fields.");
+        return;
+      }
+  
+      // Redirect to another site (Example: External site)
+      window.location.href = 'https://another-site.com/contact';
+    };
+  
+    // Handle the zoom on image click
+    const handleImageClick = (src) => {
+      setIsZoomed(true);
+      setZoomedImageSrc(src);
+    };
+  
+    // Close zoomed image when clicked outside
+    const handleCloseZoom = () => {
+      setIsZoomed(false);
+      setZoomedImageSrc("");
+    };
+  
+    // Handle loading and error states
+    if (loading) return <CircularProgress />;
+    if (error) return <div>{error}</div>;
   
   return (
     <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '100px' }}>
-            <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+    <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
         <Carousel
           fade
           nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
@@ -188,129 +186,126 @@ const ArabicCalligraphy = () => {
                 </Box>
             </Box>
 
-            <section  
-            style={{
-                backgroundColor: '#eaecee', // Fallback background color
-                backgroundImage: 'url("https://i.ibb.co/FKQ2rWm/Background-copy.webp")', // Replace with your image URL
-                backgroundSize: 'cover', // Ensure the image covers the entire section
-                backgroundPosition: 'center', // Ensure the image is centered
+    <section
+        style={{
+          backgroundColor: '#eaecee', // Fallback background color
+          backgroundImage: 'url("https://i.ibb.co/FKQ2rWm/Background-copy.webp")', // Replace with your image URL
+          backgroundSize: 'cover', // Ensure the image covers the entire section
+          backgroundPosition: 'center', // Ensure the image is centered
+          width: '100%',
+          margin: '0 auto',
+          marginBottom: '30px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingTop: '20px',
+          paddingBottom: '20px',
+          '@media (max-width: 768px)': {
+            height: 'auto', // Adjust the height for medium screens
+            paddingTop: '10px',
+            paddingBottom: '10px',
+          },
+          '@media (max-width: 480px)': {
+            height: 'auto', // Adjust the height for smaller screens
+          },
+          marginTop: '-30px'
+        }}>
+        <Container maxWidth="xl" sx={{ padding: 3 }}>
+          <Box display="flex" justifyContent="center" alignItems="center" sx={{ marginY: '20px' }}>
+            <img
+              src="https://i.ibb.co/jwV97WY/Group-11.webp"
+              alt="وَأَحْسِنُوا ۛ إِنَّ اللَّهَ يُحِبُّ الْمُحْسِنِينَ"
+              style={{ width: '100%', maxWidth: '100%', height: 'auto', marginBottom: '15px' }}
+            />
+          </Box>
+          <Grid container spacing={2}>
+            {currentProducts.map((product, index) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                <Card
+                  sx={{
+                    maxWidth: 345,
+                    boxShadow: 3,
+                    border: '2px solid #634335',
+                    '&:hover': { boxShadow: 6 },
+                    marginBottom: '20px',
+                    position: 'relative',
+                    borderRadius: '20px',
+                  }}>
+                  <CardMedia
+                    component="img"
+                    alt={`Service ${index}`}
+                    src={`${process.env.REACT_APP_API_HOST}/uploads/ArabicCalligraphy/${product.arabicCalligraphyimage}`}
+                    sx={{
+                      height: 300,
+                      objectFit: 'cover',
+                      cursor: 'zoom-in',  // Change cursor to indicate zoom
+                    }}
+                    onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/ArabicCalligraphy/${product.arabicCalligraphyimage}`)}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      position: 'absolute',
+                      bottom: '0px',
+                      left: '50%',
+                      transform: 'translateX(-50%)', // This centers the text horizontally
+                      color: 'white',
+                      backgroundColor: '#634335',
+                      padding: '10px',
+                      textAlign: 'center',
+                      width: '100%',
+                      border: '2px solid #634335',
+                      borderTopLeftRadius: '20px',
+                      borderTopRightRadius: '20px',
+                    }}>
+                    {product.arabicCalligraphyname}
+                  </Typography>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+
+          {/* Zoomed image view (modal style) */}
+          {isZoomed && (
+            <Box
+              sx={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
                 width: '100%',
-                margin: '0 auto',
-                marginBottom: '30px',
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                paddingTop: '20px',
-                paddingBottom: '20px',
-                '@media (max-width: 768px)': {
-                    height: 'auto', // Adjust the height for medium screens
-                    paddingTop: '10px',
-                    paddingBottom: '10px',
-                },
-                '@media (max-width: 480px)': {
-                    height: 'auto', // Adjust the height for smaller screens
-                },
-                marginTop:'-30px'
-            }}>
-            <Container maxWidth="xl" sx={{ padding: 3 }}>
-                <Box display="flex" justifyContent="center" alignItems="center" sx={{ marginY: '20px' }}>
-                <img
-                    src="https://i.ibb.co/jwV97WY/Group-11.webp"
-                    alt="وَأَحْسِنُوا ۛ إِنَّ اللَّهَ يُحِبُّ الْمُحْسِنِينَ"
-                    style={{ width: '100%', maxWidth: '100%', height: 'auto', marginBottom: '15px' }}
-                />
-                </Box>
-                <Grid container spacing={2}>
-                {currentProducts.map((product, index) => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                    <Card
-                        sx={{
-                        maxWidth: 345,
-                        boxShadow: 3,
-                        border: '2px solid #634335',
-                        '&:hover': { boxShadow: 6 },
-                        marginBottom: '20px',
-                        position: 'relative',
-                        borderRadius: '20px',
-                        }}
-                    >
-                        <CardMedia
-                        component="img"
-                        alt={`Service ${index}`}
-                        image={product.img}
-                        sx={{
-                            height: 300,
-                            objectFit: 'cover',
-                            cursor: 'zoom-in',  // Change cursor to indicate zoom
-                        }}
-                        onClick={() => handleImageClick(product.img)}
-                        />
-                        <Typography
-                        variant="h6"
-                        sx={{
-                            position: 'absolute',
-                            bottom: '0px',
-                            left: '50%',
-                            transform: 'translateX(-50%)', // This centers the text horizontally
-                            color: 'white',
-                            backgroundColor: '#634335',
-                            padding: '10px',
-                            textAlign: 'center',
-                            width: '100%',
-                            border: '2px solid #634335',
-                            borderTopLeftRadius: '20px',
-                            borderTopRightRadius: '20px',
-                        }}
-                        >
-                        {product.title}
-                        </Typography>
-                    </Card>
-                    </Grid>
-                ))}
-                </Grid>
+                zIndex: 1000,
+              }}
+              onClick={handleCloseZoom}>
+              <img
+                src={zoomedImageSrc}
+                alt="Zoomed"
+                style={{
+                  maxWidth: '90%',
+                  maxHeight: '90%',
+                  objectFit: 'contain',
+                  cursor: 'zoom-out', // Change cursor to indicate it can be closed
+                }}
+              />
+            </Box>
+          )}
 
-                {/* Zoomed image view (modal style) */}
-                {isZoomed && (
-                <Box
-                    sx={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    zIndex: 1000,
-                    }}
-                    onClick={handleCloseZoom}
-                >
-                    <img
-                    src={zoomedImageSrc}
-                    alt="Zoomed"
-                    style={{
-                        maxWidth: '90%',
-                        maxHeight: '90%',
-                        objectFit: 'contain',
-                        cursor: 'zoom-out', // Change cursor to indicate it can be closed
-                    }}
-                    />
-                </Box>
-                )}
-
-                <Box display="flex" justifyContent="center" sx={{ marginTop: 3 }}>
-                <Pagination
-                    count={totalPages}
-                    page={page}
-                    onChange={handlePageChange}
-                    color="primary"
-                    variant="outlined"
-                    shape="rounded"
-                />
-                </Box>
-            </Container>
-            </section>
+          <Box display="flex" justifyContent="center" sx={{ marginTop: 3 }}>
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={handlePageChange}
+              color="primary"
+              variant="outlined"
+              shape="rounded"
+            />
+          </Box>
+        </Container>
+      </section>
 
             <section
             style={{

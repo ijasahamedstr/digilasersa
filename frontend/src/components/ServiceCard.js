@@ -23,7 +23,7 @@ function ServiceCard() {
     { id: 2, name: "قسم الطباعة", imageUrl: "https://i.ibb.co/27jQ6C2/Layer-34.webp", iconUrl: "https://i.ibb.co/dmvyMMn/image-1.webp", link: "/printing-department" }, 
     { id: 3, name: "قسم الفن التشكيلي", imageUrl: "https://i.ibb.co/NpYW2Jx/8.webp", iconUrl: "https://i.ibb.co/LP17MwP/image-6.webp", link: "/art-department" }, 
     { id: 4, name: "قسم الشاشات", imageUrl: "https://i.ibb.co/K7RGQ4C/Layer-32.webp", iconUrl: "https://i.ibb.co/dmvyMMn/image-1.webp", link: "/screens-department" }, 
-    { id: 5, name: "قسم الخط العربي", imageUrl: "https://i.ibb.co/2KzrMyy/07.webp", iconUrl: "https://i.ibb.co/5vHKmx1/image-2.webp", link: "/arabic-calligraphy-department" }, 
+    { id: 5, name: "قسم الخط العربي", imageUrl: "https://i.ibb.co/2KzrMyy/07.webp", iconUrl: "https://i.ibb.co/5vHKmx1/image-2.webp", link: "/الخط العربي"},
     { id: 6, name: "قسم البرمجيات", imageUrl: "https://i.ibb.co/d72GNR5/Layer-39.webp", iconUrl: "https://i.ibb.co/DDCFSm4/image-3.webp", link: "/software-department" }, 
     { id: 7, name: "قسم السوشيال ميديا", imageUrl: "https://i.ibb.co/NN7tRFD/Background-copy-3.webp", iconUrl: "https://i.ibb.co/K5khVnQ/image-4.webp", link: "/social-media-department" }, 
     { id: 8, name: "قسم الإعلام والميديا", imageUrl: "https://i.ibb.co/QvQvkKQ/Background-copy-2.webp", iconUrl: "https://i.ibb.co/8BD4CKD/image-5.webp", link: "/media-department" }, 
