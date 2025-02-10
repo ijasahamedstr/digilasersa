@@ -147,16 +147,20 @@ function Socialmediasection() {
             item.Soicalmediaimage.map((image, index) => (
               <Image
                 key={index}
-                width={200}
+                width={150}
+                height={100} // Ensure the height is also fixed
                 src={`${process.env.REACT_APP_API_HOST}/uploads/Socialmedia/${image}`}
                 alt={`User Profile ${index}`}
+                style={{ objectFit: "cover" }} // Ensures uniform aspect ratio
               />
             ))
           ) : (
             <Image
-              width={200}
-              src="https://via.placeholder.com/200" // Placeholder image URL
+              width={100}
+              height={50} // Placeholder image also has fixed size
+              src="https://via.placeholder.com/200"
               alt="No images available"
+              style={{ objectFit: "cover" }} // Placeholder image style
             />
           )}
         </Image.PreviewGroup>

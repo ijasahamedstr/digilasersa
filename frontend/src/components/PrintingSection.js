@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { Container, Box, Typography, Card, Dialog, DialogTitle, IconButton, DialogContent, DialogActions, Button, CardMedia,TextField,Grid,CardContent } from "@mui/material";
+import React, { useState, useRef, useEffect } from "react";
+import { Container, Box, Typography, Card, CardContent, Dialog, DialogTitle, IconButton, DialogContent, DialogActions, Button, CardMedia, Grid, CircularProgress } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,112 +7,8 @@ import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWha
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
 import { Carousel } from "react-bootstrap";
-import Form from 'react-bootstrap/Form'; 
-
-const sliderItems = [
-  {
-    img: "https://i.ibb.co/WVKrM6j/brochure-business-called-city-city.webp",
-  },
-  {
-    img: "https://i.ibb.co/y8Zsj3n/black-box-with-gold-bow-it-that-says-esk-it.webp",
-  },
-  {
-    img: "https://i.ibb.co/prD8yxC/magazine-cover-with-picture-house-words-house-bottom.webp",
-  },
-  {
-    img: "https://i.ibb.co/4TQ137K/table-with-paper-that-says-personal-care-it.webp",
-  },
-  {
-    img: "https://i.ibb.co/y8Zsj3n/black-box-with-gold-bow-it-that-says-esk-it.webp",
-  },
-  {
-    img: "https://i.ibb.co/prD8yxC/magazine-cover-with-picture-house-words-house-bottom.webp",
-  },
-];
-
-const sliderItems1 = [
-  {
-    img: "https://i.ibb.co/Jvs0hFq/image.png",
-  },
-  {
-    img: "https://i.ibb.co/WzVJkzf/image.png",
-  },
-  {
-    img: "https://i.ibb.co/hymkf17/premium-gym-banner-design-template.png",
-  },
-  {
-    img: "https://i.ibb.co/c8vrRNb/Ed7b1q9-WAAAUQgb.png",
-  },
-  {
-    img: "https://i.ibb.co/Jvs0hFq/image.png",
-  },
-  {
-    img: "https://i.ibb.co/hymkf17/premium-gym-banner-design-template.png",
-  },
-];
-
-const sliderItems2 = [
-  {
-    img: "https://i.ibb.co/84m7dDt/image.webp",
-  },
-  {
-    img: "https://i.ibb.co/vjCpzzr/Screenshot-2024-08-20-134906.webp",
-  },
-  {
-    img: "https://i.ibb.co/PQhQvhG/assortment-with-minimal-tumbler-drinks.webp",
-  },
-  {
-    img: "https://i.ibb.co/d7P3ctG/Screenshot-2024-08-20-135119.webp",
-  },
-  {
-    img: "https://i.ibb.co/84m7dDt/image.webp",
-  },
-  {
-    img: "https://i.ibb.co/PQhQvhG/assortment-with-minimal-tumbler-drinks.webp",
-  },
-];
-
-const sliderItems3 = [
-  {
-    img: "https://i.ibb.co/ys1DXz0/Layer-20.webp",
-  },
-  {
-    img: "https://i.ibb.co/VgbMXBy/light-rag-bag-with-flowers-hangs-white-wooden-wall-92795-1426.webp",
-  },
-  {
-    img: "https://i.ibb.co/B3RLg7f/shirt-mockup-concept-with-plain-clothing.webp",
-  },
-  {
-    img: "https://i.ibb.co/LxdFnDg/Wqe0qf-OC1-Hoyqnh-Bb-Mry-Bn-RMHj-Lw-F2-Sl-YECX4-MJx1596729580.webp",
-  },
-  {
-    img: "https://i.ibb.co/ys1DXz0/Layer-20.webp",
-  },
-  {
-    img: "https://i.ibb.co/B3RLg7f/shirt-mockup-concept-with-plain-clothing.webp",
-  },
-];
-
-const sliderItems4 = [
-  {
-    img: "https://i.ibb.co/56tV4hk/CUSTOM-DTF-UV-TRANSFER-DECAL-FOR-HARD-HAT-HELMET-2-430x430.webp",
-  },
-  {
-    img: "https://i.ibb.co/wJY8Hkv/uv-dtf-stickers.webp",
-  },
-  {
-    img: "https://i.ibb.co/ng16CPB/close-up-hand-holding-mobile-phone.webp",
-  },
-  {
-    img: "https://i.ibb.co/PmGkkxY/UV-DTF-transfers-magic-film-waterbottle-e-Print-Online34.webp",
-  },
-  {
-    img: "https://i.ibb.co/56tV4hk/CUSTOM-DTF-UV-TRANSFER-DECAL-FOR-HARD-HAT-HELMET-2-430x430.webp",
-  },
-  {
-    img: "https://i.ibb.co/ng16CPB/close-up-hand-holding-mobile-phone.webp",
-  },
-];
+import Form from 'react-bootstrap/Form';
+import axios from 'axios';  
 
 const carouselItems = [
   {
@@ -130,9 +26,54 @@ const carouselItems = [
 ];
 
 const PrintingSection = () => {
+  const [PrintingSection, setPrintingSection] = useState([]);
+  const [PrintingSection1, setPrintingSection1] = useState([]);
+  const [PrintingSection2, setPrintingSection2] = useState([]);
+  const [PrintingSection3, setPrintingSection3] = useState([]);
+  const [PrintingSection4, setPrintingSection4] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: '',
+  });
+
   const sliderRef = useRef(null);
+
+  // Fetch data once the component mounts
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Printingdepartment`);
+        // Filter data where gifttype is "دروع ومجسمات"
+        const filteredData = response.data.filter(item => item.Printingtype === "مطـبوعات ورقـية");
+        const filteredData1 = response.data.filter(item => item.Printingtype === "بنـر وسـتيكر");
+        const filteredData2 = response.data.filter(item => item.Printingtype === "طباعه مسطحات UV");
+        const filteredData3 = response.data.filter(item => item.Printingtype === "طباعه منسوجات dtf");
+        const filteredData4 = response.data.filter(item => item.Printingtype === "طبــاعة dtf-uv");
+        setPrintingSection(filteredData);
+        setPrintingSection1(filteredData1);
+        setPrintingSection2(filteredData2);
+        setPrintingSection3(filteredData3);
+        setPrintingSection4(filteredData4);
+      } catch (err) {
+        console.error('Error fetching data: ', err);
+        setError('Failed to fetch data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Handle loading and error states before rendering
+  if (loading) return <CircularProgress />;
+  if (error) return <div>{error}</div>;
 
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);
@@ -141,6 +82,25 @@ const PrintingSection = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    window.location.href = 'https://another-site.com/contact';
   };
 
   const settings = {
@@ -157,36 +117,6 @@ const PrintingSection = () => {
       { breakpoint: 600, settings: { slidesToShow: 1 } },
     ],
   };
-
-    const [formData, setFormData] = useState({
-      name: '',
-      phone: '',
-      email: '',
-      message: '',
-    });
-  
-   
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      };
-    
-      const handleFormSubmit = (event) => {
-        event.preventDefault();
-    
-        // Add simple validation
-        if (!formData.name || !formData.phone || !formData.email || !formData.message) {
-          alert("Please fill out all fields.");
-          return;
-        }
-    
-        // Redirect to another site (Example: External site)
-        window.location.href = 'https://another-site.com/contact';
-      };
-  
 
   return (
     <>
@@ -299,7 +229,7 @@ const PrintingSection = () => {
           </CardContent>
         </Card>
           <Slider ref={sliderRef} {...settings}>
-            {sliderItems.map((item, index) => (
+            {PrintingSection.map((item, index) => (
               <div key={index}>
                 <Card sx={{ 
                   transition: "0.3s", 
@@ -310,7 +240,7 @@ const PrintingSection = () => {
                 }}>
                   <CardMedia
                     component="img"
-                    image={item.img}
+                    src={`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`}
                     alt={`Slide ${index + 1}`}
                     sx={{
                       height: { xs: 150, sm: 200 },
@@ -318,7 +248,7 @@ const PrintingSection = () => {
                       borderTopLeftRadius: 2,
                       borderTopRightRadius: 2,
                     }}
-                    onClick={() => handleImageClick(item.img)}
+                    onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`)}
                   />
                 </Card>
               </div>
@@ -355,7 +285,7 @@ const PrintingSection = () => {
           </CardContent>
         </Card>
           <Slider ref={sliderRef} {...settings}>
-            {sliderItems1.map((item, index) => (
+            {PrintingSection1.map((item, index) => (
               <div key={index}>
                 <Card sx={{ 
                   transition: "0.3s", 
@@ -366,7 +296,7 @@ const PrintingSection = () => {
                 }}>
                   <CardMedia
                     component="img"
-                    image={item.img}
+                    src={`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`}
                     alt={`Slide ${index + 1}`}
                     sx={{
                       height: { xs: 150, sm: 200 },
@@ -374,7 +304,7 @@ const PrintingSection = () => {
                       borderTopLeftRadius: 2,
                       borderTopRightRadius: 2,
                     }}
-                    onClick={() => handleImageClick(item.img)}
+                    onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`)}
                   />
                 </Card>
               </div>
@@ -411,7 +341,7 @@ const PrintingSection = () => {
           </CardContent>
         </Card>
           <Slider ref={sliderRef} {...settings}>
-            {sliderItems2.map((item, index) => (
+            {PrintingSection2.map((item, index) => (
               <div key={index}>
                 <Card sx={{ 
                   transition: "0.3s", 
@@ -422,7 +352,7 @@ const PrintingSection = () => {
                 }}>
                   <CardMedia
                     component="img"
-                    image={item.img}
+                    src={`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`}
                     alt={`Slide ${index + 1}`}
                     sx={{
                       height: { xs: 150, sm: 200 },
@@ -430,7 +360,7 @@ const PrintingSection = () => {
                       borderTopLeftRadius: 2,
                       borderTopRightRadius: 2,
                     }}
-                    onClick={() => handleImageClick(item.img)}
+                    onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`)}
                   />
                 </Card>
               </div>
@@ -467,7 +397,7 @@ const PrintingSection = () => {
           </CardContent>
         </Card>
           <Slider ref={sliderRef} {...settings}>
-            {sliderItems3.map((item, index) => (
+            {PrintingSection3.map((item, index) => (
               <div key={index}>
                 <Card sx={{ 
                   transition: "0.3s", 
@@ -478,7 +408,7 @@ const PrintingSection = () => {
                 }}>
                   <CardMedia
                     component="img"
-                    image={item.img}
+                    src={`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`}
                     alt={`Slide ${index + 1}`}
                     sx={{
                       height: { xs: 150, sm: 200 },
@@ -486,7 +416,7 @@ const PrintingSection = () => {
                       borderTopLeftRadius: 2,
                       borderTopRightRadius: 2,
                     }}
-                    onClick={() => handleImageClick(item.img)}
+                    onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`)}
                   />
                 </Card>
               </div>
@@ -523,7 +453,7 @@ const PrintingSection = () => {
           </CardContent>
         </Card>
           <Slider ref={sliderRef} {...settings}>
-            {sliderItems4.map((item, index) => (
+            {PrintingSection4.map((item, index) => (
               <div key={index}>
                 <Card sx={{ 
                   transition: "0.3s", 
@@ -534,7 +464,7 @@ const PrintingSection = () => {
                 }}>
                   <CardMedia
                     component="img"
-                    image={item.img}
+                    src={`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`}
                     alt={`Slide ${index + 1}`}
                     sx={{
                       height: { xs: 150, sm: 200 },
@@ -542,7 +472,7 @@ const PrintingSection = () => {
                       borderTopLeftRadius: 2,
                       borderTopRightRadius: 2,
                     }}
-                    onClick={() => handleImageClick(item.img)}
+                    onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`)}
                   />
                 </Card>
               </div>

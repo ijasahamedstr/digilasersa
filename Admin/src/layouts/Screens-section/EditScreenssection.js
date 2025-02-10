@@ -12,8 +12,9 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Swal from "sweetalert2";
-import axios from "axios"; // Add axios import
-import { useNavigate, useParams } from "react-router-dom"; // Add useParams import for getting the ID
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { Image } from "antd";
 
 const EditScreenssection = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
@@ -22,10 +23,10 @@ const EditScreenssection = () => {
   const [projectname, setProjectname] = useState("");
   const [projectype, setProjectype] = useState("");
   const [projectdec, setProjectdec] = useState("");
-  const navigate = useNavigate(); // Initialize navigate
-  const { id } = useParams(); // Get the id from URL params (assuming the route contains an 'id' param)
+  const [existingImages, setExistingImages] = useState([]); // State for existing images
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-  // Use useEffect to fetch the data for the existing project if the component is used for editing.
   useEffect(() => {
     if (id) {
       axios
@@ -35,7 +36,7 @@ const EditScreenssection = () => {
           setProjectname(data.projectname);
           setProjectype(data.projectype);
           setProjectdec(data.projectdec);
-          // Optionally, you could set images from the response if you want to preview them
+          setExistingImages(data.projectimage || []); // Set existing images
         })
         .catch((error) => {
           Swal.fire({
@@ -50,7 +51,7 @@ const EditScreenssection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true before submission
+    setLoading(true);
     const formData = new FormData();
     formData.append("projectname", projectname);
     formData.append("projectype", projectype);
@@ -58,10 +59,10 @@ const EditScreenssection = () => {
     files.forEach((file) => formData.append("userimg", file));
 
     try {
-      const method = id ? "put" : "post"; // If there's an id, we do an update (PUT), otherwise create (POST)
+      const method = id ? "put" : "post";
       const url = id
         ? `${process.env.REACT_APP_API_HOST}/Screensdepartment/${id}`
-        : `${process.env.REACT_APP_API_HOST}/Screensdepartment`; // If updating, target the specific id
+        : `${process.env.REACT_APP_API_HOST}/Screensdepartment`;
 
       const response = await axios[method](url, formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -75,7 +76,9 @@ const EditScreenssection = () => {
           icon: "success",
           confirmButtonText: "OK",
         });
-        if (!id) navigate("/your/redirect/route"); // If it's a new creation, redirect after success
+        if (!id) {
+          navigate("/path-to-redirect-after-submit"); // Redirect after adding a new project
+        }
       }
     } catch (error) {
       Swal.fire({
@@ -85,7 +88,7 @@ const EditScreenssection = () => {
         confirmButtonText: "OK",
       });
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false);
     }
   };
 
@@ -206,30 +209,49 @@ const EditScreenssection = () => {
                     </Button>
                   </label>
 
-                  {imagePreviews.length > 0 && (
-                    <div
-                      style={{
-                        marginTop: "20px",
-                        display: "flex",
-                        flexWrap: "wrap",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {imagePreviews.map((preview, index) => (
-                        <img
-                          key={index}
-                          src={preview}
-                          alt={`Preview ${index}`}
-                          style={{
-                            maxWidth: "150px",
-                            height: "auto",
-                            margin: "10px",
-                            borderRadius: "4px",
-                          }}
+                  <MDBox
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{
+                      mb: 2,
+                      border: "1px solid #e0e0e0",
+                      borderRadius: "8px",
+                      padding: "4px", // Reduced padding for more space
+                      overflow: "auto", // Ensure images scroll if overflow
+                    }}
+                  >
+                    <Image.PreviewGroup>
+                      {imagePreviews.length > 0 ? (
+                        imagePreviews.map((preview, index) => (
+                          <Image
+                            key={index}
+                            width={180} // Adjusted image width
+                            height={120} // Adjusted image height
+                            src={preview}
+                            alt={`Screen ${index}`}
+                          />
+                        ))
+                      ) : existingImages.length > 0 ? (
+                        existingImages.map((image, index) => (
+                          <Image
+                            key={index}
+                            width={180} // Consistent image width
+                            height={120}
+                            src={`${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${image}`}
+                            alt={`Existing Image ${index}`}
+                          />
+                        ))
+                      ) : (
+                        <Image
+                          width={180} // Placeholder image size
+                          height={120}
+                          src="https://via.placeholder.com/180x120"
+                          alt="No images available"
                         />
-                      ))}
-                    </div>
-                  )}
+                      )}
+                    </Image.PreviewGroup>
+                  </MDBox>
 
                   <Button
                     type="submit"

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import { Carousel } from 'react-bootstrap';
-import { Box, Typography,Grid,Button,CardMedia,Card,Pagination,TextField} from '@mui/material';
+import { Box, Typography,Grid,Button,CardMedia,Card,Pagination,CircularProgress} from '@mui/material';
 import Container from '@mui/material/Container';
 import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWhatsapp  } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +10,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
+import React, { useState, useEffect } from "react";
+
 
 
 const carouselItems = [
@@ -29,12 +31,32 @@ const carouselItems = [
 ];
 
 const WebMediaphoto = () => {
+  const [WebMediaphoto, setWebMediaphoto] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
     message: '',
   });
+
+    // Fetch data on component mount
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`${process.env.REACT_APP_API_HOST}/MediaCommunicationsphoto`);
+          setWebMediaphoto(response.data); // Set the fetched Arabic calligraphy data
+        } catch (err) {
+          console.error('Error fetching data: ', err);
+          setError('Failed to fetch data');
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchData();
+    }, []);
 
  
     const handleChange = (e) => {
@@ -58,58 +80,6 @@ const WebMediaphoto = () => {
       window.location.href = 'https://another-site.com/contact';
     };
 
-  
-          const products = [
-            {
-              img: "https://i.ibb.co/KyyGLjT/perfume-creative-product-photography-04-1.webp",
-              title:"المنتجات"
-            },
-            {
-              img: "https://i.ibb.co/nCLwpf3/Whats-App-Image-2024-09-01-at-12-48-57-d84d659d.webp",
-              title:"الأعراس والمناسبات"
-            },
-            {
-              img: "https://i.ibb.co/Hz3M5LK/delicious-burger-nature.webp",
-              title:"المنيوهات الأطعمة المشروبات"
-            },
-            {
-              img: "https://i.ibb.co/FzfZsXc/0C7A1084.webp",
-              title:"تصوير المؤتمرات والإجتماعات"
-            },
-            {
-              img: "https://i.ibb.co/Mg0txLm/0-C7-A9702-2.webp",
-              title:"فوتوسيشن وبورتريه"
-            },
-            {
-              img: "https://i.ibb.co/1bq4LjL/living-room-with-blue-couch-white-wall-with-painting-it.webp",
-              title:"الديكور و السكني"
-            },
-            {
-              img: "https://i.ibb.co/DtNPTd2/changan-cs35-plus-front-side-view-721761.webp",
-              title:"تصوير السيارات والمركبات"
-            },
-            {
-              img: "https://i.ibb.co/ZKbJ3Zk/0-C7-A9797-MP4-snapshot-00-03-389.webp",
-              title:"تصوير المدارس والجامعات"
-            },
-            {
-              img: "https://i.ibb.co/cgxWWwY/NJ2A9623.webp",
-               title:"تغطية الأنشطه والمسابقات"
-            },
-            {
-              img: "https://i.ibb.co/NZ8GGgb/0C7A1302.webp",
-              title:"تصوير المعارض والفعاليات"
-            },
-            {
-              img: "https://i.ibb.co/n1W62X1/457360285-18454402690050545-1982192899392339643-n.webp",
-               title:"المعماري والهندسي"
-            },
-            {
-              img: "https://i.ibb.co/3yzqh1D/15.webp",
-               title:"الأنشطة التعليمية والدينية"
-            },
-          ];
-
           const products1 = [
             { cardTitles: "أعمال فنية وإنتاج", imageUrls: "https://i.ibb.co/w0c1Yzr/Write-lede.webp"},
             { cardTitles: "كتابة محتوي وتأليف", imageUrls: "https://i.ibb.co/48mQr3n/dfba4c19cde988c07930123097f49c78.webp"},
@@ -125,8 +95,8 @@ const WebMediaphoto = () => {
           // Calculate the current products to display
           const indexOfLastProduct = page * itemsPerPage;
           const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-          const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-          const totalPages = Math.ceil(products.length / itemsPerPage);
+          const currentProducts = WebMediaphoto.slice(indexOfFirstProduct, indexOfLastProduct);
+          const totalPages = Math.ceil(WebMediaphoto.length / itemsPerPage);
         
           // Handle page change
           const handlePageChange = (event, value) => {
@@ -147,6 +117,10 @@ const WebMediaphoto = () => {
             setIsZoomed(false);
             setZoomedImageSrc("");
           };
+
+            // Handle loading and error states
+              if (loading) return <CircularProgress />;
+              if (error) return <div>{error}</div>;
 
 
   
@@ -349,7 +323,7 @@ const WebMediaphoto = () => {
                         <CardMedia
                         component="img"
                         alt={`Service ${index}`}
-                        image={product.img}
+                        src={`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Photo/${product.MediaCommunicationsphotoimage}`}
                         sx={{
                           height: { xs: 120, sm: 150, md: 180 }, // Reduced size of the image
                           objectFit: 'cover',
@@ -365,7 +339,7 @@ const WebMediaphoto = () => {
                             border: '4px solid #e99b19', // Border highlight on hover
                           }
                         }}
-                        onClick={() => handleImageClick(product.img)}
+                        onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Photo/${product.MediaCommunicationsphotoimage}`)}
                         />
                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 1 }}>
                         <Typography

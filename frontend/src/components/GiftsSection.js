@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { Container, Box, Typography, Card, Dialog, DialogTitle, IconButton, DialogContent, DialogActions, Button, CardMedia,TextField,Grid,CardContent } from "@mui/material";
+import React, { useState, useRef, useEffect } from "react";
+import { Container, Box, Typography, Card, CardContent, Dialog, DialogTitle, IconButton, DialogContent, DialogActions, Button, CardMedia, Grid, CircularProgress } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,91 +7,8 @@ import { FaFacebook, FaInstagram, FaLinkedin,FaYoutube,FaSnapchat,FaTiktok,FaWha
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
 import { Carousel } from "react-bootstrap";
-import Form from 'react-bootstrap/Form'; 
-
-const sliderItems = [
-  {
-    img: "https://i.ibb.co/NNbtzLK/0-2.webp",
-  },
-  {
-    img: "https://i.ibb.co/d58zzNQ/0-3.webp",
-  },
-  {
-    img: "https://i.ibb.co/ymz535H/0-6.webp",
-  },
-  {
-    img: "https://i.ibb.co/DGFRCSM/0-7.webp",
-  },
-  {
-    img: "https://i.ibb.co/gV03fTt/slaa.webp",
-  },
-  {
-    img: "https://i.ibb.co/ymz535H/0-6.webpg",
-  },
-];
-
-const sliderItems1 = [
-  {
-    img: "https://i.ibb.co/gyBPMhf/e1gkqvdo-3.webp",
-  },
-  {
-    img: "https://i.ibb.co/FK2vZg2/3.webp",
-  },
-  {
-    img: "https://i.ibb.co/dr7vp5M/eo4qvyg7.webp",
-  },
-  {
-    img: "https://i.ibb.co/tw6VNHM/ro6yeq67.webp",
-  },
-  {
-    img: "https://i.ibb.co/1Xjtg5P/ro6yj437.webp",
-  },
-  {
-    img: "https://i.ibb.co/dr7vp5M/eo4qvyg7.webp",
-  },
-];
-
-const sliderItems2 = [
-  {
-    img: "https://i.ibb.co/NjcYQk5/67wl6jw1-9.webp",
-  },
-  {
-    img: "https://i.ibb.co/WvH91Lm/67wlnr21.webp",
-  },
-  {
-    img: "https://i.ibb.co/Rj7x3J5/d1lvkppo.webp",
-  },
-  {
-    img: "https://i.ibb.co/CW2pKBc/dd42c39f2100f63d4aa0db8a5caea525.webp",
-  },
-  {
-    img: "https://i.ibb.co/XX8fzpV/eo4q9k97.webp",
-  },
-  {
-    img: "https://i.ibb.co/WvH91Lm/67wlnr21.webp",
-  },
-];
-
-const sliderItems3 = [
-  {
-    img: "https://i.ibb.co/Fhq3VjP/990eafa78d79c2d97811410906550cd2.webp",
-  },
-  {
-    img: "https://i.ibb.co/09RwMxX/545e0f0591014b7f2e88f416847c77b8.webp",
-  },
-  {
-    img: "https://i.ibb.co/ky37NtP/536847fa695a85df451f56e990827e59.webp",
-  },
-  {
-    img: "https://i.ibb.co/GMMvBW7/ebd5fdbe0018b0e60353db78816cd75b.webp",
-  },
-  {
-    img: "https://i.ibb.co/NjmdgZz/fb877ef59b3e4019e937b63ba74e7632.webp",
-  },
-  {
-    img: "https://i.ibb.co/ky37NtP/536847fa695a85df451f56e990827e59.webp",
-  },
-];
+import Form from 'react-bootstrap/Form';
+import axios from 'axios'; 
 
 const carouselItems = [
   {
@@ -109,63 +26,96 @@ const carouselItems = [
 ];
 
 const GiftsSection = () => {
-  const [open, setOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const sliderRef = useRef(null);
-
-  const handleImageClick = (imageUrl) => {
-    setSelectedImage(imageUrl);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    pauseOnHover: true,
-    responsive: [
-      { breakpoint: 1200, settings: { slidesToShow: 4 } },
-      { breakpoint: 900, settings: { slidesToShow: 2 } },
-      { breakpoint: 600, settings: { slidesToShow: 1 } },
-    ],
-  };
-
+    // Declare hooks at the top level
+    const [GiftsSection, setGiftsSection] = useState([]);
+    const [GiftsSection1, setGiftsSection1] = useState([]);
+    const [GiftsSection2, setGiftsSection2] = useState([]);
+    const [GiftsSection3, setGiftsSection3] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
     const [formData, setFormData] = useState({
-        name: '',
-        phone: '',
-        email: '',
-        message: '',
-      });
-    
-     
-        const handleChange = (e) => {
-          const { name, value } = e.target;
-          setFormData({
-            ...formData,
-            [name]: value,
-          });
-        };
-      
-        const handleFormSubmit = (event) => {
-          event.preventDefault();
-      
-          // Add simple validation
-          if (!formData.name || !formData.phone || !formData.email || !formData.message) {
-            alert("Please fill out all fields.");
-            return;
-          }
-      
-          // Redirect to another site (Example: External site)
-          window.location.href = 'https://another-site.com/contact';
-        };
+      name: '',
+      phone: '',
+      email: '',
+      message: '',
+    });
+  
+    const sliderRef = useRef(null);
+  
+    // Fetch data once the component mounts
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Promotionalgifts`);
+          // Filter data where gifttype is "دروع ومجسمات"
+          const filteredData = response.data.filter(item => item.gifttype === "دروع ومجسمات");
+          const filteredData1 = response.data.filter(item => item.gifttype === "خشـبيات");
+          const filteredData2 = response.data.filter(item => item.gifttype === "مكتـبيات");
+          const filteredData3 = response.data.filter(item => item.gifttype === "اكسسوارات");
+          setGiftsSection(filteredData);
+          setGiftsSection1(filteredData1);
+          setGiftsSection2(filteredData2);
+          setGiftsSection3(filteredData3);
+        } catch (err) {
+          console.error('Error fetching data: ', err);
+          setError('Failed to fetch data');
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchData();
+    }, []);
 
+    // Handle loading and error states before rendering
+    if (loading) return <CircularProgress />;
+    if (error) return <div>{error}</div>;
+  
+    const handleImageClick = (imageUrl) => {
+      setSelectedImage(imageUrl);
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    };
+  
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+  
+      if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+        alert("Please fill out all fields.");
+        return;
+      }
+  
+      window.location.href = 'https://another-site.com/contact';
+    };
+  
+    const settings = {
+      dots: true,
+      infinite: true,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      pauseOnHover: true,
+      responsive: [
+        { breakpoint: 1200, settings: { slidesToShow: 4 } },
+        { breakpoint: 900, settings: { slidesToShow: 2 } },
+        { breakpoint: 600, settings: { slidesToShow: 1 } },
+      ],
+    };
+    
   return (
     <>
       <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}>
@@ -248,61 +198,30 @@ const GiftsSection = () => {
     <Container maxWidth={false} sx={{ padding: 0 }} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
       {/* Carousel Section */}
       <section style={{ width: "100%", margin: "0 auto", paddingTop: "50px", paddingBottom: "50px" }}>
-        <Container maxWidth="xl" sx={{ padding: 3 }}>
-        <Card
-          sx={{
-            backgroundColor: '#f5f5f5', // Background color of the card
-            padding: 0, // Padding around the content
-            borderRadius: 2, // Optional: rounded corners
-            boxShadow: 3, // Optional: card shadow
-            maxWidth: '100%', // Make sure the card is responsive
-            textAlign: 'center', // Center align content
-            marginBottom:'20px'
-          }}
-        >
-          <CardContent>
-            <Typography
-              variant="h4"
-              component="h2"
-              sx={{
-                fontFamily: 'Tajawal',
-                fontWeight: 'bold',
-                color: '#333',
-                fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
-                textAlign: 'center',
-              }}
-            >
-              <span style={{ color: '#015057' }}>دروع ومجسمات</span>
-            </Typography>
-          </CardContent>
-        </Card>
-          <Slider ref={sliderRef} {...settings}>
-            {sliderItems.map((item, index) => (
-              <div key={index}>
-                <Card sx={{ 
-                  transition: "0.3s", 
-                  "&:hover": { boxShadow: 4, transform: "scale(1.02)" }, 
-                  borderRadius: 2,
-                  marginRight: "16px",  // Gap between the cards
-                  marginLeft: index === 0 ? "0" : "16px", // Avoid extra margin for the first card
-                }}>
-                  <CardMedia
-                    component="img"
-                    image={item.img}
-                    alt={`Slide ${index + 1}`}
-                    sx={{
-                      height: { xs: 150, sm: 200 },
-                      objectFit: "cover",
-                      borderTopLeftRadius: 2,
-                      borderTopRightRadius: 2,
-                    }}
-                    onClick={() => handleImageClick(item.img)}
-                  />
-                </Card>
-              </div>
-            ))}
-          </Slider>
-        </Container>
+          <Container maxWidth="xl" sx={{ padding: 3 }}>
+            <Card sx={{ backgroundColor: '#f5f5f5', padding: 0, borderRadius: 2, boxShadow: 3, maxWidth: '100%', textAlign: 'center', marginBottom: '20px' }}>
+              <CardContent>
+                <Typography variant="h4" component="h2" sx={{ fontFamily: 'Tajawal', fontWeight: 'bold', color: '#333', fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' }, textAlign: 'center' }}>
+                  <span style={{ color: '#015057' }}>دروع ومجسمات</span>
+                </Typography>
+              </CardContent>
+            </Card>
+            <Slider ref={sliderRef} {...settings}>
+              {GiftsSection.map((item, index) => (
+                <div key={index}>
+                  <Card sx={{ transition: "0.3s", "&:hover": { boxShadow: 4, transform: "scale(1.02)" }, borderRadius: 2, marginRight: "16px", marginLeft: index === 0 ? "0" : "16px" }}>
+                    <CardMedia
+                      component="img"
+                      src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`} 
+                      alt={`Slide ${index + 1}`}
+                      sx={{ height: { xs: 150, sm: 200 }, objectFit: "cover", borderTopLeftRadius: 2, borderTopRightRadius: 2 }}
+                      onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`)}
+                    />
+                  </Card>
+                </div>
+              ))}
+            </Slider>
+          </Container>
 
         <Container maxWidth="xl" sx={{ padding: 3 }}>
         <Card
@@ -333,7 +252,7 @@ const GiftsSection = () => {
           </CardContent>
         </Card>
           <Slider ref={sliderRef} {...settings}>
-            {sliderItems1.map((item, index) => (
+            {GiftsSection1.map((item, index) => (
               <div key={index}>
                 <Card sx={{ 
                   transition: "0.3s", 
@@ -344,7 +263,7 @@ const GiftsSection = () => {
                 }}>
                   <CardMedia
                     component="img"
-                    image={item.img}
+                    src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
                     alt={`Slide ${index + 1}`}
                     sx={{
                       height: { xs: 150, sm: 200 },
@@ -352,7 +271,7 @@ const GiftsSection = () => {
                       borderTopLeftRadius: 2,
                       borderTopRightRadius: 2,
                     }}
-                    onClick={() => handleImageClick(item.img)}
+                    onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`)}
                   />
                 </Card>
               </div>
@@ -389,7 +308,7 @@ const GiftsSection = () => {
           </CardContent>
         </Card>
           <Slider ref={sliderRef} {...settings}>
-            {sliderItems2.map((item, index) => (
+            {GiftsSection2.map((item, index) => (
               <div key={index}>
                 <Card sx={{ 
                   transition: "0.3s", 
@@ -400,7 +319,7 @@ const GiftsSection = () => {
                 }}>
                   <CardMedia
                     component="img"
-                    image={item.img}
+                    src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
                     alt={`Slide ${index + 1}`}
                     sx={{
                       height: { xs: 150, sm: 200 },
@@ -408,7 +327,7 @@ const GiftsSection = () => {
                       borderTopLeftRadius: 2,
                       borderTopRightRadius: 2,
                     }}
-                    onClick={() => handleImageClick(item.img)}
+                    onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`)}
                   />
                 </Card>
               </div>
@@ -445,7 +364,7 @@ const GiftsSection = () => {
           </CardContent>
         </Card>
           <Slider ref={sliderRef} {...settings}>
-            {sliderItems3.map((item, index) => (
+            {GiftsSection3.map((item, index) => (
               <div key={index}>
                 <Card sx={{ 
                   transition: "0.3s", 
@@ -456,7 +375,7 @@ const GiftsSection = () => {
                 }}>
                   <CardMedia
                     component="img"
-                    image={item.img}
+                    src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
                     alt={`Slide ${index + 1}`}
                     sx={{
                       height: { xs: 150, sm: 200 },
@@ -464,7 +383,7 @@ const GiftsSection = () => {
                       borderTopLeftRadius: 2,
                       borderTopRightRadius: 2,
                     }}
-                    onClick={() => handleImageClick(item.img)}
+                    onClick={() => handleImageClick(`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`)}
                   />
                 </Card>
               </div>

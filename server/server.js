@@ -54,6 +54,8 @@ app.use('/uploads/MediaCommunications/Photo', express.static(path.join(__dirname
 app.use('/uploads/MediaCommunications/Video', express.static(path.join(__dirname, '/uploads/MediaCommunications/Video')));
 app.use('/uploads/News', express.static(path.join(__dirname, '/uploads/News')));
 app.use('/uploads/Partner', express.static(path.join(__dirname, '/uploads/Partner')));
+app.use('/uploads/Screenssection', express.static(path.join(__dirname, '/uploads/Screenssection')));
+app.use('/uploads/Socialmedia', express.static(path.join(__dirname, '/uploads/Socialmedia')));
 
 
 //CLIENT -> MIDDLEWARE -> SERVER

@@ -139,15 +139,17 @@ function Screenssection() {
             item.projectimage.map((image, index) => (
               <Image
                 key={index}
-                width={200}
+                width={150} // Reduced width
+                height={100} // Fixed height for consistency
                 src={`${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${image}`}
-                alt={`User Profile ${index}`}
+                alt={`Screen${index}`}
               />
             ))
           ) : (
             <Image
-              width={200}
-              src="https://via.placeholder.com/200" // Placeholder image URL
+              width={150} // Reduced width for the placeholder image
+              height={100} // Fixed height for placeholder
+              src="https://via.placeholder.com/150"
               alt="No images available"
             />
           )}

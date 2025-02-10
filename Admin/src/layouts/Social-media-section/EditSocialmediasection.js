@@ -12,19 +12,54 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Swal from "sweetalert2";
-import axios from "axios"; // Add axios import
-import { useParams } from "react-router-dom"; // Add useParams import for getting the ID
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { Image } from "antd";
 
-const EditSocialmediasection = () => {
+const subTypeOptions = {
+  "إدارة حسابات السوشيال ميديا": [
+    "تحسين محركات البحث",
+    "تحليل اداء الحسابات",
+    "التفاعل الجماهيرى",
+    "إنشاء وتطوير الحسابات",
+  ],
+  "إدارة الإعلانات المدفوعة": [
+    "تصميم حملات بريدية",
+    "تصميم خطط الترويج",
+    "تصميم خطط إنتشار",
+    "تصميم حملات إعلانية",
+  ],
+  "إنشاء المحتوى الإبداعي": [
+    "إنتاج وتصوير الفيديو",
+    "تصميمات الجرافيك",
+    "كتابة المحتوس الابداعي",
+    "بناء الهوية التجارية",
+  ],
+  "تحليل البيانات المختلفة": [
+    "تحليل متغيرات العملاء",
+    "تحليل المنافسين",
+    "تحليل سلوك المستخدم",
+    "تحليل أداء الحسابات",
+  ],
+  "الإستشارات التسويقية": [
+    "خدمة العملاء",
+    "تدريب الموظفين",
+    "الحلول المتكاملة",
+    "الاستراتيجيات والخطط",
+  ],
+};
+
+const EditSocialMediaSection = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState([]);
   const [soicalmedianame, setSoicalmedianame] = useState("");
   const [soicalmediamaintype, setSoicalmediamaintype] = useState("");
   const [soicalmediasubtype, setSoicalmediasubtype] = useState("");
-  const { id } = useParams(); // Get the id from URL params (assuming the route contains an 'id' param)
+  const [existingImages, setExistingImages] = useState([]);
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-  // Use useEffect to fetch the data for the existing project if the component is used for editing.
   useEffect(() => {
     if (id) {
       axios
@@ -34,7 +69,7 @@ const EditSocialmediasection = () => {
           setSoicalmedianame(data.soicalmedianame);
           setSoicalmediamaintype(data.soicalmediamaintype);
           setSoicalmediasubtype(data.soicalmediasubtype);
-          // Optionally, you could set images from the response if you want to preview them
+          setExistingImages(data.Soicalmediaimage || []);
         })
         .catch((error) => {
           Swal.fire({
@@ -49,7 +84,18 @@ const EditSocialmediasection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true before submission
+
+    if (!soicalmedianame || !soicalmediamaintype || !soicalmediasubtype) {
+      Swal.fire({
+        title: "Error!",
+        text: "Please fill all the fields before submitting.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
+    setLoading(true);
     const formData = new FormData();
     formData.append("soicalmedianame", soicalmedianame);
     formData.append("soicalmediamaintype", soicalmediamaintype);
@@ -57,10 +103,10 @@ const EditSocialmediasection = () => {
     files.forEach((file) => formData.append("userimg", file));
 
     try {
-      const method = id ? "put" : "post"; // If there's an id, we do an update (PUT), otherwise create (POST)
+      const method = id ? "put" : "post";
       const url = id
         ? `${process.env.REACT_APP_API_HOST}/Socialmedia/${id}`
-        : `${process.env.REACT_APP_API_HOST}/Socialmedia`; // If updating, target the specific id
+        : `${process.env.REACT_APP_API_HOST}/Socialmedia`;
 
       const response = await axios[method](url, formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -74,7 +120,9 @@ const EditSocialmediasection = () => {
           icon: "success",
           confirmButtonText: "OK",
         });
-        if (!id); // If it's a new creation, redirect after success
+        if (!id) {
+          navigate("/path-to-redirect-after-submit");
+        }
       }
     } catch (error) {
       Swal.fire({
@@ -84,7 +132,7 @@ const EditSocialmediasection = () => {
         confirmButtonText: "OK",
       });
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false);
     }
   };
 
@@ -132,63 +180,64 @@ const EditSocialmediasection = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  {id ? "Update Social media section" : "Add New Category"}
+                  {id ? "Update Social Media Section" : "Add New Category"}
                 </MDTypography>
               </MDBox>
 
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
                 <form onSubmit={handleSubmit}>
                   <TextField
-                    label="Project Name"
+                    label="Social Media Name"
                     variant="outlined"
                     fullWidth
                     sx={{ mb: 2 }}
-                    name="soicalmedianame"
                     value={soicalmedianame}
                     onChange={(e) => setSoicalmedianame(e.target.value)}
                   />
 
                   <FormControl fullWidth sx={{ mb: 2 }}>
-                    <InputLabel>Project Type</InputLabel>
+                    <InputLabel>Social Media Main Type</InputLabel>
                     <Select
-                      label="Project Type"
+                      label="Social Media Main Type"
                       sx={{ height: "40px" }}
-                      name="soicalmediamaintype"
                       value={soicalmediamaintype}
                       onChange={(e) => setSoicalmediamaintype(e.target.value)}
                     >
-                      <MenuItem value="دروع ومجسمات">دروع ومجسمات</MenuItem>
-                      <MenuItem value="خشـبيات">خشـبيات</MenuItem>
-                      <MenuItem value="مكتـبيات">مكتـبيات</MenuItem>
-                      <MenuItem value="اكسسوارات">اكسسوارات</MenuItem>
+                      {Object.keys(subTypeOptions).map((type) => (
+                        <MenuItem key={type} value={type}>
+                          {type}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
 
                   <FormControl fullWidth sx={{ mb: 2 }}>
-                    <InputLabel>Project Type</InputLabel>
+                    <InputLabel>Social Media Sub Type</InputLabel>
                     <Select
-                      label="Project Type"
+                      label="Social Media Sub Type"
                       sx={{ height: "40px" }}
-                      name="soicalmediasubtype"
                       value={soicalmediasubtype}
                       onChange={(e) => setSoicalmediasubtype(e.target.value)}
+                      disabled={!soicalmediamaintype} // Disable if no Main Type is selected
                     >
-                      <MenuItem value="دروع ومجسمات">دروع ومجسمات</MenuItem>
-                      <MenuItem value="خشـبيات">خشـبيات</MenuItem>
-                      <MenuItem value="مكتـبيات">مكتـبيات</MenuItem>
-                      <MenuItem value="اكسسوارات">اكسسوارات</MenuItem>
+                      {soicalmediamaintype &&
+                        subTypeOptions[soicalmediamaintype]?.map((subType) => (
+                          <MenuItem key={subType} value={subType}>
+                            {subType}
+                          </MenuItem>
+                        ))}
                     </Select>
                   </FormControl>
 
                   <label htmlFor="file-upload">
                     <input
                       id="file-upload"
-                      name="projectimage"
                       accept="image/*"
                       type="file"
                       multiple
-                      style={{ display: "none" }}
+                      className="file-upload-input"
                       onChange={handleFileChange}
+                      style={{ display: "none" }}
                     />
                     <Button
                       variant="outlined"
@@ -209,30 +258,49 @@ const EditSocialmediasection = () => {
                     </Button>
                   </label>
 
-                  {imagePreviews.length > 0 && (
-                    <div
-                      style={{
-                        marginTop: "20px",
-                        display: "flex",
-                        flexWrap: "wrap",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {imagePreviews.map((preview, index) => (
-                        <img
-                          key={index}
-                          src={preview}
-                          alt={`Preview ${index}`}
-                          style={{
-                            maxWidth: "150px",
-                            height: "auto",
-                            margin: "10px",
-                            borderRadius: "4px",
-                          }}
+                  <MDBox
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{
+                      mb: 2,
+                      border: "1px solid #e0e0e0",
+                      borderRadius: "8px",
+                      padding: "4px",
+                      overflow: "auto",
+                    }}
+                  >
+                    <Image.PreviewGroup>
+                      {imagePreviews.length > 0 ? (
+                        imagePreviews.map((preview, index) => (
+                          <Image
+                            key={index}
+                            width={180}
+                            height={120}
+                            src={preview}
+                            alt={`Preview ${index}`}
+                          />
+                        ))
+                      ) : existingImages.length > 0 ? (
+                        existingImages.map((image, index) => (
+                          <Image
+                            key={index}
+                            width={180}
+                            height={120}
+                            src={`${process.env.REACT_APP_API_HOST}/uploads/Socialmedia/${image}`}
+                            alt={`Existing Image ${index}`}
+                          />
+                        ))
+                      ) : (
+                        <Image
+                          width={180}
+                          height={120}
+                          src="https://via.placeholder.com/180x120"
+                          alt="No images available"
                         />
-                      ))}
-                    </div>
-                  )}
+                      )}
+                    </Image.PreviewGroup>
+                  </MDBox>
 
                   <Button
                     type="submit"
@@ -254,4 +322,4 @@ const EditSocialmediasection = () => {
   );
 };
 
-export default EditSocialmediasection;
+export default EditSocialMediaSection;
