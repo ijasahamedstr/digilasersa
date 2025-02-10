@@ -32,10 +32,15 @@ app.get('/', (req, res) => {
 });
 
 app.use(cors({
-  origin:"https://digilasersa.vercel.app",
-  methods:"GET,POST,PUT,DELETE",
-  credentials:true
+  origin: [
+    "https://digilasersa.vercel.app",
+    "http://localhost:3000", // Update with the correct local server port
+    "https://digilasersa-g2hb.vercel.app"
+  ],
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true
 }));
+
 
 //Data understanding middleware
 app.use(express.json());
