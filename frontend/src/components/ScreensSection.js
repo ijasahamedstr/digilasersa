@@ -13,20 +13,14 @@ const carouselItems = [
   {
     id: 1,
     img: 'https://i.ibb.co/Z2VmmWt/Top-Screen.png',
-    title: 'Screen 1',
-    content: 'Your content here for screen 1',
   },
   {
     id: 2,
     img: 'https://i.ibb.co/Z2VmmWt/Top-Screen.png',
-    title: 'Screen 2',
-    content: 'Your content here for screen 2',
   },
   {
     id: 3,
     img: 'https://i.ibb.co/Z2VmmWt/Top-Screen.png',
-    title: 'Screen 3',
-    content: 'Your content here for screen 3',
   },
 ];
 
