@@ -133,17 +133,47 @@ const AddScreenssection = () => {
                       value={projectype}
                       onChange={(e) => setProjectype(e.target.value)}
                     >
-                      <MenuItem value="دروع ومجسمات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        دروع ومجسمات
+                      <MenuItem
+                        value="الشاشات الإلكترونية الخارجية"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        الشاشات الإلكترونية الخارجية
                       </MenuItem>
-                      <MenuItem value="خشـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        خشـبيات
+                      <MenuItem
+                        value="الشاشات الإلكترونية الداخلية"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        الشاشات الإلكترونية الداخلية
                       </MenuItem>
-                      <MenuItem value="مكتـبيات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        مكتـبيات
+                      <MenuItem
+                        value="شــاشة العـــرض النصـــية"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        شــاشة العـــرض النصـــية
                       </MenuItem>
-                      <MenuItem value="اكسسوارات" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        اكسسوارات
+                      <MenuItem
+                        value="الشاشات الإلكترونية الداخلية"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        الشاشات الإلكترونية الداخلية
+                      </MenuItem>
+                      <MenuItem
+                        value="الشـــــاشات التفــــاعلـية"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        الشـــــاشات التفــــاعلـية
+                      </MenuItem>
+                      <MenuItem
+                        value="شـــاشات العـــدادات والساعات الرقمية"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        شـــاشات العـــدادات والساعات الرقمية
+                      </MenuItem>
+                      <MenuItem
+                        value="جهاز ارقام الانتظار"
+                        style={{ fontFamily: "Tajawal, sans-serif" }}
+                      >
+                        جهاز ارقام الانتظار
                       </MenuItem>
                     </Select>
                   </FormControl>
