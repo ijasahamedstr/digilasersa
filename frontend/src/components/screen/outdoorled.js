@@ -218,7 +218,7 @@ const Outdoorled = () => {
               </Box>
             </Container>
             
-            {outdoorLedData.length > 0 && outdoorLedData.map((project, index) => (
+      {outdoorLedData.length > 0 && outdoorLedData.map((project, index) => (
         <section
           dir={index % 2 === 0 ? 'rtl' : 'ltr'}
           key={index}
