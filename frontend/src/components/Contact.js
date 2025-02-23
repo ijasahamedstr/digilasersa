@@ -1,9 +1,7 @@
-
 export default function Contactus() {
-    return (
-      <>
+  return (
+    <>
       <h1>Contactus Page</h1>
-      </>
-    );
-  }
-  
+    </>
+  );
+}

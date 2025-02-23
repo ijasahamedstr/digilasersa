@@ -12,22 +12,21 @@ import FadeCarousel from "./Slider";
 import VisionandMission from "./vision_and_Mission";
 
 export default function Home() {
-    return (
-      <>
-      <FadeCarousel/>
-      <Herosection/>
-      <AboutSection/>
-      <VisionandMission/>
-      <ServiceCard/>
-      <Progress/>
-      <Newssection/>
-      <Imagesection/>
-      <Hr/>
-      <Partner/>
-      <Hr/>
-      <Eventsection/>
-      <ContactUs/>
-      </>
-    );
-  }
-  
+  return (
+    <>
+      <FadeCarousel />
+      <Herosection />
+      <AboutSection />
+      <VisionandMission />
+      <ServiceCard />
+      <Progress />
+      <Newssection />
+      <Imagesection />
+      <Hr />
+      <Partner />
+      <Hr />
+      <Eventsection />
+      <ContactUs />
+    </>
+  );
+}

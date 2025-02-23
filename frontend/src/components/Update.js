@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
-import Swal from 'sweetalert2'; // Ensure you have sweetalert2 installed
-import axios from 'axios'; // Ensure axios is installed
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2"; // Ensure you have sweetalert2 installed
+import axios from "axios"; // Ensure axios is installed
 
 export default function UpdateField() {
   const { id } = useParams(); // Get the 'id' parameter from the URL
   const [formData, setFormData] = useState({
-    giftname: '',
-    gifttype: '',
+    giftname: "",
+    gifttype: "",
     gifttimage: null, // Initially null as there's no image uploaded
   });
   const [previewImage, setPreviewImage] = useState(null); // State for image preview
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [updatedFile, setUpdatedFile] = useState(null);
 
@@ -20,24 +20,28 @@ export default function UpdateField() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_HOST}/Promotionalgifts/${id}`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_HOST}/Promotionalgifts/${id}`,
+        );
         if (response.ok) {
           const data = await response.json();
           setFormData({
-            giftname: data.giftname || '',
-            gifttype: data.gifttype || '',
+            giftname: data.giftname || "",
+            gifttype: data.gifttype || "",
             gifttimage: data.gifttimage || null, // Set the existing image URL if it exists
           });
           // Set the preview for the existing image (if any)
           if (data.gifttimage) {
-            setPreviewImage(`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${data.gifttimage}`);
+            setPreviewImage(
+              `${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${data.gifttimage}`,
+            );
           }
         } else {
-          setError('Failed to fetch data');
+          setError("Failed to fetch data");
         }
       } catch (error) {
-        setError('Error fetching data');
-        console.error('Error fetching data:', error);
+        setError("Error fetching data");
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -65,23 +69,27 @@ export default function UpdateField() {
   const updatePromotionalgifts = async () => {
     setLoading(true); // Set loading state to true while the request is being processed
     const formDataToSend = new FormData();
-    formDataToSend.append('giftname', formData.giftname);
-    formDataToSend.append('gifttype', formData.gifttype);
+    formDataToSend.append("giftname", formData.giftname);
+    formDataToSend.append("gifttype", formData.gifttype);
     if (updatedFile) {
-      formDataToSend.append('gifttimage', updatedFile); // Append the updated image file
+      formDataToSend.append("gifttimage", updatedFile); // Append the updated image file
     }
 
     try {
-      const res = await axios.put(`${process.env.REACT_APP_API_HOST}/Promotionalgifts/${id}`, formDataToSend, {
-        headers: { 
-          'Content-Type': 'multipart/form-data',
+      const res = await axios.put(
+        `${process.env.REACT_APP_API_HOST}/Promotionalgifts/${id}`,
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         },
-      });
+      );
 
       Swal.fire({
-        icon: 'success',
-        title: 'Success!',
-        text: 'Data updated successfully.',
+        icon: "success",
+        title: "Success!",
+        text: "Data updated successfully.",
       });
       setFormData({
         giftname: res.data.giftname,
@@ -89,11 +97,11 @@ export default function UpdateField() {
         gifttimage: res.data.gifttimage,
       });
     } catch (error) {
-      console.error('Error updating data:', error);
+      console.error("Error updating data:", error);
       Swal.fire({
-        icon: 'error',
-        title: 'Error!',
-        text: 'Failed to update data. Please try again later.',
+        icon: "error",
+        title: "Error!",
+        text: "Failed to update data. Please try again later.",
       });
     } finally {
       setLoading(false); // Reset loading state after the request is finished
@@ -102,27 +110,37 @@ export default function UpdateField() {
 
   return (
     <Container className="mt-5">
-      <br/><br/><br/><br/>
+      <br />
+      <br />
+      <br />
+      <br />
       <Row>
         <Col className="d-flex align-items-center justify-content-center">
           <div className="col-12">
             <h2
               className="text-center"
-              style={{ fontFamily: 'Noto Kufi Arabic', marginTop: '1.5rem' }}
+              style={{ fontFamily: "Noto Kufi Arabic", marginTop: "1.5rem" }}
             >
               تحديث البيانات
             </h2>
 
             {error && <div className="alert alert-danger">{error}</div>}
 
-            <Form onSubmit={(e) => { e.preventDefault(); updatePromotionalgifts(); }}>
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                updatePromotionalgifts();
+              }}
+            >
               <Form.Group className="mb-3" controlId="formGridGiftName">
                 <Form.Label>اسم الهدية</Form.Label>
                 <Form.Control
                   placeholder="اسم الهدية"
                   name="giftname"
                   value={formData.giftname}
-                  onChange={(e) => setFormData({ ...formData, giftname: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, giftname: e.target.value })
+                  }
                 />
               </Form.Group>
 
@@ -132,7 +150,9 @@ export default function UpdateField() {
                   aria-label="Default select example"
                   name="gifttype"
                   value={formData.gifttype}
-                  onChange={(e) => setFormData({ ...formData, gifttype: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, gifttype: e.target.value })
+                  }
                 >
                   <option value="passport">جواز السفر</option>
                   <option value="id">بطاقة الهوية</option>
@@ -182,9 +202,13 @@ export default function UpdateField() {
                 variant="primary"
                 type="submit"
                 disabled={loading}
-                style={{ fontFamily: 'Noto Kufi Arabic', fontSize: '13px', background: 'red' }}
+                style={{
+                  fontFamily: "Noto Kufi Arabic",
+                  fontSize: "13px",
+                  background: "red",
+                }}
               >
-                {loading ? 'جارٍ التحديث...' : 'تحديث البيانات'}
+                {loading ? "جارٍ التحديث..." : "تحديث البيانات"}
               </Button>
             </Form>
           </div>

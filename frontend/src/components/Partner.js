@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from 'react'; 
-import { Container, CardMedia, Typography, CircularProgress } from '@mui/material'; 
-import Slider from 'react-slick';
-import axios from 'axios'; 
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  CardMedia,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
+import Slider from "react-slick";
+import axios from "axios";
 
 // Slick carousel settings with Autoplay
 const settings = {
@@ -34,19 +39,21 @@ const settings = {
 };
 
 const Partner = () => {
-  const [partners, setPartners] = useState([]); 
-  const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null); 
+  const [partners, setPartners] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Fetch data on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Partner`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_HOST}/Partner`,
+        );
         setPartners(response.data); // Set the fetched partner data
       } catch (err) {
-        console.error('Error fetching data: ', err);
-        setError('Failed to fetch data');
+        console.error("Error fetching data: ", err);
+        setError("Failed to fetch data");
       } finally {
         setLoading(false);
       }
@@ -60,15 +67,18 @@ const Partner = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <Container maxWidth="xl" style={{ marginBottom: '60px', marginTop: '60px' }}>
+    <Container
+      maxWidth="xl"
+      style={{ marginBottom: "60px", marginTop: "60px" }}
+    >
       <Typography
         variant="h4"
         align="center"
         gutterBottom
         style={{
-          fontFamily: 'Noto Kufi Arabic, sans-serif',
-          fontSize: '2rem',
-          marginBottom: '30px',
+          fontFamily: "Noto Kufi Arabic, sans-serif",
+          fontSize: "2rem",
+          marginBottom: "30px",
         }}
       >
         شركاء النجاح
@@ -76,17 +86,24 @@ const Partner = () => {
       <Slider {...settings}>
         {partners.length > 0 ? (
           partners.map((partner, index) => (
-            <div key={index} style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: "30px",
+              }}
+            >
               <CardMedia
                 component="img"
-                src={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`} 
+                src={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
                 sx={{
-                  width: '200px', // Set a fixed width for all images
-                  height: '200px', // Set a fixed height for all images
-                  objectFit: 'contain', // Maintain aspect ratio while scaling
-                  transition: 'transform 0.3s ease', // Smooth transition for zoom
-                  '&:hover': {
-                    transform: 'scale(1.1)', // Zoom effect on hover
+                  width: "200px", // Set a fixed width for all images
+                  height: "200px", // Set a fixed height for all images
+                  objectFit: "contain", // Maintain aspect ratio while scaling
+                  transition: "transform 0.3s ease", // Smooth transition for zoom
+                  "&:hover": {
+                    transform: "scale(1.1)", // Zoom effect on hover
                   },
                 }}
                 className="zoom-image"
