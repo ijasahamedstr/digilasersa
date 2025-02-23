@@ -154,7 +154,7 @@ const FadeCarousel = () => {
             </Box>
           </a>
           <a
-            href="https://www.linkedin.com/company/digilasersa/"
+            href="https://www.linkedin.com/company/digilasersa"
             target="_blank"
             rel="noopener noreferrer"
           >

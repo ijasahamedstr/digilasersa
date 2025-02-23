@@ -32,20 +32,22 @@ export default function Footer() {
           }}
         >
           <Grid container justifyContent="center">
-            {[
-              { icon: <Facebook />, label: "facebook" },
-              { icon: <Twitter />, label: "twitter" },
-              { icon: <Instagram />, label: "instagram" },
-              { icon: <LinkedIn />, label: "linkedin" },
-              { icon: <YouTube />, label: "youtube" },
-              { icon: <WhatsApp />, label: "whatsapp" },
-              { icon: <FaTiktok />, label: "whatsapp" },
-              { icon: <FaSnapchat />, label: "whatsapp" },
-            ].map(({ icon, label }) => (
+            {[ 
+              { icon: <Facebook />, label: "facebook", url: "https://www.facebook.com" },
+              { icon: <Twitter />, label: "twitter", url: "https://x.com/digilasersa" },
+              { icon: <Instagram />, label: "instagram", url: "https://www.instagram.com/digilasersa" },
+              { icon: <LinkedIn />, label: "linkedin", url: "https://www.linkedin.com/company/digilasersa" },
+              { icon: <YouTube />, label: "youtube", url: "https://youtube.com/@digilaserSa" },
+              { icon: <WhatsApp />, label: "whatsapp", url: "http://wa.me/966571978888" },
+              { icon: <FaTiktok />, label: "tiktok", url: "https://www.tiktok.com/@digilasersa" },
+              { icon: <FaSnapchat />, label: "snapchat", url: "https://www.snapchat.com/add/digilasersa" },
+            ].map(({ icon, label, url }) => (
               <Grid item key={label} sx={{ margin: "0 8px" }}>
                 <IconButton
                   color="inherit"
-                  href="#!"
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   sx={{
                     borderRadius: "50%",
