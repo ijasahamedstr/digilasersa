@@ -98,8 +98,8 @@ const Partner = () => {
                 component="img"
                 src={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
                 sx={{
-                  width: "200px", // Set a fixed width for all images
-                  height: "200px", // Set a fixed height for all images
+                  width: "100%", // Set a fixed width for all images
+                  height: "150px", // Set a fixed height for all images
                   objectFit: "contain", // Maintain aspect ratio while scaling
                   transition: "transform 0.3s ease", // Smooth transition for zoom
                   "&:hover": {

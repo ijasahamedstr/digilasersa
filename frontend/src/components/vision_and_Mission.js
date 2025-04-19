@@ -49,7 +49,7 @@ function VisionandMission() {
       >
         <Card
           sx={{
-            background: "rgba(0, 0, 0, 0.5)", // Black transparent background
+            background: "rgba(0, 0, 0, 0.7)", // Black transparent background
             borderRadius: "8px",
             width: "35%", // Adjusted width for side-by-side layout
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", // Larger shadow for emphasis
@@ -93,7 +93,7 @@ function VisionandMission() {
 
         <Card
           sx={{
-            background: "rgba(0, 0, 0, 0.5)", // Black transparent background
+            background: "rgba(0, 0, 0, 0.7)", // Black transparent background
             borderRadius: "8px",
             width: "35%", // Adjusted width for side-by-side layout
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", // Larger shadow for emphasis
@@ -147,7 +147,7 @@ function VisionandMission() {
         >
           <Card
             sx={{
-              background: "rgba(0, 0, 0, 0.5)", // Black transparent background
+              background: "rgba(0, 0, 0, 0.7)", // Black transparent background
               borderRadius: "8px",
               width: "35%", // Adjusted width for side-by-side layout
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", // Larger shadow for emphasis

@@ -1,105 +1,109 @@
 import React from "react";
-import { Container, Typography } from "@mui/material";
-
-const sectionStyles = {
-  backgroundColor: "Black",
-  backgroundImage: "url(https://i.ibb.co/dJ33jYt/New-Web-5-copy.webp)", // Default background image
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-  width: "100%",
-  margin: "0 auto",
-  marginBottom: "0px",
-  display: "flex",
-  justifyContent: "flex-end",
-  alignItems: "center",
-  paddingTop: "20px",
-  paddingBottom: "20px",
-  marginTop: "-30px",
-  position: "relative",
-  flexDirection: "column",
-  textAlign: "right",
-  fontFamily: "Tajawal",
-  "@media (max-width: 600px)": {
-    marginTop: "0",
-    padding: "10px",
-    backgroundColor: "black", // Keep background color black
-    backgroundImage: "none", // Remove background image on small screens
-  },
-};
-
-const containerStyles = {
-  height: "100%",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "flex-end",
-  padding: "0 20px", // Default padding
-  boxSizing: "border-box",
-  paddingBottom: "40px",
-  fontFamily: "Tajawal",
-  "@media (min-width: 1024px)": {
-    // For desktop view (larger screens)
-    paddingRight: "80px", // Change padding-right for desktop
-  },
-};
-
-const typographyHeadingStyles = {
-  color: "#b5dff0",
-  textAlign: "right",
-  paddingRight: "20px",
-  marginBottom: "20px",
-  fontSize: "50px",
-  "@media (max-width: 600px)": {
-    fontSize: "30px",
-    paddingRight: "10px",
-  },
-  fontFamily: "Tajawal",
-};
-
-const typographyBodyStyles = {
-  color: "#ffffff",
-  textAlign: "right",
-  paddingRight: "20px",
-  fontSize: "25px",
-  "@media (max-width: 600px)": {
-    fontSize: "20px",
-    paddingRight: "10px",
-  },
-  fontFamily: "Tajawal",
-};
-
-const cornerCutBoxStyles = {
-  position: "relative",
-  display: "inline-block",
-  paddingRight: "20px",
-  marginBottom: "30px",
-  backgroundColor: "#0f3341",
-  fontFamily: "Tajawal",
-};
+import { Container, Typography, Box } from "@mui/material";
 
 function AboutSection() {
   return (
-    <section style={sectionStyles}>
-      <Container maxWidth="xxl" sx={containerStyles}>
-        <Typography variant="h4" sx={typographyHeadingStyles}>
+    <Box
+      component="section"
+      sx={{
+        backgroundColor: "black",
+        backgroundImage: {
+          xs: "none", // No background image on small screens
+          sm: "url(https://i.ibb.co/dJ33jYt/New-Web-5-copy.webp)", // Background image for larger screens
+        },
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        width: "100%",
+        margin: "0 auto",
+        marginBottom: "0px",
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+        marginTop: { xs: "-30px", sm: "-30px" },
+        position: "relative",
+        flexDirection: "column",
+        textAlign: "right",
+        fontFamily: "Tajawal",
+      }}
+    >
+      <Container
+        maxWidth="xxl"
+        sx={{
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-end",
+          px: { xs: 2, md: 10 }, // Responsive horizontal padding
+          pb: 5,
+          boxSizing: "border-box",
+          fontFamily: "Tajawal",
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{
+            color: "#b5dff0",
+            textAlign: "right",
+            pr: { xs: 1, sm: 3 },
+            mb: 2,
+            fontSize: { xs: "30px", sm: "50px" },
+            fontFamily: "Tajawal",
+          }}
+        >
           1992 منذ
         </Typography>
 
-        <div className="corner-cut-box" style={cornerCutBoxStyles}>
+        <Box
+          className="corner-cut-box"
+          sx={{
+            position: "relative",
+            display: "inline-block",
+            pr: 2,
+            mb: 4,
+            backgroundColor: "#0f3341",
+            fontFamily: "Tajawal",
+          }}
+        >
           <Typography
             variant="h4"
-            sx={{ ...typographyHeadingStyles, paddingLeft: "60px" }}
+            sx={{
+              color: "#b5dff0",
+              pr: 3,
+              pl: 8,
+              fontSize: { xs: "30px", sm: "50px" },
+              fontFamily: "Tajawal",
+            }}
           >
             من نحن
           </Typography>
-        </div>
+        </Box>
 
-        <Typography variant="body1" sx={typographyBodyStyles}>
-          شركة الليزر الرقمي للدعاية والإعلان
-        </Typography>
         <Typography
           variant="body1"
-          sx={{ ...typographyBodyStyles, marginTop: "30px" }}
+          sx={{
+            color: "#ffffff",
+            textAlign: "right",
+            pr: { xs: 1, sm: 3 },
+            fontSize: { xs: "20px", sm: "25px" },
+            fontFamily: "Tajawal",
+          }}
+        >
+          شركة الليزر الرقمي للدعاية والإعلان
+        </Typography>
+
+        <Typography
+          variant="body1"
+          sx={{
+            color: "#ffffff",
+            textAlign: "right",
+            pr: { xs: 1, sm: 3 },
+            fontSize: { xs: "20px", sm: "25px" },
+            mt: 3,
+            fontFamily: "Tajawal",
+          }}
         >
           تعتبر من أعرق الشركات وخبرتنا تزيد عن 32 عام ونقدم <br />
           أفضل حلول الدعاية والإعلان منذ عام ١٩٩٢ م
@@ -107,7 +111,14 @@ function AboutSection() {
 
         <Typography
           variant="body1"
-          sx={{ ...typographyBodyStyles, fontSize: "35px", marginTop: "30px" }}
+          sx={{
+            color: "#ffffff",
+            textAlign: "right",
+            pr: { xs: 1, sm: 3 },
+            fontSize: "35px",
+            mt: 3,
+            fontFamily: "Tajawal",
+          }}
         >
           فنحن متخصصون في مجالات متعددة منها
           <ul
@@ -117,10 +128,6 @@ function AboutSection() {
               marginTop: "20px",
               direction: "rtl",
               fontSize: "20px",
-              "@media (max-width: 600px)": {
-                fontSize: "15px",
-                paddingRight: "10px",
-              },
             }}
           >
             <li>توريد وتركيب الشاشات الرقمية</li>
@@ -131,18 +138,41 @@ function AboutSection() {
         </Typography>
       </Container>
 
-      <Container maxWidth="xl" sx={{ ...containerStyles, direction: "rtl" }}>
-        <Typography variant="body1" sx={typographyBodyStyles}>
+      <Container
+        maxWidth="xl"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-end",
+          direction: "rtl",
+          fontFamily: "Tajawal",
+          paddingBottom:'60px'
+        }}
+      >
+        <Typography
+          variant="body1"
+          sx={{
+            color: "#ffffff",
+            textAlign: "right",
+            pr: { xs: 1, sm: 3 },
+            fontSize: { xs: "20px", sm: "25px" },
+          }}
+        >
           مما أكسبتنا بأن نكون من
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontSize: "35px", color: "#b5dff0", fontFamily: "Tajawal" }}
+          sx={{
+            fontSize: "35px",
+            color: "#b5dff0",
+            fontFamily: "Tajawal",
+          }}
         >
           صناع الإعلان بالمملكة
         </Typography>
       </Container>
-    </section>
+    </Box>
   );
 }
 

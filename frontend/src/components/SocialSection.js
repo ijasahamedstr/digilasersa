@@ -246,201 +246,56 @@ const SocialSection = () => {
           ))}
         </Carousel>
 
-        <Box
-          sx={{
-            position: "fixed",
-            top: "50%",
-            left: 0,
-            transform: "translateY(-50%)",
-            display: "flex",
-            flexDirection: "column",
-            gap: "15px",
-            zIndex: 2,
-            paddingLeft: 2,
-          }}
-        >
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaFacebook size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FontAwesomeIcon icon={faXTwitter} size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaInstagram size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaLinkedin size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.youtube.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaYoutube size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.snapchat.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaSnapchat size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.tiktok.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaTiktok size={25} />
-            </Box>
-          </a>
-          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaWhatsapp size={25} />
-            </Box>
-          </a>
-        </Box>
-      </Box>
+        {/* Social Media Icons - Hidden on Mobile */}
+                        <Box
+                          sx={{
+                            position: "fixed",
+                            top: "50%",
+                            left: 0,
+                            transform: "translateY(-50%)",
+                            display: {
+                              xs: "none", // Hide on extra-small and small screens
+                              md: "flex", // Show on medium screens and up
+                            },
+                            flexDirection: "column",
+                            gap: "15px",
+                            zIndex: 2,
+                            paddingLeft: 2,
+                          }}
+                        >
+                          {[
+                            { icon: <FaFacebook size={25} />, link: "https://www.facebook.com" },
+                            { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
+                            { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+                            { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+                            { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+                            { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+                            { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+                            { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+                          ].map((social, index) => (
+                            <a key={index} href={social.link} target="_blank" rel="noopener noreferrer">
+                              <Box
+                                sx={{
+                                  width: 40,
+                                  height: 40,
+                                  borderRadius: "50%",
+                                  backgroundColor: "#06f9f3",
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  color: "#17202a",
+                                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+                                  transition: "transform 0.3s ease",
+                                  "&:hover": { transform: "scale(1.2)" },
+                                }}
+                              >
+                                {social.icon}
+                              </Box>
+                            </a>
+                          ))}
+                        </Box>
+       
+                      </Box>
 
       <Paper sx={{ p: 2, width: "100%" }}>
         <Container maxWidth={false} sx={{ padding: 0 }}>
@@ -587,14 +442,14 @@ const SocialSection = () => {
           }}
         >
           <Typography
-            variant="h6"
+            variant="h4"
             sx={{
               fontWeight: "bold",
               color: "#333",
               fontSize: { xs: "1rem", sm: "1.5rem", md: "1.8rem" },
             }}
           >
-            <span style={{ color: "#015057", fontFamily: "Tajawal" }}>
+            <span style={{ color: "#015057", fontFamily: "Tajawal", }}>
               إدارة حسابات السوشيال ميديا
             </span>
           </Typography>

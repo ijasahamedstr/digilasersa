@@ -92,7 +92,7 @@ function ServiceCard() {
       style={{
         backgroundColor: "#f2f3f4",
         width: "100%",
-        margin: "0 auto",
+        marginTop: { xs: "-30px", sm: "-30px" },
         marginBottom: "30px",
         display: "flex",
         justifyContent: "center",
@@ -120,7 +120,7 @@ function ServiceCard() {
             fontFamily: "Tajawal", // Same font family as Typography
             fontWeight: 600, // Same font weight as Typography
             borderRadius: "50px", // Rounded corners
-            fontSize: { xs: "18px", sm: "20px", md: "40px" },
+            fontSize: { xs: "18px", sm: "30px", md: "40px" },
             marginBottom: "30px",
             width: "50%", // Full width
             border: "2px solid #00fefc", // Red border for the outlined button

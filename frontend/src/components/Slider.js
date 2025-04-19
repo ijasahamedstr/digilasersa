@@ -30,8 +30,6 @@ const carouselItems = [
 ];
 
 const FadeCarousel = () => {
-  // Hook to detect mobile screen size
-
   return (
     <Container
       maxWidth={false}
@@ -59,7 +57,7 @@ const FadeCarousel = () => {
               <img
                 className="d-block w-100"
                 src={item.img}
-                alt={item.title}
+                alt={`slide-${item.id}`}
                 style={{
                   height: "80vh",
                   objectFit: "cover",
@@ -70,204 +68,53 @@ const FadeCarousel = () => {
           ))}
         </Carousel>
 
-        {/* Social Media Icons on the Left Side */}
+        {/* Social Media Icons - Hidden on Mobile */}
         <Box
           sx={{
             position: "fixed",
             top: "50%",
             left: 0,
             transform: "translateY(-50%)",
-            display: "flex",
+            display: {
+              xs: "none", // Hide on extra-small and small screens
+              md: "flex", // Show on medium screens and up
+            },
             flexDirection: "column",
             gap: "15px",
             zIndex: 2,
             paddingLeft: 2,
           }}
         >
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaFacebook size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://x.com/digilasersa"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FontAwesomeIcon icon={faXTwitter} size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.instagram.com/digilasersa"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaInstagram size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.linkedin.com/company/digilasersa"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaLinkedin size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://youtube.com/@digilaserSa"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaYoutube size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.snapchat.com/add/digilasersa"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaSnapchat size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.tiktok.com/@digilasersa"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaTiktok size={25} />
-            </Box>
-          </a>
-          <a
-            href="http://wa.me/966571978888"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaWhatsapp size={25} />
-            </Box>
-          </a>
+          {[
+            { icon: <FaFacebook size={25} />, link: "https://www.facebook.com" },
+            { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
+            { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+            { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+            { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+            { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+            { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+            { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+          ].map((social, index) => (
+            <a key={index} href={social.link} target="_blank" rel="noopener noreferrer">
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  backgroundColor: "#06f9f3",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#17202a",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+                  transition: "transform 0.3s ease",
+                  "&:hover": { transform: "scale(1.2)" },
+                }}
+              >
+                {social.icon}
+              </Box>
+            </a>
+          ))}
         </Box>
       </Box>
     </Container>
