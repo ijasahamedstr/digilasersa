@@ -4,36 +4,65 @@ import {
   CardMedia,
   Typography,
   CircularProgress,
+  Box,
 } from "@mui/material";
 import Slider from "react-slick";
 import axios from "axios";
 
-// Slick carousel settings with Autoplay
-const settings = {
-  infinite: true, // Enable infinite looping
-  speed: 500, // Transition speed
-  slidesToShow: 5, // Number of items to show at a time
-  slidesToScroll: 1, // Number of items to scroll at a time
-  autoplay: true, // Enable autoplay
-  autoplaySpeed: 3000, // Time (in ms) between automatic slides
+// Settings for first line (Right to Left)
+const sliderSettingsRTL = {
+  infinite: true,
+  speed: 500,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  rtl: true,
   responsive: [
     {
-      breakpoint: 1024, // for tablets and large screens
-      settings: {
-        slidesToShow: 3,
-      },
+      breakpoint: 1280,
+      settings: { slidesToShow: 4 },
     },
     {
-      breakpoint: 600, // for small screens (mobile)
-      settings: {
-        slidesToShow: 2,
-      },
+      breakpoint: 960,
+      settings: { slidesToShow: 3 },
     },
     {
-      breakpoint: 480, // for very small screens (extra small mobile)
-      settings: {
-        slidesToShow: 1,
-      },
+      breakpoint: 600,
+      settings: { slidesToShow: 2 },
+    },
+    {
+      breakpoint: 480,
+      settings: { slidesToShow: 1 },
+    },
+  ],
+};
+
+// Settings for second line (Left to Right)
+const sliderSettingsLTR = {
+  infinite: true,
+  speed: 500,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  rtl: false,
+  responsive: [
+    {
+      breakpoint: 1280,
+      settings: { slidesToShow: 4 },
+    },
+    {
+      breakpoint: 960,
+      settings: { slidesToShow: 3 },
+    },
+    {
+      breakpoint: 600,
+      settings: { slidesToShow: 2 },
+    },
+    {
+      breakpoint: 480,
+      settings: { slidesToShow: 1 },
     },
   ],
 };
@@ -43,17 +72,16 @@ const Partner = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch data on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/Partner`,
+          `${process.env.REACT_APP_API_HOST}/Partner`
         );
-        setPartners(response.data); // Set the fetched partner data
+        setPartners(response.data);
       } catch (err) {
         console.error("Error fetching data: ", err);
-        setError("Failed to fetch data");
+        setError("فشل في تحميل البيانات");
       } finally {
         setLoading(false);
       }
@@ -62,57 +90,109 @@ const Partner = () => {
     fetchData();
   }, []);
 
-  // Handle loading and error states
   if (loading) return <CircularProgress />;
   if (error) return <div>{error}</div>;
 
+  // Split partners into two rows
+  const halfwayIndex = Math.ceil(partners.length / 2);
+  const firstRowPartners = partners.slice(0, halfwayIndex);
+  const secondRowPartners = partners.slice(halfwayIndex);
+
   return (
-    <Container
-      maxWidth="xl"
-      style={{ marginBottom: "60px", marginTop: "60px" }}
-    >
+    <Container maxWidth="xl" sx={{ mt: 8, mb: 8 }}>
       <Typography
         variant="h4"
         align="center"
         gutterBottom
-        style={{
+        sx={{
           fontFamily: "Noto Kufi Arabic, sans-serif",
           fontSize: "2rem",
-          marginBottom: "30px",
+          mb: 4,
         }}
       >
         شركاء النجاح
       </Typography>
-      <Slider {...settings}>
-        {partners.length > 0 ? (
-          partners.map((partner, index) => (
-            <div
-              key={index}
-              style={{
+
+      {/* Row 1 - Right to Left */}
+      <Slider {...sliderSettingsRTL}>
+        {firstRowPartners.map((partner, index) => (
+          <Box
+            key={`rtl-${index}`}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            py={2}
+          >
+            <Box
+              sx={{
+                width: "120px",
+                height: "120px",
                 display: "flex",
                 justifyContent: "center",
-                paddingTop: "30px",
+                alignItems: "center",
+                overflow: "hidden",
+                borderRadius: "12px",
+                backgroundColor: "#fff",
+                boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+                transition: "transform 0.3s ease-in-out",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                },
               }}
             >
               <CardMedia
                 component="img"
-                src={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
+                image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
                 sx={{
-                  width: "100%", // Set a fixed width for all images
-                  height: "150px", // Set a fixed height for all images
-                  objectFit: "contain", // Maintain aspect ratio while scaling
-                  transition: "transform 0.3s ease", // Smooth transition for zoom
-                  "&:hover": {
-                    transform: "scale(1.1)", // Zoom effect on hover
-                  },
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  objectFit: "contain",
                 }}
-                className="zoom-image"
               />
-            </div>
-          ))
-        ) : (
-          <div>No partners available</div>
-        )}
+            </Box>
+          </Box>
+        ))}
+      </Slider>
+
+      {/* Row 2 - Left to Right */}
+      <Slider {...sliderSettingsLTR}>
+        {secondRowPartners.map((partner, index) => (
+          <Box
+            key={`ltr-${index}`}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            py={2}
+          >
+            <Box
+              sx={{
+                width: "120px",
+                height: "120px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                overflow: "hidden",
+                borderRadius: "12px",
+                backgroundColor: "#fff",
+                boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+                transition: "transform 0.3s ease-in-out",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                },
+              }}
+            >
+              <CardMedia
+                component="img"
+                image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
+                sx={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  objectFit: "contain",
+                }}
+              />
+            </Box>
+          </Box>
+        ))}
       </Slider>
     </Container>
   );

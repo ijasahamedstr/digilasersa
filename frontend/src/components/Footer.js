@@ -1,4 +1,3 @@
-import React from "react";
 import {
   AppBar,
   Toolbar,
@@ -8,7 +7,6 @@ import {
   Grid,
 } from "@mui/material";
 import {
-  Facebook,
   Twitter,
   Instagram,
   LinkedIn,
@@ -33,7 +31,6 @@ export default function Footer() {
         >
           <Grid container justifyContent="center">
             {[ 
-              { icon: <Facebook />, label: "facebook", url: "https://www.facebook.com" },
               { icon: <Twitter />, label: "twitter", url: "https://x.com/digilasersa" },
               { icon: <Instagram />, label: "instagram", url: "https://www.instagram.com/digilasersa" },
               { icon: <LinkedIn />, label: "linkedin", url: "https://www.linkedin.com/company/digilasersa" },

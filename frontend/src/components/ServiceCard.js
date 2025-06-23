@@ -45,8 +45,8 @@ function ServiceCard() {
     },
     {
       id: 3,
-      name: "قسم الفن التشكيلي",
-      imageUrl: "https://i.ibb.co/NpYW2Jx/8.webp",
+      name: "منصة صيانة الشاشات",
+      imageUrl: "https://i.ibb.co/RTng2Yvs/banner-construction-13-bbbbbb-1.webp",
       iconUrl: "https://i.ibb.co/LP17MwP/image-6.webp",
       link: "/art-department",
     },
@@ -59,10 +59,10 @@ function ServiceCard() {
     },
     {
       id: 5,
-      name: "قسم الخط العربي",
-      imageUrl: "https://i.ibb.co/2KzrMyy/07.webp",
+      name: "قسم الصوتيات",
+      imageUrl: "https://i.ibb.co/S4NzsZC6/07.webp",
       iconUrl: "https://i.ibb.co/5vHKmx1/image-2.webp",
-      link: "/الخط العربي",
+      link: "/قسم الصوتيات",
     },
     {
       id: 6,

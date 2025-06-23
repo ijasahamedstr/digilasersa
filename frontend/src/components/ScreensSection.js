@@ -75,13 +75,12 @@ const ScreensSection = () => {
   return (
     <>
       {/* Full-Screen Video Modal */}
-      <Modal
+            <Modal
         show={showModal}
         onHide={handleCloseModal}
         centered
-        size="xl" // Makes the modal extra large
+        size="xl"
         style={{
-          // Inline CSS for full-screen modal
           position: "fixed",
           top: 0,
           left: 0,
@@ -90,7 +89,7 @@ const ScreensSection = () => {
           margin: 0,
           padding: 0,
         }}
-        dialogClassName="modal-fullscreen" // Custom class for full-screen styling
+        dialogClassName="modal-fullscreen"
         aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Header closeButton>
@@ -100,15 +99,15 @@ const ScreensSection = () => {
         </Modal.Header>
         <Modal.Body
           style={{
-            // Inline CSS for modal body
             width: "100%",
-            height: "calc(100vh - 60px)", // Adjust for header height
+            height: "calc(100vh - 60px)",
             padding: 0,
             margin: 0,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "black",
+            position: "relative",
           }}
         >
           <video
@@ -116,9 +115,8 @@ const ScreensSection = () => {
             height="100%"
             controls
             autoPlay
-            onEnded={handleCloseModal} // Close the modal when the video ends
+            onEnded={handleCloseModal}
             style={{
-              // Inline CSS for video
               objectFit: "cover",
             }}
           >
@@ -128,6 +126,26 @@ const ScreensSection = () => {
             />
             Your browser does not support the video tag.
           </video>
+
+          {/* Skip Button */}
+          <Button
+            variant="contained"
+            onClick={handleCloseModal}
+            sx={{
+              position: "absolute",
+              top: 20,
+              right: 20,
+              backgroundColor: "#00fffc",
+              color: "#000",
+              marginTop:"30px",
+              fontWeight: "bold",
+              "&:hover": {
+                backgroundColor: "#00cccc",
+              },
+            }}
+          >
+            Skip
+          </Button>
         </Modal.Body>
       </Modal>
 
@@ -193,205 +211,55 @@ const ScreensSection = () => {
           </Carousel>
 
           {/* Social Media Icons on the Left Side */}
-          <Box
-            sx={{
-              position: "fixed",
-              top: "50%",
-              left: 0,
-              transform: "translateY(-50%)",
-              display: "flex",
-              flexDirection: "column",
-              gap: "15px",
-              zIndex: 2,
-              paddingLeft: 2,
-            }}
-          >
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaFacebook size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://x.com/digilasersa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FontAwesomeIcon icon={faXTwitter} size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.instagram.com/digilasersa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaInstagram size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.linkedin.com/company/digilasersa/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaLinkedin size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://youtube.com/@digilaserSa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaYoutube size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.snapchat.com/add/digilasersa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaSnapchat size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.tiktok.com/@digilasersa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaTiktok size={25} />
-              </Box>
-            </a>
-            <a
-              href="http://wa.me/966571978888"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaWhatsapp size={25} />
-              </Box>
-            </a>
-          </Box>
-        </Box>
+          {/* Social Media Icons - Hidden on Mobile */}
+                  <Box
+                    sx={{
+                      position: "fixed",
+                      top: "50%",
+                      left: 0,
+                      transform: "translateY(-50%)",
+                      display: {
+                        xs: "none", // Hide on extra-small and small screens
+                        md: "flex", // Show on medium screens and up
+                      },
+                      flexDirection: "column",
+                      gap: "15px",
+                      zIndex: 2,
+                      paddingLeft: 2,
+                    }}
+                  >
+                    {[
+                      { icon: <FaFacebook size={25} />, link: "https://www.facebook.com" },
+                      { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
+                      { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+                      { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+                      { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+                      { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+                      { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+                      { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+                    ].map((social, index) => (
+                      <a key={index} href={social.link} target="_blank" rel="noopener noreferrer">
+                        <Box
+                          sx={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: "50%",
+                            backgroundColor: "#06f9f3",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            color: "#17202a",
+                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+                            transition: "transform 0.3s ease",
+                            "&:hover": { transform: "scale(1.2)" },
+                          }}
+                        >
+                          {social.icon}
+                        </Box>
+                      </a>
+                    ))}
+                  </Box>
+      </Box>
       </Container>
       <section
         style={{
@@ -511,6 +379,10 @@ const ScreensSection = () => {
                 height: "18%",
                 width: "18%",
                 borderRight: "2px solid #979a9a",
+                display: {
+                  xs: "none", // Hide on extra-small and small screens
+                  md: "flex", // Show on medium screens and up
+                },
               }}
             />
 

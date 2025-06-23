@@ -17,19 +17,17 @@ const pages1 = [
   "الرئيسية",
   "من نحن",
   "أقسامنا",
-  "شركائنا",
-  "اخبار الليزر",
   "إتصل بنا",
 ]; // Pages
 const sections = [
-  "الشاشات",
-  "الطباعة",
-  "الهدايا الدعائية",
-  "الإعلام والإنتاج",
-  "التواصل الإجتماعي",
-  "تصميم المواقع",
-  "الفن التشكيلي",
-  "الخط العربي",
+  "قسم الشاشات",
+  "منصة صيانة الشاشات",
+  "قسم الطباعة",
+  "قسم الهدايا الدعائية",
+  "قسم الإعلام والميديا",
+  "قسم السوشيال ميديا",
+  "قسم البرمجيات",
+  "قسم الصوتيات",
 ]; // Sample sections for the dropdown menu
 
 function ResponsiveAppBar() {
@@ -268,42 +266,52 @@ function ResponsiveAppBar() {
             )}
           </Box>
           {/* Register Online Button with Linear Gradient */}
-          <Button
-            component={Link}
-            to="/register" // Link to the register page or trigger a function
-            sx={{
-              color: "white",
-              fontFamily: "Tajawal", // Apply the font here as well
-              fontSize: { xs: "12px", sm: "14px", md: "16px" },
-              borderRadius: "50px",
-              padding: "10px 20px", // Add padding to make it more prominent
-              ml: 2, // Margin left to add space between this button and the others
-              display: { xs: "none", md: "block" }, // Hide on mobile (xs) and show on medium (md) and up
-              direction: "ltr",
-              fontWeight: "600",
-            }}
-          >
-            966 57 1883194
-          </Button>
-          <Button
-            component={Link}
-            to="/register" // Link to the register page or trigger a function
-            sx={{
-              color: "#000000",
-              background: "rgb(15, 245, 236)",
-              fontFamily: "Tajawal", // Apply the font here as well
-              fontSize: { xs: "12px", sm: "14px", md: "16px" },
-              borderRadius: "50px",
-              padding: "10px 20px", // Add padding to make it more prominent
-              "&:hover": {
-                backgroundImage: "linear-gradient(to right, #005bb5, #003f8e)", // Darker gradient on hover
-              },
-              ml: 2, // Margin left to add space between this button and the others
-              display: { xs: "none", md: "block" }, // Hide on mobile (xs) and show on medium (md) and up
-            }}
-          >
-            متجر الليزر
-          </Button>
+        <Button
+          component="a"
+          href="https://wa.link/yo3er5"
+          target="_blank" // Opens the link in a new tab
+          rel="noopener noreferrer" // Security best practice when using target="_blank"
+          sx={{
+            color: "black",
+            fontFamily: "Tajawal",
+            fontSize: { xs: "12px", sm: "14px", md: "16px" },
+            borderRadius: "50px",
+            padding: "10px 20px",
+            ml: 2,
+            display: { xs: "none", md: "block" },
+            direction: "ltr",
+            fontWeight: "600",
+            background: "rgb(15, 245, 236)", // Optional: WhatsApp green
+            '&:hover': {
+              backgroundColor: "#1ebe5d", // Slightly darker on hover
+            },
+          }}
+        >
+          +966 57 197 8888
+        </Button>
+
+         <Button
+          component="a"
+          href="https://digilaser.com.sa"
+          target="_blank" // Optional: opens in a new tab
+          rel="noopener noreferrer" // Security best practice when using target="_blank"
+          sx={{
+            color: "#000000",
+            background: "rgb(15, 245, 236)",
+            fontFamily: "Tajawal",
+            fontSize: { xs: "12px", sm: "14px", md: "16px" },
+            borderRadius: "50px",
+            padding: "10px 20px",
+            "&:hover": {
+              backgroundImage: "linear-gradient(to right, #005bb5, #003f8e)",
+            },
+            ml: 2,
+            display: { xs: "none", md: "block" },
+          }}
+        >
+          متجر الليزر
+        </Button>
+
           {/* Mobile Menu (Drawer) */}
           <Box
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}

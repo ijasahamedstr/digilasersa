@@ -1,7 +1,11 @@
-export default function Aboutus() {
+import React from "react";
+
+const Aboutus = () => {
   return (
-    <>
-      <h1 style={{ textAlign: "center" }}>مــواهــب أولادنا و بناتنا</h1>
-    </>
+    <section>
+      <h1 className="text-center">مــواهــب أولادنا و بناتنا</h1>
+    </section>
   );
-}
+};
+
+export default Aboutus;

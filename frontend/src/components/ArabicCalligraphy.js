@@ -1,18 +1,17 @@
-import { Carousel } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Box,
   Typography,
   Grid,
   Button,
-  CardMedia,
   Card,
+  CardMedia,
   Pagination,
   CircularProgress,
+  Container
 } from "@mui/material";
-import Container from "@mui/material/Container";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { Carousel, Form } from "react-bootstrap";
 import {
   FaFacebook,
   FaInstagram,
@@ -20,53 +19,307 @@ import {
   FaYoutube,
   FaSnapchat,
   FaTiktok,
-  FaWhatsapp,
+  FaWhatsapp
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import Form from "react-bootstrap/Form";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
 
-const carouselItems = [
-  {
-    id: 1,
-    img: "https://i.ibb.co/cTSJFMK/Group-25.webp",
-  },
-  {
-    id: 2,
-    img: "https://i.ibb.co/cTSJFMK/Group-25.webp",
-  },
-  {
-    id: 3,
-    img: "https://i.ibb.co/cTSJFMK/Group-25.webp",
-  },
+// Constants
+const ITEMS_PER_PAGE = 12;
+const API_HOST = process.env.REACT_APP_API_HOST;
+
+// Social media links
+const SOCIAL_MEDIA = [
+  { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
+  { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+  { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+  { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+  { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+  { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+  { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" }
 ];
 
+// Carousel items
+const CAROUSEL_ITEMS = [
+  { id: 1, img: "https://i.ibb.co/cTSJFMK/Group-25.webp" },
+  { id: 2, img: "https://i.ibb.co/cTSJFMK/Group-25.webp" },
+  { id: 3, img: "https://i.ibb.co/cTSJFMK/Group-25.webp" }
+];
+
+// Component for social media sidebar
+const SocialMediaSidebar = () => (
+  <Box
+    sx={{
+      position: "fixed",
+      top: "50%",
+      left: 0,
+      transform: "translateY(-50%)",
+      display: { xs: "none", md: "flex" },
+      flexDirection: "column",
+      gap: "15px",
+      zIndex: 2,
+      paddingLeft: 2
+    }}
+  >
+    {SOCIAL_MEDIA.map((social, index) => (
+      <a key={index} href={social.link} target="_blank" rel="noopener noreferrer">
+        <Box
+          sx={{
+            width: 40,
+            height: 40,
+            borderRadius: "50%",
+            backgroundColor: "#06f9f3",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "#17202a",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+            transition: "transform 0.3s ease",
+            "&:hover": { transform: "scale(1.2)" }
+          }}
+        >
+          {social.icon}
+        </Box>
+      </a>
+    ))}
+  </Box>
+);
+
+// Component for image gallery with zoom functionality
+const ImageGallery = ({ products, handleImageClick }) => (
+  <Grid container spacing={2}>
+    {products.map((product, index) => (
+      <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+        <Card
+          sx={{
+            maxWidth: 345,
+            boxShadow: 3,
+            border: "2px solid #634335",
+            "&:hover": { boxShadow: 6 },
+            marginBottom: "20px",
+            position: "relative",
+            borderRadius: "20px"
+          }}
+        >
+          <CardMedia
+            component="img"
+            alt={`Service ${index}`}
+            src={`${API_HOST}/uploads/ArabicCalligraphy/${product.arabicCalligraphyimage}`}
+            sx={{
+              height: 300,
+              objectFit: "cover",
+              cursor: "zoom-in"
+            }}
+            onClick={() => handleImageClick(`${API_HOST}/uploads/ArabicCalligraphy/${product.arabicCalligraphyimage}`)}
+          />
+          <Typography
+            variant="h6"
+            sx={{
+              position: "absolute",
+              bottom: "0px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              color: "white",
+              backgroundColor: "#634335",
+              padding: "10px",
+              textAlign: "center",
+              width: "100%",
+              border: "2px solid #634335",
+              borderTopLeftRadius: "20px",
+              borderTopRightRadius: "20px"
+            }}
+          >
+            {product.arabicCalligraphyname}
+          </Typography>
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+);
+
+// Component for the image zoom modal
+const ZoomedImageModal = ({ isOpen, imageSrc, onClose }) => {
+  if (!isOpen) return null;
+  
+  return (
+    <Box
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 1000
+      }}
+      onClick={onClose}
+    >
+      <img
+        src={imageSrc}
+        alt="Zoomed"
+        style={{
+          maxWidth: "90%",
+          maxHeight: "90%",
+          objectFit: "contain",
+          cursor: "zoom-out"
+        }}
+      />
+    </Box>
+  );
+};
+
+// Component for the contact form
+const ContactForm = ({ formData, handleChange, handleSubmit }) => (
+  <>
+    <h2
+      style={{
+        color: "white",
+        fontFamily: "Tajawal",
+        fontSize: "26px",
+        textAlign: "right",
+        marginBottom: "20px",
+        direction: "rtl"
+      }}
+    >
+      للإستفسارات العامة ..
+    </h2>
+
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+        direction: "rtl"
+      }}
+      onSubmit={handleSubmit}
+    >
+      {[
+        { id: "name", label: "الاسم", type: "text" },
+        { id: "phone", label: "جـوال", type: "text" },
+        { id: "message", label: "رسالتك", type: "textarea", rows: 3 }
+      ].map((field) => (
+        <Form.Group
+          key={field.id}
+          controlId={field.id}
+          className="d-flex align-items-center"
+          style={{ gap: "10px" }}
+        >
+          <Form.Label
+            style={{
+              color: "white",
+              fontFamily: "Tajawal",
+              fontSize: "22px",
+              width: "150px",
+              textAlign: "right"
+            }}
+          >
+            {field.label}
+          </Form.Label>
+          {field.type === "textarea" ? (
+            <Form.Control
+              as="textarea"
+              rows={field.rows}
+              name={field.id}
+              value={formData[field.id]}
+              onChange={handleChange}
+              style={{
+                background: "#17202a",
+                border: "none",
+                outline: "none"
+              }}
+            />
+          ) : (
+            <Form.Control
+              type={field.type}
+              name={field.id}
+              value={formData[field.id]}
+              onChange={handleChange}
+              style={{
+                background: "#17202a",
+                border: "none",
+                outline: "none"
+              }}
+            />
+          )}
+        </Form.Group>
+      ))}
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        sx={{
+          marginTop: "15px",
+          background: "#00fffc",
+          color: "#1e272e",
+          padding: { xs: "10px", sm: "15px" }
+        }}
+      >
+        Submit
+      </Button>
+    </form>
+  </>
+);
+
+// Component for background section with image
+const BackgroundSection = ({ backgroundImage, height = "60vh", children }) => (
+  <section
+    style={{
+      backgroundColor: "#eaecee",
+      backgroundImage: `url("${backgroundImage}")`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      width: "100%",
+      margin: "0 auto",
+      marginBottom: "30px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height,
+      paddingTop: "20px",
+      paddingBottom: "20px",
+      marginTop: "-30px",
+      boxSizing: "border-box"
+    }}
+  >
+    <Container
+      maxWidth="xl"
+      sx={{
+        paddingX: { xs: 2, sm: 3, md: 5 },
+        textAlign: "center",
+        paddingTop: "50px"
+      }}
+    >
+      {children}
+    </Container>
+  </section>
+);
+
+// Main component
 const ArabicCalligraphy = () => {
-  const [ArabicCalligraphy, setArabicCalligraphy] = useState([]);
+  const [calligraphyData, setCalligraphyData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomedImageSrc, setZoomedImageSrc] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    message: "",
+    message: ""
   });
-  const [page, setPage] = useState(1);
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [zoomedImageSrc, setZoomedImageSrc] = useState("");
 
-  // Fetch data on component mount
+  // Fetch calligraphy data
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/ArabicCalligraphy`,
-        );
-        setArabicCalligraphy(response.data); // Set the fetched Arabic calligraphy data
+        const response = await axios.get(`${API_HOST}/ArabicCalligraphy`);
+        setCalligraphyData(response.data);
       } catch (err) {
-        console.error("Error fetching data: ", err);
+        console.error("Error fetching data:", err);
         setError("Failed to fetch data");
       } finally {
         setLoading(false);
@@ -76,62 +329,59 @@ const ArabicCalligraphy = () => {
     fetchData();
   }, []);
 
-  // Pagination logic
-  const itemsPerPage = 12; // Number of items per page
-  const indexOfLastProduct = page * itemsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = ArabicCalligraphy.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct,
-  );
-  const totalPages = Math.ceil(ArabicCalligraphy.length / itemsPerPage);
+  // Calculate pagination
+  const indexOfLastProduct = page * ITEMS_PER_PAGE;
+  const indexOfFirstProduct = indexOfLastProduct - ITEMS_PER_PAGE;
+  const currentProducts = calligraphyData.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(calligraphyData.length / ITEMS_PER_PAGE);
 
-  // Handle page change
+  // Event handlers
   const handlePageChange = (event, value) => {
     setPage(value);
+    // Scroll to top of products section
+    window.scrollTo({ top: 400, behavior: 'smooth' });
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    // Add simple validation
-    if (
-      !formData.name ||
-      !formData.phone ||
-      !formData.email ||
-      !formData.message
-    ) {
+    // Validate form
+    if (!formData.name || !formData.phone || !formData.email || !formData.message) {
       alert("Please fill out all fields.");
       return;
     }
 
-    // Redirect to another site (Example: External site)
+    // Redirect to external site
     window.location.href = "https://another-site.com/contact";
   };
 
-  // Handle the zoom on image click
   const handleImageClick = (src) => {
     setIsZoomed(true);
     setZoomedImageSrc(src);
   };
 
-  // Close zoomed image when clicked outside
   const handleCloseZoom = () => {
     setIsZoomed(false);
     setZoomedImageSrc("");
   };
 
-  // Handle loading and error states
-  if (loading) return <CircularProgress />;
-  if (error) return <div>{error}</div>;
+  // Loading and error handling
+  if (loading) return (
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <CircularProgress />
+    </Box>
+  );
+  
+  if (error) return (
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Typography color="error">{error}</Typography>
+    </Box>
+  );
 
   return (
     <Container
@@ -139,117 +389,40 @@ const ArabicCalligraphy = () => {
       sx={{ padding: 0 }}
       style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}
     >
+      {/* Carousel Section */}
       <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
         <Carousel
           fade
-          nextIcon={
-            <span
-              className="carousel-control-next-icon"
-              style={{ backgroundColor: "black" }}
-            />
-          }
-          prevIcon={
-            <span
-              className="carousel-control-prev-icon"
-              style={{ backgroundColor: "black" }}
-            />
-          }
+          nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
+          prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: "black" }} />}
         >
-          {carouselItems.map((item) => (
+          {CAROUSEL_ITEMS.map((item) => (
             <Carousel.Item key={item.id}>
               <img
                 className="d-block w-100"
                 src={item.img}
-                alt={item.title}
+                alt={`Slide ${item.id}`}
                 style={{
                   height: "80vh",
                   objectFit: "cover",
-                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)"
                 }}
               />
-              <Carousel.Caption>
-                <Typography
-                  variant="h4"
-                  sx={{
-                    color: "white",
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                  }}
-                >
-                  {item.title}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "white",
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                  }}
-                >
-                  {item.content}
-                </Typography>
-              </Carousel.Caption>
             </Carousel.Item>
           ))}
         </Carousel>
 
-              {/* Social Media Icons - Hidden on Mobile */}
-                <Box
-                  sx={{
-                    position: "fixed",
-                    top: "50%",
-                    left: 0,
-                    transform: "translateY(-50%)",
-                    display: {
-                      xs: "none", // Hide on extra-small and small screens
-                      md: "flex", // Show on medium screens and up
-                    },
-                    flexDirection: "column",
-                    gap: "15px",
-                    zIndex: 2,
-                    paddingLeft: 2,
-                  }}
-                >
-                  {[
-                    { icon: <FaFacebook size={25} />, link: "https://www.facebook.com" },
-                    { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
-                    { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
-                    { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
-                    { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
-                    { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
-                    { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
-                    { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
-                  ].map((social, index) => (
-                    <a key={index} href={social.link} target="_blank" rel="noopener noreferrer">
-                      <Box
-                        sx={{
-                          width: 40,
-                          height: 40,
-                          borderRadius: "50%",
-                          backgroundColor: "#06f9f3",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          color: "#17202a",
-                          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                          transition: "transform 0.3s ease",
-                          "&:hover": { transform: "scale(1.2)" },
-                        }}
-                      >
-                        {social.icon}
-                      </Box>
-                    </a>
-                  ))}
-                </Box>
+        {/* Social Media Sidebar */}
+        <SocialMediaSidebar />
+      </Box>
 
-        {/* Social Media Icons on the Left Side */}
-        </Box>
-
+      {/* Products Gallery Section */}
       <section
         style={{
-          backgroundColor: "#eaecee", // Fallback background color
-          backgroundImage:
-            'url("https://i.ibb.co/FKQ2rWm/Background-copy.webp")', // Replace with your image URL
-          backgroundSize: "cover", // Ensure the image covers the entire section
-          backgroundPosition: "center", // Ensure the image is centered
+          backgroundColor: "#eaecee",
+          backgroundImage: 'url("https://i.ibb.co/FKQ2rWm/Background-copy.webp")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           width: "100%",
           margin: "0 auto",
           marginBottom: "30px",
@@ -258,24 +431,11 @@ const ArabicCalligraphy = () => {
           alignItems: "center",
           paddingTop: "20px",
           paddingBottom: "20px",
-          "@media (max-width: 768px)": {
-            height: "auto", // Adjust the height for medium screens
-            paddingTop: "10px",
-            paddingBottom: "10px",
-          },
-          "@media (max-width: 480px)": {
-            height: "auto", // Adjust the height for smaller screens
-          },
-          marginTop: "-30px",
+          marginTop: "-30px"
         }}
       >
         <Container maxWidth="xl" sx={{ padding: 3 }}>
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            sx={{ marginY: "20px" }}
-          >
+          <Box display="flex" justifyContent="center" alignItems="center" sx={{ marginY: "20px" }}>
             <img
               src="https://i.ibb.co/jwV97WY/Group-11.webp"
               alt="وَأَحْسِنُوا ۛ إِنَّ اللَّهَ يُحِبُّ الْمُحْسِنِينَ"
@@ -283,93 +443,18 @@ const ArabicCalligraphy = () => {
                 width: "100%",
                 maxWidth: "100%",
                 height: "auto",
-                marginBottom: "15px",
+                marginBottom: "15px"
               }}
             />
           </Box>
-          <Grid container spacing={2}>
-            {currentProducts.map((product, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    boxShadow: 3,
-                    border: "2px solid #634335",
-                    "&:hover": { boxShadow: 6 },
-                    marginBottom: "20px",
-                    position: "relative",
-                    borderRadius: "20px",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    alt={`Service ${index}`}
-                    src={`${process.env.REACT_APP_API_HOST}/uploads/ArabicCalligraphy/${product.arabicCalligraphyimage}`}
-                    sx={{
-                      height: 300,
-                      objectFit: "cover",
-                      cursor: "zoom-in", // Change cursor to indicate zoom
-                    }}
-                    onClick={() =>
-                      handleImageClick(
-                        `${process.env.REACT_APP_API_HOST}/uploads/ArabicCalligraphy/${product.arabicCalligraphyimage}`,
-                      )
-                    }
-                  />
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      position: "absolute",
-                      bottom: "0px",
-                      left: "50%",
-                      transform: "translateX(-50%)", // This centers the text horizontally
-                      color: "white",
-                      backgroundColor: "#634335",
-                      padding: "10px",
-                      textAlign: "center",
-                      width: "100%",
-                      border: "2px solid #634335",
-                      borderTopLeftRadius: "20px",
-                      borderTopRightRadius: "20px",
-                    }}
-                  >
-                    {product.arabicCalligraphyname}
-                  </Typography>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
+          
+          {/* Image Gallery */}
+          <ImageGallery products={currentProducts} handleImageClick={handleImageClick} />
 
-          {/* Zoomed image view (modal style) */}
-          {isZoomed && (
-            <Box
-              sx={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                backgroundColor: "rgba(0, 0, 0, 0.8)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                zIndex: 1000,
-              }}
-              onClick={handleCloseZoom}
-            >
-              <img
-                src={zoomedImageSrc}
-                alt="Zoomed"
-                style={{
-                  maxWidth: "90%",
-                  maxHeight: "90%",
-                  objectFit: "contain",
-                  cursor: "zoom-out", // Change cursor to indicate it can be closed
-                }}
-              />
-            </Box>
-          )}
+          {/* Zoom Modal */}
+          <ZoomedImageModal isOpen={isZoomed} imageSrc={zoomedImageSrc} onClose={handleCloseZoom} />
 
+          {/* Pagination */}
           <Box display="flex" justifyContent="center" sx={{ marginTop: 3 }}>
             <Pagination
               count={totalPages}
@@ -383,262 +468,111 @@ const ArabicCalligraphy = () => {
         </Container>
       </section>
 
-      <section
-        style={{
-          backgroundColor: "#eaecee", // Fallback background color
-          backgroundImage: 'url("https://i.ibb.co/cg2zMGj/Group-18.webp")', // Replace with your image URL
-          backgroundSize: "cover", // Ensure the image covers the entire section
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "flex-end", // Align content to the bottom of the section
-          alignItems: "center",
-          height: "60vh", // Set height to 100% of the viewport height
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          marginTop: "-30px",
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-            textAlign: "center",
-            paddingTop: "150px",
+      {/* Content Sections */}
+      <BackgroundSection backgroundImage="https://i.ibb.co/cg2zMGj/Group-18.webp">
+        <h2
+          style={{
+            fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
+            color: "#261d22",
+            fontFamily: "Tajawal",
+            marginBottom: "20px"
           }}
         >
-          {/* Heading */}
-          <h2
-            style={{
-              fontSize: "clamp(1.75rem, 5vw, 3.5rem)", // Responsive font size using clamp
-              color: "#261d22",
-              fontFamily: "Tajawal",
-              marginBottom: "20px", // Space between heading and buttons
+          أسماء مزخرفة
+        </h2>
+
+        <h3
+          style={{
+            fontSize: "clamp(1.5rem, 4vw, 3rem)",
+            color: "#065956",
+            fontFamily: "Tajawal",
+            marginBottom: "20px"
+          }}
+        >
+          شخصيات - عائلية - عروسين - مناسبات
+        </h3>
+      </BackgroundSection>
+
+      <BackgroundSection backgroundImage="https://i.ibb.co/99bpscJ/Group-20.webp">
+        <Box sx={{ textAlign: "center", width: "80%", margin: "0 auto" }}>
+          <Box
+            component="img"
+            src="https://i.ibb.co/nP2GcpB/Group-19.webp"
+            alt="Sample"
+            sx={{
+              width: "200px",
+              height: "200px",
+              objectFit: "cover"
             }}
-          >
-            أسماء مزخرفة
-          </h2>
+          />
+        </Box>
+      </BackgroundSection>
 
-          <h3
-            style={{
-              fontSize: "clamp(1.5rem, 4vw, 3rem)", // Responsive font size using clamp
-              color: "#065956",
-              fontFamily: "Tajawal",
-              marginBottom: "20px", // Space between heading and buttons
+      <BackgroundSection backgroundImage="https://i.ibb.co/SwV1VVZ/Group-21.webp">
+        <Box sx={{ textAlign: "center", width: "80%", margin: "0 auto" }}>
+          <Box
+            component="img"
+            src="https://i.ibb.co/c3vV7tD/Untitled-2-Photoroom.webp"
+            alt="Sample"
+            sx={{
+              width: "100%",
+              height: "auto",
+              objectFit: "cover"
             }}
-          >
-            شخصيات - عائلية - عروسين - مناسبات
-          </h3>
-        </Container>
-      </section>
-      <section
-        style={{
-          backgroundColor: "#eaecee", // Fallback background color
-          backgroundImage: 'url("https://i.ibb.co/99bpscJ/Group-20.webp")', // Background image URL
-          backgroundSize: "cover", // Ensure the image covers the entire section
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "flex-end", // Align content to the bottom of the section
-          alignItems: "center",
-          height: "60vh", // Set height to 60% of the viewport height
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          marginTop: "-30px",
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-            textAlign: "center",
-            paddingTop: "50px",
-          }}
-        >
-          <Box sx={{ textAlign: "center", width: "80%", margin: "0 auto" }}>
-            <Box
-              component="img"
-              src="https://i.ibb.co/nP2GcpB/Group-19.webp" // Updated image URL to 300x300
-              alt="Sample"
-              sx={{
-                width: "200px", // Set image width to 300px
-                height: "200px", // Set image height to 300px
-                objectFit: "cover", // Ensure the image fits the container without distortion
-              }}
-            />
-          </Box>
-        </Container>
-      </section>
+          />
+        </Box>
+      </BackgroundSection>
 
-      <section
-        style={{
-          backgroundColor: "#eaecee", // Fallback background color
-          backgroundImage: 'url("https://i.ibb.co/SwV1VVZ/Group-21.webp")', // Background image URL
-          backgroundSize: "cover", // Ensure the image covers the entire section
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "flex-end", // Align content to the bottom of the section
-          alignItems: "center",
-          height: "60vh", // Set height to 60% of the viewport height
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          marginTop: "-30px",
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-            textAlign: "center",
-            paddingTop: "50px",
-          }}
-        >
-          <Box sx={{ textAlign: "center", width: "80%", margin: "0 auto" }}>
-            <Box
-              component="img"
-              src="https://i.ibb.co/c3vV7tD/Untitled-2-Photoroom.webp" // Updated image URL to 300x300
-              alt="Sample"
-              sx={{
-                width: "100%", // Set image width to 300px
-                height: "Auto", // Set image height to 300px
-                objectFit: "cover", // Ensure the image fits the container without distortion
-              }}
-            />
-          </Box>
-        </Container>
-      </section>
+      <BackgroundSection backgroundImage="https://i.ibb.co/xLfQrQw/Group-22.webp">
+        <Box sx={{ textAlign: "center", width: "80%", margin: "0 auto" }}>
+          <Box
+            component="img"
+            src="https://i.ibb.co/qjBBQnt/Group-23.webp"
+            alt="Sample"
+            sx={{
+              width: "100%",
+              height: "auto",
+              objectFit: "cover"
+            }}
+          />
+        </Box>
+      </BackgroundSection>
 
-      <section
-        style={{
-          backgroundColor: "#eaecee", // Fallback background color
-          backgroundImage: 'url("https://i.ibb.co/xLfQrQw/Group-22.webp")', // Background image URL
-          backgroundSize: "cover", // Ensure the image covers the entire section
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "flex-end", // Align content to the bottom of the section
-          alignItems: "center",
-          height: "60vh", // Set height to 60% of the viewport height
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          marginTop: "-30px",
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-            textAlign: "center",
-            paddingTop: "50px",
-          }}
-        >
-          <Box sx={{ textAlign: "center", width: "80%", margin: "0 auto" }}>
-            <Box
-              component="img"
-              src="https://i.ibb.co/qjBBQnt/Group-23.webp" // Updated image URL to 300x300
-              alt="Sample"
-              sx={{
-                width: "100%", // Set image width to 300px
-                height: "Auto", // Set image height to 300px
-                objectFit: "cover", // Ensure the image fits the container without distortion
-              }}
-            />
-          </Box>
-        </Container>
-      </section>
+      <BackgroundSection backgroundImage="https://i.ibb.co/3MbMM2q/Group-23.webp">
+        <Box sx={{ textAlign: "center", width: "80%", margin: "0 auto" }}>
+          <Box
+            component="img"
+            src="https://i.ibb.co/Ry65kQZ/Color-Fill-1.webp"
+            alt="Sample"
+            sx={{
+              width: "100%",
+              maxWidth: "500px",
+              height: "auto",
+              objectFit: "cover",
+              margin: "0 auto"
+            }}
+          />
+        </Box>
+      </BackgroundSection>
 
-      <section
-        style={{
-          backgroundColor: "#eaecee", // Fallback background color
-          backgroundImage: 'url("https://i.ibb.co/3MbMM2q/Group-23.webp")', // Background image URL
-          backgroundSize: "cover", // Ensure the image covers the entire section
-          backgroundPosition: "center", // Ensure background is centered
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "center", // Center content horizontally
-          alignItems: "center",
-          height: "60vh", // Set height to 60% of the viewport height
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          marginTop: "-30px",
-          boxSizing: "border-box", // Ensure padding doesn't mess with the layout
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-            textAlign: "center",
-            paddingTop: "50px",
-          }}
-        >
-          <Box sx={{ textAlign: "center", width: "80%", margin: "0 auto" }}>
-            <Box
-              component="img"
-              src="https://i.ibb.co/Ry65kQZ/Color-Fill-1.webp" // Updated image URL to 300x300
-              alt="Sample"
-              sx={{
-                width: "100%", // Ensure image scales with the container width
-                maxWidth: "500px", // Maximum width of image
-                height: "auto", // Maintain aspect ratio
-                objectFit: "cover", // Ensure the image fits the container without distortion
-                margin: "0 auto", // Center the image horizontally
-              }}
-            />
-          </Box>
-        </Container>
-      </section>
+      <BackgroundSection backgroundImage="https://i.ibb.co/PFj9WTv/Group-24.webp">
+        <Box sx={{ textAlign: "center", width: "80%", margin: "0 auto" }}>
+          <Box
+            component="img"
+            src="https://i.ibb.co/fFRBB61/Group-24f.webp"
+            alt="Sample"
+            sx={{
+              width: "100%",
+              maxWidth: "500px",
+              height: "auto",
+              objectFit: "cover",
+              margin: "0 auto"
+            }}
+          />
+        </Box>
+      </BackgroundSection>
 
-      <section
-        style={{
-          backgroundColor: "#eaecee", // Fallback background color
-          backgroundImage: 'url("https://i.ibb.co/PFj9WTv/Group-24.webp")', // Background image URL
-          backgroundSize: "cover", // Ensure the image covers the entire section
-          backgroundPosition: "center", // Ensure background is centered
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "center", // Center content horizontally
-          alignItems: "center",
-          height: "60vh", // Set height to 60% of the viewport height
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          marginTop: "-30px",
-          boxSizing: "border-box", // Ensure padding doesn't mess with the layout
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-            textAlign: "center",
-            paddingTop: "50px",
-          }}
-        >
-          <Box sx={{ textAlign: "center", width: "80%", margin: "0 auto" }}>
-            <Box
-              component="img"
-              src="https://i.ibb.co/fFRBB61/Group-24f.webp" // Updated image URL to 300x300
-              alt="Sample"
-              sx={{
-                width: "100%", // Ensure image scales with the container width
-                maxWidth: "500px", // Maximum width of image
-                height: "auto", // Maintain aspect ratio
-                objectFit: "cover", // Ensure the image fits the container without distortion
-                margin: "0 auto", // Center the image horizontally
-              }}
-            />
-          </Box>
-        </Container>
-      </section>
+      {/* Contact Section */}
       <section
         style={{
           backgroundColor: "#000000",
@@ -652,23 +586,23 @@ const ArabicCalligraphy = () => {
           paddingTop: "50px",
           paddingBottom: "50px",
           marginTop: "-30px",
-          direction: "rtl",
+          direction: "rtl"
         }}
       >
         <Container
           maxWidth="xl"
           sx={{
             paddingX: { xs: 2, sm: 3, md: 5 },
-            textAlign: "center",
+            textAlign: "center"
           }}
         >
           <Grid container spacing={4}>
-            {/* Text Section on the Right */}
+            {/* Contact Info */}
             <Grid
               item
               xs={12}
               sm={6}
-              order={{ xs: 1, sm: 1 }} // Keep this section first on all screen sizes
+              order={{ xs: 1, sm: 1 }}
               sx={{ direction: "rtl" }}
             >
               <Typography variant="h4" color="white" paragraph>
@@ -691,157 +625,13 @@ const ArabicCalligraphy = () => {
               </Typography>
             </Grid>
 
-            {/* Contact Form Section on the Left */}
+            {/* Contact Form */}
             <Grid item xs={12} sm={6} order={{ xs: 2, sm: 2 }}>
-              <h2
-                style={{
-                  color: "white",
-                  fontFamily: "Tajawal",
-                  fontSize: "26px",
-                  textAlign: "right",
-                  marginBottom: "20px",
-                  direction: "rtl",
-                }}
-              >
-                للإستفسارات العامة ..
-              </h2>
-
-              <form
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                  direction: "rtl",
-                }}
-                onSubmit={handleFormSubmit}
-              >
-                <Form.Group
-                  controlId="name"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    الاسم
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId="phone"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    جـوال
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId="email"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    بريد الكتروني
-                  </Form.Label>
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId="message"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    رسالتك
-                  </Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    marginTop: "15px",
-                    background: "#00fffc",
-                    color: "#1e272e",
-                    padding: { xs: "10px", sm: "15px" },
-                  }}
-                >
-                  Submit
-                </Button>
-              </form>
+              <ContactForm 
+                formData={formData}
+                handleChange={handleChange}
+                handleSubmit={handleFormSubmit}
+              />
             </Grid>
           </Grid>
         </Container>
