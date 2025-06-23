@@ -36,7 +36,6 @@ const ScreensSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    email: "",
     message: "",
   });
 
@@ -57,7 +56,6 @@ const ScreensSection = () => {
     if (
       !formData.name ||
       !formData.phone ||
-      !formData.email ||
       !formData.message
     ) {
       alert("Please fill out all fields.");
@@ -229,7 +227,6 @@ const ScreensSection = () => {
                     }}
                   >
                     {[
-                      { icon: <FaFacebook size={25} />, link: "https://www.facebook.com" },
                       { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
                       { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
                       { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
@@ -259,7 +256,7 @@ const ScreensSection = () => {
                       </a>
                     ))}
                   </Box>
-      </Box>
+            </Box>
       </Container>
       <section
         style={{
@@ -1376,34 +1373,6 @@ const ScreensSection = () => {
                     type="text"
                     name="name"
                     value={formData.name}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId="phone"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    جـوال
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
                     onChange={handleChange}
                     style={{
                       background: "#17202a",

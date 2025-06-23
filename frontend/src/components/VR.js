@@ -125,7 +125,6 @@ const VRSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    email: "",
     message: "",
   });
 
@@ -144,7 +143,6 @@ const VRSection = () => {
     if (
       !formData.name ||
       !formData.phone ||
-      !formData.email ||
       !formData.message
     ) {
       alert("Please fill out all fields.");
@@ -244,23 +242,6 @@ const VRSection = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaFacebook size={25} />
-            </Box>
           </a>
           <a
             href="https://www.twitter.com"
@@ -1347,34 +1328,6 @@ const VRSection = () => {
                     type="text"
                     name="phone"
                     value={formData.phone}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId="email"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    بريد الكتروني
-                  </Form.Label>
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    value={formData.email}
                     onChange={handleChange}
                     style={{
                       background: "#17202a",

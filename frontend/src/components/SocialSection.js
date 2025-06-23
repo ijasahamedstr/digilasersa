@@ -158,7 +158,6 @@ const SocialSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    email: "",
     message: "",
   });
 
@@ -177,7 +176,6 @@ const SocialSection = () => {
     if (
       !formData.name ||
       !formData.phone ||
-      !formData.email ||
       !formData.message
     ) {
       alert("Please fill out all fields.");
@@ -264,7 +262,6 @@ const SocialSection = () => {
                           }}
                         >
                           {[
-                            { icon: <FaFacebook size={25} />, link: "https://www.facebook.com" },
                             { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
                             { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
                             { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
@@ -926,34 +923,7 @@ const SocialSection = () => {
                     }}
                   />
                 </Form.Group>
-                <Form.Group
-                  controlId="email"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    بريد الكتروني
-                  </Form.Label>
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
+
                 <Form.Group
                   controlId="message"
                   className="d-flex align-items-center"
