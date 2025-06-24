@@ -256,7 +256,7 @@ const ScreensSection = () => {
                       </a>
                     ))}
                   </Box>
-            </Box>
+                </Box>
       </Container>
       <section
         style={{

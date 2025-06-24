@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Container,
   Box,
@@ -19,7 +19,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
-  FaFacebook,
   FaInstagram,
   FaLinkedin,
   FaYoutube,
@@ -33,6 +32,12 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Carousel } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+
+const INITIAL_FORM_STATE = {
+  name: "",
+  phone: "",
+  message: "",
+};
 
 const carouselItems = [
   {
@@ -59,14 +64,33 @@ const PrintingSection = () => {
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    message: "",
-  });
-
   const sliderRef = useRef(null);
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+
+  const handleChange = ({ target: { name, value } }) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const isFormValid = () =>
+    Object.values(formData).every((field) => field.trim() !== "");
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    if (!isFormValid()) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    const { name, phone, message } = formData;
+    const whatsappNumber = "966571908888";
+    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
+    const encodedText = encodeURIComponent(text);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+    window.open(whatsappUrl, "_blank");
+  };
+
 
   // Fetch data once the component mounts
   useEffect(() => {
@@ -120,29 +144,6 @@ const PrintingSection = () => {
     setOpen(false);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-
-    if (
-      !formData.name ||
-      !formData.phone ||
-      !formData.message
-    ) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-    window.location.href = "https://another-site.com/contact";
-  };
-
   const settings = {
     dots: true,
     infinite: true,
@@ -157,6 +158,16 @@ const PrintingSection = () => {
       { breakpoint: 600, settings: { slidesToShow: 1 } },
     ],
   };
+  const socialLinks = [
+    { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
+    { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+    { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+    { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+    { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+    { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+    { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+  ];
+    
 
   return (
     <>
@@ -218,24 +229,21 @@ const PrintingSection = () => {
             ))}
           </Carousel>
           {/* Social Media Icons on the Left Side */}
-          <Box
-            sx={{
-              position: "fixed",
-              top: "50%",
-              left: 0,
-              transform: "translateY(-50%)",
-              display: "flex",
-              flexDirection: "column",
-              gap: "15px",
-              zIndex: 2,
-              paddingLeft: 2,
-            }}
-          >
-            <a
-              href="https://www.twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+        <Box
+          sx={{
+            position: "fixed",
+            top: "50%",
+            left: 0,
+            transform: "translateY(-50%)",
+            display: { xs: "none", md: "flex" },
+            flexDirection: "column",
+            gap: 2,
+            zIndex: 1200,
+            pl: 2,
+          }}
+        >
+          {socialLinks.map(({ icon, link }, index) => (
+            <a key={index} href={link} target="_blank" rel="noopener noreferrer">
               <Box
                 sx={{
                   width: 40,
@@ -246,149 +254,16 @@ const PrintingSection = () => {
                   justifyContent: "center",
                   alignItems: "center",
                   color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+                  boxShadow: 3,
                   transition: "transform 0.3s ease",
                   "&:hover": { transform: "scale(1.2)" },
                 }}
               >
-                <FontAwesomeIcon icon={faXTwitter} size={25} />
+                {icon}
               </Box>
             </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaInstagram size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaLinkedin size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.youtube.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaYoutube size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.snapchat.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaSnapchat size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.tiktok.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaTiktok size={25} />
-              </Box>
-            </a>
-            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaWhatsapp size={25} />
-              </Box>
-            </a>
-          </Box>
+          ))}
+        </Box>
         </Box>
       </Container>
       <Container
@@ -798,114 +673,69 @@ const PrintingSection = () => {
                   للإستفسارات العامة ..
                 </h2>
 
-                <form
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "10px",
-                    direction: "rtl",
-                  }}
-                  onSubmit={handleFormSubmit}
-                >
-                  <Form.Group
-                    controlId="name"
-                    className="d-flex align-items-center"
-                    style={{ gap: "10px" }}
+<form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
+                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+                  <Form.Label
+                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
                   >
-                    <Form.Label
-                      style={{
-                        color: "white",
-                        fontFamily: "Tajawal",
-                        fontSize: "22px",
-                        width: "150px",
-                        textAlign: "right",
-                      }}
-                    >
-                      الاسم
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      style={{
-                        background: "#17202a",
-                        border: "none",
-                        outline: "none",
-                      }}
-                    />
-                  </Form.Group>
-                  <Form.Group
-                    controlId="phone"
-                    className="d-flex align-items-center"
-                    style={{ gap: "10px" }}
+                    الاسم
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    style={{ background: "#17202a", border: "none", color: "white" }}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+                  <Form.Label
+                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
                   >
-                    <Form.Label
-                      style={{
-                        color: "white",
-                        fontFamily: "Tajawal",
-                        fontSize: "22px",
-                        width: "150px",
-                        textAlign: "right",
-                      }}
-                    >
-                      جـوال
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      style={{
-                        background: "#17202a",
-                        border: "none",
-                        outline: "none",
-                      }}
-                    />
-                  </Form.Group>
-                  <Form.Group
-                    controlId="message"
-                    className="d-flex align-items-center"
-                    style={{ gap: "10px" }}
+                    الجوال
+                  </Form.Label>
+                  <Form.Control
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    style={{ background: "#17202a", border: "none", color: "white",textAlign: "right" }}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+                  <Form.Label
+                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
                   >
-                    <Form.Label
-                      style={{
-                        color: "white",
-                        fontFamily: "Tajawal",
-                        fontSize: "22px",
-                        width: "150px",
-                        textAlign: "right",
-                      }}
-                    >
-                      رسالتك
-                    </Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      style={{
-                        background: "#17202a",
-                        border: "none",
-                        outline: "none",
-                      }}
-                    />
-                  </Form.Group>
+                    رسالتك
+                  </Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    name="message"
+                    rows={3}
+                    value={formData.message}
+                    onChange={handleChange}
+                    style={{ background: "#17202a", border: "none", color: "white" }}
+                  />
+                </Form.Group>
+
                   <Button
                     type="submit"
                     variant="contained"
                     color="primary"
-                    sx={{
+                      sx={{
                       marginTop: "15px",
                       background: "#00fffc",
                       color: "#1e272e",
                       padding: { xs: "10px", sm: "15px" },
-                    }}
-                  >
+                      width:'100%',
+                      }}
+                   >             
                     Submit
                   </Button>
-                </form>
+              </form>
+
               </Grid>
             </Grid>
           </Container>

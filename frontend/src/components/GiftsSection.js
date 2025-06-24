@@ -49,6 +49,17 @@ const carouselItems = [
   },
 ];
 
+  const socialLinks = [
+    { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
+    { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+    { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+    { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+    { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+    { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+    { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+  ];
+    
+
 const GiftsSection = () => {
   // Declare hooks at the top level
   const [GiftsSection, setGiftsSection] = useState([]);
