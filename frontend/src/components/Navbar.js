@@ -15,8 +15,8 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Import dro
 
 const pages1 = [
   "الرئيسية",
-  "من نحن",
   "أقسامنا",
+  "من نحن",
   "إتصل بنا",
 ]; // Pages
 const sections = [
@@ -272,19 +272,16 @@ function ResponsiveAppBar() {
           target="_blank" // Opens the link in a new tab
           rel="noopener noreferrer" // Security best practice when using target="_blank"
           sx={{
-            color: "black",
+            color: "white",
             fontFamily: "Tajawal",
-            fontSize: { xs: "12px", sm: "14px", md: "16px" },
+            fontSize: { xs: "12px", sm: "18px", md: "25px" },
             borderRadius: "50px",
             padding: "10px 20px",
             ml: 2,
             display: { xs: "none", md: "block" },
             direction: "ltr",
             fontWeight: "600",
-            background: "rgb(15, 245, 236)", // Optional: WhatsApp green
-            '&:hover': {
-              backgroundColor: "#1ebe5d", // Slightly darker on hover
-            },
+            paddingLeft:'200px'
           }}
         >
           +966 57 197 8888

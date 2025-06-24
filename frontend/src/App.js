@@ -46,7 +46,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/الرئيسية" element={<Home />} />
           <Route path="/الرئيسية" element={<Products />} />
-          <Route path="/من نحن" element={<ComingSoonPage />} />
+          <Route path="/من نحن" element={<Aboutus />} />
           <Route path="/قسم البرمجيات" element={<ComingSoonPage />} />
           <Route path="/منصة صيانة الشاشات" element={<ComingSoonPage />} />
           <Route path="/قسم الشاشات" element={<ScreensSection />} />
