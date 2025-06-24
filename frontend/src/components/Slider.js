@@ -19,7 +19,7 @@ const carouselItems = [
   },
   {
     id: 2,
-    img: "https://i.ibb.co/jgLXMzx/New-Web-Final-2.webp",
+    img: "https://i.ibb.co/dJ33jYt/New-Web-5-copy.webp",
   },
   {
     id: 3,
