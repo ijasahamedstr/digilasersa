@@ -17,7 +17,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import {
-  FaFacebook,
   FaInstagram,
   FaLinkedin,
   FaYoutube,
@@ -30,6 +29,12 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Form from "react-bootstrap/Form";
 import Slider from "react-slick"; // Import Slider from react-slick
 import { keyframes } from "@emotion/react"; // Import keyframes
+
+const INITIAL_FORM_STATE = {
+  name: "",
+  phone: "",
+  message: "",
+};
 
 const carouselItems = [
   {
@@ -122,36 +127,42 @@ const products1 = [
 ];
 
 const VRSection = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    message: "",
-  });
+ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const handleChange = ({ target: { name, value } }) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+  const isFormValid = () =>
+    Object.values(formData).every((field) => field.trim() !== "");
 
-    // Add simple validation
-    if (
-      !formData.name ||
-      !formData.phone ||
-      !formData.message
-    ) {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    if (!isFormValid()) {
       alert("Please fill out all fields.");
       return;
     }
 
-    // Redirect to another site (Example: External site)
-    window.location.href = "https://another-site.com/contact";
+    const { name, phone, message } = formData;
+    const whatsappNumber = "966570649999";
+    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
+    const encodedText = encodeURIComponent(text);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+    window.open(whatsappUrl, "_blank");
   };
+
+   const socialLinks = [
+      { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
+      { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+      { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+      { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+      { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+      { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+      { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+    ];
+
 
   const pumpAnimation = keyframes` 
           0% { 
@@ -230,176 +241,34 @@ const VRSection = () => {
             top: "50%",
             left: 0,
             transform: "translateY(-50%)",
-            display: "flex",
+            display: { xs: "none", md: "flex" },
             flexDirection: "column",
-            gap: "15px",
-            zIndex: 2,
-            paddingLeft: 2,
+            gap: 2,
+            zIndex: 1200,
+            pl: 2,
           }}
         >
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-          </a>
-          <a
-            href="https://www.twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FontAwesomeIcon icon={faXTwitter} size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaInstagram size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaLinkedin size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.youtube.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaYoutube size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.snapchat.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaSnapchat size={25} />
-            </Box>
-          </a>
-          <a
-            href="https://www.tiktok.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaTiktok size={25} />
-            </Box>
-          </a>
-          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              <FaWhatsapp size={25} />
-            </Box>
-          </a>
+          {socialLinks.map(({ icon, link }, index) => (
+            <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  backgroundColor: "#06f9f3",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#17202a",
+                  boxShadow: 3,
+                  transition: "transform 0.3s ease",
+                  "&:hover": { transform: "scale(1.2)" },
+                }}
+              >
+                {icon}
+              </Box>
+            </a>
+          ))}
         </Box>
       </Box>
 
@@ -1271,28 +1140,10 @@ const VRSection = () => {
                 للإستفسارات العامة ..
               </h2>
 
-              <form
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                  direction: "rtl",
-                }}
-                onSubmit={handleFormSubmit}
-              >
-                <Form.Group
-                  controlId="name"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
+  <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
+                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
                   <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
+                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
                   >
                     الاسم
                   </Form.Label>
@@ -1301,84 +1152,57 @@ const VRSection = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
+                    style={{ background: "#17202a", border: "none", color: "white" }}
                   />
                 </Form.Group>
-                <Form.Group
-                  controlId="phone"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
+
+                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
                   <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
+                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
                   >
-                    جـوال
+                    الجوال
                   </Form.Label>
                   <Form.Control
-                    type="text"
+                    type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
+                    style={{ background: "#17202a", border: "none", color: "white",textAlign: "right" }}
                   />
                 </Form.Group>
-                <Form.Group
-                  controlId="message"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
+
+                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
                   <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
+                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
                   >
                     رسالتك
                   </Form.Label>
                   <Form.Control
                     as="textarea"
-                    rows={3}
                     name="message"
+                    rows={3}
                     value={formData.message}
                     onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
+                    style={{ background: "#17202a", border: "none", color: "white" }}
                   />
                 </Form.Group>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    marginTop: "15px",
-                    background: "#00fffc",
-                    color: "#1e272e",
-                    padding: { xs: "10px", sm: "15px" },
-                  }}
-                >
-                  Submit
-                </Button>
+
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                      sx={{
+                      marginTop: "15px",
+                      background: "#00fffc",
+                      color: "#1e272e",
+                      padding: { xs: "10px", sm: "15px" },
+                      width:'100%',
+                      }}
+                   >             
+                    Submit
+                  </Button>
               </form>
+
             </Grid>
           </Grid>
         </Container>

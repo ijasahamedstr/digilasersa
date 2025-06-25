@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Carousel } from "react-bootstrap";
 import {
   Box,
@@ -19,7 +19,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import {
-  FaFacebook,
   FaInstagram,
   FaLinkedin,
   FaYoutube,
@@ -30,6 +29,14 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Form from "react-bootstrap/Form";
+
+const INITIAL_FORM_STATE = {
+  name: "",
+  phone: "",
+  message: "",
+};
+
+
 
 const carouselItems = [
   {
@@ -155,36 +162,32 @@ const products4 = [
 const SocialSection = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
 
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    message: "",
-  });
+const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const handleChange = ({ target: { name, value } }) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+  const isFormValid = () =>
+    Object.values(formData).every((field) => field.trim() !== "");
 
-    // Add simple validation
-    if (
-      !formData.name ||
-      !formData.phone ||
-      !formData.message
-    ) {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    if (!isFormValid()) {
       alert("Please fill out all fields.");
       return;
     }
 
-    // Redirect to another site (Example: External site)
-    window.location.href = "https://another-site.com/contact";
+    const { name, phone, message } = formData;
+    const whatsappNumber = "966570849999";
+    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
+    const encodedText = encodeURIComponent(text);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+    window.open(whatsappUrl, "_blank");
   };
+
 
   return (
     <Container
@@ -858,28 +861,10 @@ const SocialSection = () => {
                 للإستفسارات العامة ..
               </h2>
 
-              <form
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                  direction: "rtl",
-                }}
-                onSubmit={handleFormSubmit}
-              >
-                <Form.Group
-                  controlId="name"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
+        <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
+                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
                   <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
+                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
                   >
                     الاسم
                   </Form.Label>
@@ -888,84 +873,55 @@ const SocialSection = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId="phone"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    جـوال
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
+                    style={{ background: "#17202a", border: "none", color: "white" }}
                   />
                 </Form.Group>
 
-                <Form.Group
-                  controlId="message"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
+                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
                   <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
+                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
+                  >
+                    الجوال
+                  </Form.Label>
+                  <Form.Control
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    style={{ background: "#17202a", border: "none", color: "white",textAlign: "right" }}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+                  <Form.Label
+                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
                   >
                     رسالتك
                   </Form.Label>
                   <Form.Control
                     as="textarea"
-                    rows={3}
                     name="message"
+                    rows={3}
                     value={formData.message}
                     onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
+                    style={{ background: "#17202a", border: "none", color: "white" }}
                   />
                 </Form.Group>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    marginTop: "15px",
-                    background: "#00fffc",
-                    color: "#1e272e",
-                    padding: { xs: "10px", sm: "15px" },
-                  }}
-                >
-                  Submit
-                </Button>
+
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                      sx={{
+                      marginTop: "15px",
+                      background: "#00fffc",
+                      color: "#1e272e",
+                      padding: { xs: "10px", sm: "15px" },
+                      width:'100%',
+                      }}
+                   >             
+                    Submit
+                  </Button>
               </form>
             </Grid>
           </Grid>
