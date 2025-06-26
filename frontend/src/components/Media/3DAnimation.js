@@ -434,6 +434,14 @@ const Animation = () => {
             <Button
               variant="contained"
               component={Link} // Use Link component here
+              to="/قسم الإعلام والميديا" // Correct route path
+              sx={{ backgroundColor: "#17202a", color: "#fff" }}
+            >
+              قسم الإعلام والميديا
+            </Button>
+            <Button
+              variant="contained"
+              component={Link} // Use Link component here
               to="/Web-Media-Video" // Correct route path
               sx={{ backgroundColor: "#17202a", color: "#fff" }}
             >

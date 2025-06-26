@@ -84,45 +84,45 @@ const images = [
 const products1 = [
   {
     id: 1,
-    name: "قسم الهدايا الدعائية",
-    imageUrl: "https://i.ibb.co/JRj0pBd/Background-copy.webp",
-    iconUrl: "https://i.ibb.co/HdgVtF5/image.webp",
-    link: "/gift-department",
+    name: "فيديو",
+    imageUrl: "https://i.ibb.co/39qz0wjz/Video-B-copy.webp",
+    iconUrl: "https://i.ibb.co/20xv3tc3/Video-xx.webp",
+    link: "/Web-Media-Video",
   },
   {
     id: 2,
-    name: "قسم الطباعة",
-    imageUrl: "https://i.ibb.co/27jQ6C2/Layer-34.webp",
-    iconUrl: "https://i.ibb.co/dmvyMMn/image-1.webp",
-    link: "/printing-department",
+    name: "فيديوهات الواقع الافتراضي",
+    imageUrl: "https://i.ibb.co/KjR1JTNR/VR-B.webp",
+    iconUrl: "https://i.ibb.co/GvDQHkWm/VR-xx.webp",
+    link: "/vr-videos",
   },
   {
     id: 3,
-    name: "قسم الفن التشكيلي",
-    imageUrl: "https://i.ibb.co/NpYW2Jx/8.webp",
-    iconUrl: "https://i.ibb.co/LP17MwP/image-6.webp",
-    link: "/art-department",
+    name: "فـوتـو",
+    imageUrl: "https://i.ibb.co/9H4J5gHp/Photo-B.webp",
+    iconUrl: "https://i.ibb.co/fdFK4DjK/Photo-xx.webp",
+    link: "/Web-Media-photo",
   },
   {
     id: 4,
-    name: "قسم الشاشات",
-    imageUrl: "https://i.ibb.co/K7RGQ4C/Layer-32.webp",
-    iconUrl: "https://i.ibb.co/dmvyMMn/image-1.webp",
-    link: "/screens-department",
+    name: "Motion graphics",
+    imageUrl: "https://i.ibb.co/ynx6Gj25/Motion-B.webp",
+    iconUrl: "https://i.ibb.co/4n9shw4H/Motion-xx.webp",
+    link: "/Motion-graphics",
   },
   {
     id: 5,
-    name: "قسم الخط العربي",
-    imageUrl: "https://i.ibb.co/2KzrMyy/07.webp",
-    iconUrl: "https://i.ibb.co/5vHKmx1/image-2.webp",
-    link: "/arabic-calligraphy-department",
+    name: "Ai Videos",
+    imageUrl: "https://i.ibb.co/3xTqzVH/Ai-B.webp",
+    iconUrl: "https://i.ibb.co/RTcrh3Y3/Ai-xx.webp",
+    link: "/AIVideos",
   },
   {
     id: 6,
-    name: "قسم البرمجيات",
-    imageUrl: "https://i.ibb.co/d72GNR5/Layer-39.webp",
-    iconUrl: "https://i.ibb.co/DDCFSm4/image-3.webp",
-    link: "/software-department",
+    name: "3D Animation",
+    imageUrl: "https://i.ibb.co/TM9bK9Nx/3d-B-1.webp",
+    iconUrl: "https://i.ibb.co/3YjBYxgq/3d-xx.webp",
+    link: "/3D-Animation",
   },
 ];
 
@@ -274,7 +274,7 @@ const VRSection = () => {
 
       <section
         style={{
-          backgroundColor: "#f2f3f4",
+          backgroundColor: "#040404",
           width: "100%",
           margin: "0 auto",
           marginBottom: "30px",
@@ -282,223 +282,105 @@ const VRSection = () => {
           justifyContent: "center",
           alignItems: "center",
           height: "auto",
-          paddingTop: "50px",
-          paddingBottom: "50px",
-          background: "#040404",
+          paddingTop: "80px",
+          paddingBottom: "150px",
+          direction: "rtl",
         }}
       >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 },
-            textAlign: "center",
-          }}
+  <Container
+    maxWidth="lg"
+    sx={{
+      paddingX: { xs: 2, sm: 3, md: 5 },
+      textAlign: "center",
+    }}
+  >
+    <Grid container spacing={3} justifyContent="center">
+      {products1.slice(0, 6).map((product) => (
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4} // 3 per row on medium and above (12/4 = 3)
+          key={product.id}
         >
-          {/* Heading */}
-          <Button
-            variant="outlined" // Change variant to outlined for a transparent background
-            sx={{
-              background: "transparent", // Transparent background
-              color: "White", // Text color (red)
-              padding: "10px 20px", // Padding
-              fontFamily: "Tajawal", // Same font family as Typography
-              fontWeight: 600, // Same font weight as Typography
-              borderRadius: "50px", // Rounded corners
-              fontSize: { xs: "18px", sm: "20px", md: "40px" },
-              marginBottom: "30px",
-              width: "50%", // Full width
-              border: "2px solid #00fefc", // Red border for the outlined button
-            }}
-          >
-            أقســــامنـــــا
-          </Button>
-
-          <Grid container spacing={6}>
-            {" "}
-            {/* Increase the spacing to 6 for more gap between cards */}
-            {products1.map((product) => (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                key={product.id}
-                sx={{ paddingLeft: "60px" }}
+          <Link to={product.link} style={{ textDecoration: "none" }}>
+            <Card
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
+                borderRadius: "20px",
+                overflow: "hidden",
+                width: "300px",
+                margin: "0 auto", // Center the card
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  position: "relative",
+                }}
               >
-                {/* Wrap the card with Link component */}
-                <Link to={product.link} style={{ textDecoration: "none" }}>
-                  <Card
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      height: "100%",
-                      borderRadius: "20px", // Add this line for the border radius
-                      overflow: "hidden", // To ensure the content stays within the rounded corners
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        position: "relative",
-                      }}
-                    >
-                      <CardMedia
-                        component="img"
-                        height="300" // Set height to 300px
-                        width="300" // Set width to 300px
-                        image={product.imageUrl}
-                        alt={product.name}
-                        sx={{ objectFit: "cover", flexShrink: 0 }} // Match the border-radius of the image
-                      />
-                      {/* Position the Avatar icon in front of the CardContent */}
-                      <Avatar
-                        src={product.iconUrl}
-                        alt={product.name}
-                        sx={{
-                          position: "absolute",
-                          top: "90%", // Adjust the top position if necessary
-                          left: "50%",
-                          transform: "translate(-50%, -10%)", // Centers the icon
-                          width: 70,
-                          height: 70,
-                          border: "3px solid white", // Optional: add a border to the icon
-                          zIndex: 10, // Make sure the avatar is in front of the content
-                          background: "#0a6d6a",
-                        }}
-                      />
-                    </Box>
-                    <CardContent
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        flexGrow: 1,
-                        background: "#0a6d6a",
-                        animation: `${pumpAnimation} 1s ease-in-out infinite`,
-                        padding: "1px", // General padding
-                        "&:last-child": {
-                          paddingBottom: "10px", // Remove bottom padding for the last child
-                        },
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          color: "white",
-                          marginTop: "32px", // Reduce the top margin
-                          fontSize: "1.2rem", // Reduce the font size
-                          fontWeight: 500, // Slightly lighter font weight
-                          fontFamily: "Tajawal",
-                        }}
-                      >
-                        {product.name}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Link>{" "}
-                {/* Close Link */}
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </section>
-
-      <section
-        style={{
-          backgroundColor: "#eaecee",
-          backgroundImage: 'url("https://i.ibb.co/0myG6zf/image.webp")',
-          backgroundSize: "cover",
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "800px",
-          paddingTop: "250px",
-          paddingBottom: "0px",
-          marginTop: "-30px",
-        }}
-      >
-        <Container maxWidth="xl" style={{ marginTop: "130px" }}>
-          <Grid
-            container
-            spacing={2}
-            justifyContent="center"
-            style={{
-              marginTop: "20px",
-            }}
-          >
-            {/* Buttons */}
-            {[
-              {
-                to: "/Web-Media-Video",
-                label: "فيديو",
-                color: "primary",
-              },
-              {
-                to: "/vr-videos",
-                label: "VR Videos",
-                color: "primary",
-              },
-              {
-                to: "/Web-Media-photo",
-                label: "فـوتـو",
-                color: "secondary",
-              },
-              {
-                to: "/Motion-graphics",
-                label: "Motion graphics",
-                color: "secondary",
-              },
-              {
-                to: "/AIVideos",
-                label: "Ai Videos",
-                color: "primary",
-              },
-              {
-                to: "/3D-Animation",
-                label: "3D Animation",
-                color: "secondary",
-              },
-            ].map((button, index) => (
-              <Grid
-                item
-                xs={6} // Ensures 2 items per row on mobile
-                sm={6} // On small screens, maintain 2 items per row
-                md={2} // On medium and larger screens, 3 items per row
-                key={index}
+                <CardMedia
+                  component="img"
+                  height="300"
+                  image={product.imageUrl}
+                  alt={product.name}
+                  sx={{ objectFit: "cover", flexShrink: 0 }}
+                />
+                <Avatar
+                  src={product.iconUrl}
+                  alt={product.name}
+                  sx={{
+                    position: "absolute",
+                    top: "90%",
+                    left: "50%",
+                    transform: "translate(-50%, -10%)",
+                    width: 70,
+                    height: 70,
+                    border: "3px solid white",
+                    zIndex: 10,
+                    background: "#0a6d6a",
+                  }}
+                />
+              </Box>
+              <CardContent
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  flexGrow: 1,
+                  background: "#0a6d6a",
+                  padding: "1px",
+                  "&:last-child": {
+                    paddingBottom: "10px",
+                  },
+                }}
               >
-                <Link to={button.to} style={{ textDecoration: "none" }}>
-                  <Button
-                    variant="contained"
-                    color={button.color}
-                    fullWidth
-                    size="small" // Default to small for mobile
-                    style={{
-                      padding: "8px 18px",
-                      backgroundColor: "#17202a",
-                      color: "white",
-                      border: "2px solid #f05322",
-                      borderRadius: "50px",
-                      cursor: "pointer",
-                      width: "100%",
-                      fontFamily: "Tajawal",
-                      textAlign: "center",
-                      fontSize: "23px", // Default font size for desktop
-                      transition: "all 0.3s ease-in-out",
-                    }}
-                  >
-                    {button.label}
-                  </Button>
-                </Link>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </section>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                    marginTop: "32px",
+                    fontSize: "1.2rem",
+                    fontWeight: 500,
+                    fontFamily: "Tajawal",
+                  }}
+                >
+                  {product.name}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Link>
+        </Grid>
+      ))}
+    </Grid>
+  </Container>
+</section>
+
+
 
       <style jsx>
         {`

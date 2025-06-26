@@ -2,7 +2,7 @@ import React from "react";
 
 const sectionStyles = {
   backgroundColor: "#f2f3f4",
-  backgroundImage: "url(https://i.ibb.co/w6PTfXT/image-7.webp)",
+  backgroundImage: "url(https://i.ibb.co/QZkXZb4/image.webp)",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   width: "100%",

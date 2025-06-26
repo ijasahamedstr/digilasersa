@@ -426,6 +426,14 @@ const Motiongraphics = () => {
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+              <Button
+                variant="contained"
+                component={Link} // Use Link component here
+                to="/قسم الإعلام والميديا" // Correct route path
+                sx={{ backgroundColor: "#17202a", color: "#fff" }}
+              >
+                قسم الإعلام والميديا
+              </Button>
             <Button
               variant="contained"
               component={Link} // Use Link component here

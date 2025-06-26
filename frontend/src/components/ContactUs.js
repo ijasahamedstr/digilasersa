@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Grid, Typography, Button } from "@mui/material";
+import { Container, Grid, Typography, Button,Box } from "@mui/material";
 import Form from "react-bootstrap/Form";
 
 // Initial form state (email removed)
@@ -54,16 +54,47 @@ function ContactUs() {
 
 function RightTextSection() {
   return (
-    <Grid item xs={12} sm={6} sx={{ direction: "rtl" }}>
-      <Typography variant="h4" color="white" paragraph>
-        Contact Us
-      </Typography>
-      <Typography variant="h5" color="#00fffc">
-        للطلب والإستفسار /
-      </Typography>
-      <ContactInfo label="رقم الاتصال :" phone="8888 197 057" />
-      <ContactInfo label="بريد إلكتروني :" phone="info@digilaser.sa" />
-    </Grid>
+<Grid
+  item
+  xs={12}
+  sm={6}
+  sx={{
+    direction: "rtl",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center", // Horizontally center
+    textAlign: "justify", // Justify text
+  }}
+>
+  <Typography variant="h4" color="white" >
+    Contact Us
+  </Typography>
+  <Typography variant="h5" color="#00fffc" style={{paddingRight:'40px'}}>
+    للطلب والإستفسار /
+  </Typography>
+  <Box display="flex" alignItems="center" gap={1} sx={{paddingTop:'30px'}}>
+  <Typography variant="body1" sx={{ color: 'white', fontSize: '20px', paddingRight:'70px' }}>
+    رقم الاتصال
+  </Typography>
+  <Typography variant="body1" sx={{ direction: 'rtl', color: 'white', fontSize: '20px' }}>
+    :
+  </Typography>
+  <Typography variant="body1" sx={{ direction: 'rtl', color: 'white', fontSize: '20px' }}>
+    8888 197 057
+  </Typography>
+</Box>
+ <Box display="flex" alignItems="center" gap={1} sx={{paddingTop:'30px'}}>
+  <Typography variant="body1" sx={{ color: 'white', fontSize: '20px', paddingRight:'110px' }}>
+     بريد إلكتروني
+  </Typography>
+  <Typography variant="body1" sx={{ direction: 'rtl', color: 'white', fontSize: '20px' }}>
+    :
+  </Typography>
+  <Typography variant="body1" sx={{ direction: 'rtl', color: 'white', fontSize: '20px' }}>
+    info@digilaser.sa
+  </Typography>
+</Box>
+</Grid>
   );
 }
 
