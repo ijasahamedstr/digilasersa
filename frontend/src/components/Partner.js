@@ -21,19 +21,19 @@ const sliderSettingsRTL = {
   responsive: [
     {
       breakpoint: 1280,
-      settings: { slidesToShow: 4 },
+      settings: { slidesToShow: 5 },
     },
     {
       breakpoint: 960,
-      settings: { slidesToShow: 3 },
+      settings: { slidesToShow: 4 },
     },
     {
       breakpoint: 600,
-      settings: { slidesToShow: 2 },
+      settings: { slidesToShow: 3 },
     },
     {
       breakpoint: 480,
-      settings: { slidesToShow: 1 },
+      settings: { slidesToShow: 2 },
     },
   ],
 };
@@ -50,19 +50,19 @@ const sliderSettingsLTR = {
   responsive: [
     {
       breakpoint: 1280,
-      settings: { slidesToShow: 4 },
+      settings: { slidesToShow: 5 },
     },
     {
       breakpoint: 960,
-      settings: { slidesToShow: 3 },
+      settings: { slidesToShow: 4 },
     },
     {
       breakpoint: 600,
-      settings: { slidesToShow: 2 },
+      settings: { slidesToShow: 3 },
     },
     {
       breakpoint: 480,
-      settings: { slidesToShow: 1 },
+      settings: { slidesToShow: 2 },
     },
   ],
 };

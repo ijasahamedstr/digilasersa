@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {
@@ -184,7 +185,7 @@ const ContactForm = ({ formData, handleChange, handleSubmit }) => (
         direction: "rtl"
       }}
     >
-      للإستفسارات العامة ..
+       للشكاوي ..
     </h2>
 
     <form
@@ -246,19 +247,22 @@ const ContactForm = ({ formData, handleChange, handleSubmit }) => (
           )}
         </Form.Group>
       ))}
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        sx={{
-          marginTop: "15px",
-          background: "#00fffc",
-          color: "#1e272e",
-          padding: { xs: "10px", sm: "15px" }
-        }}
-      >
-        Submit
-      </Button>
+            {/* Centered Button */}
+                  <div style={{ display: "flex", justifyContent: "center", marginTop: "15px",paddingRight:'150px' }}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      sx={{
+                        background: "#00fffc",
+                        color: "#1e272e",
+                        padding: { xs: "10px", sm: "15px" },
+                        width: "50%",
+                      }}
+                    >
+                      ارسال
+                    </Button>
+                  </div>
     </form>
   </>
 );
@@ -602,27 +606,69 @@ const ArabicCalligraphy = () => {
               item
               xs={12}
               sm={6}
-              order={{ xs: 1, sm: 1 }}
-              sx={{ direction: "rtl" }}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-end",
+                textAlign: "justify",
+                direction: "ltr",
+                pr: 5,
+              }}
             >
-              <Typography variant="h4" color="white" paragraph>
+              <Typography variant="h4" color="white">
                 Contact Us
               </Typography>
-              <Typography variant="h5" color="#00fffc">
+            
+              <Typography variant="h5" color="#00fffc" sx={{ textAlign: "justify", direction: "rtl" }}>
                 للطلب والإستفسار /
               </Typography>
-              <Typography variant="h6" color="white" sx={{ marginTop: "50px" }}>
-                مدير قسم الميديا :{" "}
-                <span style={{ fontWeight: "bold" }}>9999 065 057</span>
-              </Typography>
-              <Typography variant="h6" color="white" sx={{ marginTop: "10px" }}>
-                مدير فرع الشرقية :{" "}
-                <span style={{ fontWeight: "bold" }}>9999 064 057</span>
-              </Typography>
-              <Typography variant="h6" color="white" sx={{ marginTop: "10px" }}>
-                مدير تسويق الميديا :{" "}
-                <span style={{ fontWeight: "bold" }}>8888 093 057</span>
-              </Typography>
+            
+              <Grid container spacing={2} sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}>
+                {[
+                  { label: "مدير قسم الميديا", value: "9999 065 057" },{ label: "مدير فرع الشرقية", value: "9999 064 057" },{ label: "مدير قسم الميديا", value: "8888 093 057" }
+                ].map(({ label, value }) => (
+                  <React.Fragment key={label}>
+                    <Grid item xs={4}>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: "white",
+                          fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                          textAlign: "right",
+                        }}
+                      >
+                        {label}
+                      </Typography>
+                    </Grid>
+            
+                    <Grid item xs={1}>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: "white",
+                          fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                          textAlign: "right",
+                        }}
+                      >
+                        :
+                      </Typography>
+                    </Grid>
+            
+                    <Grid item xs={7}>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: "white",
+                          fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                          textAlign: "right",
+                        }}
+                      >
+                        {value}
+                      </Typography>
+                    </Grid>
+                  </React.Fragment>
+                ))}
+              </Grid>
             </Grid>
 
             {/* Contact Form */}

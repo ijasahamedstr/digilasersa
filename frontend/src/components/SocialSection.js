@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { Carousel } from "react-bootstrap";
 import {
@@ -421,7 +422,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
               fontFamily: "Changa, sans-serif",
               color: "white",
               fontSize: { xs: "30px", sm: "40px", md: "50px" }, // Responsive font size for typography
-              fontFamily: "Tajawal",
             }}
           >
             خدمـات التسويق الالكتروني والسوشيال ميديا
@@ -818,33 +818,74 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           <Grid container spacing={4}>
             {/* Text Section on the Right */}
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              order={{ xs: 1, sm: 1 }}
-              sx={{ direction: "rtl" }}
-            >
-              <Typography variant="h4" color="white" paragraph>
-                Contact Us
-              </Typography>
-              <Typography variant="h5" color="#00fffc">
-                للطلب والإستفسار /
-              </Typography>
-              <Typography variant="h6" color="white" sx={{ marginTop: "50px" }}>
-                مدير السوشيال ميديا :
-              </Typography>
-              <Typography
-                color="white"
-                sx={{
-                  fontWeight: "bold",
-                  paddingRight: "250px",
-                  fontSize: { xs: "12px", sm: "18px" },
-                }}
-              >
-                9999 084 057
-              </Typography>
-            </Grid>
+           <Grid
+             item
+             xs={12}
+             sm={6}
+             sx={{
+               display: "flex",
+               flexDirection: "column",
+               alignItems: "flex-end",
+               textAlign: "justify",
+               direction: "ltr",
+               pr: 5,
+             }}
+           >
+             <Typography variant="h4" color="white">
+               Contact Us
+             </Typography>
+           
+             <Typography variant="h5" color="#00fffc" sx={{ textAlign: "justify", direction: "rtl" }}>
+               للطلب والإستفسار /
+             </Typography>
+           
+             <Grid container spacing={2} sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}>
+               {[
+                 { label: "مدير السوشيال ميديا", value: "9999 084 057" },
+               ].map(({ label, value }) => (
+                 <React.Fragment key={label}>
+                   <Grid item xs={4}>
+                     <Typography
+                       variant="body1"
+                       sx={{
+                         color: "white",
+                         fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                         textAlign: "right",
+                       }}
+                     >
+                       {label}
+                     </Typography>
+                   </Grid>
+           
+                   <Grid item xs={1}>
+                     <Typography
+                       variant="body1"
+                       sx={{
+                         color: "white",
+                         fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                         textAlign: "right",
+                       }}
+                     >
+                       :
+                     </Typography>
+                   </Grid>
+           
+                   <Grid item xs={7}>
+                     <Typography
+                       variant="body1"
+                       sx={{
+                         color: "white",
+                         fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                         textAlign: "right",
+                       }}
+                     >
+                       {value}
+                     </Typography>
+                   </Grid>
+                 </React.Fragment>
+               ))}
+             </Grid>
+           </Grid>
 
             {/* Contact Form Section on the Left */}
             <Grid item xs={12} sm={6} order={{ xs: 2, sm: 2 }}>
@@ -858,71 +899,93 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
                   direction: "rtl",
                 }}
               >
-                للإستفسارات العامة ..
+                 للشكاوي ..
               </h2>
 
-        <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
-                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-                  <Form.Label
-                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
-                  >
-                    الاسم
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    style={{ background: "#17202a", border: "none", color: "white" }}
-                  />
-                </Form.Group>
+                 <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
+            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+              <Form.Label
+                style={{
+                  color: "white",
+                  width: "150px",
+                  fontSize: "20px",
+                  textAlign: "right",
+                }}
+              >
+                الاسم
+              </Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                style={{ background: "#17202a", border: "none", color: "white" }}
+              />
+            </Form.Group>
 
-                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-                  <Form.Label
-                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
-                  >
-                    الجوال
-                  </Form.Label>
-                  <Form.Control
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    style={{ background: "#17202a", border: "none", color: "white",textAlign: "right" }}
-                  />
-                </Form.Group>
+            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+              <Form.Label
+                style={{
+                  color: "white",
+                  width: "150px",
+                  fontSize: "20px",
+                  textAlign: "right",
+                }}
+              >
+                الجوال
+              </Form.Label>
+              <Form.Control
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                style={{
+                  background: "#17202a",
+                  border: "none",
+                  color: "white",
+                  textAlign: "right",
+                }}
+              />
+            </Form.Group>
 
-                <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-                  <Form.Label
-                    style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}
-                  >
-                    رسالتك
-                  </Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    name="message"
-                    rows={3}
-                    value={formData.message}
-                    onChange={handleChange}
-                    style={{ background: "#17202a", border: "none", color: "white" }}
-                  />
-                </Form.Group>
+            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+              <Form.Label
+                style={{
+                  color: "white",
+                  width: "150px",
+                  fontSize: "20px",
+                  textAlign: "right",
+                }}
+              >
+                رسالتك
+              </Form.Label>
+              <Form.Control
+                as="textarea"
+                name="message"
+                rows={3}
+                value={formData.message}
+                onChange={handleChange}
+                style={{ background: "#17202a", border: "none", color: "white" }}
+              />
+            </Form.Group>
 
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                      sx={{
-                      marginTop: "15px",
-                      background: "#00fffc",
-                      color: "#1e272e",
-                      padding: { xs: "10px", sm: "15px" },
-                      width:'100%',
-                      }}
-                   >             
-                    Submit
-                  </Button>
-              </form>
+            {/* Centered Button */}
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "15px",paddingRight:'150px' }}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  background: "#00fffc",
+                  color: "#1e272e",
+                  padding: { xs: "10px", sm: "15px" },
+                  width: "50%",
+                }}
+              >
+                ارسال
+              </Button>
+            </div>
+          </form>
             </Grid>
           </Grid>
         </Container>

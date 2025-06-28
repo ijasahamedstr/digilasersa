@@ -30,6 +30,7 @@ import AIVideos from "./components/Media/AIVideos";
 import Animation from "./components/Media/3DAnimation";
 import UpdateFild from "./components/Update";
 import ComingSoonPage from "./components/ComingSoonPage";
+import ContactusForm from "./components/Contact";
 
 const theme = createTheme({
   typography: {
@@ -75,7 +76,7 @@ function App() {
           <Route path="/Motion-graphics" element={<Motiongraphics />} />
           <Route path="/AIVideos" element={<AIVideos />} />
           <Route path="/3D-Animation" element={<Animation />} />
-          <Route path="/إتصل بنا" element={<ComingSoonPage />} />
+          <Route path="/إتصل بنا" element={<ContactusForm />} />
           <Route path="/update/:id" element={<UpdateFild />} />
         </Routes>
         <Footer />

@@ -32,15 +32,14 @@ function AboutSection() {
         sx={{
           display: "flex",
           flexDirection: {
-            xs: "column", // صورة أولاً ثم النص في الجوال
-            md: "row-reverse", // صورة على اليمين في الشاشات الكبيرة
+            xs: "column",
+            md: "row-reverse",
           },
           justifyContent: "space-between",
           alignItems: "center",
           px: { xs: 2, md: 10 },
           pb: 5,
           boxSizing: "border-box",
-          fontFamily: "Tajawal",
         }}
       >
         {/* Text Section */}
@@ -114,21 +113,25 @@ function AboutSection() {
             }}
           >
             فنحن متخصصون في مجالات متعددة منها
-            <ul
-              style={{
-                textAlign: "right",
-                paddingRight: "20px",
-                marginTop: "20px",
-                direction: "rtl",
-                fontSize: "20px",
-              }}
-            >
-              <li>توريد وتركيب الشاشات الرقمية</li>
-              <li>الطباعة بكافة أنواعها والهدايا الدعائية</li>
-              <li>تصوير الفيديوهات وتغطية المؤتمرات</li>
-              <li>إدارة حسابات التواصل الاجتماعي</li>
-            </ul>
           </Typography>
+
+          <Box
+            component="ul"
+            sx={{
+              textAlign: "right",
+              paddingRight: "20px",
+              marginTop: "20px",
+              direction: "rtl",
+              fontSize: "20px",
+              color: "#ffffff",
+              listStyleType: "disc",
+            }}
+          >
+            <li>توريد وتركيب الشاشات الرقمية</li>
+            <li>الطباعة بكافة أنواعها والهدايا الدعائية</li>
+            <li>تصوير الفيديوهات وتغطية المؤتمرات</li>
+            <li>إدارة حسابات التواصل الاجتماعي</li>
+          </Box>
 
           <Typography
             variant="body1"
@@ -137,6 +140,7 @@ function AboutSection() {
               textAlign: "right",
               pr: { xs: 1, sm: 3 },
               fontSize: { xs: "20px", sm: "25px" },
+              mt: 3,
             }}
           >
             مما أكسبتنا بأن نكون من
@@ -168,12 +172,13 @@ function AboutSection() {
           <Box
             component="img"
             src="https://i.ibb.co/fdkx14Lv/321.png"
-            alt="About Us Visual"
+            alt="شعار من نحن"
             sx={{
               maxWidth: "300px",
+              paddingTop:'20px',
               width: { xs: "80%", sm: "60%", md: "50%" },
               height: "auto",
-              marginBottom:'-350px'
+              mb: { xs: "-100px", sm: "-200px", md: "-300px" },
             }}
           />
         </Box>
