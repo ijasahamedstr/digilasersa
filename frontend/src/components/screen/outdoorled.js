@@ -319,7 +319,23 @@ const Outdoorled = () => {
               >
                 {/* Left Section: Main Image */}
                 <Grid item xs={12} md={6} sx={{ position: "relative" }}>
-                  
+                  <div
+                    className="image-overlay"
+                    style={{
+                      position: "absolute",
+                      top: "0",
+                      left: "0",
+                      width: "100%",
+                      height: "100%",
+                      backgroundColor:
+                        index % 2 === 0
+                          ? "rgba(85, 254, 238, 0.5)"
+                          : "rgba(168, 170, 173, 0.7)",
+                      zIndex: "1",
+                      borderRadius: "8px",
+                      transition: "background-color 0.3s ease",
+                    }}
+                  ></div>
                   <Box sx={{ position: "relative", zIndex: 1 }}>
                     <img
                       src={mainImages[index]}

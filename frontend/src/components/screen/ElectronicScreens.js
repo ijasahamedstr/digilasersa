@@ -1,9 +1,14 @@
-import React, { useState } from "react";
 import { Carousel } from "react-bootstrap";
-import { Box, Typography, Grid, Card, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Grid,
+  Card,
+  Button,
+  CircularProgress,
+} from "@mui/material";
 import Container from "@mui/material/Container";
 import {
-  FaFacebook,
   FaInstagram,
   FaLinkedin,
   FaYoutube,
@@ -15,6 +20,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Form from "react-bootstrap/Form";
 import Slider from "react-slick";
+import axios from "axios";
+import React, { useState, useRef, useEffect } from "react";
 
 const carouselItems = [
   {
@@ -31,67 +38,91 @@ const carouselItems = [
   },
 ];
 
+const socialLinks = [
+  { icon: <FontAwesomeIcon icon={faXTwitter} sie="lg" />, link: "https://x.com/digilasersa" },
+  { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+  { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+  { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+  { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+  { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+  { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+];
+
+const INITIAL_FORM_STATE = {
+  name: "",
+  phone: "",
+  message: "",
+};
+
+
 const ElectronicScreens = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    message: "",
-  });
+  const [outdoorLedData, setOutdoorLedData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [mainImages, setMainImages] = useState([]); // Array to store main images for each project
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+  
+    const handleChange = ({ target: { name, value } }) => {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+  
+    const isFormValid = () =>
+      Object.values(formData).every((field) => field.trim() !== "");
+  
+    const handleFormSubmit = (e) => {
+      e.preventDefault();
+      if (!isFormValid()) {
+        alert("Please fill out all fields.");
+        return;
+      }
+  
+      const { name, phone, message } = formData;
+      const whatsappNumber = "966571908888";
+      const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
+      const encodedText = encodeURIComponent(text);
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+      window.open(whatsappUrl, "_blank");
+    };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_HOST}/Screensdepartment`,
+        );
+        const filteredData = response.data.filter(
+          (item) => item.projectype === "الشاشات الإلكترونية الخارجية",
+        );
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+        setOutdoorLedData(filteredData);
 
-    // Add simple validation
-    if (
-      !formData.name ||
-      !formData.phone ||
-      !formData.email ||
-      !formData.message
-    ) {
-      alert("Please fill out all fields.");
-      return;
-    }
+        if (filteredData.length > 0) {
+          const images = filteredData.map((project) => {
+            return project?.projectimage?.[0]
+              ? `${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${project.projectimage[0]}`
+              : ""; // Default empty string if no image exists
+          });
+          setMainImages(images); // Update mainImages with the first image of each project
+        }
 
-    // Redirect to another site (Example: External site)
-    window.location.href = "https://another-site.com/contact";
-  };
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching data: ", err);
+        setOutdoorLedData([]);
+        setLoading(false);
+      }
+    };
 
-  const images = [
-    "https://i.ibb.co/crGY2Sp/customerservice.png",
-    "https://i.ibb.co/FXr5DWX/advertising-plan.png",
-    "https://i.ibb.co/NVDMdFy/the-camera-lens-canon-eos-5d-mark-ii-wallpaper-preview.png",
-    "https://i.ibb.co/6WYNt6b/1632994991100.png",
-  ];
+    fetchData();
+  }, []);
 
-  const [mainImage, setMainImage] = useState(
-    "https://i.ibb.co/SfvVkdQ/IMG-20241222-WA0003.webp",
-  );
-  const [mainImage1, setMainImage1] = useState(
-    "https://i.ibb.co/kKgmDtH/IMG-20241222-WA0010.webp",
-  );
-
-  // Function to handle the click on the slider images
-  const handleImageClick = (imageSrc) => {
-    setMainImage(imageSrc);
-    setMainImage1(imageSrc);
-  };
-
-  // Slick slider settings for vertical slider
   const sliderSettings = {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     vertical: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
     arrows: true,
     dots: false,
     responsive: [
@@ -102,13 +133,11 @@ const ElectronicScreens = () => {
           slidesToScroll: 1,
           vertical: true,
           infinite: true,
-          autoplay: true, // Enable autoplay
-          autoplaySpeed: 3000, // Change slide every 3 seconds
           dots: false,
         },
       },
       {
-        breakpoint: 480, // For mobile devices (phones)
+        breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -119,6 +148,19 @@ const ElectronicScreens = () => {
       },
     ],
   };
+
+  const handleImageClick = (index, imageSrc) => {
+    const updatedImages = [...mainImages];
+    updatedImages[index] = imageSrc; // Update the image for the specific project
+    setMainImages(updatedImages);
+  };
+
+  const images = [
+    "https://i.ibb.co/crGY2Sp/customerservice.png",
+    "https://i.ibb.co/FXr5DWX/advertising-plan.png",
+    "https://i.ibb.co/NVDMdFy/the-camera-lens-canon-eos-5d-mark-ii-wallpaper-preview.png",
+    "https://i.ibb.co/6WYNt6b/1632994991100.png",
+  ];
 
   return (
     <>
@@ -153,7 +195,6 @@ const ElectronicScreens = () => {
                   sizes="(max-width: 600px) 500px, 1000px"
                   alt={item.title || "Carousel image"}
                   style={{
-                    height: "70vh",
                     objectFit: "cover",
                     boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                   }}
@@ -182,758 +223,346 @@ const ElectronicScreens = () => {
             ))}
           </Carousel>
 
-          {/* Social Media Icons on the Left Side */}
+
+       {/* Social Media Icons Sidebar */}
           <Box
             sx={{
               position: "fixed",
               top: "50%",
               left: 0,
               transform: "translateY(-50%)",
-              display: "flex",
+              display: { xs: "none", md: "flex" },
               flexDirection: "column",
-              gap: "15px",
-              zIndex: 2,
-              paddingLeft: 2,
+              gap: 2,
+              zIndex: 1200,
+              pl: 2,
             }}
           >
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaFacebook size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://x.com/digilasersa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FontAwesomeIcon icon={faXTwitter} size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.instagram.com/digilasersa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaInstagram size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.linkedin.com/company/digilasersa/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaLinkedin size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://youtube.com/@digilaserSa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaYoutube size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.snapchat.com/add/digilasersa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaSnapchat size={25} />
-              </Box>
-            </a>
-            <a
-              href="https://www.tiktok.com/@digilasersa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaTiktok size={25} />
-              </Box>
-            </a>
-            <a
-              href="http://wa.me/966571978888"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                <FaWhatsapp size={25} />
-              </Box>
-            </a>
+            {socialLinks.map(({ icon, link }, index) => (
+              <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: "50%",
+                    backgroundColor: "#06f9f3",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    color: "#17202a",
+                    boxShadow: 3,
+                    transition: "transform 0.3s ease",
+                    "&:hover": {
+                      transform: "scale(1.2)",
+                    },
+                  }}
+                >
+                  {icon}
+                </Box>
+              </a>
+            ))}
           </Box>
         </Box>
       </Container>
-      <section
-        style={{
-          width: "100%",
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: "30px",
-          position: "relative",
-          backgroundColor: "rgba(85, 254, 238, 0.8)", // Semi-transparent background color
-          backgroundImage: `url('https://i.ibb.co/SfvVkdQ/IMG-20241222-WA0003.webp')`, // Your background image URL
-          backgroundSize: "cover", // Ensures the image covers the entire section
-          backgroundPosition: "center", // Center the background image
-          zIndex: "1",
-          marginTop: "30px",
-        }}
-      >
-        {/* Section-wide overlay */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(85, 254, 238, 0.8)", // Semi-transparent overlay color
-            zIndex: "0", // Place this behind the content but in front of the background
-          }}
-        ></div>
 
-        <Container
-          maxWidth="xxl"
-          sx={{
-            marginBottom: "30px",
-            paddingRight: { xs: "20px", sm: "100px" },
-            paddingLeft: { xs: "20px", sm: "100px" },
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              marginTop: "40px",
+      {outdoorLedData.length > 0 &&
+        outdoorLedData.map((project, index) => (
+          <section
+            dir={index % 2 === 0 ? "rtl" : "ltr"}
+            key={index}
+            style={{
+              width: "100%",
+              margin: "0 auto",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "30px",
               position: "relative",
-              height: "auto",
-              flexDirection: { xs: "column", md: "row" },
+              backgroundColor:
+                index % 2 === 0
+                  ? "rgba(85, 254, 238, 0.8)"
+                  : "rgba(168, 170, 173, 0.5)",
+              backgroundImage: mainImages[index]
+                ? `url(${mainImages[index]})`
+                : "none",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              zIndex: "1",
+              marginTop: "30px",
             }}
           >
-            {/* Left Section: Main Image */}
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{ position: "relative" }}
-              style={{ paddingTop: "0px" }}
-            >
-              {/* Transparent background overlay */}
-              <div
-                className="image-overlay" // Class to target the hover effect
-                style={{
-                  position: "absolute",
-                  top: "0",
-                  left: "0",
-                  width: "100%",
-                  height: "100%",
-                  backgroundColor: "rgba(85, 254, 238, 0.5)", // Semi-transparent overlay color
-                  zIndex: "1",
-                  borderRadius: "8px",
-                  transition: "background-color 0.3s ease", // Smooth transition effect
-                }}
-              ></div>
-              <img
-                src={mainImage} // Use the state for the main image source
-                alt="Descriptive image"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  borderRadius: "8px",
-                  position: "relative",
-                  zIndex: "0", // Ensure the image stays behind the overlay
-                  borderLeft: "10px solid black", // Add a vertical line to the left
-                }}
-              />
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                backgroundColor:
+                  index % 2 === 0
+                    ? "rgba(85, 254, 238, 0.8)"
+                    : "rgba(168, 170, 173, 0.8)",
+                zIndex: "0",
+              }}
+            ></div>
 
-              <div
-                style={{
-                  position: "absolute",
-                  top: "0",
-                  left: "40px", // Move the slider to the left
-                  width: "180px",
-                  height: "100%",
-                  backgroundColor: "rgba(0, 0, 0, 0.5)",
-                  zIndex: "2",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  borderRadius: "5px",
+            <Container maxWidth="xxl" sx={{ px: { xs: 2, sm: 10 }, py: 5 }}>
+              <Grid
+                container
+                spacing={2}
+                sx={{
+                  marginTop: "40px",
+                  position: "relative",
+                  height: "auto",
+                  flexDirection: { xs: "column", md: "row" },
                 }}
               >
-                <Slider {...sliderSettings}>
-                  {images.map((image, index) => (
-                    <div key={index}>
-                      <img
-                        src={image}
-                        alt="mountain range"
-                        style={{
-                          width: "calc(100% - 20px)", // Reduce width to account for left and right margin
-                          margin: "10px", // Apply 10px margin on all sides
-                          borderRadius: "5px",
-                          cursor: "pointer", // Add a cursor to indicate it's clickable
-                        }}
-                        onClick={() => handleImageClick(image)} // Update the main image on click
-                      />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-            </Grid>
+                {/* Left Section: Main Image */}
+                <Grid item xs={12} md={6} sx={{ position: "relative" }}>
+                  <div
+                    className="image-overlay"
+                    style={{
+                      position: "absolute",
+                      top: "0",
+                      left: "0",
+                      width: "100%",
+                      height: "100%",
+                      backgroundColor:
+                        index % 2 === 0
+                          ? "rgba(85, 254, 238, 0.5)"
+                          : "rgba(168, 170, 173, 0.7)",
+                      zIndex: "1",
+                      borderRadius: "8px",
+                      transition: "background-color 0.3s ease",
+                    }}
+                  ></div>
+                  <Box sx={{ position: "relative", zIndex: 1 }}>
+                    <img
+                      src={mainImages[index]}
+                      loading="lazy"
+                      alt={`Main project ${index}`}
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        maxHeight: "550px",
+                        objectFit: "cover",
+                        borderRadius: "8px",
+                        borderLeft:
+                          index % 2 === 0 ? "10px solid black" : "none",
+                        borderRight:
+                          index % 2 !== 0 ? "10px solid black" : "none",
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: 0,
+                        right: index % 2 === 0 ? 0 : "auto",
+                        left: index % 2 === 0 ? "auto" : 0,
+                        height: "100%",
+                        width: "150px",
+                        backgroundColor: "rgba(0, 0, 0, 0.5)",
+                        display: "flex",
+                        alignItems: "center",
+                        zIndex: 2,
+                        overflowY: "auto",
+                        borderRadius: "5px",
+                      }}
+                    >
+                      <Slider {...sliderSettings}>
+                        {project?.projectimage?.map((img, imgIndex) => (
+                          <Box key={imgIndex} p={1}>
+                            <img
+                              src={`${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${img}`}
+                              alt={`Project ${index} Image ${imgIndex}`}
+                              loading="lazy"
+                              onClick={() =>
+                                handleImageClick(
+                                  index,
+                                  `${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${img}`
+                                )
+                              }
+                              style={{
+                                width: "100%",
+                                height: "100px",
+                                objectFit: "cover",
+                                cursor: "pointer",
+                                borderRadius: "5px",
+                              }}
+                            />
+                          </Box>
+                        ))}
+                      </Slider>
+                    </Box>
+                  </Box>
+                </Grid>
 
-            {/* Right Section: Text and Card */}
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{ direction: "rtl", textAlign: "justify" }}
-              style={{
-                paddingTop: "50px",
-                paddingLeft: "50px",
-                paddingRight: "50px",
-              }}
-            >
-              <div className="image-overlay">
-                <Typography
-                  variant="body1"
-                  sx={{
-                    marginBottom: "20px",
-                    fontSize: "20px",
-                    fontFamily: "Tajawal",
+                {/* Right Section: Text and Card */}
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  sx={{ direction: "rtl", textAlign: "justify" }}
+                  style={{
+                    paddingTop: "50px",
+                    paddingLeft: "20px",
+                    paddingRight: "20px",
                   }}
                 >
-                  تعتبر الوسيلة الأفضل في زيادة معدل التواصل المباشر مع العملاء
-                  في المكان كونها تجذب الانتباه بشكل كبير . كما يمكن من خلالها
-                  عرض جميع المحتويات الإعلانية سواء كانت صور أو مقاطع فيديو
-                  لتتميزها بدقة الوضوح و توفر أحجام ومقاسات مختلفة .
-                </Typography>
-                <Card
-                  sx={{
-                    padding: "10px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#24c4bd",
-                    borderLeft: "10px solid black", // Add a vertical line to the left
-                  }}
-                >
-                  <Typography
-                    variant="h5"
-                    sx={{ fontFamily: "Tajawal", fontWeight: "600" }}
-                  >
-                    إسم المشروع رقم
-                  </Typography>
-                </Card>
-              </div>
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
-
-      {/* Add this CSS for hover effect */}
+                  <div className="image-overlay">
+                    {loading ? (
+                      <CircularProgress />
+                    ) : (
+                      <>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            marginBottom: "20px",
+                            fontSize: "20px",
+                            fontFamily: "Tajawal",
+                          }}
+                        >
+                          {project?.projectdec}
+                        </Typography>
+                        <Card
+                          sx={{
+                            padding: "10px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            backgroundColor:
+                              index % 2 === 0 ? "#24c4bd" : "#6f7073",
+                            borderLeft:
+                              index % 2 === 0 ? "10px solid black" : "none",
+                            borderRight:
+                              index % 2 !== 0 ? "10px solid black" : "none",
+                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                            transition: "transform 0.3s ease",
+                            "&:hover": {
+                              transform: "scale(1.05)",
+                            },
+                          }}
+                        >
+                          <Typography
+                            variant="h5"
+                            sx={{ fontFamily: "Tajawal", fontWeight: "600" }}
+                          >
+                            {project?.projectname}
+                          </Typography>
+                        </Card>
+                      </>
+                    )}
+                  </div>
+                </Grid>
+              </Grid>
+            </Container>
+          </section>
+        ))}
+           {/* Contact Section */}
+              <section
+                style={{
+                  backgroundColor: "#000000",
+                  backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingTop: "50px",
+                  paddingBottom: "50px",
+                  marginTop: "-30px",
+                  direction: "rtl",
+                }}
+              >
+                <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 5 }, textAlign: "center" }}>
+                  <Grid container spacing={4}>
+                    {/* Right Side - Contact Info */}
+                    <Grid item xs={12} sm={6} sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end", textAlign: "justify", direction: "ltr", pr: 5 }}>
+                      <Typography variant="h4" color="white">Contact Us</Typography>
+                      <Typography variant="h5" color="#00fffc" sx={{ textAlign: "justify", direction: "rtl" }}>
+                        للطلب والإستفسار /
+                      </Typography>
+                      <Grid container spacing={2} sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}>
+                        {[
+                          { label: "المدير العام للطباعة بالمملكة", value: "8888 190 057" },
+                          { label: "المدير الفني للطباعة بالمملكة", value: "8888 193 057" },
+                          { label: "واتساب الطباعة", value: "8888 194 057" },
+                        ].map(({ label, value }) => (
+                          <React.Fragment key={label}>
+                            <Grid item xs={4}><Typography color="white" fontSize={{ xs: 17, md: 20 }} textAlign="right">{label}</Typography></Grid>
+                            <Grid item xs={1}><Typography color="white" fontSize={{ xs: 17, md: 20 }}>:</Typography></Grid>
+                            <Grid item xs={7}><Typography color="white" fontSize={{ xs: 17, md: 20 }} textAlign="right">{value}</Typography></Grid>
+                          </React.Fragment>
+                        ))}
+                      </Grid>
+                    </Grid>
+        
+                    {/* Left Side - Form */}
+                    <Grid item xs={12} sm={6} sx={{ order: { xs: 2, sm: 2 } }}>
+                      <h2 style={{ color: "white", fontFamily: "Tajawal", fontSize: "26px", textAlign: "right", marginBottom: "20px" }}>
+                        للشكاوي ..
+                      </h2>
+                      <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
+                        <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+                          <Form.Label style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}>الاسم</Form.Label>
+                          <Form.Control
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            style={{ background: "#17202a", border: "none", color: "white" }}
+                          />
+                        </Form.Group>
+        
+                        <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+                          <Form.Label style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}>الجوال</Form.Label>
+                          <Form.Control
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            style={{ background: "#17202a", border: "none", color: "white", textAlign: "right" }}
+                            pattern="[0-9]{9,12}"
+                            title="الرجاء إدخال رقم جوال صالح"
+                          />
+                        </Form.Group>
+        
+                        <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+                          <Form.Label style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}>رسالتك</Form.Label>
+                          <Form.Control
+                            as="textarea"
+                            name="message"
+                            rows={3}
+                            value={formData.message}
+                            onChange={handleChange}
+                            style={{ background: "#17202a", border: "none", color: "white" }}
+                          />
+                        </Form.Group>
+        
+                        <div style={{ display: "flex", justifyContent: "center", marginTop: "15px", paddingRight: "150px" }}>
+                          <Button
+                            type="submit"
+                            variant="contained"
+                            sx={{
+                              background: "#00fffc",
+                              color: "#1e272e",
+                              padding: { xs: "10px", sm: "15px" },
+                              width: "50%",
+                            }}
+                          >
+                            ارسال
+                          </Button>
+                        </div>
+                      </form>
+                    </Grid>
+                  </Grid>
+                </Container>
+              </section>
+        
       <style jsx>{`
         .image-overlay:hover {
-          background-color: transparent !important; /* Hide the overlay when hovering */
+          background-color: transparent !important;
         }
       `}</style>
-
-      <section
-        style={{
-          width: "100%",
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: "60px",
-          position: "relative",
-          backgroundColor: "rgba(168, 170, 173, 0.5)", // Semi-transparent background color
-          backgroundImage: `url('https://i.ibb.co/kKgmDtH/IMG-20241222-WA0010.webp')`, // Your background image URL
-          backgroundSize: "cover", // Ensures the image covers the entire section
-          backgroundPosition: "center", // Center the background image
-          zIndex: "1",
-        }}
-      >
-        {/* Section-wide overlay */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(168, 170, 173, 0.8)", // Semi-transparent overlay color
-            zIndex: "0", // Place this behind the content but in front of the background
-          }}
-        ></div>
-
-        <Container
-          maxWidth="xxl"
-          sx={{
-            marginBottom: "30px",
-            paddingRight: { xs: "20px", sm: "100px" },
-            paddingLeft: { xs: "20px", sm: "100px" },
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              marginTop: "40px",
-              position: "relative",
-              height: "auto",
-              flexDirection: { xs: "column", md: "row" },
-            }}
-          >
-            {/* Left Section: Main Image */}
-
-            {/* Right Section: Text and Card */}
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{ direction: "rtl", textAlign: "justify" }}
-              style={{
-                paddingTop: "50px",
-                paddingLeft: "50px",
-                paddingRight: "50px",
-              }}
-            >
-              <div className="image-overlay">
-                <Typography
-                  variant="body1"
-                  sx={{
-                    marginBottom: "20px",
-                    fontSize: "20px",
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                  تعتبر الوسيلة الأفضل في زيادة معدل التواصل المباشر مع العملاء
-                  في المكان كونها تجذب الانتباه بشكل كبير . كما يمكن من خلالها
-                  عرض جميع المحتويات الإعلانية سواء كانت صور أو مقاطع فيديو
-                  لتتميزها بدقة الوضوح و توفر أحجام ومقاسات مختلفة .
-                </Typography>
-                <Card
-                  sx={{
-                    padding: "10px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#6f7073",
-                    borderRight: "10px solid black", // Add a vertical line to the left
-                  }}
-                >
-                  <Typography
-                    variant="h5"
-                    sx={{ fontFamily: "Tajawal", fontWeight: "600" }}
-                  >
-                    إسم المشروع رقم
-                  </Typography>
-                </Card>
-              </div>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{ position: "relative" }}
-              style={{ paddingTop: "0px" }}
-            >
-              {/* Transparent background overlay */}
-              <div
-                className="image-overlay" // Class to target the hover effect
-                style={{
-                  position: "absolute",
-                  top: "0",
-                  left: "0",
-                  width: "100%",
-                  height: "100%",
-                  backgroundColor: "rgba(168, 170, 173, 0.7)", // Semi-transparent overlay color
-                  zIndex: "1",
-                  borderRadius: "8px",
-                  transition: "background-color 0.3s ease", // Smooth transition effect
-                }}
-              ></div>
-              <img
-                src={mainImage1} // Use the state for the main image source
-                alt="Descriptive image"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  borderRadius: "8px",
-                  position: "relative",
-                  zIndex: "0", // Ensure the image stays behind the overlay
-                  borderRight: "10px solid black", // Add a vertical line to the left
-                }}
-              />
-
-              <div
-                style={{
-                  position: "absolute",
-                  top: "0",
-                  right: "40px", // Move the slider to the left
-                  width: "180px",
-                  height: "100%",
-                  backgroundColor: "rgba(0, 0, 0, 0.5)",
-                  zIndex: "2",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  borderRadius: "5px",
-                }}
-              >
-                <Slider {...sliderSettings}>
-                  {images.map((image, index) => (
-                    <div key={index}>
-                      <img
-                        src={image}
-                        alt="mountain range"
-                        style={{
-                          width: "calc(100% - 20px)", // Reduce width to account for left and right margin
-                          margin: "10px", // Apply 10px margin on all sides
-                          borderRadius: "5px",
-                          cursor: "pointer", // Add a cursor to indicate it's clickable
-                        }}
-                        onClick={() => handleImageClick(image)} // Update the main image on click
-                      />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
-
-      <section
-        style={{
-          backgroundColor: "#000000",
-          backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "0px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: "50px",
-          paddingBottom: "50px",
-          marginTop: "-30px",
-          direction: "rtl",
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 },
-            textAlign: "center",
-          }}
-        >
-          <Grid container spacing={4}>
-            {/* Text Section on the Right */}
-            <Grid item xs={12} sm={6}>
-              <Typography variant="h4" color="white" paragraph>
-                Contact Us
-              </Typography>
-              <Typography variant="h5" color="#00fffc">
-                للطلب والإستفسار /
-              </Typography>
-              <Typography variant="h6" color="white" sx={{ marginTop: "50px" }}>
-                المنطقة الوسطي :{" "}
-                <span style={{ fontWeight: "bold" }}>8888 091 057</span>
-              </Typography>
-              <Typography variant="h6" color="white" sx={{ marginTop: "10px" }}>
-                المنطقة الغربية :{" "}
-                <span style={{ fontWeight: "bold" }}>8888 092 057</span>
-              </Typography>
-              <Typography variant="h6" color="white" sx={{ marginTop: "10px" }}>
-                المنطقة الشرقية :{" "}
-                <span style={{ fontWeight: "bold" }}>8888 093 057</span>
-              </Typography>
-              <Typography variant="h6" color="white" sx={{ marginTop: "10px" }}>
-                المدينة المنورة :{" "}
-                <span style={{ fontWeight: "bold" }}>8888 094 057</span>
-              </Typography>
-              <Typography variant="h6" color="white" sx={{ marginTop: "10px" }}>
-                مدير قسم الشاشات :{" "}
-                <span style={{ fontWeight: "bold" }}>2222 026 057</span>
-              </Typography>
-            </Grid>
-
-            {/* Contact Form Section on the Left */}
-            <Grid item xs={12} sm={6} order={{ xs: 2, sm: 2 }}>
-              <h2
-                style={{
-                  color: "white",
-                  fontFamily: "Tajawal",
-                  fontSize: "26px",
-                  textAlign: "right",
-                  marginBottom: "20px",
-                  direction: "rtl",
-                }}
-              >
-                للإستفسارات العامة ..
-              </h2>
-
-              <form
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                  direction: "rtl",
-                }}
-                onSubmit={handleFormSubmit}
-              >
-                <Form.Group
-                  controlId="name"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    الاسم
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId="phone"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    جـوال
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId="email"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    بريد الكتروني
-                  </Form.Label>
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId="message"
-                  className="d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      fontFamily: "Tajawal",
-                      fontSize: "22px",
-                      width: "150px",
-                      textAlign: "right",
-                    }}
-                  >
-                    رسالتك
-                  </Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      outline: "none",
-                    }}
-                  />
-                </Form.Group>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    marginTop: "15px",
-                    background: "#00fffc",
-                    color: "#1e272e",
-                    padding: { xs: "10px", sm: "15px" },
-                  }}
-                >
-                  Submit
-                </Button>
-              </form>
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
     </>
   );
 };
