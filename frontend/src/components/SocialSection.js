@@ -219,7 +219,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
                 src={item.img}
                 alt={item.title}
                 style={{
-                  height: "80vh",
                   objectFit: "cover",
                   boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                 }}

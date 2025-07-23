@@ -14,7 +14,7 @@ function CircularProgressWithLabel(props) {
     <Box position="relative" display="inline-flex">
       <CircularProgress
         variant="determinate"
-        size={props.size} // Responsive size based on screen size
+        size={props.size}
         {...props}
       />
       <Box
@@ -37,7 +37,7 @@ function CircularProgressWithLabel(props) {
 
 CircularProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
-  size: PropTypes.number.isRequired, // Add the size prop type
+  size: PropTypes.number.isRequired,
 };
 
 export default function Progress() {
@@ -46,12 +46,10 @@ export default function Progress() {
   const [progress3] = React.useState(95);
   const [progress4] = React.useState(98);
 
-  // Get the theme object and media query hook to adjust layout for mobile screens
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // Set progress size based on screen size
-  const progressSize = isMobile ? 80 : 100; // Smaller on mobile, bigger on desktop
+  const progressSize = isMobile ? 80 : 100;
 
   return (
     <section
@@ -71,19 +69,17 @@ export default function Progress() {
     >
       <Grid
         container
-        spacing={6} // Increased gap between items
+        spacing={6}
         justifyContent="center"
-        direction={isMobile ? "column" : "row"} // Stack vertically on mobile
+        direction={isMobile ? "column" : "row"}
         alignItems="center"
         sx={{
           width: "100%",
-          flex: 1, // Ensures the grid takes up available height
+          flex: 1,
           textAlign: "center",
         }}
       >
         <Grid item xs={6} sm={3} lg={2}>
-          {" "}
-          {/* Added responsive width for grid items */}
           <CircularProgressWithLabel
             value={progress1}
             color="primary"
@@ -92,9 +88,9 @@ export default function Progress() {
           <Typography
             variant="body2"
             color="#ffffff"
-            style={{
+            sx={{
               marginTop: "10px",
-              fontSize: "26px",
+              fontSize: { xs: "1rem", md: "1.5rem" },
               fontFamily: "Tajawal",
             }}
           >
@@ -102,8 +98,6 @@ export default function Progress() {
           </Typography>
         </Grid>
         <Grid item xs={6} sm={3} lg={2}>
-          {" "}
-          {/* Added responsive width for grid items */}
           <CircularProgressWithLabel
             value={progress2}
             color="secondary"
@@ -112,9 +106,9 @@ export default function Progress() {
           <Typography
             variant="body2"
             color="#ffffff"
-            style={{
+            sx={{
               marginTop: "10px",
-              fontSize: "26px",
+              fontSize: { xs: "1rem", md: "1.5rem" },
               fontFamily: "Tajawal",
             }}
           >
@@ -122,8 +116,6 @@ export default function Progress() {
           </Typography>
         </Grid>
         <Grid item xs={6} sm={3} lg={2}>
-          {" "}
-          {/* Added responsive width for grid items */}
           <CircularProgressWithLabel
             value={progress3}
             sx={{ color: "#ff9800" }}
@@ -132,9 +124,9 @@ export default function Progress() {
           <Typography
             variant="body2"
             color="#ffffff"
-            style={{
+            sx={{
               marginTop: "10px",
-              fontSize: "26px",
+              fontSize: { xs: "1rem", md: "1.5rem" },
               fontFamily: "Tajawal",
             }}
           >
@@ -142,8 +134,6 @@ export default function Progress() {
           </Typography>
         </Grid>
         <Grid item xs={6} sm={3} lg={2}>
-          {" "}
-          {/* Added responsive width for grid items */}
           <CircularProgressWithLabel
             value={progress4}
             sx={{ color: "#4caf50" }}
@@ -152,9 +142,9 @@ export default function Progress() {
           <Typography
             variant="body2"
             color="#ffffff"
-            style={{
+            sx={{
               marginTop: "10px",
-              fontSize: "26px",
+              fontSize: { xs: "1rem", md: "1.5rem" },
               fontFamily: "Tajawal",
             }}
           >

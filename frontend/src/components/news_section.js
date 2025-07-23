@@ -37,28 +37,39 @@ function Newssection() {
 
   const feedbacks = [
     {
-      name: "أحمد العتيبي",
-      image: "https://via.placeholder.com/300x200",
+      name: "م / محمد الجاسم",
+      type: "image",
+      image: "https://i.ibb.co/MkFnqKvs/Whats-App-Image-2025-07-19-at-09-30-29-e5bb216a.webp",
       stars: 5,
-      text: "خدمة رائعة وسريعة جدًا! أنصح بالتعامل معهم بشدة.",
+      text: "شركة الليزر هي الافضل دايما في الشاشات 😍🤝",
     },
     {
       name: "نورة القحطاني",
-      image: "https://via.placeholder.com/300x200",
+      type: "video",
+      video: "https://pouch.jumpshare.com/preview/EyHzyFD0n5xMOB2K17wgtaoG6yLoyKdvNIx4ZF4LjK7Oq5nFIrPJGj5xS16lSNKXWM9A3w1pYno-9O8zyUIknn6ke2LCw20ZmIa0qNGL2bg",
       stars: 4,
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
     {
-      name: "سعيد الغامدي",
-      image: "https://via.placeholder.com/300x200",
-      stars: 5,
-      text: "التعامل راقٍ والخدمة احترافية جدًا.",
+      name: "نورة القحطاني",
+      type: "video",
+      video: "https://pouch.jumpshare.com/preview/U_N-0kok0QsU33lrHlj2kuZMrDlqTbnSj-8B7AzwjJNVUSDAMCNOvQLdLLk7MT6Q5_uz8zI5YAVhRDj-WHQfWFzi9YRy7meQVD1yXTYlI-U",
+      stars: 4,
+      text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
     {
-      name: "رهف الشهري",
-      image: "https://via.placeholder.com/300x200",
-      stars: 5,
-      text: "أنصح الجميع بتجربتهم، كانوا في قمة الاحترافية.",
+      name: "نورة القحطاني",
+      type: "video",
+      video: "https://pouch.jumpshare.com/preview/GPUGeZeRvP6ApPrRmd0_x--Nz_tSXMMBuLhMtW_W0EDm_ELOCw8SIU-KHofPfynj180qw6Wz63xgGFhJwl5Vt_Icsf3jI5CWqJGjDWOoqlI",
+      stars: 4,
+      text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
+    },
+    {
+      name: "نورة القحطاني",
+      type: "video",
+      video: "https://pouch.jumpshare.com/preview/NoQ9hBAAaWwpXiIH4zjCwFlHu9l7XBKXssHqanmpXNq_RvB0jjiCycEcvkpO68P-lTSKH2NF66QMNwcCRiQOLn0-bSTjtTK0TKyeJ1JKGyQ",
+      stars: 4,
+      text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
   ];
 
@@ -68,7 +79,7 @@ function Newssection() {
         backgroundColor: "#030909",
         paddingTop: "40px",
         paddingBottom: "80px",
-        marginTop:'-30px'
+        marginTop: "-30px",
       }}
     >
       <Container maxWidth="xl">
@@ -89,11 +100,47 @@ function Newssection() {
             <Box key={index} paddingX={2}>
               <Card>
                 <CardMedia
-                  component="img"
-                  height="200"
-                  image={item.image}
-                  alt={`Customer ${index + 1}`}
-                />
+                  component="div"
+                  sx={{
+                    position: "relative",
+                    paddingTop: "56.25%", // 16:9 aspect ratio
+                    overflow: "hidden",
+                    borderRadius: "4px",
+                  }}
+                >
+                  {item.type === "image" ? (
+                    <Box
+                      component="img"
+                      src={item.image}
+                      alt={`Feedback ${index + 1}`}
+                      sx={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  ) : (
+                    <Box
+                      component="video"
+                      src={item.video}
+                      controls
+                      sx={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    >
+                      متصفحك لا يدعم تشغيل الفيديو.
+                    </Box>
+                  )}
+                </CardMedia>
+
                 <CardContent>
                   <Typography
                     variant="h6"

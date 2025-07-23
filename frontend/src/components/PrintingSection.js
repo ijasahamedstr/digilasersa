@@ -201,7 +201,6 @@ const PrintingSection = () => {
                   src={item.img}
                   alt={item.title}
                   style={{
-                    height: "80vh",
                     objectFit: "cover",
                     boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                   }}
@@ -700,91 +699,90 @@ const PrintingSection = () => {
                    للشكاوي ..
                 </h2>
 
-         <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
-            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-              <Form.Label
-                style={{
-                  color: "white",
-                  width: "150px",
-                  fontSize: "20px",
-                  textAlign: "right",
-                }}
-              >
-                الاسم
-              </Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                style={{ background: "#17202a", border: "none", color: "white" }}
-              />
-            </Form.Group>
+              <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
+                  <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+                    <Form.Label
+                      style={{
+                        color: "white",
+                        width: "150px",
+                        fontSize: "20px",
+                        textAlign: "right",
+                      }}
+                    >
+                      الاسم
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      style={{ background: "#17202a", border: "none", color: "white" }}
+                    />
+                  </Form.Group>
 
-            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-              <Form.Label
-                style={{
-                  color: "white",
-                  width: "150px",
-                  fontSize: "20px",
-                  textAlign: "right",
-                }}
-              >
-                الجوال
-              </Form.Label>
-              <Form.Control
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                style={{
-                  background: "#17202a",
-                  border: "none",
-                  color: "white",
-                  textAlign: "right",
-                }}
-              />
-            </Form.Group>
+                  <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+                    <Form.Label
+                      style={{
+                        color: "white",
+                        width: "150px",
+                        fontSize: "20px",
+                        textAlign: "right",
+                      }}
+                    >
+                      الجوال
+                    </Form.Label>
+                    <Form.Control
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      style={{
+                        background: "#17202a",
+                        border: "none",
+                        color: "white",
+                        textAlign: "right",
+                      }}
+                    />
+                  </Form.Group>
 
-            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-              <Form.Label
-                style={{
-                  color: "white",
-                  width: "150px",
-                  fontSize: "20px",
-                  textAlign: "right",
-                }}
-              >
-                رسالتك
-              </Form.Label>
-              <Form.Control
-                as="textarea"
-                name="message"
-                rows={3}
-                value={formData.message}
-                onChange={handleChange}
-                style={{ background: "#17202a", border: "none", color: "white" }}
-              />
-            </Form.Group>
+                  <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
+                    <Form.Label
+                      style={{
+                        color: "white",
+                        width: "150px",
+                        fontSize: "20px",
+                        textAlign: "right",
+                      }}
+                    >
+                      رسالتك
+                    </Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      name="message"
+                      rows={3}
+                      value={formData.message}
+                      onChange={handleChange}
+                      style={{ background: "#17202a", border: "none", color: "white" }}
+                    />
+                  </Form.Group>
 
-            {/* Centered Button */}
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "15px",paddingRight:'150px' }}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                sx={{
-                  background: "#00fffc",
-                  color: "#1e272e",
-                  padding: { xs: "10px", sm: "15px" },
-                  width: "50%",
-                }}
-              >
-                ارسال
-              </Button>
-            </div>
-          </form>
-
+                  {/* Centered Button */}
+                  <div style={{ display: "flex", justifyContent: "center", marginTop: "15px",paddingRight:'150px' }}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      sx={{
+                        background: "#00fffc",
+                        color: "#1e272e",
+                        padding: { xs: "10px", sm: "15px" },
+                        width: "50%",
+                      }}
+                    >
+                      ارسال
+                    </Button>
+                  </div>
+                </form>
               </Grid>
             </Grid>
           </Container>

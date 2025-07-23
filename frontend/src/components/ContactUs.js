@@ -28,7 +28,7 @@ function ContactUs() {
     }
 
     const { name, phone, message } = formData;
-    const whatsappNumber = "966571978888"; // WhatsApp number with country code
+    const whatsappNumber = "966505868888"; // WhatsApp number with country code
     const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
     const encodedText = encodeURIComponent(text);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;

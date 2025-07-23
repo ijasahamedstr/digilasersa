@@ -8,28 +8,27 @@ import {
   CardMedia,
   CircularProgress,
 } from "@mui/material";
-import axios from "axios"; // Ensure axios is imported
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css"; // Swiper core styles
-import "swiper/css/navigation"; // Navigation styles
-import "swiper/css/pagination"; // Pagination styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 function Eventsection() {
-  const [Event, setEvent] = useState([]); // State to store event data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [Event, setEvent] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch data on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/News`,
+          `${process.env.REACT_APP_API_HOST}/News`
         );
-        setEvent(response.data); // Set the fetched events
+        setEvent(response.data);
       } catch (err) {
         console.error("Error fetching data: ", err);
-        setError("Failed to fetch data");
+        setError("فشل في جلب البيانات");
       } finally {
         setLoading(false);
       }
@@ -38,7 +37,6 @@ function Eventsection() {
     fetchData();
   }, []);
 
-  // Handle loading and error states
   if (loading) return <CircularProgress />;
   if (error) return <div>{error}</div>;
 
@@ -77,63 +75,66 @@ function Eventsection() {
         </Typography>
 
         <Swiper spaceBetween={30} slidesPerView={1} loop>
-          {/* SwiperSlide for each event */}
           {Event.map((event, index) => (
             <SwiperSlide key={index}>
               <Card
                 sx={{
                   display: "flex",
-                  flexDirection: { xs: "column", sm: "row" }, // Stack vertically on small screens
+                  flexDirection: { xs: "column", sm: "row" },
                   borderRadius: "8px",
                   boxShadow: 3,
                   backgroundColor: "transparent",
-                  border: "none", // Explicitly set border to none
-                  outline: "none", // Ensure outline is removed
-                  width: "100%", // Full width of the container
-                  maxWidth: "100%", // Allow cards to scale with container width
-                  margin: "0 auto", // Center align the card horizontally
+                  border: "none",
+                  outline: "none",
+                  width: "100%",
+                  maxWidth: "100%",
+                  margin: "0 auto",
                 }}
               >
-                {/* Image part */}
                 <CardMedia
                   component="img"
                   sx={{
-                    width: { xs: "100%", sm: "50%" }, // Full width on small screens
-                    height: { xs: 200, sm: "100%" }, // Fixed height for images on small screens, full height on large
+                    width: { xs: "100%", sm: "50%" },
+                    height: { xs: 200, sm: "100%" },
                     objectFit: "cover",
-                    border: "none", // Explicitly set border to none
-                    borderRadius: "8px", // Apply rounded corners to the image
+                    border: "none",
+                    borderRadius: "8px",
                   }}
-                  src={`${process.env.REACT_APP_API_HOST}/uploads/News/${event.newsimage}`} // Dynamic image URL
-                  alt={event.title} // Dynamic alt text
+                  src={`${process.env.REACT_APP_API_HOST}/uploads/News/${event.newsimage}`}
+                  alt={event.title}
                 />
-                {/* Text part */}
                 <Box
                   sx={{
                     width: { xs: "100%", sm: "50%" },
-                    textAlign: "right", // Align text to the right for larger screens
+                    textAlign: "right",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
                     paddingLeft: 2,
                     paddingRight: 2,
-                    paddingTop: { xs: 2, sm: 0 }, // Padding on top for small screens
+                    paddingTop: { xs: 2, sm: 0 },
                   }}
                 >
                   <CardContent sx={{ height: "100%" }}>
                     <Typography
                       variant="h3"
                       gutterBottom
-                      sx={{ fontFamily: "Tajawal" }}
+                      sx={{
+                        fontFamily: "Tajawal",
+                        fontSize: { xs: "1.5rem", md: "3rem" },
+                      }}
                     >
-                      {event.newsname} {/* Dynamic title */}
+                      {event.newsname}
                     </Typography>
                     <Typography
                       variant="body1"
                       paragraph
-                      sx={{ fontSize: "20px", fontFamily: "Tajawal" }}
+                      sx={{
+                        fontSize: { xs: "1rem", md: "1.25rem" },
+                        fontFamily: "Tajawal",
+                      }}
                     >
-                      {event.newsdec} {/* Dynamic description */}
+                      {event.newsdec}
                     </Typography>
                   </CardContent>
                 </Box>

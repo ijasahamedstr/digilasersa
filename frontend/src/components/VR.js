@@ -205,7 +205,6 @@ const VRSection = () => {
                 src={item.img}
                 alt={item.title}
                 style={{
-                  height: "80vh",
                   objectFit: "cover",
                   boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                 }}
@@ -660,300 +659,189 @@ const VRSection = () => {
         </Container>
       </section>
       <section
-        style={{
-          backgroundColor: "#eaecee", // Fallback background color
-          backgroundImage: 'url("https://i.ibb.co/4MkKhZZ/image.webp")', // Replace with your image URL
-          backgroundSize: "cover", // Ensure the image covers the entire section
-          backgroundPosition: "center", // Ensure the image is centered
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "70vh", // Set height to 70% of the viewport height
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          "@media (max-width: 768px)": {
-            height: "auto", // Adjust the height for medium screens
-            paddingTop: "10px",
-            paddingBottom: "10px",
-          },
-          "@media (max-width: 480px)": {
-            height: "auto", // Adjust the height for smaller screens
-          },
-          marginTop: "-30px",
+      style={{
+        backgroundColor: "#eaecee",
+        backgroundImage: 'url("https://i.ibb.co/54vjNym/imageh-1.webp")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        width: "100%",
+        margin: "0 auto",
+        marginBottom: "30px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-end",
+        height: "90vh",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+        marginTop: "-30px",
+        position: "relative",
+      }}
+    >
+      <Container
+        maxWidth="xl"
+        sx={{
+          px: { xs: 2, sm: 3, md: 5 },
+          textAlign: "center",
+          position: "relative",
         }}
       >
-        {/* Swiper Section */}
-        <Container
-          maxWidth="xl"
+        <Box
           sx={{
-            marginTop: "40px",
-            marginBottom: "40px",
-            backgroundSize: "cover", // Makes sure the image covers the entire container
-            backgroundPosition: "center", // Centers the background image
-            backgroundRepeat: "no-repeat", // Ensures the image doesn't repeat
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            px: { xs: 2, sm: 3 },
+            mb: "100px",
           }}
         >
-          <Swiper
-            spaceBetween={20}
-            slidesPerView="auto"
-            loop={true}
-            breakpoints={{
-              640: { slidesPerView: 1, spaceBetween: 10 },
-              768: { slidesPerView: 2, spaceBetween: 20 },
-              1024: { slidesPerView: 4, spaceBetween: 30 },
+          <Box
+            sx={{
+              backgroundColor: "rgba(0, 0, 0, 0.75)", // Semi-transparent background
+              border: "2px solid #f05322",
+              borderRadius: "8px",
+              px: 3,
+              py: 2,
+              display: "inline-block",
             }}
           >
-            {products.map((product, index) => (
-              <SwiperSlide key={index}>
-                <Link
-                  to={`/service/${index + 1}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Card
-                    sx={{
-                      maxWidth: 345,
-                      boxShadow: 3,
-                      border: "2px solid #f05322",
-                      "&:hover": { boxShadow: 6 },
-                      marginBottom: "20px",
-                      position: "relative", // Required for absolute positioning of the text
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      alt={`Service ${index}`}
-                      image={product.imageUrls}
-                      sx={{
-                        height: 300,
-                        objectFit: "cover", // Ensures image covers the area without stretching
-                      }}
-                    />
-
-                    {/* Text overlay on top of the image */}
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        position: "absolute",
-                        bottom: "20px",
-                        left: "50%",
-                        transform: "translateX(-50%)", // This centers the text horizontally
-                        color: "white",
-                        // backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional: Adds a background to the text for better visibility
-                        backgroundColor: "#000000",
-                        padding: "10px",
-                        borderRadius: "4px",
-                        textAlign: "center", // Ensures the text inside is centered
-                        width: "100%",
-                        border: "2px solid #f05322",
-                      }}
-                    >
-                      {product.cardTitles}
-                    </Typography>
-                  </Card>
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </Container>
-      </section>
-
-      <section
-        style={{
-          backgroundColor: "#eaecee", // Fallback background color
-          backgroundImage: 'url("https://i.ibb.co/54vjNym/imageh-1.webp")', // Replace with your image URL
-          backgroundSize: "cover", // Ensure the image covers the entire section
-          backgroundPosition: "center", // Ensure the image is centered
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-end", // Align text at the bottom of the section
-          height: "90vh", // Set height to 100% of the viewport height
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          marginTop: "-30px",
-          position: "relative", // Position container for any other potential positioning (like button)
-          "@media (max-width: 1024px)": {
-            height: "auto", // Adjust height for medium screens
-            paddingTop: "20px",
-            paddingBottom: "20px",
-            backgroundImage: 'url("https://i.ibb.co/54vjNym/imageh-1.webp")', // Optionally change background for medium screens
-          },
-          "@media (max-width: 768px)": {
-            height: "auto", // Adjust height for tablets and smaller screens
-            backgroundSize: "contain", // Ensure the background image scales well on small screens
-            backgroundPosition: "center", // Maintain the image center for better fit
-          },
-          "@media (max-width: 480px)": {
-            height: "auto", // Adjust height for mobile screens
-            backgroundSize: "contain", // Adjust image size to fit mobile screens
-            backgroundPosition: "center",
-          },
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 }, // Responsive padding for different screen sizes
-            textAlign: "center",
-            position: "relative", // Container for positioning
-            "@media (max-width: 768px)": {
-              paddingX: "2rem", // Adjust padding for medium screens
-            },
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center", // Center text horizontally
-              alignItems: "center", // Center text vertically (within the div)
-              width: "100%",
-              height: "100%", // Take full height of the section
-              textAlign: "center", // Align text inside the div to the center
-              padding: "0 20px", // Add padding to avoid text sticking to the edges
-              marginBottom: "100px", // Extra bottom margin for spacing from the button or footer
-              "@media (max-width: 768px)": {
-                padding: "0 10px", // Adjust padding for smaller screens
-              },
-            }}
-          >
-            <h2
-              style={{
+            <Typography
+              variant="h4"
+              component="h2"
+              sx={{
                 color: "#fdfefe",
                 fontFamily: "Tajawal",
-                padding: "10px 20px", // Add padding inside the box
-                backgroundColor: "#333", // Box background color
-                border: "2px solid #f05322", // Border color and thickness
-                borderRadius: "8px", // Rounded corners for the box
-                display: "inline-block", // Ensure the box only wraps the text
-                lineHeight: "1.4", // Ensure line spacing is proper
-                "@media (max-width: 768px)": {
-                  fontSize: "1.5rem", // Font size for medium screens
-                },
-                "@media (max-width: 600px)": {
-                  fontSize: "1.3rem", // Font size for smaller screens
-                },
-                "@media (max-width: 480px)": {
-                  fontSize: "1.1rem", // Further reduction for very small screens (mobile devices)
-                },
-                "@media (max-width: 400px)": {
-                  fontSize: "1rem", // Smaller font size for very small mobile screens
+                lineHeight: 1.6,
+                fontSize: {
+                  xs: "1rem",
+                  sm: "1.3rem",
+                  md: "1.5rem",
+                  lg: "1.8rem",
+                  xl: "2rem",
                 },
               }}
             >
               نبني أفكارك.. .. ونجسد أحلامك ... لنشيّد بها واقعًا خلابًا ومُبهر.
-            </h2>
-          </div>
-        </Container>
-      </section>
-      <section
+            </Typography>
+          </Box>
+        </Box>
+      </Container>
+    </section>
+    <section
+      style={{
+        backgroundColor: "white",
+        backgroundImage: 'url("https://i.ibb.co/zmVWw4Y/image.png")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        width: "100%",
+        margin: "0 auto",
+        marginBottom: "30px",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+        marginTop: "-30px",
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {/* White overlay */}
+      <div
         style={{
-          backgroundColor: "#eaecee",
-          backgroundImage: 'url("https://i.ibb.co/zmVWw4Y/image.png")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          position: "absolute",
+          top: 0,
+          left: 0,
           width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          marginTop: "-30px",
+          height: "100%",
+          backgroundColor: "rgba(255, 255, 255, 0.95)",
+          zIndex: 0,
         }}
-      >
-        <Container
-          maxWidth="xl"
-          style={{ marginBottom: "60px", marginTop: "60px" }}
-        >
-          <div
-            style={{
+      ></div>
+
+      {/* Main Content */}
+      <Box sx={{ position: "relative", zIndex: 1, width: "100%" }}>
+        <Container maxWidth="xl" sx={{ my: { xs: 4, md: 8 } }}>
+          {/* Heading */}
+          <Box
+            sx={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              width: "100%",
-              height: "100%",
               textAlign: "center",
-              padding: "0 20px",
+              px: 2,
+              mb: 4,
             }}
           >
-            <h2
-              style={{
-                color: "#fdfefe",
-                marginBottom: "20px",
+            <Typography
+              variant="h4"
+              sx={{
                 fontFamily: "Tajawal",
-                padding: "10px 20px",
+                color: "#fdfefe",
                 backgroundColor: "#333",
                 border: "2px solid #f05322",
                 borderRadius: "8px",
-                fontSize: window.innerWidth <= 768 ? "28px" : "40px",
+                px: 3,
+                py: 1,
+                fontSize: { xs: "28px", md: "40px" },
               }}
             >
               استشارات مجانية
-            </h2>
-          </div>
+            </Typography>
+          </Box>
 
+          {/* Carousel */}
           <Slider
-            {...{
-              slidesToShow: 5, // Show 5 images per slide
-              slidesToScroll: 1, // Scroll 1 image at a time
-              infinite: true, // Loop infinitely
-              centerMode: false, // Disable center mode for better image alignment
-              responsive: [
-                {
-                  breakpoint: 1024,
-                  settings: {
-                    slidesToShow: 3, // Show 3 images on medium screens
-                  },
-                },
-                {
-                  breakpoint: 768,
-                  settings: {
-                    slidesToShow: 2, // Show 2 images on smaller screens
-                  },
-                },
-                {
-                  breakpoint: 480,
-                  settings: {
-                    slidesToShow: 1, // Show 1 image on very small screens
-                  },
-                },
-              ],
-            }}
+            slidesToShow={5}
+            slidesToScroll={1}
+            infinite
+            autoplay
+            autoplaySpeed={2500}
+            pauseOnHover={false}
+            centerMode={false}
+            responsive={[
+              { breakpoint: 1024, settings: { slidesToShow: 3 } },
+              { breakpoint: 768, settings: { slidesToShow: 2 } },
+              { breakpoint: 480, settings: { slidesToShow: 1 } },
+            ]}
           >
             {images.map((image, index) => (
-              <div
+              <Box
                 key={index}
-                style={{
-                  paddingTop: "30px",
+                sx={{
+                  pt: 3,
                   display: "flex",
                   justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
-                <CardMedia
-                  component="img"
-                  image={image.src}
+                <Box
                   sx={{
-                    width: "200px", // Set a fixed smaller width
-                    height: "200px", // Set a fixed smaller height
-                    objectFit: "contain", // Ensure image maintains aspect ratio and doesn't stretch
-                    transition: "transform 0.3s ease", // Smooth transition for zoom
-                    "&:hover": {
-                      transform: "scale(1.1)", // Zoom effect on hover
-                    },
+                    width: 200,
+                    height: 200,
+                    borderRadius: 2,
+                    overflow: "hidden",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
-                  className="zoom-image"
-                />
-              </div>
+                >
+                  <CardMedia
+                    component="img"
+                    image={image.src}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                    }}
+                  />
+                </Box>
+              </Box>
             ))}
           </Slider>
         </Container>
-      </section>
+      </Box>
+    </section>
 
       <section
         style={{
@@ -1003,7 +891,7 @@ const VRSection = () => {
             
               <Grid container spacing={2} sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}>
                 {[
-                  { label: "مدير قسم الميديا", value: "9999 065 057" },{ label: "مدير فرع الشرقية", value: "9999 064 057" },{ label: "مدير تسويق الميديا", value: "8888 093 057" }
+                  { label: "مدير قسم الميديا", value: "9999 065 057" },{ label: "مدير فرع الشرقية", value: "9999 064 057" }
                 ].map(({ label, value }) => (
                   <React.Fragment key={label}>
                     <Grid item xs={4}>
@@ -1064,7 +952,7 @@ const VRSection = () => {
                  للشكاوي ..
               </h2>
 
-                       <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
+            <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
             <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
               <Form.Label
                 style={{

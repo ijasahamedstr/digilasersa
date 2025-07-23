@@ -61,6 +61,7 @@ function AboutSection() {
               pr: 2,
               mb: 4,
               backgroundColor: "#0f3341",
+              marginBottom:'60px'
             }}
           >
             <Typography
@@ -98,8 +99,7 @@ function AboutSection() {
               mt: 3,
             }}
           >
-            تعتبر من أعرق الشركات وخبرتنا تزيد عن 32 عام ونقدم <br />
-            أفضل حلول الدعاية والإعلان منذ عام ١٩٩٢ م
+            تأسست شركة الليزر عام 1992 م والتى تعتبر من أ‘رق شركات الدعاية والإعلان والتى تزيد عن 32 عام من الثقة بالسوق السعودي
           </Typography>
 
           <Typography
@@ -121,10 +121,14 @@ function AboutSection() {
               textAlign: "right",
               paddingRight: "20px",
               marginTop: "20px",
+              marginBottom: "20px",
               direction: "rtl",
               fontSize: "20px",
               color: "#ffffff",
-              listStyleType: "disc",
+              listStyleType: "square",
+              "& li::marker": {
+                color: "rgb(6, 247, 243)",
+              },
             }}
           >
             <li>توريد وتركيب الشاشات الرقمية</li>
@@ -138,13 +142,14 @@ function AboutSection() {
             sx={{
               color: "#ffffff",
               textAlign: "right",
-              pr: { xs: 1, sm: 3 },
+              pr: "80px", // تم تعيين البادينج الأيمن إلى 80px
               fontSize: { xs: "20px", sm: "25px" },
               mt: 3,
             }}
           >
             مما أكسبتنا بأن نكون من
           </Typography>
+
 
           <Typography
             variant="body1"
@@ -171,7 +176,7 @@ function AboutSection() {
         >
           <Box
             component="img"
-            src="https://i.ibb.co/fdkx14Lv/321.png"
+            src="https://i.ibb.co/3mNGQWmG/32-1.webp"
             alt="شعار من نحن"
             sx={{
               maxWidth: "300px",

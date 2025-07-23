@@ -35,9 +35,9 @@ const products = [
     },
     {
       id: 3,
-      name: "منصة صيانة الشاشات",
-      imageUrl: "https://i.ibb.co/tTbcwLMn/Screen-services-xxxx.jpg",
-      iconUrl: "https://i.ibb.co/r2Lj354m/Screen-serv-xx.webp",
+      name: "قسم الفن التشكيلي",
+      imageUrl: "https://i.ibb.co/NpYW2Jx/8.webp",
+      iconUrl: "https://i.ibb.co/LP17MwP/image-6.webp",
       link: "/art-department",
     },
     {

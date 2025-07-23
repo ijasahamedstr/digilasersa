@@ -76,7 +76,7 @@ const GiftsSection = () => {
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-    const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -199,7 +199,6 @@ const GiftsSection = () => {
                   src={item.img}
                   alt={item.title}
                   style={{
-                    height: "80vh",
                     objectFit: "cover",
                     boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                   }}

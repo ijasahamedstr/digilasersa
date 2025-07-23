@@ -1,33 +1,28 @@
-import React from "react";
+import { Box } from "@mui/material";
+import Container from "@mui/material/Container";
 
-const sectionStyles = {
-  backgroundColor: "#f2f3f4",
-  backgroundImage: "url(https://i.ibb.co/QZkXZb4/image.webp)",
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-  width: "100%",
-  margin: "0 auto",
-  marginBottom: "30px",
-  display: "flex",
-  justifyContent: "flex-end",
-  alignItems: "center",
-  minHeight: "80vh",
-  paddingTop: "20px",
-  paddingBottom: "20px",
-  marginTop: "-30px",
-  position: "relative",
-  flexDirection: "column",
-  textAlign: "right",
-  "@media (max-width: 600px)": {
-    minHeight: "60vh",
-    marginTop: "0",
-    padding: "10px",
-  },
-  fontFamily: "Tajawal",
+const Imagesection = () => {
+  return (
+    <Container
+      maxWidth={false}
+      sx={{ padding: 0 }}
+      style={{ paddingLeft: "0px", paddingRight: "0px" }}
+    >
+      <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+        <img
+          className="d-block w-100"
+          src="https://i.ibb.co/QZkXZb4/image.webp"
+          alt="main-slide"
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            height: "auto",
+            boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+          }}
+        />
+      </Box>
+    </Container>
+  );
 };
-
-function Imagesection() {
-  return <section style={sectionStyles}></section>;
-}
 
 export default Imagesection;

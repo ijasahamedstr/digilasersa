@@ -407,7 +407,6 @@ const ArabicCalligraphy = () => {
                 src={item.img}
                 alt={`Slide ${item.id}`}
                 style={{
-                  height: "80vh",
                   objectFit: "cover",
                   boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)"
                 }}
