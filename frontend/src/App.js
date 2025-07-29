@@ -23,7 +23,6 @@ import ElectronicScreens from "./components/screen/ElectronicScreens";
 import InteractiveScreens from "./components/screen/InteractiveScreens";
 import MeterScreens from "./components/screen/Meterscreens";
 import CountingScreen from "./components/screen/CountingScreen";
-import ArabicCalligraphy from "./components/ArabicCalligraphy";
 import VRVideos from "./components/Media/VRVideos";
 import Motiongraphics from "./components/Media/Motiongraphics";
 import AIVideos from "./components/Media/AIVideos";
@@ -57,12 +56,8 @@ function App() {
           <Route path="/قسم السوشيال ميديا" element={<SocialSection />} />
           <Route path="/Web-Media-photo" element={<WebMediaphoto />} />
           <Route path="/Web-Media-Video" element={<WebMediaVideo />} />
-          <Route path="/screens-department" element={<ScreensSection />} />
-          <Route path="/printing-department" element={<PrintingSection />} />
-          <Route path="/gift-department" element={<GiftsSection />} />
           <Route path="/قسم الإعلام والميديا" element={<VRSection />} />
           <Route path="/media-department" element={<VRSection />} />
-          <Route path="/social-media-department" element={<SocialSection />} />
           <Route path="/شركائنا" element={<Undercontration />} />
           <Route path="/Outdoor-LED" element={<Outdoorled />} />
           <Route path="/Indoor-Screen" element={<IndoorScreen />} />
@@ -71,7 +66,7 @@ function App() {
           <Route path="/InteractiveScreens" element={<InteractiveScreens />} />
           <Route path="/Meterscreens" element={<MeterScreens />} />
           <Route path="/CountingScreen" element={<CountingScreen />} />
-          <Route path="/قسم الصوتيات" element={<ArabicCalligraphy />} />
+          <Route path="/قسم الصوتيات" element={<ComingSoonPage />} />
           <Route path="/vr-videos" element={<VRVideos />} />
           <Route path="/Motion-graphics" element={<Motiongraphics />} />
           <Route path="/AIVideos" element={<AIVideos />} />

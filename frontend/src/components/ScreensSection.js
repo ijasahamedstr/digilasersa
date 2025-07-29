@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Container, Grid, Typography, Box, Button, Card, CardContent, CardMedia } from "@mui/material";
+import { Container, Grid, Typography, Box, Button, Card } from "@mui/material";
 
 
 const carouselItems = [
@@ -65,7 +65,7 @@ const ScreensSection = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowModal(false), 5000);
+    const timer = setTimeout(() => setShowModal(false), 115000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -85,12 +85,13 @@ const ScreensSection = () => {
             alignItems: "center",
             backgroundColor: "black",
             position: "relative",
+            marginTop:'100px'
           }}
         >
           <img
             src="https://i.ibb.co/JRM6pZqR/11488254-copy.webp"
             alt="Welcome"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            style={{ width: "100%", height: "100%", objectFit: "fit" }}
           />
           <Button
             onClick={() => setShowModal(false)}

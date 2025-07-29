@@ -24,14 +24,14 @@ const products = [
       name: "قسم الهدايا الدعائية",
       imageUrl: "https://i.ibb.co/JRj0pBd/Background-copy.webp",
       iconUrl: "https://i.ibb.co/HdgVtF5/image.webp",
-      link: "/gift-department",
+      link: "/قسم الهدايا الدعائية",
     },
     {
       id: 2,
       name: "قسم الطباعة",
       imageUrl: "https://i.ibb.co/27jQ6C2/Layer-34.webp",
       iconUrl: "https://i.ibb.co/dmvyMMn/image-1.webp",
-      link: "/printing-department",
+      link: "/قسم الطباعة",
     },
     {
       id: 3,
@@ -45,7 +45,7 @@ const products = [
       name: "قسم الشاشات",
       imageUrl: "https://i.ibb.co/K7RGQ4C/Layer-32.webp",
       iconUrl: "https://i.ibb.co/qL6f4q7j/Screen-xx.webp",
-      link: "/screens-department",
+      link: "/قسم الشاشات",
     },
     {
       id: 5,
@@ -59,21 +59,21 @@ const products = [
       name: "قسم البرمجيات",
       imageUrl: "https://i.ibb.co/d72GNR5/Layer-39.webp",
       iconUrl: "https://i.ibb.co/DDCFSm4/image-3.webp",
-      link: "/software-department",
+      link: "/قسم البرمجيات",
     },
     {
       id: 7,
       name: "قسم السوشيال ميديا",
       imageUrl: "https://i.ibb.co/NN7tRFD/Background-copy-3.webp",
       iconUrl: "https://i.ibb.co/K5khVnQ/image-4.webp",
-      link: "/social-media-department",
+      link: "/قسم السوشيال ميديا",
     },
     {
       id: 8,
       name: "قسم الإعلام والميديا",
       imageUrl: "https://i.ibb.co/QvQvkKQ/Background-copy-2.webp",
       iconUrl: "https://i.ibb.co/20xv3tc3/Video-xx.webp",
-      link: "/media-department",
+      link: "/قسم الإعلام والميديا",
     },
   ];
 
