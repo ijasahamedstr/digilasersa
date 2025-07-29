@@ -9,7 +9,7 @@ import {
 import Slider from "react-slick";
 import axios from "axios";
 
-// Settings for first line (Right to Left)
+// Slider settings for RTL and LTR rows
 const sliderSettingsRTL = {
   infinite: true,
   speed: 500,
@@ -19,52 +19,17 @@ const sliderSettingsRTL = {
   slidesToScroll: 1,
   rtl: true,
   responsive: [
-    {
-      breakpoint: 1280,
-      settings: { slidesToShow: 5 },
-    },
-    {
-      breakpoint: 960,
-      settings: { slidesToShow: 4 },
-    },
-    {
-      breakpoint: 600,
-      settings: { slidesToShow: 3 },
-    },
-    {
-      breakpoint: 480,
-      settings: { slidesToShow: 2 },
-    },
+    { breakpoint: 1280, settings: { slidesToShow: 7 } },
+    { breakpoint: 960, settings: { slidesToShow: 6 } },
+    { breakpoint: 600, settings: { slidesToShow: 5 } },
+    { breakpoint: 480, settings: { slidesToShow: 4 } },
+    { breakpoint: 360, settings: { slidesToShow: 3 } },
   ],
 };
 
-// Settings for second line (Left to Right)
 const sliderSettingsLTR = {
-  infinite: true,
-  speed: 500,
-  autoplay: true,
-  autoplaySpeed: 3000,
-  slidesToShow: 6,
-  slidesToScroll: 1,
+  ...sliderSettingsRTL,
   rtl: false,
-  responsive: [
-    {
-      breakpoint: 1280,
-      settings: { slidesToShow: 5 },
-    },
-    {
-      breakpoint: 960,
-      settings: { slidesToShow: 4 },
-    },
-    {
-      breakpoint: 600,
-      settings: { slidesToShow: 3 },
-    },
-    {
-      breakpoint: 480,
-      settings: { slidesToShow: 2 },
-    },
-  ],
 };
 
 const Partner = () => {
@@ -90,10 +55,14 @@ const Partner = () => {
     fetchData();
   }, []);
 
-  if (loading) return <CircularProgress />;
-  if (error) return <div>{error}</div>;
+  if (loading)
+    return (
+      <Box display="flex" justifyContent="center" py={8}>
+        <CircularProgress />
+      </Box>
+    );
+  if (error) return <Box textAlign="center" py={4}>{error}</Box>;
 
-  // Split partners into two rows
   const halfwayIndex = Math.ceil(partners.length / 2);
   const firstRowPartners = partners.slice(0, halfwayIndex);
   const secondRowPartners = partners.slice(halfwayIndex);
@@ -106,94 +75,104 @@ const Partner = () => {
         gutterBottom
         sx={{
           fontFamily: "Noto Kufi Arabic, sans-serif",
-          fontSize: "2rem",
+          fontSize: { xs: "1.5rem", sm: "2rem" },
           mb: 4,
         }}
       >
         شركاء النجاح
       </Typography>
 
-      {/* Row 1 - Right to Left */}
-      <Slider {...sliderSettingsRTL}>
-        {firstRowPartners.map((partner, index) => (
-          <Box
-            key={`rtl-${index}`}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            py={2}
-          >
+      {/* Row 1 - RTL */}
+      <Box px={{ xs: 1, sm: 2, md: 0 }}>
+        <Slider {...sliderSettingsRTL}>
+          {firstRowPartners.map((partner, index) => (
             <Box
-              sx={{
-                width: "120px",
-                height: "120px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                overflow: "hidden",
-                borderRadius: "12px",
-                backgroundColor: "#fff",
-                boxShadow: "0 0 10px rgba(0,0,0,0.05)",
-                transition: "transform 0.3s ease-in-out",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                },
-              }}
+              key={`rtl-${index}`}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              py={2}
             >
-              <CardMedia
-                component="img"
-                image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
+              <Box
                 sx={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  objectFit: "contain",
+                  width: { xs: 80, sm: 100, md: 120 },
+                  height: { xs: 80, sm: 100, md: 120 },
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  overflow: "hidden",
+                  borderRadius: "12px",
+                  backgroundColor: "#fff",
+                  boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+                  transition: "transform 0.3s ease-in-out",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                  },
                 }}
-              />
+              >
+                <CardMedia
+                  component="img"
+                  image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
+                  sx={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
+                    margin: "auto",
+                  }}
+                />
+              </Box>
             </Box>
-          </Box>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      </Box>
 
-      {/* Row 2 - Left to Right */}
-      <Slider {...sliderSettingsLTR}>
-        {secondRowPartners.map((partner, index) => (
-          <Box
-            key={`ltr-${index}`}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            py={2}
-          >
+      {/* Row 2 - LTR */}
+      <Box px={{ xs: 1, sm: 2, md: 0 }} mt={4}>
+        <Slider {...sliderSettingsLTR}>
+          {secondRowPartners.map((partner, index) => (
             <Box
-              sx={{
-                width: "120px",
-                height: "120px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                overflow: "hidden",
-                borderRadius: "12px",
-                backgroundColor: "#fff",
-                boxShadow: "0 0 10px rgba(0,0,0,0.05)",
-                transition: "transform 0.3s ease-in-out",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                },
-              }}
+              key={`ltr-${index}`}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              py={2}
             >
-              <CardMedia
-                component="img"
-                image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
+              <Box
                 sx={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  objectFit: "contain",
+                  width: { xs: 80, sm: 100, md: 120 },
+                  height: { xs: 80, sm: 100, md: 120 },
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  overflow: "hidden",
+                  borderRadius: "12px",
+                  backgroundColor: "#fff",
+                  boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+                  transition: "transform 0.3s ease-in-out",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                  },
                 }}
-              />
+              >
+                <CardMedia
+                  component="img"
+                  image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
+                  sx={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
+                    margin: "auto",
+                  }}
+                />
+              </Box>
             </Box>
-          </Box>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      </Box>
     </Container>
   );
 };

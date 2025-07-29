@@ -11,6 +11,7 @@ function AboutSection() {
           sm: "url(https://i.ibb.co/QFqF2g1B/image.webp)",
         },
         backgroundSize: "cover",
+        backgroundPosition: "center", // ✅ Center background image
         backgroundRepeat: "no-repeat",
         width: "100%",
         margin: "0 auto",
@@ -61,7 +62,7 @@ function AboutSection() {
               pr: 2,
               mb: 4,
               backgroundColor: "#0f3341",
-              marginBottom:'60px'
+              marginBottom: "60px",
             }}
           >
             <Typography
@@ -99,7 +100,7 @@ function AboutSection() {
               mt: 3,
             }}
           >
-            تأسست شركة الليزر عام 1992 م والتى تعتبر من أ‘رق شركات الدعاية والإعلان والتى تزيد عن 32 عام من الثقة بالسوق السعودي
+            تأسست شركة الليزر عام 1992 م والتى تعتبر من أعرق شركات الدعاية والإعلان والتى تزيد عن 32 عام من الثقة بالسوق السعودي
           </Typography>
 
           <Typography
@@ -123,7 +124,7 @@ function AboutSection() {
               marginTop: "20px",
               marginBottom: "20px",
               direction: "rtl",
-              fontSize: "20px",
+              fontSize: { xs: "18px", sm: "20px" },
               color: "#ffffff",
               listStyleType: "square",
               "& li::marker": {
@@ -142,14 +143,13 @@ function AboutSection() {
             sx={{
               color: "#ffffff",
               textAlign: "right",
-              pr: "80px", // تم تعيين البادينج الأيمن إلى 80px
+              pr: "80px",
               fontSize: { xs: "20px", sm: "25px" },
               mt: 3,
             }}
           >
             مما أكسبتنا بأن نكون من
           </Typography>
-
 
           <Typography
             variant="body1"
@@ -178,12 +178,13 @@ function AboutSection() {
             component="img"
             src="https://i.ibb.co/3mNGQWmG/32-1.webp"
             alt="شعار من نحن"
+            loading="lazy"
             sx={{
               maxWidth: "300px",
-              paddingTop:'20px',
+              paddingTop: "20px",
               width: { xs: "80%", sm: "60%", md: "50%" },
               height: "auto",
-              mb: { xs: "-100px", sm: "-200px", md: "-300px" },
+              mb: { xs: "-60px", sm: "-150px", md: "-250px" },
             }}
           />
         </Box>

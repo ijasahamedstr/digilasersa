@@ -12,28 +12,20 @@ function VisionandMission() {
         backgroundRepeat: "no-repeat",
         width: "100%",
         margin: "0 auto",
-        marginBottom: "0px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "80vh",
+        minHeight: { xs: "60vh", sm: "80vh" },
         paddingTop: "20px",
         paddingBottom: "20px",
-        position: "relative",
         textAlign: "right",
-        "@media (max-width: 600px)": {
-          minHeight: "60vh",
-          marginTop: "0",
-          padding: "10px",
-          textAlign: "center",
-        },
-        marginTop: "-30px",
+        marginTop: { xs: "-31px", sm: "-30px" },
+        paddingX: { xs: "10px", sm: 0 },
       }}
     >
       <Container
         maxWidth="xl"
         sx={{
-          paddingX: { xs: 2, sm: 3, md: 5 },
           textAlign: "center",
           marginTop: "30px",
           marginBottom: "30px",
@@ -41,33 +33,24 @@ function VisionandMission() {
           justifyContent: "space-between",
           gap: "20px",
           flexWrap: "wrap",
-          "@media (max-width: 600px)": {
-            flexDirection: "column",
-            gap: "15px",
-          },
+          flexDirection: { xs: "column", sm: "row" },
         }}
       >
+        {/* Vision */}
         <Card
           sx={{
             background: "rgba(0, 0, 0, 0.7)",
             borderRadius: "8px",
-            width: "35%",
+            width: { xs: "100%", sm: "32%" },
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
             textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            "@media (max-width: 600px)": {
-              width: "100%",
-              height: "auto",
-            },
           }}
         >
           <CardContent>
             <Typography
               variant="h4"
               sx={{
-                fontSize: "2.5rem",
+                fontSize: "2rem",
                 color: "#0ff5ec",
                 fontFamily: "Tajawal",
                 fontWeight: "500",
@@ -77,7 +60,7 @@ function VisionandMission() {
             </Typography>
             <Typography
               sx={{
-                fontSize: { xs: "1rem", md: "1.5rem" },
+                fontSize: { xs: "1rem", md: "1.4rem" },
                 marginTop: "15px",
                 color: "white",
                 fontFamily: "Tajawal",
@@ -89,27 +72,21 @@ function VisionandMission() {
           </CardContent>
         </Card>
 
+        {/* Goal */}
         <Card
           sx={{
             background: "rgba(0, 0, 0, 0.7)",
             borderRadius: "8px",
-            width: "35%",
+            width: { xs: "100%", sm: "32%" },
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
             textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            "@media (max-width: 600px)": {
-              width: "100%",
-              height: "auto",
-            },
           }}
         >
           <CardContent>
             <Typography
               variant="h4"
               sx={{
-                fontSize: "2.5rem",
+                fontSize: "2rem",
                 color: "#0ff5ec",
                 fontFamily: "Tajawal",
                 fontWeight: "500",
@@ -119,7 +96,7 @@ function VisionandMission() {
             </Typography>
             <Typography
               sx={{
-                fontSize: { xs: "1rem", md: "1.5rem" },
+                fontSize: { xs: "1rem", md: "1.4rem" },
                 marginTop: "15px",
                 color: "white",
                 fontFamily: "Tajawal",
@@ -131,7 +108,7 @@ function VisionandMission() {
           </CardContent>
         </Card>
 
-        {/* Centered Card for رسالتنا */}
+        {/* Mission */}
         <Box
           sx={{
             width: "100%",
@@ -145,23 +122,16 @@ function VisionandMission() {
             sx={{
               background: "rgba(0, 0, 0, 0.7)",
               borderRadius: "8px",
-              width: "35%",
+              width: { xs: "100%", sm: "50%", md: "40%" },
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
               textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              "@media (max-width: 600px)": {
-                width: "100%",
-                height: "auto",
-              },
             }}
           >
             <CardContent>
               <Typography
                 variant="h4"
                 sx={{
-                  fontSize: "2.5rem",
+                  fontSize: "2rem",
                   color: "#0ff5ec",
                   fontFamily: "Tajawal",
                   fontWeight: "500",
@@ -171,7 +141,7 @@ function VisionandMission() {
               </Typography>
               <Typography
                 sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
+                  fontSize: { xs: "1rem", md: "1.4rem" },
                   marginTop: "15px",
                   color: "white",
                   fontFamily: "Tajawal",

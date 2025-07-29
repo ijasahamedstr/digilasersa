@@ -22,15 +22,11 @@ function Newssection() {
     responsive: [
       {
         breakpoint: 960,
-        settings: {
-          slidesToShow: 2,
-        },
+        settings: { slidesToShow: 2 },
       },
       {
         breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-        },
+        settings: { slidesToShow: 1 },
       },
     ],
   };
@@ -46,28 +42,28 @@ function Newssection() {
     {
       name: "نورة القحطاني",
       type: "video",
-      video: "https://pouch.jumpshare.com/preview/EyHzyFD0n5xMOB2K17wgtaoG6yLoyKdvNIx4ZF4LjK7Oq5nFIrPJGj5xS16lSNKXWM9A3w1pYno-9O8zyUIknn6ke2LCw20ZmIa0qNGL2bg",
+      video: "https://pouch.jumpshare.com/preview/9nAird2VeaBUPce7Y5Djrlx7JLVb-YRVNjzj8kO4z1fmwOl4ofWCc0Gs3mYLpFEOOUQnWwUm2ZXhbqlepg4_NLGvYw4uYWN7xT5KckX6VYQ",
       stars: 4,
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
     {
       name: "نورة القحطاني",
       type: "video",
-      video: "https://pouch.jumpshare.com/preview/U_N-0kok0QsU33lrHlj2kuZMrDlqTbnSj-8B7AzwjJNVUSDAMCNOvQLdLLk7MT6Q5_uz8zI5YAVhRDj-WHQfWFzi9YRy7meQVD1yXTYlI-U",
+      video: "https://pouch.jumpshare.com/preview/U_N-0kok0QsU33lrHlj2kuZMrDlqTbnSj-8B7AzwjJNVUSDAMCNOvQLdLLk7MT6Qga9lynSOi7V8ndGC_VperYA9dVtAxDj6JHloBdAvI18",
       stars: 4,
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
     {
       name: "نورة القحطاني",
       type: "video",
-      video: "https://pouch.jumpshare.com/preview/GPUGeZeRvP6ApPrRmd0_x--Nz_tSXMMBuLhMtW_W0EDm_ELOCw8SIU-KHofPfynj180qw6Wz63xgGFhJwl5Vt_Icsf3jI5CWqJGjDWOoqlI",
+      video: "https://pouch.jumpshare.com/preview/GPUGeZeRvP6ApPrRmd0_x--Nz_tSXMMBuLhMtW_W0EDm_ELOCw8SIU-KHofPfynjga9lynSOi7V8ndGC_VperYA9dVtAxDj6JHloBdAvI18",
       stars: 4,
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
     {
       name: "نورة القحطاني",
       type: "video",
-      video: "https://pouch.jumpshare.com/preview/NoQ9hBAAaWwpXiIH4zjCwFlHu9l7XBKXssHqanmpXNq_RvB0jjiCycEcvkpO68P-lTSKH2NF66QMNwcCRiQOLn0-bSTjtTK0TKyeJ1JKGyQ",
+      video: "https://pouch.jumpshare.com/preview/NoQ9hBAAaWwpXiIH4zjCwFlHu9l7XBKXssHqanmpXNq_RvB0jjiCycEcvkpO68P-ga9lynSOi7V8ndGC_VperYA9dVtAxDj6JHloBdAvI18",
       stars: 4,
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
@@ -75,11 +71,14 @@ function Newssection() {
 
   return (
     <section
+      dir="rtl"
       style={{
         backgroundColor: "#030909",
         paddingTop: "40px",
         paddingBottom: "80px",
         marginTop: "-30px",
+        paddingRight:'30px',
+        paddingLeft:'30px'
       }}
     >
       <Container maxWidth="xl">
@@ -90,6 +89,8 @@ function Newssection() {
             textAlign: "center",
             marginBottom: "30px",
             fontFamily: "Tajawal",
+            fontWeight: "bold",
+            fontSize: { xs: "22px", sm: "28px", md: "32px" },
           }}
         >
           آراء العملاء
@@ -97,15 +98,23 @@ function Newssection() {
 
         <Slider {...settings}>
           {feedbacks.map((item, index) => (
-            <Box key={index} paddingX={2}>
-              <Card>
+            <Box key={index} px={1}>
+              <Card
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  backgroundColor: "#0d1a1a",
+                  color: "#fff",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                }}
+              >
                 <CardMedia
                   component="div"
                   sx={{
                     position: "relative",
-                    paddingTop: "56.25%", // 16:9 aspect ratio
-                    overflow: "hidden",
-                    borderRadius: "4px",
+                    paddingTop: "56.25%", // 16:9 ratio
                   }}
                 >
                   {item.type === "image" ? (
@@ -113,6 +122,7 @@ function Newssection() {
                       component="img"
                       src={item.image}
                       alt={`Feedback ${index + 1}`}
+                      loading="lazy"
                       sx={{
                         position: "absolute",
                         top: 0,
@@ -127,6 +137,7 @@ function Newssection() {
                       component="video"
                       src={item.video}
                       controls
+                      preload="none"
                       sx={{
                         position: "absolute",
                         top: 0,
@@ -141,10 +152,15 @@ function Newssection() {
                   )}
                 </CardMedia>
 
-                <CardContent>
+                <CardContent sx={{ flexGrow: 1, px: 2 }}>
                   <Typography
                     variant="h6"
-                    sx={{ marginBottom: "10px", textAlign: "center" }}
+                    sx={{
+                      marginBottom: "10px",
+                      textAlign: "center",
+                      fontSize: { xs: "16px", sm: "18px" },
+                      fontFamily: "Tajawal",
+                    }}
                   >
                     {item.name}
                   </Typography>
@@ -160,7 +176,11 @@ function Newssection() {
                   </Box>
                   <Typography
                     variant="body2"
-                    sx={{ fontSize: "16px", textAlign: "center" }}
+                    sx={{
+                      fontSize: { xs: "14px", sm: "16px" },
+                      textAlign: "center",
+                      fontFamily: "Tajawal",
+                    }}
                   >
                     {item.text}
                   </Typography>
