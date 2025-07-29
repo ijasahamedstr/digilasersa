@@ -19,10 +19,10 @@ const sliderSettingsRTL = {
   slidesToScroll: 1,
   rtl: true,
   responsive: [
-    { breakpoint: 1280, settings: { slidesToShow: 7 } },
-    { breakpoint: 960, settings: { slidesToShow: 6 } },
-    { breakpoint: 600, settings: { slidesToShow: 5 } },
-    { breakpoint: 480, settings: { slidesToShow: 4 } },
+    { breakpoint: 1280, settings: { slidesToShow: 6 } },
+    { breakpoint: 960, settings: { slidesToShow: 5 } },
+    { breakpoint: 600, settings: { slidesToShow: 4 } },
+    { breakpoint: 480, settings: { slidesToShow: 3 } },
     { breakpoint: 360, settings: { slidesToShow: 3 } },
   ],
 };
