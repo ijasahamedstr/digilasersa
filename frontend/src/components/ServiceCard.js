@@ -183,18 +183,6 @@ function ServiceCard() {
 
         {/* Banner Images and Button */}
         <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
-          <img
-            src="https://i.ibb.co/VcK4VNDg/Screen-Factory.webp"
-            alt="Banner"
-            loading="lazy"
-            style={{
-              width: "100%",
-              maxHeight: "400px",
-              objectFit: "cover",
-              borderRadius: "20px",
-              paddingBottom: "30px",
-            }}
-          />
 
           <img
             src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
