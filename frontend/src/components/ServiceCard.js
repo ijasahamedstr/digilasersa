@@ -201,14 +201,14 @@ function ServiceCard() {
             variant="contained"
             sx={{
               position: "absolute",
-              top: { xs: "10%", sm: "75%" },
+              top: { xs: "10%", sm: "55%" },
               left: "30%",
               transform: "translate(-50%, -50%)",
               backgroundColor: "white",
               color: "#096e69",
               fontFamily: "Tajawal",
               fontWeight: 700,
-              fontSize: { xs: "14px", sm: "18px", md: "22px" },
+              fontSize: { xs: "14px", sm: "18px", md: "18px" },
               px: { xs: 2, sm: 4 },
               py: { xs: 1, sm: 1.5 },
               borderRadius: "30px",

@@ -86,6 +86,12 @@ function MediaCommunicationsphoto() {
       width: "20%",
       align: "left",
     },
+    {
+      Header: "MediaCommunications Type",
+      accessor: "MediaCommunications_Type",
+      width: "20%",
+      align: "left",
+    },
     { Header: "MediaCommunications Image", accessor: "MediaCommunications_Image", align: "center" },
     { Header: "Action", accessor: "action", align: "center" },
   ];
@@ -121,6 +127,12 @@ function MediaCommunicationsphoto() {
     MediaCommunications_Name: (
       <Author
         name={item.MediaCommunicationsphotoname}
+        style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
+      />
+    ),
+    MediaCommunications_Type: (
+      <Author
+        name={item.MediaCommunicationsphototype}
         style={{ fontFamily: "Tajawal, sans-serif", fontSize: "18px" }}
       />
     ),

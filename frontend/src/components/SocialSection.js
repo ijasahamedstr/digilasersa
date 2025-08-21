@@ -10,7 +10,6 @@ import {
   CardContent,
   Paper,
   CardMedia,
-  TextField,
   Button,
 } from "@mui/material";
 import Container from "@mui/material/Container";
@@ -18,7 +17,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import {
   FaInstagram,
   FaLinkedin,
@@ -466,10 +464,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           {products.map((product, index) => (
             <SwiperSlide key={index}>
-              <Link
-                to={`/service/${index + 1}`}
-                style={{ textDecoration: "none" }}
-              >
                 <Card
                   sx={{
                     maxWidth: 345,
@@ -495,7 +489,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
                     </Typography>
                   </CardContent>
                 </Card>
-              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -539,10 +532,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           {products1.map((product, index) => (
             <SwiperSlide key={index}>
-              <Link
-                to={`/service/${index + 1}`}
-                style={{ textDecoration: "none" }}
-              >
                 <Card
                   sx={{
                     maxWidth: 345,
@@ -568,7 +557,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
                     </Typography>
                   </CardContent>
                 </Card>
-              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -612,10 +600,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           {products2.map((product, index) => (
             <SwiperSlide key={index}>
-              <Link
-                to={`/service/${index + 1}`}
-                style={{ textDecoration: "none" }}
-              >
                 <Card
                   sx={{
                     maxWidth: 345,
@@ -641,7 +625,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
                     </Typography>
                   </CardContent>
                 </Card>
-              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -685,10 +668,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           {products3.map((product, index) => (
             <SwiperSlide key={index}>
-              <Link
-                to={`/service/${index + 1}`}
-                style={{ textDecoration: "none" }}
-              >
                 <Card
                   sx={{
                     maxWidth: 345,
@@ -714,7 +693,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
                     </Typography>
                   </CardContent>
                 </Card>
-              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -758,10 +736,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           {products4.map((product, index) => (
             <SwiperSlide key={index}>
-              <Link
-                to={`/service/${index + 1}`}
-                style={{ textDecoration: "none" }}
-              >
                 <Card
                   sx={{
                     maxWidth: 345,
@@ -787,7 +761,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
                     </Typography>
                   </CardContent>
                 </Card>
-              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

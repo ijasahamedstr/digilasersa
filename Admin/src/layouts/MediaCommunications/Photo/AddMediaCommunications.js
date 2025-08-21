@@ -5,6 +5,10 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -21,6 +25,7 @@ const AddMediaCommunications = () => {
   // Seller Form field states
   const [MediaCommunications, setMediaCommunications] = useState({
     MediaCommunicationsphotoname: "",
+    MediaCommunicationsphototype: "",
     file: null,
   });
 
@@ -58,6 +63,10 @@ const AddMediaCommunications = () => {
       "MediaCommunicationsphotoname",
       MediaCommunications.MediaCommunicationsphotoname
     );
+    formData.append(
+      "MediaCommunicationsphototype",
+      MediaCommunications.MediaCommunicationsphototype
+    );
 
     try {
       const response = await axios.post(
@@ -82,7 +91,11 @@ const AddMediaCommunications = () => {
           title: "Success!",
           text: "Category added successfully!",
         });
-        setMediaCommunications({ MediaCommunicationsphotoname: "", file: null });
+        setMediaCommunications({
+          MediaCommunicationsphotoname: "",
+          MediaCommunicationsphototype: "",
+          file: null,
+        });
         setImagePreview(null);
       }
     } catch (error) {
@@ -134,6 +147,32 @@ const AddMediaCommunications = () => {
                     value={MediaCommunications.MediaCommunicationsphotoname}
                     onChange={handleChange}
                   />
+
+                  <FormControl fullWidth sx={{ mb: 2 }}>
+                    <InputLabel>Photo Type</InputLabel>
+                    <Select
+                      name="MediaCommunicationsphototype"
+                      value={MediaCommunications.MediaCommunicationsphototype}
+                      onChange={handleChange}
+                      sx={{ height: "40px" }}
+                    >
+                      <MenuItem value="Profile" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        Profile
+                      </MenuItem>
+                      <MenuItem value="Event" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        Event
+                      </MenuItem>
+                      <MenuItem value="Campaign" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        Campaign
+                      </MenuItem>
+                      <MenuItem value="Advertising" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        Advertising
+                      </MenuItem>
+                      <MenuItem value="Other" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        Other
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
 
                   {/* Image Upload Field */}
                   <label htmlFor="file-upload">

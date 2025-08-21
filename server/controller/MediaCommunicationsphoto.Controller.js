@@ -2,11 +2,11 @@ import moment from 'moment';
 import MediaCommunicationsphoto from '../models/MediaCommunicationsphoto.models.js';
 
 export const MediaCommunicationcreate = async (req, res) => {
-    const { filename } = req.file;
-    const { MediaCommunicationsphotoname } = req.body;
+    const { filename } = req.file || {};
+    const { MediaCommunicationsphotoname, MediaCommunicationsphototype } = req.body;
 
     // Input validation
-    if (!MediaCommunicationsphotoname || !filename) {
+    if (!MediaCommunicationsphotoname || !MediaCommunicationsphototype || !filename) {
         return res.status(400).json({
             status: 400,
             message: 'Please provide gift name, gift type, and gift image.'
@@ -18,6 +18,7 @@ export const MediaCommunicationcreate = async (req, res) => {
 
         const newMediaCommunicationsphoto = new MediaCommunicationsphoto({
             MediaCommunicationsphotoname,
+            MediaCommunicationsphototype,
             MediaCommunicationsphotoimage: filename,
             date,
         });
@@ -81,6 +82,7 @@ export const  MediaCommunicationSingleDelete = async (req, res) => {
 export const MediaCommunicationUpdates  = async (req, res) => {
     const { id } = req.params;
     const { MediaCommunicationsphotoname } = req.body;
+    const { MediaCommunicationsphototype } = req.body;
     const { file } = req;
 
     try {
@@ -92,6 +94,9 @@ export const MediaCommunicationUpdates  = async (req, res) => {
         // Update user details
         if (MediaCommunicationsphotoname) {
             user.MediaCommunicationsphotoname = MediaCommunicationsphotoname;
+        }
+        if (MediaCommunicationsphototype) {
+            user.MediaCommunicationsphototype = MediaCommunicationsphototype;
         }
         // Update image if a new file is uploaded
         if (file) {

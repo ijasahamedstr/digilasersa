@@ -5,6 +5,9 @@ const MediaCommunicationsphotoSchema = new mongoose.Schema({
     MediaCommunicationsphotoname: {
         type: String,
     },
+    MediaCommunicationsphototype: {
+        type: String,
+    },
     MediaCommunicationsphotoimage: {
         type: String,
     },
