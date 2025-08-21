@@ -17,9 +17,6 @@ import MediaCommunicationsvideo from "./routes/MediaCommunicationsvideo.route.js
 import Newssection from "./routes/News.route.js";
 import Partner from "./routes/Partner.route.js";
 
-res.setHeader("Access-Control-Allow-Origin", "*");
-res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 
 // Create an instance of Express
 const app = express();
