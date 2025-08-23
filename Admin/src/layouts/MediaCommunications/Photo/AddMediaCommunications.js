@@ -156,20 +156,23 @@ const AddMediaCommunications = () => {
                       onChange={handleChange}
                       sx={{ height: "40px" }}
                     >
-                      <MenuItem value="Profile" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        Profile
+                      <MenuItem value="Weddings" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        Weddings
                       </MenuItem>
-                      <MenuItem value="Event" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        Event
+                      <MenuItem value="Sports" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        Sports
                       </MenuItem>
-                      <MenuItem value="Campaign" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        Campaign
+                      <MenuItem value="products" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        products
                       </MenuItem>
-                      <MenuItem value="Advertising" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        Advertising
+                      <MenuItem value="Foods" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        Foods
                       </MenuItem>
-                      <MenuItem value="Other" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        Other
+                      <MenuItem value="Factory" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        Factory
+                      </MenuItem>
+                      <MenuItem value="Conference" style={{ fontFamily: "Tajawal, sans-serif" }}>
+                        Conference
                       </MenuItem>
                     </Select>
                   </FormControl>
