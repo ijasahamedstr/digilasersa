@@ -61,18 +61,20 @@ function Eventsection() {
           textAlign: "center",
         }}
       >
-        <Typography
-          variant="h4"
-          align="center"
-          gutterBottom
-          sx={{
-            fontFamily: "Noto Kufi Arabic, sans-serif",
-            fontSize: "2rem",
-            marginBottom: "30px",
-          }}
-        >
-          آخر أعمالنا
-        </Typography>
+      <Typography
+        variant="h4"
+        align="center"
+        gutterBottom
+        sx={{
+          fontFamily: "Tajawal, sans-serif", // New font
+          fontSize: "2rem",
+          fontWeight: 700, // Bold
+          marginBottom: "30px",
+          color: "#096e69", // Optional color
+        }}
+      >
+        آخر أعمالنا
+      </Typography>
 
         <Swiper spaceBetween={30} slidesPerView={1} loop>
           {Event.map((event, index) => (

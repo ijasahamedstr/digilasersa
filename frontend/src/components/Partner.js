@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   CardMedia,
@@ -69,18 +69,20 @@ const Partner = () => {
 
   return (
     <Container maxWidth="xl" sx={{ mt: 8, mb: 8 }}>
-      <Typography
-        variant="h4"
-        align="center"
-        gutterBottom
-        sx={{
-          fontFamily: "Noto Kufi Arabic, sans-serif",
-          fontSize: { xs: "1.5rem", sm: "2rem" },
-          mb: 4,
-        }}
-      >
-        شركاء النجاح
-      </Typography>
+    <Typography
+      variant="h4"
+      align="center"
+      gutterBottom
+      sx={{
+        fontFamily: "Tajawal, sans-serif", // Change font family
+        fontSize: { xs: "1.5rem", sm: "2rem" }, // Responsive font size
+        fontWeight: 700, // Bold
+        color: "#096e69", // Optional: text color
+        mb: 4,
+      }}
+    >
+      شركاء النجاح
+    </Typography>
 
       {/* Row 1 - RTL */}
       <Box px={{ xs: 1, sm: 2, md: 0 }}>
