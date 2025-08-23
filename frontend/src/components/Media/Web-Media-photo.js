@@ -1,26 +1,3 @@
-import React, { useState, useEffect } from "react";
-import { Carousel } from "react-bootstrap";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css"; // Swiper styles
-import { ClickAwayListener } from "@mui/material"; // ✅ Add this to your imports
-
-
-import {
-  Box,
-  Typography,
-  Grid,
-  Pagination,
-  CardMedia,
-  Container,
-  IconButton,
-  Button,
-  Drawer,
-  AppBar,
-  Toolbar,
-  Card,
-  CircularProgress,
-} from "@mui/material";
-
 import {
   FaInstagram,
   FaLinkedin,
@@ -33,8 +10,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import {
+  Box,
+  Typography,
+  Grid,
+  Pagination,
+  CardMedia,
+  Container,
+  Button,
+  CircularProgress,
+  Skeleton,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Drawer,
+  ClickAwayListener,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Carousel } from "react-bootstrap";
 import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Card } from "@mui/material";
+
+
 
 // Carousel and card data
 const carouselItems = [
@@ -69,8 +69,20 @@ const INITIAL_FORM_STATE = {
   message: "",
 };
 
+// Categories (static)
+const categories = [
+  "All",
+  "Weddings",
+  "Sports",
+  "Products",
+  "Foods",
+  "Factory",
+  "Conference",
+];
+
 const WebMediaphoto = () => {
-  const [WebMediaphoto, setWebMediaphoto] = useState([]);
+  const [photos, setPhotos] = useState([]);
+  const [category, setCategory] = useState("All");
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [page, setPage] = useState(1);
@@ -88,7 +100,7 @@ const WebMediaphoto = () => {
         const response = await axios.get(
           `${process.env.REACT_APP_API_HOST}/MediaCommunicationsphoto`
         );
-        setWebMediaphoto(response.data);
+        setPhotos(response.data);
       } catch (err) {
         console.error("Error fetching data: ", err);
         setError("Failed to fetch data");
@@ -96,11 +108,10 @@ const WebMediaphoto = () => {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
-  // Form Handlers
+    // Form Handlers
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -123,25 +134,39 @@ const WebMediaphoto = () => {
     window.open(whatsappUrl, "_blank");
   };
 
-  // Image Zoom Handlers
-  const handleImageClick = (src) => {
+
+  // Zoom handlers
+  const handleImageClick = useCallback((src) => {
     setIsZoomed(true);
     setZoomedImageSrc(src);
-  };
+  }, []);
 
-  const handleCloseZoom = () => {
+  const handleCloseZoom = useCallback(() => {
     setIsZoomed(false);
     setZoomedImageSrc("");
-  };
+  }, []);
 
   const handlePageChange = (event, value) => setPage(value);
 
+  // Filter photos by category (memoized)
+  const filteredPhotos = useMemo(() => {
+    if (category === "All") return photos;
+    return photos.filter(
+      (p) =>
+        p.MediaCommunicationsphototype?.toLowerCase().trim() ===
+        category.toLowerCase().trim()
+    );
+  }, [photos, category]);
+
   const indexOfLastProduct = page * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = WebMediaphoto.slice(indexOfFirstProduct, indexOfLastProduct);
-  const totalPages = Math.ceil(WebMediaphoto.length / itemsPerPage);
+  const currentProducts = filteredPhotos.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+  const totalPages = Math.ceil(filteredPhotos.length / itemsPerPage);
 
-  const socialLinks = [
+    const socialLinks = [
     { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
     { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
     { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
@@ -179,10 +204,9 @@ const WebMediaphoto = () => {
   if (loading) return <Box sx={{ textAlign: "center", mt: 5 }}><CircularProgress /></Box>;
   if (error) return <Box sx={{ textAlign: "center", mt: 5 }}>{error}</Box>;
 
-
   return (
     <>
-     {/* Mobile AppBar */}
+    {/* Mobile AppBar */}
       <AppBar position="fixed" sx={{ display: { xs: "flex", md: "none" }, backgroundColor: "#06f9f3", top: "94px" }}>
         <Toolbar sx={{ justifyContent: "space-between" }}>
           <Typography variant="h6" sx={{ color: "#17202a", fontWeight: "bold" }}>
@@ -327,86 +351,116 @@ const WebMediaphoto = () => {
           ))}
         </Box>
       </Box>
-
-      <section
-        style={{
-          backgroundColor: "#f2f3f4",
-          background: "#17202a",
-          backgroundSize: "cover", // Ensure the image covers the entire section
-          backgroundPosition: "center", // Ensure the image is centered
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "30px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          "@media (max-width: 768px)": {
-            height: "auto", // Adjust the height for medium screens
-            paddingTop: "10px",
-            paddingBottom: "10px",
-          },
-          "@media (max-width: 480px)": {
-            height: "auto", // Adjust the height for smaller screens
-          },
-          marginTop: "-30px",
+     <Box sx={{ backgroundColor: "#17202a", py: 5 }}>
+      {/* Header */}
+      {/* <Box
+        sx={{
+          padding: 0,
+          borderRadius: 2,
+          boxShadow: 3,
+          maxWidth: "100%",
+          textAlign: "center",
+          marginBottom: "20px",
+          border: "2px solid white",
+          marginTop: "30px",
         }}
       >
-        <Container maxWidth="xl" sx={{ padding: 3, marginTop: "50px" }}>
-          <Box
+        <Typography
+          variant="h2"
+          component="h3"
+          sx={{
+            fontFamily: "Tajawal",
+            color: "#fff",
+            paddingTop: "15px",
+            paddingBottom: "15px",
+            fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
+            textAlign: "center",
+          }}
+        >
+          فوتوغرافيا
+        </Typography>
+      </Box> */}
+
+      {/* Category Filter Buttons */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 2,
+          flexWrap: "wrap",
+          mt: { xs: 5, md: 3 },
+          mb: 3,
+        }}
+      >
+        {categories.map((cat) => (
+          <Button
+            key={cat}
+            onClick={() => {
+              setCategory(cat);
+              setPage(1);
+            }}
             sx={{
-              padding: 0,
-              borderRadius: 2,
-              boxShadow: 3,
-              maxWidth: "100%",
-              textAlign: "center",
-              marginBottom: "20px",
-              border: "2px solid white", // Add this line to create a white border
-              marginTop: "30px",
+              backgroundColor: category === cat ? "#e99b19" : "#34495e",
+              color: "#fff",
+              fontWeight: "bold",
+              borderRadius: "50px",
+              px: 3,
+              py: 1,
+              "&:hover": {
+                backgroundColor: "#e99b19",
+                color: "#fff",
+              },
             }}
           >
-            <Typography
-              variant="h2"
-              component="h3"
-              sx={{
-                fontFamily: "Tajawal",
-                color: "#333",
-                paddingTop: "15px",
-                paddingBottom: "15px",
-                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
-                textAlign: "center",
-              }}
-            >
-              <span style={{ color: "#FFFFFF" }}>فوتوغرافيا</span>
-            </Typography>
-          </Box>
+            {cat}
+          </Button>
+        ))}
+      </Box>
 
-          <Grid container spacing={2}>
-            {currentProducts.map((product, index) => (
+      {/* Gallery Section */}
+      <Container maxWidth="xl" sx={{ padding: 3 }}>
+        <Grid container spacing={2}>
+          {/* Loading skeleton */}
+          {loading &&
+            Array.from(new Array(itemsPerPage)).map((_, index) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                <Skeleton variant="rectangular" height={180} />
+              </Grid>
+            ))}
+
+          {/* No photos found */}
+          {!loading && currentProducts.length === 0 && (
+            <Typography
+              textAlign="center"
+              sx={{ mt: 5, width: "100%", color: "#fff" }}
+            >
+              No photos found for "{category}" category.
+            </Typography>
+          )}
+
+          {/* Photo grid */}
+          {!loading &&
+            currentProducts.map((product, index) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                 <CardMedia
                   component="img"
-                  alt={`Service ${index}`}
+                  loading="lazy"
+                  alt={`Photo ${index}`}
                   src={`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Photo/${product.MediaCommunicationsphotoimage}`}
                   sx={{
-                    height: { xs: 120, sm: 150, md: 180 }, // Reduced size of the image
+                    height: { xs: 120, sm: 150, md: 180 },
                     objectFit: "cover",
                     cursor: "zoom-in",
-                    borderTopLeftRadius: 2,
-                    borderTopRightRadius: 2,
-                    // Adding 3D outline effect
                     border: "4px solid transparent",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)", // shadow for 3D effect
-                    transition: "all 0.3s ease-in-out", // Smooth transition for hover effect
+                    transition: "transform 0.3s ease-in-out",
                     "&:hover": {
-                      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)", // Hover effect to enhance the 3D look
-                      border: "4px solid #e99b19", // Border highlight on hover
+                      transform: "scale(1.05)",
+                      border: "4px solid #e99b19",
                     },
                   }}
                   onClick={() =>
                     handleImageClick(
-                      `${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Photo/${product.MediaCommunicationsphotoimage}`,
+                      `${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Photo/${product.MediaCommunicationsphotoimage}`
                     )
                   }
                 />
@@ -415,7 +469,7 @@ const WebMediaphoto = () => {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    marginTop: 1,
+                    mt: 1,
                   }}
                 >
                   <Typography
@@ -423,10 +477,10 @@ const WebMediaphoto = () => {
                     component="span"
                     sx={{
                       fontFamily: "Tajawal",
-                      fontSize: "1.5rem",
+                      fontSize: "1.2rem",
                       textAlign: "center",
                       display: "block",
-                      color: "#e99b19", // Ensures the Typography component takes full width
+                      color: "#e99b19",
                     }}
                   >
                     {product.title}
@@ -434,39 +488,41 @@ const WebMediaphoto = () => {
                 </Box>
               </Grid>
             ))}
-          </Grid>
+        </Grid>
 
-          {/* Zoomed image view (modal style) */}
-          {isZoomed && (
-            <Box
-              sx={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                backgroundColor: "rgba(0, 0, 0, 0.8)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                zIndex: 1000,
+        {/* Zoom View */}
+        {isZoomed && (
+          <Box
+            sx={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              backgroundColor: "rgba(0, 0, 0, 0.8)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 1000,
+            }}
+            onClick={handleCloseZoom}
+          >
+            <img
+              src={zoomedImageSrc}
+              alt="Zoomed"
+              style={{
+                maxWidth: "90%",
+                maxHeight: "90%",
+                objectFit: "contain",
+                cursor: "zoom-out",
               }}
-              onClick={handleCloseZoom}
-            >
-              <img
-                src={zoomedImageSrc}
-                alt="Zoomed"
-                style={{
-                  maxWidth: "90%",
-                  maxHeight: "90%",
-                  objectFit: "contain",
-                  cursor: "zoom-out", // Change cursor to indicate it can be closed
-                }}
-              />
-            </Box>
-          )}
+            />
+          </Box>
+        )}
 
-          <Box display="flex" justifyContent="center" sx={{ marginTop: 3 }}>
+        {/* Pagination */}
+        <Box display="flex" justifyContent="center" sx={{ mt: 3 }}>
+          {!loading && totalPages > 1 && (
             <Pagination
               count={totalPages}
               page={page}
@@ -474,12 +530,26 @@ const WebMediaphoto = () => {
               color="primary"
               variant="outlined"
               shape="rounded"
+              sx={{
+                "& .MuiPaginationItem-root": {
+                  color: "#fff",          // Numbers color
+                  borderColor: "#fff",    // Border color for outlined variant
+                },
+                "& .MuiPaginationItem-root.Mui-selected": {
+                  backgroundColor: "#06f9f3", // Selected page background
+                  color: "#fff",               // Selected page text color
+                },
+                "& .MuiPaginationItem-root:hover": {
+                  backgroundColor: "#06f9f3",
+                  color: "#fff",
+                },
+              }}
             />
-          </Box>
-        </Container>
-      </section>
-
-    <Box
+          )}
+        </Box>
+      </Container>
+    </Box>
+     <Box
       sx={{
         backgroundColor: "#eaecee",
         backgroundImage: 'url("https://i.ibb.co/w0p131X/image.webp")',
@@ -791,6 +861,8 @@ const WebMediaphoto = () => {
           </Grid>
         </Container>
       </section>
+
+
 
     </>
   );

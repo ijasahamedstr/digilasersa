@@ -760,19 +760,22 @@ const VRSection = () => {
     </section>
 
      <Container maxWidth="xl" sx={{ mt: 8, mb: 8 }}>
-          <Typography
-            variant="h4"
-            align="center"
-            gutterBottom
-            sx={{
-              fontFamily: "Noto Kufi Arabic, sans-serif",
-              fontSize: { xs: "1.5rem", sm: "2rem" },
-              mb: 4,
-            }}
-          >
-            شركاء النجاح
-          </Typography>
-    
+         <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+          sx={{
+            fontFamily: "'Tajawal', sans-serif", // change font here
+            fontWeight: 700,                     // bold                // italic
+            fontSize: { xs: "1.5rem", sm: "2rem" },
+            mb: 4,
+            color: "#096e69",                    // optional color
+            letterSpacing: "0.05em",             // optional spacing
+          }}
+        >
+          شركاء النجاح
+        </Typography>
+
           {/* Row 1 - RTL */}
           <Box px={{ xs: 1, sm: 2, md: 0 }}>
             <Slider {...sliderSettingsRTL}>

@@ -196,9 +196,9 @@ function ServiceCard() {
               paddingBottom: "30px",
             }}
           />
-
           <Button
             variant="contained"
+            size="small"
             sx={{
               position: "absolute",
               top: { xs: "10%", sm: "55%" },
@@ -208,11 +208,11 @@ function ServiceCard() {
               color: "#096e69",
               fontFamily: "Tajawal",
               fontWeight: 700,
-              fontSize: { xs: "14px", sm: "18px", md: "18px" },
-              px: { xs: 2, sm: 4 },
-              py: { xs: 1, sm: 1.5 },
-              borderRadius: "30px",
-              boxShadow: 3,
+              fontSize: { xs: "10px", sm: "14px", md: "14px" }, // smaller font
+              px: { xs: 1, sm: 2 }, // smaller horizontal padding
+              py: { xs: 0.25, sm: 0.5 }, // smaller vertical padding
+              borderRadius: "25px",
+              boxShadow: 2,
               "&:hover": {
                 backgroundColor: "#e6e6e6",
               },
