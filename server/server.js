@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(cors({
-  origin:"https://digilasersa.vercel.app",
+  origin:"https://digilasersa-server.vercel.app",
   methods:"GET,POST,PUT,DELETE",
   credentials:true
 }));
