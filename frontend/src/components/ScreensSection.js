@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {
   FaInstagram,
   FaLinkedin,
@@ -42,6 +42,17 @@ const ScreensSection = () => {
   const [showModal, setShowModal] = useState(true);
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
+  
+  useEffect(() => {
+    // Close modal automatically after 5 seconds (5000 ms)
+    const timer = setTimeout(() => {
+      setShowModal(false);
+    }, 3000);
+
+    // Clear timeout if modal is closed manually
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -76,7 +87,6 @@ const ScreensSection = () => {
         style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", margin: 0, padding: 0 }}>
         <Modal.Body
           style={{
-            width: "100%",
             height: "100vh",
             padding: 0,
             margin: 0,
@@ -102,11 +112,12 @@ const ScreensSection = () => {
               backgroundColor: "#00fffc",
               color: "#000",
               fontWeight: "bold",
+              fontFamily:'Changa, sans-serif',
               px: 3,
               py: 1,
               borderRadius: "20px",
               boxShadow: "0 4px 15px rgba(0, 255, 252, 0.4)",
-              fontSize: "1rem",
+              fontSize: "1.8rem",
               "&:hover": {
                 backgroundColor: "#00cccc",
                 transform: "scale(1.05)",
@@ -114,7 +125,7 @@ const ScreensSection = () => {
               transition: "all 0.3s ease",
             }}
           >
-            تخطٍّي
+            تخطي
           </Button>
         </Modal.Body>
       </Modal>
@@ -183,7 +194,7 @@ const ScreensSection = () => {
       <Container maxWidth="xl">
       <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
         <img
-          src="https://i.ibb.co/VcK4VNDg/Screen-Factory.webp"
+          src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
           alt="Banner"
           loading="lazy"
           style={{
@@ -250,7 +261,7 @@ const ScreensSection = () => {
                     textAlign: "center",
                   }}
                 >
-                  <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}>
+                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
                     <Typography
                       variant="h3"
                       sx={{
@@ -263,7 +274,7 @@ const ScreensSection = () => {
                     >
                       الشاشات الإلكترونية الخارجية
                     </Typography>
-                  </Link>
+                  {/* </Link> */}
                 </Card>
               </Box>
 
@@ -332,7 +343,7 @@ const ScreensSection = () => {
                   width: "100%",
                 }}
               >
-                <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}>
+                {/* <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}> */}
                   <Typography
                     variant="h3"
                     sx={{
@@ -346,7 +357,7 @@ const ScreensSection = () => {
                   >
                     الشاشات الإلكترونية الداخلية
                   </Typography>
-                </Link>
+                {/* </Link> */}
               </Card>
 
               <Typography
@@ -443,7 +454,7 @@ const ScreensSection = () => {
                     textAlign: "center",
                   }}
                 >
-                  <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}>
+                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
                     <Typography
                       variant="h3"
                       sx={{
@@ -456,7 +467,7 @@ const ScreensSection = () => {
                     >
                         شــاشة العـــرض النصـــية
                     </Typography>
-                  </Link>
+                  {/* </Link> */}
                 </Card>
               </Box>
 
@@ -522,7 +533,7 @@ const ScreensSection = () => {
                   width: "100%",
                 }}
               >
-                <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}>
+                {/* <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}> */}
                   <Typography
                     variant="h3"
                     sx={{
@@ -536,7 +547,7 @@ const ScreensSection = () => {
                   >
                     الشاشات الإلكترونية الداخلية
                   </Typography>
-                </Link>
+                {/* </Link> */}
               </Card>
 
               <Typography
@@ -633,7 +644,7 @@ const ScreensSection = () => {
                     textAlign: "center",
                   }}
                 >
-                  <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}>
+                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
                     <Typography
                       variant="h3"
                       sx={{
@@ -646,7 +657,7 @@ const ScreensSection = () => {
                     >
                         الشـــــاشات التفــــاعلـية
                     </Typography>
-                  </Link>
+                  {/* </Link> */}
                 </Card>
               </Box>
 
@@ -712,7 +723,7 @@ const ScreensSection = () => {
                   width: "100%",
                 }}
               >
-                <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}>
+                {/* <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}> */}
                   <Typography
                     variant="h3"
                     sx={{
@@ -726,7 +737,7 @@ const ScreensSection = () => {
                   >
                     شـــاشات العـــدادات والساعات الرقمية
                   </Typography>
-                </Link>
+                {/* </Link> */}
               </Card>
 
               <Typography
@@ -823,7 +834,7 @@ const ScreensSection = () => {
                     textAlign: "center",
                   }}
                 >
-                  <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}>
+                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
                     <Typography
                       variant="h3"
                       sx={{
@@ -836,7 +847,7 @@ const ScreensSection = () => {
                     >
                         جهاز ارقام الانتظار
                     </Typography>
-                  </Link>
+                  {/* </Link> */}
                 </Card>
               </Box>
 
@@ -887,9 +898,9 @@ const ScreensSection = () => {
               </Typography>
               <Grid container spacing={2} sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}>
                 {[
-                  { label: "المدير العام للطباعة بالمملكة", value: "8888 190 057" },
-                  { label: "المدير الفني للطباعة بالمملكة", value: "8888 193 057" },
-                  { label: "واتساب الطباعة", value: "8888 194 057" },
+                  { label: "المدير العام للشاشات بالمملكة", value: "8888 190 057" },
+                  { label: "المدير الفني للشاشات بالمملكة", value: "8888 193 057" },
+                  { label: "واتساب الشاشات", value: "8888 194 057" },
                 ].map(({ label, value }) => (
                   <React.Fragment key={label}>
                     <Grid item xs={4}><Typography color="white" fontSize={{ xs: 17, md: 20 }} textAlign="right">{label}</Typography></Grid>

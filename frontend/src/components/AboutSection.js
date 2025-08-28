@@ -90,7 +90,7 @@ function AboutSection() {
             شركة الليزر الرقمي للدعاية والإعلان
           </Typography>
 
-          <Typography
+         <Typography
             variant="body1"
             sx={{
               color: "#ffffff",
@@ -100,8 +100,11 @@ function AboutSection() {
               mt: 3,
             }}
           >
-            تأسست شركة الليزر عام 1992 م والتى تعتبر من أعرق شركات الدعاية والإعلان والتى تزيد عن 32 عام من الثقة بالسوق السعودي
+            تأسست شركة الليزر عام 1992 م <br />
+            والتى تعتبر من أعرق شركات الدعاية والإعلان <br />
+            والتى تزيد عن 32 عام من الثقة بالسوق السعودي
           </Typography>
+
 
           <Typography
             variant="body1"

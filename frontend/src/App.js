@@ -49,6 +49,7 @@ function App() {
           <Route path="/من نحن" element={<Aboutus />} />
           <Route path="/قسم البرمجيات" element={<ComingSoonPage />} />
           <Route path="/منصة صيانة الشاشات" element={<ComingSoonPage />} />
+          <Route path="/قسم الفن التشكيلي" element={<ComingSoonPage />} />
           <Route path="/قسم الشاشات" element={<ScreensSection />} />
           <Route path="/قسم الطباعة" element={<PrintingSection />} />
           <Route path="/قسم الهدايا الدعائية" element={<GiftsSection />} />

@@ -28,41 +28,41 @@ const INITIAL_FORM_STATE = {
   message: "",
 };
 
-const sectionStyles = {
-  backgroundColor: "#030303",
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-  width: "100%",
-  margin: "0 auto",
-  display: "flex",
-  justifyContent: "flex-end",
-  alignItems: "center",
-  minHeight: "30vh",
-  paddingTop: "20px",
-  marginTop: "-30px",
-  position: "relative",
-  flexDirection: "column",
-  textAlign: "right",
-  "@media (max-width: 600px)": {
-    minHeight: "30vh",
-    marginTop: "0",
-    padding: "10px",
-  },
-  fontFamily: "Tajawal",
-};
+// const sectionStyles = {
+//   backgroundColor: "#030303",
+//   backgroundSize: "cover",
+//   backgroundRepeat: "no-repeat",
+//   width: "100%",
+//   margin: "0 auto",
+//   display: "flex",
+//   justifyContent: "flex-end",
+//   alignItems: "center",
+//   minHeight: "30vh",
+//   paddingTop: "20px",
+//   marginTop: "-30px",
+//   position: "relative",
+//   flexDirection: "column",
+//   textAlign: "right",
+//   "@media (max-width: 600px)": {
+//     minHeight: "30vh",
+//     marginTop: "0",
+//     padding: "10px",
+//   },
+//   fontFamily: "Tajawal",
+// };
 
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/rGmqh5wG/Final-Web-Contact.webp",
+    img: "https://i.ibb.co/pBWvmbjg/16390650-5697387-copy.webp",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/rGmqh5wG/Final-Web-Contact.webp",
+    img: "https://i.ibb.co/pBWvmbjg/16390650-5697387-copy.webp",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/rGmqh5wG/Final-Web-Contact.webp",
+    img: "https://i.ibb.co/pBWvmbjg/16390650-5697387-copy.webp",
   },
 ];
 
@@ -138,7 +138,7 @@ const ContactusForm = () => {
                   src={item.img}
                   alt={item.title}
                   style={{
-                    height: "80vh",
+                    height: "50vh",
                     objectFit: "cover",
                     boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                   }}
@@ -204,7 +204,7 @@ const ContactusForm = () => {
         </Box>
         </Box>
       </Container>
-       <section style={sectionStyles}></section>;
+       {/* <section style={sectionStyles}></section>; */}
       <Container
         maxWidth={false}
         sx={{ padding: 0 }}

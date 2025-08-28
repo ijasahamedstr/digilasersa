@@ -166,25 +166,25 @@ function FeedbackCard({ item, index }) {
 // Main component
 function Newssection() {
   const settings = {
-    dots: true,
-    infinite: false,
-    speed: 600,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    adaptiveHeight: true,
-    responsive: [
-      {
-        breakpoint: 960,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 600,
-        settings: { slidesToShow: 1 },
-      },
-    ],
-  };
+  dots: true,
+  infinite: true,        // <-- change this
+  speed: 600,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  adaptiveHeight: true,
+  responsive: [
+    {
+      breakpoint: 960,
+      settings: { slidesToShow: 2 },
+    },
+    {
+      breakpoint: 600,
+      settings: { slidesToShow: 1 },
+    },
+  ],
+};
 
   const feedbacks = [
     {
@@ -196,7 +196,7 @@ function Newssection() {
       text: "شركة الليزر هي الافضل دايما في الشاشات 😍🤝",
     },
     {
-      name: "نورة القحطاني",
+      name: "المحامي عبد اللطيف الملحم",
       type: "video",
       isLocal: true,
       video: demoVideo,
@@ -205,7 +205,7 @@ function Newssection() {
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
     {
-      name: "نورة القحطاني",
+      name: "المحامي بدر الزعبي ",
       type: "video",
       isLocal: true,
       video: demoVideo1,
@@ -214,7 +214,7 @@ function Newssection() {
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
     {
-      name: "نورة القحطاني",
+      name: "المحامي محمد البلوشى",
       type: "video",
       isLocal: true,
       video: demoVideo2,
@@ -223,7 +223,7 @@ function Newssection() {
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
     {
-      name: "نورة القحطاني",
+      name: "كابتن بوربيعة وكابتن مازن",
       type: "video",
       isLocal: true,
       video: demoVideo3,

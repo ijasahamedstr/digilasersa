@@ -67,7 +67,7 @@ function Eventsection() {
         gutterBottom
         sx={{
           fontFamily: "Tajawal, sans-serif", // New font
-          fontSize: "2rem",
+          fontSize: "2.6rem",
           fontWeight: 700, // Bold
           marginBottom: "30px",
           color: "#096e69", // Optional color
@@ -123,7 +123,7 @@ function Eventsection() {
                       gutterBottom
                       sx={{
                         fontFamily: "Tajawal",
-                        fontSize: { xs: "1.5rem", md: "3rem" },
+                        fontSize: { xs: "1.5rem", md: "2.5rem" },
                       }}
                     >
                       {event.newsname}
