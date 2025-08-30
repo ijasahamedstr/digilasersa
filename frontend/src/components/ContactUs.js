@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Grid, Typography, Button,Box } from "@mui/material";
+import { Container, Grid, Typography, Button, Box } from "@mui/material";
 import Form from "react-bootstrap/Form";
 
 // Initial form state (email removed)
@@ -54,75 +54,83 @@ function ContactUs() {
 
 function RightTextSection() {
   return (
-  <Grid
-  item
-  xs={12}
-  sm={6}
-  sx={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end",
-    textAlign: "justify",
-    direction: "ltr",
-    pr: 5,
-  }}
->
-  <Typography variant="h4" color="white">
-    Contact Us
-  </Typography>
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        textAlign: "justify",
+        direction: "ltr",
+        pr: 5,
+      }}
+    >
+      <Typography variant="h4" color="white">
+        Contact Us
+      </Typography>
 
-  <Typography variant="h5" color="#00fffc" sx={{ textAlign: "justify", direction: "rtl" }}>
-    للطلب والإستفسار /
-  </Typography>
+      <Typography
+        variant="h5"
+        color="#00fffc"
+        sx={{ textAlign: "justify", direction: "rtl" }}
+      >
+        للطلب والإستفسار /
+      </Typography>
 
-  <Grid container spacing={2} sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}>
-    {[
-      { label: "رقم الاتصال", value: "8888 197 057" },{ label: "بريد إلكتروني", value: "info@digilaser.sa" }
-    ].map(({ label, value }) => (
-      <React.Fragment key={label}>
-        <Grid item xs={4}>
-          <Typography
-            variant="body1"
-            sx={{
-              color: "white",
-              fontSize: { xs: "17px", sm: "18px", md: "20px" },
-              textAlign: "right",
-            }}
-          >
-            {label}
-          </Typography>
-        </Grid>
+      <Grid
+        container
+        spacing={2}
+        sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}
+      >
+        {[
+          { label: "رقم الاتصال", value: "8888 197 057" },
+          { label: "بريد إلكتروني", value: "info@digilaser.sa" },
+        ].map(({ label, value }) => (
+          <React.Fragment key={label}>
+            <Grid item xs={4}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "white",
+                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                  textAlign: "right",
+                }}
+              >
+                {label}
+              </Typography>
+            </Grid>
 
-        <Grid item xs={1}>
-          <Typography
-            variant="body1"
-            sx={{
-              color: "white",
-              fontSize: { xs: "17px", sm: "18px", md: "20px" },
-              textAlign: "right",
-            }}
-          >
-            :
-          </Typography>
-        </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "white",
+                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                  textAlign: "right",
+                }}
+              >
+                :
+              </Typography>
+            </Grid>
 
-        <Grid item xs={7}>
-          <Typography
-            variant="body1"
-            sx={{
-              color: "white",
-              fontSize: { xs: "17px", sm: "18px", md: "20px" },
-              textAlign: "right",
-            }}
-          >
-            {value}
-          </Typography>
-        </Grid>
-      </React.Fragment>
-    ))}
-  </Grid>
-</Grid>
-
+            <Grid item xs={7}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "white",
+                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                  textAlign: "right",
+                }}
+              >
+                {value}
+              </Typography>
+            </Grid>
+          </React.Fragment>
+        ))}
+      </Grid>
+    </Grid>
   );
 }
 
@@ -149,7 +157,7 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
   return (
     <Grid item xs={12} sm={6}>
       <Typography variant="h6" sx={styles.formTitle}>
-         للإستفسار ..
+        للإستفسار ..
       </Typography>
       <form style={styles.form} onSubmit={handleFormSubmit}>
         {fields.map(({ label, name, type }) => (
@@ -176,22 +184,29 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
           </Form.Group>
         ))}
 
-              {/* Centered Button */}
-                    <div style={{ display: "flex", justifyContent: "center", marginTop: "15px",paddingRight:'150px' }}>
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                          background: "#00fffc",
-                          color: "#1e272e",
-                          padding: { xs: "10px", sm: "15px" },
-                          width: "50%",
-                        }}
-                      >
-                        ارسال
-                      </Button>
-                    </div>
+        {/* Centered Button */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "15px",
+            paddingRight: "150px",
+          }}
+        >
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{
+              background: "#00fffc",
+              color: "#1e272e",
+              padding: { xs: "10px", sm: "15px" },
+              width: "50%",
+            }}
+          >
+            ارسال
+          </Button>
+        </div>
       </form>
     </Grid>
   );

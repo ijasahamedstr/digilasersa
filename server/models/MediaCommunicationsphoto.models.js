@@ -8,7 +8,7 @@ const MediaCommunicationsphotoSchema = new mongoose.Schema({
     MediaCommunicationsphototype: {
         type: String,
     },
-    MediaCommunicationsphotoimage: {
+    MediaCommunicationsphotolink: {
         type: String,
     },
     date: {

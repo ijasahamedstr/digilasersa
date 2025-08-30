@@ -112,93 +112,92 @@ function ServiceCard() {
         </Button>
 
         {/* Grid Cards */}
-    <Grid container spacing={3} justifyContent="center">
-       {products.slice(0, 8).map((product) => (
-         <Grid
-           item
-           xs={12}
-           sm={6}
-           md={3} // 3 per row on medium and above (12/4 = 3)
-           key={product.id}
-         >
-           <Link to={product.link} style={{ textDecoration: "none" }}>
-             <Card
-               sx={{
-                 display: "flex",
-                 flexDirection: "column",
-                 height: "100%",
-                 borderRadius: "20px",
-                 overflow: "hidden",
-                 width: "300px",
-                 margin: "0 auto", // Center the card
-               }}
-             >
-               <Box
-                 sx={{
-                   display: "flex",
-                   justifyContent: "center",
-                   alignItems: "center",
-                   position: "relative",
-                 }}
-               >
-                 <CardMedia
-                   component="img"
-                   height="300"
-                   image={product.imageUrl}
-                   alt={product.name}
-                   sx={{ objectFit: "cover", flexShrink: 0 }}
-                 />
-                 <Avatar
-                   src={product.iconUrl}
-                   alt={product.name}
-                   sx={{
-                     position: "absolute",
-                     top: "90%",
-                     left: "50%",
-                     transform: "translate(-50%, -10%)",
-                     width: 70,
-                     height: 70,
-                     border: "3px solid white",
-                     zIndex: 10,
-                     background: "#0a6d6a",
-                   }}
-                 />
-               </Box>
-               <CardContent
-                 sx={{
-                   display: "flex",
-                   flexDirection: "column",
-                   justifyContent: "space-between",
-                   flexGrow: 1,
-                   background: "#0a6d6a",
-                   padding: "1px",
-                   "&:last-child": {
-                     paddingBottom: "10px",
-                   },
-                 }}
-               >
-                 <Typography
-                   variant="h6"
-                   sx={{
-                     color: "white",
-                     marginTop: "32px",
-                     fontSize: "1.2rem",
-                     fontWeight: 500,
-                     fontFamily: "Tajawal",
-                   }}
-                 >
-                   {product.name}
-                 </Typography>
-               </CardContent>
-             </Card>
-           </Link>
-         </Grid>
-       ))}
-     </Grid>
+        <Grid container spacing={3} justifyContent="center">
+          {products.slice(0, 8).map((product) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3} // 3 per row on medium and above (12/4 = 3)
+              key={product.id}
+            >
+              <Link to={product.link} style={{ textDecoration: "none" }}>
+                <Card
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                    borderRadius: "20px",
+                    overflow: "hidden",
+                    width: "300px",
+                    margin: "0 auto", // Center the card
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      position: "relative",
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      height="300"
+                      image={product.imageUrl}
+                      alt={product.name}
+                      sx={{ objectFit: "cover", flexShrink: 0 }}
+                    />
+                    <Avatar
+                      src={product.iconUrl}
+                      alt={product.name}
+                      sx={{
+                        position: "absolute",
+                        top: "90%",
+                        left: "50%",
+                        transform: "translate(-50%, -10%)",
+                        width: 70,
+                        height: 70,
+                        border: "3px solid white",
+                        zIndex: 10,
+                        background: "#0a6d6a",
+                      }}
+                    />
+                  </Box>
+                  <CardContent
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      flexGrow: 1,
+                      background: "#0a6d6a",
+                      padding: "1px",
+                      "&:last-child": {
+                        paddingBottom: "10px",
+                      },
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: "white",
+                        marginTop: "32px",
+                        fontSize: "1.2rem",
+                        fontWeight: 500,
+                        fontFamily: "Tajawal",
+                      }}
+                    >
+                      {product.name}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
 
         {/* Banner Images and Button */}
         <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
-
           <img
             src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
             alt="Banner"

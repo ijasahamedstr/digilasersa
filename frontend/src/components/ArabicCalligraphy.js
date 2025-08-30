@@ -10,7 +10,7 @@ import {
   CardMedia,
   Pagination,
   CircularProgress,
-  Container
+  Container,
 } from "@mui/material";
 import { Carousel, Form } from "react-bootstrap";
 import {
@@ -20,7 +20,7 @@ import {
   FaYoutube,
   FaSnapchat,
   FaTiktok,
-  FaWhatsapp
+  FaWhatsapp,
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -31,20 +31,32 @@ const API_HOST = process.env.REACT_APP_API_HOST;
 
 // Social media links
 const SOCIAL_MEDIA = [
-  { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
-  { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
-  { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+  {
+    icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />,
+    link: "https://x.com/digilasersa",
+  },
+  {
+    icon: <FaInstagram size={25} />,
+    link: "https://www.instagram.com/digilasersa",
+  },
+  {
+    icon: <FaLinkedin size={25} />,
+    link: "https://www.linkedin.com/company/digilasersa",
+  },
   { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
-  { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+  {
+    icon: <FaSnapchat size={25} />,
+    link: "https://www.snapchat.com/add/digilasersa",
+  },
   { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
-  { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" }
+  { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
 ];
 
 // Carousel items
 const CAROUSEL_ITEMS = [
   { id: 1, img: "https://i.ibb.co/cTSJFMK/Group-25.webp" },
   { id: 2, img: "https://i.ibb.co/cTSJFMK/Group-25.webp" },
-  { id: 3, img: "https://i.ibb.co/cTSJFMK/Group-25.webp" }
+  { id: 3, img: "https://i.ibb.co/cTSJFMK/Group-25.webp" },
 ];
 
 // Component for social media sidebar
@@ -59,11 +71,16 @@ const SocialMediaSidebar = () => (
       flexDirection: "column",
       gap: "15px",
       zIndex: 2,
-      paddingLeft: 2
+      paddingLeft: 2,
     }}
   >
     {SOCIAL_MEDIA.map((social, index) => (
-      <a key={index} href={social.link} target="_blank" rel="noopener noreferrer">
+      <a
+        key={index}
+        href={social.link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Box
           sx={{
             width: 40,
@@ -76,7 +93,7 @@ const SocialMediaSidebar = () => (
             color: "#17202a",
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
             transition: "transform 0.3s ease",
-            "&:hover": { transform: "scale(1.2)" }
+            "&:hover": { transform: "scale(1.2)" },
           }}
         >
           {social.icon}
@@ -99,7 +116,7 @@ const ImageGallery = ({ products, handleImageClick }) => (
             "&:hover": { boxShadow: 6 },
             marginBottom: "20px",
             position: "relative",
-            borderRadius: "20px"
+            borderRadius: "20px",
           }}
         >
           <CardMedia
@@ -109,9 +126,13 @@ const ImageGallery = ({ products, handleImageClick }) => (
             sx={{
               height: 300,
               objectFit: "cover",
-              cursor: "zoom-in"
+              cursor: "zoom-in",
             }}
-            onClick={() => handleImageClick(`${API_HOST}/uploads/ArabicCalligraphy/${product.arabicCalligraphyimage}`)}
+            onClick={() =>
+              handleImageClick(
+                `${API_HOST}/uploads/ArabicCalligraphy/${product.arabicCalligraphyimage}`,
+              )
+            }
           />
           <Typography
             variant="h6"
@@ -127,7 +148,7 @@ const ImageGallery = ({ products, handleImageClick }) => (
               width: "100%",
               border: "2px solid #634335",
               borderTopLeftRadius: "20px",
-              borderTopRightRadius: "20px"
+              borderTopRightRadius: "20px",
             }}
           >
             {product.arabicCalligraphyname}
@@ -141,7 +162,7 @@ const ImageGallery = ({ products, handleImageClick }) => (
 // Component for the image zoom modal
 const ZoomedImageModal = ({ isOpen, imageSrc, onClose }) => {
   if (!isOpen) return null;
-  
+
   return (
     <Box
       sx={{
@@ -154,7 +175,7 @@ const ZoomedImageModal = ({ isOpen, imageSrc, onClose }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        zIndex: 1000
+        zIndex: 1000,
       }}
       onClick={onClose}
     >
@@ -165,7 +186,7 @@ const ZoomedImageModal = ({ isOpen, imageSrc, onClose }) => {
           maxWidth: "90%",
           maxHeight: "90%",
           objectFit: "contain",
-          cursor: "zoom-out"
+          cursor: "zoom-out",
         }}
       />
     </Box>
@@ -182,10 +203,10 @@ const ContactForm = ({ formData, handleChange, handleSubmit }) => (
         fontSize: "26px",
         textAlign: "right",
         marginBottom: "20px",
-        direction: "rtl"
+        direction: "rtl",
       }}
     >
-       للشكاوي ..
+      للشكاوي ..
     </h2>
 
     <form
@@ -193,14 +214,14 @@ const ContactForm = ({ formData, handleChange, handleSubmit }) => (
         display: "flex",
         flexDirection: "column",
         gap: "10px",
-        direction: "rtl"
+        direction: "rtl",
       }}
       onSubmit={handleSubmit}
     >
       {[
         { id: "name", label: "الاسم", type: "text" },
         { id: "phone", label: "جـوال", type: "text" },
-        { id: "message", label: "رسالتك", type: "textarea", rows: 3 }
+        { id: "message", label: "رسالتك", type: "textarea", rows: 3 },
       ].map((field) => (
         <Form.Group
           key={field.id}
@@ -214,7 +235,7 @@ const ContactForm = ({ formData, handleChange, handleSubmit }) => (
               fontFamily: "Tajawal",
               fontSize: "22px",
               width: "150px",
-              textAlign: "right"
+              textAlign: "right",
             }}
           >
             {field.label}
@@ -229,7 +250,7 @@ const ContactForm = ({ formData, handleChange, handleSubmit }) => (
               style={{
                 background: "#17202a",
                 border: "none",
-                outline: "none"
+                outline: "none",
               }}
             />
           ) : (
@@ -241,28 +262,35 @@ const ContactForm = ({ formData, handleChange, handleSubmit }) => (
               style={{
                 background: "#17202a",
                 border: "none",
-                outline: "none"
+                outline: "none",
               }}
             />
           )}
         </Form.Group>
       ))}
-            {/* Centered Button */}
-                  <div style={{ display: "flex", justifyContent: "center", marginTop: "15px",paddingRight:'150px' }}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      sx={{
-                        background: "#00fffc",
-                        color: "#1e272e",
-                        padding: { xs: "10px", sm: "15px" },
-                        width: "50%",
-                      }}
-                    >
-                      ارسال
-                    </Button>
-                  </div>
+      {/* Centered Button */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "15px",
+          paddingRight: "150px",
+        }}
+      >
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{
+            background: "#00fffc",
+            color: "#1e272e",
+            padding: { xs: "10px", sm: "15px" },
+            width: "50%",
+          }}
+        >
+          ارسال
+        </Button>
+      </div>
     </form>
   </>
 );
@@ -285,7 +313,7 @@ const BackgroundSection = ({ backgroundImage, height = "60vh", children }) => (
       paddingTop: "20px",
       paddingBottom: "20px",
       marginTop: "-30px",
-      boxSizing: "border-box"
+      boxSizing: "border-box",
     }}
   >
     <Container
@@ -293,7 +321,7 @@ const BackgroundSection = ({ backgroundImage, height = "60vh", children }) => (
       sx={{
         paddingX: { xs: 2, sm: 3, md: 5 },
         textAlign: "center",
-        paddingTop: "50px"
+        paddingTop: "50px",
       }}
     >
       {children}
@@ -313,7 +341,7 @@ const ArabicCalligraphy = () => {
     name: "",
     phone: "",
     email: "",
-    message: ""
+    message: "",
   });
 
   // Fetch calligraphy data
@@ -336,26 +364,34 @@ const ArabicCalligraphy = () => {
   // Calculate pagination
   const indexOfLastProduct = page * ITEMS_PER_PAGE;
   const indexOfFirstProduct = indexOfLastProduct - ITEMS_PER_PAGE;
-  const currentProducts = calligraphyData.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = calligraphyData.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct,
+  );
   const totalPages = Math.ceil(calligraphyData.length / ITEMS_PER_PAGE);
 
   // Event handlers
   const handlePageChange = (event, value) => {
     setPage(value);
     // Scroll to top of products section
-    window.scrollTo({ top: 400, behavior: 'smooth' });
+    window.scrollTo({ top: 400, behavior: "smooth" });
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
     // Validate form
-    if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.email ||
+      !formData.message
+    ) {
       alert("Please fill out all fields.");
       return;
     }
@@ -375,17 +411,33 @@ const ArabicCalligraphy = () => {
   };
 
   // Loading and error handling
-  if (loading) return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <CircularProgress />
-    </Box>
-  );
-  
-  if (error) return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <Typography color="error">{error}</Typography>
-    </Box>
-  );
+  if (loading)
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+
+  if (error)
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <Typography color="error">{error}</Typography>
+      </Box>
+    );
 
   return (
     <Container
@@ -397,8 +449,18 @@ const ArabicCalligraphy = () => {
       <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
         <Carousel
           fade
-          nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
-          prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: "black" }} />}
+          nextIcon={
+            <span
+              className="carousel-control-next-icon"
+              style={{ backgroundColor: "black" }}
+            />
+          }
+          prevIcon={
+            <span
+              className="carousel-control-prev-icon"
+              style={{ backgroundColor: "black" }}
+            />
+          }
         >
           {CAROUSEL_ITEMS.map((item) => (
             <Carousel.Item key={item.id}>
@@ -408,7 +470,7 @@ const ArabicCalligraphy = () => {
                 alt={`Slide ${item.id}`}
                 style={{
                   objectFit: "cover",
-                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)"
+                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                 }}
               />
             </Carousel.Item>
@@ -423,7 +485,8 @@ const ArabicCalligraphy = () => {
       <section
         style={{
           backgroundColor: "#eaecee",
-          backgroundImage: 'url("https://i.ibb.co/FKQ2rWm/Background-copy.webp")',
+          backgroundImage:
+            'url("https://i.ibb.co/FKQ2rWm/Background-copy.webp")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           width: "100%",
@@ -434,11 +497,16 @@ const ArabicCalligraphy = () => {
           alignItems: "center",
           paddingTop: "20px",
           paddingBottom: "20px",
-          marginTop: "-30px"
+          marginTop: "-30px",
         }}
       >
         <Container maxWidth="xl" sx={{ padding: 3 }}>
-          <Box display="flex" justifyContent="center" alignItems="center" sx={{ marginY: "20px" }}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ marginY: "20px" }}
+          >
             <img
               src="https://i.ibb.co/jwV97WY/Group-11.webp"
               alt="وَأَحْسِنُوا ۛ إِنَّ اللَّهَ يُحِبُّ الْمُحْسِنِينَ"
@@ -446,16 +514,23 @@ const ArabicCalligraphy = () => {
                 width: "100%",
                 maxWidth: "100%",
                 height: "auto",
-                marginBottom: "15px"
+                marginBottom: "15px",
               }}
             />
           </Box>
-          
+
           {/* Image Gallery */}
-          <ImageGallery products={currentProducts} handleImageClick={handleImageClick} />
+          <ImageGallery
+            products={currentProducts}
+            handleImageClick={handleImageClick}
+          />
 
           {/* Zoom Modal */}
-          <ZoomedImageModal isOpen={isZoomed} imageSrc={zoomedImageSrc} onClose={handleCloseZoom} />
+          <ZoomedImageModal
+            isOpen={isZoomed}
+            imageSrc={zoomedImageSrc}
+            onClose={handleCloseZoom}
+          />
 
           {/* Pagination */}
           <Box display="flex" justifyContent="center" sx={{ marginTop: 3 }}>
@@ -478,7 +553,7 @@ const ArabicCalligraphy = () => {
             fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
             color: "#261d22",
             fontFamily: "Tajawal",
-            marginBottom: "20px"
+            marginBottom: "20px",
           }}
         >
           أسماء مزخرفة
@@ -489,7 +564,7 @@ const ArabicCalligraphy = () => {
             fontSize: "clamp(1.5rem, 4vw, 3rem)",
             color: "#065956",
             fontFamily: "Tajawal",
-            marginBottom: "20px"
+            marginBottom: "20px",
           }}
         >
           شخصيات - عائلية - عروسين - مناسبات
@@ -505,7 +580,7 @@ const ArabicCalligraphy = () => {
             sx={{
               width: "200px",
               height: "200px",
-              objectFit: "cover"
+              objectFit: "cover",
             }}
           />
         </Box>
@@ -520,7 +595,7 @@ const ArabicCalligraphy = () => {
             sx={{
               width: "100%",
               height: "auto",
-              objectFit: "cover"
+              objectFit: "cover",
             }}
           />
         </Box>
@@ -535,7 +610,7 @@ const ArabicCalligraphy = () => {
             sx={{
               width: "100%",
               height: "auto",
-              objectFit: "cover"
+              objectFit: "cover",
             }}
           />
         </Box>
@@ -552,7 +627,7 @@ const ArabicCalligraphy = () => {
               maxWidth: "500px",
               height: "auto",
               objectFit: "cover",
-              margin: "0 auto"
+              margin: "0 auto",
             }}
           />
         </Box>
@@ -569,7 +644,7 @@ const ArabicCalligraphy = () => {
               maxWidth: "500px",
               height: "auto",
               objectFit: "cover",
-              margin: "0 auto"
+              margin: "0 auto",
             }}
           />
         </Box>
@@ -589,14 +664,14 @@ const ArabicCalligraphy = () => {
           paddingTop: "50px",
           paddingBottom: "50px",
           marginTop: "-30px",
-          direction: "rtl"
+          direction: "rtl",
         }}
       >
         <Container
           maxWidth="xl"
           sx={{
             paddingX: { xs: 2, sm: 3, md: 5 },
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
           <Grid container spacing={4}>
@@ -617,14 +692,24 @@ const ArabicCalligraphy = () => {
               <Typography variant="h4" color="white">
                 Contact Us
               </Typography>
-            
-              <Typography variant="h5" color="#00fffc" sx={{ textAlign: "justify", direction: "rtl" }}>
+
+              <Typography
+                variant="h5"
+                color="#00fffc"
+                sx={{ textAlign: "justify", direction: "rtl" }}
+              >
                 للطلب والإستفسار /
               </Typography>
-            
-              <Grid container spacing={2} sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}>
+
+              <Grid
+                container
+                spacing={2}
+                sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}
+              >
                 {[
-                  { label: "مدير قسم الميديا", value: "9999 065 057" },{ label: "مدير فرع الشرقية", value: "9999 064 057" },{ label: "مدير قسم الميديا", value: "8888 093 057" }
+                  { label: "مدير قسم الميديا", value: "9999 065 057" },
+                  { label: "مدير فرع الشرقية", value: "9999 064 057" },
+                  { label: "مدير قسم الميديا", value: "8888 093 057" },
                 ].map(({ label, value }) => (
                   <React.Fragment key={label}>
                     <Grid item xs={4}>
@@ -639,7 +724,7 @@ const ArabicCalligraphy = () => {
                         {label}
                       </Typography>
                     </Grid>
-            
+
                     <Grid item xs={1}>
                       <Typography
                         variant="body1"
@@ -652,7 +737,7 @@ const ArabicCalligraphy = () => {
                         :
                       </Typography>
                     </Grid>
-            
+
                     <Grid item xs={7}>
                       <Typography
                         variant="body1"
@@ -672,7 +757,7 @@ const ArabicCalligraphy = () => {
 
             {/* Contact Form */}
             <Grid item xs={12} sm={6} order={{ xs: 2, sm: 2 }}>
-              <ContactForm 
+              <ContactForm
                 formData={formData}
                 handleChange={handleChange}
                 handleSubmit={handleFormSubmit}

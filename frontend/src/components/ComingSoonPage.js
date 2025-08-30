@@ -17,7 +17,6 @@ function ComingSoonPage() {
         px: { xs: 2, md: 4 },
       }}
     >
-
       <Container maxWidth="lg">
         <Grid container spacing={6} alignItems="center">
           {/* Left Side – Image */}

@@ -15,17 +15,16 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-// Import SweetAlert2
+// SweetAlert2
 import Swal from "sweetalert2";
 
 const EditMediaCommunications = () => {
-  const [mediaPreview, setMediaPreview] = useState(null); // For new video preview
   const { id } = useParams();
 
   const [formData, setFormData] = useState({
     MediaCommunicationsvideoname: "",
     MediaCommunicationsvideotype: "",
-    MediaCommunicationsvideo: null, // will be File OR string from API
+    MediaCommunicationsvideolink: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -36,16 +35,6 @@ const EditMediaCommunications = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // Handle file upload
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setMediaPreview(previewUrl);
-      setFormData((prev) => ({ ...prev, MediaCommunicationsvideo: file }));
-    }
   };
 
   // Submit form
@@ -67,20 +56,11 @@ const EditMediaCommunications = () => {
       setError(null);
       setSuccess(null);
 
-      const formDataToSend = new FormData();
-      formDataToSend.append("MediaCommunicationsvideoname", formData.MediaCommunicationsvideoname);
-      formDataToSend.append("MediaCommunicationsvideotype", formData.MediaCommunicationsvideotype);
-
-      // Append video ONLY if it's a File (not just the old string)
-      if (formData.MediaCommunicationsvideo instanceof File) {
-        formDataToSend.append("Video", formData.MediaCommunicationsvideo);
-      }
-
-      await axios.put(
-        `${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo/${id}`,
-        formDataToSend,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
+      await axios.put(`${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo/${id}`, {
+        MediaCommunicationsvideoname: formData.MediaCommunicationsvideoname,
+        MediaCommunicationsvideotype: formData.MediaCommunicationsvideotype,
+        MediaCommunicationsvideolink: formData.MediaCommunicationsvideolink,
+      });
 
       setSuccess("Video updated successfully!");
       Swal.fire({
@@ -115,7 +95,7 @@ const EditMediaCommunications = () => {
         setFormData({
           MediaCommunicationsvideoname: response.data.MediaCommunicationsvideoname || "",
           MediaCommunicationsvideotype: response.data.MediaCommunicationsvideotype || "",
-          MediaCommunicationsvideo: response.data.MediaCommunicationsvideo || null,
+          MediaCommunicationsvideolink: response.data.MediaCommunicationsvideolink || "",
         });
       } catch (err) {
         if (err.response?.status === 404) {
@@ -158,7 +138,7 @@ const EditMediaCommunications = () => {
               </MDBox>
 
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <form onSubmit={handleSubmit}>
                   {/* Video Name */}
                   <TextField
                     label="Media Name"
@@ -177,74 +157,27 @@ const EditMediaCommunications = () => {
                     name="MediaCommunicationsvideotype"
                     value={formData.MediaCommunicationsvideotype}
                     onChange={handleInputChange}
-                    sx={{
-                      mb: 2,
-                      height: "40px",
-                      "& .MuiInputBase-root": {
-                        height: "40px",
-                      },
-                      "& .MuiSelect-select": {
-                        display: "flex",
-                        alignItems: "center",
-                        height: "100%",
-                      },
-                    }}
+                    sx={{ mb: 2 }}
                     fullWidth
-                    margin="normal"
                   >
-                    <MenuItem value="فيديو" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                      فيديو
-                    </MenuItem>
-                    <MenuItem
-                      value="فيديوهات الواقع الافتراضي"
-                      style={{ fontFamily: "Tajawal, sans-serif" }}
-                    >
-                      فيديوهات الواقع الافتراضي
-                    </MenuItem>
-                    <MenuItem value="فـوتـو" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                      فـوتـو
-                    </MenuItem>
-                    <MenuItem value="Motion graphics" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                      Motion graphics
-                    </MenuItem>
-                    <MenuItem value="Ai Videos" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                      Ai Videos
-                    </MenuItem>
-                    <MenuItem value="3D Animation" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                      3D Animation
-                    </MenuItem>
+                    <MenuItem value="فيديو">فيديو</MenuItem>
+                    <MenuItem value="فيديوهات الواقع الافتراضي">فيديوهات الواقع الافتراضي</MenuItem>
+                    <MenuItem value="فـوتـو">فـوتـو</MenuItem>
+                    <MenuItem value="Motion graphics">Motion graphics</MenuItem>
+                    <MenuItem value="Ai Videos">Ai Videos</MenuItem>
+                    <MenuItem value="3D Animation">3D Animation</MenuItem>
                   </TextField>
 
-                  {/* File Upload */}
-                  <label htmlFor="file-upload">
-                    <input
-                      id="file-upload"
-                      accept="video/*"
-                      type="file"
-                      style={{ display: "none" }}
-                      onChange={handleFileChange}
-                    />
-                    <Button variant="outlined" component="span" fullWidth sx={{ mb: 2 }}>
-                      Upload Video
-                    </Button>
-                  </label>
-
-                  {/* Video Preview */}
-                  <MDBox display="flex" justifyContent="center" alignItems="center" sx={{ mb: 2 }}>
-                    {mediaPreview ? (
-                      <video controls src={mediaPreview} style={{ maxWidth: "150px" }} />
-                    ) : formData.MediaCommunicationsvideo ? (
-                      <video
-                        controls
-                        src={`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Video/${formData.MediaCommunicationsvideo}`}
-                        style={{ maxWidth: "150px" }}
-                      />
-                    ) : (
-                      <MDTypography variant="body2" color="text">
-                        No video selected
-                      </MDTypography>
-                    )}
-                  </MDBox>
+                  {/* Video Link */}
+                  <TextField
+                    label="Video Link"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    name="MediaCommunicationsvideolink"
+                    value={formData.MediaCommunicationsvideolink}
+                    onChange={handleInputChange}
+                  />
 
                   {/* Status messages */}
                   {loading && <MDTypography color="info">Loading...</MDTypography>}

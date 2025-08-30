@@ -20,16 +20,15 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 const AddMediaCommunications = () => {
   const [loading, setLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState(null);
 
-  // Seller Form field states
+  // Form field states
   const [MediaCommunications, setMediaCommunications] = useState({
     MediaCommunicationsphotoname: "",
     MediaCommunicationsphototype: "",
-    file: null,
+    MediaCommunicationsphotolink: "",
   });
 
-  // Handle changes in input fields
+  // Handle changes in text/select fields
   const handleChange = ({ target: { name, value } }) => {
     setMediaCommunications((prevState) => ({
       ...prevState,
@@ -37,46 +36,15 @@ const AddMediaCommunications = () => {
     }));
   };
 
-  // Handle file input change
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setMediaCommunications((prevState) => ({
-      ...prevState,
-      file: selectedFile,
-    }));
-
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
-      reader.readAsDataURL(selectedFile);
-    }
-  };
-
   // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData();
-    formData.append("photo", MediaCommunications.file);
-    formData.append(
-      "MediaCommunicationsphotoname",
-      MediaCommunications.MediaCommunicationsphotoname
-    );
-    formData.append(
-      "MediaCommunicationsphototype",
-      MediaCommunications.MediaCommunicationsphototype
-    );
-
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_HOST}/MediaCommunicationsphoto`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        MediaCommunications
       );
 
       if (response.data.status === 401 || !response.data) {
@@ -94,9 +62,8 @@ const AddMediaCommunications = () => {
         setMediaCommunications({
           MediaCommunicationsphotoname: "",
           MediaCommunicationsphototype: "",
-          file: null,
+          MediaCommunicationsphotolink: "",
         });
-        setImagePreview(null);
       }
     } catch (error) {
       Swal.fire({
@@ -134,12 +101,12 @@ const AddMediaCommunications = () => {
                 </MDTypography>
               </MDBox>
 
-              {/* Add Category Form */}
+              {/* Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
                 <form onSubmit={handleSubmit}>
-                  {/* Category Name */}
+                  {/* Name */}
                   <TextField
-                    label="MediaCommunications photo Name"
+                    label="Media Communications Photo Name"
                     variant="outlined"
                     fullWidth
                     sx={{ mb: 2 }}
@@ -148,6 +115,7 @@ const AddMediaCommunications = () => {
                     onChange={handleChange}
                   />
 
+                  {/* Type */}
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <InputLabel>Photo Type</InputLabel>
                     <Select
@@ -156,83 +124,27 @@ const AddMediaCommunications = () => {
                       onChange={handleChange}
                       sx={{ height: "40px" }}
                     >
-                      <MenuItem value="Weddings" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        Weddings
-                      </MenuItem>
-                      <MenuItem value="Sports" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        Sports
-                      </MenuItem>
-                      <MenuItem value="products" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        products
-                      </MenuItem>
-                      <MenuItem value="Foods" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        Foods
-                      </MenuItem>
-                      <MenuItem value="Factory" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        Factory
-                      </MenuItem>
-                      <MenuItem value="Conference" style={{ fontFamily: "Tajawal, sans-serif" }}>
-                        Conference
-                      </MenuItem>
+                      <MenuItem value="Weddings">Weddings</MenuItem>
+                      <MenuItem value="Sports">Sports</MenuItem>
+                      <MenuItem value="Products">Products</MenuItem>
+                      <MenuItem value="Foods">Foods</MenuItem>
+                      <MenuItem value="Factory">Factory</MenuItem>
+                      <MenuItem value="Conference">Conference</MenuItem>
                     </Select>
                   </FormControl>
 
-                  {/* Image Upload Field */}
-                  <label htmlFor="file-upload">
-                    <input
-                      id="file-upload"
-                      name="photo"
-                      accept="image/*"
-                      type="file"
-                      onChange={handleFileChange}
-                      style={{ display: "none" }}
-                    />
-                    <Button
-                      variant="outlined"
-                      component="span"
-                      fullWidth
-                      sx={{
-                        mb: 2,
-                        textTransform: "none",
-                        borderColor: "#1976d2",
-                        color: "#1976d2",
-                        "&:hover": {
-                          borderColor: "#1565c0",
-                          backgroundColor: "#f5f5f5",
-                        },
-                      }}
-                    >
-                      Upload Image
-                    </Button>
-                  </label>
+                  {/* Link */}
+                  <TextField
+                    label="Media Communications Photo Link"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    name="MediaCommunicationsphotolink"
+                    value={MediaCommunications.MediaCommunicationsphotolink}
+                    onChange={handleChange}
+                  />
 
-                  {/* Image Preview */}
-                  {imagePreview && (
-                    <MDBox
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      sx={{
-                        mb: 2,
-                        border: "1px solid #e0e0e0",
-                        borderRadius: "8px",
-                        padding: "8px",
-                      }}
-                    >
-                      <img
-                        src={imagePreview}
-                        alt="Preview"
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          maxWidth: "200px",
-                          borderRadius: "4px",
-                        }}
-                      />
-                    </MDBox>
-                  )}
-
-                  {/* Submit Button */}
+                  {/* Submit */}
                   <Button
                     type="submit"
                     variant="contained"

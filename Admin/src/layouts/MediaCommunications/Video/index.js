@@ -19,9 +19,6 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import DataTable from "examples/Tables/DataTable";
 
-// Import Ant Design's Image and PreviewGroup components
-import { Image } from "antd";
-
 // Helper component for displaying Author information
 const Author = ({ name, style }) => (
   <MDBox display="flex" alignItems="center" lineHeight={1}>
@@ -56,14 +53,15 @@ function MediaCommunicationsvideo() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch data on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo`
         );
-        setMediaCommunicationsvideo(response.data); // Set the fetched gifts
+        // Reverse the array to show latest videos first
+        const reversedData = response.data.slice().reverse();
+        setMediaCommunicationsvideo(reversedData);
       } catch (err) {
         console.error("Error fetching data: ", err);
         setError("Failed to fetch data");
@@ -71,32 +69,13 @@ function MediaCommunicationsvideo() {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
-  // Define the columns for the DataTable
-  const columns = [
-    {
-      Header: "MediaCommunications Video Name",
-      accessor: "MediaCommunications_video_Name",
-      width: "20%",
-      align: "left",
-    },
-    {
-      Header: "MediaCommunications Video Type",
-      accessor: "MediaCommunications_video_Type",
-      width: "20%",
-      align: "left",
-    },
-    { Header: "MediaCommunications Video", accessor: "MediaCommunications_video", align: "center" },
-    { Header: "Action", accessor: "action", align: "center" },
-  ];
-
-  // Handle delete action with SweetAlert2 confirmation
+  // Handle delete action
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -111,17 +90,84 @@ function MediaCommunicationsvideo() {
     if (result.isConfirmed) {
       try {
         await axios.delete(`${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo/${id}`);
-        // Update the state to remove the deleted item
-        setMediaCommunicationsvideo((prevVideos) => prevVideos.filter((video) => video._id !== id));
+        setMediaCommunicationsvideo((prev) => prev.filter((v) => v._id !== id));
         Swal.fire("Deleted!", "The MediaCommunications Video has been deleted.", "success");
       } catch (err) {
-        console.error("Error deleting MediaCommunications Video: ", err);
-        Swal.fire("Error!", "There was an issue deleting the MediaCommunications Video.", "error");
+        console.error("Error deleting video: ", err);
+        Swal.fire("Error!", "There was an issue deleting the video.", "error");
       }
     }
   };
 
-  // Map through printing department data to build table rows
+  // Helper to convert YouTube/Vimeo links to embed URLs
+  const getEmbedUrl = (url) => {
+    if (!url) return "";
+
+    if (url.includes("youtube.com")) {
+      const videoId = url.split("v=")[1]?.split("&")[0];
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    if (url.includes("youtu.be")) {
+      const videoId = url.split("/").pop();
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    if (url.includes("vimeo.com")) {
+      const videoId = url.split("/").pop();
+      return `https://player.vimeo.com/video/${videoId}`;
+    }
+    return url; // direct video file
+  };
+
+  // Render video preview
+  const renderVideoPreview = (url) => {
+    if (!url) return <MDTypography>No video available</MDTypography>;
+
+    const embedUrl = getEmbedUrl(url);
+    const isEmbed = embedUrl.includes("youtube.com/embed") || embedUrl.includes("player.vimeo.com");
+
+    if (isEmbed) {
+      return (
+        <iframe
+          width="250"
+          height="180"
+          src={embedUrl}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title="Video Preview"
+          style={{ borderRadius: "8px" }}
+        />
+      );
+    }
+
+    // HTML5 video for direct files
+    return (
+      <video width="250" height="180" controls style={{ borderRadius: "8px" }}>
+        <source src={embedUrl} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    );
+  };
+
+  // Define columns
+  const columns = [
+    {
+      Header: "Video Name",
+      accessor: "MediaCommunications_video_Name",
+      width: "20%",
+      align: "left",
+    },
+    {
+      Header: "Video Type",
+      accessor: "MediaCommunications_video_Type",
+      width: "20%",
+      align: "left",
+    },
+    { Header: "Video Preview", accessor: "MediaCommunications_video", align: "center" },
+    { Header: "Action", accessor: "action", align: "center" },
+  ];
+
+  // Map rows
   const rows = MediaCommunicationsvideo.map((item) => ({
     MediaCommunications_video_Name: (
       <Author
@@ -136,42 +182,10 @@ function MediaCommunicationsvideo() {
       />
     ),
     MediaCommunications_video: (
-      <MDBox>
-        {item.MediaCommunicationsvideo ? (
-          // Check if the file is a video and display the video player inside the PreviewGroup
-          item.MediaCommunicationsvideo.endsWith(".mp4") ||
-          item.MediaCommunicationsvideo.endsWith(".webm") ? (
-            <Image.PreviewGroup>
-              <video width="200px" height="200px" controls style={{ borderRadius: "8px" }}>
-                <source
-                  src={`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Video/${item.MediaCommunicationsvideo}`}
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-            </Image.PreviewGroup>
-          ) : (
-            // Fallback to image preview if not a video
-            <Image.PreviewGroup>
-              <Image
-                src={`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Video/${item.MediaCommunicationsvideo}`}
-                alt="MediaCommunicationsphotoimage"
-                style={{ maxWidth: "100px", borderRadius: "8px" }}
-              />
-            </Image.PreviewGroup>
-          )
-        ) : (
-          <Image
-            src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
-            alt="No Image"
-            style={{ maxWidth: "50px", borderRadius: "8px" }}
-          />
-        )}
-      </MDBox>
+      <MDBox>{renderVideoPreview(item.MediaCommunicationsvideolink)}</MDBox>
     ),
     action: (
       <MDBox display="flex" justifyContent="center" alignItems="center" gap={2}>
-        {/* Edit button */}
         <Link
           to={`/Edit-MediaCommunications-video-section/${item._id}`}
           style={{ textDecoration: "none" }}
@@ -180,7 +194,7 @@ function MediaCommunicationsvideo() {
             variant="outlined"
             color="primary"
             size="small"
-            startIcon={<EditIcon sx={{ marginRight: "4px" }} />}
+            startIcon={<EditIcon />}
             sx={{
               backgroundColor: "#3f51b5",
               color: "white",
@@ -191,8 +205,6 @@ function MediaCommunicationsvideo() {
             Edit
           </Button>
         </Link>
-
-        {/* Delete button */}
         <Button
           variant="outlined"
           color="error"
@@ -211,11 +223,6 @@ function MediaCommunicationsvideo() {
       </MDBox>
     ),
   }));
-
-  // Handle the 'Add New' button click
-  const handleNewFieldClick = () => {
-    console.log("New Field button clicked");
-  };
 
   return (
     <DashboardLayout>
@@ -244,7 +251,6 @@ function MediaCommunicationsvideo() {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={handleNewFieldClick}
                     size="small"
                     startIcon={<AddIcon />}
                     sx={{

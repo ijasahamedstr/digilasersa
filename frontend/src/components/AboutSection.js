@@ -90,7 +90,7 @@ function AboutSection() {
             شركة الليزر الرقمي للدعاية والإعلان
           </Typography>
 
-         <Typography
+          <Typography
             variant="body1"
             sx={{
               color: "#ffffff",
@@ -104,7 +104,6 @@ function AboutSection() {
             والتى تعتبر من أعرق شركات الدعاية والإعلان <br />
             والتى تزيد عن 32 عام من الثقة بالسوق السعودي
           </Typography>
-
 
           <Typography
             variant="body1"

@@ -41,7 +41,7 @@ const Partner = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/Partner`
+          `${process.env.REACT_APP_API_HOST}/Partner`,
         );
         setPartners(response.data);
       } catch (err) {
@@ -61,7 +61,12 @@ const Partner = () => {
         <CircularProgress />
       </Box>
     );
-  if (error) return <Box textAlign="center" py={4}>{error}</Box>;
+  if (error)
+    return (
+      <Box textAlign="center" py={4}>
+        {error}
+      </Box>
+    );
 
   const halfwayIndex = Math.ceil(partners.length / 2);
   const firstRowPartners = partners.slice(0, halfwayIndex);
@@ -69,20 +74,20 @@ const Partner = () => {
 
   return (
     <Container maxWidth="xl" sx={{ mt: 8, mb: 8 }}>
-    <Typography
-      variant="h4"
-      align="center"
-      gutterBottom
-      sx={{
-        fontFamily: "Tajawal, sans-serif", // Change font family
-        fontSize: { xs: "1.5rem", sm: "2rem" }, // Responsive font size
-        fontWeight: 700, // Bold
-        color: "#096e69", // Optional: text color
-        mb: 4,
-      }}
-    >
-      شركاء النجاح
-    </Typography>
+      <Typography
+        variant="h4"
+        align="center"
+        gutterBottom
+        sx={{
+          fontFamily: "Tajawal, sans-serif", // Change font family
+          fontSize: { xs: "1.5rem", sm: "2rem" }, // Responsive font size
+          fontWeight: 700, // Bold
+          color: "#096e69", // Optional: text color
+          mb: 4,
+        }}
+      >
+        شركاء النجاح
+      </Typography>
 
       {/* Row 1 - RTL */}
       <Box px={{ xs: 1, sm: 2, md: 0 }}>

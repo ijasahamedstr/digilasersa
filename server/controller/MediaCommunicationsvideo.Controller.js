@@ -2,12 +2,12 @@ import moment from 'moment';
 import MediaCommunicationsvideo from '../models/MediaCommunicationsvideo.models.js';
 
 export const MediaCommunicationvideocreate = async (req, res) => {
-    const { filename } = req.file; // This will be the video file
     const { MediaCommunicationsvideoname } = req.body; // Assuming this is the name you want for the video
     const { MediaCommunicationsvideotype } = req.body; // Assuming this is the name you want for the video
+    const { MediaCommunicationsvideolink } = req.body; // Assuming this is the name you want for the video
 
     // Input validation
-    if (!MediaCommunicationsvideoname ||!MediaCommunicationsvideotype || !filename) {
+    if (!MediaCommunicationsvideoname ||!MediaCommunicationsvideotype || !MediaCommunicationsvideolink) {
         return res.status(400).json({
             status: 400,
             message: 'Please provide video name and video file.',
@@ -21,7 +21,7 @@ export const MediaCommunicationvideocreate = async (req, res) => {
         const newMediaCommunicationVideo = new MediaCommunicationsvideo({
             MediaCommunicationsvideoname,
             MediaCommunicationsvideotype,
-            MediaCommunicationsvideo: filename, // Store the video filename
+            MediaCommunicationsvideolink,
             date,
         });
 
@@ -86,7 +86,7 @@ export const MediaCommunicationvideoUpdates  = async (req, res) => {
     const { id } = req.params;
     const { MediaCommunicationsvideoname } = req.body;
     const { MediaCommunicationsvideotype } = req.body;
-    const { file } = req;
+    const { MediaCommunicationsvideolink } = req.body;
 
     try {
         // Find the user by ID
@@ -102,9 +102,8 @@ export const MediaCommunicationvideoUpdates  = async (req, res) => {
          if (MediaCommunicationsvideotype) {
             user.MediaCommunicationsvideotype = MediaCommunicationsvideotype;
         }
-        // Update image if a new file is uploaded
-        if (file) {
-            user.MediaCommunicationsvideo = file.filename;
+         if (MediaCommunicationsvideolink) {
+            user.MediaCommunicationsvideolink = MediaCommunicationsvideolink;
         }
 
         // Save the updated user data

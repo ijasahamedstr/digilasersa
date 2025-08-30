@@ -2,11 +2,10 @@ import moment from 'moment';
 import MediaCommunicationsphoto from '../models/MediaCommunicationsphoto.models.js';
 
 export const MediaCommunicationcreate = async (req, res) => {
-    const { filename } = req.file || {};
-    const { MediaCommunicationsphotoname, MediaCommunicationsphototype } = req.body;
+    const { MediaCommunicationsphotoname, MediaCommunicationsphototype,MediaCommunicationsphotolink } = req.body;
 
     // Input validation
-    if (!MediaCommunicationsphotoname || !MediaCommunicationsphototype || !filename) {
+    if (!MediaCommunicationsphotoname || !MediaCommunicationsphototype || !MediaCommunicationsphotolink) {
         return res.status(400).json({
             status: 400,
             message: 'Please provide gift name, gift type, and gift image.'
@@ -19,7 +18,7 @@ export const MediaCommunicationcreate = async (req, res) => {
         const newMediaCommunicationsphoto = new MediaCommunicationsphoto({
             MediaCommunicationsphotoname,
             MediaCommunicationsphototype,
-            MediaCommunicationsphotoimage: filename,
+            MediaCommunicationsphotolink,
             date,
         });
 
@@ -83,7 +82,7 @@ export const MediaCommunicationUpdates  = async (req, res) => {
     const { id } = req.params;
     const { MediaCommunicationsphotoname } = req.body;
     const { MediaCommunicationsphototype } = req.body;
-    const { file } = req;
+    const { MediaCommunicationsphotolink } = req.body;
 
     try {
         // Find the user by ID
@@ -98,9 +97,8 @@ export const MediaCommunicationUpdates  = async (req, res) => {
         if (MediaCommunicationsphototype) {
             user.MediaCommunicationsphototype = MediaCommunicationsphototype;
         }
-        // Update image if a new file is uploaded
-        if (file) {
-            user.MediaCommunicationsphotoimage = file.filename;
+        if (MediaCommunicationsphotolink) {
+            user.MediaCommunicationsphotolink = MediaCommunicationsphotolink;
         }
 
         // Save the updated user data

@@ -96,7 +96,9 @@ function ResponsiveAppBar() {
                   width: "100%",
                   justifyContent: "center",
                 }}
-                aria-controls={Boolean(anchorEl) ? "sections-menu-mobile" : undefined}
+                aria-controls={
+                  Boolean(anchorEl) ? "sections-menu-mobile" : undefined
+                }
                 aria-haspopup="true"
                 aria-expanded={Boolean(anchorEl) ? "true" : undefined}
               >
@@ -137,10 +139,14 @@ function ResponsiveAppBar() {
               onClick={toggleDrawer(false)}
               sx={{
                 backgroundColor:
-                  location.pathname === `/${page.toLowerCase()}` ? "#06f9f3" : "transparent",
+                  location.pathname === `/${page.toLowerCase()}`
+                    ? "#06f9f3"
+                    : "transparent",
                 "&:hover": { backgroundColor: "#444" },
                 color:
-                  location.pathname === `/${page.toLowerCase()}` ? "white" : "inherit",
+                  location.pathname === `/${page.toLowerCase()}`
+                    ? "white"
+                    : "inherit",
                 padding: "10px",
                 fontFamily: "Tajawal",
                 textAlign: "center",
@@ -163,7 +169,11 @@ function ResponsiveAppBar() {
   );
 
   return (
-    <AppBar position="fixed" sx={{ background: "#000", height: "100px" }} dir="rtl">
+    <AppBar
+      position="fixed"
+      sx={{ background: "#000", height: "100px" }}
+      dir="rtl"
+    >
       <Container
         maxWidth="xxl"
         sx={{
@@ -226,13 +236,17 @@ function ResponsiveAppBar() {
                 <Button
                   key="أقسامنا"
                   onClick={handleMenuClick}
-                  aria-controls={Boolean(anchorEl) ? "sections-menu" : undefined}
+                  aria-controls={
+                    Boolean(anchorEl) ? "sections-menu" : undefined
+                  }
                   aria-haspopup="true"
                   aria-expanded={Boolean(anchorEl) ? "true" : undefined}
                   sx={{
                     my: 0.5,
                     mx: 2,
-                    color: location.pathname.includes("/sections") ? "white" : "inherit",
+                    color: location.pathname.includes("/sections")
+                      ? "white"
+                      : "inherit",
                     display: "flex",
                     fontFamily: "Tajawal",
                     fontSize: { xs: "12px", sm: "14px", md: "16px" },
@@ -259,7 +273,9 @@ function ResponsiveAppBar() {
                     my: 0.5,
                     mx: 2,
                     color:
-                      location.pathname === `/${page.toLowerCase()}` ? "white" : "inherit",
+                      location.pathname === `/${page.toLowerCase()}`
+                        ? "white"
+                        : "inherit",
                     display: "block",
                     fontFamily: "Tajawal",
                     fontSize: { xs: "12px", sm: "14px", md: "16px" },
@@ -270,7 +286,9 @@ function ResponsiveAppBar() {
                         : "transparent",
                     "&:hover": {
                       backgroundColor:
-                        location.pathname !== `/${page.toLowerCase()}` ? "#444" : "#0b5097",
+                        location.pathname !== `/${page.toLowerCase()}`
+                          ? "#444"
+                          : "#0b5097",
                     },
                   }}
                 >
@@ -327,7 +345,10 @@ function ResponsiveAppBar() {
           </Button>
 
           {/* Mobile Menu (Drawer) */}
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} dir="ltr">
+          <Box
+            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+            dir="ltr"
+          >
             <IconButton
               size="large"
               aria-label="open navigation menu"

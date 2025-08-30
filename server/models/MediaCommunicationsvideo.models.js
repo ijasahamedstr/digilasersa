@@ -5,10 +5,10 @@ const MediaCommunicationsvideoSchema = new mongoose.Schema({
     MediaCommunicationsvideoname: {
         type: String,
     },
-    MediaCommunicationsvideo: {
+    MediaCommunicationsvideotype: {
         type: String,
     },
-    MediaCommunicationsvideotype: {
+    MediaCommunicationsvideolink: {
         type: String,
     },
     date: {

@@ -63,7 +63,11 @@ function MediaCommunicationsphoto() {
         const response = await axios.get(
           `${process.env.REACT_APP_API_HOST}/MediaCommunicationsphoto`
         );
-        setMediaCommunications(response.data); // Set the fetched gifts
+
+        // If response.data is an array → reverse it for LIFO
+        const sortedData = Array.isArray(response.data) ? [...response.data].reverse() : [];
+
+        setMediaCommunications(sortedData);
       } catch (err) {
         console.error("Error fetching data: ", err);
         setError("Failed to fetch data");
@@ -138,11 +142,11 @@ function MediaCommunicationsphoto() {
     ),
     MediaCommunications_Image: (
       <MDBox>
-        {item.MediaCommunicationsphotoimage ? (
+        {item.MediaCommunicationsphotolink ? (
           <Image.PreviewGroup>
             <Image
-              src={`${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Photo/${item.MediaCommunicationsphotoimage}`}
-              alt="MediaCommunicationsphotoimage"
+              src={item.MediaCommunicationsphotolink}
+              alt="MediaCommunicationsphotolink"
               style={{ maxWidth: "100px", borderRadius: "8px" }}
             />
           </Image.PreviewGroup>
@@ -155,6 +159,7 @@ function MediaCommunicationsphoto() {
         )}
       </MDBox>
     ),
+
     action: (
       <MDBox display="flex" justifyContent="center" alignItems="center" gap={2}>
         {/* Edit button */}

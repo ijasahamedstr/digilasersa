@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(cors({
-  origin:"http://localhost:3000",
+  origin:"https://digilasersa.vercel.app",
   methods:"GET,POST,PUT,DELETE",
   credentials:true
 }));
@@ -50,8 +50,6 @@ const __dirname = path.dirname(__filename);
 app.use('/uploads/Promotionalgifts', express.static(path.join(__dirname, '/uploads/Promotionalgifts')));
 app.use('/uploads/Printingdepartment', express.static(path.join(__dirname, '/uploads/Printingdepartment')));
 app.use('/uploads/ArabicCalligraphy', express.static(path.join(__dirname, '/uploads/ArabicCalligraphy')));
-app.use('/uploads/MediaCommunications/Photo', express.static(path.join(__dirname, '/uploads/MediaCommunications/Photo')));
-app.use('/uploads/MediaCommunications/Video', express.static(path.join(__dirname, '/uploads/MediaCommunications/Video')));
 app.use('/uploads/News', express.static(path.join(__dirname, '/uploads/News')));
 app.use('/uploads/Partner', express.static(path.join(__dirname, '/uploads/Partner')));
 app.use('/uploads/Screenssection', express.static(path.join(__dirname, '/uploads/Screenssection')));

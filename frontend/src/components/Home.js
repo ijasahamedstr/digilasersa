@@ -26,7 +26,7 @@ export default function Home() {
       <Partner />
       <Hr />
       <Eventsection />
-      <ContactUs />
+      {/* <ContactUs /> */}
     </>
   );
 }

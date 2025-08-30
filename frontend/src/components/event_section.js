@@ -23,7 +23,7 @@ function Eventsection() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/News`
+          `${process.env.REACT_APP_API_HOST}/News`,
         );
         setEvent(response.data);
       } catch (err) {
@@ -61,20 +61,20 @@ function Eventsection() {
           textAlign: "center",
         }}
       >
-      <Typography
-        variant="h4"
-        align="center"
-        gutterBottom
-        sx={{
-          fontFamily: "Tajawal, sans-serif", // New font
-          fontSize: "2.6rem",
-          fontWeight: 700, // Bold
-          marginBottom: "30px",
-          color: "#096e69", // Optional color
-        }}
-      >
-        آخر أعمالنا
-      </Typography>
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+          sx={{
+            fontFamily: "Tajawal, sans-serif", // New font
+            fontSize: "2.6rem",
+            fontWeight: 700, // Bold
+            marginBottom: "30px",
+            color: "#096e69", // Optional color
+          }}
+        >
+          آخر أعمالنا
+        </Typography>
 
         <Swiper spaceBetween={30} slidesPerView={1} loop>
           {Event.map((event, index) => (

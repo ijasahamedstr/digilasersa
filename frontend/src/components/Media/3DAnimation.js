@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
-import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Box,
   Typography,
@@ -11,27 +10,17 @@ import {
   Button,
   Drawer,
   AppBar,
-  CardMedia,
   Toolbar,
   ClickAwayListener,
   CircularProgress,
-  Card
 } from "@mui/material";
 import ReactPlayer from "react-player";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import {
-  FaInstagram,
-  FaLinkedin,
-  FaYoutube,
-  FaSnapchat,
-  FaTiktok,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaYoutube, FaSnapchat, FaTiktok, FaWhatsapp } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const carouselItems = [
@@ -49,51 +38,32 @@ const carouselItems = [
   },
 ];
 
-const iconData = [
-  {
-    title: "الإعداد وصناعة المحتوي",
-    img: "https://i.ibb.co/HtjnCTB/8888.webp",
-  },
-  {
-    title: "المونتاج والجرافيك",
-    img: "https://i.ibb.co/w04Sjqp/999.webp",
-  },
-  {
-    title: "التصوير والإخراج",
-    img: "https://i.ibb.co/C7nsTj6/5251.webp",
-  },
-  {
-    title: "الإنتاج الصوتي والبودكاست",
-    img: "https://i.ibb.co/4J3ZdPT/Screenshot-2024-08-13-171715.webp",
-  },
-];
-
- const products1 = [
-    {
-      cardTitles: "أعمال فنية وإنتاج",
-      imageUrls: "https://i.ibb.co/w0c1Yzr/Write-lede.webp",
-    },
-    {
-      cardTitles: "كتابة محتوي وتأليف",
-      imageUrls:
-        "https://i.ibb.co/48mQr3n/dfba4c19cde988c07930123097f49c78.webp",
-    },
-    {
-      cardTitles: "تصميمات إبداعية",
-      imageUrls:
-        "https://i.ibb.co/85pqszg/DALL-E-2024-09-30-00-33-16-A-giant-whimsical-fountain-pen-sitting-confidently-in-a-traditional-direc.webp",
-    },
-    {
-      cardTitles: "محتـوي حصـري",
-      imageUrls: "https://i.ibb.co/J7Gp115/piclumen-1727383323200.webp",
-    },
-  ];
-
-
 const INITIAL_FORM_STATE = {
   name: "",
   phone: "",
   message: "",
+};
+
+// Generate thumbnail for non-YouTube videos
+const generateVideoThumbnail = (videoUrl) => {
+  return new Promise((resolve) => {
+    const video = document.createElement("video");
+    video.src = videoUrl;
+    video.crossOrigin = "anonymous";
+    video.muted = true;
+    video.currentTime = 1;
+    video.addEventListener("loadeddata", () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL("image/jpeg"));
+    });
+    video.addEventListener("error", () => {
+      resolve(""); // fallback
+    });
+  });
 };
 
 const Animation = () => {
@@ -106,14 +76,16 @@ const Animation = () => {
   const [sidebarOpenDesktop, setSidebarOpenDesktop] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [thumbnails, setThumbnails] = useState({}); // store videoUrl => thumbnail
+
+  const currentCategory = "3D Animation";
 
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo`
-        );
-        setWebMediavideo(response.data);
+        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo`);
+        // Reverse so last added appear first
+        setWebMediavideo(response.data.slice().reverse());
       } catch (err) {
         console.error(err);
         setError("Failed to load videos.");
@@ -121,26 +93,42 @@ const Animation = () => {
         setLoading(false);
       }
     };
-
     fetchVideos();
   }, []);
 
-  // Filter videos by type "فيديو"
   const filteredVideos = WebMediavideo.filter(
-    (item) => item.MediaCommunicationsvideotype === "3D Animation"
+    (item) => item.MediaCommunicationsvideotype === currentCategory
   );
 
   const indexOfLastProduct = page * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = filteredVideos.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts = filteredVideos.slice(indexOfFirstProduct, indexOfLastProduct);
   const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
+
+  // Generate thumbnails for each video
+  useEffect(() => {
+    currentProducts.forEach(async (product) => {
+      const videoUrl = product.MediaCommunicationsvideolink;
+      if (thumbnails[videoUrl]) return;
+
+      if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+        let videoId = "";
+        if (videoUrl.includes("youtu.be")) {
+          videoId = videoUrl.split("/").pop();
+        } else if (videoUrl.includes("v=")) {
+          videoId = new URLSearchParams(new URL(videoUrl).search).get("v");
+        }
+        setThumbnails((prev) => ({ ...prev, [videoUrl]: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` }));
+      } else {
+        const thumb = await generateVideoThumbnail(videoUrl);
+        setThumbnails((prev) => ({ ...prev, [videoUrl]: thumb }));
+      }
+    });
+  }, [currentProducts, thumbnails]);
 
   const handlePageChange = (event, value) => {
     setPage(value);
-    setCurrentVideoUrl(""); // reset video when page changes
+    setCurrentVideoUrl("");
   };
 
   const handleVideoClick = (url) => setCurrentVideoUrl(url);
@@ -178,15 +166,13 @@ const Animation = () => {
 
   const mediaLinks = (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-      {[
-        { label: "قسم الإعلام والميديا", path: "/قسم الإعلام والميديا" },
+      {[{ label: "قسم الإعلام والميديا", path: "/قسم الإعلام والميديا" },
         { label: "فيديو", path: "/Web-Media-Video" },
         { label: "VR Videos", path: "/vr-videos" },
         { label: "فـوتـو", path: "/Web-Media-photo" },
         { label: "Motion graphics", path: "/Motion-graphics" },
         { label: "Ai Videos", path: "/AIVideos" },
-        { label: "3D Animation", path: "/3D-Animation" },
-      ].map((btn, index) => (
+        { label: "3D Animation", path: "/3D-Animation" }].map((btn, index) => (
         <Button
           key={index}
           variant="contained"
@@ -200,6 +186,53 @@ const Animation = () => {
       ))}
     </Box>
   );
+
+  const getEmbedUrl = (url) => {
+    if (!url) return "";
+
+    if (url.includes("youtube.com")) {
+      const videoId = url.split("v=")[1]?.split("&")[0];
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    if (url.includes("youtu.be")) {
+      const videoId = url.split("/").pop();
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    if (url.includes("vimeo.com")) {
+      const videoId = url.split("/").pop();
+      return `https://player.vimeo.com/video/${videoId}`;
+    }
+    return url; 
+  };
+
+  const renderVideoPreview = (url) => {
+    if (!url) return <Typography>No video available</Typography>;
+
+    const embedUrl = getEmbedUrl(url);
+    const isEmbed = embedUrl.includes("youtube.com/embed") || embedUrl.includes("player.vimeo.com");
+
+    if (isEmbed) {
+      return (
+        <iframe
+          width="100%"
+          height="180"
+          src={embedUrl}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title="Video Preview"
+          style={{ borderRadius: "8px" }}
+        />
+      );
+    }
+
+    return (
+      <video width="100%" height="180" controls style={{ borderRadius: "8px" }}>
+        <source src={embedUrl} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    );
+  };
 
   return (
     <>
@@ -256,7 +289,12 @@ const Animation = () => {
               minWidth: "250px",
             }}
           >
-            <IconButton onClick={() => setSidebarOpenDesktop(false)} sx={{ position: "absolute", top: 5, left: 5, color: "#17202a", fontSize: "20px" }}>✕</IconButton>
+            <IconButton
+              onClick={() => setSidebarOpenDesktop(false)}
+              sx={{ position: "absolute", top: 5, left: 5, color: "#17202a", fontSize: "20px" }}
+            >
+              ✕
+            </IconButton>
             {mediaLinks}
           </Box>
         </ClickAwayListener>
@@ -296,7 +334,7 @@ const Animation = () => {
           <Box sx={{ padding: 0, borderRadius: 2, boxShadow: 3, maxWidth: "100%", textAlign: "center", marginBottom: "20px" }}>
             <Box sx={{ padding: 0, borderRadius: 2, boxShadow: 3, maxWidth: "100%", textAlign: "center", marginBottom: "20px", border: "2px solid white", marginTop: "30px" }}>
               <Typography variant="h2" component="h3" sx={{ fontFamily: "Tajawal", color: "#FFFFFF", paddingTop: "15px", paddingBottom: "15px", fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" }, textAlign: "center" }}>
-                فوتوغرافيا
+                  ثرى دى انيميشن
               </Typography>
             </Box>
           </Box>
@@ -307,27 +345,40 @@ const Animation = () => {
             </Box>
           ) : error ? (
             <Typography color="error" textAlign="center">{error}</Typography>
+          ) : filteredVideos.length === 0 ? (
+            <Typography textAlign="center" sx={{ color: "#fff", fontSize: "1.5rem", padding: 5 }}>
+              No Video found for "{currentCategory}"
+            </Typography>
           ) : (
             <>
               <Grid container spacing={2}>
                 {currentProducts.map((product, index) => {
-                  const videoUrl = `${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Video/${product.MediaCommunicationsvideo || ""}`;
+                  const videoUrl = product.MediaCommunicationsvideolink;
+
                   return (
                     <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                      <Box sx={{ position: "relative" }}>
-                        <video
-                          src={videoUrl}
-                          muted
-                          playsInline
-                          style={{ width: "100%", height: "180px", objectFit: "cover", cursor: "pointer", borderTopLeftRadius: "8px", borderTopRightRadius: "8px", border: "4px solid transparent", boxShadow: "0 4px 12px rgba(0,0,0,0.2)", transition: "all 0.3s ease-in-out" }}
+                      <Box sx={{ position: "relative", cursor: "pointer" }} onClick={() => handleVideoClick(videoUrl)}>
+                        {renderVideoPreview(videoUrl)}
+                        <IconButton
+                          sx={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            backgroundColor: "rgba(0, 0, 0, 0.5)",
+                            color: "#fff",
+                            "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.8)" },
+                          }}
                           onClick={() => handleVideoClick(videoUrl)}
-                        />
-                        <IconButton sx={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "rgba(0, 0, 0, 0.5)", color: "#fff", "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.8)" } }} onClick={() => handleVideoClick(videoUrl)}>
+                        >
                           <PlayCircleIcon sx={{ fontSize: 50 }} />
                         </IconButton>
                       </Box>
-                      <Typography variant="h6" sx={{ mt: 1, fontFamily: "Tajawal", textAlign: "center", color: "#e99b19" }}>
-                        {product.MediaCommunicationsvideoname || "فيديو"}
+                      <Typography
+                        variant="h6"
+                        sx={{ mt: 1, fontFamily: "Tajawal", textAlign: "center", color: "#e99b19" }}
+                      >
+                        {product.MediaCommunicationsvideoname || "فيديو واقع"}
                       </Typography>
                     </Grid>
                   );
@@ -341,376 +392,6 @@ const Animation = () => {
           )}
         </Container>
       </section>
-        <section
-      style={{
-        backgroundColor: "#030909",
-        backgroundImage:
-          'url("https://i.ibb.co/1rmQDz3/Final-Web-Media-VR-line-bk-1.webp")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "450px",
-      }}
-    >
-      <Container
-        maxWidth="xl"
-        sx={{
-          px: { xs: 2, sm: 3, md: 5 },
-          textAlign: "center",
-        }}
-      >
-        <Grid container spacing={4}>
-          {iconData.map(({ title, img }, index) => (
-            <Grid item xs={6} sm={3} key={index}>
-              <Box sx={{ mb: 2, textAlign: "center" }}>
-                <Box
-                  component="img"
-                  src={img}
-                  alt={title}
-                  sx={{
-                    width: "50%",
-                    height: "auto",
-                    borderRadius: "8px",
-                    mb: 1,
-                    display: "block",
-                    mx: "auto",
-                  }}
-                />
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#000",
-                    fontWeight: "700",
-                    fontFamily: "Tajawal",
-                    fontSize: { xs: "12px", sm: "13px", md: "20px" },
-                  }}
-                >
-                  {title}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </section>
-        <Box
-      sx={{
-        backgroundColor: "#eaecee",
-        backgroundImage: 'url("https://i.ibb.co/w0p131X/image.webp")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        width: "100%",
-        margin: "0 auto",
-        mt: "-30px",
-        mb: "30px",
-        height: { xs: "auto", md: "67vh" },
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        pt: { xs: "10px", md: "20px" },
-        pb: { xs: "10px", md: "20px" },
-      }}
-    >
-      <Container
-        maxWidth="xl"
-        sx={{
-          mt: "40px",
-          mb: "40px",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <Swiper
-          spaceBetween={20}
-          slidesPerView="auto"
-          loop={true}
-          breakpoints={{
-            640: { slidesPerView: 1, spaceBetween: 10 },
-            768: { slidesPerView: 2, spaceBetween: 20 },
-            1024: { slidesPerView: 4, spaceBetween: 30 },
-          }}
-        >
-          {products1.map((product, index) => (
-            <SwiperSlide key={index}>
-              <Link to={`/service/${index + 1}`} style={{ textDecoration: "none" }}>
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    boxShadow: 3,
-                    border: "2px solid #f05322",
-                    "&:hover": { boxShadow: 6 },
-                    mb: "20px",
-                    position: "relative",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    alt={`Service ${index}`}
-                    image={product.imageUrls}
-                    sx={{ height: 300, objectFit: "cover" }}
-                  />
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      position: "absolute",
-                      bottom: "20px",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      color: "white",
-                      backgroundColor: "#000",
-                      padding: "10px",
-                      borderRadius: "4px",
-                      textAlign: "center",
-                      width: "100%",
-                      border: "2px solid #f05322",
-                    }}
-                  >
-                    {product.cardTitles}
-                  </Typography>
-                </Card>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Container>
-    </Box>
-       <section
-        style={{
-          backgroundColor: "#000000",
-          backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "0px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: "50px",
-          paddingBottom: "50px",
-          marginTop: "-30px",
-          direction: "rtl",
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 },
-            textAlign: "center",
-          }}
-        >
-          <Grid container spacing={4}>
-            {/* Text Section */}
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                textAlign: "justify",
-                direction: "ltr",
-                pr: 5,
-              }}
-            >
-              <Typography variant="h4" color="white">
-                Contact Us
-              </Typography>
-
-              <Typography
-                variant="h5"
-                color="#00fffc"
-                sx={{ textAlign: "justify", direction: "rtl" }}
-              >
-                للطلب والإستفسار /
-              </Typography>
-
-              <Grid
-                container
-                spacing={2}
-                sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}
-              >
-                {[
-                  { label: "مدير قسم الميديا", value: "9999 065 057" },
-                  { label: "مدير فرع الشرقية", value: "9999 064 057" },
-                  { label: "مدير تسويق الميديا", value: "8888 093 057" },
-                ].map(({ label, value }) => (
-                  <React.Fragment key={label}>
-                    <Grid item xs={4}>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          color: "white",
-                          fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                          textAlign: "right",
-                        }}
-                      >
-                        {label}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={1}>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          color: "white",
-                          fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                          textAlign: "right",
-                        }}
-                      >
-                        :
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={7}>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          color: "white",
-                          fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                          textAlign: "right",
-                        }}
-                      >
-                        {value}
-                      </Typography>
-                    </Grid>
-                  </React.Fragment>
-                ))}
-              </Grid>
-            </Grid>
-
-            {/* Form Section */}
-            <Grid item xs={12} sm={6}>
-              <Typography
-                variant="h5"
-                sx={{
-                  color: "white",
-                  fontFamily: "Tajawal",
-                  fontSize: "26px",
-                  textAlign: "right",
-                  marginBottom: "20px",
-                  direction: "rtl",
-                }}
-              >
-                للشكاوي ..
-              </Typography>
-
-              <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
-                <Form.Group
-                  className="mb-3 d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      width: "150px",
-                      fontSize: "20px",
-                      textAlign: "right",
-                    }}
-                  >
-                    الاسم
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      color: "white",
-                      textAlign: "right",
-                    }}
-                  />
-                </Form.Group>
-
-                <Form.Group
-                  className="mb-3 d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      width: "150px",
-                      fontSize: "20px",
-                      textAlign: "right",
-                    }}
-                  >
-                    الجوال
-                  </Form.Label>
-                  <Form.Control
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      color: "white",
-                      textAlign: "right",
-                    }}
-                  />
-                </Form.Group>
-
-                <Form.Group
-                  className="mb-3 d-flex align-items-center"
-                  style={{ gap: "10px" }}
-                >
-                  <Form.Label
-                    style={{
-                      color: "white",
-                      width: "150px",
-                      fontSize: "20px",
-                      textAlign: "right",
-                    }}
-                  >
-                    رسالتك
-                  </Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    name="message"
-                    rows={3}
-                    value={formData.message}
-                    onChange={handleChange}
-                    style={{
-                      background: "#17202a",
-                      border: "none",
-                      color: "white",
-                      textAlign: "right",
-                    }}
-                  />
-                </Form.Group>
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    marginTop: "15px",
-                  }}
-                >
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    sx={{
-                      background: "#00fffc",
-                      color: "#1e272e",
-                      padding: { xs: "10px", sm: "15px" },
-                      width: "50%",
-                    }}
-                  >
-                    ارسال
-                  </Button>
-                </div>
-              </form>
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
-
-      {/* Contact Section */}
-      {/* ...keep your existing contact form section here... */}
     </>
   );
 };

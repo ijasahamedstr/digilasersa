@@ -5,7 +5,9 @@ import VisionandMission from "./vision_and_Mission";
 const Aboutus = () => {
   return (
     <>
-      <Box mt={12.5}> {/* 100px / 8 = 12.5 (MUI spacing unit) */}
+      <Box mt={12.5}>
+        {" "}
+        {/* 100px / 8 = 12.5 (MUI spacing unit) */}
         <AboutSection />
       </Box>
       <VisionandMission />

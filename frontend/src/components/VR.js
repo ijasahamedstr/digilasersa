@@ -32,7 +32,6 @@ import React, { useEffect, useState } from "react";
 import demoVideo from "./VR/VR.mp4";
 import demoVideo1 from "./VR/VR_SECTION.mp4";
 
-
 // Slider settings for RTL and LTR rows
 const sliderSettingsRTL = {
   infinite: true,
@@ -63,10 +62,9 @@ const INITIAL_FORM_STATE = {
 };
 
 const carouselItems = [
-  { id: 1, video: demoVideo},
+  { id: 1, video: demoVideo },
   { id: 2, video: demoVideo },
 ];
-
 
 const products1 = [
   {
@@ -114,40 +112,45 @@ const products1 = [
 ];
 
 const VRSection = () => {
- const [formData, setFormData] = useState(INITIAL_FORM_STATE);
- const [partners, setPartners] = useState([]);
- const [loading, setLoading] = useState(true);
- const [error, setError] = useState(null);
- 
-   useEffect(() => {
-     const fetchData = async () => {
-       try {
-         const response = await axios.get(
-           `${process.env.REACT_APP_API_HOST}/Partner`
-         );
-         setPartners(response.data);
-       } catch (err) {
-         console.error("Error fetching data: ", err);
-         setError("فشل في تحميل البيانات");
-       } finally {
-         setLoading(false);
-       }
-     };
- 
-     fetchData();
-   }, []);
- 
-   if (loading)
-     return (
-       <Box display="flex" justifyContent="center" py={8}>
-         <CircularProgress />
-       </Box>
-     );
-   if (error) return <Box textAlign="center" py={4}>{error}</Box>;
- 
-   const halfwayIndex = Math.ceil(partners.length / 2);
-   const firstRowPartners = partners.slice(0, halfwayIndex);
-   const secondRowPartners = partners.slice(halfwayIndex);
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+  const [partners, setPartners] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_HOST}/Partner`,
+        );
+        setPartners(response.data);
+      } catch (err) {
+        console.error("Error fetching data: ", err);
+        setError("فشل في تحميل البيانات");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading)
+    return (
+      <Box display="flex" justifyContent="center" py={8}>
+        <CircularProgress />
+      </Box>
+    );
+  if (error)
+    return (
+      <Box textAlign="center" py={4}>
+        {error}
+      </Box>
+    );
+
+  const halfwayIndex = Math.ceil(partners.length / 2);
+  const firstRowPartners = partners.slice(0, halfwayIndex);
+  const secondRowPartners = partners.slice(halfwayIndex);
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -173,16 +176,30 @@ const VRSection = () => {
     window.open(whatsappUrl, "_blank");
   };
 
-   const socialLinks = [
-      { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
-      { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
-      { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
-      { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
-      { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
-      { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
-      { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
-    ];
-
+  const socialLinks = [
+    {
+      icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />,
+      link: "https://x.com/digilasersa",
+    },
+    {
+      icon: <FaInstagram size={25} />,
+      link: "https://www.instagram.com/digilasersa",
+    },
+    {
+      icon: <FaLinkedin size={25} />,
+      link: "https://www.linkedin.com/company/digilasersa",
+    },
+    { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+    {
+      icon: <FaSnapchat size={25} />,
+      link: "https://www.snapchat.com/add/digilasersa",
+    },
+    {
+      icon: <FaTiktok size={25} />,
+      link: "https://www.tiktok.com/@digilasersa",
+    },
+    { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+  ];
 
   return (
     <Container
@@ -192,58 +209,57 @@ const VRSection = () => {
     >
       <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
         <Carousel
-  fade
-  nextIcon={
-    <span
-      className="carousel-control-next-icon"
-      style={{ backgroundColor: "black" }}
-    />
-  }
-  prevIcon={
-    <span
-      className="carousel-control-prev-icon"
-      style={{ backgroundColor: "black" }}
-    />
-  }
->
-  {carouselItems.map((item) => (
-    <Carousel.Item key={item.id}>
-      <video
-        className="d-block w-100"
-        src={item.video}   // instead of item.img
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{
-          objectFit: "cover",
-          boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-        }}
-      />
-      <Carousel.Caption>
-        <Typography
-          variant="h4"
-          sx={{
-            color: "white",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-          }}
+          fade
+          nextIcon={
+            <span
+              className="carousel-control-next-icon"
+              style={{ backgroundColor: "black" }}
+            />
+          }
+          prevIcon={
+            <span
+              className="carousel-control-prev-icon"
+              style={{ backgroundColor: "black" }}
+            />
+          }
         >
-          {item.title}
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            color: "white",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-          }}
-        >
-          {item.content}
-        </Typography>
-      </Carousel.Caption>
-    </Carousel.Item>
-  ))}
-</Carousel>
-
+          {carouselItems.map((item) => (
+            <Carousel.Item key={item.id}>
+              <video
+                className="d-block w-100"
+                src={item.video} // instead of item.img
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  objectFit: "cover",
+                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                }}
+              />
+              <Carousel.Caption>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    color: "white",
+                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+                  }}
+                >
+                  {item.title}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "white",
+                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+                  }}
+                >
+                  {item.content}
+                </Typography>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
 
         {/* Social Media Icons on the Left Side */}
         <Box
@@ -260,7 +276,12 @@ const VRSection = () => {
           }}
         >
           {socialLinks.map(({ icon, link }, index) => (
-            <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+            <a
+              key={index}
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Box
                 sx={{
                   width: 40,
@@ -298,100 +319,98 @@ const VRSection = () => {
           direction: "rtl",
         }}
       >
-  <Container
-    maxWidth="lg"
-    sx={{
-      paddingX: { xs: 2, sm: 3, md: 5 },
-      textAlign: "center",
-    }}
-  >
-    <Grid container spacing={3} justifyContent="center">
-      {products1.slice(0, 6).map((product) => (
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={4} // 3 per row on medium and above (12/4 = 3)
-          key={product.id}
+        <Container
+          maxWidth="lg"
+          sx={{
+            paddingX: { xs: 2, sm: 3, md: 5 },
+            textAlign: "center",
+          }}
         >
-          <Link to={product.link} style={{ textDecoration: "none" }}>
-            <Card
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
-                borderRadius: "20px",
-                overflow: "hidden",
-                width: "300px",
-                margin: "0 auto", // Center the card
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  position: "relative",
-                }}
+          <Grid container spacing={3} justifyContent="center">
+            {products1.slice(0, 6).map((product) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4} // 3 per row on medium and above (12/4 = 3)
+                key={product.id}
               >
-                <CardMedia
-                  component="img"
-                  height="300"
-                  image={product.imageUrl}
-                  alt={product.name}
-                  sx={{ objectFit: "cover", flexShrink: 0 }}
-                />
-                <Avatar
-                  src={product.iconUrl}
-                  alt={product.name}
-                  sx={{
-                    position: "absolute",
-                    top: "90%",
-                    left: "50%",
-                    transform: "translate(-50%, -10%)",
-                    width: 70,
-                    height: 70,
-                    border: "3px solid white",
-                    zIndex: 10,
-                    background: "#0a6d6a",
-                  }}
-                />
-              </Box>
-              <CardContent
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  flexGrow: 1,
-                  background: "#0a6d6a",
-                  padding: "1px",
-                  "&:last-child": {
-                    paddingBottom: "10px",
-                  },
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "white",
-                    marginTop: "32px",
-                    fontSize: "1.2rem",
-                    fontWeight: 500,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                  {product.name}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Link>
-        </Grid>
-      ))}
-    </Grid>
-  </Container>
-</section>
-
-
+                <Link to={product.link} style={{ textDecoration: "none" }}>
+                  <Card
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      height: "100%",
+                      borderRadius: "20px",
+                      overflow: "hidden",
+                      width: "300px",
+                      margin: "0 auto", // Center the card
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        position: "relative",
+                      }}
+                    >
+                      <CardMedia
+                        component="img"
+                        height="300"
+                        image={product.imageUrl}
+                        alt={product.name}
+                        sx={{ objectFit: "cover", flexShrink: 0 }}
+                      />
+                      <Avatar
+                        src={product.iconUrl}
+                        alt={product.name}
+                        sx={{
+                          position: "absolute",
+                          top: "90%",
+                          left: "50%",
+                          transform: "translate(-50%, -10%)",
+                          width: 70,
+                          height: 70,
+                          border: "3px solid white",
+                          zIndex: 10,
+                          background: "#0a6d6a",
+                        }}
+                      />
+                    </Box>
+                    <CardContent
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        flexGrow: 1,
+                        background: "#0a6d6a",
+                        padding: "1px",
+                        "&:last-child": {
+                          paddingBottom: "10px",
+                        },
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          color: "white",
+                          marginTop: "32px",
+                          fontSize: "1.2rem",
+                          fontWeight: 500,
+                          fontFamily: "Tajawal",
+                        }}
+                      >
+                        {product.name}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </section>
 
       <style jsx>
         {`
@@ -671,62 +690,62 @@ const VRSection = () => {
         </Container>
       </section>
       <section
-      style={{
-        position: "relative",
-        width: "100%",
-        margin: "0 auto",
-        marginBottom: "30px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "flex-end",
-        height: "90vh",
-        paddingTop: "20px",
-        paddingBottom: "20px",
-        marginTop: "-30px",
-        overflow: "hidden", // important to prevent video overflow
-      }}
-    >
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          zIndex: -1, // keep video behind content
-        }}
-      >
-       <source src={demoVideo1} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      <Container
-        maxWidth="xl"
-        sx={{
-          px: { xs: 2, sm: 3, md: 5 },
-          textAlign: "center",
           position: "relative",
-          zIndex: 1, // make sure text appears above video
+          width: "100%",
+          margin: "0 auto",
+          marginBottom: "30px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-end",
+          height: "90vh",
+          paddingTop: "20px",
+          paddingBottom: "20px",
+          marginTop: "-30px",
+          overflow: "hidden", // important to prevent video overflow
         }}
       >
-        <Box
-          sx={{
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
             width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
             height: "100%",
-            px: { xs: 2, sm: 3 },
-            mb: "100px",
+            objectFit: "cover",
+            zIndex: -1, // keep video behind content
           }}
         >
-          {/* <Box
+          <source src={demoVideo1} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <Container
+          maxWidth="xl"
+          sx={{
+            px: { xs: 2, sm: 3, md: 5 },
+            textAlign: "center",
+            position: "relative",
+            zIndex: 1, // make sure text appears above video
+          }}
+        >
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+              px: { xs: 2, sm: 3 },
+              mb: "100px",
+            }}
+          >
+            {/* <Box
             sx={{
               backgroundColor: "rgba(0, 0, 0, 0.75)", // Semi-transparent background
               border: "2px solid #f05322",
@@ -755,317 +774,119 @@ const VRSection = () => {
               نبني أفكارك.. .. ونجسد أحلامك ... لنشيّد بها واقعًا خلابًا ومُبهر.
             </Typography>
           </Box> */}
-        </Box>
-      </Container>
-    </section>
+          </Box>
+        </Container>
+      </section>
 
-     <Container maxWidth="xl" sx={{ mt: 8, mb: 8 }}>
-         <Typography
+      <Container maxWidth="xl" sx={{ mt: 8, mb: 8 }}>
+        <Typography
           variant="h4"
           align="center"
           gutterBottom
           sx={{
             fontFamily: "'Tajawal', sans-serif", // change font here
-            fontWeight: 700,                     // bold                // italic
+            fontWeight: 700, // bold                // italic
             fontSize: { xs: "1.5rem", sm: "2rem" },
             mb: 4,
-            color: "#096e69",                    // optional color
-            letterSpacing: "0.05em",             // optional spacing
+            color: "#096e69", // optional color
+            letterSpacing: "0.05em", // optional spacing
           }}
         >
           شركاء النجاح
         </Typography>
 
-          {/* Row 1 - RTL */}
-          <Box px={{ xs: 1, sm: 2, md: 0 }}>
-            <Slider {...sliderSettingsRTL}>
-              {firstRowPartners.map((partner, index) => (
+        {/* Row 1 - RTL */}
+        <Box px={{ xs: 1, sm: 2, md: 0 }}>
+          <Slider {...sliderSettingsRTL}>
+            {firstRowPartners.map((partner, index) => (
+              <Box
+                key={`rtl-${index}`}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                py={2}
+              >
                 <Box
-                  key={`rtl-${index}`}
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  py={2}
+                  sx={{
+                    width: { xs: 80, sm: 100, md: 120 },
+                    height: { xs: 80, sm: 100, md: 120 },
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    overflow: "hidden",
+                    borderRadius: "12px",
+                    backgroundColor: "#fff",
+                    boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+                    transition: "transform 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                    },
+                  }}
                 >
-                  <Box
+                  <CardMedia
+                    component="img"
+                    image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
                     sx={{
-                      width: { xs: 80, sm: 100, md: 120 },
-                      height: { xs: 80, sm: 100, md: 120 },
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      overflow: "hidden",
-                      borderRadius: "12px",
-                      backgroundColor: "#fff",
-                      boxShadow: "0 0 10px rgba(0,0,0,0.05)",
-                      transition: "transform 0.3s ease-in-out",
-                      "&:hover": {
-                        transform: "scale(1.05)",
-                      },
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      width: "auto",
+                      height: "auto",
+                      objectFit: "contain",
+                      margin: "auto",
                     }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
-                      sx={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                        width: "auto",
-                        height: "auto",
-                        objectFit: "contain",
-                        margin: "auto",
-                      }}
-                    />
-                  </Box>
+                  />
                 </Box>
-              ))}
-            </Slider>
-          </Box>
-    
-          {/* Row 2 - LTR */}
-          <Box px={{ xs: 1, sm: 2, md: 0 }} mt={4}>
-            <Slider {...sliderSettingsLTR}>
-              {secondRowPartners.map((partner, index) => (
+              </Box>
+            ))}
+          </Slider>
+        </Box>
+
+        {/* Row 2 - LTR */}
+        <Box px={{ xs: 1, sm: 2, md: 0 }} mt={4}>
+          <Slider {...sliderSettingsLTR}>
+            {secondRowPartners.map((partner, index) => (
+              <Box
+                key={`ltr-${index}`}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                py={2}
+              >
                 <Box
-                  key={`ltr-${index}`}
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  py={2}
+                  sx={{
+                    width: { xs: 80, sm: 100, md: 120 },
+                    height: { xs: 80, sm: 100, md: 120 },
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    overflow: "hidden",
+                    borderRadius: "12px",
+                    backgroundColor: "#fff",
+                    boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+                    transition: "transform 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                    },
+                  }}
                 >
-                  <Box
+                  <CardMedia
+                    component="img"
+                    image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
                     sx={{
-                      width: { xs: 80, sm: 100, md: 120 },
-                      height: { xs: 80, sm: 100, md: 120 },
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      overflow: "hidden",
-                      borderRadius: "12px",
-                      backgroundColor: "#fff",
-                      boxShadow: "0 0 10px rgba(0,0,0,0.05)",
-                      transition: "transform 0.3s ease-in-out",
-                      "&:hover": {
-                        transform: "scale(1.05)",
-                      },
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      width: "auto",
+                      height: "auto",
+                      objectFit: "contain",
+                      margin: "auto",
                     }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
-                      sx={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                        width: "auto",
-                        height: "auto",
-                        objectFit: "contain",
-                        margin: "auto",
-                      }}
-                    />
-                  </Box>
+                  />
                 </Box>
-              ))}
-            </Slider>
-          </Box>
-        </Container>
-      <section
-        style={{
-          backgroundColor: "#000000",
-          backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "0px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: "50px",
-          paddingBottom: "50px",
-          marginTop: "-30px",
-          direction: "rtl",
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 },
-            textAlign: "center",
-          }}
-        >
-          <Grid container spacing={4}>
-            {/* Text Section on the Right */}
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                textAlign: "justify",
-                direction: "ltr",
-                pr: 5,
-              }}
-            >
-              <Typography variant="h4" color="white">
-                Contact Us
-              </Typography>
-            
-              <Typography variant="h5" color="#00fffc" sx={{ textAlign: "justify", direction: "rtl" }}>
-                للطلب والإستفسار /
-              </Typography>
-            
-              <Grid container spacing={2} sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}>
-                {[
-                  { label: "مدير قسم الميديا", value: "9999 065 057" },{ label: "مدير فرع الشرقية", value: "9999 064 057" }
-                ].map(({ label, value }) => (
-                  <React.Fragment key={label}>
-                    <Grid item xs={4}>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          color: "white",
-                          fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                          textAlign: "right",
-                        }}
-                      >
-                        {label}
-                      </Typography>
-                    </Grid>
-            
-                    <Grid item xs={1}>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          color: "white",
-                          fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                          textAlign: "right",
-                        }}
-                      >
-                        :
-                      </Typography>
-                    </Grid>
-            
-                    <Grid item xs={7}>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          color: "white",
-                          fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                          textAlign: "right",
-                        }}
-                      >
-                        {value}
-                      </Typography>
-                    </Grid>
-                  </React.Fragment>
-                ))}
-              </Grid>
-            </Grid>
-
-            {/* Contact Form Section on the Left */}
-            <Grid item xs={12} sm={6} order={{ xs: 2, sm: 2 }}>
-              <h2
-                style={{
-                  color: "white",
-                  fontFamily: "Tajawal",
-                  fontSize: "26px",
-                  textAlign: "right",
-                  marginBottom: "20px",
-                  direction: "rtl",
-                }}
-              >
-                 للشكاوي ..
-              </h2>
-
-            <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
-            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-              <Form.Label
-                style={{
-                  color: "white",
-                  width: "150px",
-                  fontSize: "20px",
-                  textAlign: "right",
-                }}
-              >
-                الاسم
-              </Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                style={{ background: "#17202a", border: "none", color: "white" }}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-              <Form.Label
-                style={{
-                  color: "white",
-                  width: "150px",
-                  fontSize: "20px",
-                  textAlign: "right",
-                }}
-              >
-                الجوال
-              </Form.Label>
-              <Form.Control
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                style={{
-                  background: "#17202a",
-                  border: "none",
-                  color: "white",
-                  textAlign: "right",
-                }}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-              <Form.Label
-                style={{
-                  color: "white",
-                  width: "150px",
-                  fontSize: "20px",
-                  textAlign: "right",
-                }}
-              >
-                رسالتك
-              </Form.Label>
-              <Form.Control
-                as="textarea"
-                name="message"
-                rows={3}
-                value={formData.message}
-                onChange={handleChange}
-                style={{ background: "#17202a", border: "none", color: "white" }}
-              />
-            </Form.Group>
-
-            {/* Centered Button */}
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "15px",paddingRight:'150px' }}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                sx={{
-                  background: "#00fffc",
-                  color: "#1e272e",
-                  padding: { xs: "10px", sm: "15px" },
-                  width: "50%",
-                }}
-              >
-                ارسال
-              </Button>
-            </div>
-          </form>
-
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
+              </Box>
+            ))}
+          </Slider>
+        </Box>
+      </Container>
     </Container>
   );
 };

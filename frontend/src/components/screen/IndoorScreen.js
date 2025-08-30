@@ -39,11 +39,23 @@ const carouselItems = [
 ];
 
 const socialLinks = [
-  { icon: <FontAwesomeIcon icon={faXTwitter} sie="lg" />, link: "https://x.com/digilasersa" },
-  { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
-  { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+  {
+    icon: <FontAwesomeIcon icon={faXTwitter} sie="lg" />,
+    link: "https://x.com/digilasersa",
+  },
+  {
+    icon: <FaInstagram size={25} />,
+    link: "https://www.instagram.com/digilasersa",
+  },
+  {
+    icon: <FaLinkedin size={25} />,
+    link: "https://www.linkedin.com/company/digilasersa",
+  },
   { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
-  { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+  {
+    icon: <FaSnapchat size={25} />,
+    link: "https://www.snapchat.com/add/digilasersa",
+  },
   { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
   { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
 ];
@@ -54,34 +66,33 @@ const INITIAL_FORM_STATE = {
   message: "",
 };
 
-
 const IndoorScreen = () => {
   const [outdoorLedData, setOutdoorLedData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [mainImages, setMainImages] = useState([]); // Array to store main images for each project
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
-  
-    const handleChange = ({ target: { name, value } }) => {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    };
-  
-    const isFormValid = () =>
-      Object.values(formData).every((field) => field.trim() !== "");
-  
-    const handleFormSubmit = (e) => {
-      e.preventDefault();
-      if (!isFormValid()) {
-        alert("Please fill out all fields.");
-        return;
-      }
-  
-      const { name, phone, message } = formData;
-      const whatsappNumber = "966571908888";
-      const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-      const encodedText = encodeURIComponent(text);
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-      window.open(whatsappUrl, "_blank");
-    };
+
+  const handleChange = ({ target: { name, value } }) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const isFormValid = () =>
+    Object.values(formData).every((field) => field.trim() !== "");
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (!isFormValid()) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    const { name, phone, message } = formData;
+    const whatsappNumber = "966571908888";
+    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
+    const encodedText = encodeURIComponent(text);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+    window.open(whatsappUrl, "_blank");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -223,8 +234,7 @@ const IndoorScreen = () => {
             ))}
           </Carousel>
 
-
-       {/* Social Media Icons Sidebar */}
+          {/* Social Media Icons Sidebar */}
           <Box
             sx={{
               position: "fixed",
@@ -239,7 +249,12 @@ const IndoorScreen = () => {
             }}
           >
             {socialLinks.map(({ icon, link }, index) => (
-              <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+              <a
+                key={index}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Box
                   sx={{
                     width: 40,
@@ -379,7 +394,7 @@ const IndoorScreen = () => {
                               onClick={() =>
                                 handleImageClick(
                                   index,
-                                  `${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${img}`
+                                  `${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${img}`,
                                 )
                               }
                               style={{
@@ -458,106 +473,221 @@ const IndoorScreen = () => {
             </Container>
           </section>
         ))}
-           {/* Contact Section */}
-              <section
+      {/* Contact Section */}
+      <section
+        style={{
+          backgroundColor: "#000000",
+          backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingTop: "50px",
+          paddingBottom: "50px",
+          marginTop: "-30px",
+          direction: "rtl",
+        }}
+      >
+        <Container
+          maxWidth="xl"
+          sx={{ px: { xs: 2, sm: 3, md: 5 }, textAlign: "center" }}
+        >
+          <Grid container spacing={4}>
+            {/* Right Side - Contact Info */}
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-end",
+                textAlign: "justify",
+                direction: "ltr",
+                pr: 5,
+              }}
+            >
+              <Typography variant="h4" color="white">
+                Contact Us
+              </Typography>
+              <Typography
+                variant="h5"
+                color="#00fffc"
+                sx={{ textAlign: "justify", direction: "rtl" }}
+              >
+                للطلب والإستفسار /
+              </Typography>
+              <Grid
+                container
+                spacing={2}
+                sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}
+              >
+                {[
+                  {
+                    label: "المدير العام للطباعة بالمملكة",
+                    value: "8888 190 057",
+                  },
+                  {
+                    label: "المدير الفني للطباعة بالمملكة",
+                    value: "8888 193 057",
+                  },
+                  { label: "واتساب الطباعة", value: "8888 194 057" },
+                ].map(({ label, value }) => (
+                  <React.Fragment key={label}>
+                    <Grid item xs={4}>
+                      <Typography
+                        color="white"
+                        fontSize={{ xs: 17, md: 20 }}
+                        textAlign="right"
+                      >
+                        {label}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={1}>
+                      <Typography color="white" fontSize={{ xs: 17, md: 20 }}>
+                        :
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={7}>
+                      <Typography
+                        color="white"
+                        fontSize={{ xs: 17, md: 20 }}
+                        textAlign="right"
+                      >
+                        {value}
+                      </Typography>
+                    </Grid>
+                  </React.Fragment>
+                ))}
+              </Grid>
+            </Grid>
+
+            {/* Left Side - Form */}
+            <Grid item xs={12} sm={6} sx={{ order: { xs: 2, sm: 2 } }}>
+              <h2
                 style={{
-                  backgroundColor: "#000000",
-                  backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  paddingTop: "50px",
-                  paddingBottom: "50px",
-                  marginTop: "-30px",
-                  direction: "rtl",
+                  color: "white",
+                  fontFamily: "Tajawal",
+                  fontSize: "26px",
+                  textAlign: "right",
+                  marginBottom: "20px",
                 }}
               >
-                <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 5 }, textAlign: "center" }}>
-                  <Grid container spacing={4}>
-                    {/* Right Side - Contact Info */}
-                    <Grid item xs={12} sm={6} sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end", textAlign: "justify", direction: "ltr", pr: 5 }}>
-                      <Typography variant="h4" color="white">Contact Us</Typography>
-                      <Typography variant="h5" color="#00fffc" sx={{ textAlign: "justify", direction: "rtl" }}>
-                        للطلب والإستفسار /
-                      </Typography>
-                      <Grid container spacing={2} sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}>
-                        {[
-                          { label: "المدير العام للطباعة بالمملكة", value: "8888 190 057" },
-                          { label: "المدير الفني للطباعة بالمملكة", value: "8888 193 057" },
-                          { label: "واتساب الطباعة", value: "8888 194 057" },
-                        ].map(({ label, value }) => (
-                          <React.Fragment key={label}>
-                            <Grid item xs={4}><Typography color="white" fontSize={{ xs: 17, md: 20 }} textAlign="right">{label}</Typography></Grid>
-                            <Grid item xs={1}><Typography color="white" fontSize={{ xs: 17, md: 20 }}>:</Typography></Grid>
-                            <Grid item xs={7}><Typography color="white" fontSize={{ xs: 17, md: 20 }} textAlign="right">{value}</Typography></Grid>
-                          </React.Fragment>
-                        ))}
-                      </Grid>
-                    </Grid>
-        
-                    {/* Left Side - Form */}
-                    <Grid item xs={12} sm={6} sx={{ order: { xs: 2, sm: 2 } }}>
-                      <h2 style={{ color: "white", fontFamily: "Tajawal", fontSize: "26px", textAlign: "right", marginBottom: "20px" }}>
-                        للشكاوي ..
-                      </h2>
-                      <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
-                        <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-                          <Form.Label style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}>الاسم</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            style={{ background: "#17202a", border: "none", color: "white" }}
-                          />
-                        </Form.Group>
-        
-                        <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-                          <Form.Label style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}>الجوال</Form.Label>
-                          <Form.Control
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            style={{ background: "#17202a", border: "none", color: "white", textAlign: "right" }}
-                            pattern="[0-9]{9,12}"
-                            title="الرجاء إدخال رقم جوال صالح"
-                          />
-                        </Form.Group>
-        
-                        <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-                          <Form.Label style={{ color: "white", width: "150px", fontSize: "20px", textAlign: "right" }}>رسالتك</Form.Label>
-                          <Form.Control
-                            as="textarea"
-                            name="message"
-                            rows={3}
-                            value={formData.message}
-                            onChange={handleChange}
-                            style={{ background: "#17202a", border: "none", color: "white" }}
-                          />
-                        </Form.Group>
-        
-                        <div style={{ display: "flex", justifyContent: "center", marginTop: "15px", paddingRight: "150px" }}>
-                          <Button
-                            type="submit"
-                            variant="contained"
-                            sx={{
-                              background: "#00fffc",
-                              color: "#1e272e",
-                              padding: { xs: "10px", sm: "15px" },
-                              width: "50%",
-                            }}
-                          >
-                            ارسال
-                          </Button>
-                        </div>
-                      </form>
-                    </Grid>
-                  </Grid>
-                </Container>
-              </section>
-        
+                للشكاوي ..
+              </h2>
+              <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
+                <Form.Group
+                  className="mb-3 d-flex align-items-center"
+                  style={{ gap: "10px" }}
+                >
+                  <Form.Label
+                    style={{
+                      color: "white",
+                      width: "150px",
+                      fontSize: "20px",
+                      textAlign: "right",
+                    }}
+                  >
+                    الاسم
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    style={{
+                      background: "#17202a",
+                      border: "none",
+                      color: "white",
+                    }}
+                  />
+                </Form.Group>
+
+                <Form.Group
+                  className="mb-3 d-flex align-items-center"
+                  style={{ gap: "10px" }}
+                >
+                  <Form.Label
+                    style={{
+                      color: "white",
+                      width: "150px",
+                      fontSize: "20px",
+                      textAlign: "right",
+                    }}
+                  >
+                    الجوال
+                  </Form.Label>
+                  <Form.Control
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    style={{
+                      background: "#17202a",
+                      border: "none",
+                      color: "white",
+                      textAlign: "right",
+                    }}
+                    pattern="[0-9]{9,12}"
+                    title="الرجاء إدخال رقم جوال صالح"
+                  />
+                </Form.Group>
+
+                <Form.Group
+                  className="mb-3 d-flex align-items-center"
+                  style={{ gap: "10px" }}
+                >
+                  <Form.Label
+                    style={{
+                      color: "white",
+                      width: "150px",
+                      fontSize: "20px",
+                      textAlign: "right",
+                    }}
+                  >
+                    رسالتك
+                  </Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    name="message"
+                    rows={3}
+                    value={formData.message}
+                    onChange={handleChange}
+                    style={{
+                      background: "#17202a",
+                      border: "none",
+                      color: "white",
+                    }}
+                  />
+                </Form.Group>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "15px",
+                    paddingRight: "150px",
+                  }}
+                >
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{
+                      background: "#00fffc",
+                      color: "#1e272e",
+                      padding: { xs: "10px", sm: "15px" },
+                      width: "50%",
+                    }}
+                  >
+                    ارسال
+                  </Button>
+                </div>
+              </form>
+            </Grid>
+          </Grid>
+        </Container>
+      </section>
+
       <style jsx>{`
         .image-overlay:hover {
           background-color: transparent !important;

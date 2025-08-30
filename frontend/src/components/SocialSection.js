@@ -35,8 +35,6 @@ const INITIAL_FORM_STATE = {
   message: "",
 };
 
-
-
 const carouselItems = [
   {
     id: 1,
@@ -161,7 +159,7 @@ const products4 = [
 const SocialSection = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
 
-const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -186,7 +184,6 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
     window.open(whatsappUrl, "_blank");
   };
-
 
   return (
     <Container
@@ -246,54 +243,79 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         </Carousel>
 
         {/* Social Media Icons - Hidden on Mobile */}
-                        <Box
-                          sx={{
-                            position: "fixed",
-                            top: "50%",
-                            left: 0,
-                            transform: "translateY(-50%)",
-                            display: {
-                              xs: "none", // Hide on extra-small and small screens
-                              md: "flex", // Show on medium screens and up
-                            },
-                            flexDirection: "column",
-                            gap: "15px",
-                            zIndex: 2,
-                            paddingLeft: 2,
-                          }}
-                        >
-                          {[
-                            { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
-                            { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
-                            { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
-                            { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
-                            { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
-                            { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
-                            { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
-                          ].map((social, index) => (
-                            <a key={index} href={social.link} target="_blank" rel="noopener noreferrer">
-                              <Box
-                                sx={{
-                                  width: 40,
-                                  height: 40,
-                                  borderRadius: "50%",
-                                  backgroundColor: "#06f9f3",
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  color: "#17202a",
-                                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                                  transition: "transform 0.3s ease",
-                                  "&:hover": { transform: "scale(1.2)" },
-                                }}
-                              >
-                                {social.icon}
-                              </Box>
-                            </a>
-                          ))}
-                        </Box>
-       
-                      </Box>
+        <Box
+          sx={{
+            position: "fixed",
+            top: "50%",
+            left: 0,
+            transform: "translateY(-50%)",
+            display: {
+              xs: "none", // Hide on extra-small and small screens
+              md: "flex", // Show on medium screens and up
+            },
+            flexDirection: "column",
+            gap: "15px",
+            zIndex: 2,
+            paddingLeft: 2,
+          }}
+        >
+          {[
+            {
+              icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />,
+              link: "https://x.com/digilasersa",
+            },
+            {
+              icon: <FaInstagram size={25} />,
+              link: "https://www.instagram.com/digilasersa",
+            },
+            {
+              icon: <FaLinkedin size={25} />,
+              link: "https://www.linkedin.com/company/digilasersa",
+            },
+            {
+              icon: <FaYoutube size={25} />,
+              link: "https://youtube.com/@digilaserSa",
+            },
+            {
+              icon: <FaSnapchat size={25} />,
+              link: "https://www.snapchat.com/add/digilasersa",
+            },
+            {
+              icon: <FaTiktok size={25} />,
+              link: "https://www.tiktok.com/@digilasersa",
+            },
+            {
+              icon: <FaWhatsapp size={25} />,
+              link: "http://wa.me/966571978888",
+            },
+          ].map((social, index) => (
+            <a
+              key={index}
+              href={social.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  backgroundColor: "#06f9f3",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#17202a",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+                  transition: "transform 0.3s ease",
+                  "&:hover": { transform: "scale(1.2)" },
+                }}
+              >
+                {social.icon}
+              </Box>
+            </a>
+          ))}
+        </Box>
+      </Box>
 
       <Paper sx={{ p: 2, width: "100%" }}>
         <Container maxWidth={false} sx={{ padding: 0 }}>
@@ -446,7 +468,7 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
               fontSize: { xs: "1rem", sm: "1.5rem", md: "1.8rem" },
             }}
           >
-            <span style={{ color: "#015057", fontFamily: "Tajawal", }}>
+            <span style={{ color: "#015057", fontFamily: "Tajawal" }}>
               إدارة حسابات السوشيال ميديا
             </span>
           </Typography>
@@ -464,31 +486,31 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           {products.map((product, index) => (
             <SwiperSlide key={index}>
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    boxShadow: 3,
-                    "&:hover": { boxShadow: 6 },
-                    marginBottom: "20px",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    alt={`Service ${index}`}
-                    image={product.imageUrls}
-                    sx={{ height: 200 }}
-                  />
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      sx={{ textAlign: "center" }}
-                    >
-                      {product.cardTitles}
-                    </Typography>
-                  </CardContent>
-                </Card>
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  boxShadow: 3,
+                  "&:hover": { boxShadow: 6 },
+                  marginBottom: "20px",
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  alt={`Service ${index}`}
+                  image={product.imageUrls}
+                  sx={{ height: 200 }}
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
+                    {product.cardTitles}
+                  </Typography>
+                </CardContent>
+              </Card>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -532,31 +554,31 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           {products1.map((product, index) => (
             <SwiperSlide key={index}>
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    boxShadow: 3,
-                    "&:hover": { boxShadow: 6 },
-                    marginBottom: "20px",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    alt={`Service ${index}`}
-                    image={product.imageUrls}
-                    sx={{ height: 200 }}
-                  />
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      sx={{ textAlign: "center" }}
-                    >
-                      {product.cardTitles}
-                    </Typography>
-                  </CardContent>
-                </Card>
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  boxShadow: 3,
+                  "&:hover": { boxShadow: 6 },
+                  marginBottom: "20px",
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  alt={`Service ${index}`}
+                  image={product.imageUrls}
+                  sx={{ height: 200 }}
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
+                    {product.cardTitles}
+                  </Typography>
+                </CardContent>
+              </Card>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -600,31 +622,31 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           {products2.map((product, index) => (
             <SwiperSlide key={index}>
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    boxShadow: 3,
-                    "&:hover": { boxShadow: 6 },
-                    marginBottom: "20px",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    alt={`Service ${index}`}
-                    image={product.imageUrls}
-                    sx={{ height: 200 }}
-                  />
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      sx={{ textAlign: "center" }}
-                    >
-                      {product.cardTitles}
-                    </Typography>
-                  </CardContent>
-                </Card>
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  boxShadow: 3,
+                  "&:hover": { boxShadow: 6 },
+                  marginBottom: "20px",
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  alt={`Service ${index}`}
+                  image={product.imageUrls}
+                  sx={{ height: 200 }}
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
+                    {product.cardTitles}
+                  </Typography>
+                </CardContent>
+              </Card>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -668,31 +690,31 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           {products3.map((product, index) => (
             <SwiperSlide key={index}>
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    boxShadow: 3,
-                    "&:hover": { boxShadow: 6 },
-                    marginBottom: "20px",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    alt={`Service ${index}`}
-                    image={product.imageUrls}
-                    sx={{ height: 200 }}
-                  />
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      sx={{ textAlign: "center" }}
-                    >
-                      {product.cardTitles}
-                    </Typography>
-                  </CardContent>
-                </Card>
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  boxShadow: 3,
+                  "&:hover": { boxShadow: 6 },
+                  marginBottom: "20px",
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  alt={`Service ${index}`}
+                  image={product.imageUrls}
+                  sx={{ height: 200 }}
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
+                    {product.cardTitles}
+                  </Typography>
+                </CardContent>
+              </Card>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -736,232 +758,35 @@ const [formData, setFormData] = useState(INITIAL_FORM_STATE);
         >
           {products4.map((product, index) => (
             <SwiperSlide key={index}>
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    boxShadow: 3,
-                    "&:hover": { boxShadow: 6 },
-                    marginBottom: "20px",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    alt={`Service ${index}`}
-                    image={product.imageUrls}
-                    sx={{ height: 200 }}
-                  />
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      sx={{ textAlign: "center" }}
-                    >
-                      {product.cardTitles}
-                    </Typography>
-                  </CardContent>
-                </Card>
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  boxShadow: 3,
+                  "&:hover": { boxShadow: 6 },
+                  marginBottom: "20px",
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  alt={`Service ${index}`}
+                  image={product.imageUrls}
+                  sx={{ height: 200 }}
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
+                    {product.cardTitles}
+                  </Typography>
+                </CardContent>
+              </Card>
             </SwiperSlide>
           ))}
         </Swiper>
       </Container>
-      <section
-        style={{
-          backgroundColor: "#000000",
-          backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
-          width: "100%",
-          margin: "0 auto",
-          marginBottom: "0px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: "50px",
-          paddingBottom: "50px",
-          marginTop: "-30px",
-          direction: "rtl",
-        }}
-      >
-        <Container
-          maxWidth="xl"
-          sx={{
-            paddingX: { xs: 2, sm: 3, md: 5 },
-            textAlign: "center",
-          }}
-        >
-          <Grid container spacing={4}>
-            {/* Text Section on the Right */}
-           <Grid
-             item
-             xs={12}
-             sm={6}
-             sx={{
-               display: "flex",
-               flexDirection: "column",
-               alignItems: "flex-end",
-               textAlign: "justify",
-               direction: "ltr",
-               pr: 5,
-             }}
-           >
-             <Typography variant="h4" color="white">
-               Contact Us
-             </Typography>
-           
-             <Typography variant="h5" color="#00fffc" sx={{ textAlign: "justify", direction: "rtl" }}>
-               للطلب والإستفسار /
-             </Typography>
-           
-             <Grid container spacing={2} sx={{ pt: "30px", direction: "rtl", alignItems: "center" }}>
-               {[
-                 { label: "مدير السوشيال ميديا", value: "9999 084 057" },
-               ].map(({ label, value }) => (
-                 <React.Fragment key={label}>
-                   <Grid item xs={4}>
-                     <Typography
-                       variant="body1"
-                       sx={{
-                         color: "white",
-                         fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                         textAlign: "right",
-                       }}
-                     >
-                       {label}
-                     </Typography>
-                   </Grid>
-           
-                   <Grid item xs={1}>
-                     <Typography
-                       variant="body1"
-                       sx={{
-                         color: "white",
-                         fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                         textAlign: "right",
-                       }}
-                     >
-                       :
-                     </Typography>
-                   </Grid>
-           
-                   <Grid item xs={7}>
-                     <Typography
-                       variant="body1"
-                       sx={{
-                         color: "white",
-                         fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                         textAlign: "right",
-                       }}
-                     >
-                       {value}
-                     </Typography>
-                   </Grid>
-                 </React.Fragment>
-               ))}
-             </Grid>
-           </Grid>
-
-            {/* Contact Form Section on the Left */}
-            <Grid item xs={12} sm={6} order={{ xs: 2, sm: 2 }}>
-              <h2
-                style={{
-                  color: "white",
-                  fontFamily: "Tajawal",
-                  fontSize: "26px",
-                  textAlign: "right",
-                  marginBottom: "20px",
-                  direction: "rtl",
-                }}
-              >
-                 للشكاوي ..
-              </h2>
-
-                 <form onSubmit={handleFormSubmit} style={{ direction: "rtl" }}>
-            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-              <Form.Label
-                style={{
-                  color: "white",
-                  width: "150px",
-                  fontSize: "20px",
-                  textAlign: "right",
-                }}
-              >
-                الاسم
-              </Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                style={{ background: "#17202a", border: "none", color: "white" }}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-              <Form.Label
-                style={{
-                  color: "white",
-                  width: "150px",
-                  fontSize: "20px",
-                  textAlign: "right",
-                }}
-              >
-                الجوال
-              </Form.Label>
-              <Form.Control
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                style={{
-                  background: "#17202a",
-                  border: "none",
-                  color: "white",
-                  textAlign: "right",
-                }}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3 d-flex align-items-center" style={{ gap: "10px" }}>
-              <Form.Label
-                style={{
-                  color: "white",
-                  width: "150px",
-                  fontSize: "20px",
-                  textAlign: "right",
-                }}
-              >
-                رسالتك
-              </Form.Label>
-              <Form.Control
-                as="textarea"
-                name="message"
-                rows={3}
-                value={formData.message}
-                onChange={handleChange}
-                style={{ background: "#17202a", border: "none", color: "white" }}
-              />
-            </Form.Group>
-
-            {/* Centered Button */}
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "15px",paddingRight:'150px' }}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                sx={{
-                  background: "#00fffc",
-                  color: "#1e272e",
-                  padding: { xs: "10px", sm: "15px" },
-                  width: "50%",
-                }}
-              >
-                ارسال
-              </Button>
-            </div>
-          </form>
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
     </Container>
   );
 };

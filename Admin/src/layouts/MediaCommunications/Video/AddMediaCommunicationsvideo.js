@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import LinearProgress from "@mui/material/LinearProgress";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
@@ -21,14 +20,12 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 const AddMediaCommunicationsVideo = () => {
   const [loading, setLoading] = useState(false);
-  const [videoPreview, setVideoPreview] = useState(null);
-  const [uploadProgress, setUploadProgress] = useState(0);
 
   // Seller Form field states
   const [MediaCommunications, setMediaCommunications] = useState({
     MediaCommunicationsvideoname: "",
     MediaCommunicationsvideotype: "",
-    file: null,
+    MediaCommunicationsvideolink: "",
   });
 
   // Handle changes in input fields
@@ -39,62 +36,29 @@ const AddMediaCommunicationsVideo = () => {
     }));
   };
 
-  // Handle video file input change
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setMediaCommunications((prevState) => ({
-      ...prevState,
-      file: selectedFile,
-    }));
-
-    if (selectedFile) {
-      const videoURL = URL.createObjectURL(selectedFile);
-      setVideoPreview(videoURL);
-    }
-  };
-
   // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
       !MediaCommunications.MediaCommunicationsvideoname ||
-      !MediaCommunications.file ||
-      !MediaCommunications.MediaCommunicationsvideotype
+      !MediaCommunications.MediaCommunicationsvideotype ||
+      !MediaCommunications.MediaCommunicationsvideolink
     ) {
       Swal.fire({
         icon: "error",
         title: "Missing Fields",
-        text: "Please provide video name, type, and file.",
+        text: "Please provide video name, type, and link.",
       });
       return;
     }
 
     setLoading(true);
-    setUploadProgress(0);
-
-    const formData = new FormData();
-    formData.append(
-      "MediaCommunicationsvideoname",
-      MediaCommunications.MediaCommunicationsvideoname
-    );
-    formData.append(
-      "MediaCommunicationsvideotype",
-      MediaCommunications.MediaCommunicationsvideotype
-    );
-    formData.append("Video", MediaCommunications.file);
 
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_HOST}/MediaCommunicationsvideo`,
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-          onUploadProgress: (progressEvent) => {
-            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            setUploadProgress(percent);
-          },
-        }
+        MediaCommunications
       );
 
       if (response.data.status === 401 || !response.data) {
@@ -107,15 +71,13 @@ const AddMediaCommunicationsVideo = () => {
         Swal.fire({
           icon: "success",
           title: "Success!",
-          text: "Video uploaded successfully!",
+          text: "Video added successfully!",
         });
         setMediaCommunications({
           MediaCommunicationsvideoname: "",
           MediaCommunicationsvideotype: "",
-          file: null,
+          MediaCommunicationsvideolink: "",
         });
-        setVideoPreview(null);
-        setUploadProgress(0);
       }
     } catch (error) {
       Swal.fire({
@@ -168,9 +130,9 @@ const AddMediaCommunicationsVideo = () => {
 
                   {/* Dropdown for Video Type */}
                   <FormControl fullWidth sx={{ mb: 2 }}>
-                    <InputLabel> Video Type</InputLabel>
+                    <InputLabel>Video Type</InputLabel>
                     <Select
-                      label="Promotional gifts Type"
+                      label="Video Type"
                       name="MediaCommunicationsvideotype"
                       value={MediaCommunications.MediaCommunicationsvideotype}
                       onChange={handleChange}
@@ -203,60 +165,16 @@ const AddMediaCommunicationsVideo = () => {
                     </Select>
                   </FormControl>
 
-                  {/* Video Upload Field */}
-                  <label htmlFor="file-upload">
-                    <input
-                      id="file-upload"
-                      accept="video/*"
-                      type="file"
-                      onChange={handleFileChange}
-                      style={{ display: "none" }}
-                    />
-                    <Button
-                      variant="outlined"
-                      component="span"
-                      fullWidth
-                      sx={{
-                        mb: 2,
-                        textTransform: "none",
-                        borderColor: "#1976d2",
-                        color: "#1976d2",
-                        "&:hover": {
-                          borderColor: "#1565c0",
-                          backgroundColor: "#f5f5f5",
-                        },
-                      }}
-                    >
-                      Upload Video
-                    </Button>
-                  </label>
-
-                  {/* Video Preview */}
-                  {videoPreview && (
-                    <MDBox
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      sx={{
-                        mb: 2,
-                        border: "1px solid #e0e0e0",
-                        borderRadius: "8px",
-                        padding: "8px",
-                      }}
-                    >
-                      <video width="100%" height="auto" controls style={{ maxWidth: "300px" }}>
-                        <source src={videoPreview} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    </MDBox>
-                  )}
-
-                  {/* Upload Progress Bar */}
-                  {uploadProgress > 0 && uploadProgress < 100 && (
-                    <MDBox sx={{ mb: 2 }}>
-                      <LinearProgress variant="determinate" value={uploadProgress} />
-                    </MDBox>
-                  )}
+                  {/* Video Link */}
+                  <TextField
+                    label="MediaCommunications Video Link"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    name="MediaCommunicationsvideolink"
+                    value={MediaCommunications.MediaCommunicationsvideolink}
+                    onChange={handleChange}
+                  />
 
                   {/* Submit Button */}
                   <Button

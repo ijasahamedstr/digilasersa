@@ -3,12 +3,13 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -18,35 +19,17 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-// Import Ant Design components
-import { Image } from "antd";
-
-// Import SweetAlert2
-import Swal from "sweetalert2";
-
 const EditMediaCommunications = () => {
-  const [imagePreview, setImagePreview] = useState(null);
   const { id } = useParams();
   const [formData, setFormData] = useState({
     MediaCommunicationsphotoname: "",
-    MediaCommunicationsphotoimage: null,
-    MediaCommunicationsphototype: "", // ✅ Added
+    MediaCommunicationsphototype: "",
+    MediaCommunicationsphotolink: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
-  // Handle file upload
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setImagePreview(previewUrl);
-      setFormData({ ...formData, MediaCommunicationsphotoimage: file });
-    }
-  };
-
-  // Handle text/dropdown input changes
+  // Handle text/select input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -69,22 +52,8 @@ const EditMediaCommunications = () => {
     try {
       setLoading(true);
       setError(null);
-      setSuccess(null);
 
-      const formDataToSend = new FormData();
-      formDataToSend.append("MediaCommunicationsphotoname", formData.MediaCommunicationsphotoname);
-      formDataToSend.append("MediaCommunicationsphototype", formData.MediaCommunicationsphototype);
-      if (formData.MediaCommunicationsphotoimage) {
-        formDataToSend.append("photo", formData.MediaCommunicationsphotoimage);
-      }
-
-      await axios.put(
-        `${process.env.REACT_APP_API_HOST}/MediaCommunicationsphoto/${id}`,
-        formDataToSend,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
-
-      setLoading(false);
+      await axios.put(`${process.env.REACT_APP_API_HOST}/MediaCommunicationsphoto/${id}`, formData);
 
       Swal.fire({
         title: "Success!",
@@ -92,12 +61,13 @@ const EditMediaCommunications = () => {
         icon: "success",
         confirmButtonText: "OK",
       });
+      setLoading(false);
     } catch (err) {
       setLoading(false);
-      setError("Error updating Printing data. Please try again.");
+      setError("Error updating data. Please try again.");
       Swal.fire({
         title: "Error!",
-        text: "Error updating Printing data. Please try again.",
+        text: "Error updating data. Please try again.",
         icon: "error",
         confirmButtonText: "OK",
       });
@@ -106,7 +76,7 @@ const EditMediaCommunications = () => {
 
   // Fetch data for editing
   useEffect(() => {
-    const fetchMediaCommunications = async () => {
+    const fetchData = async () => {
       setLoading(true);
       try {
         const response = await axios.get(
@@ -114,18 +84,17 @@ const EditMediaCommunications = () => {
         );
         setFormData({
           MediaCommunicationsphotoname: response.data.MediaCommunicationsphotoname,
-          MediaCommunicationsphotoimage: response.data.MediaCommunicationsphotoimage,
-          MediaCommunicationsphototype: response.data.MediaCommunicationsphototype || "", // ✅ keep old value
+          MediaCommunicationsphototype: response.data.MediaCommunicationsphototype || "",
+          MediaCommunicationsphotolink: response.data.MediaCommunicationsphotolink || "",
         });
         setLoading(false);
       } catch (err) {
         setLoading(false);
-        setError("Error fetching Printing data. Please try again.");
-        console.error("Error fetching Printing data: ", err);
+        setError("Error fetching data. Please try again.");
       }
     };
 
-    fetchMediaCommunications();
+    fetchData();
   }, [id]);
 
   return (
@@ -154,7 +123,7 @@ const EditMediaCommunications = () => {
               </MDBox>
 
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <form onSubmit={handleSubmit}>
                   {/* Name */}
                   <TextField
                     label="Photo Name"
@@ -166,7 +135,7 @@ const EditMediaCommunications = () => {
                     onChange={handleInputChange}
                   />
 
-                  {/* ✅ Dropdown Photo Type */}
+                  {/* Type */}
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <InputLabel>Photo Type</InputLabel>
                     <Select
@@ -175,73 +144,31 @@ const EditMediaCommunications = () => {
                       onChange={handleInputChange}
                       sx={{ height: "40px" }}
                     >
-                      <MenuItem value="Profile">Profile</MenuItem>
-                      <MenuItem value="Event">Event</MenuItem>
-                      <MenuItem value="Campaign">Campaign</MenuItem>
-                      <MenuItem value="Advertising">Advertising</MenuItem>
-                      <MenuItem value="Other">Other</MenuItem>
+                      <MenuItem value="Weddings">Weddings</MenuItem>
+                      <MenuItem value="Sports">Sports</MenuItem>
+                      <MenuItem value="Products">Products</MenuItem>
+                      <MenuItem value="Foods">Foods</MenuItem>
+                      <MenuItem value="Factory">Factory</MenuItem>
+                      <MenuItem value="Conference">Conference</MenuItem>
                     </Select>
                   </FormControl>
 
-                  {/* Upload Image */}
-                  <label htmlFor="file-upload">
-                    <input
-                      id="file-upload"
-                      name="photo"
-                      accept="image/*"
-                      type="file"
-                      style={{ display: "none" }}
-                      onChange={handleFileChange}
-                    />
-                    <Button
-                      variant="outlined"
-                      component="span"
-                      fullWidth
-                      sx={{
-                        mb: 2,
-                        textTransform: "none",
-                        borderColor: "#1976d2",
-                        color: "#1976d2",
-                        "&:hover": { borderColor: "#1565c0", backgroundColor: "#f5f5f5" },
-                      }}
-                    >
-                      Upload Image
-                    </Button>
-                  </label>
-
-                  {/* Preview */}
-                  <MDBox
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{ mb: 2, border: "1px solid #e0e0e0", borderRadius: "8px", p: 1 }}
-                  >
-                    {imagePreview || formData.MediaCommunicationsphotoimage ? (
-                      <Image.PreviewGroup>
-                        <Image
-                          src={
-                            imagePreview
-                              ? imagePreview
-                              : `${process.env.REACT_APP_API_HOST}/uploads/MediaCommunications/Photo/${formData.MediaCommunicationsphotoimage}`
-                          }
-                          alt="Photo"
-                          style={{ maxWidth: "150px", borderRadius: "8px" }}
-                        />
-                      </Image.PreviewGroup>
-                    ) : (
-                      <img
-                        src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
-                        alt="Default"
-                        style={{ maxWidth: "50px", borderRadius: "8px" }}
-                      />
-                    )}
-                  </MDBox>
+                  {/* Link */}
+                  <TextField
+                    label="Photo Link"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    name="MediaCommunicationsphotolink"
+                    value={formData.MediaCommunicationsphotolink}
+                    onChange={handleInputChange}
+                  />
 
                   {/* Messages */}
                   {loading && <MDTypography color="info">Loading...</MDTypography>}
                   {error && <MDTypography color="error">{error}</MDTypography>}
-                  {success && <MDTypography color="success">{success}</MDTypography>}
 
+                  {/* Submit */}
                   <Button
                     type="submit"
                     variant="contained"
