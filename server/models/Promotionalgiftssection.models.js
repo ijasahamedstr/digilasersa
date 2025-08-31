@@ -8,7 +8,7 @@ const PromotionalgiftsSchema = new mongoose.Schema({
     gifttype: {
         type: String,
     },
-    gifttimage: {
+    giftimagelink: {
         type: String,
     },
     date: {

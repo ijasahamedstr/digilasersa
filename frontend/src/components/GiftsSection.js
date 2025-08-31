@@ -88,6 +88,20 @@ const GiftsSection = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
+    // 🔹 Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 🔹 Force a one-time refresh on first load
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -278,30 +292,26 @@ const GiftsSection = () => {
           </Box>
         </Box>
       </Container>
-      <Container
-        maxWidth={false}
-        sx={{ padding: 0 }}
-        style={{ paddingLeft: "0px", paddingRight: "0px" }}
-      >
-        {/* Carousel Section */}
-        <section
-          style={{
-            width: "100%",
-            margin: "0 auto",
-            paddingTop: "50px",
-            paddingBottom: "50px",
-          }}
-        >
-          <Container maxWidth="xl" sx={{ padding: 3 }}>
+      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
+        <Container maxWidth="xl" sx={{ px: 3 }}>
+          {/* Heading */}
             <Card
               sx={{
-                backgroundColor: "#f5f5f5",
-                padding: 0,
-                borderRadius: 2,
-                boxShadow: 3,
-                maxWidth: "100%",
-                textAlign: "center",
+                backgroundColor: "#f5f5f5", // Background color of the card
+                padding: 0, // Padding around the content
+                borderRadius: 2, // Optional: rounded corners
+                boxShadow: 3, // Optional: card shadow
+                maxWidth: "100%", // Make sure the card is responsive
                 marginBottom: "20px",
+                fontFamily: "Tajawal, sans-serif",
+                fontWeight: "900",
+                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
+                textAlign: "center",
+                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                mb: 4,
               }}
             >
               <CardContent>
@@ -320,41 +330,46 @@ const GiftsSection = () => {
                 </Typography>
               </CardContent>
             </Card>
-            <Slider ref={sliderRef} {...settings}>
-              {GiftsSection.map((item, index) => (
-                <div key={index}>
-                  <Card
-                    sx={{
-                      transition: "0.3s",
-                      "&:hover": { boxShadow: 4, transform: "scale(1.02)" },
-                      borderRadius: 2,
-                      marginRight: "16px",
-                      marginLeft: index === 0 ? "0" : "16px",
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
-                      alt={`Slide ${index + 1}`}
-                      sx={{
-                        height: { xs: 150, sm: 200 },
-                        objectFit: "cover",
-                        borderTopLeftRadius: 2,
-                        borderTopRightRadius: 2,
-                      }}
-                      onClick={() =>
-                        handleImageClick(
-                          `${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`,
-                        )
-                      }
-                    />
-                  </Card>
-                </div>
-              ))}
-            </Slider>
-          </Container>
 
-          <Container maxWidth="xl" sx={{ padding: 3 }}>
+
+          {/* Gifts Slider */}
+          <Slider ref={sliderRef} {...settings}>
+            {GiftsSection.map((item, index) => (
+              <Box key={index} sx={{ px: 1 }}>
+                <Card
+                  sx={{
+                    transition: "0.3s",
+                    "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    border: "3px solid transparent",
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    image={item.giftimagelink}
+                    alt={`Slide ${index + 1}`}
+                    sx={{
+                      height: { xs: 180, sm: 220 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 3,
+                      borderTopRightRadius: 3,
+                      borderBottom: "5px solid #06f9f3",
+                      transition: "0.3s",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleImageClick(item.giftimagelink)}
+                  />
+                </Card>
+              </Box>
+            ))}
+          </Slider>
+        </Container>
+      </section>
+      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
+        <Container maxWidth="xl" sx={{ px: 3 }}>
+          {/* Heading */}
             <Card
               sx={{
                 backgroundColor: "#f5f5f5", // Background color of the card
@@ -362,8 +377,16 @@ const GiftsSection = () => {
                 borderRadius: 2, // Optional: rounded corners
                 boxShadow: 3, // Optional: card shadow
                 maxWidth: "100%", // Make sure the card is responsive
-                textAlign: "center", // Center align content
                 marginBottom: "20px",
+                fontFamily: "Tajawal, sans-serif",
+                fontWeight: "900",
+                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
+                textAlign: "center",
+                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                mb: 4,
               }}
             >
               <CardContent>
@@ -382,41 +405,45 @@ const GiftsSection = () => {
                 </Typography>
               </CardContent>
             </Card>
-            <Slider ref={sliderRef} {...settings}>
-              {GiftsSection1.map((item, index) => (
-                <div key={index}>
-                  <Card
+          {/* Gifts Slider */}
+          <Slider ref={sliderRef} {...settings}>
+            {GiftsSection1.map((item, index) => (
+              <Box key={index} sx={{ px: 1 }}>
+                <Card
+                  sx={{
+                    transition: "0.3s",
+                    "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    border: "3px solid transparent",
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    image={item.giftimagelink}
+                    alt={`Slide ${index + 1}`}
                     sx={{
+                      height: { xs: 180, sm: 220 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 3,
+                      borderTopRightRadius: 3,
+                      borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { boxShadow: 4, transform: "scale(1.02)" },
-                      borderRadius: 2,
-                      marginRight: "16px", // Gap between the cards
-                      marginLeft: index === 0 ? "0" : "16px", // Avoid extra margin for the first card
+                      "&:hover": { borderBottomColor: "#ff6f61" },
+                      cursor: "pointer",
                     }}
-                  >
-                    <CardMedia
-                      component="img"
-                      src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
-                      alt={`Slide ${index + 1}`}
-                      sx={{
-                        height: { xs: 150, sm: 200 },
-                        objectFit: "cover",
-                        borderTopLeftRadius: 2,
-                        borderTopRightRadius: 2,
-                      }}
-                      onClick={() =>
-                        handleImageClick(
-                          `${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`,
-                        )
-                      }
-                    />
-                  </Card>
-                </div>
-              ))}
-            </Slider>
-          </Container>
+                    onClick={() => handleImageClick(item.giftimagelink)}
+                  />
+                </Card>
+              </Box>
+            ))}
+          </Slider>
+        </Container>
+      </section>
 
-          <Container maxWidth="xl" sx={{ padding: 3 }}>
+      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
+        <Container maxWidth="xl" sx={{ px: 3 }}>
+          {/* Heading */}
             <Card
               sx={{
                 backgroundColor: "#f5f5f5", // Background color of the card
@@ -424,8 +451,16 @@ const GiftsSection = () => {
                 borderRadius: 2, // Optional: rounded corners
                 boxShadow: 3, // Optional: card shadow
                 maxWidth: "100%", // Make sure the card is responsive
-                textAlign: "center", // Center align content
                 marginBottom: "20px",
+                fontFamily: "Tajawal, sans-serif",
+                fontWeight: "900",
+                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
+                textAlign: "center",
+                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                mb: 4,
               }}
             >
               <CardContent>
@@ -433,7 +468,7 @@ const GiftsSection = () => {
                   variant="h4"
                   component="h2"
                   sx={{
-                    fontFamily: "Noto Kufi Arabic, sans-serif",
+                    fontFamily: "Tajawal",
                     fontWeight: "bold",
                     color: "#333",
                     fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
@@ -444,41 +479,47 @@ const GiftsSection = () => {
                 </Typography>
               </CardContent>
             </Card>
-            <Slider ref={sliderRef} {...settings}>
-              {GiftsSection2.map((item, index) => (
-                <div key={index}>
-                  <Card
-                    sx={{
-                      transition: "0.3s",
-                      "&:hover": { boxShadow: 4, transform: "scale(1.02)" },
-                      borderRadius: 2,
-                      marginRight: "16px", // Gap between the cards
-                      marginLeft: index === 0 ? "0" : "16px", // Avoid extra margin for the first card
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
-                      alt={`Slide ${index + 1}`}
-                      sx={{
-                        height: { xs: 150, sm: 200 },
-                        objectFit: "cover",
-                        borderTopLeftRadius: 2,
-                        borderTopRightRadius: 2,
-                      }}
-                      onClick={() =>
-                        handleImageClick(
-                          `${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`,
-                        )
-                      }
-                    />
-                  </Card>
-                </div>
-              ))}
-            </Slider>
-          </Container>
 
-          <Container maxWidth="xl" sx={{ padding: 3 }}>
+
+          {/* Gifts Slider */}
+          <Slider ref={sliderRef} {...settings}>
+            {GiftsSection2.map((item, index) => (
+              <Box key={index} sx={{ px: 1 }}>
+                <Card
+                  sx={{
+                    transition: "0.3s",
+                    "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    border: "3px solid transparent",
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    image={item.giftimagelink}
+                    alt={`Slide ${index + 1}`}
+                    sx={{
+                      height: { xs: 180, sm: 220 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 3,
+                      borderTopRightRadius: 3,
+                      borderBottom: "5px solid #06f9f3",
+                      transition: "0.3s",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleImageClick(item.giftimagelink)}
+                  />
+                </Card>
+              </Box>
+            ))}
+          </Slider>
+        </Container>
+      </section>
+      
+      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
+        <Container maxWidth="xl" sx={{ px: 3 }}>
+          {/* Heading */}
             <Card
               sx={{
                 backgroundColor: "#f5f5f5", // Background color of the card
@@ -486,8 +527,16 @@ const GiftsSection = () => {
                 borderRadius: 2, // Optional: rounded corners
                 boxShadow: 3, // Optional: card shadow
                 maxWidth: "100%", // Make sure the card is responsive
-                textAlign: "center", // Center align content
                 marginBottom: "20px",
+                fontFamily: "Tajawal, sans-serif",
+                fontWeight: "900",
+                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
+                textAlign: "center",
+                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                mb: 4,
               }}
             >
               <CardContent>
@@ -506,40 +555,49 @@ const GiftsSection = () => {
                 </Typography>
               </CardContent>
             </Card>
-            <Slider ref={sliderRef} {...settings}>
-              {GiftsSection3.map((item, index) => (
-                <div key={index}>
-                  <Card
+
+
+          {/* Gifts Slider */}
+          <Slider ref={sliderRef} {...settings}>
+            {GiftsSection3.map((item, index) => (
+              <Box key={index} sx={{ px: 1 }}>
+                <Card
+                  sx={{
+                    transition: "0.3s",
+                    "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    border: "3px solid transparent",
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    image={item.giftimagelink}
+                    alt={`Slide ${index + 1}`}
                     sx={{
+                      height: { xs: 180, sm: 220 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 3,
+                      borderTopRightRadius: 3,
+                      borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { boxShadow: 4, transform: "scale(1.02)" },
-                      borderRadius: 2,
-                      marginRight: "16px", // Gap between the cards
-                      marginLeft: index === 0 ? "0" : "16px", // Avoid extra margin for the first card
+                      "&:hover": { borderBottomColor: "#ff6f61" },
+                      cursor: "pointer",
                     }}
-                  >
-                    <CardMedia
-                      component="img"
-                      src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
-                      alt={`Slide ${index + 1}`}
-                      sx={{
-                        height: { xs: 150, sm: 200 },
-                        objectFit: "cover",
-                        borderTopLeftRadius: 2,
-                        borderTopRightRadius: 2,
-                      }}
-                      onClick={() =>
-                        handleImageClick(
-                          `${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`,
-                        )
-                      }
-                    />
-                  </Card>
-                </div>
-              ))}
-            </Slider>
-          </Container>
-        </section>
+                    onClick={() => handleImageClick(item.giftimagelink)}
+                  />
+                </Card>
+              </Box>
+            ))}
+          </Slider>
+        </Container>
+      </section>
+
+      <Container
+        maxWidth={false}
+        sx={{ padding: 0 }}
+        style={{ paddingLeft: "0px", paddingRight: "0px" }}
+      >  
         {/* Dialog for Image View */}
         <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
           <DialogTitle>

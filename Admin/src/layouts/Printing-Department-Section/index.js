@@ -61,7 +61,9 @@ function PrintingDepartment() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Printingdepartment`);
-        setPrinting(response.data); // Set the fetched gifts
+
+        // LIFO -> reverse the array so last item comes first
+        setPrinting(response.data.reverse());
       } catch (err) {
         console.error("Error fetching data: ", err);
         setError("Failed to fetch data");
@@ -124,11 +126,11 @@ function PrintingDepartment() {
     ),
     Printing_Image: (
       <MDBox>
-        {item.Printingimage ? (
+        {item.Printingimagelink ? (
           <Image.PreviewGroup>
             <Image
-              src={`${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${item.Printingimage}`}
-              alt="Printingimage"
+              src={item.Printingimagelink}
+              alt="Printingimagelink"
               style={{ maxWidth: "100px", borderRadius: "8px" }}
             />
           </Image.PreviewGroup>

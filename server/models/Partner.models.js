@@ -5,7 +5,7 @@ const PartnerSchema = new mongoose.Schema({
     partnername: {
         type: String,
     },
-    partnerimage: {
+    partnerimagelink: {
         type: String,
     },
     date: {

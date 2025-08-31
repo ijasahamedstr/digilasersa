@@ -83,7 +83,7 @@ function ServiceCard() {
       sx={{
         width: "100%",
         py: 6,
-        backgroundImage: `url("https://i.ibb.co/wrgMv3k5/grey-textured-background-1.jpg")`, // ✅ Your background image here
+        backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`, // ✅ Your background image here
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",

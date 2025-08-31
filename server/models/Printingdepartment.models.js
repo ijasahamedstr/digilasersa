@@ -8,7 +8,7 @@ const PrintingdepartmentSchema = new mongoose.Schema({
     Printingtype: {
         type: String,
     },
-    Printingimage: {
+    Printingimagelink: {
         type: String,
     },
     date: {

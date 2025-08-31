@@ -8,7 +8,7 @@ function AboutSection() {
         backgroundColor: "black",
         backgroundImage: {
           xs: "none",
-          sm: "url(https://i.ibb.co/pBZ8sHC2/image.webp)",
+          sm: "url(https://i.ibb.co/KxNhsLHv/image.webp)",
         },
         backgroundSize: "cover",
         backgroundPosition: "center", // ✅ Center background image

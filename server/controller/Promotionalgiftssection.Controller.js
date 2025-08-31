@@ -2,11 +2,10 @@ import moment from 'moment';
 import Promotionalgifts from '../models/Promotionalgiftssection.models.js';
 
 export const Promotionalgiftscreate = async (req, res) => {
-    const { filename } = req.file;
-    const { giftname, gifttype } = req.body;
+    const { giftname, gifttype, giftimagelink} = req.body;
 
     // Input validation
-    if (!giftname || !gifttype || !filename) {
+    if (!giftname || !gifttype || !giftimagelink) {
         return res.status(400).json({
             status: 400,
             message: 'Please provide gift name, gift type, and gift image.'
@@ -19,7 +18,7 @@ export const Promotionalgiftscreate = async (req, res) => {
         const newGift = new Promotionalgifts({
             giftname,
             gifttype,
-            gifttimage: filename,
+            giftimagelink,
             date,
         });
 
@@ -83,7 +82,7 @@ export const Promotionalgiftsupdate  = async (req, res) => {
     const { id } = req.params;
     const { giftname } = req.body;
     const { gifttype } = req.body;
-    const { file } = req;
+    const { giftimagelink } = req.body;
 
     try {
         // Find the user by ID
@@ -98,10 +97,10 @@ export const Promotionalgiftsupdate  = async (req, res) => {
         if (gifttype) {
             user.gifttype = gifttype;
         }
-        // Update image if a new file is uploaded
-        if (file) {
-            user.gifttimage = file.filename;
+          if (giftimagelink) {
+            user.giftimagelink = giftimagelink;
         }
+       
 
         // Save the updated user data
         const updatedUser = await user.save();

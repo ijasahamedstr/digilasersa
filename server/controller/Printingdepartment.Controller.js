@@ -2,11 +2,10 @@ import moment from 'moment';
 import Printingdepartment from '../models/Printingdepartment.models.js';
 
 export const Printingdepartmentcreate = async (req, res) => {
-    const { filename } = req.file;
-    const { Printingname, Printingtype } = req.body;
+    const { Printingname, Printingtype,Printingimagelink } = req.body;
 
     // Input validation
-    if (!Printingname || !Printingtype || !filename) {
+    if (!Printingname || !Printingtype || !Printingimagelink) {
         return res.status(400).json({
             status: 400,
             message: 'Please provide gift name, gift type, and gift image.'
@@ -19,7 +18,7 @@ export const Printingdepartmentcreate = async (req, res) => {
         const newPrinting = new Printingdepartment({
             Printingname,
             Printingtype,
-            Printingimage: filename,
+            Printingimagelink,
             date,
         });
 
@@ -83,7 +82,7 @@ export const PrintingdepartmentUpdates  = async (req, res) => {
     const { id } = req.params;
     const { Printingname } = req.body;
     const { Printingtype } = req.body;
-    const { file } = req;
+    const{ Printingimagelink } = req.body;
 
     try {
         // Find the user by ID
@@ -98,10 +97,10 @@ export const PrintingdepartmentUpdates  = async (req, res) => {
         if (Printingtype) {
             user.Printingtype = Printingtype;
         }
-        // Update image if a new file is uploaded
-        if (file) {
-            user.Printingimage = file.filename;
+        if (Printingimagelink) {
+            user.Printingimagelink = Printingimagelink;
         }
+        
 
         // Save the updated user data
         const updatedUser = await user.save();

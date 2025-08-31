@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-// import { Link } from "react-router-dom";
 import {
   FaInstagram,
   FaLinkedin,
@@ -22,23 +21,11 @@ const carouselItems = [
 ];
 
 const socialLinks = [
-  {
-    icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />,
-    link: "https://x.com/digilasersa",
-  },
-  {
-    icon: <FaInstagram size={25} />,
-    link: "https://www.instagram.com/digilasersa",
-  },
-  {
-    icon: <FaLinkedin size={25} />,
-    link: "https://www.linkedin.com/company/digilasersa",
-  },
+  { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
+  { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+  { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
   { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
-  {
-    icon: <FaSnapchat size={25} />,
-    link: "https://www.snapchat.com/add/digilasersa",
-  },
+  { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
   { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
   { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
 ];
@@ -53,13 +40,25 @@ const ScreensSection = () => {
   const [showModal, setShowModal] = useState(true);
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
+  // 🔹 Scroll to top on component mount
   useEffect(() => {
-    // Close modal automatically after 5 seconds (5000 ms)
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 🔹 Force a one-time refresh on first load
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
+  // 🔹 Auto close modal after 1 second
+  useEffect(() => {
     const timer = setTimeout(() => {
       setShowModal(false);
-    }, 3000);
-
-    // Clear timeout if modal is closed manually
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -84,11 +83,6 @@ const ScreensSection = () => {
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
     window.open(whatsappUrl, "_blank");
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowModal(false), 115000);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>
@@ -127,66 +121,47 @@ const ScreensSection = () => {
             alt="Welcome"
             style={{ width: "100%", height: "100%", objectFit: "fit" }}
           />
-   <Button
-  onClick={() => setShowModal(false)}
-  sx={{
-    position: "absolute",
-    bottom: 30,
-    right: 30,
-    backgroundColor: "#00fffc",
-    color: "#000",
-    fontWeight: "bold",
-    fontFamily: "Changa, sans-serif",
-    px: 3,
-    py: 1,
-    borderRadius: "20px",
-    boxShadow: "0 4px 15px rgba(0, 255, 252, 0.4)",
-    fontSize: "1.8rem",
-    animation: "pulseBlink 1.2s infinite",
-    "&:hover": {
-      transform: "scale(1.3)",
-      boxShadow: "0 6px 20px rgba(0,255,252,0.8)",
-    },
-    transition: "all 0.3s ease",
-    "@keyframes pulseBlink": {
-      "0%": { backgroundColor: "#00fffc", transform: "scale(1)" },
-      "25%": { backgroundColor: "#00cccc", transform: "scale(1.05)" },
-      "50%": { backgroundColor: "#00fffc", transform: "scale(1.1)" },
-      "75%": { backgroundColor: "#00cccc", transform: "scale(1.05)" },
-      "100%": { backgroundColor: "#00fffc", transform: "scale(1)" },
-    },
-  }}
->
-  تخطي
-</Button>
-
-
+          <Button
+            onClick={() => setShowModal(false)}
+            sx={{
+              position: "absolute",
+              bottom: 30,
+              right: 30,
+              backgroundColor: "#00fffc",
+              color: "#000",
+              fontWeight: "bold",
+              fontFamily: "Changa, sans-serif",
+              px: 3,
+              py: 1,
+              borderRadius: "20px",
+              boxShadow: "0 4px 15px rgba(0, 255, 252, 0.4)",
+              fontSize: "1.8rem",
+              animation: "pulseBlink 1.2s infinite",
+              "&:hover": {
+                transform: "scale(1.3)",
+                boxShadow: "0 6px 20px rgba(0,255,252,0.8)",
+              },
+              transition: "all 0.3s ease",
+              "@keyframes pulseBlink": {
+                "0%": { backgroundColor: "#00fffc", transform: "scale(1)" },
+                "25%": { backgroundColor: "#00cccc", transform: "scale(1.05)" },
+                "50%": { backgroundColor: "#00fffc", transform: "scale(1.1)" },
+                "75%": { backgroundColor: "#00cccc", transform: "scale(1.05)" },
+                "100%": { backgroundColor: "#00fffc", transform: "scale(1)" },
+              },
+            }}
+          >
+            تخطي
+          </Button>
         </Modal.Body>
       </Modal>
 
       {/* Carousel Section */}
-      <Box
-        sx={{
-          width: "100%",
-          overflow: "hidden",
-          mt: "100px",
-          position: "relative",
-        }}
-      >
+      <Box sx={{ width: "100%", overflow: "hidden", mt: "100px", position: "relative" }}>
         <Carousel
           fade
-          nextIcon={
-            <span
-              className="carousel-control-next-icon"
-              style={{ backgroundColor: "black" }}
-            />
-          }
-          prevIcon={
-            <span
-              className="carousel-control-prev-icon"
-              style={{ backgroundColor: "black" }}
-            />
-          }
+          nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
+          prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: "black" }} />}
         >
           {carouselItems.map((item) => (
             <Carousel.Item key={item.id}>
@@ -194,10 +169,7 @@ const ScreensSection = () => {
                 className="d-block w-100"
                 src={item.img}
                 alt={`slide-${item.id}`}
-                style={{
-                  objectFit: "cover",
-                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-                }}
+                style={{ objectFit: "cover", boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)" }}
               />
             </Carousel.Item>
           ))}
@@ -231,9 +203,7 @@ const ScreensSection = () => {
                   color: "#17202a",
                   boxShadow: 3,
                   transition: "transform 0.3s ease",
-                  "&:hover": {
-                    transform: "scale(1.2)",
-                  },
+                  "&:hover": { transform: "scale(1.2)" },
                 }}
               >
                 {icon}
@@ -242,6 +212,7 @@ const ScreensSection = () => {
           ))}
         </Box>
       </Box>
+
       <Container maxWidth="xl">
         <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
           <img
@@ -259,29 +230,15 @@ const ScreensSection = () => {
         </Box>
       </Container>
 
-      <section
-        style={{ width: "100%", display: "flex", justifyContent: "center" }}
-      >
-        <Container
-          maxWidth="xxl"
-          sx={{
-            mb: "30px",
-            px: { xs: "20px", sm: "100px" },
-          }}
-        >
+      <section style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <Container maxWidth="xxl" sx={{ mb: "30px", px: { xs: "20px", sm: "100px" } }}>
           <Grid
             container
             spacing={2}
             sx={{
               mt: "40px",
-              borderTop: {
-                xs: "none", // hide on mobile
-                md: "2px solid #979a9a", // show on desktop and larger
-              },
-              borderLeft: {
-                xs: "none",
-                md: "2px solid #979a9a",
-              },
+              borderTop: { xs: "none", md: "2px solid #979a9a" },
+              borderLeft: { xs: "none", md: "2px solid #979a9a" },
               position: "relative",
               flexDirection: { xs: "column", md: "row" },
             }}
@@ -314,7 +271,6 @@ const ScreensSection = () => {
                     textAlign: "center",
                   }}
                 >
-                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
                   <Typography
                     variant="h3"
                     sx={{
@@ -327,7 +283,6 @@ const ScreensSection = () => {
                   >
                     الشاشات الإلكترونية الخارجية
                   </Typography>
-                  {/* </Link> */}
                 </Card>
               </Box>
 
@@ -342,12 +297,10 @@ const ScreensSection = () => {
                   fontFamily: "Tajawal",
                 }}
               >
-                تعتبر شاشات العرض الإلكترونية الخارجية المتخصصة في عرض الصور
-                ومقاطع الفيديو من احدث طرق التسويق حاليا لأنها تعتبر الوسيلة
-                الافضل في جذب ولفت انتباه العملاء . كما تتميز هذه الشاشات بأنها
-                شديدة الوضوح في وقت النهار ، كما أنها موفرة للكهرباء .
+                تعتبر شاشات العرض الإلكترونية الخارجية المتخصصة في عرض الصور ومقاطع الفيديو من احدث طرق التسويق حاليا لأنها تعتبر الوسيلة الافضل في جذب ولفت انتباه العملاء . كما تتميز هذه الشاشات بأنها شديدة الوضوح في وقت النهار ، كما أنها موفرة للكهرباء .
               </Typography>
             </Grid>
+
             <Box
               sx={{
                 position: "absolute",
@@ -394,7 +347,7 @@ const ScreensSection = () => {
           </Grid>
         </Container>
       </section>
-      <section
+       <section
         style={{
           width: "100%",
           margin: "0 auto",

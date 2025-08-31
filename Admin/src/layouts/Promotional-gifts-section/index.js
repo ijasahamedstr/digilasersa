@@ -61,7 +61,8 @@ function Promotionalgiftssection() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_HOST}/Promotionalgifts`);
-        setPromotionalGifts(response.data); // Set the fetched gifts
+        // Reverse the array for FILO
+        setPromotionalGifts(response.data.reverse());
       } catch (err) {
         console.error("Error fetching data: ", err);
         setError("Failed to fetch data");
@@ -124,11 +125,11 @@ function Promotionalgiftssection() {
     ),
     Gift_Image: (
       <MDBox>
-        {item.gifttimage ? (
+        {item.giftimagelink ? (
           <Image.PreviewGroup>
             <Image
-              src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${item.gifttimage}`}
-              alt="Gift"
+              src={item.giftimagelink}
+              alt="Printingimagelink"
               style={{ maxWidth: "100px", borderRadius: "8px" }}
             />
           </Image.PreviewGroup>

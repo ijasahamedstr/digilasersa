@@ -6,7 +6,7 @@ function VisionandMission() {
     <Box
       sx={{
         backgroundColor: "#f2f3f4",
-        backgroundImage: "url(https://i.ibb.co/yy9Fn7t/New-Web-3.webp)",
+        backgroundImage: "url(https://i.ibb.co/6JZdkSY0/New-Web-3.webp)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

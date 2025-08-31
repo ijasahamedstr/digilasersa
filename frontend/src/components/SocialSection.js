@@ -1,5 +1,3 @@
-import React from "react";
-import { useState } from "react";
 import { Carousel } from "react-bootstrap";
 import {
   Box,
@@ -28,6 +26,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Form from "react-bootstrap/Form";
+import React, { useState, useEffect } from "react";
 
 const INITIAL_FORM_STATE = {
   name: "",
@@ -160,6 +159,20 @@ const SocialSection = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
 
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+
+    // 🔹 Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 🔹 Force a one-time refresh on first load
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));

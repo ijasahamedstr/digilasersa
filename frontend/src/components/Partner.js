@@ -119,7 +119,7 @@ const Partner = () => {
               >
                 <CardMedia
                   component="img"
-                  image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
+                  image={partner.partnerimagelink}
                   sx={{
                     maxWidth: "100%",
                     maxHeight: "100%",
@@ -165,7 +165,7 @@ const Partner = () => {
               >
                 <CardMedia
                   component="img"
-                  image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
+                  image={partner.partnerimagelink}
                   sx={{
                     maxWidth: "100%",
                     maxHeight: "100%",

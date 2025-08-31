@@ -92,6 +92,20 @@ const WebMediaphoto = () => {
   const itemsPerPage = 16;
   const [sidebarOpenDesktop, setSidebarOpenDesktop] = useState(false);
 
+    // 🔹 Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 🔹 Force a one-time refresh on first load
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
   // Fetch Media Photos
   useEffect(() => {
     const fetchData = async () => {

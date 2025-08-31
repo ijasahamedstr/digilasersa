@@ -1,36 +1,12 @@
 import express from 'express';
-import multer from 'multer';
 import { PromotionalgiftDelete, PromotionalgiftIndex, Promotionalgiftscreate, PromotionalgiftSingleDetails, Promotionalgiftsupdate } from '../controller/Promotionalgiftssection.Controller.js';
 
 // Create a new router instance
 const Promotionalgifts = express.Router();
 
-// Image storage configuration
-const imgconfig = multer.diskStorage({
-    destination: (req, file, callback) => {
-        callback(null, './uploads/Promotionalgifts');
-    },
-    filename: (req, file, callback) => {
-        callback(null, `image-${Date.now()}.${file.originalname}`);
-    }
-});
-
-// Image filter
-const isImage = (req, file, callback) => {
-    if (file.mimetype.startsWith('image')) {
-        callback(null, true);
-    } else {
-        callback(new Error('Only images are allowed'));
-    }
-};
-
-const upload = multer({
-    storage: imgconfig,
-    fileFilter: isImage
-});
 
 // Create the Data Register
-Promotionalgifts.post('/', upload.single('photo'),Promotionalgiftscreate );
+Promotionalgifts.post('/',Promotionalgiftscreate );
 
 // View the Data Register
 Promotionalgifts.get('/',PromotionalgiftIndex);
@@ -42,7 +18,7 @@ Promotionalgifts.get("/:id",PromotionalgiftSingleDetails);
 Promotionalgifts.delete('/:id',PromotionalgiftDelete);
 
 //Update Data Register
-Promotionalgifts.put('/:id',upload.single('photo'),Promotionalgiftsupdate);
+Promotionalgifts.put('/:id', Promotionalgiftsupdate);
 
 
 export default Promotionalgifts;

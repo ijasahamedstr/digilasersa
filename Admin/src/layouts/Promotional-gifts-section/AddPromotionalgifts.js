@@ -20,13 +20,12 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 const AddPromotionalgifts = () => {
   const [loading, setLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState(null);
 
   // Seller Form field states
   const [giftDetails, setGiftDetails] = useState({
     giftname: "",
     gifttype: "",
-    file: null,
+    giftimagelink: "",
   });
 
   // Handle changes in input fields
@@ -37,40 +36,15 @@ const AddPromotionalgifts = () => {
     }));
   };
 
-  // Handle file input change
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setGiftDetails((prevState) => ({
-      ...prevState,
-      file: selectedFile,
-    }));
-
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
-      reader.readAsDataURL(selectedFile);
-    }
-  };
-
   // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData();
-    formData.append("photo", giftDetails.file);
-    formData.append("giftname", giftDetails.giftname);
-    formData.append("gifttype", giftDetails.gifttype);
-
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_HOST}/Promotionalgifts`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        giftDetails
       );
 
       if (response.data.status === 401 || !response.data) {
@@ -85,8 +59,7 @@ const AddPromotionalgifts = () => {
           title: "Success!",
           text: "Category added successfully!",
         });
-        setGiftDetails({ giftname: "", gifttype: "", file: null });
-        setImagePreview(null);
+        setGiftDetails({ giftname: "", gifttype: "", giftimagelink: "" });
       }
     } catch (error) {
       Swal.fire({
@@ -163,60 +136,15 @@ const AddPromotionalgifts = () => {
                     </Select>
                   </FormControl>
 
-                  {/* Image Upload Field */}
-                  <label htmlFor="file-upload">
-                    <input
-                      id="file-upload"
-                      name="photo"
-                      accept="image/*"
-                      type="file"
-                      onChange={handleFileChange}
-                      style={{ display: "none" }}
-                    />
-                    <Button
-                      variant="outlined"
-                      component="span"
-                      fullWidth
-                      sx={{
-                        mb: 2,
-                        textTransform: "none",
-                        borderColor: "#1976d2",
-                        color: "#1976d2",
-                        "&:hover": {
-                          borderColor: "#1565c0",
-                          backgroundColor: "#f5f5f5",
-                        },
-                      }}
-                    >
-                      Upload Image
-                    </Button>
-                  </label>
-
-                  {/* Image Preview */}
-                  {imagePreview && (
-                    <MDBox
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      sx={{
-                        mb: 2,
-                        border: "1px solid #e0e0e0",
-                        borderRadius: "8px",
-                        padding: "8px",
-                      }}
-                    >
-                      <img
-                        src={imagePreview}
-                        alt="Preview"
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          maxWidth: "200px",
-                          borderRadius: "4px",
-                        }}
-                      />
-                    </MDBox>
-                  )}
+                  <TextField
+                    label="Gifts Image Link"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    name="giftimagelink"
+                    value={giftDetails.giftimagelink}
+                    onChange={handleChange}
+                  />
 
                   {/* Submit Button */}
                   <Button

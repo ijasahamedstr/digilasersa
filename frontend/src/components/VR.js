@@ -117,6 +117,20 @@ const VRSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+    // 🔹 Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 🔹 Force a one-time refresh on first load
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -795,97 +809,98 @@ const VRSection = () => {
           شركاء النجاح
         </Typography>
 
-        {/* Row 1 - RTL */}
-        <Box px={{ xs: 1, sm: 2, md: 0 }}>
-          <Slider {...sliderSettingsRTL}>
-            {firstRowPartners.map((partner, index) => (
+      
+      {/* Row 1 - RTL */}
+      <Box px={{ xs: 1, sm: 2, md: 0 }}>
+        <Slider {...sliderSettingsRTL}>
+          {firstRowPartners.map((partner, index) => (
+            <Box
+              key={`rtl-${index}`}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              py={2}
+            >
               <Box
-                key={`rtl-${index}`}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                py={2}
+                sx={{
+                  width: { xs: 80, sm: 100, md: 120 },
+                  height: { xs: 80, sm: 100, md: 120 },
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  overflow: "hidden",
+                  borderRadius: "12px",
+                  backgroundColor: "#fff",
+                  boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+                  transition: "transform 0.3s ease-in-out",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                  },
+                }}
               >
-                <Box
+                <CardMedia
+                  component="img"
+                  image={partner.partnerimagelink}
                   sx={{
-                    width: { xs: 80, sm: 100, md: 120 },
-                    height: { xs: 80, sm: 100, md: 120 },
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    overflow: "hidden",
-                    borderRadius: "12px",
-                    backgroundColor: "#fff",
-                    boxShadow: "0 0 10px rgba(0,0,0,0.05)",
-                    transition: "transform 0.3s ease-in-out",
-                    "&:hover": {
-                      transform: "scale(1.05)",
-                    },
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
+                    margin: "auto",
                   }}
-                >
-                  <CardMedia
-                    component="img"
-                    image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
-                    sx={{
-                      maxWidth: "100%",
-                      maxHeight: "100%",
-                      width: "auto",
-                      height: "auto",
-                      objectFit: "contain",
-                      margin: "auto",
-                    }}
-                  />
-                </Box>
+                />
               </Box>
-            ))}
-          </Slider>
-        </Box>
+            </Box>
+          ))}
+        </Slider>
+      </Box>
 
-        {/* Row 2 - LTR */}
-        <Box px={{ xs: 1, sm: 2, md: 0 }} mt={4}>
-          <Slider {...sliderSettingsLTR}>
-            {secondRowPartners.map((partner, index) => (
+      {/* Row 2 - LTR */}
+      <Box px={{ xs: 1, sm: 2, md: 0 }} mt={4}>
+        <Slider {...sliderSettingsLTR}>
+          {secondRowPartners.map((partner, index) => (
+            <Box
+              key={`ltr-${index}`}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              py={2}
+            >
               <Box
-                key={`ltr-${index}`}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                py={2}
+                sx={{
+                  width: { xs: 80, sm: 100, md: 120 },
+                  height: { xs: 80, sm: 100, md: 120 },
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  overflow: "hidden",
+                  borderRadius: "12px",
+                  backgroundColor: "#fff",
+                  boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+                  transition: "transform 0.3s ease-in-out",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                  },
+                }}
               >
-                <Box
+                <CardMedia
+                  component="img"
+                  image={partner.partnerimagelink}
                   sx={{
-                    width: { xs: 80, sm: 100, md: 120 },
-                    height: { xs: 80, sm: 100, md: 120 },
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    overflow: "hidden",
-                    borderRadius: "12px",
-                    backgroundColor: "#fff",
-                    boxShadow: "0 0 10px rgba(0,0,0,0.05)",
-                    transition: "transform 0.3s ease-in-out",
-                    "&:hover": {
-                      transform: "scale(1.05)",
-                    },
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
+                    margin: "auto",
                   }}
-                >
-                  <CardMedia
-                    component="img"
-                    image={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${partner.partnerimage}`}
-                    sx={{
-                      maxWidth: "100%",
-                      maxHeight: "100%",
-                      width: "auto",
-                      height: "auto",
-                      objectFit: "contain",
-                      margin: "auto",
-                    }}
-                  />
-                </Box>
+                />
               </Box>
-            ))}
-          </Slider>
-        </Box>
+            </Box>
+          ))}
+        </Slider>
+      </Box>
       </Container>
     </Container>
   );

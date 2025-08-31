@@ -14,15 +14,15 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/jgLXMzx/New-Web-Final-2.webp",
+    img: "https://i.ibb.co/nsDXF6Z2/New-Web-Final-2.webp",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/jgLXMzx/New-Web-Final-2.webp",
+    img: "https://i.ibb.co/nsDXF6Z2/New-Web-Final-2.webp",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/jgLXMzx/New-Web-Final-2.webp",
+    img: "https://i.ibb.co/nsDXF6Z2/New-Web-Final-2.webp",
   },
 ];
 

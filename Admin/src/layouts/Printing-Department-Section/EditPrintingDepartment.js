@@ -18,46 +18,31 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-// Import Ant Design components
-import { Image } from "antd";
-
 // Import SweetAlert2
 import Swal from "sweetalert2";
 
 const EditPrintingDepartment = () => {
-  const [imagePreview, setImagePreview] = useState(null); // State to hold image preview
   const { id } = useParams();
   const [formData, setFormData] = useState({
     Printingname: "",
     Printingtype: "",
-    Printingimage: null,
+    Printingimagelink: "",
   });
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(null); // Error state
-  const [success, setSuccess] = useState(null); // Success message state
-
-  // Handle file upload and preview
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const previewUrl = URL.createObjectURL(file); // Create a URL for the selected file
-      setImagePreview(previewUrl); // Set the preview URL
-      setFormData({ ...formData, Printingimage: file }); // Update the formData with the selected file
-    }
-  };
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   // Handle input field changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Basic validation
-    if (!formData.Printingname || !formData.Printingtype) {
+    if (!formData.Printingname || !formData.Printingtype || !formData.Printingimagelink) {
       Swal.fire({
         title: "Error!",
         text: "Please fill in all required fields.",
@@ -69,29 +54,16 @@ const EditPrintingDepartment = () => {
 
     try {
       setLoading(true);
-      setError(null); // Reset error before making the request
-      setSuccess(null); // Reset success before making the request
-
-      const formDataToSend = new FormData();
-      formDataToSend.append("Printingname", formData.Printingname);
-      formDataToSend.append("Printingtype", formData.Printingtype);
-      if (formData.Printingimage) {
-        formDataToSend.append("photo", formData.Printingimage);
-      }
+      setError(null);
+      setSuccess(null);
 
       const response = await axios.put(
         `${process.env.REACT_APP_API_HOST}/Printingdepartment/${id}`,
-        formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Important for file uploads
-          },
-        }
+        formData
       );
 
       setLoading(false);
 
-      // SweetAlert success message
       Swal.fire({
         title: "Success!",
         text: "Category updated successfully!",
@@ -102,7 +74,6 @@ const EditPrintingDepartment = () => {
       setLoading(false);
       setError("Error updating Printing data. Please try again.");
 
-      // SweetAlert error message
       Swal.fire({
         title: "Error!",
         text: "Error updating Printing data. Please try again.",
@@ -120,9 +91,9 @@ const EditPrintingDepartment = () => {
           `${process.env.REACT_APP_API_HOST}/Printingdepartment/${id}`
         );
         setFormData({
-          Printingname: response.data.Printingname,
-          Printingtype: response.data.Printingtype,
-          Printingimage: response.data.Printingimage, // Keep existing image data
+          Printingname: response.data.Printingname || "",
+          Printingtype: response.data.Printingtype || "",
+          Printingimagelink: response.data.Printingimagelink || "",
         });
         setLoading(false);
       } catch (err) {
@@ -156,14 +127,14 @@ const EditPrintingDepartment = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Edit Printing section
+                  Edit Printing Section
                 </MDTypography>
               </MDBox>
 
               {/* Edit Category Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
-                  {/* Category Name */}
+                <form onSubmit={handleSubmit}>
+                  {/* Printing Name */}
                   <TextField
                     label="Printing Name"
                     variant="outlined"
@@ -171,18 +142,18 @@ const EditPrintingDepartment = () => {
                     sx={{ mb: 2 }}
                     name="Printingname"
                     value={formData.Printingname}
-                    onChange={handleInputChange} // Handle change
+                    onChange={handleInputChange}
                   />
 
-                  {/* Dropdown for Promotional Gifts Type */}
+                  {/* Printing Type Dropdown */}
                   <FormControl fullWidth sx={{ mb: 2 }}>
-                    <InputLabel>Promotional gifts Type</InputLabel>
+                    <InputLabel>Printing Type</InputLabel>
                     <Select
                       label="Printing Type"
                       sx={{ height: "40px" }}
                       name="Printingtype"
-                      value={formData.Printingtype} // Corrected value here
-                      onChange={handleInputChange} // Corrected to handleInputChange
+                      value={formData.Printingtype}
+                      onChange={handleInputChange}
                     >
                       <MenuItem
                         value="مطـبوعات ورقـية"
@@ -214,75 +185,18 @@ const EditPrintingDepartment = () => {
                     </Select>
                   </FormControl>
 
-                  {/* Image Upload Field */}
-                  <label htmlFor="file-upload">
-                    <input
-                      id="file-upload"
-                      name="photo"
-                      accept="image/*"
-                      type="file"
-                      style={{ display: "none" }}
-                      onChange={handleFileChange} // Handle file selection
-                    />
-                    <Button
-                      variant="outlined"
-                      component="span"
-                      fullWidth
-                      sx={{
-                        mb: 2,
-                        textTransform: "none",
-                        borderColor: "#1976d2",
-                        color: "#1976d2",
-                        "&:hover": {
-                          borderColor: "#1565c0",
-                          backgroundColor: "#f5f5f5",
-                        },
-                      }}
-                    >
-                      Upload Image
-                    </Button>
-                  </label>
+                  {/* Printing Image Link */}
+                  <TextField
+                    label="Printing Image Link"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    name="Printingimagelink"
+                    value={formData.Printingimagelink}
+                    onChange={handleInputChange}
+                  />
 
-                  {/* Image Preview */}
-                  <MDBox
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                      mb: 2,
-                      border: "1px solid #e0e0e0",
-                      borderRadius: "8px",
-                      padding: "8px",
-                    }}
-                  >
-                    {imagePreview || formData.Printingimage ? (
-                      <Image.PreviewGroup>
-                        <Image
-                          src={
-                            imagePreview
-                              ? imagePreview
-                              : `${process.env.REACT_APP_API_HOST}/uploads/Printingdepartment/${formData.Printingimage}`
-                          }
-                          alt="Printing Image"
-                          style={{
-                            maxWidth: "150px", // Set a smaller size for the image
-                            borderRadius: "8px",
-                          }}
-                        />
-                      </Image.PreviewGroup>
-                    ) : (
-                      <img
-                        src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
-                        alt="Default Image"
-                        style={{
-                          maxWidth: "50px", // Set a smaller size for the image
-                          borderRadius: "8px",
-                        }}
-                      />
-                    )}
-                  </MDBox>
-
-                  {/* Display Loading or Error/Success Messages */}
+                  {/* Loading/Error/Success */}
                   {loading && (
                     <MDTypography variant="body1" color="info">
                       Loading...
@@ -306,7 +220,7 @@ const EditPrintingDepartment = () => {
                     color="primary"
                     fullWidth
                     sx={{ color: "#FFFFFF" }}
-                    disabled={loading} // Disable button during loading
+                    disabled={loading}
                   >
                     Update
                   </Button>

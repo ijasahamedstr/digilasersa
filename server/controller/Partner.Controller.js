@@ -2,11 +2,11 @@ import moment from 'moment';
 import Partner from '../models/Partner.models.js';
 
 export const Partnercreate = async (req, res) => {
-    const { filename } = req.file;
     const { partnername } = req.body;
+    const { partnerimagelink } = req.body;
 
     // Input validation
-    if (!partnername || !filename) {
+    if (!partnername || !partnerimagelink) {
         return res.status(400).json({
             status: 400,
             message: 'Please provide Patner name, and Patner image.'
@@ -18,7 +18,7 @@ export const Partnercreate = async (req, res) => {
 
         const newPatner = new Partner({
             partnername,
-            partnerimage: filename,
+            partnerimagelink,
             date,
         });
 
@@ -81,7 +81,7 @@ export const PartnerDelete = async (req, res) => {
 export const Partnerupdate  = async (req, res) => {
     const { id } = req.params;
     const { partnername } = req.body;
-    const { file } = req;
+    const { partnerimagelink } = req.body;
 
     try {
         // Find the user by ID
@@ -93,10 +93,11 @@ export const Partnerupdate  = async (req, res) => {
         if (partnername) {
             user.partnername = partnername;
         }
-        // Update image if a new file is uploaded
-        if (file) {
-            user.partnerimage = file.filename;
+
+         if (partnerimagelink) {
+            user.partnerimagelink = partnerimagelink;
         }
+
 
         // Save the updated user data
         const updatedUser = await user.save();

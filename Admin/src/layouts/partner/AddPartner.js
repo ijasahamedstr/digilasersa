@@ -16,12 +16,11 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 const AddPartner = () => {
   const [loading, setLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState(null);
 
-  // Seller Form field states
+  // Partner form field states
   const [partner, setPartner] = useState({
     partnername: "",
-    file: null,
+    partnerimagelink: "", // optional, if you want to store an image link
   });
 
   // Handle changes in input fields
@@ -32,42 +31,19 @@ const AddPartner = () => {
     }));
   };
 
-  // Handle file input change
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setPartner((prevState) => ({
-      ...prevState,
-      file: selectedFile,
-    }));
-
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
-      reader.readAsDataURL(selectedFile);
-    }
-  };
-
   // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData();
-    formData.append("photo", partner.file);
-    formData.append("partnername", partner.partnername);
-
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_HOST}/Partner`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(`${process.env.REACT_APP_API_HOST}/Partner`, partner);
 
       if (response.data.status === 401 || !response.data) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: response.data.message || "Category addition failed. Please try again!",
+          text: response.data.message || "Partner addition failed. Please try again!",
         });
       } else {
         Swal.fire({
@@ -75,14 +51,13 @@ const AddPartner = () => {
           title: "Success!",
           text: response.data.message || "Partner added successfully!",
         });
-        setPartner({ partnername: "", file: null });
-        setImagePreview(null);
+        setPartner({ partnername: "", partnerimagelink: "" });
       }
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: error.response?.data?.message || "Category addition failed. Please try again!",
+        text: error.response?.data?.message || "Partner addition failed. Please try again!",
       });
     } finally {
       setLoading(false);
@@ -128,60 +103,16 @@ const AddPartner = () => {
                     onChange={handleChange}
                   />
 
-                  {/* Image Upload Field */}
-                  <label htmlFor="file-upload">
-                    <input
-                      id="file-upload"
-                      name="photo"
-                      accept="image/*"
-                      type="file"
-                      onChange={handleFileChange}
-                      style={{ display: "none" }}
-                    />
-                    <Button
-                      variant="outlined"
-                      component="span"
-                      fullWidth
-                      sx={{
-                        mb: 2,
-                        textTransform: "none",
-                        borderColor: "#1976d2",
-                        color: "#1976d2",
-                        "&:hover": {
-                          borderColor: "#1565c0",
-                          backgroundColor: "#f5f5f5",
-                        },
-                      }}
-                    >
-                      Upload Image
-                    </Button>
-                  </label>
-
-                  {/* Image Preview */}
-                  {imagePreview && (
-                    <MDBox
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      sx={{
-                        mb: 2,
-                        border: "1px solid #e0e0e0",
-                        borderRadius: "8px",
-                        padding: "8px",
-                      }}
-                    >
-                      <img
-                        src={imagePreview}
-                        alt="Preview"
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          maxWidth: "200px",
-                          borderRadius: "4px",
-                        }}
-                      />
-                    </MDBox>
-                  )}
+                  {/* Optional Partner Image Link */}
+                  <TextField
+                    label="Partner Image Link"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    name="partnerimagelink"
+                    value={partner.partnerimagelink}
+                    onChange={handleChange}
+                  />
 
                   {/* Submit Button */}
                   <Button

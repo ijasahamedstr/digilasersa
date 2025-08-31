@@ -47,11 +47,8 @@ app.use(express.urlencoded({extended:true}))
 // Get __dirname equivalent for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use('/uploads/Promotionalgifts', express.static(path.join(__dirname, '/uploads/Promotionalgifts')));
-app.use('/uploads/Printingdepartment', express.static(path.join(__dirname, '/uploads/Printingdepartment')));
 app.use('/uploads/ArabicCalligraphy', express.static(path.join(__dirname, '/uploads/ArabicCalligraphy')));
 app.use('/uploads/News', express.static(path.join(__dirname, '/uploads/News')));
-app.use('/uploads/Partner', express.static(path.join(__dirname, '/uploads/Partner')));
 app.use('/uploads/Screenssection', express.static(path.join(__dirname, '/uploads/Screenssection')));
 app.use('/uploads/Socialmedia', express.static(path.join(__dirname, '/uploads/Socialmedia')));
 

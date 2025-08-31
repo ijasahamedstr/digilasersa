@@ -22,24 +22,13 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Swal from "sweetalert2";
 
 const EditPromotionalgifts = () => {
-  const [imagePreview, setImagePreview] = useState(null); // State to hold image preview
   const { id } = useParams();
   const [formData, setFormData] = useState({
     giftname: "",
     gifttype: "",
-    gifttimage: null,
+    giftimagelink: "",
   });
-  const [loading, setLoading] = useState(false); // Loading state
-
-  // Handle file upload and preview
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const previewUrl = URL.createObjectURL(file); // Create a URL for the selected file
-      setImagePreview(previewUrl); // Set the preview URL
-      setFormData({ ...formData, gifttimage: file }); // Update the formData with the selected file
-    }
-  };
+  const [loading, setLoading] = useState(false);
 
   // Handle input field changes
   const handleInputChange = (event) => {
@@ -51,7 +40,6 @@ const EditPromotionalgifts = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Basic validation
     if (!formData.giftname || !formData.gifttype) {
       Swal.fire({
         icon: "error",
@@ -64,28 +52,16 @@ const EditPromotionalgifts = () => {
     try {
       setLoading(true);
 
-      const formDataToSend = new FormData();
-      formDataToSend.append("giftname", formData.giftname);
-      formDataToSend.append("gifttype", formData.gifttype);
-      if (formData.gifttimage) {
-        formDataToSend.append("photo", formData.gifttimage);
-      }
-
       const response = await axios.put(
         `${process.env.REACT_APP_API_HOST}/Promotionalgifts/${id}`,
-        formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Important for file uploads
-          },
-        }
+        formData // Send only text data
       );
 
       setLoading(false);
       Swal.fire({
         icon: "success",
         title: "Success",
-        text: "Category updated successfully!",
+        text: "Gift updated successfully!",
       });
     } catch (err) {
       setLoading(false);
@@ -107,7 +83,7 @@ const EditPromotionalgifts = () => {
         setFormData({
           giftname: response.data.giftname,
           gifttype: response.data.gifttype,
-          gifttimage: response.data.gifttimage, // Keep existing image data
+          giftimagelink: response.data.giftimagelink || "",
         });
         setLoading(false);
       } catch (err) {
@@ -148,21 +124,20 @@ const EditPromotionalgifts = () => {
                 </MDTypography>
               </MDBox>
 
-              {/* Edit Category Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
-                  {/* Category Name */}
+                <form onSubmit={handleSubmit}>
+                  {/* Gift Name */}
                   <TextField
-                    label="Category Name"
+                    label="Gift Name"
                     variant="outlined"
                     fullWidth
                     sx={{ mb: 2 }}
                     name="giftname"
                     value={formData.giftname}
-                    onChange={handleInputChange} // Handle change
+                    onChange={handleInputChange}
                   />
 
-                  {/* Dropdown for Promotional Gifts Type */}
+                  {/* Dropdown for Gift Type */}
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <InputLabel>Promotional gifts Type</InputLabel>
                     <Select
@@ -170,7 +145,7 @@ const EditPromotionalgifts = () => {
                       sx={{ height: "40px" }}
                       name="gifttype"
                       value={formData.gifttype}
-                      onChange={handleInputChange} // Handle change
+                      onChange={handleInputChange}
                     >
                       <MenuItem value="دروع ومجسمات" style={{ fontFamily: "Tajawal, sans-serif" }}>
                         دروع ومجسمات
@@ -187,76 +162,16 @@ const EditPromotionalgifts = () => {
                     </Select>
                   </FormControl>
 
-                  {/* Image Upload Field */}
-                  <label htmlFor="file-upload">
-                    <input
-                      id="file-upload"
-                      name="photo"
-                      accept="image/*"
-                      type="file"
-                      style={{ display: "none" }}
-                      onChange={handleFileChange} // Handle file selection
-                    />
-                    <Button
-                      variant="outlined"
-                      component="span"
-                      fullWidth
-                      sx={{
-                        mb: 2,
-                        textTransform: "none",
-                        borderColor: "#1976d2",
-                        color: "#1976d2",
-                        "&:hover": {
-                          borderColor: "#1565c0",
-                          backgroundColor: "#f5f5f5",
-                        },
-                      }}
-                    >
-                      Upload Image
-                    </Button>
-                  </label>
-
-                  {/* Image Preview */}
-                  <MDBox
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                      mb: 2,
-                      border: "1px solid #e0e0e0",
-                      borderRadius: "8px",
-                      padding: "8px",
-                    }}
-                  >
-                    {imagePreview ? (
-                      <img
-                        src={imagePreview}
-                        alt="Gift"
-                        style={{
-                          maxWidth: "150px", // Set a smaller size for the image
-                          borderRadius: "8px",
-                        }}
-                      />
-                    ) : formData.gifttimage ? (
-                      <img
-                        src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${formData.gifttimage}`}
-                        alt="Gift"
-                        style={{
-                          maxWidth: "150px", // Set a smaller size for the image
-                          borderRadius: "8px",
-                        }}
-                      />
-                    ) : (
-                      <img
-                        src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
-                        alt="Default Image"
-                        style={{
-                          maxWidth: "50px", // Set a smaller size for the image
-                          borderRadius: "8px",
-                        }}
-                      />
-                    )}
-                  </MDBox>
+                  {/* Image Link */}
+                  <TextField
+                    label="Gift Image Link"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    name="giftimagelink"
+                    value={formData.giftimagelink}
+                    onChange={handleInputChange}
+                  />
 
                   {/* Submit Button */}
                   <Button
@@ -265,7 +180,7 @@ const EditPromotionalgifts = () => {
                     color="primary"
                     fullWidth
                     sx={{ color: "#FFFFFF" }}
-                    disabled={loading} // Disable button during loading
+                    disabled={loading}
                   >
                     Update
                   </Button>

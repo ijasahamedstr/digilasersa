@@ -20,13 +20,12 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 const AddPrintingDepartment = () => {
   const [loading, setLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState(null);
 
-  // Seller Form field states
+  // Form states
   const [Printing, setPrinting] = useState({
     Printingname: "",
     Printingtype: "",
-    file: null,
+    Printingimagelink: "",
   });
 
   // Handle changes in input fields
@@ -37,40 +36,15 @@ const AddPrintingDepartment = () => {
     }));
   };
 
-  // Handle file input change
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setPrinting((prevState) => ({
-      ...prevState,
-      file: selectedFile,
-    }));
-
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
-      reader.readAsDataURL(selectedFile);
-    }
-  };
-
   // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData();
-    formData.append("photo", Printing.file);
-    formData.append("Printingname", Printing.Printingname);
-    formData.append("Printingtype", Printing.Printingtype);
-
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_HOST}/Printingdepartment`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        Printing
       );
 
       if (response.data.status === 401 || !response.data) {
@@ -85,8 +59,7 @@ const AddPrintingDepartment = () => {
           title: "Success!",
           text: "Category added successfully!",
         });
-        setPrinting({ Printingname: "", Printingtype: "", file: null });
-        setImagePreview(null);
+        setPrinting({ Printingname: "", Printingtype: "", Printingimagelink: "" });
       }
     } catch (error) {
       Swal.fire({
@@ -127,7 +100,7 @@ const AddPrintingDepartment = () => {
               {/* Add Category Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
                 <form onSubmit={handleSubmit}>
-                  {/* Category Name */}
+                  {/* Printing Name */}
                   <TextField
                     label="Printing Name"
                     variant="outlined"
@@ -138,7 +111,18 @@ const AddPrintingDepartment = () => {
                     onChange={handleChange}
                   />
 
-                  {/* Dropdown for Promotional Gifts Type */}
+                  {/* Printing Image Link */}
+                  <TextField
+                    label="Printing Image Link"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    name="Printingimagelink"
+                    value={Printing.Printingimagelink}
+                    onChange={handleChange}
+                  />
+
+                  {/* Dropdown for Printing Type */}
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <InputLabel>Printing Type</InputLabel>
                     <Select
@@ -177,61 +161,6 @@ const AddPrintingDepartment = () => {
                       </MenuItem>
                     </Select>
                   </FormControl>
-
-                  {/* Image Upload Field */}
-                  <label htmlFor="file-upload">
-                    <input
-                      id="file-upload"
-                      name="photo"
-                      accept="image/*"
-                      type="file"
-                      onChange={handleFileChange}
-                      style={{ display: "none" }}
-                    />
-                    <Button
-                      variant="outlined"
-                      component="span"
-                      fullWidth
-                      sx={{
-                        mb: 2,
-                        textTransform: "none",
-                        borderColor: "#1976d2",
-                        color: "#1976d2",
-                        "&:hover": {
-                          borderColor: "#1565c0",
-                          backgroundColor: "#f5f5f5",
-                        },
-                      }}
-                    >
-                      Upload Image
-                    </Button>
-                  </label>
-
-                  {/* Image Preview */}
-                  {imagePreview && (
-                    <MDBox
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      sx={{
-                        mb: 2,
-                        border: "1px solid #e0e0e0",
-                        borderRadius: "8px",
-                        padding: "8px",
-                      }}
-                    >
-                      <img
-                        src={imagePreview}
-                        alt="Preview"
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          maxWidth: "200px",
-                          borderRadius: "4px",
-                        }}
-                      />
-                    </MDBox>
-                  )}
 
                   {/* Submit Button */}
                   <Button

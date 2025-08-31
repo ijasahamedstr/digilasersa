@@ -117,11 +117,11 @@ function Partner() {
     ),
     Partner_Image: (
       <MDBox>
-        {item.partnerimage ? (
+        {item.partnerimagelink ? (
           <Image.PreviewGroup>
             <Image
-              src={`${process.env.REACT_APP_API_HOST}/uploads/Partner/${item.partnerimage}`}
-              alt="Gift"
+              src={item.partnerimagelink}
+              alt="MediaCommunicationsphotolink"
               style={{ maxWidth: "100px", borderRadius: "8px" }}
             />
           </Image.PreviewGroup>

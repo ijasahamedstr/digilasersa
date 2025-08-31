@@ -68,6 +68,20 @@ const WebMediaVideo = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [thumbnails, setThumbnails] = useState({}); // store videoUrl => thumbnail
+
+    // 🔹 Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 🔹 Force a one-time refresh on first load
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
   
   useEffect(() => {
     const fetchVideos = async () => {
