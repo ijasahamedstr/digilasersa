@@ -40,6 +40,20 @@ const ScreensSection = () => {
   const [showModal, setShowModal] = useState(true);
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
+  // 🔹 Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 🔹 Force a one-time refresh on first load
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
   // 🔹 Auto close modal after 1 second
   useEffect(() => {
     const timer = setTimeout(() => {

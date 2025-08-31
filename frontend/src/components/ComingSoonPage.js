@@ -4,6 +4,19 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useEffect } from "react";
 
 function ComingSoonPage() {
+    // 🔹 Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 🔹 Force a one-time refresh on first load
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
   return (
     <Box
       sx={{

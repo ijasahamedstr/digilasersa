@@ -56,6 +56,18 @@ const PrintingSection = () => {
   const sliderRef = useRef(null);
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
+  // Scroll to top on mount
+  useEffect(() => window.scrollTo({ top: 0, behavior: "smooth" }), []);
+
+  // Force one-time reload
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
   const handleChange = ({ target: { name, value } }) =>
     setFormData((prev) => ({ ...prev, [name]: value }));
 

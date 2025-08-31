@@ -117,6 +117,20 @@ const VRSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+    // 🔹 Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 🔹 Force a one-time refresh on first load
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
