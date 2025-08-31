@@ -1,5 +1,4 @@
 import AboutSection from "./AboutSection";
-import ContactUs from "./ContactUs";
 import Eventsection from "./event_section";
 import Herosection from "./Herosection";
 import Hr from "./hr";
@@ -13,8 +12,6 @@ import VisionandMission from "./vision_and_Mission";
 import {useEffect } from "react";
 
 export default function Home() {
-    // 🔹 Scroll to top on component mount
-
   return (
     <>
       <FadeCarousel />
