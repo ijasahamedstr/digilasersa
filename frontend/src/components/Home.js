@@ -9,7 +9,6 @@ import Progress from "./progress";
 import ServiceCard from "./ServiceCard";
 import FadeCarousel from "./Slider";
 import VisionandMission from "./vision_and_Mission";
-import {useEffect } from "react";
 
 export default function Home() {
   return (
@@ -26,7 +25,6 @@ export default function Home() {
       <Partner />
       <Hr />
       <Eventsection />
-      {/* <ContactUs /> */}
     </>
   );
 }
