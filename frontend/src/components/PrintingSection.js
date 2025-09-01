@@ -56,6 +56,27 @@ const PrintingSection = () => {
   const sliderRef = useRef(null);
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
+  // 🔹 Page Speed Optimizer Script (lazy load images & videos)
+    useEffect(() => {
+    const lazyImages = document.querySelectorAll("img[data-src], video[data-src]");
+    const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+    if (entry.isIntersecting) {
+    const el = entry.target;
+    if (el.tagName === "IMG" || el.tagName === "VIDEO") {
+    el.src = el.dataset.src;
+    el.removeAttribute("data-src");
+    }
+    obs.unobserve(el);
+    }
+    });
+    });
+    lazyImages.forEach(img => observer.observe(img));
+
+
+    return () => observer.disconnect();
+    }, []);
+
   // Scroll to top on mount
   useEffect(() => window.scrollTo({ top: 0, behavior: "smooth" }), []);
 
