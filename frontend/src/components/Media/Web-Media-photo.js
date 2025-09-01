@@ -92,6 +92,40 @@ const WebMediaphoto = () => {
   const itemsPerPage = 16;
   const [sidebarOpenDesktop, setSidebarOpenDesktop] = useState(false);
 
+   // 🔹 Page Speed Optimizer Script (lazy load images & videos)
+  useEffect(() => {
+    const lazyElements = document.querySelectorAll("img[data-src], video[data-src]");
+
+    if (!("IntersectionObserver" in window)) {
+      // Fallback: Load immediately if IntersectionObserver not supported
+      lazyElements.forEach((el) => {
+        if (el.dataset.src) {
+          el.src = el.dataset.src;
+          el.removeAttribute("data-src");
+        }
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          if (el.dataset.src) {
+            el.src = el.dataset.src;
+            el.removeAttribute("data-src");
+          }
+          obs.unobserve(el);
+        }
+      });
+    });
+
+    lazyElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+
     // 🔹 Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
