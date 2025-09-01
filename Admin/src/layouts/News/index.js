@@ -127,11 +127,11 @@ function News() {
     ),
     News_Image: (
       <MDBox>
-        {item.newsimage ? (
+        {item.newsimagelink ? (
           <Image.PreviewGroup>
             <Image
-              src={`${process.env.REACT_APP_API_HOST}/uploads/News/${item.newsimage}`}
-              alt="News"
+              src={item.newsimagelink}
+              alt="MediaCommunicationsphotolink"
               style={{ maxWidth: "100px", borderRadius: "8px" }}
             />
           </Image.PreviewGroup>

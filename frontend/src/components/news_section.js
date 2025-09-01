@@ -11,7 +11,7 @@ import Slider from "react-slick";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import demoVideo from "./video/main_x360.mp4";
+// import demoVideo from "./video/main_x360.mp4";
 import demoVideo1 from "./video/video_new.mp4";
 import demoVideo2 from "./video/video_n.mp4";
 import demoVideo3 from "./video/Videos.mp4";
@@ -195,15 +195,15 @@ function Newssection() {
       stars: 5,
       text: "شركة الليزر هي الافضل دايما في الشاشات 😍🤝",
     },
-    {
-      name: "المحامي عبد اللطيف الملحم",
-      type: "video",
-      isLocal: true,
-      video: demoVideo,
-      poster: "https://i.ibb.co/kVDqVS8y/ezgif-frame-002.png",
-      stars: 4,
-      text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
-    },
+    // {
+    //   name: "المحامي عبد اللطيف الملحم",
+    //   type: "video",
+    //   isLocal: true,
+    //   video: demoVideo,
+    //   poster: "https://i.ibb.co/kVDqVS8y/ezgif-frame-002.png",
+    //   stars: 4,
+    //   text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
+    // },
     {
       name: "المحامي بدر الزعبي ",
       type: "video",

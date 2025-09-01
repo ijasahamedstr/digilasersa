@@ -18,24 +18,13 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Swal from "sweetalert2";
 
 const EditNews = () => {
-  const [imagePreview, setImagePreview] = useState(null); // State to hold image preview
   const { id } = useParams();
   const [formData, setFormData] = useState({
     newsname: "",
     newsdec: "",
-    newsimage: null,
+    newsimagelink: "",
   });
-  const [loading, setLoading] = useState(false); // Loading state
-
-  // Handle file upload and preview
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const previewUrl = URL.createObjectURL(file); // Create a URL for the selected file
-      setImagePreview(previewUrl); // Set the preview URL
-      setFormData({ ...formData, newsimage: file }); // Update the formData with the selected file
-    }
-  };
+  const [loading, setLoading] = useState(false);
 
   // Handle input field changes
   const handleInputChange = (event) => {
@@ -47,7 +36,6 @@ const EditNews = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Basic validation
     if (!formData.newsname || !formData.newsdec) {
       Swal.fire({
         icon: "error",
@@ -60,43 +48,26 @@ const EditNews = () => {
     try {
       setLoading(true);
 
-      const formDataToSend = new FormData();
-      formDataToSend.append("newsname", formData.newsname);
-      formDataToSend.append("newsdec", formData.newsdec);
-      if (formData.newsimage) {
-        formDataToSend.append("photo", formData.newsimage);
-      }
-
-      const response = await axios.put(
-        `${process.env.REACT_APP_API_HOST}/News/${id}`,
-        formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Important for file uploads
-          },
-        }
-      );
+      const response = await axios.put(`${process.env.REACT_APP_API_HOST}/News/${id}`, formData);
 
       setLoading(false);
       Swal.fire({
         icon: "success",
         title: "Success",
-        text: "Category updated successfully!",
+        text: "News updated successfully!",
       });
 
-      // Clear form data after successful update
       setFormData({
         newsname: "",
         newsdec: "",
-        newsimage: null,
+        newsimagelink: "",
       });
-      setImagePreview(null); // Reset the image preview
     } catch (err) {
       setLoading(false);
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: "Error updating gift data. Please try again.",
+        text: "Error updating news data. Please try again.",
       });
     }
   };
@@ -107,9 +78,9 @@ const EditNews = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_HOST}/News/${id}`);
         setFormData({
-          newsname: response.data.newsname,
-          newsdec: response.data.newsdec,
-          newsimage: response.data.newsimage, // Keep existing image data
+          newsname: response.data.newsname || "",
+          newsdec: response.data.newsdec || "",
+          newsimagelink: response.data.newsimagelink || "",
         });
         setLoading(false);
       } catch (err) {
@@ -146,24 +117,25 @@ const EditNews = () => {
                 alignItems="center"
               >
                 <MDTypography variant="h6" color="white">
-                  Edit Promotional gifts section
+                  Edit News
                 </MDTypography>
               </MDBox>
 
-              {/* Edit Category Form */}
+              {/* Edit News Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
-                  {/* Category Name */}
+                <form onSubmit={handleSubmit}>
+                  {/* News Name */}
                   <TextField
-                    label="Category Name"
+                    label="News Name"
                     variant="outlined"
                     fullWidth
                     sx={{ mb: 2 }}
                     name="newsname"
                     value={formData.newsname}
-                    onChange={handleInputChange} // Handle change
+                    onChange={handleInputChange}
                   />
 
+                  {/* News Description */}
                   <TextField
                     label="Enter your text"
                     multiline
@@ -176,76 +148,16 @@ const EditNews = () => {
                     onChange={handleInputChange}
                   />
 
-                  {/* Image Upload Field */}
-                  <label htmlFor="file-upload">
-                    <input
-                      id="file-upload"
-                      name="photo"
-                      accept="image/*"
-                      type="file"
-                      style={{ display: "none" }}
-                      onChange={handleFileChange} // Handle file selection
-                    />
-                    <Button
-                      variant="outlined"
-                      component="span"
-                      fullWidth
-                      sx={{
-                        mb: 2,
-                        textTransform: "none",
-                        borderColor: "#1976d2",
-                        color: "#1976d2",
-                        "&:hover": {
-                          borderColor: "#1565c0",
-                          backgroundColor: "#f5f5f5",
-                        },
-                      }}
-                    >
-                      Upload Image
-                    </Button>
-                  </label>
-
-                  {/* Image Preview */}
-                  <MDBox
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                      mb: 2,
-                      border: "1px solid #e0e0e0",
-                      borderRadius: "8px",
-                      padding: "8px",
-                    }}
-                  >
-                    {imagePreview ? (
-                      <img
-                        src={imagePreview}
-                        alt="Gift"
-                        style={{
-                          maxWidth: "150px", // Set a smaller size for the image
-                          borderRadius: "8px",
-                        }}
-                      />
-                    ) : formData.newsimage ? (
-                      <img
-                        src={`${process.env.REACT_APP_API_HOST}/uploads/News/${formData.newsimage}`}
-                        alt="Gift"
-                        style={{
-                          maxWidth: "150px", // Set a smaller size for the image
-                          borderRadius: "8px",
-                        }}
-                      />
-                    ) : (
-                      <img
-                        src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
-                        alt="Default Image"
-                        style={{
-                          maxWidth: "50px", // Set a smaller size for the image
-                          borderRadius: "8px",
-                        }}
-                      />
-                    )}
-                  </MDBox>
+                  {/* News Image Link */}
+                  <TextField
+                    label="News Image Link"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mb: 2 }}
+                    name="newsimagelink"
+                    value={formData.newsimagelink}
+                    onChange={handleInputChange}
+                  />
 
                   {/* Submit Button */}
                   <Button
@@ -254,9 +166,9 @@ const EditNews = () => {
                     color="primary"
                     fullWidth
                     sx={{ color: "#FFFFFF" }}
-                    disabled={loading} // Disable button during loading
+                    disabled={loading}
                   >
-                    Update
+                    {loading ? "Updating..." : "Update"}
                   </Button>
                 </form>
               </MDBox>

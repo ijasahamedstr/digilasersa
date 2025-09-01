@@ -80,18 +80,18 @@ function Eventsection() {
           {Event.map((event, index) => (
             <SwiperSlide key={index}>
               <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: { xs: "column", sm: "row" },
-                  borderRadius: "8px",
-                  boxShadow: 3,
-                  backgroundColor: "transparent",
-                  border: "none",
-                  outline: "none",
-                  width: "100%",
-                  maxWidth: "100%",
-                  margin: "0 auto",
-                }}
+              sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              borderRadius: "8px",
+              boxShadow: "none", // Remove shadow
+              backgroundColor: "transparent",
+              border: "none", // Remove border
+              outline: "none", // Remove outline
+              width: "100%",
+              maxWidth: "100%",
+              margin: "0 auto",
+            }}
               >
                 <CardMedia
                   component="img"
@@ -102,7 +102,7 @@ function Eventsection() {
                     border: "none",
                     borderRadius: "8px",
                   }}
-                  src={`${process.env.REACT_APP_API_HOST}/uploads/News/${event.newsimage}`}
+                   image={event.newsimagelink}
                   alt={event.title}
                 />
                 <Box

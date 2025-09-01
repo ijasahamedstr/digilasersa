@@ -2,11 +2,10 @@ import moment from 'moment';
 import News from '../models/News.models.js';
 
 export const Newscreate = async (req, res) => {
-    const { filename } = req.file;
-    const { newsname, newsdec } = req.body;
+    const { newsname, newsdec,newsimagelink } = req.body;
 
     // Input validation
-    if (!newsname || !newsdec || !filename) {
+    if (!newsname || !newsdec || !newsimagelink) {
         return res.status(400).json({
             status: 400,
             message: 'Please provide gift name, gift type, and gift image.'
@@ -19,7 +18,7 @@ export const Newscreate = async (req, res) => {
         const newNews = new News({
             newsname,
             newsdec,
-            newsimage: filename,
+            newsimagelink,
             date,
         });
 
@@ -83,7 +82,8 @@ export const Newsupdate  = async (req, res) => {
     const { id } = req.params;
     const { newsname } = req.body;
     const { newsdec } = req.body;
-    const { file } = req;
+    const { newsimagelink } = req.body;
+    
 
     try {
         // Find the user by ID
@@ -98,10 +98,10 @@ export const Newsupdate  = async (req, res) => {
         if (newsdec) {
             user.newsdec = newsdec;
         }
-        // Update image if a new file is uploaded
-        if (file) {
-            user.newsimage = file.filename;
+         if (newsimagelink) {
+            user.newsimagelink = newsimagelink;
         }
+        // Update image if a new file is uploade
 
         // Save the updated user data
         const updatedUser = await user.save();

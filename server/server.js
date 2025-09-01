@@ -48,7 +48,6 @@ app.use(express.urlencoded({extended:true}))
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/uploads/ArabicCalligraphy', express.static(path.join(__dirname, '/uploads/ArabicCalligraphy')));
-app.use('/uploads/News', express.static(path.join(__dirname, '/uploads/News')));
 app.use('/uploads/Screenssection', express.static(path.join(__dirname, '/uploads/Screenssection')));
 app.use('/uploads/Socialmedia', express.static(path.join(__dirname, '/uploads/Socialmedia')));
 
