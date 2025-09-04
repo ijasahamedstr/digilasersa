@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
 import {
   Box,
@@ -38,11 +38,7 @@ const carouselItems = [
   },
 ];
 
-const INITIAL_FORM_STATE = {
-  name: "",
-  phone: "",
-  message: "",
-};
+
 
 // Generate thumbnail for non-YouTube videos
 const generateVideoThumbnail = (videoUrl) => {
@@ -68,7 +64,6 @@ const generateVideoThumbnail = (videoUrl) => {
 
 const Motiongraphics = () => {
   const [WebMediavideo, setWebMediavideo] = useState([]);
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [currentVideoUrl, setCurrentVideoUrl] = useState("");
   const [page, setPage] = useState(1);
@@ -146,27 +141,6 @@ const Motiongraphics = () => {
   };
 
   const handleVideoClick = (url) => setCurrentVideoUrl(url);
-
-  const handleChange = ({ target: { name, value } }) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const isFormValid = () =>
-    Object.values(formData).every((field) => field.trim() !== "");
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!isFormValid()) {
-      alert("Please fill out all fields.");
-      return;
-    }
-    const { name, phone, message } = formData;
-    const whatsappNumber = "966570948888";
-    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-    window.open(whatsappUrl, "_blank");
-  };
 
   const socialLinks = [
     { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },

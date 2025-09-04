@@ -8,9 +8,8 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import {
   Box,
   Typography,
@@ -61,13 +60,6 @@ const carouselItems = [
   { id: 3, img: "https://i.ibb.co/spnGyFpf/AI-in-Banner-5.webp" },
 ];
 
-// Initial form state
-const INITIAL_FORM_STATE = {
-  name: "",
-  phone: "",
-  message: "",
-};
-
 // Categories (static)
 const categories = [
   "All",
@@ -82,7 +74,6 @@ const categories = [
 const WebMediaphoto = () => {
   const [photos, setPhotos] = useState([]);
   const [category, setCategory] = useState("All");
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [isZoomed, setIsZoomed] = useState(false);
@@ -157,29 +148,6 @@ const WebMediaphoto = () => {
     };
     fetchData();
   }, []);
-
-  // Form Handlers
-  const handleChange = ({ target: { name, value } }) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const isFormValid = () =>
-    Object.values(formData).every((field) => field.trim() !== "");
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!isFormValid()) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-    const { name, phone, message } = formData;
-    const whatsappNumber = "966570948888";
-    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-    window.open(whatsappUrl, "_blank");
-  };
 
   // Zoom handlers
   const handleImageClick = useCallback((src) => {
@@ -563,7 +531,7 @@ const WebMediaphoto = () => {
           </Box>
         </Container>
       </Box>
-          <Box
+      <Box
       sx={{
         backgroundColor: "#eaecee",
         backgroundImage: 'url("https://i.ibb.co/w0p131X/image.webp")',

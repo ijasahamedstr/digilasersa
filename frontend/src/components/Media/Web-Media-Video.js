@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
 import {
   Box,
@@ -29,12 +29,6 @@ const carouselItems = [
   { id: 3, img: "https://i.ibb.co/FbSqd8wF/AI-in-Banner-4.webp" },
 ];
 
-const INITIAL_FORM_STATE = {
-  name: "",
-  phone: "",
-  message: "",
-};
-
 // Generate thumbnail for non-YouTube videos
 const generateVideoThumbnail = (videoUrl) => {
   return new Promise((resolve) => {
@@ -59,7 +53,6 @@ const generateVideoThumbnail = (videoUrl) => {
 
 const WebMediaVideo = () => {
   const [WebMediavideo, setWebMediavideo] = useState([]);
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [currentVideoUrl, setCurrentVideoUrl] = useState("");
   const [page, setPage] = useState(1);
@@ -68,6 +61,14 @@ const WebMediaVideo = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [thumbnails, setThumbnails] = useState({}); // store videoUrl => thumbnail
+
+
+    // 🔹 Simulate splash screen loading delay
+    useEffect(() => {
+      const timer = setTimeout(() => setLoading(false), 2000); // 2s splash
+      return () => clearTimeout(timer);
+    }, []);
+  
 
     // 🔹 Scroll to top on component mount
   useEffect(() => {
@@ -137,27 +138,6 @@ const WebMediaVideo = () => {
   };
 
   const handleVideoClick = (url) => setCurrentVideoUrl(url);
-
-  const handleChange = ({ target: { name, value } }) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const isFormValid = () =>
-    Object.values(formData).every((field) => field.trim() !== "");
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!isFormValid()) {
-      alert("Please fill out all fields.");
-      return;
-    }
-    const { name, phone, message } = formData;
-    const whatsappNumber = "966570948888";
-    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-    window.open(whatsappUrl, "_blank");
-  };
 
   const socialLinks = [
     { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
@@ -243,6 +223,41 @@ const WebMediaVideo = () => {
       </video>
     );
   };
+
+  // --- Splash Screen Overlay ---
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          bgcolor: "#000",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 9999,
+          flexDirection: "column",
+          p: 2,
+        }}
+      >
+        <Box
+          component="img"
+          src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+          alt="Company Logo"
+          sx={{
+            width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
+            maxWidth: "500px",
+            height: "auto",
+            mb: 2,
+          }}
+        />
+        <CircularProgress sx={{ color: "#00fffc" }} />
+      </Box>
+    );
+  }
 
   return (
     <>
