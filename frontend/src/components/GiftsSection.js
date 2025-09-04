@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Container,
   Box,
@@ -12,7 +12,6 @@ import {
   DialogActions,
   Button,
   CardMedia,
-  Grid,
   CircularProgress,
 } from "@mui/material";
 import Slider from "react-slick";
@@ -30,14 +29,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Carousel } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
 import axios from "axios";
-
-const INITIAL_FORM_STATE = {
-  name: "",
-  phone: "",
-  message: "",
-};
 
 const carouselItems = [
   {
@@ -76,126 +68,76 @@ const socialLinks = [
   { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
 ];
 
+
+// --- Keep all your constants (carouselItems, socialLinks, INITIAL_FORM_STATE) ---
+
 const GiftsSection = () => {
-  // Declare hooks at the top level
   const [GiftsSection, setGiftsSection] = useState([]);
   const [GiftsSection1, setGiftsSection1] = useState([]);
   const [GiftsSection2, setGiftsSection2] = useState([]);
   const [GiftsSection3, setGiftsSection3] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Used for splash screen
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+
+  const sliderRef = useRef(null);
 
   // 🔹 Page Speed Optimizer Script (lazy load images & videos)
   useEffect(() => {
-  const lazyImages = document.querySelectorAll("img[data-src], video[data-src]");
-  const observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-  if (entry.isIntersecting) {
-  const el = entry.target;
-  if (el.tagName === "IMG" || el.tagName === "VIDEO") {
-  el.src = el.dataset.src;
-  el.removeAttribute("data-src");
-  }
-  obs.unobserve(el);
-  }
-  });
-  });
-  lazyImages.forEach(img => observer.observe(img));
+    const lazyImages = document.querySelectorAll("img[data-src], video[data-src]");
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          if (el.tagName === "IMG" || el.tagName === "VIDEO") {
+            el.src = el.dataset.src;
+            el.removeAttribute("data-src");
+          }
+          obs.unobserve(el);
+        }
+      });
+    });
+    lazyImages.forEach(img => observer.observe(img));
 
-
-  return () => observer.disconnect();
+    return () => observer.disconnect();
   }, []);
 
-    // 🔹 Scroll to top on component mount
+  // 🔹 Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // 🔹 Force a one-time refresh on first load
-  useEffect(() => {
-    const hasReloaded = sessionStorage.getItem("hasReloaded");
-    if (!hasReloaded) {
-      sessionStorage.setItem("hasReloaded", "true");
-      window.location.reload();
-    }
-  }, []);
-
-  const handleChange = ({ target: { name, value } }) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const isFormValid = () =>
-    Object.values(formData).every((field) => field.trim() !== "");
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    if (!isFormValid()) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-    const { name, phone, message } = formData;
-    const whatsappNumber = "966571908888";
-    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-
-    window.open(whatsappUrl, "_blank");
-  };
-
-  const sliderRef = useRef(null);
-
-  // Fetch data once the component mounts
+  // --- Fetch data ---
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/Promotionalgifts`,
+          `${process.env.REACT_APP_API_HOST}/Promotionalgifts`
         );
-        // Filter data where gifttype is "دروع ومجسمات"
-        const filteredData = response.data.filter(
-          (item) => item.gifttype === "دروع ومجسمات",
-        );
-        const filteredData1 = response.data.filter(
-          (item) => item.gifttype === "خشـبيات",
-        );
-        const filteredData2 = response.data.filter(
-          (item) => item.gifttype === "مكتـبيات",
-        );
-        const filteredData3 = response.data.filter(
-          (item) => item.gifttype === "اكسسوارات",
-        );
-        setGiftsSection(filteredData);
-        setGiftsSection1(filteredData1);
-        setGiftsSection2(filteredData2);
-        setGiftsSection3(filteredData3);
+        setGiftsSection(response.data.filter((item) => item.gifttype === "دروع ومجسمات"));
+        setGiftsSection1(response.data.filter((item) => item.gifttype === "خشـبيات"));
+        setGiftsSection2(response.data.filter((item) => item.gifttype === "مكتـبيات"));
+        setGiftsSection3(response.data.filter((item) => item.gifttype === "اكسسوارات"));
       } catch (err) {
         console.error("Error fetching data: ", err);
         setError("Failed to fetch data");
       } finally {
-        setLoading(false);
+        // Delay to show splash screen a little (optional)
+        setTimeout(() => setLoading(false), 500);
       }
     };
 
     fetchData();
   }, []);
 
-  // Handle loading and error states before rendering
-  if (loading) return <CircularProgress />;
   if (error) return <div>{error}</div>;
 
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);
     setOpen(true);
   };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleClose = () => setOpen(false);
 
   const settings = {
     dots: true,
@@ -212,15 +154,48 @@ const GiftsSection = () => {
     ],
   };
 
+  // --- Splash Screen Overlay ---
+  if (loading) {
+    return (
+    <Box
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        bgcolor: "#000",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 9999,
+        flexDirection: "column",
+        p: 2, // padding for smaller screens
+      }}
+    >
+      <Box
+        component="img"
+        src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+        alt="Company Logo"
+        sx={{
+          width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
+          maxWidth: "500px",
+          height: "auto",
+          mb: 2,
+        }}
+      />
+      <CircularProgress sx={{ color: "#00fffc" }} />
+    </Box>
+
+    );
+  }
+
   return (
     <>
-      <Container
-        maxWidth={false}
-        sx={{ padding: 0 }}
-        style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}
-      >
+      {/* --- Main Content --- */}
+      <Container maxWidth={false} style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}>
         {/* Carousel Section */}
-        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+         <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
           <Carousel
             fade
             nextIcon={
@@ -313,47 +288,35 @@ const GiftsSection = () => {
           </Box>
         </Box>
       </Container>
-      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
+
+      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0", marginBottom: '30px' }}>
         <Container maxWidth="xl" sx={{ px: 3 }}>
-          {/* Heading */}
-            <Card
-              sx={{
-                backgroundColor: "#f5f5f5", // Background color of the card
-                padding: 0, // Padding around the content
-                borderRadius: 2, // Optional: rounded corners
-                boxShadow: 3, // Optional: card shadow
-                maxWidth: "100%", // Make sure the card is responsive
-                marginBottom: "20px",
-                fontFamily: "Tajawal, sans-serif",
-                fontWeight: "900",
-                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
-                textAlign: "center",
-                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-                mb: 4,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  variant="h4"
-                  component="h2"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-                    textAlign: "center",
-                  }}
-                >
-                  <span style={{ color: "#015057" }}>دروع ومجسمات</span>
-                </Typography>
-              </CardContent>
-            </Card>
+          <Card
+            sx={{
+              background: "linear-gradient(135deg, #06f9f3, #4b4a49ff)",
+              borderRadius: 1,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              maxWidth: "100%",
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontFamily: "Tajawal",
+                  fontWeight: "bold",
+                  fontSize: { xs: "1.2rem", sm: "1.8rem", md: "2rem" },
+                  color: "#fff",
+                  textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                }}
+              >
+                دروع ومجسمات
+              </Typography>
+            </CardContent>
+          </Card>
 
-
-          {/* Gifts Slider */}
           <Slider ref={sliderRef} {...settings}>
             {GiftsSection.map((item, index) => (
               <Box key={index} sx={{ px: 1 }}>
@@ -377,8 +340,8 @@ const GiftsSection = () => {
                       borderTopRightRadius: 3,
                       borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { borderBottomColor: "#ff6f61" },
                       cursor: "pointer",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
                     }}
                     onClick={() => handleImageClick(item.giftimagelink)}
                   />
@@ -388,45 +351,34 @@ const GiftsSection = () => {
           </Slider>
         </Container>
       </section>
-      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
+      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0", marginBottom: '30px' }}>
         <Container maxWidth="xl" sx={{ px: 3 }}>
-          {/* Heading */}
-            <Card
-              sx={{
-                backgroundColor: "#f5f5f5", // Background color of the card
-                padding: 0, // Padding around the content
-                borderRadius: 2, // Optional: rounded corners
-                boxShadow: 3, // Optional: card shadow
-                maxWidth: "100%", // Make sure the card is responsive
-                marginBottom: "20px",
-                fontFamily: "Tajawal, sans-serif",
-                fontWeight: "900",
-                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
-                textAlign: "center",
-                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-                mb: 4,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  variant="h4"
-                  component="h2"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-                    textAlign: "center",
-                  }}
-                >
-                  <span style={{ color: "#015057" }}>خشـبيات</span>
-                </Typography>
-              </CardContent>
-            </Card>
-          {/* Gifts Slider */}
+          <Card
+            sx={{
+              background: "linear-gradient(135deg, #06f9f3, #4b4a49ff)",
+              borderRadius: 1,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              maxWidth: "100%",
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontFamily: "Tajawal",
+                  fontWeight: "bold",
+                  fontSize: { xs: "1.2rem", sm: "1.8rem", md: "2rem" },
+                  color: "#fff",
+                  textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                }}
+              >
+                 خشـبيات
+              </Typography>
+            </CardContent>
+          </Card>
+
           <Slider ref={sliderRef} {...settings}>
             {GiftsSection1.map((item, index) => (
               <Box key={index} sx={{ px: 1 }}>
@@ -450,8 +402,8 @@ const GiftsSection = () => {
                       borderTopRightRadius: 3,
                       borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { borderBottomColor: "#ff6f61" },
                       cursor: "pointer",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
                     }}
                     onClick={() => handleImageClick(item.giftimagelink)}
                   />
@@ -461,48 +413,34 @@ const GiftsSection = () => {
           </Slider>
         </Container>
       </section>
-
-      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
+        <section style={{ width: "100%", margin: "0 auto", padding: "50px 0", marginBottom: '30px' }}>
         <Container maxWidth="xl" sx={{ px: 3 }}>
-          {/* Heading */}
-            <Card
-              sx={{
-                backgroundColor: "#f5f5f5", // Background color of the card
-                padding: 0, // Padding around the content
-                borderRadius: 2, // Optional: rounded corners
-                boxShadow: 3, // Optional: card shadow
-                maxWidth: "100%", // Make sure the card is responsive
-                marginBottom: "20px",
-                fontFamily: "Tajawal, sans-serif",
-                fontWeight: "900",
-                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
-                textAlign: "center",
-                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-                mb: 4,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  variant="h4"
-                  component="h2"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-                    textAlign: "center",
-                  }}
-                >
-                  <span style={{ color: "#015057" }}>مكتـبيات</span>
-                </Typography>
-              </CardContent>
-            </Card>
+          <Card
+            sx={{
+              background: "linear-gradient(135deg, #06f9f3, #4b4a49ff)",
+              borderRadius: 1,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              maxWidth: "100%",
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontFamily: "Tajawal",
+                  fontWeight: "bold",
+                  fontSize: { xs: "1.2rem", sm: "1.8rem", md: "2rem" },
+                  color: "#fff",
+                  textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                }}
+              >
+                 مكتـبيات
+              </Typography>
+            </CardContent>
+          </Card>
 
-
-          {/* Gifts Slider */}
           <Slider ref={sliderRef} {...settings}>
             {GiftsSection2.map((item, index) => (
               <Box key={index} sx={{ px: 1 }}>
@@ -526,8 +464,8 @@ const GiftsSection = () => {
                       borderTopRightRadius: 3,
                       borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { borderBottomColor: "#ff6f61" },
                       cursor: "pointer",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
                     }}
                     onClick={() => handleImageClick(item.giftimagelink)}
                   />
@@ -537,48 +475,34 @@ const GiftsSection = () => {
           </Slider>
         </Container>
       </section>
-      
-      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
+       <section style={{ width: "100%", margin: "0 auto", padding: "50px 0", marginBottom: '30px' }}>
         <Container maxWidth="xl" sx={{ px: 3 }}>
-          {/* Heading */}
-            <Card
-              sx={{
-                backgroundColor: "#f5f5f5", // Background color of the card
-                padding: 0, // Padding around the content
-                borderRadius: 2, // Optional: rounded corners
-                boxShadow: 3, // Optional: card shadow
-                maxWidth: "100%", // Make sure the card is responsive
-                marginBottom: "20px",
-                fontFamily: "Tajawal, sans-serif",
-                fontWeight: "900",
-                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
-                textAlign: "center",
-                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-                mb: 4,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  variant="h4"
-                  component="h2"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-                    textAlign: "center",
-                  }}
-                >
-                  <span style={{ color: "#015057" }}>اكسسوارات</span>
-                </Typography>
-              </CardContent>
-            </Card>
+          <Card
+            sx={{
+              background: "linear-gradient(135deg, #06f9f3, #4b4a49ff)",
+              borderRadius: 1,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              maxWidth: "100%",
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontFamily: "Tajawal",
+                  fontWeight: "bold",
+                  fontSize: { xs: "1.2rem", sm: "1.8rem", md: "2rem" },
+                  color: "#fff",
+                  textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                }}
+              >
+                 اكسسوارات
+              </Typography>
+            </CardContent>
+          </Card>
 
-
-          {/* Gifts Slider */}
           <Slider ref={sliderRef} {...settings}>
             {GiftsSection3.map((item, index) => (
               <Box key={index} sx={{ px: 1 }}>
@@ -602,8 +526,8 @@ const GiftsSection = () => {
                       borderTopRightRadius: 3,
                       borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { borderBottomColor: "#ff6f61" },
                       cursor: "pointer",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
                     }}
                     onClick={() => handleImageClick(item.giftimagelink)}
                   />
@@ -614,41 +538,31 @@ const GiftsSection = () => {
         </Container>
       </section>
 
-      <Container
-        maxWidth={false}
-        sx={{ padding: 0 }}
-        style={{ paddingLeft: "0px", paddingRight: "0px" }}
-      >  
-        {/* Dialog for Image View */}
-        <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-          <DialogTitle>
-            <Box display="flex" justifyContent="space-between">
-              <Typography variant="h6"></Typography>
-              <IconButton onClick={handleClose}>
-                <FaTimes />
-              </IconButton>
-            </Box>
-          </DialogTitle>
-          <DialogContent>
-            <Box sx={{ textAlign: "center" }}>
-              <img
-                src={selectedImage}
-                alt="Selected"
-                style={{
-                  width: "100%",
-                  maxHeight: "60vh",
-                  objectFit: "contain",
-                }}
-              />
-            </Box>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </Container>
+      {/* Dialog for Image View */}
+      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+        <DialogTitle>
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="h6"></Typography>
+            <IconButton onClick={handleClose}>
+              <FaTimes />
+            </IconButton>
+          </Box>
+        </DialogTitle>
+        <DialogContent>
+          <Box sx={{ textAlign: "center" }}>
+            <img
+              src={selectedImage}
+              alt="Selected"
+              style={{ width: "100%", maxHeight: "60vh", objectFit: "contain" }}
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };

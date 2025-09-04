@@ -5,7 +5,6 @@ import {
   CardMedia,
   Card,
   Grid,
-  Button,
   Avatar,
   CardContent,
 } from "@mui/material";
@@ -24,11 +23,10 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import Form from "react-bootstrap/Form";
 import Slider from "react-slick"; // Import Slider from react-slick
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import demoVideo from "./VR/VR.mp4";
 import demoVideo1 from "./VR/VR_SECTION.mp4";
 
@@ -53,12 +51,6 @@ const sliderSettingsRTL = {
 const sliderSettingsLTR = {
   ...sliderSettingsRTL,
   rtl: false,
-};
-
-const INITIAL_FORM_STATE = {
-  name: "",
-  phone: "",
-  message: "",
 };
 
 const carouselItems = [
@@ -112,10 +104,16 @@ const products1 = [
 ];
 
 const VRSection = () => {
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // 🔹 Show splash for 2s then remove
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
 
     // 🔹 Scroll to top on component mount
   useEffect(() => {
@@ -170,12 +168,40 @@ const VRSection = () => {
     fetchData();
   }, []);
 
-  if (loading)
+    // --- Splash Screen Overlay ---
+  if (loading) {
     return (
-      <Box display="flex" justifyContent="center" py={8}>
-        <CircularProgress />
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          bgcolor: "#000",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 9999,
+          flexDirection: "column",
+          p: 2,
+        }}
+      >
+        <Box
+          component="img"
+          src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+          alt="Company Logo"
+          sx={{
+            width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
+            maxWidth: "500px",
+            height: "auto",
+            mb: 2,
+          }}
+        />
+        <CircularProgress sx={{ color: "#00fffc" }} />
       </Box>
     );
+  }
   if (error)
     return (
       <Box textAlign="center" py={4}>
@@ -186,30 +212,6 @@ const VRSection = () => {
   const halfwayIndex = Math.ceil(partners.length / 2);
   const firstRowPartners = partners.slice(0, halfwayIndex);
   const secondRowPartners = partners.slice(halfwayIndex);
-
-  const handleChange = ({ target: { name, value } }) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const isFormValid = () =>
-    Object.values(formData).every((field) => field.trim() !== "");
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    if (!isFormValid()) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-    const { name, phone, message } = formData;
-    const whatsappNumber = "966570649999";
-    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-
-    window.open(whatsappUrl, "_blank");
-  };
 
   const socialLinks = [
     {

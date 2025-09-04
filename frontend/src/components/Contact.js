@@ -1,6 +1,5 @@
-import React from "react";
-import { useState } from "react";
-import { Container, Box, Typography, Button, Grid } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Container, Box, CircularProgress } from "@mui/material";
 import {
   FaInstagram,
   FaLinkedin,
@@ -11,39 +10,15 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import Form from "react-bootstrap/Form";
-
-const INITIAL_FORM_STATE = {
-  name: "",
-  phone: "",
-  message: "",
-};
 
 const ContactusForm = () => {
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+  const [loading, setLoading] = useState(true);
 
-  const handleChange = ({ target: { name, value } }) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const isFormValid = () =>
-    Object.values(formData).every((field) => field.trim() !== "");
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!isFormValid()) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-    const { name, phone, message } = formData;
-    const whatsappNumber = "966571908888";
-    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-
-    window.open(whatsappUrl, "_blank");
-  };
+  // Show splash screen for 2 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const socialLinks = [
     { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
@@ -54,6 +29,41 @@ const ContactusForm = () => {
     { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
     { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
   ];
+
+  // --- Splash Screen Overlay ---
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          bgcolor: "#000",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 9999,
+          flexDirection: "column",
+          p: 2,
+        }}
+      >
+        <Box
+          component="img"
+          src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+          alt="Company Logo"
+          sx={{
+            width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
+            maxWidth: "500px",
+            height: "auto",
+            mb: 2,
+          }}
+        />
+        <CircularProgress sx={{ color: "#00fffc" }} />
+      </Box>
+    );
+  }
 
   return (
     <>

@@ -2,13 +2,12 @@ import { Carousel } from "react-bootstrap";
 import {
   Box,
   Typography,
-  useMediaQuery,
   Grid,
   Card,
   CardContent,
   Paper,
   CardMedia,
-  Button,
+  CircularProgress
 } from "@mui/material";
 import Container from "@mui/material/Container";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,14 +24,8 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import Form from "react-bootstrap/Form";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const INITIAL_FORM_STATE = {
-  name: "",
-  phone: "",
-  message: "",
-};
 
 const carouselItems = [
   {
@@ -156,9 +149,14 @@ const products4 = [
 ];
 
 const SocialSection = () => {
-  const isMobile = useMediaQuery("(max-width:600px)");
+  const [loading, setLoading] = useState(true); // 🔹 Splash screen state
 
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+
+   // 🔹 Show splash for 2s then remove
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
     // 🔹 Scroll to top on component mount
   useEffect(() => {
@@ -174,29 +172,41 @@ const SocialSection = () => {
     }
   }, []);
 
-  const handleChange = ({ target: { name, value } }) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    // --- Splash Screen Overlay ---
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          bgcolor: "#000",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 9999,
+          flexDirection: "column",
+          p: 2,
+        }}
+      >
+        <Box
+          component="img"
+          src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+          alt="Company Logo"
+          sx={{
+            width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
+            maxWidth: "500px",
+            height: "auto",
+            mb: 2,
+          }}
+        />
+        <CircularProgress sx={{ color: "#00fffc" }} />
+      </Box>
+    );
+  }
 
-  const isFormValid = () =>
-    Object.values(formData).every((field) => field.trim() !== "");
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    if (!isFormValid()) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-    const { name, phone, message } = formData;
-    const whatsappNumber = "966570849999";
-    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-
-    window.open(whatsappUrl, "_blank");
-  };
 
   return (
     <Container

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Container,
   Box,
@@ -31,17 +31,36 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Carousel } from "react-bootstrap";
 import axios from "axios";
 
-const INITIAL_FORM_STATE = {
-  name: "",
-  phone: "",
-  message: "",
-};
-
 const carouselItems = [
   { id: 1, img: "https://i.ibb.co/5rsMjx9/New-Web-Print.webp" },
   { id: 2, img: "https://i.ibb.co/5rsMjx9/New-Web-Print.webp" },
   { id: 3, img: "https://i.ibb.co/5rsMjx9/New-Web-Print.webp" },
 ];
+
+const socialLinks = [
+  {
+    icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />,
+    link: "https://x.com/digilasersa",
+  },
+  {
+    icon: <FaInstagram size={25} />,
+    link: "https://www.instagram.com/digilasersa",
+  },
+  {
+    icon: <FaLinkedin size={25} />,
+    link: "https://www.linkedin.com/company/digilasersa",
+  },
+  { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+  {
+    icon: <FaSnapchat size={25} />,
+    link: "https://www.snapchat.com/add/digilasersa",
+  },
+  { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+  { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+];
+
+
+// --- Keep all your constants (carouselItems, socialLinks, INITIAL_FORM_STATE) ---
 
 const PrintingSection = () => {
   const [PrintingSection, setPrintingSection] = useState([]);
@@ -49,97 +68,78 @@ const PrintingSection = () => {
   const [PrintingSection2, setPrintingSection2] = useState([]);
   const [PrintingSection3, setPrintingSection3] = useState([]);
   const [PrintingSection4, setPrintingSection4] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Used for splash screen
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+
   const sliderRef = useRef(null);
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
   // 🔹 Page Speed Optimizer Script (lazy load images & videos)
-    useEffect(() => {
+  useEffect(() => {
     const lazyImages = document.querySelectorAll("img[data-src], video[data-src]");
     const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-    if (entry.isIntersecting) {
-    const el = entry.target;
-    if (el.tagName === "IMG" || el.tagName === "VIDEO") {
-    el.src = el.dataset.src;
-    el.removeAttribute("data-src");
-    }
-    obs.unobserve(el);
-    }
-    });
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          if (el.tagName === "IMG" || el.tagName === "VIDEO") {
+            el.src = el.dataset.src;
+            el.removeAttribute("data-src");
+          }
+          obs.unobserve(el);
+        }
+      });
     });
     lazyImages.forEach(img => observer.observe(img));
 
-
     return () => observer.disconnect();
-    }, []);
-
-  // Scroll to top on mount
-  useEffect(() => window.scrollTo({ top: 0, behavior: "smooth" }), []);
-
-  // Force one-time reload
-  useEffect(() => {
-    const hasReloaded = sessionStorage.getItem("hasReloaded");
-    if (!hasReloaded) {
-      sessionStorage.setItem("hasReloaded", "true");
-      window.location.reload();
-    }
   }, []);
 
-  const handleChange = ({ target: { name, value } }) =>
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  // 🔹 Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
-  const isFormValid = () =>
-    Object.values(formData).every((field) => field.trim() !== "");
+  // --- Fetch data ---
+  useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_HOST}/Printingdepartment`
+      );
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!isFormValid()) return alert("Please fill out all fields.");
+      setPrintingSection(
+        response.data.filter(item => item.Printingtype === "مطـبوعات ورقـية")
+      );
 
-    const { name, phone, message } = formData;
-    const whatsappNumber = "966571908888";
-    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-    window.open(whatsappUrl, "_blank");
+      setPrintingSection1(
+        response.data.filter(item => item.Printingtype === "بنـر وسـتيكر")
+      );
+
+      setPrintingSection2(
+        response.data.filter(item => item.Printingtype === "طباعه مسطحات UV")
+      );
+
+      setPrintingSection3(
+        response.data.filter(item => item.Printingtype === "طباعه منسوجات dtf")
+      );
+
+      setPrintingSection4(
+        response.data.filter(item => item.Printingtype === "طبــاعة dtf-uv")
+      );
+
+    } catch (err) {
+      console.error("Error fetching data: ", err);
+      setError("Failed to fetch data");
+    } finally {
+      // Optional delay for splash screen
+      setTimeout(() => setLoading(false), 500);
+    }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/Printingdepartment`
-        );
+  fetchData();
+}, []);
 
-        setPrintingSection(
-          response.data.filter((item) => item.Printingtype === "مطـبوعات ورقـية")
-        );
-        setPrintingSection1(
-          response.data.filter((item) => item.Printingtype === "بنـر وسـتيكر")
-        );
-        setPrintingSection2(
-          response.data.filter((item) => item.Printingtype === "طباعه مسطحات UV")
-        );
-        setPrintingSection3(
-          response.data.filter((item) => item.Printingtype === "طباعه منسوجات dtf")
-        );
-        setPrintingSection4(
-          response.data.filter((item) => item.Printingtype === "طبــاعة dtf-uv")
-        );
-      } catch (err) {
-        console.error("Error fetching data: ", err);
-        setError("Failed to fetch data");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  if (loading) return <CircularProgress />;
   if (error) return <div>{error}</div>;
 
   const handleImageClick = (imageUrl) => {
@@ -163,25 +163,48 @@ const PrintingSection = () => {
     ],
   };
 
-  const socialLinks = [
-    { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
-    { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
-    { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
-    { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
-    { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
-    { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
-    { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
-  ];
+  // --- Splash Screen Overlay ---
+  if (loading) {
+    return (
+    <Box
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        bgcolor: "#000",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 9999,
+        flexDirection: "column",
+        p: 2, // padding for smaller screens
+      }}
+    >
+      <Box
+        component="img"
+        src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+        alt="Company Logo"
+        sx={{
+          width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
+          maxWidth: "500px",
+          height: "auto",
+          mb: 2,
+        }}
+      />
+      <CircularProgress sx={{ color: "#00fffc" }} />
+    </Box>
+
+    );
+  }
 
   return (
     <>
-      <Container
-        maxWidth={false}
-        sx={{ padding: 0 }}
-        style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}
-      >
+      {/* --- Main Content --- */}
+      <Container maxWidth={false} style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}>
         {/* Carousel Section */}
-        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+         <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
           <Carousel
             fade
             nextIcon={
@@ -275,412 +298,342 @@ const PrintingSection = () => {
         </Box>
       </Container>
 
-      {/* Printing Section */}
-      <Container maxWidth={false} sx={{ padding: 0 }}>
-        <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
-          <Container maxWidth="xl" sx={{ px: 3 }}>
-            {/* Heading */}
-             <Card
-              sx={{
-                backgroundColor: "#f5f5f5", // Background color of the card
-                padding: 0, // Padding around the content
-                borderRadius: 2, // Optional: rounded corners
-                boxShadow: 3, // Optional: card shadow
-                maxWidth: "100%", // Make sure the card is responsive
-                marginBottom: "20px",
-                fontFamily: "Tajawal, sans-serif",
-                fontWeight: "900",
-                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
-                textAlign: "center",
-                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-                mb: 4,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  variant="h4"
-                  component="h2"
+      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0", marginBottom: '30px' }}>
+        <Container maxWidth="xl" sx={{ px: 3 }}>
+          <Card
+            sx={{
+              background: "linear-gradient(135deg, #06f9f3, #4b4a49ff)",
+              borderRadius: 1,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              maxWidth: "100%",
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontFamily: "Tajawal",
+                  fontWeight: "bold",
+                  fontSize: { xs: "1.2rem", sm: "1.8rem", md: "2rem" },
+                  color: "#fff",
+                  textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                }}
+              >
+                دروع ومجسمات
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Slider ref={sliderRef} {...settings}>
+            {PrintingSection.map((item, index) => (
+              <Box key={index} sx={{ px: 1 }}>
+                <Card
                   sx={{
-                    fontFamily: "Tajawal",
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-                    textAlign: "center",
+                    transition: "0.3s",
+                    "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    border: "3px solid transparent",
                   }}
                 >
-                  <span style={{ color: "#015057" }}>مطـبوعات ورقـية</span>
-                </Typography>
-              </CardContent>
-            </Card>
-
-            <Slider ref={sliderRef} {...settings}>
-              {PrintingSection.map((item, index) => (
-                <div key={index}>
-                  <Card
+                  <CardMedia
+                    component="img"
+                    image={item.Printingimagelink}
+                    alt={`Slide ${index + 1}`}
                     sx={{
+                      height: { xs: 180, sm: 220 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 3,
+                      borderTopRightRadius: 3,
+                      borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
-                      borderRadius: 3,
-                      marginRight: "16px",
-                      marginLeft: index === 0 ? "0" : "16px",
-                      border: "3px solid transparent",
-                      overflow: "hidden",
+                      cursor: "pointer",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
                     }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={item.Printingimagelink}
-                      alt={`Slide ${index + 1}`}
-                      sx={{
-                        height: { xs: 180, sm: 220 },
-                        objectFit: "cover",
-                        borderTopLeftRadius: 3,
-                        borderTopRightRadius: 3,
-                        borderBottom: "5px solid #06f9f3",
-                        transition: "0.3s",
-                        "&:hover": { borderBottomColor: "#ff6f61" },
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleImageClick(item.Printingimagelink)}
-                    />
-                  </Card>
-                </div>
-              ))}
-            </Slider>
-          </Container>
-        </section>
-        <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
-          <Container maxWidth="xl" sx={{ px: 3 }}>
-            {/* Heading */}
-            <Card
-              sx={{
-                backgroundColor: "#f5f5f5", // Background color of the card
-                padding: 0, // Padding around the content
-                borderRadius: 2, // Optional: rounded corners
-                boxShadow: 3, // Optional: card shadow
-                maxWidth: "100%", // Make sure the card is responsive
-                marginBottom: "20px",
-                fontFamily: "Tajawal, sans-serif",
-                fontWeight: "900",
-                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
-                textAlign: "center",
-                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-                mb: 4,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  variant="h4"
-                  component="h2"
+                    onClick={() => handleImageClick(item.Printingimagelink)}
+                  />
+                </Card>
+              </Box>
+            ))}
+          </Slider>
+        </Container>
+      </section>
+      <section style={{ width: "100%", margin: "0 auto", padding: "50px 0", marginBottom: '30px' }}>
+        <Container maxWidth="xl" sx={{ px: 3 }}>
+          <Card
+            sx={{
+              background: "linear-gradient(135deg, #06f9f3, #4b4a49ff)",
+              borderRadius: 1,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              maxWidth: "100%",
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontFamily: "Tajawal",
+                  fontWeight: "bold",
+                  fontSize: { xs: "1.2rem", sm: "1.8rem", md: "2rem" },
+                  color: "#fff",
+                  textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                }}
+              >
+                 خشـبيات
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Slider ref={sliderRef} {...settings}>
+            {PrintingSection1.map((item, index) => (
+              <Box key={index} sx={{ px: 1 }}>
+                <Card
                   sx={{
-                    fontFamily: "Tajawal",
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-                    textAlign: "center",
+                    transition: "0.3s",
+                    "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    border: "3px solid transparent",
                   }}
                 >
-                  <span style={{ color: "#015057" }}>بنـر وسـتيكر</span>
-                </Typography>
-              </CardContent>
-            </Card>
-
-            <Slider ref={sliderRef} {...settings}>
-              {PrintingSection1.map((item, index) => (
-                <div key={index}>
-                  <Card
+                  <CardMedia
+                    component="img"
+                    image={item.Printingimagelink}
+                    alt={`Slide ${index + 1}`}
                     sx={{
+                      height: { xs: 180, sm: 220 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 3,
+                      borderTopRightRadius: 3,
+                      borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
-                      borderRadius: 3,
-                      marginRight: "16px",
-                      marginLeft: index === 0 ? "0" : "16px",
-                      border: "3px solid transparent",
-                      overflow: "hidden",
+                      cursor: "pointer",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
                     }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={item.Printingimagelink}
-                      alt={`Slide ${index + 1}`}
-                      sx={{
-                        height: { xs: 180, sm: 220 },
-                        objectFit: "cover",
-                        borderTopLeftRadius: 3,
-                        borderTopRightRadius: 3,
-                        borderBottom: "5px solid #06f9f3",
-                        transition: "0.3s",
-                        "&:hover": { borderBottomColor: "#ff6f61" },
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleImageClick(item.Printingimagelink)}
-                    />
-                  </Card>
-                </div>
-              ))}
-            </Slider>
-          </Container>
-        </section>
-         <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
-          <Container maxWidth="xl" sx={{ px: 3 }}>
-            {/* Heading */}
+                    onClick={() => handleImageClick(item.Printingimagelink)}
+                  />
+                </Card>
+              </Box>
+            ))}
+          </Slider>
+        </Container>
+      </section>
+        <section style={{ width: "100%", margin: "0 auto", padding: "50px 0", marginBottom: '30px' }}>
+        <Container maxWidth="xl" sx={{ px: 3 }}>
+          <Card
+            sx={{
+              background: "linear-gradient(135deg, #06f9f3, #4b4a49ff)",
+              borderRadius: 1,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              maxWidth: "100%",
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontFamily: "Tajawal",
+                  fontWeight: "bold",
+                  fontSize: { xs: "1.2rem", sm: "1.8rem", md: "2rem" },
+                  color: "#fff",
+                  textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                }}
+              >
+                 مكتـبيات
+              </Typography>
+            </CardContent>
+          </Card>
 
-            <Card
-              sx={{
-                backgroundColor: "#f5f5f5", // Background color of the card
-                padding: 0, // Padding around the content
-                borderRadius: 2, // Optional: rounded corners
-                boxShadow: 3, // Optional: card shadow
-                maxWidth: "100%", // Make sure the card is responsive
-                marginBottom: "20px",
-                fontFamily: "Tajawal, sans-serif",
-                fontWeight: "900",
-                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
-                textAlign: "center",
-                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-                mb: 4,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  variant="h4"
-                  component="h2"
+          <Slider ref={sliderRef} {...settings}>
+            {PrintingSection2.map((item, index) => (
+              <Box key={index} sx={{ px: 1 }}>
+                <Card
                   sx={{
-                    fontFamily: "Tajawal",
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-                    textAlign: "center",
+                    transition: "0.3s",
+                    "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    border: "3px solid transparent",
                   }}
                 >
-                  <span style={{ color: "#015057" }}>طباعه مسطحات UV</span>
-                </Typography>
-              </CardContent>
-            </Card>
-
-            <Slider ref={sliderRef} {...settings}>
-              {PrintingSection2.map((item, index) => (
-                <div key={index}>
-                  <Card
+                  <CardMedia
+                    component="img"
+                    image={item.Printingimagelink}
+                    alt={`Slide ${index + 1}`}
                     sx={{
+                      height: { xs: 180, sm: 220 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 3,
+                      borderTopRightRadius: 3,
+                      borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
-                      borderRadius: 3,
-                      marginRight: "16px",
-                      marginLeft: index === 0 ? "0" : "16px",
-                      border: "3px solid transparent",
-                      overflow: "hidden",
+                      cursor: "pointer",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
                     }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={item.Printingimagelink}
-                      alt={`Slide ${index + 1}`}
-                      sx={{
-                        height: { xs: 180, sm: 220 },
-                        objectFit: "cover",
-                        borderTopLeftRadius: 3,
-                        borderTopRightRadius: 3,
-                        borderBottom: "5px solid #06f9f3",
-                        transition: "0.3s",
-                        "&:hover": { borderBottomColor: "#ff6f61" },
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleImageClick(item.Printingimagelink)}
-                    />
-                  </Card>
-                </div>
-              ))}
-            </Slider>
-          </Container>
-        </section>
-        <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
-          <Container maxWidth="xl" sx={{ px: 3 }}>
-            {/* Heading */}
-              <Card
-              sx={{
-                backgroundColor: "#f5f5f5", // Background color of the card
-                padding: 0, // Padding around the content
-                borderRadius: 2, // Optional: rounded corners
-                boxShadow: 3, // Optional: card shadow
-                maxWidth: "100%", // Make sure the card is responsive
-                marginBottom: "20px",
-                fontFamily: "Tajawal, sans-serif",
-                fontWeight: "900",
-                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
-                textAlign: "center",
-                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-                mb: 4,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  variant="h4"
-                  component="h2"
+                    onClick={() => handleImageClick(item.Printingimagelink)}
+                  />
+                </Card>
+              </Box>
+            ))}
+          </Slider>
+        </Container>
+      </section>
+       <section style={{ width: "100%", margin: "0 auto", padding: "50px 0", marginBottom: '30px' }}>
+        <Container maxWidth="xl" sx={{ px: 3 }}>
+          <Card
+            sx={{
+              background: "linear-gradient(135deg, #06f9f3, #4b4a49ff)",
+              borderRadius: 1,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              maxWidth: "100%",
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontFamily: "Tajawal",
+                  fontWeight: "bold",
+                  fontSize: { xs: "1.2rem", sm: "1.8rem", md: "2rem" },
+                  color: "#fff",
+                  textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                }}
+              >
+                 اكسسوارات
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Slider ref={sliderRef} {...settings}>
+            {PrintingSection3.map((item, index) => (
+              <Box key={index} sx={{ px: 1 }}>
+                <Card
                   sx={{
-                    fontFamily: "Tajawal",
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-                    textAlign: "center",
+                    transition: "0.3s",
+                    "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    border: "3px solid transparent",
                   }}
                 >
-                  <span style={{ color: "#015057" }}>طباعه منسوجات dtf</span>
-                </Typography>
-              </CardContent>
-            </Card>
-
-            <Slider ref={sliderRef} {...settings}>
-              {PrintingSection3.map((item, index) => (
-                <div key={index}>
-                  <Card
+                  <CardMedia
+                    component="img"
+                    image={item.Printingimagelink}
+                    alt={`Slide ${index + 1}`}
                     sx={{
+                      height: { xs: 180, sm: 220 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 3,
+                      borderTopRightRadius: 3,
+                      borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
-                      borderRadius: 3,
-                      marginRight: "16px",
-                      marginLeft: index === 0 ? "0" : "16px",
-                      border: "3px solid transparent",
-                      overflow: "hidden",
+                      cursor: "pointer",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
                     }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={item.Printingimagelink}
-                      alt={`Slide ${index + 1}`}
-                      sx={{
-                        height: { xs: 180, sm: 220 },
-                        objectFit: "cover",
-                        borderTopLeftRadius: 3,
-                        borderTopRightRadius: 3,
-                        borderBottom: "5px solid #06f9f3",
-                        transition: "0.3s",
-                        "&:hover": { borderBottomColor: "#ff6f61" },
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleImageClick(item.Printingimagelink)}
-                    />
-                  </Card>
-                </div>
-              ))}
-            </Slider>
-          </Container>
-        </section>
+                    onClick={() => handleImageClick(item.Printingimagelink)}
+                  />
+                </Card>
+              </Box>
+            ))}
+          </Slider>
+        </Container>
+      </section>
+        <section style={{ width: "100%", margin: "0 auto", padding: "50px 0", marginBottom: '30px' }}>
+        <Container maxWidth="xl" sx={{ px: 3 }}>
+          <Card
+            sx={{
+              background: "linear-gradient(135deg, #06f9f3, #4b4a49ff)",
+              borderRadius: 1,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              maxWidth: "100%",
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontFamily: "Tajawal",
+                  fontWeight: "bold",
+                  fontSize: { xs: "1.2rem", sm: "1.8rem", md: "2rem" },
+                  color: "#fff",
+                  textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+                }}
+              >
+                 اكسسوارات
+              </Typography>
+            </CardContent>
+          </Card>
 
-        <section style={{ width: "100%", margin: "0 auto", padding: "50px 0" }}>
-          <Container maxWidth="xl" sx={{ px: 3 }}>
-            {/* Heading */}
-            <Card
-              sx={{
-                backgroundColor: "#f5f5f5", // Background color of the card
-                padding: 0, // Padding around the content
-                borderRadius: 2, // Optional: rounded corners
-                boxShadow: 3, // Optional: card shadow
-                maxWidth: "100%", // Make sure the card is responsive
-                marginBottom: "20px",
-                fontFamily: "Tajawal, sans-serif",
-                fontWeight: "900",
-                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.8rem" },
-                textAlign: "center",
-                background: "linear-gradient(90deg, #06f9f3, #ff6f61)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-                mb: 4,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  variant="h4"
-                  component="h2"
+          <Slider ref={sliderRef} {...settings}>
+            {PrintingSection4.map((item, index) => (
+              <Box key={index} sx={{ px: 1 }}>
+                <Card
                   sx={{
-                    fontFamily: "Tajawal",
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-                    textAlign: "center",
+                    transition: "0.3s",
+                    "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    border: "3px solid transparent",
                   }}
                 >
-                  <span style={{ color: "#015057" }}>طبــاعة dtf-uv</span>
-                </Typography>
-              </CardContent>
-            </Card>
-
-            <Slider ref={sliderRef} {...settings}>
-              {PrintingSection4.map((item, index) => (
-                <div key={index}>
-                  <Card
+                  <CardMedia
+                    component="img"
+                    image={item.Printingimagelink}
+                    alt={`Slide ${index + 1}`}
                     sx={{
+                      height: { xs: 180, sm: 220 },
+                      objectFit: "cover",
+                      borderTopLeftRadius: 3,
+                      borderTopRightRadius: 3,
+                      borderBottom: "5px solid #06f9f3",
                       transition: "0.3s",
-                      "&:hover": { boxShadow: 6, transform: "scale(1.05)", borderColor: "#06f9f3" },
-                      borderRadius: 3,
-                      marginRight: "16px",
-                      marginLeft: index === 0 ? "0" : "16px",
-                      border: "3px solid transparent",
-                      overflow: "hidden",
+                      cursor: "pointer",
+                      "&:hover": { borderBottomColor: "#ff6f61" },
                     }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={item.Printingimagelink}
-                      alt={`Slide ${index + 1}`}
-                      sx={{
-                        height: { xs: 180, sm: 220 },
-                        objectFit: "cover",
-                        borderTopLeftRadius: 3,
-                        borderTopRightRadius: 3,
-                        borderBottom: "5px solid #06f9f3",
-                        transition: "0.3s",
-                        "&:hover": { borderBottomColor: "#ff6f61" },
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleImageClick(item.Printingimagelink)}
-                    />
-                  </Card>
-                </div>
-              ))}
-            </Slider>
-          </Container>
-        </section>
+                    onClick={() => handleImageClick(item.Printingimagelink)}
+                  />
+                </Card>
+              </Box>
+            ))}
+          </Slider>
+        </Container>
+      </section>
 
-        {/* Image Dialog */}
-        <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-          <DialogTitle>
-            <Box display="flex" justifyContent="space-between">
-              <Typography variant="h6"></Typography>
-              <IconButton onClick={handleClose}>
-                <FaTimes />
-              </IconButton>
-            </Box>
-          </DialogTitle>
-          <DialogContent>
-            <Box sx={{ textAlign: "center" }}>
-              <img
-                src={selectedImage}
-                alt="Selected"
-                style={{ width: "100%", maxHeight: "60vh", objectFit: "contain" }}
-              />
-            </Box>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </Container>
+      {/* Dialog for Image View */}
+      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+        <DialogTitle>
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="h6"></Typography>
+            <IconButton onClick={handleClose}>
+              <FaTimes />
+            </IconButton>
+          </Box>
+        </DialogTitle>
+        <DialogContent>
+          <Box sx={{ textAlign: "center" }}>
+            <img
+              src={selectedImage}
+              alt="Selected"
+              style={{ width: "100%", maxHeight: "60vh", objectFit: "contain" }}
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };

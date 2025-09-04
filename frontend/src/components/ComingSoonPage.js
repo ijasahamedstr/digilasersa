@@ -1,10 +1,19 @@
-import { Box, Typography, Button, Container, Grid } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Typography,
+  Button,
+  Container,
+  Grid,
+  CircularProgress,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
-import { useEffect } from "react";
 
 function ComingSoonPage() {
-    // 🔹 Scroll to top on component mount
+  const [loading, setLoading] = useState(true);
+
+  // 🔹 Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -17,6 +26,49 @@ function ComingSoonPage() {
       window.location.reload();
     }
   }, []);
+
+  // 🔹 Simulate loading / splash delay
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000); // 2s splash
+    return () => clearTimeout(timer);
+  }, []);
+
+  // --- Splash Screen Overlay ---
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          bgcolor: "#000",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 9999,
+          flexDirection: "column",
+          p: 2,
+        }}
+      >
+        <Box
+          component="img"
+          src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+          alt="Company Logo"
+          sx={{
+            width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
+            maxWidth: "500px",
+            height: "auto",
+            mb: 2,
+          }}
+        />
+        <CircularProgress sx={{ color: "#00fffc" }} />
+      </Box>
+    );
+  }
+
+  // --- Coming Soon Content ---
   return (
     <Box
       sx={{

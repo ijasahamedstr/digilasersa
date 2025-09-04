@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ResponsiveAppBar from "./components/Navbar";
 import Home from "./components/Home";
@@ -5,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Box, CircularProgress } from "@mui/material"; // ✅ Added import
 import Footer from "./components/Footer";
 import Products from "./components/Products";
 import Aboutus from "./components/About";
@@ -38,6 +40,48 @@ const theme = createTheme({
 });
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000); // show splash for 2s
+    return () => clearTimeout(timer);
+  }, []);
+
+  // --- Splash Screen Overlay ---
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          bgcolor: "#000",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 9999,
+          flexDirection: "column",
+          p: 2,
+        }}
+      >
+        <Box
+          component="img"
+          src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+          alt="Company Logo"
+          sx={{
+            width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
+            maxWidth: "500px",
+            height: "auto",
+            mb: 2,
+          }}
+        />
+        <CircularProgress sx={{ color: "#00fffc" }} />
+      </Box>
+    );
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Router>

@@ -1,5 +1,3 @@
-import React from "react";
-
 const sectionStyles = {
   backgroundColor: "#f2f3f4",
   backgroundImage: "url(https://i.ibb.co/7tH2m62z/Final-Web-Under.jpg)",

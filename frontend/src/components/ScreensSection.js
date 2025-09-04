@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
 import {
   FaInstagram,
   FaLinkedin,
@@ -12,7 +11,7 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Container, Grid, Typography, Box, Button, Card } from "@mui/material";
+import { Container, Grid, Typography, Box, Button, Card, CircularProgress } from "@mui/material";
 
 const carouselItems = [
   { id: 1, img: "https://i.ibb.co/Kx2gxHcg/Top-Screen.webp" },
@@ -30,15 +29,15 @@ const socialLinks = [
   { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
 ];
 
-const INITIAL_FORM_STATE = {
-  name: "",
-  phone: "",
-  message: "",
-};
-
 const ScreensSection = () => {
   const [showModal, setShowModal] = useState(true);
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+  const [loading, setLoading] = useState(true); // 🔹 Splash screen state
+
+   // 🔹 Show splash for 2s then remove
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // 🔹 Scroll to top on component mount
   useEffect(() => {
@@ -54,35 +53,49 @@ const ScreensSection = () => {
     }
   }, []);
 
-  // 🔹 Auto close modal after 1 second
+  // 🔹 Auto close modal after 2 second
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowModal(false);
-    }, 1000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleChange = ({ target: { name, value } }) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  // --- Splash Screen Overlay ---
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          bgcolor: "#000",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 9999,
+          flexDirection: "column",
+          p: 2,
+        }}
+      >
+        <Box
+          component="img"
+          src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+          alt="Company Logo"
+          sx={{
+            width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
+            maxWidth: "500px",
+            height: "auto",
+            mb: 2,
+          }}
+        />
+        <CircularProgress sx={{ color: "#00fffc" }} />
+      </Box>
+    );
+  }
 
-  const isFormValid = () =>
-    Object.values(formData).every((field) => field.trim() !== "");
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!isFormValid()) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-    const { name, phone, message } = formData;
-    const whatsappNumber = "966571908888";
-    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-    window.open(whatsappUrl, "_blank");
-  };
 
   return (
     <>
