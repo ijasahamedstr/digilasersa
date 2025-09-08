@@ -66,11 +66,11 @@ function Eventsection() {
           align="center"
           gutterBottom
           sx={{
-            fontFamily: "Tajawal, sans-serif", // New font
+            fontFamily: "Tajawal, sans-serif",
             fontSize: "2.6rem",
-            fontWeight: 700, // Bold
+            fontWeight: 700,
             marginBottom: "30px",
-            color: "#096e69", // Optional color
+            color: "#096e69",
           }}
         >
           آخر أعمالنا
@@ -80,29 +80,28 @@ function Eventsection() {
           {Event.map((event, index) => (
             <SwiperSlide key={index}>
               <Card
-              sx={{
-              display: "flex",
-              flexDirection: { xs: "column", sm: "row" },
-              borderRadius: "8px",
-              boxShadow: "none", // Remove shadow
-              backgroundColor: "transparent",
-              border: "none", // Remove border
-              outline: "none", // Remove outline
-              width: "100%",
-              maxWidth: "100%",
-              margin: "0 auto",
-            }}
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  borderRadius: "8px",
+                  boxShadow: "none",
+                  backgroundColor: "transparent",
+                  border: "none",
+                  outline: "none",
+                  width: "100%",
+                  maxWidth: "100%",
+                  margin: "0 auto",
+                }}
               >
                 <CardMedia
                   component="img"
                   sx={{
                     width: { xs: "100%", sm: "50%" },
-                    height: { xs: 200, sm: "100%" },
-                    objectFit: "cover",
-                    border: "none",
+                    aspectRatio: "16/9",   // ✅ keeps image responsive ratio
+                    objectFit: "fill",    // ✅ no stretching, crop if needed
                     borderRadius: "8px",
                   }}
-                   image={event.newsimagelink}
+                  image={event.newsimagelink}
                   alt={event.title}
                 />
                 <Box

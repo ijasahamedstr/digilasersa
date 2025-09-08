@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   Container,
   Card,
@@ -11,7 +11,6 @@ import Slider from "react-slick";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import demoVideo from "./video/main_x360.mp4";
 import demoVideo1 from "./video/video_new.mp4";
 import demoVideo2 from "./video/video_n.mp4";
 import demoVideo3 from "./video/Videos.mp4";
@@ -37,7 +36,8 @@ function FeedbackCard({ item, index }) {
           component="div"
           sx={{
             position: "relative",
-            paddingTop: "56.25%", // 16:9 aspect ratio
+            paddingTop: "56.25%", // 16:9 fixed box
+            backgroundColor: "#000",
           }}
         >
           {item.type === "image" ? (
@@ -52,7 +52,8 @@ function FeedbackCard({ item, index }) {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "contain", // ✅ keep image ratio, no crop
+                backgroundColor: "#000",
               }}
             />
           ) : !playVideo ? (
@@ -74,7 +75,8 @@ function FeedbackCard({ item, index }) {
                 sx={{
                   width: "100%",
                   height: "100%",
-                  objectFit: "cover",
+                  objectFit: "contain", // ✅ keep ratio
+                  backgroundColor: "#000",
                 }}
               />
               <PlayCircleFilledWhiteIcon
@@ -84,11 +86,11 @@ function FeedbackCard({ item, index }) {
                   left: "50%",
                   transform: "translate(-50%, -50%)",
                   fontSize: "64px",
-                  color: "#DBD9D9", // Updated icon color
+                  color: "#DBD9D9",
                 }}
               />
             </Box>
-          ) : item.isLocal ? (
+          ) : (
             <video
               controls
               autoPlay
@@ -101,27 +103,13 @@ function FeedbackCard({ item, index }) {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "contain", // ✅ fixed 16:9 box, video not cropped
+                backgroundColor: "#000",
               }}
             >
               <source src={item.video} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-          ) : (
-            <iframe
-              src={item.video}
-              title={`Feedback Video ${index + 1}`}
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-              }}
-            />
           )}
         </CardMedia>
 
@@ -167,7 +155,7 @@ function FeedbackCard({ item, index }) {
 function Newssection() {
   const settings = {
     dots: true,
-    infinite: true, // <-- change this
+    infinite: true,
     speed: 600,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -175,14 +163,8 @@ function Newssection() {
     autoplaySpeed: 2000,
     adaptiveHeight: true,
     responsive: [
-      {
-        breakpoint: 960,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 600,
-        settings: { slidesToShow: 1 },
-      },
+      { breakpoint: 960, settings: { slidesToShow: 2 } },
+      { breakpoint: 600, settings: { slidesToShow: 1 } },
     ],
   };
 
@@ -195,15 +177,6 @@ function Newssection() {
       stars: 5,
       text: "شركة الليزر هي الافضل دايما في الشاشات 😍🤝",
     },
-    // {
-    //   name: "المحامي عبد اللطيف الملحم",
-    //   type: "video",
-    //   isLocal: true,
-    //   video: demoVideo,
-    //   poster: "https://i.ibb.co/kVDqVS8y/ezgif-frame-002.png",
-    //   stars: 4,
-    //   text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
-    // },
     {
       name: "المحامي بدر الزعبي ",
       type: "video",
