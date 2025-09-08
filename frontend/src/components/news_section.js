@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import {
   Container,
   Card,
@@ -36,7 +36,7 @@ function FeedbackCard({ item, index }) {
           component="div"
           sx={{
             position: "relative",
-            paddingTop: "56.25%", // 16:9 fixed box
+            paddingTop: "56.25%", // 16:9 box
             backgroundColor: "#000",
           }}
         >
@@ -52,7 +52,7 @@ function FeedbackCard({ item, index }) {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                objectFit: "contain", // ✅ keep image ratio, no crop
+                objectFit: "fill", // ✅ updated
                 backgroundColor: "#000",
               }}
             />
@@ -75,7 +75,7 @@ function FeedbackCard({ item, index }) {
                 sx={{
                   width: "100%",
                   height: "100%",
-                  objectFit: "contain", // ✅ keep ratio
+                  objectFit: "fill", // ✅ updated
                   backgroundColor: "#000",
                 }}
               />
@@ -103,7 +103,7 @@ function FeedbackCard({ item, index }) {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                objectFit: "contain", // ✅ fixed 16:9 box, video not cropped
+                objectFit: "fill", // ✅ updated
                 backgroundColor: "#000",
               }}
             >
