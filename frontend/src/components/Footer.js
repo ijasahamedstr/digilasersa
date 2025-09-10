@@ -108,26 +108,108 @@ export default function Footer() {
 
 // Right Text Section (Contact Info)
 function RightTextSection() {
-  return (
-    <Grid item xs={12} sm={6} sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end", textAlign: "justify", pr: 5 }}>
-      <Typography variant="h4" color="white">Contact Us</Typography>
-      <Typography variant="h5" color="#00fffc" sx={{ textAlign: "justify", direction: "rtl" }}>للطلب والإستفسار /</Typography>
+  const whatsappNumber = "966505868888";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("👋 مرحبًا، أود الاستفسار.")}`;
 
-      <Grid container spacing={2} sx={{ pt: 3, direction: "rtl", alignItems: "center" }}>
-        {[{ label: "رقم الاتصال", value: "8888 197 057" }, { label: "بريد إلكتروني", value: "info@digilaser.sa" }].map(({ label, value }) => (
+  return (
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        textAlign: "justify",
+        pr: 5,
+      }}
+    >
+      <Typography variant="h4" color="white">
+        Contact Us
+      </Typography>
+      <Typography
+        variant="h5"
+        color="#00fffc"
+        sx={{ textAlign: "justify", direction: "rtl" }}
+      >
+        للطلب والإستفسار /
+      </Typography>
+
+      <Grid
+        container
+        spacing={2}
+        sx={{ pt: 3, direction: "rtl", alignItems: "center" }}
+      >
+        {[
+          { label: "رقم الاتصال", value: "8888 197 057" },
+          { label: "بريد إلكتروني", value: "info@digilaser.sa" },
+        ].map(({ label, value }) => (
           <React.Fragment key={label}>
             <Grid item xs={4}>
-              <Typography variant="body1" sx={{ color: "white", fontSize: { xs: "17px", sm: "18px", md: "20px" }, textAlign: "right" }}>{label}</Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "white",
+                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                  textAlign: "right",
+                }}
+              >
+                {label}
+              </Typography>
             </Grid>
             <Grid item xs={1}>
-              <Typography variant="body1" sx={{ color: "white", fontSize: { xs: "17px", sm: "18px", md: "20px" }, textAlign: "right" }}>:</Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "white",
+                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                  textAlign: "right",
+                }}
+              >
+                :
+              </Typography>
             </Grid>
             <Grid item xs={7}>
-              <Typography variant="body1" sx={{ color: "white", fontSize: { xs: "17px", sm: "18px", md: "20px" }, textAlign: "right" }}>{value}</Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "white",
+                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                  textAlign: "right",
+                }}
+              >
+                {value}
+              </Typography>
             </Grid>
           </React.Fragment>
         ))}
       </Grid>
+
+      {/* 🔥 Blinking WhatsApp Button */}
+      <Box sx={{ mt: 3, display: "flex", justifyContent: "end", width: "100%",marginTop:'60px' }}>
+        <Button
+          variant="contained"
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          startIcon={<WhatsApp />}
+          sx={{
+            backgroundColor: "#00fffc",
+            color: "#0a0a0aff",
+            fontWeight: "bold",
+            fontSize: "18px",
+            px: 4,
+            py: 1,
+            borderRadius: "30px",
+            animation: "blinker 1.2s linear infinite",
+            "@keyframes blinker": {
+              "50%": { opacity: 0.3 },
+            },
+          }}
+        >
+          للشكاوى
+        </Button>
+      </Box>
     </Grid>
   );
 }
@@ -161,7 +243,7 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
         ))}
 
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-          <Button type="submit" variant="contained" sx={{ backgroundColor: "#00fffc", color: "#1e272e", width: "50%" }}>
+          <Button type="submit" variant="contained" sx={{ backgroundColor: "#00fffc", color: "#1e272e", width: "50%",borderRadius: "30px",fontWeight: "bold",fontSize: "18px" }}>
             ارسال
           </Button>
         </Box>
