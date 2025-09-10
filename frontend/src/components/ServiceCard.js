@@ -210,30 +210,31 @@ function ServiceCard() {
               paddingBottom: "30px",
             }}
           />
-          <Button
-            variant="contained"
-            size="small"
-            sx={{
-              position: "absolute",
-              top: { xs: "10%", sm: "55%" },
-              left: "30%",
-              transform: "translate(-50%, -50%)",
-              backgroundColor: "white",
-              color: "#096e69",
-              fontFamily: "Tajawal",
-              fontWeight: 700,
-              fontSize: { xs: "10px", sm: "14px", md: "14px" }, // smaller font
-              px: { xs: 1, sm: 2 }, // smaller horizontal padding
-              py: { xs: 0.25, sm: 0.5 }, // smaller vertical padding
-              borderRadius: "25px",
-              boxShadow: 2,
-              "&:hover": {
-                backgroundColor: "#e6e6e6",
-              },
-            }}
-          >
-            المزيد من الخدمات
-          </Button>
+         <Button
+          variant="contained"
+          size="small"
+          sx={{
+            position: "absolute",
+            top: { xs: "43%", sm: "55%" }, // mobile 43%, larger 55%
+            left: "30%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "white",
+            color: "#096e69",
+            fontFamily: "Tajawal",
+            fontWeight: 700,
+            fontSize: { xs: "5px", sm: "14px", md: "14px" }, // smaller font only on mobile
+            px: { xs: 1, sm: 2 }, // horizontal padding (2px 8px ≈ px:1)
+            py: { xs: 0.25, sm: 0.5 }, // vertical padding
+            borderRadius: "25px",
+            boxShadow: 2,
+            "&:hover": {
+              backgroundColor: "#e6e6e6",
+            },
+          }}
+        >
+          المزيد من الخدمات
+        </Button>
+
         </Box>
       </Container>
     </Box>

@@ -187,6 +187,14 @@ function Newssection() {
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
     },
     {
+      name: "م / محمد الجاسم",
+      type: "image",
+      image:
+        "https://i.ibb.co/rKT1n34T/Whats-App-Image-2025-09-09-at-9-28-03-PM.webp",
+      stars: 5,
+      text: "شركة الليزر هي الافضل دايما في الشاشات 😍🤝",
+    },
+    {
       name: "المحامي محمد البلوشى",
       type: "video",
       isLocal: true,
@@ -194,6 +202,14 @@ function Newssection() {
       poster: "https://i.ibb.co/4RwrX7QC/ezgif-frame-001.webp",
       stars: 4,
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
+    },
+      {
+      name: "م / محمد الجاسم",
+      type: "image",
+      image:
+        "https://i.ibb.co/wNBTxp6p/Whats-App-Image-2025-09-09-at-9-28-04-PM.webp",
+      stars: 5,
+      text: "شركة الليزر هي الافضل دايما في الشاشات 😍🤝",
     },
     {
       name: "كابتن بوربيعة وكابتن مازن",
@@ -203,6 +219,14 @@ function Newssection() {
       poster: "https://i.ibb.co/1Yz3mRYb/ezgif-frame-001.webp",
       stars: 4,
       text: "تجربة ممتازة وجودة عالية. شكرًا لكم.",
+    },
+    {
+      name: "م / محمد الجاسم",
+      type: "image",
+      image:
+        "https://i.ibb.co/HDts0yfq/Whats-App-Image-2025-09-09-at-9-28-02-PM.webp",
+      stars: 5,
+      text: "شركة الليزر هي الافضل دايما في الشاشات 😍🤝",
     },
   ];
 
