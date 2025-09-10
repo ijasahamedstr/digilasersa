@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -13,23 +13,24 @@ import {
 import { Twitter, Instagram, LinkedIn, YouTube, WhatsApp } from "@mui/icons-material";
 import { FaSnapchat, FaTiktok } from "react-icons/fa";
 
-const INITIAL_FORM_STATE = { name: "", phone: "", message: "" };
+const INITIAL_FORM_STATE = {
+  name: "",
+  phone: "",
+  message: "",
+};
 
 export default function Footer() {
-  // State for two forms
-  const [formData1, setFormData1] = useState(INITIAL_FORM_STATE);
-  const [formData2, setFormData2] = useState(INITIAL_FORM_STATE);
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
-  const handleChange = (setFormData) => ({ target: { name, value } }) => {
+  const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const isFormValid = (formData) =>
-    Object.values(formData).every((field) => field.trim() !== "");
+  const isFormValid = () => Object.values(formData).every((field) => field.trim() !== "");
 
-  const handleFormSubmit = (formData) => (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (!isFormValid(formData)) {
+    if (!isFormValid()) {
       alert("Please fill out all fields.");
       return;
     }
@@ -47,27 +48,12 @@ export default function Footer() {
       {/* Contact Section */}
       <Box sx={styles.section}>
         <Container maxWidth="xl">
-          <Typography variant="h4" color="white" style={{textAlign:'end'}}>Contact Us</Typography>
-          {/* Section Heading */}
-          <Typography variant="h4" sx={styles.sectionHeading}>
-            للطلب والإستفسار
-          </Typography>
-
           <Grid container spacing={4}>
-            {/* Form 1 */}
+            <RightTextSection />
             <LeftFormSection
-              title="للشكاوى"
-              formData={formData1}
-              handleChange={handleChange(setFormData1)}
-              handleFormSubmit={handleFormSubmit(formData1)}
-            />
-
-            {/* Form 2 */}
-            <LeftFormSection
-              title="طلب عرض سعر"
-              formData={formData2}
-              handleChange={handleChange(setFormData2)}
-              handleFormSubmit={handleFormSubmit(formData2)}
+              formData={formData}
+              handleChange={handleChange}
+              handleFormSubmit={handleFormSubmit}
             />
           </Grid>
         </Container>
@@ -120,8 +106,116 @@ export default function Footer() {
   );
 }
 
-// Reusable Left Form Section
-function LeftFormSection({ title, formData, handleChange, handleFormSubmit }) {
+// Right Text Section (Contact Info)
+function RightTextSection() {
+  const whatsappNumber = "966505868888";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("👋 مرحبًا، أود الاستفسار.")}`;
+
+  return (
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        textAlign: "justify",
+        pr: 5,
+      }}
+    >
+      <Typography variant="h4" color="white">
+        Contact Us
+      </Typography>
+      <Typography
+        variant="h5"
+        color="#00fffc"
+        sx={{ textAlign: "justify", direction: "rtl" }}
+      >
+        للطلب والإستفسار /
+      </Typography>
+
+      <Grid
+        container
+        spacing={2}
+        sx={{ pt: 3, direction: "rtl", alignItems: "center" }}
+      >
+        {[
+          { label: "رقم الاتصال", value: "8888 197 057" },
+          { label: "بريد إلكتروني", value: "info@digilaser.sa" },
+        ].map(({ label, value }) => (
+          <React.Fragment key={label}>
+            <Grid item xs={4}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "white",
+                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                  textAlign: "right",
+                }}
+              >
+                {label}
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "white",
+                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                  textAlign: "right",
+                }}
+              >
+                :
+              </Typography>
+            </Grid>
+            <Grid item xs={7}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "white",
+                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                  textAlign: "right",
+                }}
+              >
+                {value}
+              </Typography>
+            </Grid>
+          </React.Fragment>
+        ))}
+      </Grid>
+
+      {/* 🔥 Blinking WhatsApp Button */}
+      <Box sx={{ mt: 3, display: "flex", justifyContent: "end", width: "100%",marginTop:'60px' }}>
+        <Button
+          variant="contained"
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          startIcon={<WhatsApp />}
+          sx={{
+            backgroundColor: "#00fffc",
+            color: "#0a0a0aff",
+            fontWeight: "bold",
+            fontSize: "18px",
+            px: 4,
+            py: 1,
+            borderRadius: "30px",
+            animation: "blinker 1.2s linear infinite",
+            "@keyframes blinker": {
+              "50%": { opacity: 0.3 },
+            },
+          }}
+        >
+          للشكاوى
+        </Button>
+      </Box>
+    </Grid>
+  );
+}
+
+// Left Form Section
+function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
   const fields = [
     { label: "الاسم", name: "name", type: "text" },
     { label: "جـوال", name: "phone", type: "text" },
@@ -130,7 +224,7 @@ function LeftFormSection({ title, formData, handleChange, handleFormSubmit }) {
 
   return (
     <Grid item xs={12} sm={6}>
-      <Typography variant="h6" sx={styles.formTitle}>{title}</Typography>
+      <Typography variant="h6" sx={styles.formTitle}>للإستفسار ..</Typography>
       <Box component="form" sx={styles.form} onSubmit={handleFormSubmit}>
         {fields.map(({ label, name, type }) => (
           <Box key={name} sx={styles.formGroup}>
@@ -149,7 +243,7 @@ function LeftFormSection({ title, formData, handleChange, handleFormSubmit }) {
         ))}
 
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-          <Button type="submit" variant="contained" sx={{ backgroundColor: "#00fffc", color: "#1e272e", width: "50%" }}>
+          <Button type="submit" variant="contained" sx={{ backgroundColor: "#00fffc", color: "#1e272e", width: "50%",borderRadius: "30px",fontWeight: "bold",fontSize: "18px" }}>
             ارسال
           </Button>
         </Box>
@@ -169,13 +263,6 @@ const styles = {
     padding: "50px 0",
     mt: "-30px",
     direction: "ltr",
-  },
-  sectionHeading: {
-    color: "#00fffc",
-    fontFamily: "Tajawal",
-    fontSize: "32px",
-    mb: 4,
-    textAlign: "end", // aligns text to the end
   },
   formTitle: { color: "white", fontFamily: "Tajawal", fontSize: "26px", textAlign: "right", mb: 2, direction: "rtl" },
   form: { display: "flex", flexDirection: "column", gap: 2, direction: "rtl" },
