@@ -1,10 +1,12 @@
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -14,23 +16,77 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-// SweetAlert2
-import Swal from "sweetalert2";
-
 const EditNews = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     newsname: "",
     newsdec: "",
-    newsimagelink: "",
+    newsimagelinks: [""], // array of image links
   });
-  const [loading, setLoading] = useState(false);
 
-  // Handle input field changes
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+  // Handle single input changes
+  const handleInputChange = ({ target: { name, value } }) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
+
+  // Handle multiple image link changes
+  const handleImageChange = (index, value) => {
+    const updatedLinks = [...formData.newsimagelinks];
+    updatedLinks[index] = value;
+    setFormData((prevState) => ({
+      ...prevState,
+      newsimagelinks: updatedLinks,
+    }));
+  };
+
+  // Add new image field
+  const addImageField = () => {
+    setFormData((prevState) => ({
+      ...prevState,
+      newsimagelinks: [...prevState.newsimagelinks, ""],
+    }));
+  };
+
+  // Remove image field
+  const removeImageField = (index) => {
+    const updatedLinks = formData.newsimagelinks.filter((_, i) => i !== index);
+    setFormData((prevState) => ({
+      ...prevState,
+      newsimagelinks: updatedLinks,
+    }));
+  };
+
+  // Fetch existing news data
+  useEffect(() => {
+    const fetchNews = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/News/${id}`);
+        setFormData({
+          newsname: response.data.newsname || "",
+          newsdec: response.data.newsdec || "",
+          newsimagelinks: response.data.newsimagelinks?.length
+            ? response.data.newsimagelinks
+            : [""],
+        });
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Error fetching News data. Please try again.",
+        });
+      }
+    };
+
+    fetchNews();
+  }, [id]);
 
   // Handle form submission
   const handleSubmit = async (event) => {
@@ -47,20 +103,13 @@ const EditNews = () => {
 
     try {
       setLoading(true);
-
-      const response = await axios.put(`${process.env.REACT_APP_API_HOST}/News/${id}`, formData);
-
+      await axios.put(`${process.env.REACT_APP_API_HOST}/News/${id}`, formData);
       setLoading(false);
+
       Swal.fire({
         icon: "success",
         title: "Success",
         text: "News updated successfully!",
-      });
-
-      setFormData({
-        newsname: "",
-        newsdec: "",
-        newsimagelink: "",
       });
     } catch (err) {
       setLoading(false);
@@ -71,30 +120,6 @@ const EditNews = () => {
       });
     }
   };
-
-  useEffect(() => {
-    const fetchNews = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/News/${id}`);
-        setFormData({
-          newsname: response.data.newsname || "",
-          newsdec: response.data.newsdec || "",
-          newsimagelink: response.data.newsimagelink || "",
-        });
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "Error fetching News data. Please try again.",
-        });
-      }
-    };
-
-    fetchNews();
-  }, [id]);
 
   return (
     <DashboardLayout>
@@ -121,7 +146,6 @@ const EditNews = () => {
                 </MDTypography>
               </MDBox>
 
-              {/* Edit News Form */}
               <MDBox pt={3} px={2} sx={{ paddingBottom: "24px" }}>
                 <form onSubmit={handleSubmit}>
                   {/* News Name */}
@@ -148,16 +172,45 @@ const EditNews = () => {
                     onChange={handleInputChange}
                   />
 
-                  {/* News Image Link */}
-                  <TextField
-                    label="News Image Link"
+                  {/* Multiple News Image Links */}
+                  {formData.newsimagelinks.map((link, index) => (
+                    <MDBox key={index} display="flex" alignItems="center" sx={{ mb: 2 }}>
+                      <TextField
+                        label={`News Image Link ${index + 1}`}
+                        variant="outlined"
+                        fullWidth
+                        value={link}
+                        onChange={(e) => handleImageChange(index, e.target.value)}
+                      />
+                      {index > 0 && (
+                        <Button
+                          onClick={() => removeImageField(index)}
+                          color="error"
+                          sx={{ ml: 1 }}
+                        >
+                          Remove
+                        </Button>
+                      )}
+                    </MDBox>
+                  ))}
+
+                  {/* Add Another Image Button */}
+                  <Button
+                    onClick={addImageField}
                     variant="outlined"
                     fullWidth
-                    sx={{ mb: 2 }}
-                    name="newsimagelink"
-                    value={formData.newsimagelink}
-                    onChange={handleInputChange}
-                  />
+                    sx={{
+                      mb: 2,
+                      color: "#000",
+                      borderColor: "black",
+                      "&:hover": {
+                        borderColor: "black",
+                        backgroundColor: "rgba(0,0,0,0.04)",
+                      },
+                    }}
+                  >
+                    + Add Another Image
+                  </Button>
 
                   {/* Submit Button */}
                   <Button

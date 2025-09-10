@@ -8,8 +8,8 @@ const NewsSchema = new mongoose.Schema({
     newsdec: {
         type: String,
     },
-    newsimagelink: {
-        type: String,
+    newsimagelinks: {
+    type: [String] // <-- Fix: array of strings
     },
     date: {
         type: Date

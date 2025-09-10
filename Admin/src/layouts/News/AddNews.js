@@ -21,14 +21,41 @@ const AddNews = () => {
   const [News, setNews] = useState({
     newsname: "",
     newsdec: "",
-    newsimagelink: "",
+    newsimagelinks: [""], // store as array
   });
 
-  // Handle changes in input fields
+  // Handle changes in input fields (for single inputs)
   const handleChange = ({ target: { name, value } }) => {
     setNews((prevState) => ({
       ...prevState,
       [name]: value,
+    }));
+  };
+
+  // Handle changes for multiple image links
+  const handleImageChange = (index, value) => {
+    const updatedLinks = [...News.newsimagelinks];
+    updatedLinks[index] = value;
+    setNews((prevState) => ({
+      ...prevState,
+      newsimagelinks: updatedLinks,
+    }));
+  };
+
+  // Add new image field
+  const addImageField = () => {
+    setNews((prevState) => ({
+      ...prevState,
+      newsimagelinks: [...prevState.newsimagelinks, ""],
+    }));
+  };
+
+  // Remove image field
+  const removeImageField = (index) => {
+    const updatedLinks = News.newsimagelinks.filter((_, i) => i !== index);
+    setNews((prevState) => ({
+      ...prevState,
+      newsimagelinks: updatedLinks,
     }));
   };
 
@@ -56,7 +83,7 @@ const AddNews = () => {
           confirmButtonColor: "#3085d6",
           confirmButtonText: "OK",
         });
-        setNews({ newsname: "", newsdec: "", newsimagelink: "" });
+        setNews({ newsname: "", newsdec: "", newsimagelinks: [""] });
       }
     } catch (error) {
       Swal.fire({
@@ -123,16 +150,45 @@ const AddNews = () => {
                     onChange={handleChange}
                   />
 
-                  {/* News Image Link */}
-                  <TextField
-                    label="News Image Link"
+                  {/* Multiple News Image Links */}
+                  {News.newsimagelinks.map((link, index) => (
+                    <MDBox key={index} display="flex" alignItems="center" sx={{ mb: 2 }}>
+                      <TextField
+                        label={`News Image Link ${index + 1}`}
+                        variant="outlined"
+                        fullWidth
+                        value={link}
+                        onChange={(e) => handleImageChange(index, e.target.value)}
+                      />
+                      {index > 0 && (
+                        <Button
+                          onClick={() => removeImageField(index)}
+                          color="error"
+                          sx={{ ml: 1 }}
+                        >
+                          Remove
+                        </Button>
+                      )}
+                    </MDBox>
+                  ))}
+
+                  {/* Add Another Image Button (black style) */}
+                  <Button
+                    onClick={addImageField}
                     variant="outlined"
                     fullWidth
-                    sx={{ mb: 2 }}
-                    name="newsimagelink"
-                    value={News.newsimagelink}
-                    onChange={handleChange}
-                  />
+                    sx={{
+                      mb: 2,
+                      color: "#000000ff",
+                      borderColor: "black",
+                      "&:hover": {
+                        borderColor: "black",
+                        backgroundColor: "rgba(0,0,0,0.04)",
+                      },
+                    }}
+                  >
+                    + Add Another Image
+                  </Button>
 
                   {/* Submit Button */}
                   <Button

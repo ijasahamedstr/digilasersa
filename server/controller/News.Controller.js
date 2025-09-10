@@ -2,10 +2,10 @@ import moment from 'moment';
 import News from '../models/News.models.js';
 
 export const Newscreate = async (req, res) => {
-    const { newsname, newsdec,newsimagelink } = req.body;
+    const { newsname, newsdec,newsimagelinks } = req.body;
 
     // Input validation
-    if (!newsname || !newsdec || !newsimagelink) {
+    if (!newsname || !newsdec || !newsimagelinks) {
         return res.status(400).json({
             status: 400,
             message: 'Please provide gift name, gift type, and gift image.'
@@ -18,7 +18,7 @@ export const Newscreate = async (req, res) => {
         const newNews = new News({
             newsname,
             newsdec,
-            newsimagelink,
+            newsimagelinks: newsimagelinks || [],
             date,
         });
 
@@ -78,36 +78,34 @@ export const NewsDelete = async (req, res) => {
 
 
 // All Acccount Update
-export const Newsupdate  = async (req, res) => {
-    const { id } = req.params;
-    const { newsname } = req.body;
-    const { newsdec } = req.body;
-    const { newsimagelink } = req.body;
-    
+export const Newsupdate = async (req, res) => {
+  const { id } = req.params;
+  const { newsname, newsdec, newsimagelinks } = req.body; // destructure array
 
-    try {
-        // Find the user by ID
-        const user = await News.findById(id);
-        if (!user) {
-            return res.status(404).json({ status: 404, message: "User not found" });
-        }
-        // Update user details
-        if (newsname) {
-            user.newsname = newsname;
-        }
-        if (newsdec) {
-            user.newsdec = newsdec;
-        }
-         if (newsimagelink) {
-            user.newsimagelink = newsimagelink;
-        }
-        // Update image if a new file is uploade
-
-        // Save the updated user data
-        const updatedUser = await user.save();
-
-        res.status(200).json({ status: 200, updatedUser });
-    } catch (error) {
-        res.status(401).json({ status: 401, error });
+  try {
+    // Find the news item by ID
+    const newsItem = await News.findById(id);
+    if (!newsItem) {
+      return res.status(404).json({ status: 404, message: "News item not found" });
     }
+
+    // Update fields if they exist in the request
+    if (newsname) newsItem.newsname = newsname;
+    if (newsdec) newsItem.newsdec = newsdec;
+    if (Array.isArray(newsimagelinks) && newsimagelinks.length > 0) {
+      newsItem.newsimagelinks = newsimagelinks; // assign the new array
+    }
+
+    // Save updated news item
+    const updatedNews = await newsItem.save();
+
+    res.status(200).json({
+      status: 200,
+      message: "News updated successfully",
+      data: updatedNews,
+    });
+  } catch (error) {
+    console.error("Error updating News:", error);
+    res.status(500).json({ status: 500, message: "Internal server error", error: error.message });
+  }
 };

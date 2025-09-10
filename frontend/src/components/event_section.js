@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Box,
@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -22,9 +24,7 @@ function Eventsection() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/News`,
-        );
+        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/News`);
         setEvent(response.data);
       } catch (err) {
         console.error("Error fetching data: ", err);
@@ -33,7 +33,6 @@ function Eventsection() {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
@@ -54,13 +53,7 @@ function Eventsection() {
         paddingBottom: "50px",
       }}
     >
-      <Container
-        maxWidth="xl"
-        sx={{
-          paddingX: { xs: 2, sm: 3, md: 5 },
-          textAlign: "center",
-        }}
-      >
+      <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 5 }, textAlign: "center" }}>
         <Typography
           variant="h4"
           align="center"
@@ -69,14 +62,22 @@ function Eventsection() {
             fontFamily: "Tajawal, sans-serif",
             fontSize: "2.6rem",
             fontWeight: 700,
-            marginBottom: "30px",
+            mb: "30px",
             color: "#096e69",
           }}
         >
           آخر أعمالنا
         </Typography>
 
-        <Swiper spaceBetween={30} slidesPerView={1} loop>
+        {/* Main Event Slider */}
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={1}
+          loop
+          navigation
+          pagination={{ clickable: true }}
+          modules={[Navigation, Pagination]}
+        >
           {Event.map((event, index) => (
             <SwiperSlide key={index}>
               <Card
@@ -86,24 +87,50 @@ function Eventsection() {
                   borderRadius: "8px",
                   boxShadow: "none",
                   backgroundColor: "transparent",
-                  border: "none",
-                  outline: "none",
                   width: "100%",
-                  maxWidth: "100%",
                   margin: "0 auto",
                 }}
               >
-                <CardMedia
-                  component="img"
+                {/* Image slider (50%) */}
+                <Box
                   sx={{
                     width: { xs: "100%", sm: "50%" },
-                    aspectRatio: "16/9",   // ✅ keeps image responsive ratio
-                    objectFit: "fill",    // ✅ no stretching, crop if needed
-                    borderRadius: "8px",
+                    pr: { sm: 1 },
+                    pb: { xs: 1, sm: 0 },
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
-                  image={event.newsimagelink}
-                  alt={event.title}
-                />
+                >
+                  <Swiper
+                    spaceBetween={10}
+                    slidesPerView={1}
+                    navigation
+                    pagination={{ clickable: true }}
+                    modules={[Navigation, Pagination, Autoplay]}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }} // autoplay every 3s
+                    loop
+                    style={{ width: "100%", height: "100%" }}
+                  >
+                    {event.newsimagelinks?.map((image, i) => (
+                      <SwiperSlide key={i}>
+                        <CardMedia
+                          component="img"
+                          image={image}
+                          alt={`${event.newsname} - ${i + 1}`}
+                          sx={{
+                            width: "100%",
+                            height: "400px", // fixed height
+                            objectFit: "fill",
+                            borderRadius: "8px",
+                          }}
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </Box>
+
+                {/* Text content (50%) */}
                 <Box
                   sx={{
                     width: { xs: "100%", sm: "50%" },
@@ -111,12 +138,10 @@ function Eventsection() {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
-                    paddingLeft: 2,
-                    paddingRight: 2,
-                    paddingTop: { xs: 2, sm: 0 },
+                    pl: { sm: 1 },
                   }}
                 >
-                  <CardContent sx={{ height: "100%" }}>
+                  <CardContent>
                     <Typography
                       variant="h3"
                       gutterBottom
@@ -130,10 +155,7 @@ function Eventsection() {
                     <Typography
                       variant="body1"
                       paragraph
-                      sx={{
-                        fontSize: { xs: "1rem", md: "1.25rem" },
-                        fontFamily: "Tajawal",
-                      }}
+                      sx={{ fontSize: { xs: "1rem", md: "1.25rem" }, fontFamily: "Tajawal" }}
                     >
                       {event.newsdec}
                     </Typography>

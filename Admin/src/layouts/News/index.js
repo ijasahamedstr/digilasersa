@@ -127,13 +127,16 @@ function News() {
     ),
     News_Image: (
       <MDBox>
-        {item.newsimagelink ? (
+        {item.newsimagelinks && item.newsimagelinks.length > 0 ? (
           <Image.PreviewGroup>
-            <Image
-              src={item.newsimagelink}
-              alt="MediaCommunicationsphotolink"
-              style={{ maxWidth: "100px", borderRadius: "8px" }}
-            />
+            {item.newsimagelinks.map((link, index) => (
+              <Image
+                key={index}
+                src={link}
+                alt={`News Image ${index + 1}`}
+                style={{ maxWidth: "100px", borderRadius: "8px", marginRight: "8px" }}
+              />
+            ))}
           </Image.PreviewGroup>
         ) : (
           <Image
