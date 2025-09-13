@@ -32,9 +32,9 @@ app.get('/', (req, res) => {
 });
 
 app.use(cors({
-  origin:"https://digilasersa.vercel.app",
-  methods:"GET,POST,PUT,DELETE",
-  credentials:true
+  origin: ["https://digilasersa.vercel.app", "https://digilasersa-g2hb.vercel.app"],
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true
 }));
 
 //Data understanding middleware
