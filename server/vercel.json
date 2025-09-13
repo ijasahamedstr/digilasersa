@@ -11,5 +11,10 @@
       "src": "/(.*)",
       "dest": "server.js"
     }
-  ]
+  ],
+  "functions": {
+    "api/**": {
+      "excludeFiles": "{.next,.git,node_modules,public}/**"
+    }
+  }
 }
