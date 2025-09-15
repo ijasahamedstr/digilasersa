@@ -13,8 +13,7 @@ import {
   FaYoutube,
   FaSnapchat,
   FaTiktok,
-  FaWhatsapp,
-  FaTimes,
+  FaWhatsapp
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -24,15 +23,15 @@ import axios from "axios";
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/C50rPX0/New-Web-Gifts.webp",
+    img: "https://i.ibb.co/rR1CHjzN/New-Web-Sound.webp",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/C50rPX0/New-Web-Gifts.webp",
+    img: "https://i.ibb.co/rR1CHjzN/New-Web-Sound.webp",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/C50rPX0/New-Web-Gifts.webp",
+    img: "https://i.ibb.co/rR1CHjzN/New-Web-Sound.webp",
   },
 ];
 
