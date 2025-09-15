@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
 // Allow specific origins
 app.use(cors({
-  origin: ["https://digilasersa-frontend.vercel.app", "https://digilasersa-admin.vercel.app"],
+  origin: ["https://www.digilaser.sa", "https://digilasersa-admin.vercel.app"],
   methods: ["GET","POST","PUT","DELETE"],
   credentials: true
 }));

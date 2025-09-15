@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -108,6 +109,9 @@ export default function Footer() {
 
 // Right Text Section (Contact Info)
 function RightTextSection() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   const whatsappNumber = "966505868888";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("👋 مرحبًا، أود الاستفسار.")}`;
 
@@ -135,81 +139,86 @@ function RightTextSection() {
         للطلب والإستفسار /
       </Typography>
 
-      <Grid
-        container
-        spacing={2}
-        sx={{ pt: 3, direction: "rtl", alignItems: "center" }}
-      >
-        {[
-          { label: "رقم الاتصال", value: "8888 197 057" },
-          { label: "بريد إلكتروني", value: "info@digilaser.sa" },
-        ].map(({ label, value }) => (
-          <React.Fragment key={label}>
-            <Grid item xs={4}>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: "white",
-                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                  textAlign: "right",
-                }}
-              >
-                {label}
-              </Typography>
-            </Grid>
-            <Grid item xs={1}>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: "white",
-                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                  textAlign: "right",
-                }}
-              >
-                :
-              </Typography>
-            </Grid>
-            <Grid item xs={7}>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: "white",
-                  fontSize: { xs: "17px", sm: "18px", md: "20px" },
-                  textAlign: "right",
-                }}
-              >
-                {value}
-              </Typography>
-            </Grid>
-          </React.Fragment>
-        ))}
-      </Grid>
-
-      {/* 🔥 Blinking WhatsApp Button */}
-      <Box sx={{ mt: 3, display: "flex", justifyContent: "end", width: "100%",marginTop:'60px' }}>
-        <Button
-          variant="contained"
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          startIcon={<WhatsApp />}
-          sx={{
-            backgroundColor: "#00fffc",
-            color: "#0a0a0aff",
-            fontWeight: "bold",
-            fontSize: "18px",
-            px: 4,
-            py: 1,
-            borderRadius: "30px",
-            animation: "blinker 1.2s linear infinite",
-            "@keyframes blinker": {
-              "50%": { opacity: 0.3 },
-            },
-          }}
+      {/* ✅ Show contact info ONLY on Home Page */}
+      {isHome && (
+        <Grid
+          container
+          spacing={2}
+          sx={{ pt: 3, direction: "rtl", alignItems: "center" }}
         >
-          للشكاوى
-        </Button>
-      </Box>
+          {[
+            { label: "رقم الاتصال", value: "8888 197 057" },
+            { label: "بريد إلكتروني", value: "info@digilaser.sa" },
+          ].map(({ label, value }) => (
+            <React.Fragment key={label}>
+              <Grid item xs={4}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "white",
+                    fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                    textAlign: "right",
+                  }}
+                >
+                  {label}
+                </Typography>
+              </Grid>
+              <Grid item xs={1}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "white",
+                    fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                    textAlign: "right",
+                  }}
+                >
+                  :
+                </Typography>
+              </Grid>
+              <Grid item xs={7}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "white",
+                    fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                    textAlign: "right",
+                  }}
+                >
+                  {value}
+                </Typography>
+              </Grid>
+            </React.Fragment>
+          ))}
+        </Grid>
+      )}
+
+      {/* 🔥 Show Complaints Button ONLY if not on Home Page */}
+      {!isHome && (
+        <Box sx={{ mt: 3, display: "flex", justifyContent: "end", width: "100%", marginTop: "60px" }}>
+          <Button
+            variant="contained"
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            startIcon={<WhatsApp />}
+            sx={{
+              backgroundColor: "#00fffc",
+              color: "#0a0a0aff",
+              fontWeight: "bold",
+              fontSize: "18px",
+              px: 4,
+              py: 1,
+              borderRadius: "30px",
+              animation: "blinker 1.2s linear infinite",
+              "@keyframes blinker": {
+                "50%": { opacity: 0.3 },
+              },
+            }}
+          >
+            للشكاوى
+          </Button>
+        </Box>
+      )}
     </Grid>
   );
 }
@@ -224,7 +233,9 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
 
   return (
     <Grid item xs={12} sm={6}>
-      <Typography variant="h6" sx={styles.formTitle}>للإستفسار ..</Typography>
+      <Typography variant="h6" sx={styles.formTitle}>
+        للإستفسار ..
+      </Typography>
       <Box component="form" sx={styles.form} onSubmit={handleFormSubmit}>
         {fields.map(({ label, name, type }) => (
           <Box key={name} sx={styles.formGroup}>
@@ -243,7 +254,18 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
         ))}
 
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-          <Button type="submit" variant="contained" sx={{ backgroundColor: "#00fffc", color: "#1e272e", width: "50%",borderRadius: "30px",fontWeight: "bold",fontSize: "18px" }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              backgroundColor: "#00fffc",
+              color: "#1e272e",
+              width: "50%",
+              borderRadius: "30px",
+              fontWeight: "bold",
+              fontSize: "18px",
+            }}
+          >
             ارسال
           </Button>
         </Box>
@@ -264,9 +286,26 @@ const styles = {
     mt: "-30px",
     direction: "ltr",
   },
-  formTitle: { color: "white", fontFamily: "Tajawal", fontSize: "26px", textAlign: "right", mb: 2, direction: "rtl" },
+  formTitle: {
+    color: "white",
+    fontFamily: "Tajawal",
+    fontSize: "26px",
+    textAlign: "right",
+    mb: 2,
+    direction: "rtl",
+  },
   form: { display: "flex", flexDirection: "column", gap: 2, direction: "rtl" },
   formGroup: { display: "flex", alignItems: "center", gap: 2 },
-  label: { color: "white", fontFamily: "Tajawal", fontSize: "22px", width: "150px", textAlign: "right" },
-  input: { backgroundColor: "#17202a", borderRadius: "5px", "& .MuiInputBase-input": { color: "#fff" } },
+  label: {
+    color: "white",
+    fontFamily: "Tajawal",
+    fontSize: "22px",
+    width: "150px",
+    textAlign: "right",
+  },
+  input: {
+    backgroundColor: "#17202a",
+    borderRadius: "5px",
+    "& .MuiInputBase-input": { color: "#fff" },
+  },
 };
