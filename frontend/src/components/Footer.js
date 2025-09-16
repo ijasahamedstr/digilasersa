@@ -188,38 +188,37 @@ function RightTextSection() {
       {/* 🔥 Show Complaints Button ONLY if not on Home Page */}
       {!isHome && (
         <Box
-          sx={{
-            mt: 3,
-            display: "flex",
-            justifyContent: "center", // ✅ زر بالمنتصف
-            width: "100%",
-            marginTop: "60px",
-          }}
-        >
-          <Button
-            variant="contained"
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            startIcon={<WhatsApp />}
-            sx={{
-              backgroundColor: "#00fffc",
-              color: "#0a0a0aff",
-              fontWeight: "bold",
-              fontSize: "18px",
-              px: 4,
-              py: 1.5,
-              borderRadius: "30px",
-              width: { xs: "80%", sm: "60%", md: "40%" }, // ✅ زر أطول
-              animation: "blinker 1.2s linear infinite",
-              "@keyframes blinker": {
-                "50%": { opacity: 0.3 },
-              },
-            }}
-          >
-            للشكاوى
-          </Button>
-        </Box>
+  sx={{
+     mt: { xs: 12, sm: 14, md: 18 }, // ✅ more space on all screen sizes
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
+  }}
+>
+  <Button
+    variant="contained"
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    startIcon={<WhatsApp />}
+    sx={{
+      backgroundColor: "#00fffc",
+      color: "#0a0a0aff",
+      fontWeight: "bold",
+      fontSize: "18px",
+      px: 4,
+      py: 1.5,
+      borderRadius: "30px",
+      width: { xs: "80%", sm: "60%", md: "40%" },
+      animation: "blinker 1.2s linear infinite",
+      "@keyframes blinker": {
+        "50%": { opacity: 0.3 },
+      },
+    }}
+  >
+    للشكاوى
+  </Button>
+</Box>
       )}
     </Grid>
   );

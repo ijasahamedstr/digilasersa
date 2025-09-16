@@ -4,8 +4,6 @@ import {
   Box,
   Typography,
   CircularProgress,
-  useMediaQuery, // Import useMediaQuery
-  useTheme,      // Import useTheme
 } from "@mui/material";
 import {
   FaInstagram,
@@ -19,7 +17,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Carousel } from "react-bootstrap";
 import axios from "axios";
-import { Grid } from "@mui/material"; // Import Grid
 
 const carouselItems = [
   {
@@ -28,11 +25,11 @@ const carouselItems = [
   },
   {
     id: 2,
-    img: "https://i.ibb.co/rR1CHjzN/New-Web-Sound.webp", // Consider using different images if intended
+    img: "https://i.ibb.co/rR1CHjzN/New-Web-Sound.webp",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/rR1CHjzN/New-Web-Sound.webp", // Consider using different images if intended
+    img: "https://i.ibb.co/rR1CHjzN/New-Web-Sound.webp",
   },
 ];
 
@@ -61,8 +58,6 @@ const socialLinks = [
 const SoundSection = () => {
   const [loading, setLoading] = useState(true); // Splash screen
   const [error, setError] = useState(null);
-  const theme = useTheme(); // Get the theme
-  const isMobile = useMediaQuery(theme.breakpoints.down('md')); // Detect mobile view
 
   // 🔹 Scroll to top on component mount
   useEffect(() => {
@@ -124,174 +119,170 @@ const SoundSection = () => {
 
   return (
     <>
-      <Container
-        maxWidth={false}
-        style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}
-      >
-        {/* Carousel Section */}
-        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-          <Carousel
-            fade
-            nextIcon={
-              <span
-                className="carousel-control-next-icon"
-                style={{ backgroundColor: "black" }}
+    <Container
+      maxWidth={false}
+      style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}
+    >
+      {/* Carousel Section */}
+      <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+        <Carousel
+          fade
+          nextIcon={
+            <span
+              className="carousel-control-next-icon"
+              style={{ backgroundColor: "black" }}
+            />
+          }
+          prevIcon={
+            <span
+              className="carousel-control-prev-icon"
+              style={{ backgroundColor: "black" }}
+            />
+          }
+        >
+          {carouselItems.map((item) => (
+            <Carousel.Item key={item.id}>
+              <img
+                className="d-block w-100"
+                src={item.img}
+                alt={`Slide ${item.id}`}
+                style={{
+                  objectFit: "cover",
+                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                }}
               />
-            }
-            prevIcon={
-              <span
-                className="carousel-control-prev-icon"
-                style={{ backgroundColor: "black" }}
-              />
-            }
-          >
-            {carouselItems.map((item) => (
-              <Carousel.Item key={item.id}>
-                <img
-                  className="d-block w-100"
-                  src={item.img}
-                  alt={`Slide ${item.id}`}
-                  style={{
-                    objectFit: "cover",
-                    boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-                  }}
-                />
-              </Carousel.Item>
-            ))}
-          </Carousel>
+            </Carousel.Item>
+          ))}
+        </Carousel>
 
-          {/* Social Media Icons on the Left Side */}
-          <Box
-            sx={{
-              position: "fixed",
-              top: "50%",
-              left: 0,
-              transform: "translateY(-50%)",
-              display: { xs: "none", md: "flex" },
-              flexDirection: "column",
-              gap: 2,
-              zIndex: 1200,
-              pl: 2,
-            }}
-          >
-            {socialLinks.map(({ icon, link }, index) => (
-              <a
-                key={index}
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Box
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "50%",
-                    backgroundColor: "#06f9f3",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    color: "#17202a",
-                    boxShadow: 3,
-                    transition: "transform 0.3s ease",
-                    "&:hover": { transform: "scale(1.2)" },
-                  }}
-                >
-                  {icon}
-                </Box>
-              </a>
-            ))}
-          </Box>
-        </Box>
-      </Container>
-
-      {/* Consultation Section */}
-      <Box
-        component="section"
-        sx={{
-          width: "100%",
-          mt: "0px",
-          mb: "8px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "stretch",
-          minHeight: { xs: "auto", md: "70vh" },
-          py: 0,
-          backgroundColor: "#eaecee",
-          backgroundImage: 'url("https://i.ibb.co/3gckqfJ/New-Web-Sound01.webp")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
+        {/* Social Media Icons on the Left Side */}
         <Box
           sx={{
-            position: 'absolute',
-            top: 0,
+            position: "fixed",
+            top: "50%",
             left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(234, 236, 238, 0.7)',
-            zIndex: 1,
+            transform: "translateY(-50%)",
+            display: { xs: "none", md: "flex" },
+            flexDirection: "column",
+            gap: 2,
+            zIndex: 1200,
+            pl: 2,
           }}
-        />
-        <Container maxWidth="xl" sx={{ px: { xs: 2, md: 0 }, zIndex: 2 }}>
-          <Grid
-            container
-            spacing={isMobile ? 2 : 4}
-            sx={{
-              height: "100%",
-              flexDirection: { xs: 'column-reverse', md: 'row' },
-              alignItems: 'center',
-            }}
-          >
-            {/* Left Side Text */}
-            <Grid item xs={12} md={6} sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              textAlign: { xs: 'center', md: 'right' },
-              order: { xs: 2, md: 1 } // Text appears below image on mobile
-            }}>
-              <Typography
-                variant="h4"
+        >
+          {socialLinks.map(({ icon, link }, index) => (
+            <a
+              key={index}
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Box
                 sx={{
-                  color: theme.palette.common.black, // Use theme color
-                  fontWeight: 'bold',
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  backgroundColor: "#06f9f3",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#17202a",
+                  boxShadow: 3,
+                  transition: "transform 0.3s ease",
+                  "&:hover": { transform: "scale(1.2)" },
                 }}
               >
-                استشارات مجانية
-              </Typography>
-            </Grid>
-
-            {/* Right Side Image */}
-            <Grid item xs={12} md={6} sx={{
-              display: "flex",
-              justifyContent: 'center',
-              height: "100%",
-              minHeight: { xs: '200px', md: 'auto' },
-              // Apply negative margin right and transparency for desktop
-              marginRight: { xs: 0, md: '-200px' },
-              opacity: { xs: 1, md: 0.5 }, // Adjust opacity for desktop
-              zIndex: 3, // Ensure it's above the overlay if desired
-              order: { xs: 1, md: 2 } // Image appears above text on mobile
-            }}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/7tGdc5pR/180.webp"
-                alt="Sound"
-                sx={{
-                  width: "100%", // The image itself still takes 100% of its (now offset) grid item
-                  height: "auto",
-                  objectFit: "cover",
-                  boxShadow: 3,
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Container>
+                {icon}
+              </Box>
+            </a>
+          ))}
+        </Box>
       </Box>
+    </Container>
+     {/* Split Section: Text Left, Image Right */}
+      <section
+        style={{
+            width: "100%",
+            margin: "0 auto",
+            marginBottom: "30px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh", // full viewport height
+            paddingTop: "20px",
+            paddingBottom: "20px",
+            marginTop: "0px",
+            backgroundImage: 'url("https://i.ibb.co/3gckqfJ/New-Web-Sound01.webp")',
+            backgroundSize: "cover",        // makes the image cover the section
+            backgroundPosition: "center",   // centers the image
+            backgroundRepeat: "no-repeat",  // prevents tiling
+          }}
+        >
+        <Container
+          maxWidth="xl"
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: "100%",
+            px: { xs: 2, sm: 3, md: 5 },
+          }}
+        >
+          {/* Left Side Text */}
+          <Box sx={{ flex: 1, textAlign: { xs: "center", md: "left" } }}>
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: "bold",
+                lineHeight: 1.4,
+                mt: { xs: 6, md: 12 }, // significantly more top space
+                mb: { xs: 4, md: 5 },
+                color: "#008488",
+                fontSize: { xs: "2rem", sm: "2.6rem", md: "3rem" },
+              }}
+            >
+              أنظـمة صــوتيـة للمـساجد
+              <br />
+              وقـــاعــات الاجــتماعـات
+            </Typography>
+
+            <Typography
+              variant="h3"
+              sx={{
+                color: "#6c2632",
+                lineHeight: 1.6,
+                fontSize: { xs: "1rem", sm: "1.5rem", md: "1.5rem" },
+              }}
+            >
+              تجهز المساعد وشاعات الاجتماعات والمحاضرات بأحدث الأنظمة الصوتية الاشرافية الضمان صوت نقي وواضح
+            </Typography>
+          </Box>
+
+          {/* Right Side Image */}
+          <Box
+            sx={{
+              flex: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%", // full height of the container
+            }}
+          >
+            <Box
+              component="img"
+              src="https://i.ibb.co/7tGdc5pR/180.webp"
+              alt="Sound Systems"
+              sx={{
+                width: "100%",
+                height: "100%",        // stretch to fit full height
+                objectFit: "cover",    // maintain aspect ratio, crop if needed
+                borderRadius: 2,
+                boxShadow: 3,
+              }}
+            />
+          </Box>
+        </Container>
+      </section>
     </>
   );
 };
