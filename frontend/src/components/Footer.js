@@ -131,13 +131,6 @@ function RightTextSection() {
       <Typography variant="h4" color="white">
         Contact Us
       </Typography>
-      <Typography
-        variant="h5"
-        color="#00fffc"
-        sx={{ textAlign: "justify", direction: "rtl" }}
-      >
-        للطلب والإستفسار /
-      </Typography>
 
       {/* ✅ Show contact info ONLY on Home Page */}
       {isHome && (
@@ -194,7 +187,15 @@ function RightTextSection() {
 
       {/* 🔥 Show Complaints Button ONLY if not on Home Page */}
       {!isHome && (
-        <Box sx={{ mt: 3, display: "flex", justifyContent: "end", width: "100%", marginTop: "60px" }}>
+        <Box
+          sx={{
+            mt: 3,
+            display: "flex",
+            justifyContent: "center", // ✅ زر بالمنتصف
+            width: "100%",
+            marginTop: "60px",
+          }}
+        >
           <Button
             variant="contained"
             href={whatsappUrl}
@@ -207,8 +208,9 @@ function RightTextSection() {
               fontWeight: "bold",
               fontSize: "18px",
               px: 4,
-              py: 1,
+              py: 1.5,
               borderRadius: "30px",
+              width: { xs: "80%", sm: "60%", md: "40%" }, // ✅ زر أطول
               animation: "blinker 1.2s linear infinite",
               "@keyframes blinker": {
                 "50%": { opacity: 0.3 },
@@ -233,8 +235,15 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
 
   return (
     <Grid item xs={12} sm={6}>
-      <Typography variant="h6" sx={styles.formTitle}>
+      <Typography variant="h5" sx={styles.formTitle}>
         للإستفسار ..
+      </Typography>
+      <Typography
+        variant="h5"
+        color="#00fffc"
+        sx={{ textAlign: "center", direction: "rtl", mb: 3 }}
+      >
+        للطلب والإستفسار /
       </Typography>
       <Box component="form" sx={styles.form} onSubmit={handleFormSubmit}>
         {fields.map(({ label, name, type }) => (
