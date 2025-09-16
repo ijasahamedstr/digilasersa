@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Carousel } from "react-bootstrap";
 import axios from "axios";
+import Hrsound from "./hrsound";
 
 const carouselItems = [
   {
@@ -201,31 +202,32 @@ const SoundSection = () => {
      {/* Split Section: Text Left, Image Right */}
       <section
         style={{
-            width: "100%",
-            margin: "0 auto",
-            marginBottom: "30px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh", // full viewport height
-            paddingTop: "20px",
-            paddingBottom: "20px",
-            marginTop: "0px",
-            backgroundImage: 'url("https://i.ibb.co/3gckqfJ/New-Web-Sound01.webp")',
-            backgroundSize: "cover",        // makes the image cover the section
-            backgroundPosition: "center",   // centers the image
-            backgroundRepeat: "no-repeat",  // prevents tiling
-          }}
-        >
+          width: "100%",
+          margin: "0 auto",
+          marginBottom: "10px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh", // full height on larger screens
+          paddingTop: "0px",
+          paddingBottom: "60px",
+          backgroundImage: 'url("https://i.ibb.co/3gckqfJ/New-Web-Sound01.webp")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <Container
           maxWidth="xl"
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", md: "row" },
+            flexDirection: { xs: "column", md: "row" }, // stack on mobile, row on desktop
             alignItems: "center",
             justifyContent: "space-between",
             height: "100%",
             px: { xs: 2, sm: 3, md: 5 },
+            textAlign: { xs: "center", md: "left" },
+            gap: { xs: 4, md: 6 }, // spacing between text and image
           }}
         >
           {/* Left Side Text */}
@@ -235,10 +237,10 @@ const SoundSection = () => {
               sx={{
                 fontWeight: "bold",
                 lineHeight: 1.4,
-                mt: { xs: 6, md: 12 }, // significantly more top space
-                mb: { xs: 4, md: 5 },
+                mt: { xs: 4, md: 8 },
+                mb: { xs: 3, md: 4 },
                 color: "#008488",
-                fontSize: { xs: "2rem", sm: "2.6rem", md: "3rem" },
+                fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3rem", lg: "3.5rem" },
               }}
             >
               أنظـمة صــوتيـة للمـساجد
@@ -250,11 +252,14 @@ const SoundSection = () => {
               variant="h3"
               sx={{
                 color: "#6c2632",
-                lineHeight: 1.6,
-                fontSize: { xs: "1rem", sm: "1.5rem", md: "1.5rem" },
+                lineHeight: 1.8,
+                fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem", lg: "2rem" },
+                maxWidth: { xs: "100%", md: "90%" },
+                mx: { xs: "auto", md: 0 },
               }}
             >
-              تجهز المساعد وشاعات الاجتماعات والمحاضرات بأحدث الأنظمة الصوتية الاشرافية الضمان صوت نقي وواضح
+              تجهز المساجد وقاعات الاجتماعات والمحاضرات بأحدث الأنظمة الصوتية 
+              مع ضمان صوت نقي وواضح
             </Typography>
           </Box>
 
@@ -264,8 +269,9 @@ const SoundSection = () => {
               flex: 1,
               display: "flex",
               justifyContent: "center",
-              alignItems: "center",
-              height: "100%", // full height of the container
+              alignItems: "stretch", // makes child take full height
+              mt: { xs: 3, md: 0 },
+              height: { xs: "auto", md: "100%" }, // full height only on desktop
             }}
           >
             <Box
@@ -273,14 +279,122 @@ const SoundSection = () => {
               src="https://i.ibb.co/7tGdc5pR/180.webp"
               alt="Sound Systems"
               sx={{
-                width: "100%",
-                height: "100%",        // stretch to fit full height
-                objectFit: "cover",    // maintain aspect ratio, crop if needed
-                borderRadius: 2,
-                boxShadow: 3,
+                width: { xs: "85%", sm: "70%", md: "100%" },
+                height: { xs: "auto", md: "100%" }, // fills top-to-bottom on desktop
+                maxHeight: "100vh", // prevents overflow
+                objectFit: "cover", // crops to fill area
+                boxShadow: 5,
               }}
             />
           </Box>
+        </Container>
+      </section>
+      <section
+        style={{
+          width: "100%",
+          margin: "0 auto",
+          marginBottom: "30px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+          paddingTop: "20px",
+          paddingBottom: "20px",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#ffffff",
+        }}
+      >
+        <Container
+          maxWidth="xl"
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: "center",
+            justifyContent: "center",
+            gap: { xs: 1, md: 0 }, // minimal gap between image & text
+            textAlign: { xs: "center", md: "left" },
+            minHeight: "100%",
+          }}
+        >
+          {/* Left Side - Image */}
+          <Box
+            sx={{
+              flex: 1,
+              maxWidth: { xs: "100%", md: "50%" },
+            }}
+          >
+            <Box
+              component="img"
+              src="https://i.ibb.co/RGNfbJfD/New-1.webp"
+              alt="Left Side"
+              sx={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "12px 0 0 12px", // rounded only on left
+                objectFit: "cover",
+              }}
+            />
+          </Box>
+
+         {/* Right Side - Text */}
+         <Box
+          sx={{
+            flex: 1,
+            maxWidth: { xs: "100%", md: "50%" },
+            backgroundColor: "#b0b0b0",
+            px: { xs: 6, md: 12 },  // smaller horizontal padding
+            py: { xs: 8, md: 24 },  // smaller vertical padding
+            borderRadius: "0 12px 12px 0",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            direction: "rtl",
+            textAlign: "right",
+          }}
+        >
+          <Typography
+            variant="h1"
+            sx={{
+              fontWeight: "bold",
+              color: "#008488",
+              mb: 2,
+              mt: 2,
+              fontSize: { xs: "1.7rem", sm: "2rem", md: "2.6rem", lg: "2.7rem" }, // responsive font size
+            }}
+          >
+            أنظمة صوتية للمناسبات الكبرى :
+          </Typography>
+
+          {/* Horizontal line under heading */}
+          <Box
+            sx={{
+              width: { xs: "60%", sm: "70%", md: "480px" }, // responsive width
+              maxWidth: "100%",
+              height: "3px",
+              backgroundColor: "#ffffff",
+              mb: 3,
+              borderRadius: "2px",
+              alignSelf: "flex-start", // right-aligned in RTL
+            }}
+          />
+
+        <Typography
+          variant="h3"
+          sx={{
+            color: "hsla(0, 0%, 100%, 1.00)",
+            lineHeight: 1.8,
+            fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem", lg: "1.6rem", xl: "1.5rem" },
+            textAlign: "justify", // justified text
+            direction: "rtl",      // keep proper RTL flow
+          }}
+        >
+          نقدم خدمات توريد وتركيب وتشغيل الأنظمة الصوتية للمعارض والمؤتمرات والفعاليات الرسمية والخاصة
+          بالإضافة إلى قاعات المحاضرات والاجتماعات
+        </Typography>
+        </Box>
+
         </Container>
       </section>
     </>
