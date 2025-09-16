@@ -4,6 +4,9 @@ import {
   Box,
   Typography,
   CircularProgress,
+  Card,
+  CardContent,
+  CardMedia
 } from "@mui/material";
 import {
   FaInstagram,
@@ -56,6 +59,69 @@ const socialLinks = [
   { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
 ];
 
+const cardStyles = {
+  flex: 1,
+  width: { xs: "90%", sm: 300, md: 350 },
+  outline: "none",
+  position: "relative", // required for pseudo-elements
+  "&:focus": { outline: "none" },
+  borderTop: "20px solid #b0b0b0", // Top border only
+
+  // Left border matching image height
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    left: 0,
+    top: 0, // start from top (image start)
+    width: "20px", // border thickness
+    height: "140px", // match CardMedia height
+    backgroundColor: "#b0b0b0",
+  },
+
+  // Right border matching image height
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    right: 0,
+    top: 0,
+    width: "20px",
+    height: "140px", // match CardMedia height
+    backgroundColor: "#b0b0b0",
+  },
+};
+
+const InfoCard = ({ image, title, text }) => (
+  <Card sx={cardStyles}>
+    <CardMedia component="img" height="140" image={image} alt={title} />
+    <CardContent sx={{ direction: "rtl", textAlign: "center" }}>
+      <Typography
+        variant="h5"
+        sx={{
+          mb: 2,
+          fontSize: { xs: "1rem", sm: "1.3rem", md: "1.5rem" },
+          backgroundColor: "#e7e7e7",
+          px: 1,
+          py: 0.5,
+          borderRadius: 1,
+        }}
+      >
+        {title}
+      </Typography>
+      <Typography
+        variant="body2"
+        sx={{
+          color: "#246869",
+          fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
+          lineHeight: 2,
+        }}
+      >
+        {text}
+      </Typography>
+    </CardContent>
+  </Card>
+);
+
+
 const SoundSection = () => {
   const [loading, setLoading] = useState(true); // Splash screen
   const [error, setError] = useState(null);
@@ -82,6 +148,24 @@ const SoundSection = () => {
   }, []);
 
   if (error) return <div>{error}</div>;
+
+   const cards = [
+    {
+      image: "https://i.ibb.co/vCNbjj3R/Layer.webp",
+      title: "الأنظمة الصوتية",
+      text: "متخصصون في توريد وتركيب وتشغيل الأنظمة الصوتية الاحترافية المصممة لتلبية احتياجات العملاء، مع مراعاة تفاصيل الموقع لتحقيق الأداء الأمثل.",
+    },
+    {
+      image: "https://i.ibb.co/vCNbjj3R/Layer.webp",
+      title: "الأنظمة الصوتية",
+      text: "متخصصون في توريد وتركيب وتشغيل الأنظمة الصوتية الاحترافية المصممة لتلبية احتياجات العملاء، مع مراعاة تفاصيل الموقع لتحقيق الأداء الأمثل.",
+    },
+    {
+      image: "https://i.ibb.co/vCNbjj3R/Layer.webp",
+      title: "الأنظمة الصوتية",
+      text: "متخصصون في توريد وتركيب وتشغيل الأنظمة الصوتية الاحترافية المصممة لتلبية احتياجات العملاء، مع مراعاة تفاصيل الموقع لتحقيق الأداء الأمثل.",
+    },
+  ];
 
   // --- Splash Screen ---
   if (loading) {
@@ -394,9 +478,58 @@ const SoundSection = () => {
           بالإضافة إلى قاعات المحاضرات والاجتماعات
         </Typography>
         </Box>
-
         </Container>
       </section>
+      <section
+        style={{
+          width: "100%",
+          margin: "0 auto",
+          marginBottom: "30px",
+          display: "flex",
+          flexDirection: "column", // stack heading and cards
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+          paddingTop: "20px",
+          paddingBottom: "20px",
+          backgroundImage: 'url("https://i.ibb.co/WqTz1Qm/New-3.webp")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Section heading */}
+        <Typography
+          variant="h3"
+          sx={{
+            color: "#000000ff",
+            textAlign: "center",
+            mb: 6,
+            fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
+            fontWeight: "bold",
+          }}
+        >
+          خدماتنا الصوتية
+        </Typography>
+
+        {/* Cards container */}
+        <Container
+          maxWidth="md"
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: { xs: 4, md: 6 },
+          }}
+        >
+          {cards.map((card, index) => (
+            <InfoCard key={index} {...card} />
+          ))}
+        </Container>
+      </section>
+
+    
+
     </>
   );
 };
