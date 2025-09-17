@@ -25,15 +25,15 @@ import Hrsound from "./hrsound";
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/rR1CHjzN/New-Web-Sound.webp",
+    img: "https://i.ibb.co/Z1gyrSqP/New-Web-Sound.webp",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/rR1CHjzN/New-Web-Sound.webp",
+    img: "https://i.ibb.co/Z1gyrSqP/New-Web-Sound.webp",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/rR1CHjzN/New-Web-Sound.webp",
+    img: "https://i.ibb.co/Z1gyrSqP/New-Web-Sound.webp",
   },
 ];
 
