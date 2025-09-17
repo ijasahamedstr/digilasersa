@@ -21,18 +21,19 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Carousel } from "react-bootstrap";
 import axios from "axios";
 
+
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/Z1gyrSqP/New-Web-Sound.webp",
+    img: "https://i.ibb.co/m5QPn0Y3/Top.webp",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/Z1gyrSqP/New-Web-Sound.webp",
+    img: "https://i.ibb.co/m5QPn0Y3/Top.webp",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/Z1gyrSqP/New-Web-Sound.webp",
+    img: "https://i.ibb.co/m5QPn0Y3/Top.webp",
   },
 ];
 
@@ -505,6 +506,11 @@ const SoundSection = () => {
             mb: 6,
             fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
             fontWeight: "bold",
+            backgroundColor: "#b0b0b0", // background color added
+            display: "inline-block",   // so bg fits text width
+            px: 3,                     // padding left & right
+            py: 1,                     // padding top & bottom
+            borderRadius: "8px",       // optional rounded corners
           }}
         >
           خدماتنا الصوتية
@@ -526,9 +532,128 @@ const SoundSection = () => {
           ))}
         </Container>
       </section>
+      <section
+        style={{
+          width: "100%",
+          margin: "0 auto",
+          marginBottom: "10px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingTop: "24px",
+          paddingBottom: "10px",
+          backgroundImage: 'url("https://i.ibb.co/xqJRQ9h4/New-2.webp")',
+          backgroundSize: "cover",
+        }}
+      >
+        {/* Left Side Image */}
+        <Box
+          sx={{
+            flex: 1,
+            maxWidth: { xs: "100%", md: "50%" },
+            height: { xs: "200px", sm: "250px", md: "500px", lg: "600px" },
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column", // so line can be below image
+            justifyContent: "flex-start",
+          }}
+        >
+          <Box
+            component="img"
+            src="https://i.ibb.co/KjNqfm0N/Place.webp"
+            alt="Left Side"
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+          {/* Bottom horizontal line */}
+          <Box
+            sx={{
+              height: "4px", // line thickness
+              width: "100%",
+              backgroundColor: "#0a898b",
+              mt: 1, // small margin on top
+            }}
+          />
+        </Box>
 
-    
+        {/* Right Side - Text */}
+        <Box
+          sx={{
+            flex: 1,
+            maxWidth: { xs: "100%", md: "50%" },
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            
+          }}
+        >
+          <Typography
+            variant="h1"
+            sx={{
+              fontWeight: "bold",
+              color: "#000000ff",
+              mb: 2,
+              mt: 0,
+              fontSize: { xs: "1.7rem", sm: "2rem", md: "2.6rem", lg: "2.7rem" },
+              alignItems: "center",
+              direction: "rtl",
+              textAlign: "center",
+              pt: 3,
+              px: 3,
+              marginTop: { xs: "-129px", md: "-215px" },
+              backgroundColor: "#b0b0b0",
+            }}
+          >
+            مهمتنا
+          </Typography>
+          
+            <Typography
+            variant="h3"
+            sx={{
+              color: "hsla(0, 0%, 0%, 1.00)",
+              lineHeight: 1.8,
+              fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem", lg: "1.6rem", xl: "2rem" },
+              textAlign: "justify", // justified text
+              direction: "rtl",      // keep proper RTL flow
+              px: { xs: 6, sm: 8, md: 10, lg: 12 }, // more inner padding left and right
+              mx: { xs: 2, sm: 3, md: 4, lg: 5 },   // more outer margin
+              py: { xs: 2, sm: 3, md: 4 },          // optional vertical padding for breathing space
+            }}
+          >
+            نحرص على استهدام أحدث التنقنيات والأساليب المتطورة لضمان تقديم أدق التفاصيل باحترافية
+            مع التركيز على الدقة في التنفيذ والتميز في النتائج وتقديم تجربة فريدة وناجحه لسيادتكم.
+          </Typography>
 
+        </Box>
+      </section>
+      
+      <Container
+        maxWidth={false}
+        disableGutters
+        sx={{
+          padding: 0,
+          margin: 0,
+          width: "100%",
+        }}
+      >
+        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+          <img
+            src="https://i.ibb.co/H3XBzjv/Background-copy.webp"
+            alt="main-slide"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "auto",
+              display: "block",
+              boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+            }}
+          />
+        </Box>
+      </Container>
     </>
   );
 };

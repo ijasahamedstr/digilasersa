@@ -76,7 +76,7 @@ const products1 = [
   {
     id: 3,
     name: "فـوتـو",
-    imageUrl: "https://i.ibb.co/ns4tQX4T/003.webp",
+    imageUrl: "https://i.ibb.co/pBNTrFjw/003.webp",
     iconUrl: "https://i.ibb.co/fdFK4DjK/Photo-xx.webp",
     link: "/Web-Media-photo",
   },
@@ -97,7 +97,7 @@ const products1 = [
   {
     id: 6,
     name: "3D Animation",
-    imageUrl: "https://i.ibb.co/rGVTr9Zp/004.webp",
+    imageUrl: "https://i.ibb.co/ZzM6bsW9/004.webp",
     iconUrl: "https://i.ibb.co/3YjBYxgq/3d-xx.webp",
     link: "/3D-Animation",
   },
