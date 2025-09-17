@@ -548,8 +548,8 @@ const SoundSection = () => {
           margin: "0 auto",
           marginBottom: "10px",
           display: "flex",
-          flexDirection: "row", // default is row (desktop)
-          flexWrap: "wrap", // allow wrapping for mobile
+          flexDirection: "row",
+          flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
           paddingTop: "24px",
@@ -561,12 +561,12 @@ const SoundSection = () => {
         {/* Right Side - Text */}
         <Box
           sx={{
-            flex: "1 1 100%", // full width on mobile
+            flex: "1 1 100%",
             maxWidth: { xs: "100%", md: "50%" },
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
-            order: { xs: 1, md: 2 }, // text on top on mobile, right on desktop
+            order: { xs: 1, md: 2 },
           }}
         >
           <Typography
@@ -581,8 +581,9 @@ const SoundSection = () => {
               direction: "rtl",
               textAlign: "center",
               pt: 3,
-              px: 3,
-              marginTop: { xs: 0, md: "-215px" },
+              px: { xs: 2, md: 4 },
+              py: { xs: 1, md: 4 },
+              marginTop: { xs: 0, md: "-145px" },
               backgroundColor: "#b0b0b0",
             }}
           >
@@ -605,19 +606,31 @@ const SoundSection = () => {
             نحرص على استهدام أحدث التنقنيات والأساليب المتطورة لضمان تقديم أدق التفاصيل باحترافية
             مع التركيز على الدقة في التنفيذ والتميز في النتائج وتقديم تجربة فريدة وناجحه لسيادتكم.
           </Typography>
+
+          {/* Horizontal Line at bottom */}
+          <Box
+            sx={{
+              width: "10%",        // line spans 10% of the section
+              height: "15px",
+              backgroundColor: "#0a898b",
+              mt: 2,             // spacing above line
+              alignSelf: "flex-end", // align left side
+            }}
+          />
         </Box>
 
         {/* Left Side Image */}
         <Box
           sx={{
-            flex: "1 1 100%", // full width on mobile
+            flex: "1 1 100%",
             maxWidth: { xs: "100%", md: "50%" },
             height: { xs: "200px", sm: "250px", md: "500px", lg: "600px" },
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
-            order: { xs: 2, md: 1 }, // image below text on mobile, left on desktop
+            position: "relative", // needed for absolute vertical line
+            order: { xs: 2, md: 1 },
           }}
         >
           <Box
@@ -631,18 +644,20 @@ const SoundSection = () => {
               display: "block",
             }}
           />
-          {/* Bottom horizontal line */}
+          
+          {/* Left Vertical Line */}
           <Box
             sx={{
-              height: "4px",
-              width: "100%",
+              position: "absolute",
+              left: 0,
+              bottom: "-20px", // move further down
+              height: "15%",   // adjust height as needed
+              width: "20px",
               backgroundColor: "#0a898b",
-              mt: 1,
             }}
           />
         </Box>
       </section>
-
       <Container
         maxWidth={false}
         disableGutters
