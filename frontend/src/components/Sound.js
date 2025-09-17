@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Carousel } from "react-bootstrap";
 import axios from "axios";
+import Hr from "./hr";
 
 
 const carouselItems = [
@@ -153,17 +154,17 @@ const SoundSection = () => {
     {
       image: "https://i.ibb.co/vCNbjj3R/Layer.webp",
       title: "الأنظمة الصوتية",
-      text: "متخصصون في توريد وتركيب وتشغيل الأنظمة الصوتية الاحترافية المصممة لتلبية احتياجات العملاء، مع مراعاة تفاصيل الموقع لتحقيق الأداء الأمثل.",
+      text: "نضـمن لك إنشاء غرف و ستــــــــوديوهـات معزولة صوتياً بالكامل حيث نتحـكم بدقة في مســتويات الصـــوت الداخل والخارج لضمان بيـــئة عمـــل هــادئة ومثالية .",
     },
     {
       image: "https://i.ibb.co/vCNbjj3R/Layer.webp",
       title: "الأنظمة الصوتية",
-      text: "متخصصون في توريد وتركيب وتشغيل الأنظمة الصوتية الاحترافية المصممة لتلبية احتياجات العملاء، مع مراعاة تفاصيل الموقع لتحقيق الأداء الأمثل.",
+      text: "نوفـر  حــلولاً متـقدمة للمــعالجة الصــــوتية باســــتخدام أحــــدث المـــــعدات لضــــبط مســـتويات الصــوت وتحسين جودة العمل والإنتاج.",
     },
     {
       image: "https://i.ibb.co/vCNbjj3R/Layer.webp",
       title: "الأنظمة الصوتية",
-      text: "متخصصون في توريد وتركيب وتشغيل الأنظمة الصوتية الاحترافية المصممة لتلبية احتياجات العملاء، مع مراعاة تفاصيل الموقع لتحقيق الأداء الأمثل.",
+      text: "نوفـر  حــلولاً متـقدمة للمــعالجة الصــــوتية باســــتخدام أحــــدث المـــــعدات لضــــبط مســـتويات الصــوت وتحسين جودة العمل والإنتاج.",
     },
   ];
 
@@ -292,12 +293,9 @@ const SoundSection = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "100vh", // full height on larger screens
           paddingTop: "0px",
-          paddingBottom: "60px",
-          backgroundImage: 'url("https://i.ibb.co/3gckqfJ/New-Web-Sound01.webp")',
+          backgroundImage: 'url("https://i.ibb.co/HDJTjg7j/New-Web-Sound01.webp")',
           backgroundSize: "cover",
-          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >
@@ -305,26 +303,31 @@ const SoundSection = () => {
           maxWidth="xl"
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", md: "row" }, // stack on mobile, row on desktop
-            alignItems: "center",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { xs: "center", md: "flex-start" },
             justifyContent: "space-between",
             height: "100%",
             px: { xs: 2, sm: 3, md: 5 },
             textAlign: { xs: "center", md: "left" },
-            gap: { xs: 4, md: 6 }, // spacing between text and image
+            gap: { xs: 4, md: 6 },
           }}
         >
           {/* Left Side Text */}
-          <Box sx={{ flex: 1, textAlign: { xs: "center", md: "left" } }}>
+          <Box
+            sx={{
+              flex: 1,
+              textAlign: { xs: "center", md: "left" },
+              mt: { xs: 4, md: 40 }, // pushes text further down on desktop
+            }}
+          >
             <Typography
               variant="h2"
               sx={{
                 fontWeight: "bold",
                 lineHeight: 1.4,
-                mt: { xs: 4, md: 8 },
                 mb: { xs: 3, md: 4 },
                 color: "#008488",
-                fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3rem", lg: "3.5rem" },
+                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
               }}
             >
               أنظـمة صــوتيـة للمـساجد
@@ -342,7 +345,7 @@ const SoundSection = () => {
                 mx: { xs: "auto", md: 0 },
               }}
             >
-              تجهز المساجد وقاعات الاجتماعات والمحاضرات بأحدث الأنظمة الصوتية 
+              تجهز المساجد وقاعات الاجتماعات والمحاضرات بأحدث الأنظمة الصوتية
               مع ضمان صوت نقي وواضح
             </Typography>
           </Box>
@@ -353,9 +356,9 @@ const SoundSection = () => {
               flex: 1,
               display: "flex",
               justifyContent: "center",
-              alignItems: "stretch", // makes child take full height
+              alignItems: "stretch",
               mt: { xs: 3, md: 0 },
-              height: { xs: "auto", md: "100%" }, // full height only on desktop
+              height: { xs: "auto", md: "100%" },
             }}
           >
             <Box
@@ -363,16 +366,18 @@ const SoundSection = () => {
               src="https://i.ibb.co/7tGdc5pR/180.webp"
               alt="Sound Systems"
               sx={{
-                width: { xs: "85%", sm: "70%", md: "100%" },
-                height: { xs: "auto", md: "100%" }, // fills top-to-bottom on desktop
-                maxHeight: "100vh", // prevents overflow
-                objectFit: "cover", // crops to fill area
+                width: { xs: "90%", sm: "70%", md: "80%" },
+                height: "auto",
+                maxHeight: { xs: "60vh", md: "100vh" },
+                objectFit: "contain",
                 boxShadow: 5,
+                mb: { xs: 3, md: "-10px" }, // normal on mobile, -11px only on desktop
               }}
             />
           </Box>
         </Container>
       </section>
+      <Hr/>
       <section
         style={{
           width: "100%",
@@ -381,7 +386,6 @@ const SoundSection = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "100vh",
           paddingTop: "20px",
           paddingBottom: "20px",
           backgroundSize: "cover",
@@ -394,19 +398,19 @@ const SoundSection = () => {
           maxWidth="xl"
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", md: "row" },
+            flexDirection: { xs: "column-reverse", md: "row" }, // image below text on mobile
             alignItems: "center",
             justifyContent: "center",
-            gap: { xs: 1, md: 0 }, // minimal gap between image & text
+            gap: { xs: 3, md: 0 },
             textAlign: { xs: "center", md: "left" },
             minHeight: "100%",
           }}
         >
-          {/* Left Side - Image */}
+          {/* Left Side - Image (40% on desktop) */}
           <Box
             sx={{
-              flex: 1,
-              maxWidth: { xs: "100%", md: "50%" },
+              flex: { xs: 1, md: 0.4 },
+              maxWidth: { xs: "100%", md: "40%" },
             }}
           >
             <Box
@@ -414,87 +418,88 @@ const SoundSection = () => {
               src="https://i.ibb.co/RGNfbJfD/New-1.webp"
               alt="Left Side"
               sx={{
-                width: "100%",
-                height: "100%",
-                borderRadius: "12px 0 0 12px", // rounded only on left
-                objectFit: "cover",
+                width: { xs: "90%", sm: "70%", md: "100%" },
+                height: "auto",
+                maxHeight: { xs: "80vh", md: "100vh" },
+                objectFit: "contain",
+                boxShadow: 5,
+                mb: { xs: 3, md: "-10px" },
               }}
             />
           </Box>
 
-         {/* Right Side - Text */}
-         <Box
-          sx={{
-            flex: 1,
-            maxWidth: { xs: "100%", md: "50%" },
-            backgroundColor: "#b0b0b0",
-            px: { xs: 6, md: 12 },  // smaller horizontal padding
-            py: { xs: 8, md: 24 },  // smaller vertical padding
-            borderRadius: "0 12px 12px 0",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            direction: "rtl",
-            textAlign: "right",
-          }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              fontWeight: "bold",
-              color: "#008488",
-              mb: 2,
-              mt: 2,
-              fontSize: { xs: "1.7rem", sm: "2rem", md: "2.6rem", lg: "2.7rem" }, // responsive font size
-            }}
-          >
-            أنظمة صوتية للمناسبات الكبرى :
-          </Typography>
-
-          {/* Horizontal line under heading */}
+          {/* Right Side - Text (60% on desktop) */}
           <Box
             sx={{
-              width: { xs: "60%", sm: "70%", md: "480px" }, // responsive width
-              maxWidth: "100%",
-              height: "3px",
-              backgroundColor: "#ffffff",
-              mb: 3,
-              borderRadius: "2px",
-              alignSelf: "flex-start", // right-aligned in RTL
+              flex: { xs: 1, md: 0.6 },
+              maxWidth: { xs: "100%", md: "60%" },
+              backgroundColor: { xs: "transparent", md: "#b0b0b0" }, // remove bg on mobile
+              px: { xs: 4, md: 8 },
+              py: { xs: 6, md: 18 },
+              borderRadius: "0 12px 12px 0",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              direction: "rtl",
+              textAlign: "right",
             }}
-          />
+          >
+            <Typography
+              variant="h1"
+              sx={{
+                fontWeight: "bold",
+                color: { xs: "#000000", md: "#008488" }, // black on mobile, teal on desktop
+                mb: 2,
+                mt: 2,
+                fontSize: { xs: "1.1rem", sm: "1.7rem", md: "2.6rem", lg: "2.7rem" }, // mobile heading 1.1rem
+              }}
+            >
+              أنظمة صوتية للمناسبات الكبرى :
+            </Typography>
 
-        <Typography
-          variant="h3"
-          sx={{
-            color: "hsla(0, 0%, 100%, 1.00)",
-            lineHeight: 1.8,
-            fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem", lg: "1.6rem", xl: "1.5rem" },
-            textAlign: "justify", // justified text
-            direction: "rtl",      // keep proper RTL flow
-          }}
-        >
-          نقدم خدمات توريد وتركيب وتشغيل الأنظمة الصوتية للمعارض والمؤتمرات والفعاليات الرسمية والخاصة
-          بالإضافة إلى قاعات المحاضرات والاجتماعات
-        </Typography>
-        </Box>
+            {/* Horizontal line under heading */}
+            <Box
+              sx={{
+                width: { xs: "60%", sm: "70%", md: "480px" },
+                maxWidth: "100%",
+                height: "3px",
+                backgroundColor: { xs: "#000000", md: "#ffffff" }, // black on mobile, white on desktop
+                mb: 3,
+                borderRadius: "2px",
+                alignSelf: "flex-start",
+              }}
+            />
+
+            <Typography
+              variant="h3"
+              sx={{
+                color: { xs: "#000000", md: "hsla(0, 0%, 100%, 1.00)" }, // black on mobile, white on desktop
+                lineHeight: 1.8,
+                fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem", lg: "1.6rem", xl: "1.5rem" },
+                textAlign: "justify",
+                direction: "rtl",
+              }}
+            >
+              نقدم خدمات توريد وتركيب وتشغيل الأنظمة الصوتية للمعارض والمؤتمرات والفعاليات الرسمية والخاصة
+              بالإضافة إلى قاعات المحاضرات والاجتماعات
+            </Typography>
+          </Box>
         </Container>
-      </section>
+      </section>            
       <section
         style={{
           width: "100%",
           margin: "0 auto",
           marginBottom: "30px",
           display: "flex",
-          flexDirection: "column", // stack heading and cards
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "100vh",
           paddingTop: "20px",
           paddingBottom: "20px",
-          backgroundImage: 'url("https://i.ibb.co/WqTz1Qm/New-3.webp")',
+          backgroundImage: 'url("https://i.ibb.co/5gr6yg6h/New-3.webp")',
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         {/* Section heading */}
@@ -502,15 +507,19 @@ const SoundSection = () => {
           variant="h3"
           sx={{
             color: "#000000ff",
-            textAlign: "center",
-            mb: 6,
+            textAlign: { xs: "center", md: "left" },
+            mt: { xs: "20px", md: "25px" }, // positive margin, heading above cards
+            mb: { xs: 3, md: 6 },
             fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
             fontWeight: "bold",
-            backgroundColor: "#b0b0b0", // background color added
-            display: "inline-block",   // so bg fits text width
-            px: 3,                     // padding left & right
-            py: 1,                     // padding top & bottom
-            borderRadius: "8px",       // optional rounded corners
+            backgroundColor: "#b0b0b0",
+            display: "block",
+            width: { xs: "auto", md: "60%" },
+            px: { xs: 2, md: 4 },
+            py: { xs: 1, md: 4 },
+            borderRadius: { xs: "8px", md: "6px" },
+            mx: { xs: 0, md: "auto" },
+            mr: { xs: "auto", md: 0 },
           }}
         >
           خدماتنا الصوتية
@@ -525,6 +534,7 @@ const SoundSection = () => {
             alignItems: "center",
             justifyContent: "space-between",
             gap: { xs: 4, md: 6 },
+            mt: { xs: 2, md: 4 }, // small spacing between heading and cards
           }}
         >
           {cards.map((card, index) => (
@@ -538,6 +548,8 @@ const SoundSection = () => {
           margin: "0 auto",
           marginBottom: "10px",
           display: "flex",
+          flexDirection: "row", // default is row (desktop)
+          flexWrap: "wrap", // allow wrapping for mobile
           justifyContent: "center",
           alignItems: "center",
           paddingTop: "24px",
@@ -546,16 +558,66 @@ const SoundSection = () => {
           backgroundSize: "cover",
         }}
       >
+        {/* Right Side - Text */}
+        <Box
+          sx={{
+            flex: "1 1 100%", // full width on mobile
+            maxWidth: { xs: "100%", md: "50%" },
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            order: { xs: 1, md: 2 }, // text on top on mobile, right on desktop
+          }}
+        >
+          <Typography
+            variant="h1"
+            sx={{
+              fontWeight: "bold",
+              color: "#000000ff",
+              mb: 2,
+              mt: 0,
+              fontSize: { xs: "1.7rem", sm: "2rem", md: "2.6rem", lg: "2.7rem" },
+              alignItems: "center",
+              direction: "rtl",
+              textAlign: "center",
+              pt: 3,
+              px: 3,
+              marginTop: { xs: 0, md: "-215px" },
+              backgroundColor: "#b0b0b0",
+            }}
+          >
+            مهمتنا
+          </Typography>
+
+          <Typography
+            variant="h3"
+            sx={{
+              color: "hsla(0, 0%, 0%, 1.00)",
+              lineHeight: 1.8,
+              fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem", lg: "1.6rem", xl: "2rem" },
+              textAlign: "justify",
+              direction: "rtl",
+              px: { xs: 4, sm: 8, md: 10, lg: 12 },
+              mx: { xs: 2, sm: 3, md: 4, lg: 5 },
+              py: { xs: 2, sm: 3, md: 4 },
+            }}
+          >
+            نحرص على استهدام أحدث التنقنيات والأساليب المتطورة لضمان تقديم أدق التفاصيل باحترافية
+            مع التركيز على الدقة في التنفيذ والتميز في النتائج وتقديم تجربة فريدة وناجحه لسيادتكم.
+          </Typography>
+        </Box>
+
         {/* Left Side Image */}
         <Box
           sx={{
-            flex: 1,
+            flex: "1 1 100%", // full width on mobile
             maxWidth: { xs: "100%", md: "50%" },
             height: { xs: "200px", sm: "250px", md: "500px", lg: "600px" },
             overflow: "hidden",
             display: "flex",
-            flexDirection: "column", // so line can be below image
+            flexDirection: "column",
             justifyContent: "flex-start",
+            order: { xs: 2, md: 1 }, // image below text on mobile, left on desktop
           }}
         >
           <Box
@@ -572,62 +634,12 @@ const SoundSection = () => {
           {/* Bottom horizontal line */}
           <Box
             sx={{
-              height: "4px", // line thickness
+              height: "4px",
               width: "100%",
               backgroundColor: "#0a898b",
-              mt: 1, // small margin on top
+              mt: 1,
             }}
           />
-        </Box>
-
-        {/* Right Side - Text */}
-        <Box
-          sx={{
-            flex: 1,
-            maxWidth: { xs: "100%", md: "50%" },
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            
-          }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              fontWeight: "bold",
-              color: "#000000ff",
-              mb: 2,
-              mt: 0,
-              fontSize: { xs: "1.7rem", sm: "2rem", md: "2.6rem", lg: "2.7rem" },
-              alignItems: "center",
-              direction: "rtl",
-              textAlign: "center",
-              pt: 3,
-              px: 3,
-              marginTop: { xs: "-129px", md: "-215px" },
-              backgroundColor: "#b0b0b0",
-            }}
-          >
-            مهمتنا
-          </Typography>
-          
-            <Typography
-            variant="h3"
-            sx={{
-              color: "hsla(0, 0%, 0%, 1.00)",
-              lineHeight: 1.8,
-              fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem", lg: "1.6rem", xl: "2rem" },
-              textAlign: "justify", // justified text
-              direction: "rtl",      // keep proper RTL flow
-              px: { xs: 6, sm: 8, md: 10, lg: 12 }, // more inner padding left and right
-              mx: { xs: 2, sm: 3, md: 4, lg: 5 },   // more outer margin
-              py: { xs: 2, sm: 3, md: 4 },          // optional vertical padding for breathing space
-            }}
-          >
-            نحرص على استهدام أحدث التنقنيات والأساليب المتطورة لضمان تقديم أدق التفاصيل باحترافية
-            مع التركيز على الدقة في التنفيذ والتميز في النتائج وتقديم تجربة فريدة وناجحه لسيادتكم.
-          </Typography>
-
         </Box>
       </section>
       
