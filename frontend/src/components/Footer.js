@@ -22,12 +22,17 @@ const INITIAL_FORM_STATE = {
 
 export default function Footer() {
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+  const location = useLocation();
+
+  // ✅ Reliable About page detection
+  const isAboutPage = location.pathname.includes("من نحن");
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const isFormValid = () => Object.values(formData).every((field) => field.trim() !== "");
+  const isFormValid = () =>
+    Object.values(formData).every((field) => field.trim() !== "");
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -46,21 +51,24 @@ export default function Footer() {
 
   return (
     <>
-      {/* Contact Section */}
       <Box sx={styles.section}>
         <Container maxWidth="xl">
           <Grid container spacing={4}>
             <RightTextSection />
-            <LeftFormSection
-              formData={formData}
-              handleChange={handleChange}
-              handleFormSubmit={handleFormSubmit}
-            />
+
+            {/* ✅ Show LeftFormSection only if NOT on About page */}
+            {!isAboutPage && (
+              <LeftFormSection
+                formData={formData}
+                handleChange={handleChange}
+                handleFormSubmit={handleFormSubmit}
+              />
+            )}
           </Grid>
         </Container>
       </Box>
 
-      {/* Footer AppBar */}
+      {/* Footer AppBar (always visible) */}
       <AppBar position="static" sx={{ backgroundColor: "#212121", color: "#fff" }}>
         <Container maxWidth="lg">
           <Toolbar
@@ -87,7 +95,11 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    sx={{ borderRadius: "50%", border: "1px solid #fff", color: "#0ff5ec" }}
+                    sx={{
+                      borderRadius: "50%",
+                      border: "1px solid #fff",
+                      color: "#0ff5ec",
+                    }}
                   >
                     {icon}
                   </IconButton>
@@ -111,9 +123,12 @@ export default function Footer() {
 function RightTextSection() {
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const isAboutPage = location.pathname.includes("من نحن"); // ✅ detect About page
 
   const whatsappNumber = "966505868888";
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("👋 مرحبًا، أود الاستفسار.")}`;
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    "👋 مرحبًا، أود الاستفسار."
+  )}`;
 
   return (
     <Grid
@@ -132,7 +147,7 @@ function RightTextSection() {
         Contact Us
       </Typography>
 
-      {/* ✅ Show contact info ONLY on Home Page */}
+      {/* Show contact info ONLY on Home Page */}
       {isHome && (
         <Grid
           container
@@ -185,40 +200,40 @@ function RightTextSection() {
         </Grid>
       )}
 
-      {/* 🔥 Show Complaints Button ONLY if not on Home Page */}
-      {!isHome && (
+      {/* Show Complaints Button ONLY if not Home and not About */}
+      {!isHome && !isAboutPage && (
         <Box
-  sx={{
-     mt: { xs: 12, sm: 14, md: 18 }, // ✅ more space on all screen sizes
-    display: "flex",
-    justifyContent: "center",
-    width: "100%",
-  }}
->
-  <Button
-    variant="contained"
-    href={whatsappUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-    startIcon={<WhatsApp />}
-    sx={{
-      backgroundColor: "#00fffc",
-      color: "#0a0a0aff",
-      fontWeight: "bold",
-      fontSize: "18px",
-      px: 4,
-      py: 1.5,
-      borderRadius: "30px",
-      width: { xs: "80%", sm: "60%", md: "40%" },
-      animation: "blinker 1.2s linear infinite",
-      "@keyframes blinker": {
-        "50%": { opacity: 0.3 },
-      },
-    }}
-  >
-    للشكاوى
-  </Button>
-</Box>
+          sx={{
+            mt: { xs: 12, sm: 14, md: 18 },
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          <Button
+            variant="contained"
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            startIcon={<WhatsApp />}
+            sx={{
+              backgroundColor: "#00fffc",
+              color: "#0a0a0aff",
+              fontWeight: "bold",
+              fontSize: "18px",
+              px: 4,
+              py: 1.5,
+              borderRadius: "30px",
+              width: { xs: "80%", sm: "60%", md: "40%" },
+              animation: "blinker 1.2s linear infinite",
+              "@keyframes blinker": {
+                "50%": { opacity: 0.3 },
+              },
+            }}
+          >
+            للشكاوى
+          </Button>
+        </Box>
       )}
     </Grid>
   );

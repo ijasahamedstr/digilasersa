@@ -3,14 +3,22 @@ import { Box, CircularProgress } from "@mui/material";
 import AboutSection from "./AboutSection";
 import VisionandMission from "./vision_and_Mission";
 
-const Aboutus = () => {
+const Aboutus = ({ setFooterVisible }) => {
   const [loading, setLoading] = useState(true);
 
   // Show splash screen for 2 seconds
   useEffect(() => {
+    // Hide footer on this page
+    if (setFooterVisible) setFooterVisible(false);
+
     const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
+
+    return () => {
+      clearTimeout(timer);
+      // Show footer again when leaving this page
+      if (setFooterVisible) setFooterVisible(true);
+    };
+  }, [setFooterVisible]);
 
   // --- Splash Screen Overlay ---
   if (loading) {

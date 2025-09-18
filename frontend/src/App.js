@@ -42,6 +42,7 @@ const theme = createTheme({
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [footerVisible, setFooterVisible] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000); // show splash for 2s
@@ -91,7 +92,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/الرئيسية" element={<Home />} />
           <Route path="/الرئيسية" element={<Products />} />
-          <Route path="/من نحن" element={<Aboutus />} />
+          <Route path="/من نحن" element={<Aboutus setFooterVisible={setFooterVisible} />} />
           <Route path="/قسم البرمجيات" element={<ComingSoonPage />} />
           <Route path="/منصة صيانة الشاشات" element={<ComingSoonPage />} />
           <Route path="/قسم الفن التشكيلي" element={<ComingSoonPage />} />
@@ -120,7 +121,7 @@ function App() {
           <Route path="/update/:id" element={<UpdateFild />} />
           <Route path="/قسم الصوتيات" element={<SoundSection />} />
         </Routes>
-        <Footer />
+         {footerVisible && <Footer />}
       </Router>
     </ThemeProvider>
   );
