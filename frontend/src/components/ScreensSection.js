@@ -225,6 +225,7 @@ const ScreensSection = () => {
           ))}
         </Box>
       </Box>
+
 <Container maxWidth="xl">
   <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
     <img
@@ -240,6 +241,10 @@ const ScreensSection = () => {
       }}
     />
     <Button
+      component="a"
+      href="https://sssplatform.com"
+      target="_blank" // opens in new tab
+      rel="noopener noreferrer"
       variant="contained"
       size="small"
       sx={{
@@ -259,7 +264,7 @@ const ScreensSection = () => {
         lineHeight: 1.5,
         whiteSpace: "normal",
         textAlign: "center",
-        border: "1px solid black", // thinner black outline
+        border: "2px solid black",
         animation: "blink 1s infinite",
         "&:hover": {
           backgroundColor: "#e9830f",
