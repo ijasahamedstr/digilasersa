@@ -240,14 +240,25 @@ const ScreensSection = () => {
               paddingBottom: "30px",
             }}
           />
-           <Button
+          <Button
             component="a"
             href="https://sssplatform.com"
-            target="_blank" // opens in new tab
-            rel="noopener noreferrer" // security best practice
+            target="_blank"
+            rel="noopener noreferrer"
             variant="contained"
             size="small"
             sx={{
+              // keyframes for border size + color blink
+              "@keyframes borderBlink": {
+                "0%": { borderColor: "#096e69", borderWidth: "2px" },
+                "25%": { borderColor: "#ff9800", borderWidth: "4px" },
+                "50%": { borderColor: "#e91e63", borderWidth: "6px" },
+                "75%": { borderColor: "#2196f3", borderWidth: "4px" },
+                "100%": { borderColor: "#096e69", borderWidth: "2px" },
+              },
+
+              animation: "borderBlink 1.5s ease-in-out infinite",
+
               position: "absolute",
               top: { xs: "43%", sm: "55%" },
               left: "30%",
@@ -260,12 +271,17 @@ const ScreensSection = () => {
               px: { xs: 1, sm: 2 },
               py: { xs: 0.25, sm: 0.5 },
               borderRadius: "25px",
-              boxShadow: 2,
+              border: "2px solid #096e69",
               lineHeight: 1.5,
               whiteSpace: "normal",
               textAlign: "center",
               "&:hover": {
                 backgroundColor: "#e6e6e6",
+                transform: "translate(-50%, -50%) scale(1.05)",
+              },
+
+              "@media (prefers-reduced-motion: reduce)": {
+                animation: "none",
               },
             }}
           >
@@ -275,6 +291,7 @@ const ScreensSection = () => {
           </Button>
         </Box>
       </Container>
+
 
       <section style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <Container maxWidth="xxl" sx={{ mb: "30px", px: { xs: "20px", sm: "100px" } }}>
