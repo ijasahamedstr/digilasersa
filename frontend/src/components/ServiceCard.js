@@ -210,7 +210,7 @@ function ServiceCard() {
               paddingBottom: "30px",
             }}
           />
-         <Button
+         {/* <Button
           variant="contained"
           size="small"
           sx={{
@@ -233,7 +233,7 @@ function ServiceCard() {
           }}
         >
           المزيد من الخدمات
-        </Button>
+        </Button> */}
 
         </Box>
       </Container>
