@@ -250,11 +250,11 @@ const ScreensSection = () => {
             sx={{
               // keyframes for border size + color blink
               "@keyframes borderBlink": {
-                "0%": { borderColor: "#096e69", borderWidth: "2px" },
-                "25%": { borderColor: "#ff9800", borderWidth: "4px" },
-                "50%": { borderColor: "#e91e63", borderWidth: "6px" },
-                "75%": { borderColor: "#2196f3", borderWidth: "4px" },
-                "100%": { borderColor: "#096e69", borderWidth: "2px" },
+                "0%": { borderColor: "#096e69", borderWidth: "3px" },
+                "25%": { borderColor: "#ff9800", borderWidth: "6px" },
+                "50%": { borderColor: "#66ebe7", borderWidth: "10px" },
+                "75%": { borderColor: "#565656", borderWidth: "6px" },
+                "100%": { borderColor: "#096e69", borderWidth: "3px" },
               },
 
               animation: "borderBlink 1.5s ease-in-out infinite",
@@ -271,7 +271,7 @@ const ScreensSection = () => {
               px: { xs: 1, sm: 2 },
               py: { xs: 0.25, sm: 0.5 },
               borderRadius: "25px",
-              border: "2px solid #096e69",
+              border: "10px solid #096e69",
               lineHeight: 1.5,
               whiteSpace: "normal",
               textAlign: "center",
