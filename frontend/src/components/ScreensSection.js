@@ -225,8 +225,7 @@ const ScreensSection = () => {
           ))}
         </Box>
       </Box>
-
- <Container maxWidth="xl">
+<Container maxWidth="xl">
   <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
     <img
       src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
@@ -248,11 +247,11 @@ const ScreensSection = () => {
         top: { xs: "40%", sm: "52%" },
         left: "30%",
         transform: "translate(-50%, -50%)",
-        backgroundColor: "#f7941d",
+        backgroundColor: "#da9030",
         color: "white",
         fontFamily: "Tajawal",
         fontWeight: 700,
-        fontSize: { xs: "4px", sm: "11px", md: "14px" },
+        fontSize: { xs: "4px", sm: "11px", md: "20px" },
         px: { xs: 1, sm: 2 },
         py: { xs: 0.25, sm: 0.5 },
         borderRadius: "25px",
@@ -260,7 +259,8 @@ const ScreensSection = () => {
         lineHeight: 1.5,
         whiteSpace: "normal",
         textAlign: "center",
-        animation: "blink 1s infinite", // blink animation
+        border: "1px solid black", // thinner black outline
+        animation: "blink 1s infinite",
         "&:hover": {
           backgroundColor: "#e9830f",
         },
@@ -271,12 +271,11 @@ const ScreensSection = () => {
         },
       }}
     >
-      للانتقال إلى منصة الصيانة
-      <br />
-      الرجاء الضغط هنا
+      لصيانة الشاشات اضغط هنا
     </Button>
   </Box>
 </Container>
+
 
 
 
