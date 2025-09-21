@@ -250,11 +250,11 @@ const ScreensSection = () => {
             sx={{
               // keyframes for border size + color blink
               "@keyframes borderBlink": {
-                "0%": { borderColor: "#096e69", borderWidth: "3px" },
-                "25%": { borderColor: "#ff9800", borderWidth: "6px" },
-                "50%": { borderColor: "#66ebe7", borderWidth: "10px" },
-                "75%": { borderColor: "#565656", borderWidth: "6px" },
-                "100%": { borderColor: "#096e69", borderWidth: "3px" },
+                "0%": { borderColor: "#096e69", borderWidth: "15px" },
+                "25%": { borderColor: "#ff9800", borderWidth: "15px" },
+                "50%": { borderColor: "#66ebe7", borderWidth: "15px" },
+                "75%": { borderColor: "#565656", borderWidth: "15px" },
+                "100%": { borderColor: "#096e69", borderWidth: "15px" },
               },
 
               animation: "borderBlink 1.5s ease-in-out infinite",
