@@ -226,7 +226,7 @@ const ScreensSection = () => {
         </Box>
       </Box>
 
-<Container maxWidth="xl">
+ <Container maxWidth="xl">
   <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
     <img
       src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
@@ -240,68 +240,43 @@ const ScreensSection = () => {
         paddingBottom: "30px",
       }}
     />
-
     <Button
-      component="a"
-      href="https://sssplatform.com"
-      target="_blank"
-      rel="noopener noreferrer"
       variant="contained"
       size="small"
-      sx={(theme) => ({
-        // 🔄 keyframes for border color blink only
-        "@keyframes borderBlink": {
-          "0%": { borderColor: "#096e69" },
-          "25%": { borderColor: "#ff9800" },
-          "50%": { borderColor: "#66ebe7" },
-          "75%": { borderColor: "#565656" },
-          "100%": { borderColor: "#096e69" },
-        },
-        animation: "borderBlink 1.5s ease-in-out infinite",
-
+      sx={{
         position: "absolute",
-        // ✅ Mobile top = 41% / Desktop = 55%
-        top: { xs: "41%", sm: "52%" },
+        top: { xs: "40%", sm: "52%" },
         left: "30%",
         transform: "translate(-50%, -50%)",
-
-        backgroundColor: "white",
-        color: "#096e69",
+        backgroundColor: "#f7941d",
+        color: "white",
         fontFamily: "Tajawal",
         fontWeight: 700,
-        // ✅ Mobile font size = 4px
-        fontSize: { xs: "4px", sm: "14px", md: "14px" },
+        fontSize: { xs: "4px", sm: "11px", md: "14px" },
         px: { xs: 1, sm: 2 },
         py: { xs: 0.25, sm: 0.5 },
         borderRadius: "25px",
-        borderStyle: "solid",
-
-        // ✅ Responsive border width
-        borderWidth: "1px", // Mobile (default)
-        [theme.breakpoints.up("md")]: {
-          borderWidth: "10px", // Desktop
-        },
-
+        boxShadow: 2,
         lineHeight: 1.5,
         whiteSpace: "normal",
         textAlign: "center",
-
+        animation: "blink 1s infinite", // blink animation
         "&:hover": {
-          backgroundColor: "#e6e6e6",
-          transform: "translate(-50%, -50%) scale(1.05)",
+          backgroundColor: "#e9830f",
         },
-
-        "@media (prefers-reduced-motion: reduce)": {
-          animation: "none",
+        "@keyframes blink": {
+          "0%": { opacity: 1 },
+          "50%": { opacity: 0.5 },
+          "100%": { opacity: 1 },
         },
-      })}
+      }}
     >
-      للانتقال إلى منصة الصيانة <br /> الرجاء الضغط هنا
+      للانتقال إلى منصة الصيانة
+      <br />
+      الرجاء الضغط هنا
     </Button>
   </Box>
 </Container>
-
-
 
 
 
