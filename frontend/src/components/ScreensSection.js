@@ -240,35 +240,39 @@ const ScreensSection = () => {
               paddingBottom: "30px",
             }}
           />
-            <Button
-              variant="contained"
-              size="small"
-              sx={{
-                position: "absolute",
-                top: { xs: "43%", sm: "55%" }, // mobile 43%, larger 55%
-                left: "30%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "white",
-                color: "#096e69",
-                fontFamily: "Tajawal",
-                fontWeight: 700,
-                fontSize: { xs: "5px", sm: "14px", md: "14px" },
-                px: { xs: 1, sm: 2 },
-                py: { xs: 0.25, sm: 0.5 },
-                borderRadius: "25px",
-                boxShadow: 2,
-                lineHeight: 1.5, // better spacing between lines
-                whiteSpace: "normal", // allow wrapping
-                textAlign: "center",
-                "&:hover": {
-                  backgroundColor: "#e6e6e6",
-                },
-              }}
-            >
-              للانتقال إلى منصة الصيانة
-              <br />
-              الرجاء الضغط هنا
-            </Button>
+           <Button
+            component="a"
+            href="https://sssplatform.com"
+            target="_blank" // opens in new tab
+            rel="noopener noreferrer" // security best practice
+            variant="contained"
+            size="small"
+            sx={{
+              position: "absolute",
+              top: { xs: "43%", sm: "55%" },
+              left: "30%",
+              transform: "translate(-50%, -50%)",
+              backgroundColor: "white",
+              color: "#096e69",
+              fontFamily: "Tajawal",
+              fontWeight: 700,
+              fontSize: { xs: "5px", sm: "14px", md: "14px" },
+              px: { xs: 1, sm: 2 },
+              py: { xs: 0.25, sm: 0.5 },
+              borderRadius: "25px",
+              boxShadow: 2,
+              lineHeight: 1.5,
+              whiteSpace: "normal",
+              textAlign: "center",
+              "&:hover": {
+                backgroundColor: "#e6e6e6",
+              },
+            }}
+          >
+            للانتقال إلى منصة الصيانة
+            <br />
+            الرجاء الضغط هنا
+          </Button>
         </Box>
       </Container>
 
