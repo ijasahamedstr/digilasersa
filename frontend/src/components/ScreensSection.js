@@ -226,71 +226,83 @@ const ScreensSection = () => {
         </Box>
       </Box>
 
-      <Container maxWidth="xl">
-        <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
-          <img
-            src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
-            alt="Banner"
-            loading="lazy"
-            style={{
-              width: "100%",
-              maxHeight: "400px",
-              objectFit: "cover",
-              borderRadius: "20px",
-              paddingBottom: "30px",
-            }}
-          />
-          <Button
-            component="a"
-            href="https://sssplatform.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="contained"
-            size="small"
-            sx={{
-              // keyframes for border size + color blink
-              "@keyframes borderBlink": {
-                "0%": { borderColor: "#096e69", borderWidth: "15px" },
-                "25%": { borderColor: "#ff9800", borderWidth: "15px" },
-                "50%": { borderColor: "#66ebe7", borderWidth: "15px" },
-                "75%": { borderColor: "#565656", borderWidth: "15px" },
-                "100%": { borderColor: "#096e69", borderWidth: "15px" },
-              },
+<Container maxWidth="xl">
+  <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
+    <img
+      src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
+      alt="Banner"
+      loading="lazy"
+      style={{
+        width: "100%",
+        maxHeight: "400px",
+        objectFit: "cover",
+        borderRadius: "20px",
+        paddingBottom: "30px",
+      }}
+    />
 
-              animation: "borderBlink 1.5s ease-in-out infinite",
+    <Button
+      component="a"
+      href="https://sssplatform.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      variant="contained"
+      size="small"
+      sx={(theme) => ({
+        // 🔄 keyframes for border color blink only
+        "@keyframes borderBlink": {
+          "0%": { borderColor: "#096e69" },
+          "25%": { borderColor: "#ff9800" },
+          "50%": { borderColor: "#66ebe7" },
+          "75%": { borderColor: "#565656" },
+          "100%": { borderColor: "#096e69" },
+        },
+        animation: "borderBlink 1.5s ease-in-out infinite",
 
-              position: "absolute",
-              top: { xs: "43%", sm: "55%" },
-              left: "30%",
-              transform: "translate(-50%, -50%)",
-              backgroundColor: "white",
-              color: "#096e69",
-              fontFamily: "Tajawal",
-              fontWeight: 700,
-              fontSize: { xs: "5px", sm: "14px", md: "14px" },
-              px: { xs: 1, sm: 2 },
-              py: { xs: 0.25, sm: 0.5 },
-              borderRadius: "25px",
-              border: "10px solid #096e69",
-              lineHeight: 1.5,
-              whiteSpace: "normal",
-              textAlign: "center",
-              "&:hover": {
-                backgroundColor: "#e6e6e6",
-                transform: "translate(-50%, -50%) scale(1.05)",
-              },
+        position: "absolute",
+        // ✅ Mobile top = 41% / Desktop = 55%
+        top: { xs: "41%", sm: "52%" },
+        left: "30%",
+        transform: "translate(-50%, -50%)",
 
-              "@media (prefers-reduced-motion: reduce)": {
-                animation: "none",
-              },
-            }}
-          >
-            للانتقال إلى منصة الصيانة
-            <br />
-            الرجاء الضغط هنا
-          </Button>
-        </Box>
-      </Container>
+        backgroundColor: "white",
+        color: "#096e69",
+        fontFamily: "Tajawal",
+        fontWeight: 700,
+        // ✅ Mobile font size = 4px
+        fontSize: { xs: "4px", sm: "14px", md: "14px" },
+        px: { xs: 1, sm: 2 },
+        py: { xs: 0.25, sm: 0.5 },
+        borderRadius: "25px",
+        borderStyle: "solid",
+
+        // ✅ Responsive border width
+        borderWidth: "1px", // Mobile (default)
+        [theme.breakpoints.up("md")]: {
+          borderWidth: "10px", // Desktop
+        },
+
+        lineHeight: 1.5,
+        whiteSpace: "normal",
+        textAlign: "center",
+
+        "&:hover": {
+          backgroundColor: "#e6e6e6",
+          transform: "translate(-50%, -50%) scale(1.05)",
+        },
+
+        "@media (prefers-reduced-motion: reduce)": {
+          animation: "none",
+        },
+      })}
+    >
+      للانتقال إلى منصة الصيانة <br /> الرجاء الضغط هنا
+    </Button>
+  </Box>
+</Container>
+
+
+
 
 
       <section style={{ width: "100%", display: "flex", justifyContent: "center" }}>
