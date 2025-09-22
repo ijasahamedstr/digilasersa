@@ -196,7 +196,7 @@ function Newssection() {
     },
 
     {
-      name: "المحامي محمد البلوشى",
+      name: "المحامي عبدالله محمد البلوشي",
       type: "video",
       isLocal: true,
       video: demoVideo2,
@@ -213,7 +213,7 @@ function Newssection() {
       text: " قوة شركة الليزر بمجال الدعاية والإعلان",
     },
     {
-      name: "كابتن بوربيعة وكابتن مازن",
+      name: "الكابتن ابوربيعه والكابتن مازن",
       type: "video",
       isLocal: true,
       video: demoVideo3,
