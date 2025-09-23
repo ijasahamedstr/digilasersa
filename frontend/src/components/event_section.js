@@ -57,7 +57,10 @@ function Eventsection() {
         paddingBottom: "50px",
       }}
     >
-      <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 5 }, textAlign: "center" }}>
+      <Container
+        maxWidth="xl"
+        sx={{ px: { xs: 2, sm: 3, md: 5 }, textAlign: "center" }}
+      >
         <Typography
           variant="h4"
           align="center"
@@ -80,7 +83,8 @@ function Eventsection() {
           loop
           navigation
           pagination={{ clickable: true }}
-          modules={[Navigation, Pagination]}
+          modules={[Navigation, Pagination, Autoplay]}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
         >
           {Event.map((event, index) => (
             <SwiperSlide key={index}>
@@ -105,7 +109,7 @@ function Eventsection() {
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "center",
-                    minHeight: { xs: 300, sm: 400, md: 500 }, // added minHeight
+                    minHeight: { xs: 300, sm: 400, md: 500 },
                   }}
                 >
                   <Swiper
@@ -127,7 +131,7 @@ function Eventsection() {
                           sx={{
                             width: "100%",
                             height: "700px",
-                            objectFit: "fills", // fills container nicely
+                            objectFit: "cover", // corrected "fills" → "cover"
                             borderRadius: "8px",
                           }}
                         />
@@ -161,7 +165,10 @@ function Eventsection() {
                     <Typography
                       variant="body1"
                       paragraph
-                      sx={{ fontSize: { xs: "1rem", md: "1.25rem" }, fontFamily: "Tajawal" }}
+                      sx={{
+                        fontSize: { xs: "1rem", md: "1.25rem" },
+                        fontFamily: "Tajawal",
+                      }}
                     >
                       {event.newsdec}
                     </Typography>
