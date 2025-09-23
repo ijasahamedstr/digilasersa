@@ -110,6 +110,7 @@ function hexToRgb(hex) {
 
 const FadeCarousel = () => {
   const [showSplash, setShowSplash] = useState(true);
+  const [showMobileIcons, setShowMobileIcons] = useState(true); // 👈 control mobile icons
   const canvasRef = useRef(null);
 
   useFireworks(canvasRef);
@@ -117,6 +118,12 @@ const FadeCarousel = () => {
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 7000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // 👇 Hide mobile icons after 5 seconds
+  useEffect(() => {
+    const hideTimer = setTimeout(() => setShowMobileIcons(false), 5000);
+    return () => clearTimeout(hideTimer);
   }, []);
 
   if (showSplash) {
@@ -155,7 +162,7 @@ const FadeCarousel = () => {
             style={{
               width: "90%",
               maxWidth: "600px",
-              minWidth: "280px", // 👈 ensure not too small on mobile
+              minWidth: "280px",
               height: "auto",
               zIndex: 2100,
               filter: "drop-shadow(0px 0px 20px #00ff00)",
@@ -191,7 +198,7 @@ const FadeCarousel = () => {
               style={{
                 objectFit: "cover",
                 boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-                minHeight: "280px", // 👈 ensures carousel doesn’t shrink too much
+                minHeight: "280px",
               }}
             />
           </Carousel.Item>
@@ -236,41 +243,53 @@ const FadeCarousel = () => {
       </Box>
 
       {/* Social Media Bottom Bar (Mobile) */}
-      <Box
-        sx={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          display: { xs: "flex", md: "none" },
-          justifyContent: "space-around",
-          backgroundColor: "rgba(0,0,0,0.7)",
-          py: 1,
-          zIndex: 1300,
-        }}
-      >
-        {socialLinks.map(({ icon, link }, index) => (
-          <a key={index} href={link} target="_blank" rel="noopener noreferrer">
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                backgroundColor: "#06f9f3",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "#17202a",
-                boxShadow: 3,
-                transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
-              {icon}
-            </Box>
-          </a>
-        ))}
-      </Box>
+      {showMobileIcons && (
+        <Box
+          sx={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            display: { xs: "flex", md: "none" },
+            justifyContent: "space-around",
+            backgroundColor: "rgba(0,0,0,0.7)",
+            py: 1,
+            zIndex: 1300,
+            animation: "fadeOut 1s ease forwards",
+            animationDelay: "4s",
+          }}
+        >
+          {socialLinks.map(({ icon, link }, index) => (
+            <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  backgroundColor: "#06f9f3",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#17202a",
+                  boxShadow: 3,
+                  transition: "transform 0.3s ease",
+                  "&:hover": { transform: "scale(1.2)" },
+                }}
+              >
+                {icon}
+              </Box>
+            </a>
+          ))}
+        </Box>
+      )}
+
+      {/* Fade-out animation */}
+      <style>{`
+        @keyframes fadeOut {
+          from { opacity: 1; }
+          to { opacity: 0; visibility: hidden; }
+        }
+      `}</style>
     </Box>
   );
 };
