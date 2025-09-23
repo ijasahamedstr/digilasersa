@@ -70,7 +70,7 @@ function Eventsection() {
             color: "#096e69",
           }}
         >
-          آخر أعمالنا
+          آخر أخبارنا
         </Typography>
 
         {/* Main Event Slider */}
@@ -93,7 +93,7 @@ function Eventsection() {
                   backgroundColor: "transparent",
                   width: "100%",
                   margin: "0 auto",
-                  alignItems: "flex-start", // top-align content
+                  alignItems: "flex-start",
                 }}
               >
                 {/* Image slider (50%) */}
@@ -105,6 +105,7 @@ function Eventsection() {
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "center",
+                    minHeight: { xs: 300, sm: 400, md: 500 }, // added minHeight
                   }}
                 >
                   <Swiper
@@ -125,8 +126,8 @@ function Eventsection() {
                           alt={`${event.newsname} - ${i + 1}`}
                           sx={{
                             width: "100%",
-                            aspectRatio: "1 / 1",
-                            objectFit: "contain",
+                            height: "700px",
+                            objectFit: "fills", // fills container nicely
                             borderRadius: "8px",
                           }}
                         />
@@ -142,7 +143,7 @@ function Eventsection() {
                     textAlign: "right",
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "flex-start", // align text to top
+                    justifyContent: "flex-start",
                     pl: { sm: 1 },
                   }}
                 >
