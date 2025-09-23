@@ -42,14 +42,7 @@ const useFireworks = (canvasRef) => {
     const particles = [];
 
     function randomColor() {
-      // More green/white to reflect Saudi theme 🎉
-      const colors = [
-        "#00FF00",
-        "#32CD32",
-        "#ADFF2F",
-        "#FFFFFF",
-        "#FFD700", // golden sparks
-      ];
+      const colors = ["#00FF00", "#32CD32", "#ADFF2F", "#FFFFFF", "#FFD700"];
       return colors[Math.floor(Math.random() * colors.length)];
     }
 
@@ -77,7 +70,6 @@ const useFireworks = (canvasRef) => {
         ctx.fillStyle = `rgba(${hexToRgb(p.color)},${p.opacity})`;
         ctx.fill();
 
-        // motion
         p.x += Math.cos(p.angle) * p.speed;
         p.y += Math.sin(p.angle) * p.speed;
         p.life--;
@@ -90,9 +82,8 @@ const useFireworks = (canvasRef) => {
     }
 
     function loop() {
-      // Launch fireworks more often 🎇
       createFirework(Math.random() * W, Math.random() * H * 0.5);
-      setTimeout(loop, 600); // every 0.6s
+      setTimeout(loop, 600);
     }
 
     draw();
@@ -124,7 +115,6 @@ const FadeCarousel = () => {
   useFireworks(canvasRef);
 
   useEffect(() => {
-    // Show splash longer (7s)
     const timer = setTimeout(() => setShowSplash(false), 7000);
     return () => clearTimeout(timer);
   }, []);
@@ -149,19 +139,31 @@ const FadeCarousel = () => {
         {/* Fireworks */}
         <canvas ref={canvasRef} style={{ position: "absolute", top: 0, left: 0 }} />
 
-        {/* Centered Saudi National Day Image with glowing effect */}
-        <img
-          src="https://i.ibb.co/PvfGx0m0/153ad535-b000-42a7-ae46-e4b78570bba0-removebg-preview.png"
-          alt="Saudi National Day"
-          style={{
-            maxWidth: "600px",
-            zIndex: 2100,
-            filter: "drop-shadow(0px 0px 20px #00ff00)",
-            animation: "pulse 2s infinite",
+        {/* Responsive Saudi National Day Image */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            px: 2,
           }}
-        />
+        >
+          <img
+            src="https://i.ibb.co/B2g5TMK4/saudi-national-day-celebration.webp"
+            alt="Saudi National Day"
+            style={{
+              width: "90%",
+              maxWidth: "600px",
+              minWidth: "280px", // 👈 ensure not too small on mobile
+              height: "auto",
+              zIndex: 2100,
+              filter: "drop-shadow(0px 0px 20px #00ff00)",
+              animation: "pulse 2s infinite",
+            }}
+          />
+        </Box>
 
-        {/* Green glowing aura */}
         <style>{`
           @keyframes pulse {
             0% { transform: scale(1); opacity: 1; }
@@ -186,13 +188,17 @@ const FadeCarousel = () => {
               className="d-block w-100"
               src={item.img}
               alt={`slide-${item.id}`}
-              style={{ objectFit: "cover", boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)" }}
+              style={{
+                objectFit: "cover",
+                boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                minHeight: "280px", // 👈 ensures carousel doesn’t shrink too much
+              }}
             />
           </Carousel.Item>
         ))}
       </Carousel>
 
-      {/* Social Media Sidebar */}
+      {/* Social Media Sidebar (Desktop) */}
       <Box
         sx={{
           position: "fixed",
@@ -204,6 +210,43 @@ const FadeCarousel = () => {
           gap: 2,
           zIndex: 1200,
           pl: 2,
+        }}
+      >
+        {socialLinks.map(({ icon, link }, index) => (
+          <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+            <Box
+              sx={{
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                backgroundColor: "#06f9f3",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "#17202a",
+                boxShadow: 3,
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.2)" },
+              }}
+            >
+              {icon}
+            </Box>
+          </a>
+        ))}
+      </Box>
+
+      {/* Social Media Bottom Bar (Mobile) */}
+      <Box
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          display: { xs: "flex", md: "none" },
+          justifyContent: "space-around",
+          backgroundColor: "rgba(0,0,0,0.7)",
+          py: 1,
+          zIndex: 1300,
         }}
       >
         {socialLinks.map(({ icon, link }, index) => (
