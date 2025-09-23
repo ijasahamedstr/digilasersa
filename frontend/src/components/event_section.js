@@ -36,7 +36,12 @@ function Eventsection() {
     fetchData();
   }, []);
 
-  if (loading) return <CircularProgress />;
+  if (loading)
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
+        <CircularProgress />
+      </Box>
+    );
   if (error) return <div>{error}</div>;
 
   return (
@@ -48,7 +53,6 @@ function Eventsection() {
         marginBottom: "30px",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
         paddingTop: "50px",
         paddingBottom: "50px",
       }}
@@ -89,6 +93,7 @@ function Eventsection() {
                   backgroundColor: "transparent",
                   width: "100%",
                   margin: "0 auto",
+                  alignItems: "flex-start", // top-align content
                 }}
               >
                 {/* Image slider (50%) */}
@@ -98,7 +103,7 @@ function Eventsection() {
                     pr: { sm: 1 },
                     pb: { xs: 1, sm: 0 },
                     display: "flex",
-                    alignItems: "center",
+                    alignItems: "flex-start",
                     justifyContent: "center",
                   }}
                 >
@@ -108,7 +113,7 @@ function Eventsection() {
                     navigation
                     pagination={{ clickable: true }}
                     modules={[Navigation, Pagination, Autoplay]}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }} // autoplay every 3s
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
                     loop
                     style={{ width: "100%", height: "100%" }}
                   >
@@ -120,8 +125,8 @@ function Eventsection() {
                           alt={`${event.newsname} - ${i + 1}`}
                           sx={{
                             width: "100%",
-                            height: "400px", // fixed height
-                            objectFit: "fill",
+                            aspectRatio: "1 / 1",
+                            objectFit: "contain",
                             borderRadius: "8px",
                           }}
                         />
@@ -137,11 +142,11 @@ function Eventsection() {
                     textAlign: "right",
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "center",
+                    justifyContent: "flex-start", // align text to top
                     pl: { sm: 1 },
                   }}
                 >
-                  <CardContent>
+                  <CardContent sx={{ paddingTop: 0 }}>
                     <Typography
                       variant="h3"
                       gutterBottom

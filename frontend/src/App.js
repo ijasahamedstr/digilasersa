@@ -33,6 +33,7 @@ import UpdateFild from "./components/Update";
 import ComingSoonPage from "./components/ComingSoonPage";
 import ContactusForm from "./components/Contact";
 import SoundSection from "./components/Sound";
+import WebsiteSection from "./components/websiteSection";
 
 const theme = createTheme({
   typography: {
@@ -93,7 +94,7 @@ function App() {
           <Route path="/الرئيسية" element={<Home />} />
           <Route path="/الرئيسية" element={<Products />} />
           <Route path="/من نحن" element={<Aboutus setFooterVisible={setFooterVisible} />} />
-          <Route path="/قسم البرمجيات" element={<ComingSoonPage />} />
+          <Route path="/قسم البرمجيات" element={<WebsiteSection/>} />
           <Route path="/منصة صيانة الشاشات" element={<ComingSoonPage />} />
           <Route path="/قسم الفن التشكيلي" element={<ComingSoonPage />} />
           <Route path="/قسم الشاشات" element={<ScreensSection />} />
