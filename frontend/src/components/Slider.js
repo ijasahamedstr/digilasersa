@@ -10,19 +10,20 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import demoVideo10 from "./video/Vid-20250925-Wa0006.mp4";
 
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/nsDXF6Z2/New-Web-Final-2.webp",
+    video: demoVideo10,
   },
   {
     id: 2,
-    img: "https://i.ibb.co/nsDXF6Z2/New-Web-Final-2.webp",
+    video: demoVideo10,
   },
   {
     id: 3,
-    img: "https://i.ibb.co/nsDXF6Z2/New-Web-Final-2.webp",
+    video: demoVideo10,
   },
 ];
 
@@ -60,6 +61,8 @@ const FadeCarousel = () => {
     >
       <Carousel
         fade
+        controls
+        indicators
         nextIcon={
           <span
             className="carousel-control-next-icon"
@@ -75,13 +78,16 @@ const FadeCarousel = () => {
       >
         {carouselItems.map((item) => (
           <Carousel.Item key={item.id}>
-            <img
+            <video
               className="d-block w-100"
-              src={item.img}
-              alt={`slide-${item.id}`}
+              src={item.video}
+              autoPlay
+              loop
+              muted
+              playsInline
               style={{
                 objectFit: "cover",
-                boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                height: "100vh", // fullscreen height
               }}
             />
           </Carousel.Item>
