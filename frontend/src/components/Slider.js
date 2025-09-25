@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import demoVideo10 from "./video/Vid-20250925-Wa0006.mp4";
+import demoVideo10 from "./video/Vid-20250925-Wa0006new.mp4";
 
 const carouselItems = [
   {
@@ -19,11 +19,11 @@ const carouselItems = [
   },
   {
     id: 2,
-    video: demoVideo10,
+   video: demoVideo10,
   },
   {
     id: 3,
-    video: demoVideo10,
+   video: demoVideo10,
   },
 ];
 
