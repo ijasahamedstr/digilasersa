@@ -1,4 +1,5 @@
 import { Carousel } from "react-bootstrap";
+import { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import {
   FaInstagram,
@@ -50,6 +51,40 @@ const socialLinks = [
 ];
 
 const FadeCarousel = () => {
+   // 🔹 Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // 🔹 Force a one-time refresh on first load
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
+    // 🔹 Page Speed Optimizer Script (lazy load images & videos)
+    useEffect(() => {
+    const lazyImages = document.querySelectorAll("img[data-src], video[data-src]");
+    const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+    if (entry.isIntersecting) {
+    const el = entry.target;
+    if (el.tagName === "IMG" || el.tagName === "VIDEO") {
+    el.src = el.dataset.src;
+    el.removeAttribute("data-src");
+    }
+    obs.unobserve(el);
+    }
+    });
+    });
+    lazyImages.forEach(img => observer.observe(img));
+
+
+    return () => observer.disconnect();
+    }, []);
   return (
       <Box sx={{ width: "100%", position: "relative", overflow: "hidden",mt: { xs: 5,  mt: "100px" }}}>
         {/* Carousel */}
