@@ -44,7 +44,9 @@ const FadeCarousel = () => {
   }, []);
 
   return (
-    <Box sx={{ mt: { xs: 5, md: "100px" } }}>
+    <Box sx={{
+        mt: { xs: "100px" }, // xs = 0px and up
+      }}>
       <Carousel
         fade
         nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
