@@ -16,7 +16,7 @@ import demoVideo from "./video/slider.mp4";
 
 const carouselItems = [
   { id: 1, video: demoVideo },
-  { id: 2, video: demoVideo },
+  { id: 2, video: demoVideo},
 ];
 
 const socialLinks = [
