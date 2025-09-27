@@ -20,43 +20,21 @@ const carouselItems = [
 ];
 
 const socialLinks = [
-  {
-    icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />,
-    link: "https://x.com/digilasersa",
-  },
-  {
-    icon: <FaInstagram size={25} />,
-    link: "https://www.instagram.com/digilasersa",
-  },
-  {
-    icon: <FaLinkedin size={25} />,
-    link: "https://www.linkedin.com/company/digilasersa",
-  },
-  {
-    icon: <FaYoutube size={25} />,
-    link: "https://youtube.com/@digilaserSa",
-  },
-  {
-    icon: <FaSnapchat size={25} />,
-    link: "https://www.snapchat.com/add/digilasersa",
-  },
-  {
-    icon: <FaTiktok size={25} />,
-    link: "https://www.tiktok.com/@digilasersa",
-  },
-  {
-    icon: <FaWhatsapp size={25} />,
-    link: "http://wa.me/966571978888",
-  },
+  { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
+  { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+  { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+  { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+  { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+  { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+  { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
 ];
 
 const FadeCarousel = () => {
-   // 🔹 Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // 🔹 Force a one-time refresh on first load
+  // Force one-time reload
   useEffect(() => {
     const hasReloaded = sessionStorage.getItem("hasReloaded");
     if (!hasReloaded) {
@@ -65,119 +43,73 @@ const FadeCarousel = () => {
     }
   }, []);
 
-    // 🔹 Page Speed Optimizer Script (lazy load images & videos)
-    useEffect(() => {
-    const lazyImages = document.querySelectorAll("img[data-src], video[data-src]");
-    const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-    if (entry.isIntersecting) {
-    const el = entry.target;
-    if (el.tagName === "IMG" || el.tagName === "VIDEO") {
-    el.src = el.dataset.src;
-    el.removeAttribute("data-src");
-    }
-    obs.unobserve(el);
-    }
-    });
-    });
-    lazyImages.forEach(img => observer.observe(img));
-
-
-    return () => observer.disconnect();
-    }, []);
   return (
-      <Box sx={{ width: "100%", position: "relative", overflow: "hidden",mt: { xs: 5,  mt: "100px" }}}>
-        {/* Carousel */}
-        <Carousel
-          fade
-          nextIcon={
-            <span
-              className="carousel-control-next-icon"
-              style={{ backgroundColor: "black" }}
+    <Box sx={{ mt: { xs: 5, md: "100px" } }}>
+      <Carousel
+        fade
+        nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
+        prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: "black" }} />}
+      >
+        {carouselItems.map((item) => (
+          <Carousel.Item key={item.id}>
+            <video
+              className="d-block w-100"
+              src={item.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ objectFit: "cover", boxShadow: "inset 0 0 10px rgba(0,0,0,0.8)" }}
             />
-          }
-          prevIcon={
-            <span
-              className="carousel-control-prev-icon"
-              style={{ backgroundColor: "black" }}
-            />
-          }
-        >
-          {carouselItems.map((item) => (
-            <Carousel.Item key={item.id}>
-              <video
-                className="d-block w-100"
-                src={item.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  objectFit: "cover",
-                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-                }}
-              />
-              <Carousel.Caption>
-                <Typography
-                  variant="h4"
-                  sx={{
-                    color: "white",
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                  }}
-                >
-                  {item.title}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "white",
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                  }}
-                >
-                  {item.content}
-                </Typography>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </Carousel>
+            <Carousel.Caption>
+              <Typography variant="h4" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0,0,0,0.7)" }}>
+                {item.title}
+              </Typography>
+              <Typography variant="body1" sx={{ color: "white", textShadow: "2px 2px 4px rgba(0,0,0,0.7)" }}>
+                {item.content}
+              </Typography>
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
+      </Carousel>
 
-        {/* Social Media Icons */}
-        <Box
-          sx={{
-            position: "fixed",
-            top: "50%",
-            left: 0,
-            transform: "translateY(-50%)",
-            display: { xs: "none", md: "flex" },
-            flexDirection: "column",
-            gap: 2,
-            zIndex: 1200,
-            pl: 2,
-          }}
-        >
-          {socialLinks.map(({ icon, link }, index) => (
-            <a key={index} href={link} target="_blank" rel="noopener noreferrer">
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: 3,
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                {icon}
-              </Box>
-            </a>
-          ))}
-        </Box>
+      {/* Social Media Icons */}
+      <Box
+        sx={{
+          position: "fixed",
+          top: "50%",
+          left: 0,
+          transform: "translateY(-50%)",
+          display: { xs: "none", md: "flex" },
+          flexDirection: "column",
+          gap: 2,
+          zIndex: 1200,
+          pl: 2,
+        }}
+      >
+        {socialLinks.map(({ icon, link }, index) => (
+          <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+            <Box
+              sx={{
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                backgroundColor: "#06f9f3",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "#17202a",
+                boxShadow: 3,
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.2)" },
+              }}
+            >
+              {icon}
+            </Box>
+          </a>
+        ))}
       </Box>
+    </Box>
   );
 };
 
