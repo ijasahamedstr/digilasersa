@@ -20,22 +20,26 @@ function Eventsection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/News`
-        );
-        setEvent(response.data);
-      } catch (err) {
-        console.error("Error fetching data: ", err);
-        setError("فشل في جلب البيانات");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_HOST}/News`
+      );
+
+      // Reverse the array for LIFO (Last item first)
+      setEvent(response.data.reverse());
+    } catch (err) {
+      console.error("Error fetching data: ", err);
+      setError("فشل في جلب البيانات");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, []);
+
 
   if (loading)
     return (
