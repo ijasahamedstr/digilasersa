@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Container,
   Box,
@@ -20,26 +20,25 @@ function Eventsection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_HOST}/News`
-      );
+  // Ref for main Swiper
+  const mainSwiperRef = useRef(null);
 
-      // Reverse the array for LIFO (Last item first)
-      setEvent(response.data.reverse());
-    } catch (err) {
-      console.error("Error fetching data: ", err);
-      setError("فشل في جلب البيانات");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  fetchData();
-}, []);
-
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_HOST}/News`
+        );
+        setEvent(response.data.reverse());
+      } catch (err) {
+        console.error("Error fetching data: ", err);
+        setError("فشل في جلب البيانات");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   if (loading)
     return (
@@ -73,7 +72,7 @@ useEffect(() => {
           gutterBottom
           sx={{
             fontFamily: "Tajawal, sans-serif",
-            fontSize: "2.6rem",
+            fontSize: { xs: "1rem", sm: "1.5rem", md: "2.5rem" },
             fontWeight: 700,
             mb: "30px",
             color: "#096e69",
@@ -82,9 +81,13 @@ useEffect(() => {
           آخر أخبارنا
         </Typography>
 
-        {/* Main Event Slider */}
-        <Box sx={{ position: "relative" }}>
+        <Box
+          sx={{ position: "relative" }}
+          onMouseEnter={() => mainSwiperRef.current?.autoplay.stop()}
+          onMouseLeave={() => mainSwiperRef.current?.autoplay.start()}
+        >
           <Swiper
+            onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
             spaceBetween={30}
             slidesPerView={1}
             loop
@@ -106,7 +109,7 @@ useEffect(() => {
                     alignItems: "center",
                   }}
                 >
-                  {/* Image slider (50%) */}
+                  {/* Image slider */}
                   <Box
                     sx={{
                       width: { xs: "100%", sm: "50%" },
@@ -145,7 +148,7 @@ useEffect(() => {
                     </Swiper>
                   </Box>
 
-                  {/* Text content (50%) */}
+                  {/* Text content */}
                   <Box
                     sx={{
                       width: { xs: "100%", sm: "50%" },
@@ -163,7 +166,8 @@ useEffect(() => {
                         gutterBottom
                         sx={{
                           fontFamily: "Tajawal",
-                          fontSize: { xs: "1.5rem", md: "2.5rem" },
+                          fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
+                          fontWeight: 700,
                         }}
                       >
                         {event.newsname}
@@ -172,8 +176,9 @@ useEffect(() => {
                         variant="body1"
                         paragraph
                         sx={{
-                          fontSize: { xs: "1rem", md: "1.25rem" },
+                          fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.8rem" },
                           fontFamily: "Tajawal",
+                          lineHeight: 1.6,
                         }}
                       >
                         {event.newsdec}
