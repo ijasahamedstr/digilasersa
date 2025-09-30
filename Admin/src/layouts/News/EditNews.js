@@ -22,7 +22,7 @@ const EditNews = () => {
 
   const [formData, setFormData] = useState({
     newsname: "",
-    newsdec: "",
+    newsdec: [""], // array of descriptions
     newsimagelinks: [""], // array of image links
   });
 
@@ -31,6 +31,33 @@ const EditNews = () => {
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
+    }));
+  };
+
+  // Handle multiple description changes
+  const handleDescriptionChange = (index, value) => {
+    const updatedDescriptions = [...formData.newsdec];
+    updatedDescriptions[index] = value;
+    setFormData((prevState) => ({
+      ...prevState,
+      newsdec: updatedDescriptions,
+    }));
+  };
+
+  // Add a new description field
+  const addDescriptionField = () => {
+    setFormData((prevState) => ({
+      ...prevState,
+      newsdec: [...prevState.newsdec, ""],
+    }));
+  };
+
+  // Remove a description field
+  const removeDescriptionField = (index) => {
+    const updatedDescriptions = formData.newsdec.filter((_, i) => i !== index);
+    setFormData((prevState) => ({
+      ...prevState,
+      newsdec: updatedDescriptions,
     }));
   };
 
@@ -69,7 +96,7 @@ const EditNews = () => {
         const response = await axios.get(`${process.env.REACT_APP_API_HOST}/News/${id}`);
         setFormData({
           newsname: response.data.newsname || "",
-          newsdec: response.data.newsdec || "",
+          newsdec: response.data.newsdec?.length ? response.data.newsdec : [""],
           newsimagelinks: response.data.newsimagelinks?.length
             ? response.data.newsimagelinks
             : [""],
@@ -92,7 +119,11 @@ const EditNews = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!formData.newsname || !formData.newsdec) {
+    if (
+      !formData.newsname ||
+      formData.newsdec.some((desc) => !desc.trim()) ||
+      formData.newsimagelinks.some((link) => !link.trim())
+    ) {
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -159,18 +190,47 @@ const EditNews = () => {
                     onChange={handleInputChange}
                   />
 
-                  {/* News Description */}
-                  <TextField
-                    label="Enter your text"
-                    multiline
-                    rows={4}
+                  {/* Multiple News Descriptions */}
+                  {formData.newsdec.map((desc, index) => (
+                    <MDBox key={index} display="flex" alignItems="center" sx={{ mb: 2 }}>
+                      <TextField
+                        label={`News Description ${index + 1}`}
+                        multiline
+                        rows={4}
+                        variant="outlined"
+                        fullWidth
+                        value={desc}
+                        onChange={(e) => handleDescriptionChange(index, e.target.value)}
+                      />
+                      {index > 0 && (
+                        <Button
+                          onClick={() => removeDescriptionField(index)}
+                          color="error"
+                          sx={{ ml: 1 }}
+                        >
+                          Remove
+                        </Button>
+                      )}
+                    </MDBox>
+                  ))}
+
+                  {/* Add Another Description Button */}
+                  <Button
+                    onClick={addDescriptionField}
                     variant="outlined"
                     fullWidth
-                    sx={{ mb: 2 }}
-                    name="newsdec"
-                    value={formData.newsdec}
-                    onChange={handleInputChange}
-                  />
+                    sx={{
+                      mb: 2,
+                      color: "#000",
+                      borderColor: "black",
+                      "&:hover": {
+                        borderColor: "black",
+                        backgroundColor: "rgba(0,0,0,0.04)",
+                      },
+                    }}
+                  >
+                    + Add Another Description
+                  </Button>
 
                   {/* Multiple News Image Links */}
                   {formData.newsimagelinks.map((link, index) => (

@@ -14,9 +14,9 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Container, Grid, Typography, Box, Button, Card, CircularProgress } from "@mui/material";
 
 const carouselItems = [
-  { id: 1, img: "https://i.ibb.co/Kx2gxHcg/Top-Screen.webp" },
-  { id: 2, img: "https://i.ibb.co/Kx2gxHcg/Top-Screen.webp" },
-  { id: 3, img: "https://i.ibb.co/Kx2gxHcg/Top-Screen.webp" },
+  { id: 1, img: "https://i.ibb.co/LX7hG42y/image.webp" },
+  { id: 2, img: "https://i.ibb.co/LX7hG42y/image.webp" },
+  { id: 3, img: "https://i.ibb.co/LX7hG42y/image.webp" },
 ];
 
 const socialLinks = [

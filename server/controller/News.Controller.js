@@ -17,7 +17,7 @@ export const Newscreate = async (req, res) => {
 
         const newNews = new News({
             newsname,
-            newsdec,
+            newsdec: newsdec || [],
             newsimagelinks: newsimagelinks || [],
             date,
         });
@@ -78,22 +78,33 @@ export const NewsDelete = async (req, res) => {
 
 
 // All Acccount Update
+// All Account Update
 export const Newsupdate = async (req, res) => {
   const { id } = req.params;
-  const { newsname, newsdec, newsimagelinks } = req.body; // destructure array
+  const { newsname, newsdec, newsimagelinks } = req.body;
 
   try {
     // Find the news item by ID
     const newsItem = await News.findById(id);
     if (!newsItem) {
-      return res.status(404).json({ status: 404, message: "News item not found" });
+      return res
+        .status(404)
+        .json({ status: 404, message: "News item not found" });
     }
 
     // Update fields if they exist in the request
     if (newsname) newsItem.newsname = newsname;
-    if (newsdec) newsItem.newsdec = newsdec;
+
+    // Handle newsdec as array
+    if (Array.isArray(newsdec) && newsdec.length > 0) {
+      newsItem.newsdec = newsdec; // assign the new array
+    } else if (typeof newsdec === "string") {
+      newsItem.newsdec = newsdec; // allow string if passed
+    }
+
+    // Handle newsimagelinks as array
     if (Array.isArray(newsimagelinks) && newsimagelinks.length > 0) {
-      newsItem.newsimagelinks = newsimagelinks; // assign the new array
+      newsItem.newsimagelinks = newsimagelinks;
     }
 
     // Save updated news item
@@ -106,6 +117,10 @@ export const Newsupdate = async (req, res) => {
     });
   } catch (error) {
     console.error("Error updating News:", error);
-    res.status(500).json({ status: 500, message: "Internal server error", error: error.message });
+    res.status(500).json({
+      status: 500,
+      message: "Internal server error",
+      error: error.message,
+    });
   }
 };

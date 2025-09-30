@@ -20,8 +20,8 @@ const AddNews = () => {
   // News Form field states
   const [News, setNews] = useState({
     newsname: "",
-    newsdec: "",
-    newsimagelinks: [""], // store as array
+    newsdec: [""], // store descriptions as array
+    newsimagelinks: [""], // store images as array
   });
 
   // Handle changes in input fields (for single inputs)
@@ -32,7 +32,36 @@ const AddNews = () => {
     }));
   };
 
-  // Handle changes for multiple image links
+  // ======================
+  // Descriptions Handlers
+  // ======================
+  const handleDescChange = (index, value) => {
+    const updatedDesc = [...News.newsdec];
+    updatedDesc[index] = value;
+    setNews((prevState) => ({
+      ...prevState,
+      newsdec: updatedDesc,
+    }));
+  };
+
+  const addDescField = () => {
+    setNews((prevState) => ({
+      ...prevState,
+      newsdec: [...prevState.newsdec, ""],
+    }));
+  };
+
+  const removeDescField = (index) => {
+    const updatedDesc = News.newsdec.filter((_, i) => i !== index);
+    setNews((prevState) => ({
+      ...prevState,
+      newsdec: updatedDesc,
+    }));
+  };
+
+  // ======================
+  // Images Handlers
+  // ======================
   const handleImageChange = (index, value) => {
     const updatedLinks = [...News.newsimagelinks];
     updatedLinks[index] = value;
@@ -42,7 +71,6 @@ const AddNews = () => {
     }));
   };
 
-  // Add new image field
   const addImageField = () => {
     setNews((prevState) => ({
       ...prevState,
@@ -50,7 +78,6 @@ const AddNews = () => {
     }));
   };
 
-  // Remove image field
   const removeImageField = (index) => {
     const updatedLinks = News.newsimagelinks.filter((_, i) => i !== index);
     setNews((prevState) => ({
@@ -59,7 +86,9 @@ const AddNews = () => {
     }));
   };
 
+  // ======================
   // Submit form data
+  // ======================
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -83,7 +112,7 @@ const AddNews = () => {
           confirmButtonColor: "#3085d6",
           confirmButtonText: "OK",
         });
-        setNews({ newsname: "", newsdec: "", newsimagelinks: [""] });
+        setNews({ newsname: "", newsdec: [""], newsimagelinks: [""] });
       }
     } catch (error) {
       Swal.fire({
@@ -137,18 +166,43 @@ const AddNews = () => {
                     onChange={handleChange}
                   />
 
-                  {/* News Description */}
-                  <TextField
-                    label="Enter your text"
-                    multiline
-                    rows={4}
+                  {/* Multiple News Descriptions */}
+                  {News.newsdec.map((desc, index) => (
+                    <MDBox key={index} display="flex" alignItems="center" sx={{ mb: 2 }}>
+                      <TextField
+                        label={`News Description ${index + 1}`}
+                        multiline
+                        rows={4}
+                        variant="outlined"
+                        fullWidth
+                        value={desc}
+                        onChange={(e) => handleDescChange(index, e.target.value)}
+                      />
+                      {index > 0 && (
+                        <Button onClick={() => removeDescField(index)} color="error" sx={{ ml: 1 }}>
+                          Remove
+                        </Button>
+                      )}
+                    </MDBox>
+                  ))}
+
+                  {/* Add Another Description Button */}
+                  <Button
+                    onClick={addDescField}
                     variant="outlined"
                     fullWidth
-                    sx={{ mb: 2 }}
-                    name="newsdec"
-                    value={News.newsdec}
-                    onChange={handleChange}
-                  />
+                    sx={{
+                      mb: 2,
+                      color: "#000000ff",
+                      borderColor: "black",
+                      "&:hover": {
+                        borderColor: "black",
+                        backgroundColor: "rgba(0,0,0,0.04)",
+                      },
+                    }}
+                  >
+                    + Add Another Description
+                  </Button>
 
                   {/* Multiple News Image Links */}
                   {News.newsimagelinks.map((link, index) => (
@@ -172,7 +226,7 @@ const AddNews = () => {
                     </MDBox>
                   ))}
 
-                  {/* Add Another Image Button (black style) */}
+                  {/* Add Another Image Button */}
                   <Button
                     onClick={addImageField}
                     variant="outlined"

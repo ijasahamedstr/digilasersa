@@ -26,9 +26,7 @@ function Eventsection() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/News`
-        );
+        const response = await axios.get(`${process.env.REACT_APP_API_HOST}/News`);
         setEvent(response.data.reverse());
       } catch (err) {
         console.error("Error fetching data: ", err);
@@ -166,23 +164,41 @@ function Eventsection() {
                         gutterBottom
                         sx={{
                           fontFamily: "Tajawal",
-                          fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
+                          fontSize: { xs: "1.8rem", sm: "2rem", md: "3rem" },
                           fontWeight: 700,
                         }}
                       >
                         {event.newsname}
                       </Typography>
-                      <Typography
-                        variant="body1"
-                        paragraph
-                        sx={{
-                          fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.8rem" },
-                          fontFamily: "Tajawal",
-                          lineHeight: 1.6,
-                        }}
-                      >
-                        {event.newsdec}
-                      </Typography>
+
+                      {Array.isArray(event.newsdec)
+                        ? event.newsdec.map((desc, i) => (
+                            <Typography
+                              key={i}
+                              variant="body1"
+                              sx={{
+                                fontFamily: "Tajawal",
+                                mb: 2, // increased space between paragraphs
+                                fontSize: { xs: "0.8rem", sm: "1rem", md: "1.5rem" },
+                                lineHeight: 1.6,
+                              }}
+                            >
+                              {desc}
+                            </Typography>
+                          ))
+                        : (
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                fontFamily: "Tajawal",
+                                mb: 2, // spacing for single text block
+                                fontSize: { xs: "0.8rem", sm: "1rem", md: "1.5rem" },
+                                lineHeight: 1.6,
+                              }}
+                            >
+                              {event.newsdec}
+                            </Typography>
+                          )}
                     </CardContent>
                   </Box>
                 </Card>

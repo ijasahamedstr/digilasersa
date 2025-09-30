@@ -6,7 +6,7 @@ const NewsSchema = new mongoose.Schema({
         type: String,
     },
     newsdec: {
-        type: String,
+        type: [String]
     },
     newsimagelinks: {
     type: [String] // <-- Fix: array of strings
