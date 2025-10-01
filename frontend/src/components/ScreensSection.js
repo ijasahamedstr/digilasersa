@@ -412,6 +412,7 @@ const ScreensSection = () => {
                       fontFamily: "Tajawal",
                       fontSize: { xs: "1rem", md: "1.2rem" },
                       textAlign: "justify",
+                      pl: "80px", // padding-left
                     }}
                   >
                     بدلاً من شاشة عادية، صمّم إعلانك بشكل منتجك ليكون مباشرًا، ملفتًا، ولا يُنسى. شاشة العلبة تربط العميل بالعلامة التجارية بصريًا وذهنيًا.
@@ -502,6 +503,7 @@ const ScreensSection = () => {
                       fontFamily: "Tajawal",
                       fontSize: { xs: "1rem", md: "1.2rem" },
                       textAlign: "justify",
+                      pl: "80px", // padding-left
                     }}
                   >
                     تصميم ثلاثي الأبعاد، إضاءة LED، شكل مألوف بطريقة غير مألوفة... هذا هو الابتكار في الإعلان.
