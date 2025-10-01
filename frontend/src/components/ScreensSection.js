@@ -281,7 +281,7 @@ const ScreensSection = () => {
         </Box>
       </Container>
 
-        <section
+      <section
         style={{
           width: "100%",
           display: "flex",
@@ -301,33 +301,36 @@ const ScreensSection = () => {
               alignItems: "stretch",   // ✅ full width instead of centered
             }}
           >
-            {/* Image Section */}
-            <Grid item xs={12}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/0VdG8x9X/S1.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%", // ✅ fill horizontally within container
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "20px",
-                  borderRadius: "8px",
-                }}
-              />
-            </Grid>
-
             {/* Text Content */}
             <Grid item xs={12}>
               <Box sx={{ p: 2 }}>
+              {/* Outer wrapper shows the animated gradient and acts as the border */}
+              <Box
+                sx={{
+                  borderRadius: "10px",       // outer radius (border)
+                  p: "2px",                   // border thickness (increase/decrease)
+                  background:
+                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  // keyframes defined inline in sx (MUI supports this)
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
+                {/* Inner card sits on top of the animated border */}
                 <Card
                   sx={{
-                    backgroundColor: "#b0b0b0",
+                    bgcolor: "#b0b0b0",
                     p: 2,
-                    borderRadius: "8px",
+                    borderRadius: "8px", // slightly smaller than outer to reveal border
                     boxShadow: 3,
                     textAlign: "center",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
                   <Typography
@@ -344,6 +347,7 @@ const ScreensSection = () => {
                   </Typography>
                 </Card>
               </Box>
+            </Box>
 
               <Typography
                 variant="body1"
@@ -362,6 +366,22 @@ const ScreensSection = () => {
                 من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
               </Typography>
             </Grid>
+            {/* Image Section */}
+            <Grid item xs={12}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/0VdG8x9X/S1.webp"
+                alt="Outdoor LED Screen"
+                sx={{
+                  width: "100%", // ✅ fill horizontally within container
+                  height: "auto",
+                  objectFit: "cover",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  pb: "20px",
+                  borderRadius: "8px",
+                }}
+              />
+            </Grid>  
           </Grid>
         </Container>
       </section>
@@ -386,6 +406,73 @@ const ScreensSection = () => {
               alignItems: "stretch",   // ✅ full width instead of centered
             }}
           >
+            
+            {/* Text Content */}
+            <Grid item xs={12}>
+             <Box sx={{ p: 2 }}>
+              {/* Outer wrapper shows the animated gradient and acts as the border */}
+              <Box
+                sx={{
+                  borderRadius: "10px",       // outer radius (border)
+                  p: "2px",                   // border thickness (increase/decrease)
+                  background:
+                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  // keyframes defined inline in sx (MUI supports this)
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
+                {/* Inner card sits on top of the animated border */}
+                <Card
+                  sx={{
+                    bgcolor: "#b0b0b0",
+                    p: 2,
+                    borderRadius: "8px", // slightly smaller than outer to reveal border
+                    boxShadow: 3,
+                    textAlign: "center",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "2rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                    }}
+                  >
+                    الشاشات الإلكترونية الداخلية
+                  </Typography>
+                </Card>
+              </Box>
+            </Box>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.5rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
+                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
+                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
+                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
+              </Typography>
+            </Grid>
+
             {/* Image Section */}
             <Grid item xs={12}>
               <Box
@@ -402,51 +489,6 @@ const ScreensSection = () => {
                 }}
               />
             </Grid>
-
-            {/* Text Content */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-                <Card
-                  sx={{
-                    backgroundColor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px",
-                    boxShadow: 3,
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
-                    }}
-                  >
-                    الشاشات الإلكترونية الداخلية
-                  </Typography>
-                </Card>
-              </Box>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
-                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
-                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
-                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
-              </Typography>
-            </Grid>
           </Grid>
         </Container>
       </section>
@@ -472,6 +514,71 @@ const ScreensSection = () => {
               alignItems: "stretch",   // ✅ full width instead of centered
             }}
           >
+          {/* Text Content */}
+            <Grid item xs={12}>
+              <Box sx={{ p: 2 }}>
+              {/* Outer wrapper shows the animated gradient and acts as the border */}
+              <Box
+                sx={{
+                  borderRadius: "10px",       // outer radius (border)
+                  p: "2px",                   // border thickness (increase/decrease)
+                  background:
+                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  // keyframes defined inline in sx (MUI supports this)
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
+                {/* Inner card sits on top of the animated border */}
+                <Card
+                  sx={{
+                    bgcolor: "#b0b0b0",
+                    p: 2,
+                    borderRadius: "8px", // slightly smaller than outer to reveal border
+                    boxShadow: 3,
+                    textAlign: "center",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "2rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                    }}
+                  >
+                    الشاشات الإلكترونية الداخلية
+                  </Typography>
+                </Card>
+              </Box>
+            </Box>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.5rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
+                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
+                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
+                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
+              </Typography>
+            </Grid>
             {/* Image Section */}
             <Grid item xs={12}>
               <Box
@@ -488,51 +595,6 @@ const ScreensSection = () => {
                 }}
               />
             </Grid>
-
-            {/* Text Content */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-                <Card
-                  sx={{
-                    backgroundColor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px",
-                    boxShadow: 3,
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
-                    }}
-                  >
-                    الشاشات الإلكترونية الداخلية
-                  </Typography>
-                </Card>
-              </Box>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
-                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
-                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
-                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
-              </Typography>
-            </Grid>
           </Grid>
         </Container>
       </section>
@@ -558,33 +620,36 @@ const ScreensSection = () => {
               alignItems: "stretch",   // ✅ full width instead of centered
             }}
           >
-            {/* Image Section */}
-            <Grid item xs={12}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/Fb6xZfJ1/S4.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%", // ✅ fill horizontally within container
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "20px",
-                  borderRadius: "8px",
-                }}
-              />
-            </Grid>
-
-            {/* Text Content */}
+               {/* Text Content */}
             <Grid item xs={12}>
               <Box sx={{ p: 2 }}>
+              {/* Outer wrapper shows the animated gradient and acts as the border */}
+              <Box
+                sx={{
+                  borderRadius: "10px",       // outer radius (border)
+                  p: "2px",                   // border thickness (increase/decrease)
+                  background:
+                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  // keyframes defined inline in sx (MUI supports this)
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
+                {/* Inner card sits on top of the animated border */}
                 <Card
                   sx={{
-                    backgroundColor: "#b0b0b0",
+                    bgcolor: "#b0b0b0",
                     p: 2,
-                    borderRadius: "8px",
+                    borderRadius: "8px", // slightly smaller than outer to reveal border
                     boxShadow: 3,
                     textAlign: "center",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
                   <Typography
@@ -601,6 +666,7 @@ const ScreensSection = () => {
                   </Typography>
                 </Card>
               </Box>
+            </Box>
 
               <Typography
                 variant="body1"
@@ -618,6 +684,23 @@ const ScreensSection = () => {
                 والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
                 من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
               </Typography>
+            </Grid>
+
+            {/* Image Section */}
+            <Grid item xs={12}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/Fb6xZfJ1/S4.webp"
+                alt="Outdoor LED Screen"
+                sx={{
+                  width: "100%", // ✅ fill horizontally within container
+                  height: "auto",
+                  objectFit: "cover",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  pb: "20px",
+                  borderRadius: "8px",
+                }}
+              />
             </Grid>
           </Grid>
         </Container>
@@ -644,33 +727,36 @@ const ScreensSection = () => {
               alignItems: "stretch",   // ✅ full width instead of centered
             }}
           >
-            {/* Image Section */}
-            <Grid item xs={12}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/RGLf0CYC/S5.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%", // ✅ fill horizontally within container
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "20px",
-                  borderRadius: "8px",
-                }}
-              />
-            </Grid>
-
-            {/* Text Content */}
+               {/* Text Content */}
             <Grid item xs={12}>
               <Box sx={{ p: 2 }}>
+              {/* Outer wrapper shows the animated gradient and acts as the border */}
+              <Box
+                sx={{
+                  borderRadius: "10px",       // outer radius (border)
+                  p: "2px",                   // border thickness (increase/decrease)
+                  background:
+                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  // keyframes defined inline in sx (MUI supports this)
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
+                {/* Inner card sits on top of the animated border */}
                 <Card
                   sx={{
-                    backgroundColor: "#b0b0b0",
+                    bgcolor: "#b0b0b0",
                     p: 2,
-                    borderRadius: "8px",
+                    borderRadius: "8px", // slightly smaller than outer to reveal border
                     boxShadow: 3,
                     textAlign: "center",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
                   <Typography
@@ -687,6 +773,7 @@ const ScreensSection = () => {
                   </Typography>
                 </Card>
               </Box>
+            </Box>
 
               <Typography
                 variant="body1"
@@ -704,6 +791,22 @@ const ScreensSection = () => {
                 والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
                 من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
               </Typography>
+            </Grid>
+            {/* Image Section */}
+            <Grid item xs={12}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/RGLf0CYC/S5.webp"
+                alt="Outdoor LED Screen"
+                sx={{
+                  width: "100%", // ✅ fill horizontally within container
+                  height: "auto",
+                  objectFit: "cover",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  pb: "20px",
+                  borderRadius: "8px",
+                }}
+              />
             </Grid>
           </Grid>
         </Container>
@@ -731,33 +834,36 @@ const ScreensSection = () => {
               alignItems: "stretch",   // ✅ full width instead of centered
             }}
           >
-            {/* Image Section */}
-            <Grid item xs={12}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/nNRK64R6/S6.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%", // ✅ fill horizontally within container
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "20px",
-                  borderRadius: "8px",
-                }}
-              />
-            </Grid>
-
             {/* Text Content */}
             <Grid item xs={12}>
               <Box sx={{ p: 2 }}>
+              {/* Outer wrapper shows the animated gradient and acts as the border */}
+              <Box
+                sx={{
+                  borderRadius: "10px",       // outer radius (border)
+                  p: "2px",                   // border thickness (increase/decrease)
+                  background:
+                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  // keyframes defined inline in sx (MUI supports this)
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
+                {/* Inner card sits on top of the animated border */}
                 <Card
                   sx={{
-                    backgroundColor: "#b0b0b0",
+                    bgcolor: "#b0b0b0",
                     p: 2,
-                    borderRadius: "8px",
+                    borderRadius: "8px", // slightly smaller than outer to reveal border
                     boxShadow: 3,
                     textAlign: "center",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
                   <Typography
@@ -774,6 +880,7 @@ const ScreensSection = () => {
                   </Typography>
                 </Card>
               </Box>
+            </Box>
 
               <Typography
                 variant="body1"
@@ -791,6 +898,23 @@ const ScreensSection = () => {
                 والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
                 من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
               </Typography>
+            </Grid>
+
+            {/* Image Section */}
+            <Grid item xs={12}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/nNRK64R6/S6.webp"
+                alt="Outdoor LED Screen"
+                sx={{
+                  width: "100%", // ✅ fill horizontally within container
+                  height: "auto",
+                  objectFit: "cover",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  pb: "20px",
+                  borderRadius: "8px",
+                }}
+              />
             </Grid>
           </Grid>
         </Container>
@@ -817,6 +941,72 @@ const ScreensSection = () => {
               alignItems: "stretch",   // ✅ full width instead of centered
             }}
           >
+               {/* Text Content */}
+            <Grid item xs={12}>
+             <Box sx={{ p: 2 }}>
+              {/* Outer wrapper shows the animated gradient and acts as the border */}
+              <Box
+                sx={{
+                  borderRadius: "10px",       // outer radius (border)
+                  p: "2px",                   // border thickness (increase/decrease)
+                  background:
+                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  // keyframes defined inline in sx (MUI supports this)
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
+                {/* Inner card sits on top of the animated border */}
+                <Card
+                  sx={{
+                    bgcolor: "#b0b0b0",
+                    p: 2,
+                    borderRadius: "8px", // slightly smaller than outer to reveal border
+                    boxShadow: 3,
+                    textAlign: "center",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "2rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                    }}
+                  >
+                    الشاشات الإلكترونية الداخلية
+                  </Typography>
+                </Card>
+              </Box>
+            </Box>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.5rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
+                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
+                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
+                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
+              </Typography>
+            </Grid>
+
             {/* Image Section */}
             <Grid item xs={12}>
               <Box
@@ -833,57 +1023,12 @@ const ScreensSection = () => {
                 }}
               />
             </Grid>
-
-            {/* Text Content */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-                <Card
-                  sx={{
-                    backgroundColor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px",
-                    boxShadow: 3,
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
-                    }}
-                  >
-                    الشاشات الإلكترونية الداخلية
-                  </Typography>
-                </Card>
-              </Box>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
-                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
-                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
-                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
-              </Typography>
-            </Grid>
           </Grid>
         </Container>
       </section>
 
 
-          <section
+      <section
         style={{
           width: "100%",
           display: "flex",
@@ -903,6 +1048,72 @@ const ScreensSection = () => {
               alignItems: "stretch",   // ✅ full width instead of centered
             }}
           >
+               {/* Text Content */}
+            <Grid item xs={12}>
+              <Box sx={{ p: 2 }}>
+              {/* Outer wrapper shows the animated gradient and acts as the border */}
+              <Box
+                sx={{
+                  borderRadius: "10px",       // outer radius (border)
+                  p: "2px",                   // border thickness (increase/decrease)
+                  background:
+                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  // keyframes defined inline in sx (MUI supports this)
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
+                {/* Inner card sits on top of the animated border */}
+                <Card
+                  sx={{
+                    bgcolor: "#b0b0b0",
+                    p: 2,
+                    borderRadius: "8px", // slightly smaller than outer to reveal border
+                    boxShadow: 3,
+                    textAlign: "center",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "2rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                    }}
+                  >
+                    الشاشات الإلكترونية الداخلية
+                  </Typography>
+                </Card>
+              </Box>
+            </Box>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.5rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
+                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
+                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
+                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
+              </Typography>
+            </Grid>
+
             {/* Image Section */}
             <Grid item xs={12}>
               <Box
@@ -919,57 +1130,12 @@ const ScreensSection = () => {
                 }}
               />
             </Grid>
-
-            {/* Text Content */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-                <Card
-                  sx={{
-                    backgroundColor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px",
-                    boxShadow: 3,
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
-                    }}
-                  >
-                    الشاشات الإلكترونية الداخلية
-                  </Typography>
-                </Card>
-              </Box>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
-                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
-                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
-                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
-              </Typography>
-            </Grid>
           </Grid>
         </Container>
       </section>
 
 
-         <section
+      <section
         style={{
           width: "100%",
           display: "flex",
@@ -989,33 +1155,36 @@ const ScreensSection = () => {
               alignItems: "stretch",   // ✅ full width instead of centered
             }}
           >
-            {/* Image Section */}
+               {/* Text Content */}
             <Grid item xs={12}>
+             <Box sx={{ p: 2 }}>
+              {/* Outer wrapper shows the animated gradient and acts as the border */}
               <Box
-                component="img"
-                src="https://i.ibb.co/XZhxzxRR/S9.webp"
-                alt="Outdoor LED Screen"
                 sx={{
-                  width: "100%", // ✅ fill horizontally within container
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "20px",
-                  borderRadius: "8px",
+                  borderRadius: "10px",       // outer radius (border)
+                  p: "2px",                   // border thickness (increase/decrease)
+                  background:
+                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  // keyframes defined inline in sx (MUI supports this)
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
                 }}
-              />
-            </Grid>
-
-            {/* Text Content */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
+              >
+                {/* Inner card sits on top of the animated border */}
                 <Card
                   sx={{
-                    backgroundColor: "#b0b0b0",
+                    bgcolor: "#b0b0b0",
                     p: 2,
-                    borderRadius: "8px",
+                    borderRadius: "8px", // slightly smaller than outer to reveal border
                     boxShadow: 3,
                     textAlign: "center",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
                   <Typography
@@ -1032,6 +1201,7 @@ const ScreensSection = () => {
                   </Typography>
                 </Card>
               </Box>
+            </Box>
 
               <Typography
                 variant="body1"
@@ -1050,13 +1220,26 @@ const ScreensSection = () => {
                 من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
               </Typography>
             </Grid>
+
+            {/* Image Section */}
+            <Grid item xs={12}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/XZhxzxRR/S9.webp"
+                alt="Outdoor LED Screen"
+                sx={{
+                  width: "100%", // ✅ fill horizontally within container
+                  height: "auto",
+                  objectFit: "cover",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  pb: "20px",
+                  borderRadius: "8px",
+                }}
+              />
+            </Grid>
           </Grid>
         </Container>
       </section>
-
-
-
-
     </>
   );
 };
