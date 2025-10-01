@@ -651,88 +651,123 @@ const ScreensSection = () => {
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          paddingBottom: "60px", // ✅ extra space at bottom
+          paddingBottom: "60px",
         }}
       >
-        <Container
-          maxWidth="xl" // ✅ narrower container with left/right space
-        >
+        <Container maxWidth="xl">
           <Grid
             container
             spacing={2}
             sx={{
               mt: "40px",
-              flexDirection: "column", // ✅ stacked layout
-              alignItems: "stretch",   // ✅ full width instead of centered
+              flexDirection: "column",
+              alignItems: "stretch",
             }}
           >
-            
-            {/* Text Content */}
+            {/* Animated Gradient Card */}
             <Grid item xs={12}>
-             <Box sx={{ p: 2 }}>
-              {/* Outer wrapper shows the animated gradient and acts as the border */}
-              <Box
-                sx={{
-                  borderRadius: "10px",       // outer radius (border)
-                  p: "2px",                   // border thickness (increase/decrease)
-                  background:
-                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                  backgroundSize: "300% 300%",
-                  // keyframes defined inline in sx (MUI supports this)
-                  "@keyframes gradient": {
-                    "0%": { backgroundPosition: "0% 50%" },
-                    "50%": { backgroundPosition: "100% 50%" },
-                    "100%": { backgroundPosition: "0% 50%" },
-                  },
-                  animation: "gradient 4s linear infinite",
-                }}
-              >
-                {/* Inner card sits on top of the animated border */}
-                <Card
+              <Box sx={{ p: 2 }}>
+                <Box
                   sx={{
-                    bgcolor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px", // slightly smaller than outer to reveal border
-                    boxShadow: 3,
-                    textAlign: "center",
-                    position: "relative",
-                    overflow: "hidden",
+                    borderRadius: "10px",
+                    p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    "@keyframes gradient": {
+                      "0%": { backgroundPosition: "0% 50%" },
+                      "50%": { backgroundPosition: "100% 50%" },
+                      "100%": { backgroundPosition: "0% 50%" },
+                    },
+                    animation: "gradient 4s linear infinite",
                   }}
                 >
-                  <Typography
-                    variant="h3"
+                  <Card
                     sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
+                      bgcolor: "#b0b0b0",
+                      p: 2,
+                      borderRadius: "8px",
+                      boxShadow: 3,
+                      textAlign: "center",
+                      position: "relative",
+                      overflow: "hidden",
                     }}
                   >
-                    الشاشات الإلكترونية الداخلية
-                  </Typography>
-                </Card>
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#333",
+                        fontSize: { xs: "1rem", sm: "2rem" },
+                        fontFamily: "Tajawal",
+                        direction: "rtl",
+                        textAlign: "center", // ✅ heading centered
+                      }}
+                    >
+                      شاشة الكورة
+                    </Typography>
+                  </Card>
+                </Box>
               </Box>
-            </Box>
+            </Grid>
 
+            {/* Text Content */}
+            <Grid item xs={12}>
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
                   px: "20px",
                   mt: 2,
                   fontFamily: "Tajawal",
                 }}
               >
-                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
-                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
-                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
-                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
+                تعد الشاشة الكروية من أحدث حلول العرض الرقمي التي تقدمها شركة الليزر
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                *شاشة LED مبتكرة على شكل كرة بحجم أقطار مختلفة  مصممة لتقديم تجربة عرض بانورامية  بزاوية 360°، تمنحك حضوراً بصرياً فريداً وتلفت الانتباه من كل الاتجاهات*
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                مثالية  للأندية الرياضية  &  المولات  &  الفعاليات  &  والمعارض*
               </Typography>
             </Grid>
 
+            <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
+                  {/* Second Heading */}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    fontFamily: "Tajawal",
+                    pt: "40px", // padding top
+                    pb: "40px", // padding bottom
+                    fontSize: { xs: "1.5rem", md: "1.6rem" },
+                  }}
+                >
+                  خل العرض دائري وخل فكرتك تدور في كل الاتجاهات
+                </Typography>
+
+                  </Box>
+            
             {/* Image Section */}
             <Grid item xs={12}>
               <Box
@@ -740,19 +775,28 @@ const ScreensSection = () => {
                 src="https://i.ibb.co/MyGgm2Gt/S2.webp"
                 alt="Outdoor LED Screen"
                 sx={{
-                  width: "100%", // ✅ fill horizontally within container
+                  width: "100%",
                   height: "auto",
                   objectFit: "cover",
                   maxHeight: { xs: 250, sm: 350, md: 500 },
                   pb: "20px",
-                  borderRadius: "8px",
+                  borderRadius: "10px",
+                  p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    "@keyframes gradient": {
+                      "0%": { backgroundPosition: "0% 50%" },
+                      "50%": { backgroundPosition: "100% 50%" },
+                      "100%": { backgroundPosition: "0% 50%" },
+                    },
+                    animation: "gradient 4s linear infinite",
                 }}
               />
             </Grid>
           </Grid>
         </Container>
       </section>
-
 
       <section
         style={{
