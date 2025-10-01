@@ -1241,12 +1241,11 @@ const ScreensSection = () => {
         </Container>
       </section>
 
-      
       <section style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <Container
           maxWidth="xxl"
           sx={{
-            mt: "60px", // ✅ space above the section
+            mt: "60px",
             mb: "30px",
             px: { xs: "20px", sm: "100px" },
           }}
@@ -1265,8 +1264,8 @@ const ScreensSection = () => {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                paddingTop: "2px", // thickness of top border
-                paddingLeft: "2px", // thickness of left border
+                paddingTop: "2px",
+                paddingLeft: "2px",
                 borderTopLeftRadius: "10px",
                 background:
                   "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
@@ -1277,6 +1276,7 @@ const ScreensSection = () => {
                 WebkitMaskComposite: "destination-out",
                 maskComposite: "exclude",
                 animation: "gradient 4s linear infinite",
+                display: { xs: "none", sm: "block" },
               },
               "@keyframes gradient": {
                 "0%": { backgroundPosition: "0% 50%" },
@@ -1296,7 +1296,7 @@ const ScreensSection = () => {
                   objectFit: "cover",
                   maxHeight: { xs: 250, sm: 350, md: 500 },
                   pb: "30px",
-                  pr: { xs: 0, sm: "300px" },
+                  pr: { xs: 0, sm: "150px" },
                 }}
               />
             </Grid>
@@ -1304,7 +1304,7 @@ const ScreensSection = () => {
             {/* Text Content */}
             <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
               <Box sx={{ p: 2 }}>
-                {/* 🔥 Gradient Border Wrapper */}
+                {/* Gradient Border Wrapper */}
                 <Box
                   sx={{
                     borderRadius: "10px",
@@ -1312,15 +1312,9 @@ const ScreensSection = () => {
                     background:
                       "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                     backgroundSize: "300% 300%",
-                    "@keyframes gradient": {
-                      "0%": { backgroundPosition: "0% 50%" },
-                      "50%": { backgroundPosition: "100% 50%" },
-                      "100%": { backgroundPosition: "0% 50%" },
-                    },
                     animation: "gradient 4s linear infinite",
                   }}
                 >
-                  {/* Card inside border */}
                   <Card
                     sx={{
                       backgroundColor: "#b0b0b0",
@@ -1366,7 +1360,6 @@ const ScreensSection = () => {
             </Grid>
 
             {/* Decorative Borders */}
-            {/* Bottom border */}
             <Box
               sx={{
                 position: "absolute",
@@ -1381,8 +1374,6 @@ const ScreensSection = () => {
                 display: { xs: "none", md: "block" },
               }}
             />
-
-            {/* Right border */}
             <Box
               sx={{
                 position: "absolute",
@@ -1397,8 +1388,6 @@ const ScreensSection = () => {
                 display: { xs: "none", md: "block" },
               }}
             />
-
-            {/* Left border */}
             <Box
               sx={{
                 position: "absolute",
@@ -1414,8 +1403,6 @@ const ScreensSection = () => {
                 display: { xs: "none", md: "block" },
               }}
             />
-
-            {/* Top border */}
             <Box
               sx={{
                 position: "absolute",
@@ -1434,7 +1421,6 @@ const ScreensSection = () => {
           </Grid>
         </Container>
       </section>
-
 
        <section
         style={{
@@ -1459,25 +1445,68 @@ const ScreensSection = () => {
             spacing={2}
             sx={{
               mt: "40px",
-              borderTop: { xs: "none", sm: "2px solid #979a9a" },
-              borderRight: { xs: "none", sm: "2px solid #979a9a" },
               position: "relative",
               flexDirection: { xs: "column", sm: "row" },
+              borderRadius: "10px",
+              overflow: "hidden",
+
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                borderTop: "2px solid transparent",   // apply only top border
+                borderRight: "2px solid transparent", // apply only right border
+                borderTopRightRadius: "10px",
+                background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                zIndex: 0,
+
+                // masking ensures gradient shows only on the borders
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "destination-out",
+                maskComposite: "exclude",
+
+                animation: "gradient 4s linear infinite",
+              },
+
+              "@keyframes gradient": {
+                "0%": { backgroundPosition: "0% 50%" },
+                "50%": { backgroundPosition: "100% 50%" },
+                "100%": { backgroundPosition: "0% 50%" },
+              },
             }}
           >
+
             {/* Text Section */}
             <Grid item xs={12} sm={5}>
               <Box p={2}>
+              <Box
+                sx={{
+                  borderRadius: "12px", // slightly larger than card for border
+                  p: "2px",             // border thickness
+                  background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
                 <Card
                   sx={{
-                    bgcolor: "#b0b0b0",
+                    bgcolor: "#b0b0b0", // inner card background
                     p: 2,
-                    borderRadius: 2,
+                    borderRadius: "10px", // slightly smaller to show gradient border
                     boxShadow: 3,
                     width: "100%",
                   }}
                 >
-                  {/* <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}> */}
                   <Typography
                     variant="h3"
                     sx={{
@@ -1491,9 +1520,9 @@ const ScreensSection = () => {
                   >
                     الشاشات الإلكترونية الداخلية
                   </Typography>
-                  {/* </Link> */}
                 </Card>
-
+              </Box>
+              
                 <Typography
                   variant="body1"
                   sx={{
@@ -1525,7 +1554,7 @@ const ScreensSection = () => {
                   objectFit: "cover",
                   pb: "30px",
                   pr: "30px",
-                  pl: { xs: 0, sm: "300px" },
+                  pl: { xs: 0, sm: "150px" },
                 }}
               />
             </Grid>
@@ -1555,7 +1584,7 @@ const ScreensSection = () => {
                 position: "absolute",
                 top: 0,
                 left: 0,
-                height: "20%",
+                height: "15%",
                 width: "20%",
                 borderLeft: "2px solid",
                 borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
@@ -1584,9 +1613,9 @@ const ScreensSection = () => {
                 display: { xs: "none", md: "block" },
                 position: "absolute",
                 left: 0,
-                top: "20%",
+                top: "15%",
                 transform: "translateY(-1%)",
-                width: "1%",
+                width: "1.8%",
                 height: "2px",
                 background:
                   "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
@@ -1613,19 +1642,16 @@ const ScreensSection = () => {
             >
               {/* Content here */}
             </Box>
-
           </Grid>
         </Container>
       </section>
 
 
-
-      <section
-        style={{ width: "100%", display: "flex", justifyContent: "center" }}
-      >
+      <section style={{ width: "100%", display: "flex", justifyContent: "center", paddingBottom: "60px" }}>
         <Container
           maxWidth="xxl"
           sx={{
+            mt: "60px",
             mb: "30px",
             px: { xs: "20px", sm: "100px" },
           }}
@@ -1634,17 +1660,35 @@ const ScreensSection = () => {
             container
             spacing={2}
             sx={{
-              mt: "40px",
-              borderTop: {
-                xs: "none", // hide on mobile
-                md: "2px solid #979a9a", // show on desktop and larger
-              },
-              borderLeft: {
-                xs: "none",
-                md: "2px solid #979a9a",
-              },
               position: "relative",
-              flexDirection: { xs: "column", md: "row" },
+              borderRadius: "10px",
+              overflow: "hidden",
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                paddingTop: "2px",
+                paddingLeft: "2px",
+                borderTopLeftRadius: "10px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                zIndex: 0,
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "destination-out",
+                maskComposite: "exclude",
+                animation: "gradient 4s linear infinite",
+                display: { xs: "none", sm: "block" },
+              },
+              "@keyframes gradient": {
+                "0%": { backgroundPosition: "0% 50%" },
+                "50%": { backgroundPosition: "100% 50%" },
+                "100%": { backgroundPosition: "0% 50%" },
+              },
             }}
           >
             {/* Image Section */}
@@ -1658,7 +1702,7 @@ const ScreensSection = () => {
                   objectFit: "cover",
                   maxHeight: { xs: 250, sm: 350, md: 500 },
                   pb: "30px",
-                  pr: { xs: 0, sm: "300px" },
+                  pr: { xs: 0, sm: "150px" },
                 }}
               />
             </Grid>
@@ -1666,32 +1710,43 @@ const ScreensSection = () => {
             {/* Text Content */}
             <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
               <Box sx={{ p: 2 }}>
-                <Card
+                {/* Gradient Border Wrapper */}
+                <Box
                   sx={{
-                    backgroundColor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px",
-                    boxShadow: 3,
-                    textAlign: "center",
+                    borderRadius: "10px",
+                    p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    animation: "gradient 4s linear infinite",
                   }}
                 >
-                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
-                  <Typography
-                    variant="h3"
+                  <Card
                     sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
+                      backgroundColor: "#b0b0b0",
+                      p: 2,
+                      borderRadius: "8px",
+                      boxShadow: 3,
+                      textAlign: "center",
                     }}
                   >
-                    شــاشة العـــرض النصـــية
-                  </Typography>
-                  {/* </Link> */}
-                </Card>
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#333",
+                        fontSize: { xs: "1rem", sm: "2rem" },
+                        fontFamily: "Tajawal",
+                        direction: "rtl",
+                      }}
+                    >
+                       شــاشة العـــرض النصـــية
+                    </Typography>
+                  </Card>
+                </Box>
               </Box>
 
+              {/* Paragraph */}
               <Typography
                 variant="body1"
                 sx={{
@@ -1703,19 +1758,26 @@ const ScreensSection = () => {
                   fontFamily: "Tajawal",
                 }}
               >
+                
                 التركيب ويمكنها تقديم معلومات مباشرة للعميل بطريقسهلةة مبتكرة.
                 وعرض المحتوى بأكثر من طريقة .كما تتميز ببرنامج تشغيل سهل يحتوي
                 على عدد كبير من تأثيرات الحركة تعرض جميع اللغات المكتوبة من جهاز
                 الكمبيوتر مما يزيد فرص الاتصال والتواصل مع عملائك بشكل أفضل .
               </Typography>
             </Grid>
+
+            {/* Decorative Borders */}
             <Box
               sx={{
                 position: "absolute",
                 bottom: 0,
                 left: 0,
                 width: "30%",
-                borderBottom: "2px solid #979a9a",
+                height: "2px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
@@ -1724,9 +1786,12 @@ const ScreensSection = () => {
                 position: "absolute",
                 top: 0,
                 right: 0,
+                width: "2px",
                 height: "18%",
-                width: "18%",
-                borderRight: "2px solid #979a9a",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
@@ -1736,8 +1801,12 @@ const ScreensSection = () => {
                 bottom: 0,
                 left: "30%",
                 transform: "translateX(-22%)",
+                width: "2px",
                 height: "30px",
-                borderLeft: "2px solid #979a9a",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
@@ -1747,15 +1816,21 @@ const ScreensSection = () => {
                 top: "18%",
                 right: 0,
                 width: "1%",
-                borderTop: "2px solid #979a9a",
+                height: "2px",
                 transform: "translateY(-1%)",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
           </Grid>
         </Container>
       </section>
-      <section
+
+
+        <section
         style={{
           width: "100%",
           margin: "0 auto",
@@ -1778,25 +1853,68 @@ const ScreensSection = () => {
             spacing={2}
             sx={{
               mt: "40px",
-              borderTop: { xs: "none", sm: "2px solid #979a9a" },
-              borderRight: { xs: "none", sm: "2px solid #979a9a" },
               position: "relative",
               flexDirection: { xs: "column", sm: "row" },
+              borderRadius: "10px",
+              overflow: "hidden",
+
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                borderTop: "2px solid transparent",   // apply only top border
+                borderRight: "2px solid transparent", // apply only right border
+                borderTopRightRadius: "10px",
+                background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                zIndex: 0,
+
+                // masking ensures gradient shows only on the borders
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "destination-out",
+                maskComposite: "exclude",
+
+                animation: "gradient 4s linear infinite",
+              },
+
+              "@keyframes gradient": {
+                "0%": { backgroundPosition: "0% 50%" },
+                "50%": { backgroundPosition: "100% 50%" },
+                "100%": { backgroundPosition: "0% 50%" },
+              },
             }}
           >
+
             {/* Text Section */}
             <Grid item xs={12} sm={5}>
               <Box p={2}>
+              <Box
+                sx={{
+                  borderRadius: "12px", // slightly larger than card for border
+                  p: "2px",             // border thickness
+                  background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
                 <Card
                   sx={{
-                    bgcolor: "#b0b0b0",
+                    bgcolor: "#b0b0b0", // inner card background
                     p: 2,
-                    borderRadius: 2,
+                    borderRadius: "10px", // slightly smaller to show gradient border
                     boxShadow: 3,
                     width: "100%",
                   }}
                 >
-                  {/* <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}> */}
                   <Typography
                     variant="h3"
                     sx={{
@@ -1810,9 +1928,9 @@ const ScreensSection = () => {
                   >
                     الشاشات الإلكترونية الداخلية
                   </Typography>
-                  {/* </Link> */}
                 </Card>
-
+              </Box>
+              
                 <Typography
                   variant="body1"
                   sx={{
@@ -1829,6 +1947,7 @@ const ScreensSection = () => {
                   لجذب انتباه العملاء والجمهور ونشر الرسائل التسويقية بشكل عصري
                   و جذاب. ويدعم الصيغ المتنوعة من الصور والفيديوهات. وجُهزت
                   برقاقة تحكم ذكية للتقليل من التكلفة.
+
                 </Typography>
               </Box>
             </Grid>
@@ -1845,12 +1964,12 @@ const ScreensSection = () => {
                   objectFit: "cover",
                   pb: "30px",
                   pr: "30px",
-                  pl: { xs: 0, sm: "300px" },
+                  pl: { xs: 0, sm: "150px" },
                 }}
               />
             </Grid>
 
-            {/* Decorative Borders (hidden on mobile) */}
+          {/* Decorative Borders (hidden on mobile) */}
             <Box
               sx={{
                 display: { xs: "none", sm: "block" },
@@ -1858,51 +1977,90 @@ const ScreensSection = () => {
                 bottom: 0,
                 right: 0,
                 width: "30%",
-                borderBottom: "2px solid #979a9a",
+                borderBottom: "2px solid",
+                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
+                animation: "gradient 4s linear infinite",
+                "@keyframes gradient": {
+                  "0%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
+                  "50%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #40e0d0, #7b2ff7, #ff0080, #ff0080, #ff8c00)" },
+                  "100%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
+                },
               }}
             />
+
             <Box
               sx={{
                 display: { xs: "none", sm: "block" },
                 position: "absolute",
                 top: 0,
                 left: 0,
-                height: "20%",
+                height: "15%",
                 width: "20%",
-                borderLeft: "2px solid #979a9a",
+                borderLeft: "2px solid",
+                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
+                animation: "gradient 4s linear infinite",
               }}
             />
+
             <Box
               sx={{
-                display: { xs: "none", sm: "block" },
+                display: { xs: "none", md: "block" },
                 position: "absolute",
                 bottom: 0,
                 right: "30%",
                 transform: "translateX(-22%)",
-                height: "22px",
-                borderLeft: "2px solid #979a9a",
+                width: "2px",
+                height: "30px",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
               }}
             />
+
             <Box
               sx={{
-                display: { xs: "none", sm: "block" },
+                display: { xs: "none", md: "block" },
                 position: "absolute",
                 left: 0,
-                top: "20%",
+                top: "15%",
                 transform: "translateY(-1%)",
-                width: "2%",
-                borderTop: "2px solid #979a9a",
+                width: "1.8%",
+                height: "2px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
               }}
             />
+
+            {/* Example for a Box with gradient border effect */}
+            <Box
+              sx={{
+                borderRadius: "10px",       // outer radius
+                p: "2px",                   // border thickness
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                "@keyframes gradient": {
+                  "0%": { backgroundPosition: "0% 50%" },
+                  "50%": { backgroundPosition: "100% 50%" },
+                  "100%": { backgroundPosition: "0% 50%" },
+                },
+                animation: "gradient 4s linear infinite",
+              }}
+            >
+              {/* Content here */}
+            </Box>
           </Grid>
         </Container>
       </section>
-      <section
-        style={{ width: "100%", display: "flex", justifyContent: "center" }}
-      >
+
+      <section style={{ width: "100%", display: "flex", justifyContent: "center", paddingBottom: "60px" }}>
         <Container
           maxWidth="xxl"
           sx={{
+            mt: "60px",
             mb: "30px",
             px: { xs: "20px", sm: "100px" },
           }}
@@ -1911,17 +2069,35 @@ const ScreensSection = () => {
             container
             spacing={2}
             sx={{
-              mt: "40px",
-              borderTop: {
-                xs: "none", // hide on mobile
-                md: "2px solid #979a9a", // show on desktop and larger
-              },
-              borderLeft: {
-                xs: "none",
-                md: "2px solid #979a9a",
-              },
               position: "relative",
-              flexDirection: { xs: "column", md: "row" },
+              borderRadius: "10px",
+              overflow: "hidden",
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                paddingTop: "2px",
+                paddingLeft: "2px",
+                borderTopLeftRadius: "10px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                zIndex: 0,
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "destination-out",
+                maskComposite: "exclude",
+                animation: "gradient 4s linear infinite",
+                display: { xs: "none", sm: "block" },
+              },
+              "@keyframes gradient": {
+                "0%": { backgroundPosition: "0% 50%" },
+                "50%": { backgroundPosition: "100% 50%" },
+                "100%": { backgroundPosition: "0% 50%" },
+              },
             }}
           >
             {/* Image Section */}
@@ -1935,7 +2111,7 @@ const ScreensSection = () => {
                   objectFit: "cover",
                   maxHeight: { xs: 250, sm: 350, md: 500 },
                   pb: "30px",
-                  pr: { xs: 0, sm: "300px" },
+                  pr: { xs: 0, sm: "150px" },
                 }}
               />
             </Grid>
@@ -1943,32 +2119,43 @@ const ScreensSection = () => {
             {/* Text Content */}
             <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
               <Box sx={{ p: 2 }}>
-                <Card
+                {/* Gradient Border Wrapper */}
+                <Box
                   sx={{
-                    backgroundColor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px",
-                    boxShadow: 3,
-                    textAlign: "center",
+                    borderRadius: "10px",
+                    p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    animation: "gradient 4s linear infinite",
                   }}
                 >
-                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
-                  <Typography
-                    variant="h3"
+                  <Card
                     sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
+                      backgroundColor: "#b0b0b0",
+                      p: 2,
+                      borderRadius: "8px",
+                      boxShadow: 3,
+                      textAlign: "center",
                     }}
                   >
-                    الشـــــاشات التفــــاعلـية
-                  </Typography>
-                  {/* </Link> */}
-                </Card>
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#333",
+                        fontSize: { xs: "1rem", sm: "2rem" },
+                        fontFamily: "Tajawal",
+                        direction: "rtl",
+                      }}
+                    >
+                       الشـــــاشات التفــــاعلـية
+                    </Typography>
+                  </Card>
+                </Box>
               </Box>
 
+              {/* Paragraph */}
               <Typography
                 variant="body1"
                 sx={{
@@ -1980,18 +2167,25 @@ const ScreensSection = () => {
                   fontFamily: "Tajawal",
                 }}
               >
+                
                 تعد أحدث وسيلة حديثة ومتطورة للدعاية المميزة وذات مقاسات وألوان
                 مختلفة.حيث تساعد بشكل كبير ومؤثر في عملية الدعاية والإعلان
                 للمنتجات والخدمات للجهات الحكومية والشركات والمجتمعات.
               </Typography>
             </Grid>
+
+            {/* Decorative Borders */}
             <Box
               sx={{
                 position: "absolute",
                 bottom: 0,
                 left: 0,
                 width: "30%",
-                borderBottom: "2px solid #979a9a",
+                height: "2px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
@@ -2000,9 +2194,12 @@ const ScreensSection = () => {
                 position: "absolute",
                 top: 0,
                 right: 0,
+                width: "2px",
                 height: "18%",
-                width: "18%",
-                borderRight: "2px solid #979a9a",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
@@ -2012,8 +2209,12 @@ const ScreensSection = () => {
                 bottom: 0,
                 left: "30%",
                 transform: "translateX(-22%)",
+                width: "2px",
                 height: "30px",
-                borderLeft: "2px solid #979a9a",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
@@ -2023,14 +2224,20 @@ const ScreensSection = () => {
                 top: "18%",
                 right: 0,
                 width: "1%",
-                borderTop: "2px solid #979a9a",
+                height: "2px",
                 transform: "translateY(-1%)",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
           </Grid>
         </Container>
       </section>
+
+
       <section
         style={{
           width: "100%",
@@ -2054,25 +2261,68 @@ const ScreensSection = () => {
             spacing={2}
             sx={{
               mt: "40px",
-              borderTop: { xs: "none", sm: "2px solid #979a9a" },
-              borderRight: { xs: "none", sm: "2px solid #979a9a" },
               position: "relative",
               flexDirection: { xs: "column", sm: "row" },
+              borderRadius: "10px",
+              overflow: "hidden",
+
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                borderTop: "2px solid transparent",   // apply only top border
+                borderRight: "2px solid transparent", // apply only right border
+                borderTopRightRadius: "10px",
+                background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                zIndex: 0,
+
+                // masking ensures gradient shows only on the borders
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "destination-out",
+                maskComposite: "exclude",
+
+                animation: "gradient 4s linear infinite",
+              },
+
+              "@keyframes gradient": {
+                "0%": { backgroundPosition: "0% 50%" },
+                "50%": { backgroundPosition: "100% 50%" },
+                "100%": { backgroundPosition: "0% 50%" },
+              },
             }}
           >
+
             {/* Text Section */}
             <Grid item xs={12} sm={5}>
               <Box p={2}>
+              <Box
+                sx={{
+                  borderRadius: "12px", // slightly larger than card for border
+                  p: "2px",             // border thickness
+                  background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
                 <Card
                   sx={{
-                    bgcolor: "#b0b0b0",
+                    bgcolor: "#b0b0b0", // inner card background
                     p: 2,
-                    borderRadius: 2,
+                    borderRadius: "10px", // slightly smaller to show gradient border
                     boxShadow: 3,
                     width: "100%",
                   }}
                 >
-                  {/* <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}> */}
                   <Typography
                     variant="h3"
                     sx={{
@@ -2086,9 +2336,9 @@ const ScreensSection = () => {
                   >
                     شـــاشات العـــدادات والساعات الرقمية
                   </Typography>
-                  {/* </Link> */}
                 </Card>
-
+              </Box>
+              
                 <Typography
                   variant="body1"
                   sx={{
@@ -2100,7 +2350,7 @@ const ScreensSection = () => {
                     fontFamily: "Tajawal",
                   }}
                 >
-                  مخصصة لنظام المحطات حيث تعرض أسعار الوقود بطريقه احترافية
+                   مخصصة لنظام المحطات حيث تعرض أسعار الوقود بطريقه احترافية
                   وسهلة التحكم وعداد ديجتال للعد التنازلي بعدد الايام المتبقي
                   علي انتهاء المشروع الساعات الرقمية تعرض الوقت والتاريخ عن طريق
                   الاتصال بالقمر الصناعي.
@@ -2120,12 +2370,12 @@ const ScreensSection = () => {
                   objectFit: "cover",
                   pb: "30px",
                   pr: "30px",
-                  pl: { xs: 0, sm: "300px" },
+                  pl: { xs: 0, sm: "150px" },
                 }}
               />
             </Grid>
 
-            {/* Decorative Borders (hidden on mobile) */}
+          {/* Decorative Borders (hidden on mobile) */}
             <Box
               sx={{
                 display: { xs: "none", sm: "block" },
@@ -2133,56 +2383,91 @@ const ScreensSection = () => {
                 bottom: 0,
                 right: 0,
                 width: "30%",
-                borderBottom: "2px solid #979a9a",
+                borderBottom: "2px solid",
+                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
+                animation: "gradient 4s linear infinite",
+                "@keyframes gradient": {
+                  "0%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
+                  "50%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #40e0d0, #7b2ff7, #ff0080, #ff0080, #ff8c00)" },
+                  "100%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
+                },
               }}
             />
+
             <Box
               sx={{
                 display: { xs: "none", sm: "block" },
                 position: "absolute",
                 top: 0,
                 left: 0,
-                height: "20%",
+                height: "15%",
                 width: "20%",
-                borderLeft: "2px solid #979a9a",
+                borderLeft: "2px solid",
+                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
+                animation: "gradient 4s linear infinite",
               }}
             />
+
             <Box
               sx={{
-                display: { xs: "none", sm: "block" },
+                display: { xs: "none", md: "block" },
                 position: "absolute",
                 bottom: 0,
                 right: "30%",
                 transform: "translateX(-22%)",
-                height: "22px",
-                borderLeft: "2px solid #979a9a",
+                width: "2px",
+                height: "30px",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
               }}
             />
+
             <Box
               sx={{
-                display: { xs: "none", sm: "block" },
+                display: { xs: "none", md: "block" },
                 position: "absolute",
                 left: 0,
-                top: "20%",
+                top: "15%",
                 transform: "translateY(-1%)",
-                width: "2%",
-                borderTop: "2px solid #979a9a",
+                width: "1.8%",
+                height: "2px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
               }}
             />
+
+            {/* Example for a Box with gradient border effect */}
+            <Box
+              sx={{
+                borderRadius: "10px",       // outer radius
+                p: "2px",                   // border thickness
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                "@keyframes gradient": {
+                  "0%": { backgroundPosition: "0% 50%" },
+                  "50%": { backgroundPosition: "100% 50%" },
+                  "100%": { backgroundPosition: "0% 50%" },
+                },
+                animation: "gradient 4s linear infinite",
+              }}
+            >
+              {/* Content here */}
+            </Box>
           </Grid>
         </Container>
       </section>
-      <section
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "30px",
-        }}
-      >
+
+
+         <section style={{ width: "100%", display: "flex", justifyContent: "center", paddingBottom: "60px" }}>
         <Container
           maxWidth="xxl"
           sx={{
+            mt: "60px",
             mb: "30px",
             px: { xs: "20px", sm: "100px" },
           }}
@@ -2191,17 +2476,35 @@ const ScreensSection = () => {
             container
             spacing={2}
             sx={{
-              mt: "40px",
-              borderTop: {
-                xs: "none", // hide on mobile
-                md: "2px solid #979a9a", // show on desktop and larger
-              },
-              borderLeft: {
-                xs: "none",
-                md: "2px solid #979a9a",
-              },
               position: "relative",
-              flexDirection: { xs: "column", md: "row" },
+              borderRadius: "10px",
+              overflow: "hidden",
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                paddingTop: "2px",
+                paddingLeft: "2px",
+                borderTopLeftRadius: "10px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                zIndex: 0,
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "destination-out",
+                maskComposite: "exclude",
+                animation: "gradient 4s linear infinite",
+                display: { xs: "none", sm: "block" },
+              },
+              "@keyframes gradient": {
+                "0%": { backgroundPosition: "0% 50%" },
+                "50%": { backgroundPosition: "100% 50%" },
+                "100%": { backgroundPosition: "0% 50%" },
+              },
             }}
           >
             {/* Image Section */}
@@ -2215,7 +2518,7 @@ const ScreensSection = () => {
                   objectFit: "cover",
                   maxHeight: { xs: 250, sm: 350, md: 500 },
                   pb: "30px",
-                  pr: { xs: 0, sm: "300px" },
+                  pr: { xs: 0, sm: "150px" },
                 }}
               />
             </Grid>
@@ -2223,32 +2526,43 @@ const ScreensSection = () => {
             {/* Text Content */}
             <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
               <Box sx={{ p: 2 }}>
-                <Card
+                {/* Gradient Border Wrapper */}
+                <Box
                   sx={{
-                    backgroundColor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px",
-                    boxShadow: 3,
-                    textAlign: "center",
+                    borderRadius: "10px",
+                    p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    animation: "gradient 4s linear infinite",
                   }}
                 >
-                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
-                  <Typography
-                    variant="h3"
+                  <Card
                     sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
+                      backgroundColor: "#b0b0b0",
+                      p: 2,
+                      borderRadius: "8px",
+                      boxShadow: 3,
+                      textAlign: "center",
                     }}
                   >
-                    جهاز ارقام الانتظار
-                  </Typography>
-                  {/* </Link> */}
-                </Card>
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#333",
+                        fontSize: { xs: "1rem", sm: "2rem" },
+                        fontFamily: "Tajawal",
+                        direction: "rtl",
+                      }}
+                    >
+                       جهاز ارقام الانتظار
+                    </Typography>
+                  </Card>
+                </Box>
               </Box>
 
+              {/* Paragraph */}
               <Typography
                 variant="body1"
                 sx={{
@@ -2260,19 +2574,26 @@ const ScreensSection = () => {
                   fontFamily: "Tajawal",
                 }}
               >
-                تعمل بمفردها لا تحتاج إلى كمبيوتر . 4 خدمات مختلفة حسب رغبة
+                
+               تعمل بمفردها لا تحتاج إلى كمبيوتر . 4 خدمات مختلفة حسب رغبة
                 العميل نظام يعمل بنغمة ونداء برقم العميل والشباك. تحتفظ باخر رقم
                 عند انقطاع التيار الكهربائي مزود بوحدة برنتر لطباعة الأرقام
                 المسلسلة
               </Typography>
             </Grid>
+
+            {/* Decorative Borders */}
             <Box
               sx={{
                 position: "absolute",
                 bottom: 0,
                 left: 0,
                 width: "30%",
-                borderBottom: "2px solid #979a9a",
+                height: "2px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
@@ -2281,9 +2602,12 @@ const ScreensSection = () => {
                 position: "absolute",
                 top: 0,
                 right: 0,
+                width: "2px",
                 height: "18%",
-                width: "18%",
-                borderRight: "2px solid #979a9a",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
@@ -2293,8 +2617,12 @@ const ScreensSection = () => {
                 bottom: 0,
                 left: "30%",
                 transform: "translateX(-22%)",
+                width: "2px",
                 height: "30px",
-                borderLeft: "2px solid #979a9a",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
@@ -2304,15 +2632,19 @@ const ScreensSection = () => {
                 top: "18%",
                 right: 0,
                 width: "1%",
-                borderTop: "2px solid #979a9a",
+                height: "2px",
                 transform: "translateY(-1%)",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
                 display: { xs: "none", md: "block" },
               }}
             />
           </Grid>
         </Container>
       </section>
-
+      
     </>
   );
 };
