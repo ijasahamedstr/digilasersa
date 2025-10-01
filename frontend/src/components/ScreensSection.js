@@ -286,94 +286,326 @@ const ScreensSection = () => {
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          paddingBottom: "60px", // ✅ extra space at bottom
+          paddingBottom: "60px",
         }}
       >
-        <Container
-          maxWidth="xl" // ✅ narrower container with left/right space
-        >
+        <Container maxWidth="xl">
           <Grid
             container
             spacing={2}
             sx={{
               mt: "40px",
-              flexDirection: "column", // ✅ stacked layout
-              alignItems: "stretch",   // ✅ full width instead of centered
+              flexDirection: "column",
+              alignItems: "stretch",
+              direction: "rtl", // makes all child Grid items RTL
             }}
           >
-            {/* Text Content */}
+            {/* Heading */}
             <Grid item xs={12}>
               <Box sx={{ p: 2 }}>
-              {/* Outer wrapper shows the animated gradient and acts as the border */}
-              <Box
-                sx={{
-                  borderRadius: "10px",       // outer radius (border)
-                  p: "2px",                   // border thickness (increase/decrease)
-                  background:
-                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                  backgroundSize: "300% 300%",
-                  // keyframes defined inline in sx (MUI supports this)
-                  "@keyframes gradient": {
-                    "0%": { backgroundPosition: "0% 50%" },
-                    "50%": { backgroundPosition: "100% 50%" },
-                    "100%": { backgroundPosition: "0% 50%" },
-                  },
-                  animation: "gradient 4s linear infinite",
-                }}
-              >
-                {/* Inner card sits on top of the animated border */}
-                <Card
+                <Box
                   sx={{
-                    bgcolor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px", // slightly smaller than outer to reveal border
-                    boxShadow: 3,
-                    textAlign: "center",
-                    position: "relative",
-                    overflow: "hidden",
+                    borderRadius: "10px",
+                    p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    "@keyframes gradient": {
+                      "0%": { backgroundPosition: "0% 50%" },
+                      "50%": { backgroundPosition: "100% 50%" },
+                      "100%": { backgroundPosition: "0% 50%" },
+                    },
+                    animation: "gradient 4s linear infinite",
                   }}
                 >
-                  <Typography
-                    variant="h3"
+                  <Card
                     sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
+                      bgcolor: "#b0b0b0",
+                      p: 2,
+                      borderRadius: "8px",
+                      boxShadow: 3,
+                      textAlign: "center",
                     }}
                   >
-                    الشاشات الإلكترونية الداخلية
-                  </Typography>
-                </Card>
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#333",
+                        fontSize: { xs: "1rem", sm: "2rem" },
+                        fontFamily: "Tajawal",
+                      }}
+                    >
+                      الشاشات الإلكترونية الداخلية
+                    </Typography>
+                  </Card>
+                </Box>
               </Box>
-            </Box>
+            </Grid>
 
+            {/* Intro Paragraphs */}
+            <Grid item xs={12}>
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
+                  fontSize: { xs: "1rem", md: "1.2rem" },
                   textAlign: "justify",
-                  direction: "rtl",
                   px: "20px",
                   mt: 2,
                   fontFamily: "Tajawal",
                 }}
               >
-                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
-                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
-                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
-                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
+                لما يجتمع شكل مألوف مع فكرة غير مألوفة، النتيجة شاشة LED على هيئة علبة مشروب بحجم كبير.
+                هذا الابتكار مصمّم ليخطف الأنظار في المولات، المعارض، واجهات المتاجر، أو حتى وسط الفعالية.
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                الشاشة ما تعرض إعلانك بس… هي تحكي شكله.  
+                فكرة تسويقية ذكية تربط العميل بصريًا وعاطفيًا بالعلامة التجارية، وتخلي التجربة الإعلانية أقرب للواقع.
               </Typography>
             </Grid>
-            {/* Image Section */}
+
+            {/* Two Columns Section */}
+            <Grid container spacing={2} sx={{ mt: 4 }}>
+              {/* Column 1 - Right side */}
+              <Grid item xs={12} md={6}>
+                <Box sx={{ p: 2, textAlign: "right" }}>
+                  {/* Main Heading */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      fontFamily: "Tajawal",
+                      mb: 1,
+                      fontSize: { xs: "1.5rem", md: "1.6rem" },
+                    }}
+                  >
+                    من زاوية تسويقية:
+                  </Typography>
+
+                  {/* Subheading */}
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: "500",
+                      fontFamily: "Tajawal",
+                      mb: 2,
+                      color: "#555",
+                      fontSize: { xs: "1.1rem", md: "1.3rem" },
+                    }}
+                  >
+                    إعلان يشبه منتجك! 
+                  </Typography>
+
+                  {/* Paragraph */}
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "Tajawal",
+                      fontSize: { xs: "1rem", md: "1.2rem" },
+                      textAlign: "justify",
+                    }}
+                  >
+                    بدلاً من شاشة عادية، صمّم إعلانك بشكل منتجك ليكون مباشرًا، ملفتًا، ولا يُنسى. شاشة العلبة تربط العميل بالعلامة التجارية بصريًا وذهنيًا.
+                  </Typography>
+                </Box>
+              </Grid>
+
+              {/* Column 2 - Left side */}
+              <Grid item xs={12} md={6}>
+                <Box sx={{ p: 2, textAlign: "right" }}>
+                  {/* Main Heading */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      fontFamily: "Tajawal",
+                      mb: 1,
+                      fontSize: { xs: "1.5rem", md: "1.6rem" },
+                    }}
+                  >
+                    من زاوية جذب الانتباه:
+                  </Typography>
+
+                  {/* Subheading */}
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: "500",
+                      fontFamily: "Tajawal",
+                      mb: 2,
+                      color: "#555",
+                      fontSize: { xs: "1.1rem", md: "1.3rem" },
+                    }}
+                  >
+                    ما تقدر تطالعها وتكمل طريقك! 
+                  </Typography>
+
+                  {/* Paragraph */}
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "Tajawal",
+                      fontSize: { xs: "1rem", md: "1.2rem" },
+                      textAlign: "justify",
+                    }}
+                  >
+                    شاشة LED بشكل علبة كبيرة توقف الناس، وتخلي الكل يلتفت. لأنها مختلفة... تبقى بالذاكرة.
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+
+             <Grid container spacing={2} sx={{ mt: 4 }}>
+              {/* Column 1 - Right side */}
+              <Grid item xs={12} md={6}>
+                <Box sx={{ p: 2, textAlign: "right" }}>
+                  {/* Main Heading */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      fontFamily: "Tajawal",
+                      mb: 1,
+                      fontSize: { xs: "1.5rem", md: "1.6rem" },
+                    }}
+                  >
+                     من زاوية الابتكار:
+                  </Typography>
+
+                  {/* Subheading */}
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: "500",
+                      fontFamily: "Tajawal",
+                      mb: 2,
+                      color: "#555",
+                      fontSize: { xs: "1.1rem", md: "1.3rem" },
+                    }}
+                  >
+                    منتجك + تقنية = عرض إبداعي
+                  </Typography>
+
+                  {/* Paragraph */}
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "Tajawal",
+                      fontSize: { xs: "1rem", md: "1.2rem" },
+                      textAlign: "justify",
+                    }}
+                  >
+                    تصميم ثلاثي الأبعاد، إضاءة LED، شكل مألوف بطريقة غير مألوفة... هذا هو الابتكار في الإعلان.
+                  </Typography>
+                </Box>
+              </Grid>
+
+              {/* Column 2 - Left side */}
+              <Grid item xs={12} md={6}>
+                <Box sx={{ p: 2, textAlign: "right" }}>
+                  {/* Main Heading */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      fontFamily: "Tajawal",
+                      mb: 1,
+                      fontSize: { xs: "1.5rem", md: "1.6rem" },
+                    }}
+                  >
+                     من زاوية الاستخدامات:
+                  </Typography>
+
+                  {/* Paragraph */}
+                  <Typography
+                    component="ul"
+                    sx={{
+                      fontFamily: "Tajawal",
+                      fontSize: { xs: "1rem", md: "1.2rem" },
+                      textAlign: "justify",
+                    }}
+                  >
+                    <li>النقطة الأولى في القائمة.</li>
+                    <li>النقطة الثانية في القائمة.</li>
+                    <li>النقطة الثالثة في القائمة.</li>
+                    <li>يمكنك إضافة المزيد من النقاط حسب الحاجة.</li>
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+
+            <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
+              {/* Main Heading */}
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: "bold",
+                  fontFamily: "Tajawal",
+                  mb: 1,
+                  fontSize: { xs: "1.5rem", md: "1.6rem" },
+                }}
+              >
+                من زاوية التأثير النفسي:
+              </Typography>
+
+              {/* Subheading */}
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "500",
+                  fontFamily: "Tajawal",
+                  mb: 3,
+                  color: "#555",
+                  fontSize: { xs: "1.1rem", md: "1.3rem" },
+                }}
+              >
+                الشكل يحكي القصة
+              </Typography>
+
+              {/* Paragraph */}
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: "Tajawal",
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "center",
+                  mt: 2,
+                  mb: 2,
+                }}
+              >
+                عندما يرى العميل شكل علبة مشروبه المفضل تتحرّك وتعرض محتوى، يتفاعل فورًا… بدون تفكير.
+              </Typography>
+
+               <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: "bold",
+                  fontFamily: "Tajawal",
+                  mb: 1,
+                  fontSize: { xs: "1.5rem", md: "1.6rem" },
+                }}
+              >
+                ‏منتجك صار شاشة  .. والناس تشرب الفكرة
+              </Typography>
+            </Box>
+
+            {/* Image */}
             <Grid item xs={12}>
               <Box
                 component="img"
                 src="https://i.ibb.co/0VdG8x9X/S1.webp"
                 alt="Outdoor LED Screen"
                 sx={{
-                  width: "100%", // ✅ fill horizontally within container
+                  width: "100%",
                   height: "auto",
                   objectFit: "cover",
                   maxHeight: { xs: 250, sm: 350, md: 500 },
@@ -381,10 +613,12 @@ const ScreensSection = () => {
                   borderRadius: "8px",
                 }}
               />
-            </Grid>  
+            </Grid>
           </Grid>
         </Container>
       </section>
+
+
 
       <section
         style={{
