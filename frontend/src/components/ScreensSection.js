@@ -1460,6 +1460,7 @@ const ScreensSection = () => {
                 borderTop: "2px solid transparent",   // apply only top border
                 borderRight: "2px solid transparent", // apply only right border
                 borderTopRightRadius: "10px",
+                display: { xs: "none", sm: "block" },
                 background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
                 zIndex: 0,
@@ -1638,6 +1639,7 @@ const ScreensSection = () => {
                   "100%": { backgroundPosition: "0% 50%" },
                 },
                 animation: "gradient 4s linear infinite",
+                display: { xs: "none", sm: "block" },
               }}
             >
               {/* Content here */}
@@ -1870,6 +1872,7 @@ const ScreensSection = () => {
                 borderTopRightRadius: "10px",
                 background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
+                display: { xs: "none", sm: "block" },
                 zIndex: 0,
 
                 // masking ensures gradient shows only on the borders
@@ -2039,6 +2042,7 @@ const ScreensSection = () => {
               sx={{
                 borderRadius: "10px",       // outer radius
                 p: "2px",                   // border thickness
+                display: { xs: "none", sm: "block" },
                 background:
                   "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
@@ -2278,6 +2282,7 @@ const ScreensSection = () => {
                 borderTopRightRadius: "10px",
                 background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
+                display: { xs: "none", sm: "block" },
                 zIndex: 0,
 
                 // masking ensures gradient shows only on the borders
@@ -2454,6 +2459,7 @@ const ScreensSection = () => {
                   "100%": { backgroundPosition: "0% 50%" },
                 },
                 animation: "gradient 4s linear infinite",
+                display: { xs: "none", sm: "block" },
               }}
             >
               {/* Content here */}
@@ -2644,7 +2650,7 @@ const ScreensSection = () => {
           </Grid>
         </Container>
       </section>
-      
+
     </>
   );
 };
