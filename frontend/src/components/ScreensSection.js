@@ -736,7 +736,7 @@ const ScreensSection = () => {
                   fontFamily: "Tajawal",
                 }}
               >
-                *شاشة LED مبتكرة على شكل كرة بحجم أقطار مختلفة  مصممة لتقديم تجربة عرض بانورامية  بزاوية 360°، تمنحك حضوراً بصرياً فريداً وتلفت الانتباه من كل الاتجاهات*
+                شاشة LED مبتكرة على شكل كرة بحجم أقطار مختلفة  مصممة لتقديم تجربة عرض بانورامية  بزاوية 360°، تمنحك حضوراً بصرياً فريداً وتلفت الانتباه من كل الاتجاهات
               </Typography>
               <Typography
                 variant="body1"
@@ -748,7 +748,7 @@ const ScreensSection = () => {
                   fontFamily: "Tajawal",
                 }}
               >
-                مثالية  للأندية الرياضية  &  المولات  &  الفعاليات  &  والمعارض*
+                مثالية  للأندية الرياضية  &  المولات  &  الفعاليات  &  والمعارض
               </Typography>
             </Grid>
 
@@ -861,29 +861,67 @@ const ScreensSection = () => {
                       direction: "rtl",
                     }}
                   >
-                    الشاشات الإلكترونية الداخلية
+                    شاشة العرض المكعبة
                   </Typography>
                 </Card>
               </Box>
             </Box>
-
+            </Grid>
+              {/* Text Content */}
+            <Grid item xs={12}>
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
                   px: "20px",
                   mt: 2,
                   fontFamily: "Tajawal",
                 }}
               >
-                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
-                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
-                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
-                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
+                شاشة LED مكعبة الشكل تجمع بين الجمالية الهندسية والعرض الديناميكي.
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                <strong>مثالية</strong> للصالات، المعارض، زوايا العرض، والمتاجر العصرية. والاندية الرياضية
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                تقدم تجربة مشاهدة من عدة زوايا، وتمنح علامتك حضوراً عصرياً ومميزاً.
               </Typography>
             </Grid>
+
+            <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
+                  {/* Second Heading */}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    fontFamily: "Tajawal",
+                    pt: "40px", // padding top
+                    pb: "40px", // padding bottom
+                    fontSize: { xs: "1.5rem", md: "1.6rem" },
+                  }}
+                >
+                  ‏إذا كان إعلانك يستحق التميز........... خليه يطلع في كل الاتجاهات
+                </Typography>
+                </Box>
             {/* Image Section */}
             <Grid item xs={12}>
               <Box
@@ -891,12 +929,22 @@ const ScreensSection = () => {
                 src="https://i.ibb.co/FqNPk4Wg/S3.webp"
                 alt="Outdoor LED Screen"
                 sx={{
-                  width: "100%", // ✅ fill horizontally within container
+                  width: "100%",
                   height: "auto",
                   objectFit: "cover",
                   maxHeight: { xs: 250, sm: 350, md: 500 },
                   pb: "20px",
-                  borderRadius: "8px",
+                  borderRadius: "10px",
+                  p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    "@keyframes gradient": {
+                      "0%": { backgroundPosition: "0% 50%" },
+                      "50%": { backgroundPosition: "100% 50%" },
+                      "100%": { backgroundPosition: "0% 50%" },
+                    },
+                    animation: "gradient 4s linear infinite",
                 }}
               />
             </Grid>
