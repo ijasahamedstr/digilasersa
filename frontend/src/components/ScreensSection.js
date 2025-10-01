@@ -1240,6 +1240,1079 @@ const ScreensSection = () => {
           </Grid>
         </Container>
       </section>
+
+      
+      <section style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <Container
+          maxWidth="xxl"
+          sx={{
+            mt: "60px", // ✅ space above the section
+            mb: "30px",
+            px: { xs: "20px", sm: "100px" },
+          }}
+        >
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              position: "relative",
+              borderRadius: "10px",
+              overflow: "hidden",
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                paddingTop: "2px", // thickness of top border
+                paddingLeft: "2px", // thickness of left border
+                borderTopLeftRadius: "10px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                zIndex: 0,
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "destination-out",
+                maskComposite: "exclude",
+                animation: "gradient 4s linear infinite",
+              },
+              "@keyframes gradient": {
+                "0%": { backgroundPosition: "0% 50%" },
+                "50%": { backgroundPosition: "100% 50%" },
+                "100%": { backgroundPosition: "0% 50%" },
+              },
+            }}
+          >
+            {/* Image Section */}
+            <Grid item xs={12} md={7}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/6tj2L8K/Waterproof-P6-66-Outdoor-LED-Screen-Signboard.webp"
+                alt="Outdoor LED Screen"
+                sx={{
+                  width: "100%",
+                  objectFit: "cover",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  pb: "30px",
+                  pr: { xs: 0, sm: "300px" },
+                }}
+              />
+            </Grid>
+
+            {/* Text Content */}
+            <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
+              <Box sx={{ p: 2 }}>
+                {/* 🔥 Gradient Border Wrapper */}
+                <Box
+                  sx={{
+                    borderRadius: "10px",
+                    p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    "@keyframes gradient": {
+                      "0%": { backgroundPosition: "0% 50%" },
+                      "50%": { backgroundPosition: "100% 50%" },
+                      "100%": { backgroundPosition: "0% 50%" },
+                    },
+                    animation: "gradient 4s linear infinite",
+                  }}
+                >
+                  {/* Card inside border */}
+                  <Card
+                    sx={{
+                      backgroundColor: "#b0b0b0",
+                      p: 2,
+                      borderRadius: "8px",
+                      boxShadow: 3,
+                      textAlign: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#333",
+                        fontSize: { xs: "1rem", sm: "2rem" },
+                        fontFamily: "Tajawal",
+                        direction: "rtl",
+                      }}
+                    >
+                      الشاشات الإلكترونية الخارجية
+                    </Typography>
+                  </Card>
+                </Box>
+              </Box>
+
+              {/* Paragraph */}
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                تعتبر شاشات العرض الإلكترونية الخارجية المتخصصة في عرض الصور ومقاطع
+                الفيديو من احدث طرق التسويق حاليا لأنها تعتبر الوسيلة الافضل في جذب
+                ولفت انتباه العملاء . كما تتميز هذه الشاشات بأنها شديدة الوضوح في وقت
+                النهار ، كما أنها موفرة للكهرباء .
+              </Typography>
+            </Grid>
+
+            {/* Decorative Borders */}
+            {/* Bottom border */}
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "30%",
+                height: "2px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+
+            {/* Right border */}
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                width: "2px",
+                height: "18%",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+
+            {/* Left border */}
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: "30%",
+                transform: "translateX(-22%)",
+                width: "2px",
+                height: "30px",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+
+            {/* Top border */}
+            <Box
+              sx={{
+                position: "absolute",
+                top: "18%",
+                right: 0,
+                width: "1%",
+                height: "2px",
+                transform: "translateY(-1%)",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+          </Grid>
+        </Container>
+      </section>
+
+
+       <section
+        style={{
+          width: "100%",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          background: "#d5d8dc",
+        }}
+      >
+        <Container
+          maxWidth="xxl"
+          sx={{
+            mb: "15px",
+            px: { xs: "20px", sm: "100px" },
+            marginBottom: "50px",
+          }}
+        >
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              mt: "40px",
+              borderTop: { xs: "none", sm: "2px solid #979a9a" },
+              borderRight: { xs: "none", sm: "2px solid #979a9a" },
+              position: "relative",
+              flexDirection: { xs: "column", sm: "row" },
+            }}
+          >
+            {/* Text Section */}
+            <Grid item xs={12} sm={5}>
+              <Box p={2}>
+                <Card
+                  sx={{
+                    bgcolor: "#b0b0b0",
+                    p: 2,
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    width: "100%",
+                  }}
+                >
+                  {/* <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}> */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "2rem" },
+                      textAlign: "center",
+                      direction: "rtl",
+                      fontFamily: "Tajawal",
+                    }}
+                  >
+                    الشاشات الإلكترونية الداخلية
+                  </Typography>
+                  {/* </Link> */}
+                </Card>
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "20px",
+                    mt: 2,
+                    fontFamily: "Tajawal",
+                  }}
+                >
+                  تعتبر الوسيلة الأفضل في زيادة معدل التواصل المباشر مع العملاء
+                  في المكان كونها تجذب الانتباه بشكل كبير. كما يمكن من خلالها
+                  عرض جميع المحتويات الإعلانية سواء كانت صور أو مقاطع فيديو
+                  لتتميزها بدقة الوضوح وتوفر أحجام ومقاسات مختلفة.
+                </Typography>
+              </Box>
+            </Grid>
+
+            {/* Image Section */}
+            <Grid item xs={12} sm={7}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/hJws9svz/2f6d9352-2357-4039-827f-3563fc0a24c4.webp"
+                alt="Indoor LED Screen"
+                sx={{
+                  width: "100%",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  objectFit: "cover",
+                  pb: "30px",
+                  pr: "30px",
+                  pl: { xs: 0, sm: "300px" },
+                }}
+              />
+            </Grid>
+
+          {/* Decorative Borders (hidden on mobile) */}
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                width: "30%",
+                borderBottom: "2px solid",
+                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
+                animation: "gradient 4s linear infinite",
+                "@keyframes gradient": {
+                  "0%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
+                  "50%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #40e0d0, #7b2ff7, #ff0080, #ff0080, #ff8c00)" },
+                  "100%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
+                },
+              }}
+            />
+
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                position: "absolute",
+                top: 0,
+                left: 0,
+                height: "20%",
+                width: "20%",
+                borderLeft: "2px solid",
+                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
+                animation: "gradient 4s linear infinite",
+              }}
+            />
+
+            <Box
+              sx={{
+                display: { xs: "none", md: "block" },
+                position: "absolute",
+                bottom: 0,
+                right: "30%",
+                transform: "translateX(-22%)",
+                width: "2px",
+                height: "30px",
+                background:
+                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
+              }}
+            />
+
+            <Box
+              sx={{
+                display: { xs: "none", md: "block" },
+                position: "absolute",
+                left: 0,
+                top: "20%",
+                transform: "translateY(-1%)",
+                width: "1%",
+                height: "2px",
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                animation: "gradient 4s linear infinite",
+              }}
+            />
+
+            {/* Example for a Box with gradient border effect */}
+            <Box
+              sx={{
+                borderRadius: "10px",       // outer radius
+                p: "2px",                   // border thickness
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                "@keyframes gradient": {
+                  "0%": { backgroundPosition: "0% 50%" },
+                  "50%": { backgroundPosition: "100% 50%" },
+                  "100%": { backgroundPosition: "0% 50%" },
+                },
+                animation: "gradient 4s linear infinite",
+              }}
+            >
+              {/* Content here */}
+            </Box>
+
+          </Grid>
+        </Container>
+      </section>
+
+
+
+      <section
+        style={{ width: "100%", display: "flex", justifyContent: "center" }}
+      >
+        <Container
+          maxWidth="xxl"
+          sx={{
+            mb: "30px",
+            px: { xs: "20px", sm: "100px" },
+          }}
+        >
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              mt: "40px",
+              borderTop: {
+                xs: "none", // hide on mobile
+                md: "2px solid #979a9a", // show on desktop and larger
+              },
+              borderLeft: {
+                xs: "none",
+                md: "2px solid #979a9a",
+              },
+              position: "relative",
+              flexDirection: { xs: "column", md: "row" },
+            }}
+          >
+            {/* Image Section */}
+            <Grid item xs={12} md={7}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/ThHxYZj/images-1-1.webp"
+                alt="Outdoor LED Screen"
+                sx={{
+                  width: "100%",
+                  objectFit: "cover",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  pb: "30px",
+                  pr: { xs: 0, sm: "300px" },
+                }}
+              />
+            </Grid>
+
+            {/* Text Content */}
+            <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
+              <Box sx={{ p: 2 }}>
+                <Card
+                  sx={{
+                    backgroundColor: "#b0b0b0",
+                    p: 2,
+                    borderRadius: "8px",
+                    boxShadow: 3,
+                    textAlign: "center",
+                  }}
+                >
+                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "2rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                    }}
+                  >
+                    شــاشة العـــرض النصـــية
+                  </Typography>
+                  {/* </Link> */}
+                </Card>
+              </Box>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                التركيب ويمكنها تقديم معلومات مباشرة للعميل بطريقسهلةة مبتكرة.
+                وعرض المحتوى بأكثر من طريقة .كما تتميز ببرنامج تشغيل سهل يحتوي
+                على عدد كبير من تأثيرات الحركة تعرض جميع اللغات المكتوبة من جهاز
+                الكمبيوتر مما يزيد فرص الاتصال والتواصل مع عملائك بشكل أفضل .
+              </Typography>
+            </Grid>
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "30%",
+                borderBottom: "2px solid #979a9a",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                height: "18%",
+                width: "18%",
+                borderRight: "2px solid #979a9a",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: "30%",
+                transform: "translateX(-22%)",
+                height: "30px",
+                borderLeft: "2px solid #979a9a",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                top: "18%",
+                right: 0,
+                width: "1%",
+                borderTop: "2px solid #979a9a",
+                transform: "translateY(-1%)",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+          </Grid>
+        </Container>
+      </section>
+      <section
+        style={{
+          width: "100%",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          background: "#d5d8dc",
+        }}
+      >
+        <Container
+          maxWidth="xxl"
+          sx={{
+            mb: "15px",
+            px: { xs: "20px", sm: "100px" },
+            marginBottom: "50px",
+          }}
+        >
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              mt: "40px",
+              borderTop: { xs: "none", sm: "2px solid #979a9a" },
+              borderRight: { xs: "none", sm: "2px solid #979a9a" },
+              position: "relative",
+              flexDirection: { xs: "column", sm: "row" },
+            }}
+          >
+            {/* Text Section */}
+            <Grid item xs={12} sm={5}>
+              <Box p={2}>
+                <Card
+                  sx={{
+                    bgcolor: "#b0b0b0",
+                    p: 2,
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    width: "100%",
+                  }}
+                >
+                  {/* <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}> */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "2rem" },
+                      textAlign: "center",
+                      direction: "rtl",
+                      fontFamily: "Tajawal",
+                    }}
+                  >
+                    الشاشات الإلكترونية الداخلية
+                  </Typography>
+                  {/* </Link> */}
+                </Card>
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "20px",
+                    mt: 2,
+                    fontFamily: "Tajawal",
+                  }}
+                >
+                  تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض
+                  التجارية. والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة
+                  لجذب انتباه العملاء والجمهور ونشر الرسائل التسويقية بشكل عصري
+                  و جذاب. ويدعم الصيغ المتنوعة من الصور والفيديوهات. وجُهزت
+                  برقاقة تحكم ذكية للتقليل من التكلفة.
+                </Typography>
+              </Box>
+            </Grid>
+
+            {/* Image Section */}
+            <Grid item xs={12} sm={7}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/C5YsPnf7/12-Indoor-led-screen-display-billboards-mockup.webp"
+                alt="Indoor LED Screen"
+                sx={{
+                  width: "100%",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  objectFit: "cover",
+                  pb: "30px",
+                  pr: "30px",
+                  pl: { xs: 0, sm: "300px" },
+                }}
+              />
+            </Grid>
+
+            {/* Decorative Borders (hidden on mobile) */}
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                width: "30%",
+                borderBottom: "2px solid #979a9a",
+              }}
+            />
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                position: "absolute",
+                top: 0,
+                left: 0,
+                height: "20%",
+                width: "20%",
+                borderLeft: "2px solid #979a9a",
+              }}
+            />
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                position: "absolute",
+                bottom: 0,
+                right: "30%",
+                transform: "translateX(-22%)",
+                height: "22px",
+                borderLeft: "2px solid #979a9a",
+              }}
+            />
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                position: "absolute",
+                left: 0,
+                top: "20%",
+                transform: "translateY(-1%)",
+                width: "2%",
+                borderTop: "2px solid #979a9a",
+              }}
+            />
+          </Grid>
+        </Container>
+      </section>
+      <section
+        style={{ width: "100%", display: "flex", justifyContent: "center" }}
+      >
+        <Container
+          maxWidth="xxl"
+          sx={{
+            mb: "30px",
+            px: { xs: "20px", sm: "100px" },
+          }}
+        >
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              mt: "40px",
+              borderTop: {
+                xs: "none", // hide on mobile
+                md: "2px solid #979a9a", // show on desktop and larger
+              },
+              borderLeft: {
+                xs: "none",
+                md: "2px solid #979a9a",
+              },
+              position: "relative",
+              flexDirection: { xs: "column", md: "row" },
+            }}
+          >
+            {/* Image Section */}
+            <Grid item xs={12} md={7}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/q3RJqF1G/interactive-kiosk-Faisalabad.webp"
+                alt="Outdoor LED Screen"
+                sx={{
+                  width: "100%",
+                  objectFit: "cover",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  pb: "30px",
+                  pr: { xs: 0, sm: "300px" },
+                }}
+              />
+            </Grid>
+
+            {/* Text Content */}
+            <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
+              <Box sx={{ p: 2 }}>
+                <Card
+                  sx={{
+                    backgroundColor: "#b0b0b0",
+                    p: 2,
+                    borderRadius: "8px",
+                    boxShadow: 3,
+                    textAlign: "center",
+                  }}
+                >
+                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "2rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                    }}
+                  >
+                    الشـــــاشات التفــــاعلـية
+                  </Typography>
+                  {/* </Link> */}
+                </Card>
+              </Box>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                تعد أحدث وسيلة حديثة ومتطورة للدعاية المميزة وذات مقاسات وألوان
+                مختلفة.حيث تساعد بشكل كبير ومؤثر في عملية الدعاية والإعلان
+                للمنتجات والخدمات للجهات الحكومية والشركات والمجتمعات.
+              </Typography>
+            </Grid>
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "30%",
+                borderBottom: "2px solid #979a9a",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                height: "18%",
+                width: "18%",
+                borderRight: "2px solid #979a9a",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: "30%",
+                transform: "translateX(-22%)",
+                height: "30px",
+                borderLeft: "2px solid #979a9a",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                top: "18%",
+                right: 0,
+                width: "1%",
+                borderTop: "2px solid #979a9a",
+                transform: "translateY(-1%)",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+          </Grid>
+        </Container>
+      </section>
+      <section
+        style={{
+          width: "100%",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          background: "#d5d8dc",
+        }}
+      >
+        <Container
+          maxWidth="xxl"
+          sx={{
+            mb: "15px",
+            px: { xs: "20px", sm: "100px" },
+            marginBottom: "50px",
+          }}
+        >
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              mt: "40px",
+              borderTop: { xs: "none", sm: "2px solid #979a9a" },
+              borderRight: { xs: "none", sm: "2px solid #979a9a" },
+              position: "relative",
+              flexDirection: { xs: "column", sm: "row" },
+            }}
+          >
+            {/* Text Section */}
+            <Grid item xs={12} sm={5}>
+              <Box p={2}>
+                <Card
+                  sx={{
+                    bgcolor: "#b0b0b0",
+                    p: 2,
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    width: "100%",
+                  }}
+                >
+                  {/* <Link to="/Indoor-Screen" style={{ textDecoration: "none" }}> */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "2rem" },
+                      textAlign: "center",
+                      direction: "rtl",
+                      fontFamily: "Tajawal",
+                    }}
+                  >
+                    شـــاشات العـــدادات والساعات الرقمية
+                  </Typography>
+                  {/* </Link> */}
+                </Card>
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "20px",
+                    mt: 2,
+                    fontFamily: "Tajawal",
+                  }}
+                >
+                  مخصصة لنظام المحطات حيث تعرض أسعار الوقود بطريقه احترافية
+                  وسهلة التحكم وعداد ديجتال للعد التنازلي بعدد الايام المتبقي
+                  علي انتهاء المشروع الساعات الرقمية تعرض الوقت والتاريخ عن طريق
+                  الاتصال بالقمر الصناعي.
+                </Typography>
+              </Box>
+            </Grid>
+
+            {/* Image Section */}
+            <Grid item xs={12} sm={7}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/C3TL6s5Y/Ha830c6b132ba4daa87daa57571a5b4c7u.webp"
+                alt="Indoor LED Screen"
+                sx={{
+                  width: "100%",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  objectFit: "cover",
+                  pb: "30px",
+                  pr: "30px",
+                  pl: { xs: 0, sm: "300px" },
+                }}
+              />
+            </Grid>
+
+            {/* Decorative Borders (hidden on mobile) */}
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                width: "30%",
+                borderBottom: "2px solid #979a9a",
+              }}
+            />
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                position: "absolute",
+                top: 0,
+                left: 0,
+                height: "20%",
+                width: "20%",
+                borderLeft: "2px solid #979a9a",
+              }}
+            />
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                position: "absolute",
+                bottom: 0,
+                right: "30%",
+                transform: "translateX(-22%)",
+                height: "22px",
+                borderLeft: "2px solid #979a9a",
+              }}
+            />
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                position: "absolute",
+                left: 0,
+                top: "20%",
+                transform: "translateY(-1%)",
+                width: "2%",
+                borderTop: "2px solid #979a9a",
+              }}
+            />
+          </Grid>
+        </Container>
+      </section>
+      <section
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "30px",
+        }}
+      >
+        <Container
+          maxWidth="xxl"
+          sx={{
+            mb: "30px",
+            px: { xs: "20px", sm: "100px" },
+          }}
+        >
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              mt: "40px",
+              borderTop: {
+                xs: "none", // hide on mobile
+                md: "2px solid #979a9a", // show on desktop and larger
+              },
+              borderLeft: {
+                xs: "none",
+                md: "2px solid #979a9a",
+              },
+              position: "relative",
+              flexDirection: { xs: "column", md: "row" },
+            }}
+          >
+            {/* Image Section */}
+            <Grid item xs={12} md={7}>
+              <Box
+                component="img"
+                src="https://i.ibb.co/pBDwQmRq/IC-3-displays-s.webp"
+                alt="Outdoor LED Screen"
+                sx={{
+                  width: "100%",
+                  objectFit: "cover",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  pb: "30px",
+                  pr: { xs: 0, sm: "300px" },
+                }}
+              />
+            </Grid>
+
+            {/* Text Content */}
+            <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
+              <Box sx={{ p: 2 }}>
+                <Card
+                  sx={{
+                    backgroundColor: "#b0b0b0",
+                    p: 2,
+                    borderRadius: "8px",
+                    boxShadow: 3,
+                    textAlign: "center",
+                  }}
+                >
+                  {/* <Link to="/Outdoor-LED" style={{ textDecoration: "none" }}> */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "2rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                    }}
+                  >
+                    جهاز ارقام الانتظار
+                  </Typography>
+                  {/* </Link> */}
+                </Card>
+              </Box>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                تعمل بمفردها لا تحتاج إلى كمبيوتر . 4 خدمات مختلفة حسب رغبة
+                العميل نظام يعمل بنغمة ونداء برقم العميل والشباك. تحتفظ باخر رقم
+                عند انقطاع التيار الكهربائي مزود بوحدة برنتر لطباعة الأرقام
+                المسلسلة
+              </Typography>
+            </Grid>
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "30%",
+                borderBottom: "2px solid #979a9a",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                height: "18%",
+                width: "18%",
+                borderRight: "2px solid #979a9a",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: "30%",
+                transform: "translateX(-22%)",
+                height: "30px",
+                borderLeft: "2px solid #979a9a",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                top: "18%",
+                right: 0,
+                width: "1%",
+                borderTop: "2px solid #979a9a",
+                transform: "translateY(-1%)",
+                display: { xs: "none", md: "block" },
+              }}
+            />
+          </Grid>
+        </Container>
+      </section>
+
     </>
   );
 };
