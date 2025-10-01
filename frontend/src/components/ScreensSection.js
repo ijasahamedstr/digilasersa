@@ -591,19 +591,20 @@ const ScreensSection = () => {
             </Typography>
 
             {/* Second Heading */}
-            <Typography
-              variant="h3"
-              sx={{
-                fontWeight: "bold",
-                fontFamily: "Tajawal",
-                mb: 1,
-                pt: "40px", // added padding top
-                fontSize: { xs: "1.5rem", md: "1.6rem" },
-              }}
-            >
-              ‏منتجك صار شاشة  .. والناس تشرب الفكرة
-            </Typography>
-            
+           <Typography
+            variant="h3"
+            sx={{
+              fontWeight: "bold",
+              fontFamily: "Tajawal",
+              pt: "40px", // padding top
+              pb: "40px", // padding bottom
+              fontSize: { xs: "1.5rem", md: "1.6rem" },
+            }}
+          >
+            ‏منتجك صار شاشة  .. والناس تشرب الفكرة
+          </Typography>
+
+
             </Box>
             {/* Image */}
             <Grid item xs={12}>
