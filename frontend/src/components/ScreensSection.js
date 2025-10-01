@@ -398,7 +398,7 @@ const ScreensSection = () => {
                       fontWeight: "500",
                       fontFamily: "Tajawal",
                       mb: 2,
-                      color: "#555",
+                      color: "#313030ff",
                       fontSize: { xs: "1.1rem", md: "1.3rem" },
                     }}
                   >
@@ -443,7 +443,7 @@ const ScreensSection = () => {
                       fontWeight: "500",
                       fontFamily: "Tajawal",
                       mb: 2,
-                      color: "#555",
+                      color: "#313030ff",
                       fontSize: { xs: "1.1rem", md: "1.3rem" },
                     }}
                   >
@@ -490,7 +490,7 @@ const ScreensSection = () => {
                     fontWeight: "500",
                     fontFamily: "Tajawal",
                     mb: 2,
-                    color: "#555",
+                    color: "#313030ff",
                     fontSize: { xs: "1.1rem", md: "1.3rem" },
                   }}
                 >
@@ -569,7 +569,7 @@ const ScreensSection = () => {
                 fontWeight: "500",
                 fontFamily: "Tajawal",
                 mb: 3,
-                color: "#555",
+                color: "#313030ff",
                 fontSize: { xs: "1.1rem", md: "1.3rem" },
               }}
             >
@@ -607,37 +607,37 @@ const ScreensSection = () => {
 
             {/* Image */}
             <Grid item xs={12}>
-  {/* Outer wrapper for animated gradient border */}
-  <Box
-    sx={{
-      borderRadius: "10px",  // border radius for outer gradient
-      p: "2px",              // border thickness
-      background:
-        "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-      backgroundSize: "300% 300%",
-      "@keyframes gradient": {
-        "0%": { backgroundPosition: "0% 50%" },
-        "50%": { backgroundPosition: "100% 50%" },
-        "100%": { backgroundPosition: "0% 50%" },
-      },
-      animation: "gradient 4s linear infinite",
-    }}
-  >
-    {/* Inner image */}
-    <Box
-      component="img"
-      src="https://i.ibb.co/0VdG8x9X/S1.webp"
-      alt="Outdoor LED Screen"
-      sx={{
-        width: "100%",
-        height: "auto",
-        objectFit: "cover",
-        borderRadius: "8px", // slightly smaller than outer radius to reveal border
-        display: "block",
-      }}
-    />
-  </Box>
-</Grid>
+            {/* Outer wrapper for animated gradient border */}
+            <Box
+              sx={{
+                borderRadius: "10px",  // border radius for outer gradient
+                p: "2px",              // border thickness
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                "@keyframes gradient": {
+                  "0%": { backgroundPosition: "0% 50%" },
+                  "50%": { backgroundPosition: "100% 50%" },
+                  "100%": { backgroundPosition: "0% 50%" },
+                },
+                animation: "gradient 4s linear infinite",
+              }}
+            >
+              {/* Inner image */}
+              <Box
+                component="img"
+                src="https://i.ibb.co/0VdG8x9X/S1.webp"
+                alt="Outdoor LED Screen"
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "cover",
+                  borderRadius: "8px", // slightly smaller than outer radius to reveal border
+                  display: "block",
+                }}
+              />
+            </Box>
+          </Grid>
 
           </Grid>
         </Container>
