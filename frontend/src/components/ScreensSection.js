@@ -633,6 +633,7 @@ const ScreensSection = () => {
                   width: "100%",
                   height: "auto",
                   objectFit: "cover",
+                  maxHeight: { xs: 250, sm: 350, md: 500 },
                   borderRadius: "8px", // slightly smaller than outer radius to reveal border
                   display: "block",
                 }}
