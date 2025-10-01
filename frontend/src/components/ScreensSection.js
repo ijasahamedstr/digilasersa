@@ -336,7 +336,7 @@ const ScreensSection = () => {
                         fontFamily: "Tajawal",
                       }}
                     >
-                      الشاشات الإلكترونية الداخلية
+                        شاشة علبة المشروبات الغازية
                     </Typography>
                   </Card>
                 </Box>
@@ -538,10 +538,10 @@ const ScreensSection = () => {
                     pl: 4, // padding for bullets
                   }}
                 >
-                  <li>النقطة الأولى في القائمة.</li>
-                  <li>النقطة الثانية في القائمة.</li>
-                  <li>النقطة الثالثة في القائمة.</li>
-                  <li>يمكنك إضافة المزيد من النقاط حسب الحاجة.</li>
+                  <li>مثالية لبراندات المشروبات والطعام</li>
+                  <li>للفعاليات والعينات المجانية</li>
+                  <li>واجهات المتاجر الجديدة</li>
+                  <li>زوايا التصوير داخل المولات</li>
                 </Typography>
               </Box>
             </Grid>
@@ -597,14 +597,14 @@ const ScreensSection = () => {
                 fontWeight: "bold",
                 fontFamily: "Tajawal",
                 mb: 1,
+                pt: "40px", // added padding top
                 fontSize: { xs: "1.5rem", md: "1.6rem" },
               }}
             >
               ‏منتجك صار شاشة  .. والناس تشرب الفكرة
             </Typography>
-          </Box>
-
-
+            
+            </Box>
             {/* Image */}
             <Grid item xs={12}>
             {/* Outer wrapper for animated gradient border */}
