@@ -373,12 +373,12 @@ const ScreensSection = () => {
               </Typography>
             </Grid>
 
-            {/* Two Columns Section */}
+          {/* Two Columns Section */}
             <Grid container spacing={2} sx={{ mt: 4 }}>
               {/* Column 1 - Right side */}
               <Grid item xs={12} md={6}>
                 <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading */}
+                  {/* Main Heading with Number 01 */}
                   <Typography
                     variant="h3"
                     sx={{
@@ -388,7 +388,7 @@ const ScreensSection = () => {
                       fontSize: { xs: "1.5rem", md: "1.6rem" },
                     }}
                   >
-                    من زاوية تسويقية:
+                    01 - من زاوية تسويقية:
                   </Typography>
 
                   {/* Subheading */}
@@ -423,7 +423,7 @@ const ScreensSection = () => {
               {/* Column 2 - Left side */}
               <Grid item xs={12} md={6}>
                 <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading */}
+                  {/* Main Heading with Number 02 */}
                   <Typography
                     variant="h3"
                     sx={{
@@ -433,7 +433,7 @@ const ScreensSection = () => {
                       fontSize: { xs: "1.5rem", md: "1.6rem" },
                     }}
                   >
-                    من زاوية جذب الانتباه:
+                    02 - من زاوية جذب الانتباه:
                   </Typography>
 
                   {/* Subheading */}
@@ -465,157 +465,180 @@ const ScreensSection = () => {
               </Grid>
             </Grid>
 
-             <Grid container spacing={2} sx={{ mt: 4 }}>
-              {/* Column 1 - Right side */}
-              <Grid item xs={12} md={6}>
-                <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading */}
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Tajawal",
-                      mb: 1,
-                      fontSize: { xs: "1.5rem", md: "1.6rem" },
-                    }}
-                  >
-                     من زاوية الابتكار:
-                  </Typography>
 
-                  {/* Subheading */}
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: "500",
-                      fontFamily: "Tajawal",
-                      mb: 2,
-                      color: "#555",
-                      fontSize: { xs: "1.1rem", md: "1.3rem" },
-                    }}
-                  >
-                    منتجك + تقنية = عرض إبداعي
-                  </Typography>
+          <Grid container spacing={2} sx={{ mt: 4 }}>
+            {/* Column 1 - Right side */}
+            <Grid item xs={12} md={6}>
+              <Box sx={{ p: 2, textAlign: "right" }}>
+                {/* Main Heading with Number 03 */}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    fontFamily: "Tajawal",
+                    mb: 1,
+                    fontSize: { xs: "1.5rem", md: "1.6rem" },
+                  }}
+                >
+                  03 - من زاوية الابتكار:
+                </Typography>
 
-                  {/* Paragraph */}
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                      pl: "80px", // padding-left
-                    }}
-                  >
-                    تصميم ثلاثي الأبعاد، إضاءة LED، شكل مألوف بطريقة غير مألوفة... هذا هو الابتكار في الإعلان.
-                  </Typography>
-                </Box>
-              </Grid>
+                {/* Subheading */}
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: "500",
+                    fontFamily: "Tajawal",
+                    mb: 2,
+                    color: "#555",
+                    fontSize: { xs: "1.1rem", md: "1.3rem" },
+                  }}
+                >
+                  منتجك + تقنية = عرض إبداعي
+                </Typography>
 
-              {/* Column 2 - Left side */}
-              <Grid item xs={12} md={6}>
-                <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading */}
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Tajawal",
-                      mb: 1,
-                      fontSize: { xs: "1.5rem", md: "1.6rem" },
-                    }}
-                  >
-                     من زاوية الاستخدامات:
-                  </Typography>
-
-                  {/* Paragraph */}
-                  <Typography
-                    component="ul"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                    }}
-                  >
-                    <li>النقطة الأولى في القائمة.</li>
-                    <li>النقطة الثانية في القائمة.</li>
-                    <li>النقطة الثالثة في القائمة.</li>
-                    <li>يمكنك إضافة المزيد من النقاط حسب الحاجة.</li>
-                  </Typography>
-                </Box>
-              </Grid>
+                {/* Paragraph */}
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontFamily: "Tajawal",
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    pl: "80px", // padding-left
+                  }}
+                >
+                  تصميم ثلاثي الأبعاد، إضاءة LED، شكل مألوف بطريقة غير مألوفة... هذا هو الابتكار في الإعلان.
+                </Typography>
+              </Box>
             </Grid>
 
-            <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
-              {/* Main Heading */}
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: "bold",
-                  fontFamily: "Tajawal",
-                  mb: 1,
-                  fontSize: { xs: "1.5rem", md: "1.6rem" },
-                }}
-              >
-                من زاوية التأثير النفسي:
-              </Typography>
+            {/* Column 2 - Left side */}
+            <Grid item xs={12} md={6}>
+              <Box sx={{ p: 2, textAlign: "right" }}>
+                {/* Main Heading with Number 04 */}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    fontFamily: "Tajawal",
+                    mb: 1,
+                    fontSize: { xs: "1.5rem", md: "1.6rem" },
+                  }}
+                >
+                  04 - من زاوية الاستخدامات:
+                </Typography>
 
-              {/* Subheading */}
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: "500",
-                  fontFamily: "Tajawal",
-                  mb: 3,
-                  color: "#555",
-                  fontSize: { xs: "1.1rem", md: "1.3rem" },
-                }}
-              >
-                الشكل يحكي القصة
-              </Typography>
+                {/* Unordered List */}
+                <Typography
+                  component="ul"
+                  sx={{
+                    fontFamily: "Tajawal",
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    pl: 4, // padding for bullets
+                  }}
+                >
+                  <li>النقطة الأولى في القائمة.</li>
+                  <li>النقطة الثانية في القائمة.</li>
+                  <li>النقطة الثالثة في القائمة.</li>
+                  <li>يمكنك إضافة المزيد من النقاط حسب الحاجة.</li>
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
 
-              {/* Paragraph */}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontFamily: "Tajawal",
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "center",
-                  mt: 2,
-                  mb: 2,
-                }}
-              >
-                عندما يرى العميل شكل علبة مشروبه المفضل تتحرّك وتعرض محتوى، يتفاعل فورًا… بدون تفكير.
-              </Typography>
 
-               <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: "bold",
-                  fontFamily: "Tajawal",
-                  mb: 1,
-                  fontSize: { xs: "1.5rem", md: "1.6rem" },
-                }}
-              >
-                ‏منتجك صار شاشة  .. والناس تشرب الفكرة
-              </Typography>
-            </Box>
+           <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
+            {/* Main Heading with Number 05 */}
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: "bold",
+                fontFamily: "Tajawal",
+                mb: 1,
+                fontSize: { xs: "1.5rem", md: "1.6rem" },
+              }}
+            >
+              05 - من زاوية التأثير النفسي:
+            </Typography>
+
+            {/* Subheading */}
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: "500",
+                fontFamily: "Tajawal",
+                mb: 3,
+                color: "#555",
+                fontSize: { xs: "1.1rem", md: "1.3rem" },
+              }}
+            >
+              الشكل يحكي القصة
+            </Typography>
+
+            {/* Paragraph */}
+            <Typography
+              variant="body1"
+              sx={{
+                fontFamily: "Tajawal",
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                textAlign: "center",
+                mt: 2,
+                mb: 2,
+              }}
+            >
+              عندما يرى العميل شكل علبة مشروبه المفضل تتحرّك وتعرض محتوى، يتفاعل فورًا… بدون تفكير.
+            </Typography>
+
+            {/* Second Heading */}
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: "bold",
+                fontFamily: "Tajawal",
+                mb: 1,
+                fontSize: { xs: "1.5rem", md: "1.6rem" },
+              }}
+            >
+              ‏منتجك صار شاشة  .. والناس تشرب الفكرة
+            </Typography>
+          </Box>
+
 
             {/* Image */}
             <Grid item xs={12}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/0VdG8x9X/S1.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "20px",
-                  borderRadius: "8px",
-                }}
-              />
-            </Grid>
+  {/* Outer wrapper for animated gradient border */}
+  <Box
+    sx={{
+      borderRadius: "10px",  // border radius for outer gradient
+      p: "2px",              // border thickness
+      background:
+        "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+      backgroundSize: "300% 300%",
+      "@keyframes gradient": {
+        "0%": { backgroundPosition: "0% 50%" },
+        "50%": { backgroundPosition: "100% 50%" },
+        "100%": { backgroundPosition: "0% 50%" },
+      },
+      animation: "gradient 4s linear infinite",
+    }}
+  >
+    {/* Inner image */}
+    <Box
+      component="img"
+      src="https://i.ibb.co/0VdG8x9X/S1.webp"
+      alt="Outdoor LED Screen"
+      sx={{
+        width: "100%",
+        height: "auto",
+        objectFit: "cover",
+        borderRadius: "8px", // slightly smaller than outer radius to reveal border
+        display: "block",
+      }}
+    />
+  </Box>
+</Grid>
+
           </Grid>
         </Container>
       </section>
