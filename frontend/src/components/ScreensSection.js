@@ -1008,7 +1008,7 @@ const ScreensSection = () => {
                         fontFamily: "Tajawal",
                       }}
                     >
-                        شاشة علبة المشروبات الغازية
+                        شاشة المصاعد
                     </Typography>
                   </Card>
                 </Box>
@@ -1212,8 +1212,10 @@ const ScreensSection = () => {
                 mb: 2,
               }}
             >
-للمولات  /  والأبراج التجارية /  الفنادق المجمعات السكنية /  المستشفيات /
- المطاعم وغيرها            </Typography>
+                          
+            للمولات  /  والأبراج التجارية /  الفنادق المجمعات السكنية /  المستشفيات /
+            المطاعم وغيرها            
+            </Typography>
 
             {/* Second Heading */}
            <Typography
