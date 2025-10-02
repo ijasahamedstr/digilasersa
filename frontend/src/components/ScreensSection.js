@@ -1015,29 +1015,210 @@ const ScreensSection = () => {
                       direction: "rtl",
                     }}
                   >
-                    الشاشات الإلكترونية الداخلية
+                      شاشة المصاعد
                   </Typography>
                 </Card>
               </Box>
             </Box>
+            </Grid>
 
+            <Grid item xs={12}>
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
                   px: "20px",
                   mt: 2,
                   fontFamily: "Tajawal",
                 }}
               >
-                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
-                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
-                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
-                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
+                تعد شاشة المصاعد حلا إعلانية فعالا يستغل واحدة من أكثر اللحظات تركيزا لدى الجمهور وقت الانتظار داخل المصعد وتتيح الشركات إيصال رسائلها مباشرة لجمهور محدد وفي مساحة مغلقة مما يزيد فرص التفاعل والتأثير
+              </Typography>
+
+               <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                أبرز نقاط التسويق
+              </Typography>
+
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: "bold",
+                  fontFamily: "Tajawal",
+                  textAlign: "right",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 4,
+                  mb: 2,
+                  fontSize: { xs: "1.6rem", md: "1.6rem" }, // Heading 01
+                }}
+              >
+                01. شاشات المصاعد
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
+                  direction: "rtl",
+                  px: "20px",
+                  fontFamily: "Tajawal",
+                  lineHeight: 1.8,
+                }}
+              >
+                المصعد مكان مغلق لا مهرب من النظر إليه
+              </Typography>
+
+               <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: "bold",
+                  fontFamily: "Tajawal",
+                  textAlign: "right",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 4,
+                  mb: 2,
+                  fontSize: { xs: "1.6rem", md: "1.6rem" }, // Heading 01
+                }}
+              >
+                02. مدة عرض مركزة 
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
+                  direction: "rtl",
+                  px: "20px",
+                  fontFamily: "Tajawal",
+                  lineHeight: 1.8,
+                }}
+              >
+                15–60 ثانية من الانتباه الكامل
+              </Typography>
+
+               <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: "bold",
+                  fontFamily: "Tajawal",
+                  textAlign: "right",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 4,
+                  mb: 2,
+                  fontSize: { xs: "1.6rem", md: "1.6rem" }, // Heading 01
+                }}
+              >
+                03. موقع دائم الحركة
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
+                  direction: "rtl",
+                  px: "20px",
+                  fontFamily: "Tajawal",
+                  lineHeight: 1.8,
+                }}
+              >
+                                
+                يتكرر المشهد أكثر من مرة يومياً   
+              </Typography>
+
+                <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: "bold",
+                  fontFamily: "Tajawal",
+                  textAlign: "right",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 4,
+                  mb: 2,
+                  fontSize: { xs: "1.6rem", md: "1.6rem" }, // Heading 01
+                }}
+              >
+                04.مناسب للإعلانات الخدمية والعروض السريعة 
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
+                  direction: "rtl",
+                  px: "20px",
+                  fontFamily: "Tajawal",
+                  lineHeight: 1.8,
+                }}
+              >
+                                
+               وقت الانتظار وقت الانتباة الكامل   
+              </Typography>
+
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: "bold",
+                  fontFamily: "Tajawal",
+                  textAlign: "right",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 4,
+                  mb: 2,
+                  fontSize: { xs: "1.6rem", md: "1.6rem" }, // Heading 01
+                }}
+              >
+                05.مناسبة 
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "right",
+                  direction: "rtl",
+                  px: "20px",
+                  fontFamily: "Tajawal",
+                  lineHeight: 1.8,
+                }}
+              >
+                                
+                 للمولات / والأبراج التجارية / الفنادق / المجمعات السكنية / المستشفيات / المطاعم وغيرها   
               </Typography>
             </Grid>
+
+               <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
+                  {/* Second Heading */}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    fontFamily: "Tajawal",
+                    pt: "40px", // padding top
+                    pb: "40px", // padding bottom
+                    fontSize: { xs: "1.5rem", md: "1.6rem" },
+                  }}
+                >
+                  وقت الانتظار … صار وقت اعلانك
+                </Typography>
+                </Box>
+            
 
             {/* Image Section */}
             <Grid item xs={12}>
