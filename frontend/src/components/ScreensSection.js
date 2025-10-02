@@ -1395,6 +1395,7 @@ const ScreensSection = () => {
                   يتم تجهيز الشاشة بالكامل لتكون جاهزة للعمل فورًا، مع دعم فني لضمان أفضل أداء طوال فترة الإيجار
                 </Typography>
               </Grid>
+              
 
               <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
                 {/* Main Heading with Number 05 */}
@@ -1669,130 +1670,280 @@ const ScreensSection = () => {
       </section>
 
 
-          <section
+
+      <section
         style={{
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          paddingBottom: "60px", // ✅ extra space at bottom
+          paddingBottom: "60px",
         }}
       >
-        <Container
-          maxWidth="xl" // ✅ narrower container with left/right space
-        >
+        <Container maxWidth="xl">
           <Grid
             container
             spacing={2}
             sx={{
               mt: "40px",
-              flexDirection: "column", // ✅ stacked layout
-              alignItems: "stretch",   // ✅ full width instead of centered
+              flexDirection: "column",
+              alignItems: "stretch",
+              direction: "rtl", // makes all child Grid items RTL
             }}
           >
-               {/* Text Content */}
+            {/* Heading */}
             <Grid item xs={12}>
               <Box sx={{ p: 2 }}>
-              {/* Outer wrapper shows the animated gradient and acts as the border */}
-              <Box
-                sx={{
-                  borderRadius: "10px",       // outer radius (border)
-                  p: "2px",                   // border thickness (increase/decrease)
-                  background:
-                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                  backgroundSize: "300% 300%",
-                  // keyframes defined inline in sx (MUI supports this)
-                  "@keyframes gradient": {
-                    "0%": { backgroundPosition: "0% 50%" },
-                    "50%": { backgroundPosition: "100% 50%" },
-                    "100%": { backgroundPosition: "0% 50%" },
-                  },
-                  animation: "gradient 4s linear infinite",
-                }}
-              >
-                {/* Inner card sits on top of the animated border */}
-                <Card
+                <Box
                   sx={{
-                    bgcolor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px", // slightly smaller than outer to reveal border
-                    boxShadow: 3,
-                    textAlign: "center",
-                    position: "relative",
-                    overflow: "hidden",
+                    borderRadius: "10px",
+                    p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    "@keyframes gradient": {
+                      "0%": { backgroundPosition: "0% 50%" },
+                      "50%": { backgroundPosition: "100% 50%" },
+                      "100%": { backgroundPosition: "0% 50%" },
+                    },
+                    animation: "gradient 4s linear infinite",
                   }}
                 >
-                  <Typography
-                    variant="h3"
+                  <Card
                     sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
+                      bgcolor: "#b0b0b0",
+                      p: 2,
+                      borderRadius: "8px",
+                      boxShadow: 3,
+                      textAlign: "center",
                     }}
                   >
-                      شاشات استاند دبل سايد
-                  </Typography>
-                </Card>
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#333",
+                        fontSize: { xs: "1rem", sm: "2rem" },
+                        fontFamily: "Tajawal",
+                      }}
+                    >
+                        شاشات استاند دبل سايد
+                    </Typography>
+                  </Card>
+                </Box>
               </Box>
-            </Box>
             </Grid>
 
-             {/* Intro Paragraphs */}
-              <Grid 
-                item 
-                xs={12}
-                sx={{ direction: "rtl" }} // ⬅️ يجعل النصوص من اليمين لليسار
-              >
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                  شاشات استاند دبل سايد حضور مضاعف بذكاء بصري
-                </Typography>
-
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    px: "20px",
-                    mt: 2,
-                    pl: 4,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                  توفر شركة الليزر شاشة استاند بتصميم دبل سايد (وجهين) ، لتمنح عملاءنا تجربة عرض أكثر فاعلية في المساحات المفتوحة والممرات الحيوية.
-                </Typography>
-              </Grid>
-
-              <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
-                {/* Main Heading with Number 05 */}
-
-                {/* Second Heading */}
+            {/* Intro Paragraphs */}
+            <Grid item xs={12}>
               <Typography
-                variant="h3"
+                variant="body1"
                 sx={{
-                  fontWeight: "bold",
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  px: "20px",
+                  mt: 2,
                   fontFamily: "Tajawal",
-                  pt: "40px", // padding top
-                  pb: "40px", // padding bottom
-                  fontSize: { xs: "1.5rem", md: "1.6rem" },
+                }}
+              >
+                شاشات استاند دبل سايد حضور مضاعف بذكاء بصري
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                توفر شركة الليزر شاشة استاند بتصميم دبل سايد (وجهين) ، لتمنح عملاءنا تجربة عرض أكثر فاعلية في المساحات المفتوحة والممرات الحيوية.
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
                 }}
               >
                 بفضل إمكانية العرض من الجهتين، تتيح الشاشة مضاعفة الوصول البصري للمحتوى
               </Typography>
+            </Grid>
 
+          {/* Two Columns Section */}
+            <Grid container spacing={2} sx={{ mt: 4 }}>
+              {/* Column 1 - Right side */}
+              <Grid item xs={12} md={6}>
+                <Box sx={{ p: 2, textAlign: "right" }}>
+                  {/* Main Heading with Number 01 */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      fontFamily: "Tajawal",
+                      mb: 1,
+                      fontSize: { xs: "1.5rem", md: "1.6rem" },
+                    }}
+                  >
+                    01 - ركّز على الفائدة الفريدة (USP):
+                  </Typography>
+
+                  {/* Subheading */}
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: "500",
+                      fontFamily: "Tajawal",
+                      mb: 2,
+                      color: "#313030ff",
+                      fontSize: { xs: "1.1rem", md: "1.3rem" },
+                    }}
+                  >
+                    عرض من جهتين = رؤية مضاعفة = انتباه أكبر
+                  </Typography>
+
+                  {/* Paragraph */}
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "Tajawal",
+                      fontSize: { xs: "1rem", md: "1.2rem" },
+                      textAlign: "justify",
+                      pl: "80px", // padding-left
+                    }}
+                  >
+                    تستهدف المساحات المفتوحة، الممرات، الأركان اللي فيها حركة من أكثر من اتجاه
+                  </Typography>
                 </Box>
+              </Grid>
 
-            {/* Image Section */}
-           <Grid item xs={12}>
+              {/* Column 2 - Left side */}
+              <Grid item xs={12} md={6}>
+                <Box sx={{ p: 2, textAlign: "right" }}>
+                  {/* Main Heading with Number 02 */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      fontFamily: "Tajawal",
+                      mb: 1,
+                      fontSize: { xs: "1.5rem", md: "1.6rem" },
+                    }}
+                  >
+                    02 - حدّد الجمهور المستهدف:
+                  </Typography>
+
+                     {/* Unordered List */}
+                  <Typography
+                    component="ul"
+                    sx={{
+                      fontFamily: "Tajawal",
+                      fontSize: { xs: "1rem", md: "1.2rem" },
+                      textAlign: "justify",
+                      pl: 4, // padding for bullets
+                    }}
+                  >
+                    <li>منظمو الفعاليات والمعارض</li>
+                    <li>المحلات التجارية (داخل المولات)</li>
+                    <li>شركات التسويق والإعلانات</li>
+                    <li>الفنادق وقاعات المؤتمرات</li>
+                    <li>الجهات الحكومية والخاصة التي تنظم مناسبات</li>
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+
+
+          <Grid container spacing={2} sx={{ mt: 4 }}>
+            {/* Column 1 - Right side */}
+            <Grid item xs={12} md={6}>
+              <Box sx={{ p: 2, textAlign: "right" }}>
+                {/* Main Heading with Number 03 */}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    fontFamily: "Tajawal",
+                    mb: 1,
+                    fontSize: { xs: "1.5rem", md: "1.6rem" },
+                  }}
+                >
+                  03 -  استخدم سيناريوهات واقعية في التسويق:
+                </Typography>
+
+                <Typography
+                    component="ul"
+                    sx={{
+                      fontFamily: "Tajawal",
+                      fontSize: { xs: "1rem", md: "1.2rem" },
+                      textAlign: "justify",
+                      pl: 4, // padding for bullets
+                    }}
+                  >
+                    <li>إذا عندك فعالية مزدحمة… خلي محتواك يشوفه الكل من أي جهة</li>
+                    <li>في ممرات المعارض؟ وجهين أفضل من واحد!</li>
+                  </Typography>
+              </Box>
+            </Grid>
+
+            {/* Column 2 - Left side */}
+            <Grid item xs={12} md={6}>
+              <Box sx={{ p: 2, textAlign: "right" }}>
+                {/* Main Heading with Number 04 */}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    fontFamily: "Tajawal",
+                    mb: 1,
+                    fontSize: { xs: "1.5rem", md: "1.6rem" },
+                  }}
+                >
+                  04 - استخدم صور حقيقية أو موك آب:
+                </Typography>
+
+                {/* Unordered List */}
+                <Typography
+                  component="ul"
+                  sx={{
+                    fontFamily: "Tajawal",
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    pl: 4, // padding for bullets
+                  }}
+                >
+                  <li>عرض الشاشة في مكان مزدحم</li>
+                  <li>المحتوى ظاهر من الجهتين بشكل ملفت</li>
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+
+
+           <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
+            {/* Main Heading with Number 05 */}
+      
+            {/* Second Heading */}
+           <Typography
+            variant="h3"
+            sx={{
+              fontWeight: "bold",
+              fontFamily: "Tajawal",
+              pt: "40px", // padding top
+              pb: "40px", // padding bottom
+              fontSize: { xs: "1.5rem", md: "1.6rem" },
+            }}
+          >
+             حل  ذكي يعزز انتشار رسالتك بأناقة واحتراف
+          </Typography>
+
+
+            </Box>
+            {/* Image */}
+            <Grid item xs={12}>
             {/* Outer wrapper for animated gradient border */}
             <Box
               sx={{
@@ -1825,6 +1976,7 @@ const ScreensSection = () => {
               />
             </Box>
           </Grid>
+
           </Grid>
         </Container>
       </section>
