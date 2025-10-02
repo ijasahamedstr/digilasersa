@@ -1669,7 +1669,7 @@ const ScreensSection = () => {
       </section>
 
 
-      <section
+          <section
         style={{
           width: "100%",
           display: "flex",
@@ -1731,46 +1731,100 @@ const ScreensSection = () => {
                       direction: "rtl",
                     }}
                   >
-                    الشاشات الإلكترونية الداخلية
+                      شاشات استاند دبل سايد
                   </Typography>
                 </Card>
               </Box>
             </Box>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
-                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
-                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
-                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
-              </Typography>
             </Grid>
 
+             {/* Intro Paragraphs */}
+              <Grid 
+                item 
+                xs={12}
+                sx={{ direction: "rtl" }} // ⬅️ يجعل النصوص من اليمين لليسار
+              >
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    px: "20px",
+                    mt: 2,
+                    fontFamily: "Tajawal",
+                  }}
+                >
+                  شاشات استاند دبل سايد حضور مضاعف بذكاء بصري
+                </Typography>
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    px: "20px",
+                    mt: 2,
+                    pl: 4,
+                    fontFamily: "Tajawal",
+                  }}
+                >
+                  توفر شركة الليزر شاشة استاند بتصميم دبل سايد (وجهين) ، لتمنح عملاءنا تجربة عرض أكثر فاعلية في المساحات المفتوحة والممرات الحيوية.
+                </Typography>
+              </Grid>
+
+              <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
+                {/* Main Heading with Number 05 */}
+
+                {/* Second Heading */}
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: "bold",
+                  fontFamily: "Tajawal",
+                  pt: "40px", // padding top
+                  pb: "40px", // padding bottom
+                  fontSize: { xs: "1.5rem", md: "1.6rem" },
+                }}
+              >
+                بفضل إمكانية العرض من الجهتين، تتيح الشاشة مضاعفة الوصول البصري للمحتوى
+              </Typography>
+
+                </Box>
+
             {/* Image Section */}
-            <Grid item xs={12}>
+           <Grid item xs={12}>
+            {/* Outer wrapper for animated gradient border */}
+            <Box
+              sx={{
+                borderRadius: "10px",  // border radius for outer gradient
+                p: "2px",              // border thickness
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                "@keyframes gradient": {
+                  "0%": { backgroundPosition: "0% 50%" },
+                  "50%": { backgroundPosition: "100% 50%" },
+                  "100%": { backgroundPosition: "0% 50%" },
+                },
+                animation: "gradient 4s linear infinite",
+              }}
+            >
+              {/* Inner image */}
               <Box
                 component="img"
                 src="https://i.ibb.co/CKzPjyH1/S8.webp"
                 alt="Outdoor LED Screen"
                 sx={{
-                  width: "100%", // ✅ fill horizontally within container
+                  width: "100%",
                   height: "auto",
                   objectFit: "cover",
                   maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "20px",
-                  borderRadius: "8px",
+                  borderRadius: "8px", // slightly smaller than outer radius to reveal border
+                  display: "block",
                 }}
               />
-            </Grid>
+            </Box>
+          </Grid>
           </Grid>
         </Container>
       </section>
