@@ -2956,7 +2956,7 @@ const ScreensSection = () => {
             <Grid item xs={12} md={7}>
               <Box
                 component="img"
-                src="https://i.ibb.co/SDRYS9h4/Gemini-Generated-Image-ics12wics12wics1.webp"
+                src="https://i.ibb.co/svcqkpHS/Gemini-Generated-Image-ugkra8ugkra8ugkr.webp"
                 alt="Outdoor LED Screen"
                 sx={{
                   width: "100%",
