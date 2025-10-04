@@ -3809,7 +3809,7 @@ const ScreensSection = () => {
                       fontFamily: "Tajawal",
                     }}
                   >
-                    شـــاشات العـــدادات والساعات الرقمية
+                   شاشات محطات الوقود
                   </Typography>
                 </Card>
               </Box>
@@ -3825,11 +3825,39 @@ const ScreensSection = () => {
                     fontFamily: "Tajawal",
                   }}
                 >
-                   مخصصة لنظام المحطات حيث تعرض أسعار الوقود بطريقه احترافية
-                  وسهلة التحكم وعداد ديجتال للعد التنازلي بعدد الايام المتبقي
-                  علي انتهاء المشروع الساعات الرقمية تعرض الوقت والتاريخ عن طريق
-                  الاتصال بالقمر الصناعي.
+                                  توفر شركة الليزر شاشات إلكترونية عالية الدقة لعرض أسعار البنزين والديزل في محطات الوقود.  
+                تتميّز هذه الشاشات بتصميمها العملي وحجمها المناسب، مع وضوح فائق في جميع الظروف المناخية، لتعرض الأسعار بشكل مباشر وواضح للعملاء. 
                 </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "20px",
+                    mt: 2,
+                    fontFamily: "Tajawal",
+                  }}
+                >
+                  نعتمد في تصنيعها على تقنيات موثوقة تدعم التحديث السريع للأسعار وتقاوم الحرارة والغبار، مما يجعلها الخيار المثالي لمحطات الوقود الحديثة.
+                </Typography>
+                 <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#333",
+                    fontSize: { xs: "1rem", sm: "2rem" },
+                    textAlign: "center",
+                    direction: "rtl",
+                    fontFamily: "Tajawal",
+                    pt: 3, // padding top
+                    pb: 3, // padding bottom
+                    px: 2, // padding left & right
+                  }}
+                >
+                  أسعارك واضحة... وعميلك مطمئن
+                </Typography>
+
               </Box>
             </Grid>
 
