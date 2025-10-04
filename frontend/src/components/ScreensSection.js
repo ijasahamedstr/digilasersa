@@ -228,9 +228,7 @@ const ScreensSection = () => {
 
       <Container maxWidth="xl">
         <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
- 
-          {/* Heading */}
-            <Grid item xs={12}>
+           <Grid item xs={12}>
               <Box sx={{ p: 2 }}>
                 <Box
                   sx={{
@@ -261,7 +259,7 @@ const ScreensSection = () => {
                       sx={{
                         fontWeight: "bold",
                         color: "#333",
-                        fontSize: { xs: "1rem", sm: "2.5rem" },
+                        fontSize: { xs: "1rem", sm: "2.3rem" },
                         fontFamily: "Tajawal",
                       }}
                     >
@@ -271,8 +269,6 @@ const ScreensSection = () => {
                 </Box>
               </Box>
             </Grid>
-
-          {/* الصورة */}
           <img
             src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
             alt="Banner"
@@ -285,12 +281,10 @@ const ScreensSection = () => {
               paddingBottom: "30px",
             }}
           />
-
-          {/* الزر */}
           <Button
             component="a"
             href="https://sssplatform.com"
-            target="_blank"
+            target="_blank" // opens in new tab
             rel="noopener noreferrer"
             variant="contained"
             size="small"
@@ -327,7 +321,6 @@ const ScreensSection = () => {
           </Button>
         </Box>
       </Container>
-
 
       <section
         style={{
