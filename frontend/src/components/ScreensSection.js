@@ -233,7 +233,7 @@ const ScreensSection = () => {
                 <Box
                   sx={{
                     borderRadius: "10px",
-                    p: "2px",
+                    p: "4px",
                     background:
                       "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                     backgroundSize: "300% 300%",
@@ -259,7 +259,7 @@ const ScreensSection = () => {
                       sx={{
                         fontWeight: "bold",
                         color: "#333",
-                        fontSize: { xs: "1rem", sm: "2.3rem" },
+                        fontSize: { xs: "1rem", sm: "4.5rem" },
                         fontFamily: "Tajawal",
                       }}
                     >
@@ -290,7 +290,7 @@ const ScreensSection = () => {
             size="small"
             sx={{
               position: "absolute",
-              top: { xs: "40%", sm: "52%" },
+              top: { xs: "40%", sm: "65%" },
               left: "30%",
               transform: "translate(-50%, -50%)",
               backgroundColor: "#da9030",
