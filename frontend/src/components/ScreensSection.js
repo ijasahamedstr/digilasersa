@@ -953,7 +953,7 @@ const ScreensSection = () => {
       </section>
 
 
-            <section
+      <section
         style={{
           width: "100%",
           display: "flex",
@@ -2196,106 +2196,309 @@ const ScreensSection = () => {
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          paddingBottom: "60px", // ✅ extra space at bottom
+          paddingBottom: "60px",
         }}
       >
-        <Container
-          maxWidth="xl" // ✅ narrower container with left/right space
-        >
+        <Container maxWidth="xl">
           <Grid
             container
             spacing={2}
             sx={{
               mt: "40px",
-              flexDirection: "column", // ✅ stacked layout
-              alignItems: "stretch",   // ✅ full width instead of centered
+              flexDirection: "column",
+              alignItems: "stretch",
+              direction: "rtl", // makes all child Grid items RTL
             }}
           >
-               {/* Text Content */}
+            {/* Heading */}
             <Grid item xs={12}>
-             <Box sx={{ p: 2 }}>
-              {/* Outer wrapper shows the animated gradient and acts as the border */}
-              <Box
-                sx={{
-                  borderRadius: "10px",       // outer radius (border)
-                  p: "2px",                   // border thickness (increase/decrease)
-                  background:
-                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                  backgroundSize: "300% 300%",
-                  // keyframes defined inline in sx (MUI supports this)
-                  "@keyframes gradient": {
-                    "0%": { backgroundPosition: "0% 50%" },
-                    "50%": { backgroundPosition: "100% 50%" },
-                    "100%": { backgroundPosition: "0% 50%" },
-                  },
-                  animation: "gradient 4s linear infinite",
-                }}
-              >
-                {/* Inner card sits on top of the animated border */}
-                <Card
+              <Box sx={{ p: 2 }}>
+                <Box
                   sx={{
-                    bgcolor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px", // slightly smaller than outer to reveal border
-                    boxShadow: 3,
-                    textAlign: "center",
-                    position: "relative",
-                    overflow: "hidden",
+                    borderRadius: "10px",
+                    p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    "@keyframes gradient": {
+                      "0%": { backgroundPosition: "0% 50%" },
+                      "50%": { backgroundPosition: "100% 50%" },
+                      "100%": { backgroundPosition: "0% 50%" },
+                    },
+                    animation: "gradient 4s linear infinite",
                   }}
                 >
+                  <Card
+                    sx={{
+                      bgcolor: "#b0b0b0",
+                      p: 2,
+                      borderRadius: "8px",
+                      boxShadow: 3,
+                      textAlign: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#333",
+                        fontSize: { xs: "1rem", sm: "2rem" },
+                        fontFamily: "Tajawal",
+                      }}
+                    >
+                        شاشة على عمود متعددة الاتجاهات
+                    </Typography>
+                  </Card>
+                </Box>
+              </Box>
+            </Grid>
+
+            {/* Intro Paragraphs */}
+            <Grid item xs={12}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                  fontWeight:500,
+                }}
+              >
+                شاشة متعددة الاستخدامات.... تدريبي تثقيفي اعلاني  مبتكر
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                  fontWeight:500,
+                }}
+              >
+                مزايا الشاشة المتحركة:
+              </Typography>
+            </Grid>
+
+          {/* Two Columns Section */}
+            <Grid container spacing={2} sx={{ mt: 4 }}>
+              {/* Column 1 - Right side */}
+              <Grid item xs={12} md={6}>
+                <Box sx={{ p: 2, textAlign: "right" }}>
+                  {/* Main Heading with Number 01 */}
                   <Typography
                     variant="h3"
                     sx={{
                       fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
                       fontFamily: "Tajawal",
-                      direction: "rtl",
+                      mb: 1,
+                      fontSize: { xs: "1.5rem", md: "1.6rem" },
                     }}
                   >
-                    الشاشات الإلكترونية الداخلية
+                    01 - قابلة للدوران أفقيًا وعموديًا:
                   </Typography>
-                </Card>
-              </Box>
-            </Box>
 
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                تستخدم لأغراض ترويجية و إعلانية في المتاجر والمطاعم والمعارض التجارية.
-                والمؤتمرات و العروض التقديمية و تعتبر وسيلة فعالة لجذب انتباه العملاء
-                والجمهور ونشر الرسائل التسويقية بشكل عصري و جذاب. ويدعم الصيغ المتنوعة
-                من الصور والفيديوهات. وجُهزت برقاقة تحكم ذكية للتقليل من التكلفة.
-              </Typography>
+                  {/* Paragraph */}
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "Tajawal",
+                      fontSize: { xs: "1rem", md: "1.2rem" },
+                      textAlign: "justify",
+                      pl: "80px", // padding-left
+                    }}
+                  >
+                    لجذب الانتباه من كل الزوايا.
+                  </Typography>
+                </Box>
+              </Grid>
+
+              {/* Column 2 - Left side */}
+              <Grid item xs={12} md={6}>
+                <Box sx={{ p: 2, textAlign: "right" }}>
+                  {/* Main Heading with Number 02 */}
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      fontFamily: "Tajawal",
+                      mb: 1,
+                      fontSize: { xs: "1.5rem", md: "1.6rem" },
+                    }}
+                  >
+                    02 - بطارية تدوم حتى 8 ساعات:
+                  </Typography>
+
+                  {/* Paragraph */}
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "Tajawal",
+                      fontSize: { xs: "1rem", md: "1.2rem" },
+                      textAlign: "justify",
+                    }}
+                  >
+                    ⁠دون الحاجة إلى مصدر كهربائي مباشر
+                  </Typography>
+                </Box>
+              </Grid>
             </Grid>
 
-            {/* Image Section */}
+
+          <Grid container spacing={2} sx={{ mt: 4 }}>
+            {/* Column 1 - Right side */}
+            <Grid item xs={12} md={6}>
+              <Box sx={{ p: 2, textAlign: "right" }}>
+                {/* Main Heading with Number 03 */}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    fontFamily: "Tajawal",
+                    mb: 1,
+                    fontSize: { xs: "1.5rem", md: "1.6rem" },
+                  }}
+                >
+                  03 - حجم صغير وعمود ثابت:
+                </Typography>
+
+                {/* Paragraph */}
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontFamily: "Tajawal",
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    pl: "80px", // padding-left
+                  }}
+                >
+                                    ⁠يجعلها مثالية للمساحات الضيقة
+                أو التنقل.
+                </Typography>
+              </Box>
+            </Grid>
+
+            {/* Column 2 - Left side */}
+            <Grid item xs={12} md={6}>
+              <Box sx={{ p: 2, textAlign: "right" }}>
+                {/* Main Heading with Number 04 */}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    fontFamily: "Tajawal",
+                    mb: 1,
+                    fontSize: { xs: "1.5rem", md: "1.6rem" },
+                  }}
+                >
+                  04 -مرونة في الاستخدام :
+                </Typography>
+
+                 <Typography
+                  variant="body1"
+                  sx={{
+                    fontFamily: "Tajawal",
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    pl: "80px", // padding-left
+                  }}
+                >
+                                داخل المعارض، الفعاليات، المداخل، 
+                  أو حتى قرب المنتجات
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+
+
+           <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
+            {/* Main Heading with Number 05 */}
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: "bold",
+                fontFamily: "Tajawal",
+                mb: 1,
+                fontSize: { xs: "1.5rem", md: "1.6rem" },
+              }}
+            >
+              05 - مناسبة:
+            </Typography>
+
+            {/* Paragraph */}
+            <Typography
+              variant="body1"
+              sx={{
+                fontFamily: "Tajawal",
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                textAlign: "center",
+                mt: 2,
+                mb: 2,
+              }}
+            >
+                            لمدارس / المستشفيات / العيادات
+              مراكز التدريب / المحلات التجارية
+              ادارة المولات
+            </Typography>
+
+            {/* Second Heading */}
+           <Typography
+            variant="h3"
+            sx={{
+              fontWeight: "bold",
+              fontFamily: "Tajawal",
+              pt: "40px", // padding top
+              pb: "40px", // padding bottom
+              fontSize: { xs: "1.5rem", md: "1.6rem" },
+            }}
+          >
+            تتيح تجربة عرض احترافية وملفتة للأنظار
+          </Typography>
+
+
+            </Box>
+            {/* Image */}
             <Grid item xs={12}>
+            {/* Outer wrapper for animated gradient border */}
+            <Box
+              sx={{
+                borderRadius: "10px",  // border radius for outer gradient
+                p: "2px",              // border thickness
+                background:
+                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                backgroundSize: "300% 300%",
+                "@keyframes gradient": {
+                  "0%": { backgroundPosition: "0% 50%" },
+                  "50%": { backgroundPosition: "100% 50%" },
+                  "100%": { backgroundPosition: "0% 50%" },
+                },
+                animation: "gradient 4s linear infinite",
+              }}
+            >
+              {/* Inner image */}
               <Box
                 component="img"
                 src="https://i.ibb.co/XZhxzxRR/S9.webp"
                 alt="Outdoor LED Screen"
                 sx={{
-                  width: "100%", // ✅ fill horizontally within container
+                  width: "100%",
                   height: "auto",
                   objectFit: "cover",
                   maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "20px",
-                  borderRadius: "8px",
+                  borderRadius: "8px", // slightly smaller than outer radius to reveal border
+                  display: "block",
                 }}
               />
-            </Grid>
+            </Box>
+          </Grid>
+
           </Grid>
         </Container>
       </section>
+
 
       <section style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <Container
