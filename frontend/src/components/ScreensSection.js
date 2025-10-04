@@ -228,6 +228,51 @@ const ScreensSection = () => {
 
       <Container maxWidth="xl">
         <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
+ 
+          {/* Heading */}
+            <Grid item xs={12}>
+              <Box sx={{ p: 2 }}>
+                <Box
+                  sx={{
+                    borderRadius: "10px",
+                    p: "2px",
+                    background:
+                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                    backgroundSize: "300% 300%",
+                    "@keyframes gradient": {
+                      "0%": { backgroundPosition: "0% 50%" },
+                      "50%": { backgroundPosition: "100% 50%" },
+                      "100%": { backgroundPosition: "0% 50%" },
+                    },
+                    animation: "gradient 4s linear infinite",
+                  }}
+                >
+                  <Card
+                    sx={{
+                      bgcolor: "#b0b0b0",
+                      p: 2,
+                      borderRadius: "8px",
+                      boxShadow: 3,
+                      textAlign: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#333",
+                        fontSize: { xs: "1rem", sm: "2.5rem" },
+                        fontFamily: "Tajawal",
+                      }}
+                    >
+                        شركة الليزر المركز الأول للشاشات بالمملكة
+                    </Typography>
+                  </Card>
+                </Box>
+              </Box>
+            </Grid>
+
+          {/* الصورة */}
           <img
             src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
             alt="Banner"
@@ -240,10 +285,12 @@ const ScreensSection = () => {
               paddingBottom: "30px",
             }}
           />
+
+          {/* الزر */}
           <Button
             component="a"
             href="https://sssplatform.com"
-            target="_blank" // opens in new tab
+            target="_blank"
             rel="noopener noreferrer"
             variant="contained"
             size="small"
@@ -280,6 +327,7 @@ const ScreensSection = () => {
           </Button>
         </Box>
       </Container>
+
 
       <section
         style={{
