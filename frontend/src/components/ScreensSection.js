@@ -3596,13 +3596,56 @@ const ScreensSection = () => {
                   px: "20px",
                   mt: 2,
                   fontFamily: "Tajawal",
+                  fontWeight:500,
+                }}
+              >
+                تجربة تفاعلية... تترك الأثر 
+              </Typography>
+
+                 {/* Paragraph */}
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
                 }}
               >
                 
-                تعد أحدث وسيلة حديثة ومتطورة للدعاية المميزة وذات مقاسات وألوان
-                مختلفة.حيث تساعد بشكل كبير ومؤثر في عملية الدعاية والإعلان
-                للمنتجات والخدمات للجهات الحكومية والشركات والمجتمعات.
+                في عالم يتجه نحو التفاعل والابتكار، تقدم لك شركة الليزر الشاشات التفاعلية التي تحول المحتوى إلى تجربة حية.  
+                سواء كنت في معرض، أو فعالية، أو مساحة عرض، تتيح لك هذه الشاشات جذب الانتباه، إشراك الجمهور، وتقديم المعلومات بطريقة ممتعة وسلسة.
               </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                
+                نقدم خيارات متعددة من الأحجام والتقنيات تناسب جميع الاحتياجات مع تصميمات أنيقة وتقنيات تشغيل عالية الأداء 
+              </Typography>
+
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: "bold",
+                  fontFamily: "Tajawal",
+                  pt: "40px", // padding top
+                  pb: "40px", // padding bottom
+                  fontSize: { xs: "1.5rem", md: "1.6rem" },
+                  textAlign: "center", // <-- هنا الإضافة
+                }}
+              >
+                اختر التقنية التي تناسبك .. واترك للبصمة الرقمية أن تتكلم
+              </Typography>  
             </Grid>
 
             {/* Decorative Borders */}
@@ -3626,7 +3669,7 @@ const ScreensSection = () => {
                 top: 0,
                 right: 0,
                 width: "2px",
-                height: "18%",
+                height: "13%",
                 background:
                   "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
@@ -3652,7 +3695,7 @@ const ScreensSection = () => {
             <Box
               sx={{
                 position: "absolute",
-                top: "18%",
+                top: "13%",
                 right: 0,
                 width: "1%",
                 height: "2px",
