@@ -2548,7 +2548,7 @@ const ScreensSection = () => {
             <Grid item xs={12} md={7}>
               <Box
                 component="img"
-                src="https://i.ibb.co/6tj2L8K/Waterproof-P6-66-Outdoor-LED-Screen-Signboard.webp"
+                src="https://i.ibb.co/vxcWqFr2/outdoor-led.webp"
                 alt="Outdoor LED Screen"
                 sx={{
                   width: "100%",
