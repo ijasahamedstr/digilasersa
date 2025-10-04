@@ -2563,7 +2563,7 @@ const ScreensSection = () => {
                 top: 0,
                 left: 0,
                 width: "100%",
-                height: "100%",
+                height: "85%",
                 paddingTop: "2px",
                 paddingLeft: "2px",
                 borderTopLeftRadius: "10px",
@@ -2594,14 +2594,14 @@ const ScreensSection = () => {
                 sx={{
                   width: "100%",
                   objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
+                  // maxHeight: { xs: 250, sm: 350, md: 500 },
                   pb: "30px",
                   pr: { xs: 0, sm: "150px" },
                 }}
               />
             </Grid>
 
-            {/* Text Content */}
+         {/* Text Content */}
             <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
               <Box sx={{ p: 2 }}>
                 {/* Gradient Border Wrapper */}
@@ -2652,11 +2652,136 @@ const ScreensSection = () => {
                   fontFamily: "Tajawal",
                 }}
               >
-                تعتبر شاشات العرض الإلكترونية الخارجية المتخصصة في عرض الصور ومقاطع
-                الفيديو من احدث طرق التسويق حاليا لأنها تعتبر الوسيلة الافضل في جذب
-                ولفت انتباه العملاء . كما تتميز هذه الشاشات بأنها شديدة الوضوح في وقت
-                النهار ، كما أنها موفرة للكهرباء .
+                في شركة الليزر، نقدم حلولاً احترافية لتركيب الشاشات الخارجية بأنواعها،
+                سواء على الأبراج، أو الواجهات التجارية، أو أعمدة اليونيبول. نحن نضمن لك
+                ظهوراً بارزاً برسائل إعلانية واضحة، مع تقنيات عرض عالية الجودة تقاوم
+                الظروف المناخية وتلفت الأنظار من مسافات بعيدة. اختر الموقع، ودع الباقي
+                علينا.
               </Typography>
+
+              {/* Subtitle */}
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                  fontWeight: 500,
+                }}
+              >
+                مميزات الشاشات الخارجية بشركة الليزر
+              </Typography>
+
+              {/* Two Column Text */}
+              <Grid container spacing={2} sx={{ mt: 2, px: "20px" }}>
+                <Grid item xs={12} md={6}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: { xs: "1rem", md: "1.1rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                      textAlign: "justify",
+                    }}
+                  >
+                    وضوح عالٍ حتى في النهار
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: { xs: "1rem", md: "1.1rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                      textAlign: "justify",
+                    }}
+                  >
+                    مقاومة للعوامل الجوية
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid container spacing={2} sx={{ mt: 2, px: "20px" }}>
+                <Grid item xs={12} md={6}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: { xs: "1rem", md: "1.1rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                      textAlign: "justify",
+                    }}
+                  >
+                    رؤية من مسافات بعيدة
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: { xs: "1rem", md: "1.1rem" },
+                      fontFamily: "Tajawal",
+                      direction: "rtl",
+                      textAlign: "justify",
+                    }}
+                  >
+                    تأثير بصري قوي
+                  </Typography>
+                </Grid>
+              </Grid>  
+              {/* Paragraph */}
+            {/* Subtitle */}
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "center",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  pt: 4, // <-- هنا أضفت Padding Top (مثلاً 4 = 32px)
+                  fontFamily: "Tajawal",
+                  fontWeight: 500,
+                }}
+              >
+                خيارات متعددة للمواقع
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "center",  // <-- هنا التغيير
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                }}
+              >
+                (أبراج – محلات – شوارع رئيسية)
+              </Typography>
+
+               <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.6rem" },
+                  textAlign: "center",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  pt: 4, // <-- هنا أضفت Padding Top (مثلاً 4 = 32px)
+                  fontFamily: "Tajawal",
+                  fontWeight: 500,
+                }}
+              >
+                إعلاناتك... أوضح، أبعد، أقوى!
+              </Typography>
+
+
+      
             </Grid>
 
             {/* Decorative Borders */}
@@ -2665,6 +2790,7 @@ const ScreensSection = () => {
                 position: "absolute",
                 bottom: 0,
                 left: 0,
+                top:"85%",
                 width: "30%",
                 height: "2px",
                 background:
@@ -2680,7 +2806,7 @@ const ScreensSection = () => {
                 top: 0,
                 right: 0,
                 width: "2px",
-                height: "18%",
+                height: "12%",
                 background:
                   "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
@@ -2693,9 +2819,10 @@ const ScreensSection = () => {
                 position: "absolute",
                 bottom: 0,
                 left: "30%",
+                top:'80%',
                 transform: "translateX(-22%)",
                 width: "2px",
-                height: "30px",
+                height: "32px",
                 background:
                   "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
@@ -2706,7 +2833,7 @@ const ScreensSection = () => {
             <Box
               sx={{
                 position: "absolute",
-                top: "18%",
+                top: "12%",
                 right: 0,
                 width: "1%",
                 height: "2px",
