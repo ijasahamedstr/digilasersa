@@ -290,7 +290,7 @@ const ScreensSection = () => {
             size="small"
             sx={{
               position: "absolute",
-              top: { xs: "72%", sm: "65%" },
+              top: { xs: "70%", sm: "65%" },
               left: "30%",
               transform: "translate(-50%, -50%)",
               backgroundColor: "#da9030",
