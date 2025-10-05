@@ -3098,7 +3098,7 @@ const ScreensSection = () => {
                 top: 0,
                 left: 0,
                 width: "100%",
-                height: "100%",
+                height: "75%",
                 paddingTop: "2px",
                 paddingLeft: "2px",
                 borderTopLeftRadius: "10px",
@@ -3188,11 +3188,131 @@ const ScreensSection = () => {
                 }}
               >
                 
-                التركيب ويمكنها تقديم معلومات مباشرة للعميل بطريقسهلةة مبتكرة.
-                وعرض المحتوى بأكثر من طريقة .كما تتميز ببرنامج تشغيل سهل يحتوي
-                على عدد كبير من تأثيرات الحركة تعرض جميع اللغات المكتوبة من جهاز
-                الكمبيوتر مما يزيد فرص الاتصال والتواصل مع عملائك بشكل أفضل .
+                              حل ذكي لإيصال رسائلك بوضوح وتأثير.  
+              توفر شركة الليزر شاشات LED نصية مخصصة، لعرض العروض والتنبيهات والمعلومات العامة بشكل احترافي. 
               </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                  fontWeight:500,
+                }}
+              >
+                تُعد خيارًا مثاليًا للعرض المستمر والمباشر
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                  fontWeight: 500,
+                }}
+              >
+                فائدتها :  
+              </Typography>
+
+              <Typography
+                component="ul"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "40px", // تباعد مناسب للقائمة
+                  fontFamily: "Tajawal",
+                  listStyleType: "disc", // شكل النقاط
+                }}
+              >
+                <li>تُستخدم للإعلانات النصية، العروض، التنبيهات، أو الأسعار.</li>
+                <li>فعالة في جذب الانتباه برسائل واضحة ومباشرة.</li>
+              </Typography>
+              <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                textAlign: "justify",
+                direction: "rtl",
+                px: "20px",
+                mt: 2,
+                fontFamily: "Tajawal",
+                fontWeight: 500,
+              }}
+            >
+              مناسبة :
+            </Typography>
+
+            <Typography
+              component="ul"
+              sx={{
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                textAlign: "justify",
+                direction: "rtl",
+                px: "40px", // تباعد مناسب للقائمة
+                fontFamily: "Tajawal",
+                listStyleType: "disc", // شكل النقاط
+              }}
+            >
+              <li>
+                للمساجد والمحلات، محطات الوقود، المدارس، المراكز الطبية،
+                والمراكز التجارية، والمطارات.
+              </li>
+  
+            </Typography>
+
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                textAlign: "justify",
+                direction: "rtl",
+                px: "20px",
+                mt: 2,
+                fontFamily: "Tajawal",
+                fontWeight: 500,
+              }}
+            >
+              أبرز المميزات: 
+            </Typography>
+
+            <Typography
+              component="ul"
+              sx={{
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                textAlign: "justify",
+                direction: "rtl",
+                px: "40px", // تباعد مناسب للقائمة
+                fontFamily: "Tajawal",
+                listStyleType: "disc", // شكل النقاط
+              }}
+            >
+              <li>نصوص قابلة للتعديل بسهولة.</li>
+              <li>إمكانية عرض الوقت والتاريخ والرسائل المتغيرة.</li>
+              <li>ألوان متعددة وحجم مخصص حسب الطلب.</li>
+              <li>تعمل على مدار الساعة وبكفاءة طاقة عالية.</li>
+            </Typography>
+
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: "bold",
+                color: "#333",
+                fontSize: { xs: "1rem", sm: "2rem" },
+                textAlign: "center",
+                direction: "rtl",
+                fontFamily: "Tajawal",
+                pt: "40px", // ✅ مسافة علوية (يمكنك تعديلها حسب الحاجة)
+              }}
+            >
+              اختر الحجم واللون والمحتوى، ودعنا نهتم بالباقي
+            </Typography>
             </Grid>
 
             {/* Decorative Borders */}
@@ -3201,6 +3321,7 @@ const ScreensSection = () => {
                 position: "absolute",
                 bottom: 0,
                 left: 0,
+                top:"75%",
                 width: "30%",
                 height: "2px",
                 background:
@@ -3216,7 +3337,7 @@ const ScreensSection = () => {
                 top: 0,
                 right: 0,
                 width: "2px",
-                height: "18%",
+                height: "10%",
                 background:
                   "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
@@ -3228,6 +3349,7 @@ const ScreensSection = () => {
               sx={{
                 position: "absolute",
                 bottom: 0,
+                top:"71%",
                 left: "30%",
                 transform: "translateX(-22%)",
                 width: "2px",
@@ -3242,7 +3364,7 @@ const ScreensSection = () => {
             <Box
               sx={{
                 position: "absolute",
-                top: "18%",
+                top: "10%",
                 right: 0,
                 width: "1%",
                 height: "2px",
