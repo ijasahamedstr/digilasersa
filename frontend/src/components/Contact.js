@@ -75,7 +75,7 @@ const ContactusForm = () => {
         {/* Single High-Quality Image Section */}
         <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
           <img
-            src="https://i.ibb.co/PvmssPTX/16390650-5697387-copy.webp" // High-quality image URL
+            src="https://i.ibb.co/tPXC3XJq/baner.webp" // High-quality image URL
             alt="Main Visual"
             style={{
               width: "100%",
