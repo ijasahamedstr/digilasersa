@@ -226,49 +226,64 @@ const ScreensSection = () => {
         </Box>
       </Box>
 
-      <Container maxWidth="xl">
+
+         <Box
+            sx={{
+              width: "100%",
+              py: 6,
+              backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`, // ✅ Your background image here
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+        <Container maxWidth="xl">
         <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
-           <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-                <Box
+          <Grid item xs={12}>
+            <Box sx={{ p: 2, mb: { xs: 2, sm: 4, md: 6 } }}> {/* 👈 Added responsive bottom margin */}
+              <Box
+                sx={{
+                  borderRadius: "10px",
+                  p: "4px",
+                  background:
+                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
+                  backgroundSize: "300% 300%",
+                  "@keyframes gradient": {
+                    "0%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                    "100%": { backgroundPosition: "0% 50%" },
+                  },
+                  animation: "gradient 4s linear infinite",
+                }}
+              >
+                <Card
                   sx={{
-                    borderRadius: "10px",
-                    p: "4px",
-                    background:
-                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                    backgroundSize: "300% 300%",
-                    "@keyframes gradient": {
-                      "0%": { backgroundPosition: "0% 50%" },
-                      "50%": { backgroundPosition: "100% 50%" },
-                      "100%": { backgroundPosition: "0% 50%" },
-                    },
-                    animation: "gradient 4s linear infinite",
+                    bgcolor: "#ffffffff",
+                    p: 2,
+                    borderRadius: "8px",
+                    boxShadow: 3,
+                    textAlign: "center",
                   }}
                 >
-                  <Card
+                  <Typography
+                    variant="h3"
                     sx={{
-                      bgcolor: "#b0b0b0",
-                      p: 2,
-                      borderRadius: "8px",
-                      boxShadow: 3,
-                      textAlign: "center",
+                      fontWeight: "bold",
+                      color: "#333",
+                      fontSize: { xs: "1rem", sm: "4.5rem" },
+                      fontFamily: "Tajawal",
                     }}
                   >
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: "bold",
-                        color: "#333",
-                        fontSize: { xs: "1rem", sm: "4.5rem" },
-                        fontFamily: "Tajawal",
-                      }}
-                    >
-                        شركة الليزر المركز الأول للشاشات بالمملكة
-                    </Typography>
-                  </Card>
-                </Box>
+                    شركة الليزر المركز الأول للشاشات بالمملكة
+                  </Typography>
+                </Card>
               </Box>
-            </Grid>
+            </Box>
+          </Grid>
+
+          {/* Image Section */}
           <img
             src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
             alt="Banner"
@@ -281,16 +296,18 @@ const ScreensSection = () => {
               paddingBottom: "30px",
             }}
           />
+
+          {/* Button Section */}
           <Button
             component="a"
             href="https://sssplatform.com"
-            target="_blank" // opens in new tab
+            target="_blank"
             rel="noopener noreferrer"
             variant="contained"
             size="small"
             sx={{
               position: "absolute",
-             top: { xs: "68%", sm: "72%", md: "65%" },
+              top: { xs: "68%", sm: "72%", md: "68%" },
               left: "30%",
               transform: "translate(-50%, -50%)",
               backgroundColor: "#da9030",
@@ -321,6 +338,8 @@ const ScreensSection = () => {
           </Button>
         </Box>
       </Container>
+      </Box>
+
 
       <section
         style={{
