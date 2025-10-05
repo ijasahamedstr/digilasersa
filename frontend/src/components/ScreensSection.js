@@ -3478,7 +3478,7 @@ const ScreensSection = () => {
                       fontFamily: "Tajawal",
                     }}
                   >
-                    الشاشات الإلكترونية الداخلية
+                       الشاشات الداخلية
                   </Typography>
                 </Card>
               </Box>
