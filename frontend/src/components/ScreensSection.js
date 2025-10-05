@@ -3169,7 +3169,7 @@ const ScreensSection = () => {
                         direction: "rtl",
                       }}
                     >
-                       شــاشة العـــرض النصـــية
+                       الشاشات النصية 
                     </Typography>
                   </Card>
                 </Box>
