@@ -246,7 +246,7 @@ const ScreensSection = () => {
               <Box
                 sx={{
                   borderRadius: "10px",
-                  p: "4px",
+                  p: "8px",
                   background:
                     "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                   backgroundSize: "300% 300%",
