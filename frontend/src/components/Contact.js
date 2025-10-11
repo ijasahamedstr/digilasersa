@@ -51,7 +51,7 @@ const ContactusForm = () => {
       >
         <Box
           component="img"
-          src="https://i.ibb.co/3ycMw6Df/ejas-2.webp"
+          src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
           alt="Company Logo"
           sx={{
             width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
@@ -75,7 +75,7 @@ const ContactusForm = () => {
         {/* Single High-Quality Image Section */}
         <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
           <img
-            src="https://i.ibb.co/tPXC3XJq/baner.webp" // High-quality image URL
+            src="https://i.ibb.co/3ycMw6Df/ejas-2.webp" // High-quality image URL
             alt="Main Visual"
             style={{
               width: "100%",
