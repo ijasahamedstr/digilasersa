@@ -51,7 +51,7 @@ const ContactusForm = () => {
       >
         <Box
           component="img"
-          src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
+          src="https://i.ibb.co/3ycMw6Df/ejas-2.webp"
           alt="Company Logo"
           sx={{
             width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
