@@ -123,7 +123,9 @@ function App() {
           <Route path="/إتصل بنا" element={<ContactusForm />} />
           <Route path="/update/:id" element={<UpdateFild />} />
           <Route path="/قسم الصوتيات" element={<SoundSection />} />
-          {/* <Route path="/قسم الفن التشكيلي" element={<Votemain />} />
+          <Route path="/قسم الفن التشكيلي" element={<ComingSoonPage />} />
+          {/* <Route path="/تصويت" element={<Vote />} />
+          <Route path="/قسم الفن التشكيلي" element={<Votemain />} />
           <Route path="/تصويت" element={<Vote />} />
           <Route path="/لوحات الكنفس" element={<VoteImage />} /> */}
         </Routes>
