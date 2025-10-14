@@ -287,6 +287,7 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
               borderRadius: "30px",
               fontWeight: "bold",
               fontSize: "18px",
+              mr: "140px", // ✅ margin-right applied here
             }}
           >
             ارسال

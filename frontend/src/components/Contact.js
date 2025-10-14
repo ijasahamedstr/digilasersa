@@ -39,7 +39,7 @@ const ContactusForm = () => {
           top: 0,
           left: 0,
           width: "100vw",
-          height: "100vh",
+          height: "10vh",
           bgcolor: "#000",
           display: "flex",
           justifyContent: "center",
@@ -79,7 +79,7 @@ const ContactusForm = () => {
             alt="Main Visual"
             style={{
               width: "100%",
-              maxHeight: "80vh",
+              maxHeight: "60vh",
               objectFit: "cover",
               boxShadow: "inset 0 0 10px rgba(0,0,0,0.5)",
             }}
@@ -153,4 +153,4 @@ const ContactusForm = () => {
   );
 };
 
-export default ContactusForm;
+export default ContactusForm;';[p'

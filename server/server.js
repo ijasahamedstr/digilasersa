@@ -16,6 +16,7 @@ import MediaCommunicationsphoto from "./routes/MediaCommunicationsphoto.route.js
 import MediaCommunicationsvideo from "./routes/MediaCommunicationsvideo.route.js";
 import Newssection from "./routes/News.route.js";
 import Partner from "./routes/Partner.route.js";
+import Vote from "./routes/Vote.route.js";
 
 
 // Create an instance of Express
@@ -67,6 +68,7 @@ app.use('/MediaCommunicationsphoto',MediaCommunicationsphoto);
 app.use('/MediaCommunicationsvideo',MediaCommunicationsvideo);
 app.use('/News',Newssection);
 app.use('/Partner',Partner);
+app.use('/vote',Vote);
 
 
 // Start the Express server
