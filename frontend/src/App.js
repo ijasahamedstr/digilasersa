@@ -34,6 +34,9 @@ import ComingSoonPage from "./components/ComingSoonPage";
 import ContactusForm from "./components/Contact";
 import SoundSection from "./components/Sound";
 import WebsiteSection from "./components/websiteSection";
+// import Votemain from "./components/Votemain";
+// import Vote from "./components/Vote";
+// import VoteImage from "./components/Voteimage";
 
 const theme = createTheme({
   typography: {
@@ -121,6 +124,10 @@ function App() {
           <Route path="/update/:id" element={<UpdateFild />} />
           <Route path="/قسم الصوتيات" element={<SoundSection />} />
           <Route path="/قسم الفن التشكيلي" element={<ComingSoonPage />} />
+          {/* <Route path="/تصويت" element={<Vote />} />
+          <Route path="/قسم الفن التشكيلي" element={<Votemain />} />
+          <Route path="/تصويت" element={<Vote />} />
+          <Route path="/لوحات الكنفس" element={<VoteImage />} /> */}
         </Routes>
          {footerVisible && <Footer />}
       </Router>
