@@ -9,7 +9,6 @@ import {
 import Slider from "react-slick";
 import axios from "axios";
 
-// Slider settings for RTL and LTR rows
 const sliderSettingsRTL = {
   infinite: true,
   speed: 500,
@@ -41,9 +40,15 @@ const Partner = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_HOST}/Partner`,
+          `${process.env.REACT_APP_API_HOST}/Partner`
         );
-        setPartners(response.data);
+
+        // Ensure the response is an array
+        const data = Array.isArray(response.data)
+          ? response.data
+          : response.data?.data || []; // fallback if API wraps in {data: []}
+
+        setPartners(data);
       } catch (err) {
         console.error("Error fetching data: ", err);
         setError("فشل في تحميل البيانات");
@@ -61,6 +66,7 @@ const Partner = () => {
         <CircularProgress />
       </Box>
     );
+
   if (error)
     return (
       <Box textAlign="center" py={4}>
@@ -68,9 +74,11 @@ const Partner = () => {
       </Box>
     );
 
-  const halfwayIndex = Math.ceil(partners.length / 2);
-  const firstRowPartners = partners.slice(0, halfwayIndex);
-  const secondRowPartners = partners.slice(halfwayIndex);
+  // Safely handle even if partners is not array
+  const safePartners = Array.isArray(partners) ? partners : [];
+  const halfwayIndex = Math.ceil(safePartners.length / 2);
+  const firstRowPartners = safePartners.slice(0, halfwayIndex);
+  const secondRowPartners = safePartners.slice(halfwayIndex);
 
   return (
     <Container maxWidth="xl" sx={{ mt: 8, mb: 8 }}>
@@ -79,10 +87,10 @@ const Partner = () => {
         align="center"
         gutterBottom
         sx={{
-          fontFamily: "Tajawal, sans-serif", // Change font family
-          fontSize: { xs: "1.5rem", sm: "2rem" }, // Responsive font size
-          fontWeight: 700, // Bold
-          color: "#096e69", // Optional: text color
+          fontFamily: "Tajawal, sans-serif",
+          fontSize: { xs: "1.5rem", sm: "2rem" },
+          fontWeight: 700,
+          color: "#096e69",
           mb: 4,
         }}
       >
@@ -123,8 +131,6 @@ const Partner = () => {
                   sx={{
                     maxWidth: "100%",
                     maxHeight: "100%",
-                    width: "auto",
-                    height: "auto",
                     objectFit: "contain",
                     margin: "auto",
                   }}
@@ -169,8 +175,6 @@ const Partner = () => {
                   sx={{
                     maxWidth: "100%",
                     maxHeight: "100%",
-                    width: "auto",
-                    height: "auto",
                     objectFit: "contain",
                     margin: "auto",
                   }}
