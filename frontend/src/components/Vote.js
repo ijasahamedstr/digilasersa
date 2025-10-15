@@ -32,8 +32,7 @@ const Vote = () => {
   const [submitted, setSubmitted] = useState(false);
   const [votingActive, setVotingActive] = useState(false);
   const [voteCounts, setVoteCounts] = useState({});
-  const [language, setLanguage] = useState("en"); // 🌍 Language state
-
+  const [language, setLanguage] = useState("en");
   const registerRef = useRef(null);
 
   const votingStart = new Date("2025-10-10T00:00:00");
@@ -105,14 +104,25 @@ const Vote = () => {
     }
   };
 
+  const validSaudiPrefixes = [
+    "050", "053", "055", "054", "056", "058", "059",
+    "057", "0570", "0571", "0572", "0575", "051",
+  ];
+
+  const isValidSaudiNumber = (mobile) => {
+    const clean = mobile.replace(/\D/g, "");
+    if (!clean.startsWith("0")) return false;
+    return validSaudiPrefixes.some((prefix) => clean.startsWith(prefix));
+  };
+
   const socialLinks = [
     { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
-    { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
-    { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
-    { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
-    { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
-    { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
-    { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+    { icon: <FaInstagram size={24} />, link: "https://www.instagram.com/digilasersa" },
+    { icon: <FaLinkedin size={24} />, link: "https://www.linkedin.com/company/digilasersa" },
+    { icon: <FaYoutube size={24} />, link: "https://youtube.com/@digilaserSa" },
+    { icon: <FaSnapchat size={24} />, link: "https://www.snapchat.com/add/digilasersa" },
+    { icon: <FaTiktok size={24} />, link: "https://www.tiktok.com/@digilasersa" },
+    { icon: <FaWhatsapp size={24} />, link: "http://wa.me/966571978888" },
   ];
 
   const imageOptions = Array.from({ length: 30 }, (_, i) => ({
@@ -144,12 +154,23 @@ const Vote = () => {
       return;
     }
 
-    if (!/^\d{9,15}$/.test(user.mobile)) {
+    if (!/^\d{10}$/.test(user.mobile)) {
       showAlert(
         language === "en" ? "Invalid Number" : "رقم غير صالح",
         language === "en"
-          ? "Please enter a valid mobile number."
-          : "يرجى إدخال رقم جوال صحيح.",
+          ? "Please enter a valid 10-digit Saudi mobile number (e.g. 05xxxxxxxx)."
+          : "يرجى إدخال رقم جوال سعودي مكون من 10 أرقام (مثل 05xxxxxxxx).",
+        "error"
+      );
+      return;
+    }
+
+    if (!isValidSaudiNumber(user.mobile)) {
+      showAlert(
+        language === "en" ? "Invalid Saudi Number" : "رقم سعودي غير صالح",
+        language === "en"
+          ? "Please enter a valid Saudi mobile number starting with the correct prefix."
+          : "يرجى إدخال رقم جوال سعودي صحيح يبدأ بالمقدمة الصحيحة.",
         "error"
       );
       return;
@@ -182,7 +203,10 @@ const Vote = () => {
       if (!response.ok) {
         showAlert(
           language === "en" ? "Vote Failed" : "فشل التصويت",
-          data.message || (language === "en" ? "You have already voted." : "لقد قمت بالتصويت مسبقاً."),
+          data.message ||
+            (language === "en"
+              ? "You have already voted."
+              : "لقد قمت بالتصويت مسبقاً."),
           "error"
         );
         return;
@@ -235,6 +259,7 @@ const Vote = () => {
         background: "#0a0a0a",
         color: "#fff",
       });
+
       setTimeout(() => {
         registerRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 400);
@@ -250,6 +275,7 @@ const Vote = () => {
     }
   }, [submitted]);
 
+  // 🌀 Loading Screen
   if (loading) {
     return (
       <Box
@@ -271,14 +297,14 @@ const Vote = () => {
           component="img"
           src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
           alt="Logo"
-          sx={{ width: "40%", maxWidth: "300px", mb: 2 }}
+          sx={{ width: "50%", maxWidth: 220, mb: 3 }}
         />
         <CircularProgress sx={{ color: "#00fffc" }} />
       </Box>
     );
   }
 
-  // 🕒 Voting not active
+  // 🕒 Not Active
   if (!votingActive && !submitted) {
     return (
       <Box
@@ -295,7 +321,7 @@ const Vote = () => {
           p: 3,
         }}
       >
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h5" gutterBottom sx={{ fontWeight: "bold" }}>
           {texts[language].notAvailable}
         </Typography>
         <Typography variant="body1">
@@ -303,8 +329,6 @@ const Vote = () => {
             ? `${texts[language].openOn} ${votingStart.toLocaleString()}`
             : `${texts[language].closedOn} ${votingEnd.toLocaleString()}`}
         </Typography>
-
-        {/* 🌐 Language toggle */}
         <Button
           onClick={() => setLanguage(language === "en" ? "ar" : "en")}
           sx={{ mt: 3, color: "#00fffc", border: "1px solid #00fffc" }}
@@ -315,7 +339,7 @@ const Vote = () => {
     );
   }
 
-  // 🎉 After vote submission
+  // 🎉 Submitted
   if (submitted) {
     return (
       <Box
@@ -351,25 +375,29 @@ const Vote = () => {
 
   return (
     <>
-      {/* 🌐 Language toggle button */}
+     {/* 🌐 Language Toggle */}
       <Button
         variant="contained"
         onClick={() => setLanguage(language === "en" ? "ar" : "en")}
         sx={{
           position: "fixed",
-          top: 100,
-          right: 20,
+          top: { xs: 95, sm: 95, md: 100 }, // 🟢 Added top margin for mobile & tablet
+          right: { xs: 10, md: 20 },
           zIndex: 2000,
           bgcolor: "#00fffc",
           color: "#000",
           fontWeight: "bold",
+          fontSize: { xs: "0.8rem", md: "1rem" },
           borderRadius: "8px",
+          px: { xs: 2, md: 3 },
+          py: { xs: 0.7, md: 1 },
         }}
       >
         {language === "en" ? "العربية" : "English"}
       </Button>
 
-      {/* Social Sidebar */}
+
+      {/* 🌐 Social Links (Desktop Only) */}
       <Box
         sx={{
           position: "fixed",
@@ -378,7 +406,7 @@ const Vote = () => {
           transform: "translateY(-50%)",
           display: { xs: "none", md: "flex" },
           flexDirection: "column",
-          gap: 2,
+          gap: 1.8,
           zIndex: 1200,
           pl: 2,
         }}
@@ -387,8 +415,8 @@ const Vote = () => {
           <a key={i} href={link} target="_blank" rel="noopener noreferrer">
             <Box
               sx={{
-                width: 40,
-                height: 40,
+                width: 42,
+                height: 42,
                 borderRadius: "50%",
                 backgroundColor: "#06f9f3",
                 display: "flex",
@@ -397,7 +425,7 @@ const Vote = () => {
                 color: "#17202a",
                 boxShadow: 3,
                 transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
+                "&:hover": { transform: "scale(1.15)" },
               }}
             >
               {icon}
@@ -406,36 +434,55 @@ const Vote = () => {
         ))}
       </Box>
 
-      {/* Voting Section */}
-      <Box
-        sx={{
-          bgcolor: "#000",
-          color: "#fff",
-          width: "100%",
-          minHeight: "100vh",
-          py: 5,
-          px: 2,
-          textAlign: "center",
-          direction: language === "ar" ? "rtl" : "ltr",
-          fontFamily: language === "ar" ? "Tajawal, sans-serif" : "inherit",
-          mt: "100px", // 👈 Added margin-top 150px
-        }}
-      >
-        <Typography variant="h3" sx={{ color: "#00fffc", mb: 3 }}>
+      {/* 🌟 Main Section */}
+        <Box
+          sx={{
+            bgcolor: "#000",
+            color: "#fff",
+            width: "100%",
+            minHeight: "100vh",
+            py: 5,
+            px: { xs: 3, sm: 6, md: 10, lg: 20 },
+            textAlign: "center",
+            direction: language === "ar" ? "rtl" : "ltr",
+            fontFamily: language === "ar" ? "Tajawal, sans-serif" : "inherit",
+            // 🟢 Increased top space for mobile & tablet
+            mt: { xs: "100px", sm: "120px", md: "100px" },
+          }}
+        >
+
+        <Typography
+          variant="h4"
+          sx={{
+            color: "#00fffc",
+            mb: 3,
+            fontSize: { xs: "1.8rem", md: "2.2rem" },
+            fontWeight: "bold",
+          }}
+        >
           {texts[language].title}
         </Typography>
 
         {!showRegister ? (
           <>
-            <Typography variant="h5" sx={{ mb: 4 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                mb: 4,
+                fontSize: { xs: "1rem", md: "1.3rem" },
+              }}
+            >
               {texts[language].select}
             </Typography>
 
+            {/* 🖼️ Image Grid */}
             <Grid
               container
-              spacing={3}
+               spacing={{ xs: 2, sm: 3, md: 4 }} // 🟢 Slightly increased spacing
               justifyContent="center"
-              sx={{ maxWidth: "1400px", mx: "auto" }}
+              sx={{
+                mx: "auto",
+              }}
             >
               {imageOptions.map((option) => (
                 <Grid
@@ -460,18 +507,8 @@ const Vote = () => {
                       "&:hover": { transform: "translateY(-6px) scale(1.02)" },
                       cursor: "pointer",
                       width: "100%",
-                      maxWidth: {
-                        xs: "160px",
-                        sm: "220px",
-                        md: "280px",
-                        lg: "320px",
-                      },
-                      height: {
-                        xs: "110px",
-                        sm: "150px",
-                        md: "190px",
-                        lg: "220px",
-                      },
+                      maxWidth: { xs: 160, sm: 220, md: 260, lg: 300 },
+                      height: { xs: 110, sm: 150, md: 190, lg: 220 },
                       bgcolor: "#0a1a1a",
                       display: "flex",
                       alignItems: "center",
@@ -498,7 +535,7 @@ const Vote = () => {
                         bgcolor: "rgba(0,0,0,0.8)",
                         color: "#00fffc",
                         fontWeight: "bold",
-                        fontSize: "0.85rem",
+                        fontSize: "0.8rem",
                         borderRadius: "8px",
                         px: 1,
                         py: 0.3,
@@ -510,37 +547,17 @@ const Vote = () => {
                       {language === "en" ? "votes" : "تصويت"}
                     </Box>
 
-                    <Box
-                      component="img"
+                    <img
                       src={option.src}
                       alt={option.label}
-                      sx={{
+                      style={{
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
+                        borderRadius: "10px",
+                        opacity: selectedOption === option.id ? 1 : 0.9,
                       }}
                     />
-
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        bottom: 8,
-                        right: 8,
-                        bgcolor: "rgba(0,0,0,0.7)",
-                        color: "#00fffc",
-                        fontWeight: "bold",
-                        fontSize: "0.9rem",
-                        borderRadius: "50%",
-                        width: 30,
-                        height: 30,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        boxShadow: "0 0 6px #00fffc",
-                      }}
-                    >
-                      {option.id}
-                    </Box>
                   </Box>
                 </Grid>
               ))}
@@ -549,14 +566,15 @@ const Vote = () => {
             <Button
               variant="contained"
               sx={{
+                mt: 5,
                 bgcolor: "#00fffc",
                 color: "#000",
-                mt: 6,
-                mb: 8,
                 fontWeight: "bold",
-                px: 5,
-                py: 1.5,
+                fontSize: { xs: "1rem", md: "1.2rem" },
                 borderRadius: "10px",
+                px: { xs: 3, md: 5 },
+                py: { xs: 1, md: 1.2 },
+                "&:hover": { bgcolor: "#00cccc" },
               }}
               onClick={handleSubmitVote}
             >
@@ -564,48 +582,52 @@ const Vote = () => {
             </Button>
           </>
         ) : (
-          <Box ref={registerRef} sx={{ maxWidth: 400, mx: "auto", textAlign: "center" }}>
-            <Typography variant="h5" sx={{ color: "#00fffc", mb: 3 }}>
+          <Box
+            ref={registerRef}
+            sx={{
+              mt: 5,
+              bgcolor: "#111",
+              p: { xs: 3, md: 5 },
+              borderRadius: "12px",
+              maxWidth: "500px",
+              mx: "auto",
+              boxShadow: "0 0 15px rgba(0,255,252,0.2)",
+            }}
+          >
+            <Typography variant="h6" gutterBottom sx={{ color: "#00fffc" }}>
               {texts[language].registerPrompt}
             </Typography>
-
             <TextField
               fullWidth
               label={texts[language].name}
-              variant="outlined"
-              sx={{
-                mb: 3,
-                input: { color: "#fff" },
-                label: { color: "#00fffc" },
-                "& .MuiOutlinedInput-root fieldset": { borderColor: "#00fffc" },
-              }}
+              variant="filled"
+              sx={{ mb: 3, bgcolor: "#222", borderRadius: "8px" }}
               value={user.name}
               onChange={(e) => setUser({ ...user, name: e.target.value })}
+              InputProps={{ style: { color: "#fff" } }}
+              InputLabelProps={{ style: { color: "#aaa" } }}
             />
-
             <TextField
               fullWidth
               label={texts[language].mobile}
-              variant="outlined"
-              sx={{
-                mb: 3,
-                input: { color: "#fff" },
-                label: { color: "#00fffc" },
-                "& .MuiOutlinedInput-root fieldset": { borderColor: "#00fffc" },
-              }}
+              variant="filled"
+              sx={{ mb: 3, bgcolor: "#222", borderRadius: "8px" }}
               value={user.mobile}
               onChange={(e) => setUser({ ...user, mobile: e.target.value })}
+              inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+              InputProps={{ style: { color: "#fff" } }}
+              InputLabelProps={{ style: { color: "#aaa" } }}
             />
-
             <Button
               variant="contained"
+              fullWidth
               sx={{
                 bgcolor: "#00fffc",
                 color: "#000",
                 fontWeight: "bold",
-                borderRadius: "10px",
-                px: 4,
+                fontSize: "1rem",
                 py: 1.2,
+                "&:hover": { bgcolor: "#00cccc" },
               }}
               onClick={handleRegister}
             >
@@ -619,3 +641,4 @@ const Vote = () => {
 };
 
 export default Vote;
+
