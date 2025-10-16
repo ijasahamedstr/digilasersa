@@ -4318,7 +4318,9 @@ const ScreensSection = () => {
       </section>
 
 
-         <section style={{ width: "100%", display: "flex", justifyContent: "center", paddingBottom: "60px" }}>
+
+
+      <section style={{ width: "100%", display: "flex", justifyContent: "center", paddingBottom: "60px" }}>
         <Container
           maxWidth="xxl"
           sx={{
@@ -4340,7 +4342,7 @@ const ScreensSection = () => {
                 top: 0,
                 left: 0,
                 width: "100%",
-                height: "100%",
+                height: "63%",
                 paddingTop: "2px",
                 paddingLeft: "2px",
                 borderTopLeftRadius: "10px",
@@ -4411,7 +4413,7 @@ const ScreensSection = () => {
                         direction: "rtl",
                       }}
                     >
-                       جهاز ارقام الانتظار
+                       شاشات أرقام الانتظار
                     </Typography>
                   </Card>
                 </Box>
@@ -4429,12 +4431,131 @@ const ScreensSection = () => {
                   fontFamily: "Tajawal",
                 }}
               >
-                
-               تعمل بمفردها لا تحتاج إلى كمبيوتر . 4 خدمات مختلفة حسب رغبة
-                العميل نظام يعمل بنغمة ونداء برقم العميل والشباك. تحتفظ باخر رقم
-                عند انقطاع التيار الكهربائي مزود بوحدة برنتر لطباعة الأرقام
-                المسلسلة
+                في بيئة تعتمد على راحة العميل وسرعة الخدمة، تقدم شركة الليزر شاشات رقمية لعرض أرقام الانتظار بدقة ووضوح، لتوفير تجربة منظمة وراقية داخل المنشآت.  
               </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                  fontWeight:500,
+                }}
+              >
+                تمكِّنك من إدارة الزحام بسلاسة، وترك انطباع مميز لدى عملائك
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                  fontWeight: 500,
+                }}
+              >
+                الفكرة:
+              </Typography>
+
+                  <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
+                  direction: "rtl",
+                  px: "20px",
+                  mt: 2,
+                  fontFamily: "Tajawal",
+                  fontWeight:500,
+                }}
+              >
+               تنظيم حركة الزبائن بطريقة احترافية ومريحة، وإظهار رقم العميل التالي بوضوح داخل الفرع.
+              </Typography>
+
+              <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                textAlign: "justify",
+                direction: "rtl",
+                px: "20px",
+                mt: 2,
+                fontFamily: "Tajawal",
+                fontWeight: 500,
+              }}
+            >
+              المميزات التسويقية:  
+            </Typography>
+
+            <Typography
+              component="ul"
+              sx={{
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                textAlign: "justify",
+                direction: "rtl",
+                px: "40px", // تباعد مناسب للقائمة
+                fontFamily: "Tajawal",
+                listStyleType: "disc", // شكل النقاط
+              }}
+            >
+              <li>تخفف التزاحم وتقلل التوتر  </li>
+              <li>تعطي انطباعًا بالنظام والاحتراف</li>
+              <li>يمكن دمجها مع صوت أو شاشة إضافية لعرض المحتوى</li>
+              <li>مخصصة للعيادات، البنوك، المعارض، مراكز الخدمة</li>
+  
+            </Typography>
+
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                textAlign: "justify",
+                direction: "rtl",
+                px: "20px",
+                mt: 2,
+                fontFamily: "Tajawal",
+                fontWeight: 500,
+              }}
+            >
+              الجهات المستهدفة: 
+            </Typography>
+
+            <Typography
+              component="ul"
+              sx={{
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                textAlign: "justify",
+                direction: "rtl",
+                px: "40px", // تباعد مناسب للقائمة
+                fontFamily: "Tajawal",
+                listStyleType: "disc", // شكل النقاط
+              }}
+            >
+              <li>المستشفيات والعيادات</li>
+              <li>مراكز صيانة وخدمات العملاء</li>
+              <li>المؤسسات الحكومية والخاصة</li>
+              <li>البنوك وشركات التمويل</li>
+            </Typography>
+
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: "bold",
+                color: "#333",
+                fontSize: { xs: "1rem", sm: "2rem" },
+                textAlign: "center",
+                direction: "rtl",
+                fontFamily: "Tajawal",
+                pt: "40px", // ✅ مسافة علوية (يمكنك تعديلها حسب الحاجة)
+              }}
+            >
+              نظام عرض أرقام الانتظار – تنظيم باحترافية
+            </Typography>
             </Grid>
 
             {/* Decorative Borders */}
@@ -4443,6 +4564,7 @@ const ScreensSection = () => {
                 position: "absolute",
                 bottom: 0,
                 left: 0,
+                top:"63%",
                 width: "30%",
                 height: "2px",
                 background:
@@ -4458,7 +4580,7 @@ const ScreensSection = () => {
                 top: 0,
                 right: 0,
                 width: "2px",
-                height: "18%",
+                height: "10%",
                 background:
                   "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
@@ -4470,6 +4592,7 @@ const ScreensSection = () => {
               sx={{
                 position: "absolute",
                 bottom: 0,
+                top:"59%",
                 left: "30%",
                 transform: "translateX(-22%)",
                 width: "2px",
@@ -4484,7 +4607,7 @@ const ScreensSection = () => {
             <Box
               sx={{
                 position: "absolute",
-                top: "18%",
+                top: "10%",
                 right: 0,
                 width: "1%",
                 height: "2px",
@@ -4499,6 +4622,7 @@ const ScreensSection = () => {
           </Grid>
         </Container>
       </section>
+
 
     </>
   );
