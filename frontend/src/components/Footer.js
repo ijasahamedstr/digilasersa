@@ -131,18 +131,22 @@ function RightTextSection() {
   )}`;
 
   return (
-    <Grid
-      item
-      xs={12}
-      sm={6}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-end",
-        textAlign: "justify",
-        pr: 5,
-      }}
-    >
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          textAlign: "justify",
+          pr: 5,
+          mt: {
+            xs: 0,       // No top margin on small screens
+            md: "90px",  // Apply margin-top only on medium (desktop) and up (≥ 900px)
+          },
+        }}
+      >
       <Typography variant="h4" color="white">
         Contact Us
       </Typography>
@@ -152,7 +156,12 @@ function RightTextSection() {
         <Grid
           container
           spacing={2}
-          sx={{ pt: 3, direction: "rtl", alignItems: "center" }}
+          sx={{
+            pt: 3,                // padding-top: theme.spacing(3)
+            mt: "20px",           // ✅ margin-top: 50px
+            direction: "rtl",
+            alignItems: "center",
+          }}
         >
           {[
             { label: "رقم الاتصال", value: "8888 197 057" },

@@ -145,7 +145,7 @@ function AboutSection() {
             sx={{
               color: "#ffffff",
               textAlign: "right",
-              pr: "80px",
+              pr: { xs: 1, sm: 3, md: "160px" },
               fontSize: { xs: "20px", sm: "25px" },
               mt: 3,
             }}
@@ -158,7 +158,7 @@ function AboutSection() {
             sx={{
               color: "#b5dff0",
               textAlign: "right",
-              pr: { xs: 1, sm: 3 },
+             pr: { xs: 1, sm: 3, md: "155px" },
               fontSize: { xs: "30px", sm: "40px" },
             }}
           >
@@ -167,29 +167,43 @@ function AboutSection() {
         </Box>
 
         {/* Image Section */}
+       <Box
+        sx={{
+          flex: 1,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          mb: { xs: 4, md: 0 },
+        }}
+      >
         <Box
+          component="img"
+          src="https://i.ibb.co/3mNGQWmG/32-1.webp"
+          alt="شعار من نحن"
+          loading="lazy"
           sx={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            mb: { xs: 4, md: 0 },
+            maxWidth: "300px",
+            paddingTop: "20px",
+            width: {
+              xs: "80%",  // Mobile
+              sm: "60%",  // Tablets
+              md: "50%",  // Desktops
+            },
+            height: "auto",
+            mb: {
+              xs: "-60px",
+              sm: "-150px",
+              md: "-250px",
+              lg: "-300px",  // Extra margin for large screens
+            },
+            mr: {
+              xs: 0,
+              md: "0px",
+              lg: "200px",  // Apply margin-right on larger screens
+            },
           }}
-        >
-          <Box
-            component="img"
-            src="https://i.ibb.co/3mNGQWmG/32-1.webp"
-            alt="شعار من نحن"
-            loading="lazy"
-            sx={{
-              maxWidth: "300px",
-              paddingTop: "20px",
-              width: { xs: "80%", sm: "60%", md: "50%" },
-              height: "auto",
-              mb: { xs: "-60px", sm: "-150px", md: "-250px" },
-            }}
-          />
-        </Box>
+        />
+      </Box>
       </Container>
     </Box>
   );
