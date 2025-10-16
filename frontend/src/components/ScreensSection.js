@@ -1903,144 +1903,6 @@ const ScreensSection = () => {
 
              {/* Intro Paragraphs */}
              
-              <Grid 
-                item 
-                xs={12}
-                sx={{ direction: "rtl" }} // ⬅️ يجعل النصوص من اليمين لليسار
-              >
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: "bold",
-                  fontFamily: "Tajawal",
-                  mb: 1,
-                  fontSize: { xs: "1.5rem", md: "1.6rem" },
-                }}
-              >
-                صورة راقية... وتأثير لا يُنسى  
-              </Typography>
-
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                شاشات داخلية تضيف لمكانك بُعدًا بصريًا أنيقًا، وتعرض محتواك بأسلوب يجذب ويُبهر. 
-                </Typography>
-
-                
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                اعرض منتجاتك ورسائلك الاعلانية بجودة عالية
-                </Typography>
-
-                  <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                متوفرة بأحجام متعددة وتصاميم أنيقة تناسب جميع المحلات والمطارات وغيرها
-                </Typography>
-
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    fontFamily: "Tajawal",
-                    mb: 1,
-                    mt: 4, // 👈 Added top space
-                    fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  }}
-                >
-                  المزايا التسويقية: 
-                </Typography>
-
-                <Typography
-                  component="ul"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    pl: 4, // padding for bullets
-                    pt: 2, // ⬅️ مسافة من الأعلى
-                  }}
-                >
-                  <li>تعزز تجربة العميل داخل المكان</li>
-                  <li>تعرض العروض، المنتجات، الخدمات، أو الرسائل التوعوية</li>
-                  <li>تصميمات أنيقة تندمج مع الديكور الداخلي</li>
-                  <li>وضوح عالٍ ومحتوى ديناميكي قابل للتغيير في أي وقت </li>
-                  <li>مناسبة لعرض الفيديوهات، الصور، والنصوص</li>
-                </Typography>
-
-                    <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    fontFamily: "Tajawal",
-                    mb: 1,
-                    mt: 4, // 👈 Added top space
-                    fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  }}
-                >
-                  الفئات المستهدفة:   
-                </Typography>
-
-                <Typography
-                  component="ul"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    pl: 4, // padding for bullets
-                    pt: 2, // ⬅️ مسافة من الأعلى
-                  }}
-                >
-                  <li>المحلات التجارية والعلامات الكبرى</li>
-                  <li>الشركات والمراكز الطبية</li>
-                  <li>المطاعم والمقاهي</li>
-                  <li>صالات الانتظار في المطارات </li>
-                  <li>الفنادق والمولات</li>
-                </Typography>
-
-              </Grid>
-              
-
-              <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
-                {/* Main Heading with Number 05 */}
-
-                {/* Second Heading */}
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: "bold",
-                  fontFamily: "Tajawal",
-                  pt: "40px", // padding top
-                  pb: "40px", // padding bottom
-                  fontSize: { xs: "1.5rem", md: "1.6rem" },
-                }}
-              >
-                الشاشات الداخلية – حضور بصري أنيق وفعّال
-              </Typography>
-
-                </Box>
 
             {/* Image Section */}
            <Grid item xs={12}>
@@ -3008,7 +2870,7 @@ const ScreensSection = () => {
         </Container>
       </section>
 
-       <section
+      <section
         style={{
           width: "100%",
           margin: "0 auto",
@@ -3042,13 +2904,13 @@ const ScreensSection = () => {
                 top: 0,
                 left: 0,
                 width: "100%",
-                height: "100%",
+                height: "67%",
                 borderTop: "2px solid transparent",   // apply only top border
                 borderRight: "2px solid transparent", // apply only right border
                 borderTopRightRadius: "10px",
-                display: { xs: "none", sm: "block" },
                 background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
+                display: { xs: "none", sm: "block" },
                 zIndex: 0,
 
                 // masking ensures gradient shows only on the borders
@@ -3105,10 +2967,25 @@ const ScreensSection = () => {
                       fontFamily: "Tajawal",
                     }}
                   >
-                    الشاشات الإلكترونية الداخلية
+                       الشاشات الداخلية
                   </Typography>
                 </Card>
               </Box>
+
+              <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "20px",
+                    mt: 2,
+                    fontFamily: "Tajawal",
+                    fontWeight: 500,
+                  }}
+                >
+                  صورة راقية... وتأثير لا يُنسى
+                </Typography>
               
                 <Typography
                   variant="body1"
@@ -3121,11 +2998,114 @@ const ScreensSection = () => {
                     fontFamily: "Tajawal",
                   }}
                 >
-                  تعتبر الوسيلة الأفضل في زيادة معدل التواصل المباشر مع العملاء
-                  في المكان كونها تجذب الانتباه بشكل كبير. كما يمكن من خلالها
-                  عرض جميع المحتويات الإعلانية سواء كانت صور أو مقاطع فيديو
-                  لتتميزها بدقة الوضوح وتوفر أحجام ومقاسات مختلفة.
+                  شاشات داخلية تضيف لمكانك بُعدًا بصريًا أنيقًا، وتعرض محتواك بأسلوب يجذب ويُبهر.
                 </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "20px",
+                    mt: 2,
+                    fontFamily: "Tajawal",
+                  }}
+                >
+                 اعرض منتجاتك ورسائلك الاعلانية بجودة عالية
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "20px",
+                    mt: 2,
+                    fontFamily: "Tajawal",
+                  }}
+                >
+                 متوفرة بأحجام متعددة وتصاميم أنيقة تناسب جميع المحلات والمطارات وغيرها
+                </Typography>
+                 <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "20px",
+                    mt: 2,
+                    fontFamily: "Tajawal",
+                    fontWeight: 500,
+                  }}
+                >
+                  المزايا التسويقية:
+                </Typography>
+
+                <Typography
+                  component="ul"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "40px", // تباعد مناسب للقائمة
+                    fontFamily: "Tajawal",
+                    listStyleType: "disc", // شكل النقاط
+                  }}
+                >
+                  <li>تعزز تجربة العميل داخل المكان</li>
+                  <li>تعرض العروض، المنتجات، الخدمات، أو الرسائل التوعوية</li>
+                  <li>تصميمات أنيقة تندمج مع الديكور الداخلي</li>
+                  <li>وضوح عالٍ ومحتوى ديناميكي قابل للتغيير في أي وقت</li>
+                  <li>مناسبة لعرض الفيديوهات، الصور، والنصوص</li>
+                </Typography>
+                  <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "20px",
+                    mt: 2,
+                    fontFamily: "Tajawal",
+                    fontWeight: 500,
+                  }}
+                >
+                  الفئات المستهدفة:
+                </Typography>
+
+                <Typography
+                  component="ul"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.2rem" },
+                    textAlign: "justify",
+                    direction: "rtl",
+                    px: "40px", // تباعد مناسب للقائمة
+                    fontFamily: "Tajawal",
+                    listStyleType: "disc", // شكل النقاط
+                  }}
+                >
+                  <li>المحلات التجارية والعلامات الكبرى</li>
+                  <li>الشركات والمراكز الطبية</li>
+                  <li>المطاعم والمقاهي</li>
+                  <li>صالات الانتظار في المطارات</li>
+                  <li>الفنادق والمولات</li>
+                </Typography>
+
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#333",
+                    fontSize: { xs: "1rem", sm: "2rem" },
+                    textAlign: "center",
+                    direction: "rtl",
+                    fontFamily: "Tajawal",
+                    pt: 4, // ← padding top (يمكنك تعديل القيمة حسب الحاجة)
+                  }}
+                >
+                  الشاشات الداخلية – حضور بصري أنيق وفعّال
+                </Typography>
+
               </Box>
             </Grid>
 
@@ -3151,7 +3131,7 @@ const ScreensSection = () => {
               sx={{
                 display: { xs: "none", sm: "block" },
                 position: "absolute",
-                bottom: 0,
+                bottom: "33%",
                 right: 0,
                 width: "30%",
                 borderBottom: "2px solid",
@@ -3171,7 +3151,7 @@ const ScreensSection = () => {
                 position: "absolute",
                 top: 0,
                 left: 0,
-                height: "15%",
+                height: "9%",
                 width: "20%",
                 borderLeft: "2px solid",
                 borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
@@ -3184,6 +3164,7 @@ const ScreensSection = () => {
                 display: { xs: "none", md: "block" },
                 position: "absolute",
                 bottom: 0,
+                top: "63%",
                 right: "30%",
                 transform: "translateX(-22%)",
                 width: "2px",
@@ -3200,7 +3181,7 @@ const ScreensSection = () => {
                 display: { xs: "none", md: "block" },
                 position: "absolute",
                 left: 0,
-                top: "15%",
+                top: "9%",
                 transform: "translateY(-1%)",
                 width: "1.8%",
                 height: "2px",
@@ -3216,6 +3197,7 @@ const ScreensSection = () => {
               sx={{
                 borderRadius: "10px",       // outer radius
                 p: "2px",                   // border thickness
+                display: { xs: "none", sm: "block" },
                 background:
                   "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
                 backgroundSize: "300% 300%",
@@ -3225,7 +3207,6 @@ const ScreensSection = () => {
                   "100%": { backgroundPosition: "0% 50%" },
                 },
                 animation: "gradient 4s linear infinite",
-                display: { xs: "none", sm: "block" },
               }}
             >
               {/* Content here */}
