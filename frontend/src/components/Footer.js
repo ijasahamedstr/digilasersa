@@ -174,7 +174,7 @@ function RightTextSection() {
                   variant="body1"
                   sx={{
                     color: "white",
-                    fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                    fontSize: { xs: "17px", sm: "30px", md: "20px" },
                     textAlign: "right",
                   }}
                 >
@@ -186,7 +186,7 @@ function RightTextSection() {
                   variant="body1"
                   sx={{
                     color: "white",
-                    fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                    fontSize: { xs: "17px", sm: "30px", md: "20px" },
                     textAlign: "right",
                   }}
                 >
@@ -198,7 +198,7 @@ function RightTextSection() {
                   variant="body1"
                   sx={{
                     color: "white",
-                    fontSize: { xs: "17px", sm: "18px", md: "20px" },
+                    fontSize: { xs: "17px", sm: "30px", md: "20px" },
                     textAlign: "right",
                   }}
                 >
