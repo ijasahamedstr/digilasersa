@@ -124,8 +124,9 @@ export default function Footer() {
 function RightTextSection() {
   const location = useLocation();
 
-  // ✅ Show contact info only on `/` and `/الرئيسية`
-  const isHome = location.pathname === "/" || location.pathname === "www.digilaser.sa/الرئيسية";
+  // ✅ Decode the path so Arabic works too
+  const decodedPath = decodeURIComponent(location.pathname);
+  const isHome = decodedPath === "/" || decodedPath === "/الرئيسية";
 
   const whatsappNumber = "966505868888";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
