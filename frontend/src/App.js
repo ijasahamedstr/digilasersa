@@ -95,7 +95,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/الرئيسية" element={<Home />} />
-          <Route path="/الرئيسية" element={<Products />} />
           <Route path="/من نحن" element={<Aboutus setFooterVisible={setFooterVisible} />} />
           <Route path="/قسم البرمجيات" element={<WebsiteSection/>} />
           <Route path="/منصة صيانة الشاشات" element={<ComingSoonPage />} />

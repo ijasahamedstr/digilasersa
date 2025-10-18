@@ -55,8 +55,7 @@ export default function Footer() {
         <Container maxWidth="xl">
           <Grid container spacing={4}>
             <RightTextSection />
-
-            {/* ✅ Show LeftFormSection only if NOT on About page */}
+            
             {!isAboutPage && (
               <LeftFormSection
                 formData={formData}
@@ -123,7 +122,6 @@ export default function Footer() {
 function RightTextSection() {
   const location = useLocation();
   const isHome = location.pathname === "/";
-  const isAboutPage = location.pathname.includes("من نحن"); // ✅ detect About page
 
   const whatsappNumber = "966505868888";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
@@ -153,16 +151,21 @@ function RightTextSection() {
 
       {/* Show contact info ONLY on Home Page */}
       {isHome && (
-        <Grid
-          container
-          spacing={2}
-          sx={{
-            pt: 3,                // padding-top: theme.spacing(3)
-            mt: "20px",           // ✅ margin-top: 50px
-            direction: "rtl",
-            alignItems: "center",
-          }}
-        >
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              pt: 3,               // padding-top: theme.spacing(3)
+              mt: "20px",          // margin-top: 20px
+              direction: "rtl",
+              alignItems: "center",
+              mr: {                // margin-right
+                xs: 0,             // mobile: 0
+                sm: 0,             // tablet: 0
+                md: "100px",       // desktop: 100px
+              },
+            }}
+          >
           {[
             { label: "رقم الاتصال", value: "8888 197 057" },
             { label: "بريد إلكتروني", value: "info@digilaser.sa" },
@@ -210,7 +213,7 @@ function RightTextSection() {
       )}
 
       {/* Show Complaints Button ONLY if not Home and not About */}
-      {!isHome && !isAboutPage && (
+      {!isHome &&  (
         <Box
           sx={{
             mt: { xs: 12, sm: 14, md: 18 },
