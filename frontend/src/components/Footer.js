@@ -24,7 +24,6 @@ export default function Footer() {
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const location = useLocation();
 
-  // ✅ Detect About page
   const isAboutPage = location.pathname.includes("من نحن");
 
   const handleChange = ({ target: { name, value } }) => {
@@ -119,12 +118,10 @@ export default function Footer() {
 }
 
 // ================================
-// ✅ Right Text Section
+// Right Text Section
 // ================================
 function RightTextSection() {
   const location = useLocation();
-
-  // ✅ Decode the path so Arabic works too
   const decodedPath = decodeURIComponent(location.pathname);
   const isHome = decodedPath === "/" || decodedPath === "/الرئيسية";
 
@@ -147,11 +144,14 @@ function RightTextSection() {
         mt: { xs: 0, md: "90px" },
       }}
     >
-      <Typography variant="h4" color="white">
+      <Typography
+        variant="h4"
+        color="white"
+        sx={{ fontSize: { xs: "22px", md: "30px" } }}
+      >
         Contact Us
       </Typography>
 
-      {/* ✅ Contact Info only on Home paths */}
       {isHome && (
         <Grid
           container
@@ -174,7 +174,7 @@ function RightTextSection() {
                   variant="body1"
                   sx={{
                     color: "white",
-                    fontSize: { xs: "17px", sm: "30px", md: "20px" },
+                    fontSize: { xs: "17px", md: "30px" },
                     textAlign: "right",
                   }}
                 >
@@ -186,7 +186,7 @@ function RightTextSection() {
                   variant="body1"
                   sx={{
                     color: "white",
-                    fontSize: { xs: "17px", sm: "30px", md: "20px" },
+                    fontSize: { xs: "17px", md: "30px" },
                     textAlign: "right",
                   }}
                 >
@@ -198,7 +198,7 @@ function RightTextSection() {
                   variant="body1"
                   sx={{
                     color: "white",
-                    fontSize: { xs: "17px", sm: "30px", md: "20px" },
+                    fontSize: { xs: "17px", md: "30px" },
                     textAlign: "right",
                   }}
                 >
@@ -210,7 +210,6 @@ function RightTextSection() {
         </Grid>
       )}
 
-      {/* ✅ Show Complaints Button only if not Home */}
       {!isHome && (
         <Box
           sx={{
@@ -250,7 +249,7 @@ function RightTextSection() {
 }
 
 // ================================
-// ✅ Left Form Section
+// Left Form Section
 // ================================
 function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
   const fields = [
@@ -261,20 +260,25 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
 
   return (
     <Grid item xs={12} sm={6}>
-      <Typography variant="h5" sx={styles.formTitle}>
+      <Typography
+        variant="h5"
+        sx={{ ...styles.formTitle, fontSize: { xs: "22px", md: "30px" } }}
+      >
         للإستفسار ..
       </Typography>
       <Typography
         variant="h5"
         color="#00fffc"
-        sx={{ textAlign: "center", direction: "rtl", mb: 3 }}
+        sx={{ textAlign: "center", direction: "rtl", mb: 3, fontSize: { xs: "22px", md: "30px" } }}
       >
         للطلب والإستفسار /
       </Typography>
       <Box component="form" sx={styles.form} onSubmit={handleFormSubmit}>
         {fields.map(({ label, name, type }) => (
           <Box key={name} sx={styles.formGroup}>
-            <Typography sx={styles.label}>{label}</Typography>
+            <Typography sx={{ ...styles.label, fontSize: { xs: "18px", md: "30px" } }}>
+              {label}
+            </Typography>
             <TextField
               variant="outlined"
               multiline={type === "textarea"}
@@ -282,7 +286,10 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              sx={styles.input}
+              sx={{
+                ...styles.input,
+                "& .MuiInputBase-input": { fontSize: { xs: "16px", md: "30px" } },
+              }}
               fullWidth
             />
           </Box>
@@ -298,8 +305,7 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
               width: "50%",
               borderRadius: "30px",
               fontWeight: "bold",
-              fontSize: "18px",
-              mr: "140px",
+              fontSize: { xs: "18px", md: "30px" },
             }}
           >
             ارسال
@@ -310,6 +316,9 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
   );
 }
 
+// ================================
+// Styles
+// ================================
 const styles = {
   section: {
     backgroundColor: "#000",
@@ -325,7 +334,6 @@ const styles = {
   formTitle: {
     color: "white",
     fontFamily: "Tajawal",
-    fontSize: "26px",
     textAlign: "right",
     mb: 2,
     direction: "rtl",
@@ -335,7 +343,6 @@ const styles = {
   label: {
     color: "white",
     fontFamily: "Tajawal",
-    fontSize: "22px",
     width: "150px",
     textAlign: "right",
   },
