@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Box, CircularProgress } from "@mui/material"; // ✅ Added import
 import Footer from "./components/Footer";
-import Products from "./components/Products";
 import Aboutus from "./components/About";
 import ScreensSection from "./components/ScreensSection";
 import PrintingSection from "./components/PrintingSection";

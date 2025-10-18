@@ -24,7 +24,7 @@ export default function Footer() {
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const location = useLocation();
 
-  // ✅ Reliable About page detection
+  // ✅ Detect About page
   const isAboutPage = location.pathname.includes("من نحن");
 
   const handleChange = ({ target: { name, value } }) => {
@@ -55,7 +55,7 @@ export default function Footer() {
         <Container maxWidth="xl">
           <Grid container spacing={4}>
             <RightTextSection />
-            
+
             {!isAboutPage && (
               <LeftFormSection
                 formData={formData}
@@ -67,7 +67,7 @@ export default function Footer() {
         </Container>
       </Box>
 
-      {/* Footer AppBar (always visible) */}
+      {/* Footer AppBar */}
       <AppBar position="static" sx={{ backgroundColor: "#212121", color: "#fff" }}>
         <Container maxWidth="lg">
           <Toolbar
@@ -118,10 +118,14 @@ export default function Footer() {
   );
 }
 
-// Right Text Section (Contact Info)
+// ================================
+// ✅ Right Text Section
+// ================================
 function RightTextSection() {
   const location = useLocation();
-  const isHome = location.pathname === "/";
+
+  // ✅ Show contact info only on `/` and `/الرئيسية`
+  const isHome = location.pathname === "/" || location.pathname === "www.digilaser.sa/الرئيسية";
 
   const whatsappNumber = "966505868888";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
@@ -129,43 +133,36 @@ function RightTextSection() {
   )}`;
 
   return (
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
-          textAlign: "justify",
-          pr: 5,
-          mt: {
-            xs: 0,       // No top margin on small screens
-            md: "90px",  // Apply margin-top only on medium (desktop) and up (≥ 900px)
-          },
-        }}
-      >
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        textAlign: "justify",
+        pr: 5,
+        mt: { xs: 0, md: "90px" },
+      }}
+    >
       <Typography variant="h4" color="white">
         Contact Us
       </Typography>
 
-      {/* Show contact info ONLY on Home Page */}
+      {/* ✅ Contact Info only on Home paths */}
       {isHome && (
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              pt: 3,               // padding-top: theme.spacing(3)
-              mt: "20px",          // margin-top: 20px
-              direction: "rtl",
-              alignItems: "center",
-              mr: {                // margin-right
-                xs: 0,             // mobile: 0
-                sm: 0,             // tablet: 0
-                md: "100px",       // desktop: 100px
-              },
-            }}
-          >
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            pt: 3,
+            mt: "20px",
+            direction: "rtl",
+            alignItems: "center",
+            mr: { xs: 0, sm: 0, md: "100px" },
+          }}
+        >
           {[
             { label: "رقم الاتصال", value: "8888 197 057" },
             { label: "بريد إلكتروني", value: "info@digilaser.sa" },
@@ -212,8 +209,8 @@ function RightTextSection() {
         </Grid>
       )}
 
-      {/* Show Complaints Button ONLY if not Home and not About */}
-      {!isHome &&  (
+      {/* ✅ Show Complaints Button only if not Home */}
+      {!isHome && (
         <Box
           sx={{
             mt: { xs: 12, sm: 14, md: 18 },
@@ -251,7 +248,9 @@ function RightTextSection() {
   );
 }
 
-// Left Form Section
+// ================================
+// ✅ Left Form Section
+// ================================
 function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
   const fields = [
     { label: "الاسم", name: "name", type: "text" },
@@ -299,7 +298,7 @@ function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
               borderRadius: "30px",
               fontWeight: "bold",
               fontSize: "18px",
-              mr: "140px", // ✅ margin-right applied here
+              mr: "140px",
             }}
           >
             ارسال
