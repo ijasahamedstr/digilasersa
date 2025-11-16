@@ -343,48 +343,37 @@ const ScreensSection = () => {
       }}
     />
   </Box>
-  <Grid container spacing={2} sx={{ width: "100%" }}>
-  {/* Column 1 – 30% */}
-  <Grid item xs={12} md={4}> 
-    <Box sx={{ backgroundColor: "#f0f0f0", height: "100%" }}>
-      {/* Your left content here */}
-             <Box sx={{ backgroundColor: "#f0f0f0", height: "100%" }}>
-            <video
-              src={demoVideoh}
-              className="d-block w-100"
-              autoPlay
-              loop
-              muted
-              playsInline
-              controls
-              style={{
-                width: "100%",
-                objectFit: "cover",
-                boxShadow: "inset 0 0 10px rgba(0,0,0,0.8)",
-              }}
-            />
-        </Box>
+<Box sx={{ display: "flex", gap: 2, width: "100%", overflow: "hidden" }}>
+  {/* Image 1 - GIF */}
+  <Box sx={{ flex: "0 0 30%", position: "relative" }}>
+    <img
+      src="https://i.ibb.co/p7gDtSH/scrren.gif"
+      alt="GIF Image"
+      style={{
+        objectFit: "contain",
+        width: "100%",
+        height: "60%",
+        display: "block",
+        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+      }}
+    />
+  </Box>
 
-    </Box>
-  </Grid>
-
-  {/* Column 2 – 70% */}
-  <Grid item xs={12} md={8}>
-    <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-      <img
-        src="https://i.ibb.co/4gVbPdHj/5.webp"
-        alt="Image 03"
-        style={{
-          objectFit: "cover",
-          width: "100%",
-          height: "auto",
-          display: "block",
-          boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-        }}
-      />
-    </Box>
-  </Grid>
-</Grid>
+  {/* Image 2 - WebP */}
+  <Box sx={{ flex: "0 0 70%", position: "relative" }}>
+    <img
+      src="https://i.ibb.co/4gVbPdHj/5.webp"
+      alt="WebP Image"
+      style={{
+        objectFit: "contain",
+        width: "100%",
+        height: "60%",
+        display: "block",
+        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+      }}
+    />
+  </Box>
+</Box>
 
 </Container>
     </>
