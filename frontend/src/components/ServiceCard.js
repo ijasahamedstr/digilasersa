@@ -43,7 +43,7 @@ const products = [
   {
     id: 4,
     name: "قسم الشاشات",
-    imageUrl: "https://i.ibb.co/xtDxd55F/Layer-32.webp",
+    imageUrl: "https://i.ibb.co/mrSJqykX/2.webp",
     iconUrl: "https://i.ibb.co/qL6f4q7j/Screen-xx.webp",
     link: "/قسم الشاشات",
   },

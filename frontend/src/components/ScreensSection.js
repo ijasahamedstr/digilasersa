@@ -245,7 +245,7 @@ const ScreensSection = () => {
           <Grid item xs={12}>
              <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
               <img
-                src="https://i.ibb.co/yntC2KhK/0002.webp"
+                src="https://i.ibb.co/JW96kTbM/1.webp"
                 alt="Image 01"
                 style={{
                   objectFit: "cover",
