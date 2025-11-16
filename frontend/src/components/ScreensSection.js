@@ -12,6 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Container, Grid, Typography, Box, Button, Card, CircularProgress } from "@mui/material";
+import demoVideoh from "./video/scrren.mp4";
 
 const carouselItems = [
   { id: 1, img: "https://i.ibb.co/LX7hG42y/image.webp" },
@@ -242,100 +243,36 @@ const ScreensSection = () => {
         <Container maxWidth="xl">
         <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
           <Grid item xs={12}>
-            <Box sx={{ p: 2, mb: { xs: 2, sm: 4, md: 6 } }}> {/* 👈 Added responsive bottom margin */}
-              <Box
-                sx={{
-                  borderRadius: "10px",
-                  p: "8px",
-                  background:
-                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                  backgroundSize: "300% 300%",
-                  "@keyframes gradient": {
-                    "0%": { backgroundPosition: "0% 50%" },
-                    "50%": { backgroundPosition: "100% 50%" },
-                    "100%": { backgroundPosition: "0% 50%" },
-                  },
-                  animation: "gradient 4s linear infinite",
+             <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+              <img
+                src="https://i.ibb.co/yntC2KhK/0002.webp"
+                alt="Image 01"
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "auto",
+                  display: "block",
+                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                  marginBottom:'50px'
                 }}
-              >
-                <Card
-                  sx={{
-                    bgcolor: "#ffffffff",
-                    p: 2,
-                    borderRadius: "8px",
-                    boxShadow: 3,
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "4.5rem" },
-                      fontFamily: "Tajawal",
-                    }}
-                  >
-                    شركة الليزر المركز الأول للشاشات بالمملكة
-                  </Typography>
-                </Card>
-              </Box>
+              />
             </Box>
           </Grid>
 
           {/* Image Section */}
-          <img
-            src="https://i.ibb.co/0pn0zFPx/Screen-services-Bar-new-k.webp"
-            alt="Banner"
-            loading="lazy"
-            style={{
-              width: "100%",
-              maxHeight: "400px",
-              objectFit: "cover",
-              borderRadius: "20px",
-              paddingBottom: "30px",
-            }}
-          />
-
-          {/* Button Section */}
-          <Button
-            component="a"
-            href="https://sssplatform.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="contained"
-            size="small"
-            sx={{
-              position: "absolute",
-              top: { xs: "68%", sm: "72%", md: "68%" },
-              left: "30%",
-              transform: "translate(-50%, -50%)",
-              backgroundColor: "#da9030",
-              color: "white",
-              fontFamily: "Tajawal",
-              fontWeight: 700,
-              fontSize: { xs: "4px", sm: "11px", md: "20px" },
-              px: { xs: 1, sm: 2 },
-              py: { xs: 0.25, sm: 0.5 },
-              borderRadius: "25px",
-              boxShadow: 2,
-              lineHeight: 1.5,
-              whiteSpace: "normal",
-              textAlign: "center",
-              border: "2px solid black",
-              animation: "blink 1s infinite",
-              "&:hover": {
-                backgroundColor: "#e9830f",
-              },
-              "@keyframes blink": {
-                "0%": { opacity: 1 },
-                "50%": { opacity: 0.5 },
-                "100%": { opacity: 1 },
-              },
-            }}
-          >
-            لصيانة الشاشات اضغط هنا
-          </Button>
+            <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+              <img
+                src="https://i.ibb.co/YBgThJg7/01.webp"
+                alt="Image 01"
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "auto",
+                  display: "block",
+                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                }}
+              />
+            </Box>
         </Box>
       </Container>
       </Box>
@@ -352,7 +289,7 @@ const ScreensSection = () => {
   {/* IMAGE 01 */}
   <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
-      src="https://i.ibb.co/6Jmq6nsF/Whats-App-Image-2025-10-19-at-9-16-01-AM.webp"
+      src="https://i.ibb.co/rf5bqrNQ/1.webp"
       alt="Image 01"
       style={{
         objectFit: "cover",
@@ -367,7 +304,7 @@ const ScreensSection = () => {
   {/* IMAGE 02 */}
   <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
-      src="https://i.ibb.co/rRzqsyKm/Whats-App-Image-2025-10-19-at-9-16-01-AM-1.webp"
+      src="https://i.ibb.co/676b6B74/2.webp"
       alt="Image 02"
       style={{
         objectFit: "cover",
@@ -382,7 +319,7 @@ const ScreensSection = () => {
   {/* IMAGE 03 */}
   <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
-      src="https://i.ibb.co/bj9y1NTX/Whats-App-Image-2025-10-19-at-9-16-01-AM-2.webp"
+      src="https://i.ibb.co/nq1GpbcY/3.webp"
       alt="Image 03"
       style={{
         objectFit: "cover",
@@ -393,3625 +330,63 @@ const ScreensSection = () => {
       }}
     />
   </Box>
+  <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+    <img
+      src="https://i.ibb.co/YBBD0mQZ/4.webp"
+      alt="Image 03"
+      style={{
+        objectFit: "cover",
+        width: "100%",
+        height: "auto",
+        display: "block",
+        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+      }}
+    />
+  </Box>
+  <Grid container spacing={2} sx={{ width: "100%" }}>
+  {/* Column 1 – 30% */}
+  <Grid item xs={12} md={4}> 
+    <Box sx={{ backgroundColor: "#f0f0f0", height: "100%" }}>
+      {/* Your left content here */}
+             <Box sx={{ backgroundColor: "#f0f0f0", height: "100%" }}>
+            <video
+              src={demoVideoh}
+              className="d-block w-100"
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+              style={{
+                width: "100%",
+                objectFit: "cover",
+                boxShadow: "inset 0 0 10px rgba(0,0,0,0.8)",
+              }}
+            />
+        </Box>
+
+    </Box>
+  </Grid>
+
+  {/* Column 2 – 70% */}
+  <Grid item xs={12} md={8}>
+    <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+      <img
+        src="https://i.ibb.co/4gVbPdHj/5.webp"
+        alt="Image 03"
+        style={{
+          objectFit: "cover",
+          width: "100%",
+          height: "auto",
+          display: "block",
+          boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+        }}
+      />
+    </Box>
+  </Grid>
+</Grid>
+
 </Container>
-
-
-
-
-   
-     
-
-      <section
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          paddingBottom: "60px",
-        }}
-      >
-        <Container maxWidth="xl">
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              mt: "40px",
-              flexDirection: "column",
-              alignItems: "stretch",
-              direction: "rtl", // makes all child Grid items RTL
-            }}
-          >
-            {/* Heading */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-                <Box
-                  sx={{
-                    borderRadius: "10px",
-                    p: "2px",
-                    background:
-                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                    backgroundSize: "300% 300%",
-                    "@keyframes gradient": {
-                      "0%": { backgroundPosition: "0% 50%" },
-                      "50%": { backgroundPosition: "100% 50%" },
-                      "100%": { backgroundPosition: "0% 50%" },
-                    },
-                    animation: "gradient 4s linear infinite",
-                  }}
-                >
-                  <Card
-                    sx={{
-                      bgcolor: "#b0b0b0",
-                      p: 2,
-                      borderRadius: "8px",
-                      boxShadow: 3,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: "bold",
-                        color: "#333",
-                        fontSize: { xs: "1rem", sm: "2rem" },
-                        fontFamily: "Tajawal",
-                      }}
-                    >
-                        شاشة المصاعد
-                    </Typography>
-                  </Card>
-                </Box>
-              </Box>
-            </Grid>
-
-            {/* Intro Paragraphs */}
-            <Grid item xs={12}>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                
-                تعد شاشة المصاعد حلا إعلانية فعالا يستغل واحدة من أكثر اللحظات تركيزا لدى الجمهور وقت الانتظار داخل المصعد وتتيح الشركات إيصال رسائلها مباشرة لجمهور محدد وفي مساحة مغلقة مما يزيد فرص التفاعل والتأثير
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                أبرز نقاط التسويق
-              </Typography>
-            </Grid>
-
-          {/* Two Columns Section */}
-            <Grid container spacing={2} sx={{ mt: 4 }}>
-              {/* Column 1 - Right side */}
-              <Grid item xs={12} md={6}>
-                <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading with Number 01 */}
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Tajawal",
-                      mb: 1,
-                      fontSize: { xs: "1.5rem", md: "1.6rem" },
-                    }}
-                  >
-                   01.جمهور مضمون
-                  </Typography>
-
-                  {/* Paragraph */}
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                      pl: "80px", // padding-left
-                    }}
-                  >
-                    المصعد مكان مغلق لا مهرب من النظر إليه.
-                  </Typography>
-                </Box>
-              </Grid>
-
-              {/* Column 2 - Left side */}
-              <Grid item xs={12} md={6}>
-                <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading with Number 02 */}
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Tajawal",
-                      mb: 1,
-                      fontSize: { xs: "1.5rem", md: "1.6rem" },
-                    }}
-                  >
-                  
-                02. مدة عرض مركزة 
-                  </Typography>
-
-                  {/* Paragraph */}
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                    }}
-                  >
-                    15–60 ثانية من الانتباه الكامل
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-
-
-          <Grid container spacing={2} sx={{ mt: 4 }}>
-            {/* Column 1 - Right side */}
-            <Grid item xs={12} md={6}>
-              <Box sx={{ p: 2, textAlign: "right" }}>
-                {/* Main Heading with Number 03 */}
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    fontFamily: "Tajawal",
-                    mb: 1,
-                    fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  }}
-                >
-                  03. موقع دائم الحركة
-                </Typography>
-
-                {/* Paragraph */}
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    pl: "80px", // padding-left
-                  }}
-                >
-                  يتكرر المشهد أكثر من مرة يومياً 
-                </Typography>
-              </Box>
-            </Grid>
-
-            {/* Column 2 - Left side */}
-            <Grid item xs={12} md={6}>
-              <Box sx={{ p: 2, textAlign: "right" }}>
-                {/* Main Heading with Number 04 */}
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    fontFamily: "Tajawal",
-                    mb: 1,
-                    fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  }}
-                >
-                 04.مناسب للإعلانات الخدمية والعروض السريعة
-                </Typography>
-
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    pl: "80px", // padding-left
-                  }}
-                >
-                  وقت الانتظار وقت الانتباة الكامل    
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-
-
-           <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
-            {/* Main Heading with Number 05 */}
-            <Typography
-              variant="h3"
-              sx={{
-                fontWeight: "bold",
-                fontFamily: "Tajawal",
-                mb: 1,
-                fontSize: { xs: "1.5rem", md: "1.6rem" },
-              }}
-            >
-                05.مناسبة 
-            </Typography>
-
-            {/* Subheading */}
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: "500",
-                fontFamily: "Tajawal",
-                mb: 3,
-                color: "#313030ff",
-                fontSize: { xs: "1.1rem", md: "1.3rem" },
-              }}
-            >
-            </Typography>
-
-            {/* Paragraph */}
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "Tajawal",
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                textAlign: "center",
-                mt: 2,
-                mb: 2,
-              }}
-            >
-                          
-            للمولات  /  والأبراج التجارية /  الفنادق المجمعات السكنية /  المستشفيات /
-            المطاعم وغيرها            
-            </Typography>
-
-            {/* Second Heading */}
-           <Typography
-            variant="h3"
-            sx={{
-              fontWeight: "bold",
-              fontFamily: "Tajawal",
-              pt: "40px", // padding top
-              pb: "40px", // padding bottom
-              fontSize: { xs: "1.5rem", md: "1.6rem" },
-            }}
-          >
-            وقت الانتظار … صار وقت اعلانك
-          </Typography>
-
-
-            </Box>
-            {/* Image */}
-            <Grid item xs={12}>
-            {/* Outer wrapper for animated gradient border */}
-            <Box
-              sx={{
-                borderRadius: "10px",  // border radius for outer gradient
-                p: "2px",              // border thickness
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                "@keyframes gradient": {
-                  "0%": { backgroundPosition: "0% 50%" },
-                  "50%": { backgroundPosition: "100% 50%" },
-                  "100%": { backgroundPosition: "0% 50%" },
-                },
-                animation: "gradient 4s linear infinite",
-              }}
-            >
-              {/* Inner image */}
-              <Box
-                component="img"
-                src="https://i.ibb.co/Fb6xZfJ1/S4.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  borderRadius: "8px", // slightly smaller than outer radius to reveal border
-                  display: "block",
-                }}
-              />
-            </Box>
-          </Grid>
-
-          </Grid>
-        </Container>
-      </section>
-
-
-
-       <section
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          paddingBottom: "60px", // ✅ extra space at bottom
-        }}
-      >
-        <Container
-          maxWidth="xl" // ✅ narrower container with left/right space
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              mt: "40px",
-              flexDirection: "column", // ✅ stacked layout
-              alignItems: "stretch",   // ✅ full width instead of centered
-            }}
-          >
-               {/* Text Content */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-              {/* Outer wrapper shows the animated gradient and acts as the border */}
-              <Box
-                sx={{
-                  borderRadius: "10px",       // outer radius (border)
-                  p: "2px",                   // border thickness (increase/decrease)
-                  background:
-                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                  backgroundSize: "300% 300%",
-                  // keyframes defined inline in sx (MUI supports this)
-                  "@keyframes gradient": {
-                    "0%": { backgroundPosition: "0% 50%" },
-                    "50%": { backgroundPosition: "100% 50%" },
-                    "100%": { backgroundPosition: "0% 50%" },
-                  },
-                  animation: "gradient 4s linear infinite",
-                }}
-              >
-                {/* Inner card sits on top of the animated border */}
-                <Card
-                  sx={{
-                    bgcolor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px", // slightly smaller than outer to reveal border
-                    boxShadow: 3,
-                    textAlign: "center",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
-                    }}
-                  >
-                      شاشات الاستاند للإيجار
-                  </Typography>
-                </Card>
-              </Box>
-            </Box>
-            </Grid>
-
-             {/* Intro Paragraphs */}
-              <Grid 
-                item 
-                xs={12}
-                sx={{ direction: "rtl" }} // ⬅️ يجعل النصوص من اليمين لليسار
-              >
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                                توفر شركة الليزر حلاً عمليًا وأنيقًا لعرض المحتوى الإعلاني والتفاعلي المؤقت من خلال تأجير شاشات الاستاند 
-                يتميز هذا النوع بسهولة التركيب والنقل،<strong> مما يجعله الخيار المثالي ل :</strong>
-                </Typography>
-
-                <Typography
-                  component="ul"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    pl: 4, // padding for bullets
-                    pt: 2, // ⬅️ مسافة من الأعلى
-                  }}
-                >
-                  <li>الفعاليات والمؤتمرات</li>
-                  <li>أركان المعارض</li>
-                  <li>لمحلات التجارية والعروض المؤقتة</li>
-                  <li>الاستقبالات والفنادق</li>
-                  <li>العروض الترويجية في المولات</li>
-                </Typography>
-
-
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    px: "20px",
-                    mt: 2,
-                    pl: 4,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                  يتم تجهيز الشاشة بالكامل لتكون جاهزة للعمل فورًا، مع دعم فني لضمان أفضل أداء طوال فترة الإيجار
-                </Typography>
-              </Grid>
-              
-
-              <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
-                {/* Main Heading with Number 05 */}
-
-                {/* Second Heading */}
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: "bold",
-                  fontFamily: "Tajawal",
-                  pt: "40px", // padding top
-                  pb: "40px", // padding bottom
-                  fontSize: { xs: "1.5rem", md: "1.6rem" },
-                }}
-              >
-                سهولة في النقل مرونة في المدة ودعم فني شامل لتجربة تأجير مريحة ونتائج ملموسة
-              </Typography>
-
-                </Box>
-
-            {/* Image Section */}
-           <Grid item xs={12}>
-            {/* Outer wrapper for animated gradient border */}
-            <Box
-              sx={{
-                borderRadius: "10px",  // border radius for outer gradient
-                p: "2px",              // border thickness
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                "@keyframes gradient": {
-                  "0%": { backgroundPosition: "0% 50%" },
-                  "50%": { backgroundPosition: "100% 50%" },
-                  "100%": { backgroundPosition: "0% 50%" },
-                },
-                animation: "gradient 4s linear infinite",
-              }}
-            >
-              {/* Inner image */}
-              <Box
-                component="img"
-                src="https://i.ibb.co/RGLf0CYC/S5.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  borderRadius: "8px", // slightly smaller than outer radius to reveal border
-                  display: "block",
-                }}
-              />
-            </Box>
-          </Grid>
-          </Grid>
-        </Container>
-      </section>
-
-
-      
-      <section
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          paddingBottom: "60px",
-        }}
-      >
-        <Container maxWidth="xl">
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              mt: "40px",
-              flexDirection: "column",
-              alignItems: "stretch",
-              direction: "rtl", // makes all child Grid items RTL
-            }}
-          >
-            {/* Heading */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-                <Box
-                  sx={{
-                    borderRadius: "10px",
-                    p: "2px",
-                    background:
-                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                    backgroundSize: "300% 300%",
-                    "@keyframes gradient": {
-                      "0%": { backgroundPosition: "0% 50%" },
-                      "50%": { backgroundPosition: "100% 50%" },
-                      "100%": { backgroundPosition: "0% 50%" },
-                    },
-                    animation: "gradient 4s linear infinite",
-                  }}
-                >
-                  <Card
-                    sx={{
-                      bgcolor: "#b0b0b0",
-                      p: 2,
-                      borderRadius: "8px",
-                      boxShadow: 3,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: "bold",
-                        color: "#333",
-                        fontSize: { xs: "1rem", sm: "2rem" },
-                        fontFamily: "Tajawal",
-                      }}
-                    >
-                        الشاشة الجدارية الإعلانية
-                    </Typography>
-                  </Card>
-                </Box>
-              </Box>
-            </Grid>
-
-            {/* Intro Paragraphs */}
-            <Grid item xs={12}>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                إحدى أحدث حلول العرض الإعلاني الخارجي، بتصميم أنيق ودائري يلفت الانتباه ويعزز حضور العلامة التجارية بشكل عصري ولافت
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                تُركّب الشاشة على الواجهات الخارجية للمحال التجارية والمراكز الحيوية، وتُعد خيارًا مثاليًا لعرض الشعارات والرسائل التسويقية بأسلوب متجدد وحيوي.
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                تتميز الشاشة بجودة عرض عالية، وإضاءة LED واضحة في مختلف الظروف، مع تصميم مقاوم للعوامل الجوية، مما يجعلها خيارًا عمليًا وجذابًا في آنٍ واحد.
-              </Typography>
-            </Grid>
-
-          {/* Two Columns Section */}
-            <Grid container spacing={2} sx={{ mt: 4 }}>
-              {/* Column 1 - Right side */}
-              <Grid item xs={12} md={6}>
-                <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading with Number 01 */}
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Tajawal",
-                      mb: 1,
-                      fontSize: { xs: "1.5rem", md: "1.6rem" },
-                    }}
-                  >
-                    01 - موقع التركيب
-                  </Typography>
-
-                <Typography
-                    component="ul"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                      pl: 4, // padding for bullets
-                    }}
-                  >
-                    <li>واجهات المحلات</li>
-                    <li>الشوارع التجارية</li>
-                    <li>الشوارع التجارية</li>
-                    <li>المراكز التجارية</li>
-                    <li>المقاهي والصيدليات والمطاعم</li>
-                  </Typography>
-                </Box>
-              </Grid>
-
-              {/* Column 2 - Left side */}
-              <Grid item xs={12} md={6}>
-                <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading with Number 02 */}
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Tajawal",
-                      mb: 1,
-                      fontSize: { xs: "1.5rem", md: "1.6rem" },
-                    }}
-                  >
-                    02 - القيمة التسويقية
-                  </Typography>
-
-                     {/* Unordered List */}
-                  <Typography
-                    component="ul"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                      pl: 4, // padding for bullets
-                    }}
-                  >
-                    <li>تجذب الانتباه من الاتجاهين</li>
-                    <li>تعرض شعارك بشكل متجدد</li>
-                    <li>تعزز الهوية البصرية للعلامة التجارية</li>
-                    <li>حديثة ومتحركة، أفضل من اللوحات الثابتة</li>
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-
-
-          <Grid container spacing={2} sx={{ mt: 4 }}>
-            {/* Column 1 - Right side */}
-            <Grid item xs={12} md={6}>
-              <Box sx={{ p: 2, textAlign: "right" }}>
-                {/* Main Heading with Number 03 */}
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    fontFamily: "Tajawal",
-                    mb: 1,
-                    fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  }}
-                >
-                  03 - المزايا الفنية
-                </Typography>
-
-                <Typography
-                    component="ul"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                      pl: 4, // padding for bullets
-                    }}
-                  >
-                    <li>تصميم جذّاب ودائري</li>
-                    <li>مقاومة للعوامل الخارجية (Outdoor)</li>
-                    <li>إضاءة LED واضحة نهارًا وليلاً</li>
-                    <li>سهلة التركيب على الجدران</li>
-                  </Typography>
-              </Box>
-            </Grid>
-
-            {/* Column 2 - Left side */}
-            <Grid item xs={12} md={6}>
-              <Box sx={{ p: 2, textAlign: "right" }}>
-                {/* Main Heading with Number 04 */}
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    fontFamily: "Tajawal",
-                    mb: 1,
-                    fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  }}
-                >
-                  04 - الجمهور المستهدف
-                </Typography>
-
-                {/* Unordered List */}
-                <Typography
-                  component="ul"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    pl: 4, // padding for bullets
-                  }}
-                >
-                  <li>أصحاب المحلات التجارية</li>
-                  <li>العلامات التجارية الناشئة</li>
-                  <li>المشاريع الصغيرة والمتوسطة</li>
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-
-
-           <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
-            {/* Main Heading with Number 05 */}
-      
-            {/* Second Heading */}
-           <Typography
-            variant="h3"
-            sx={{
-              fontWeight: "bold",
-              fontFamily: "Tajawal",
-              pt: "40px", // padding top
-              pb: "40px", // padding bottom
-              fontSize: { xs: "1.5rem", md: "1.6rem" },
-            }}
-          >
-             واجهتك تقول كل شيء!  
-          </Typography>
-
-           <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "center",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-               مع شاشاتنا الجدارية الدائرية، خلّي شعارك يلفت الأنظار ويتكلم عنك 24/7.  
-              تصميم جذّاب، رؤية واضحة، وحضور ما يُنسى!
-            </Typography>
-
-
-            </Box>
-            {/* Image */}
-            <Grid item xs={12}>
-            {/* Outer wrapper for animated gradient border */}
-            <Box
-              sx={{
-                borderRadius: "10px",  // border radius for outer gradient
-                p: "2px",              // border thickness
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                "@keyframes gradient": {
-                  "0%": { backgroundPosition: "0% 50%" },
-                  "50%": { backgroundPosition: "100% 50%" },
-                  "100%": { backgroundPosition: "0% 50%" },
-                },
-                animation: "gradient 4s linear infinite",
-              }}
-            >
-              {/* Inner image */}
-              <Box
-                component="img"
-                src="https://i.ibb.co/nNRK64R6/S6.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  borderRadius: "8px", // slightly smaller than outer radius to reveal border
-                  display: "block",
-                }}
-              />
-            </Box>
-          </Grid>
-
-          </Grid>
-        </Container>
-      </section>
-
-
-       <section
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          paddingBottom: "60px", // ✅ extra space at bottom
-        }}
-      >
-        <Container
-          maxWidth="xl" // ✅ narrower container with left/right space
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              mt: "40px",
-              flexDirection: "column", // ✅ stacked layout
-              alignItems: "stretch",   // ✅ full width instead of centered
-            }}
-          >
-               {/* Text Content */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-              {/* Outer wrapper shows the animated gradient and acts as the border */}
-              <Box
-                sx={{
-                  borderRadius: "10px",       // outer radius (border)
-                  p: "2px",                   // border thickness (increase/decrease)
-                  background:
-                    "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                  backgroundSize: "300% 300%",
-                  // keyframes defined inline in sx (MUI supports this)
-                  "@keyframes gradient": {
-                    "0%": { backgroundPosition: "0% 50%" },
-                    "50%": { backgroundPosition: "100% 50%" },
-                    "100%": { backgroundPosition: "0% 50%" },
-                  },
-                  animation: "gradient 4s linear infinite",
-                }}
-              >
-                {/* Inner card sits on top of the animated border */}
-                <Card
-                  sx={{
-                    bgcolor: "#b0b0b0",
-                    p: 2,
-                    borderRadius: "8px", // slightly smaller than outer to reveal border
-                    boxShadow: 3,
-                    textAlign: "center",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
-                    }}
-                  >
-                      الشاشات الإلكترونية الداخلية
-                  </Typography>
-                </Card>
-              </Box>
-            </Box>
-            </Grid>
-
-             {/* Intro Paragraphs */}
-             
-
-            {/* Image Section */}
-           <Grid item xs={12}>
-            {/* Outer wrapper for animated gradient border */}
-            <Box
-              sx={{
-                borderRadius: "10px",  // border radius for outer gradient
-                p: "2px",              // border thickness
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                "@keyframes gradient": {
-                  "0%": { backgroundPosition: "0% 50%" },
-                  "50%": { backgroundPosition: "100% 50%" },
-                  "100%": { backgroundPosition: "0% 50%" },
-                },
-                animation: "gradient 4s linear infinite",
-              }}
-            >
-              {/* Inner image */}
-              <Box
-                component="img"
-                src="https://i.ibb.co/BHjVnLb3/S7.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  borderRadius: "8px", // slightly smaller than outer radius to reveal border
-                  display: "block",
-                }}
-              />
-            </Box>
-          </Grid>
-          </Grid>
-        </Container>
-      </section>
-
-      <section
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          paddingBottom: "60px",
-        }}
-      >
-        <Container maxWidth="xl">
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              mt: "40px",
-              flexDirection: "column",
-              alignItems: "stretch",
-              direction: "rtl", // makes all child Grid items RTL
-            }}
-          >
-            {/* Heading */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-                <Box
-                  sx={{
-                    borderRadius: "10px",
-                    p: "2px",
-                    background:
-                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                    backgroundSize: "300% 300%",
-                    "@keyframes gradient": {
-                      "0%": { backgroundPosition: "0% 50%" },
-                      "50%": { backgroundPosition: "100% 50%" },
-                      "100%": { backgroundPosition: "0% 50%" },
-                    },
-                    animation: "gradient 4s linear infinite",
-                  }}
-                >
-                  <Card
-                    sx={{
-                      bgcolor: "#b0b0b0",
-                      p: 2,
-                      borderRadius: "8px",
-                      boxShadow: 3,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: "bold",
-                        color: "#333",
-                        fontSize: { xs: "1rem", sm: "2rem" },
-                        fontFamily: "Tajawal",
-                      }}
-                    >
-                        شاشات استاند دبل سايد
-                    </Typography>
-                  </Card>
-                </Box>
-              </Box>
-            </Grid>
-
-            {/* Intro Paragraphs */}
-            <Grid item xs={12}>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                شاشات استاند دبل سايد حضور مضاعف بذكاء بصري
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                توفر شركة الليزر شاشة استاند بتصميم دبل سايد (وجهين) ، لتمنح عملاءنا تجربة عرض أكثر فاعلية في المساحات المفتوحة والممرات الحيوية.
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                بفضل إمكانية العرض من الجهتين، تتيح الشاشة مضاعفة الوصول البصري للمحتوى
-              </Typography>
-            </Grid>
-
-          {/* Two Columns Section */}
-            <Grid container spacing={2} sx={{ mt: 4 }}>
-              {/* Column 1 - Right side */}
-              <Grid item xs={12} md={6}>
-                <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading with Number 01 */}
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Tajawal",
-                      mb: 1,
-                      fontSize: { xs: "1.5rem", md: "1.6rem" },
-                    }}
-                  >
-                    01 - ركّز على الفائدة الفريدة (USP):
-                  </Typography>
-
-                  {/* Subheading */}
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: "500",
-                      fontFamily: "Tajawal",
-                      mb: 2,
-                      color: "#313030ff",
-                      fontSize: { xs: "1.1rem", md: "1.3rem" },
-                    }}
-                  >
-                    عرض من جهتين = رؤية مضاعفة = انتباه أكبر
-                  </Typography>
-
-                  {/* Paragraph */}
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                      pl: "80px", // padding-left
-                    }}
-                  >
-                    تستهدف المساحات المفتوحة، الممرات، الأركان اللي فيها حركة من أكثر من اتجاه
-                  </Typography>
-                </Box>
-              </Grid>
-
-              {/* Column 2 - Left side */}
-              <Grid item xs={12} md={6}>
-                <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading with Number 02 */}
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Tajawal",
-                      mb: 1,
-                      fontSize: { xs: "1.5rem", md: "1.6rem" },
-                    }}
-                  >
-                    02 - حدّد الجمهور المستهدف:
-                  </Typography>
-
-                     {/* Unordered List */}
-                  <Typography
-                    component="ul"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                      pl: 4, // padding for bullets
-                    }}
-                  >
-                    <li>منظمو الفعاليات والمعارض</li>
-                    <li>المحلات التجارية (داخل المولات)</li>
-                    <li>شركات التسويق والإعلانات</li>
-                    <li>الفنادق وقاعات المؤتمرات</li>
-                    <li>الجهات الحكومية والخاصة التي تنظم مناسبات</li>
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-
-
-          <Grid container spacing={2} sx={{ mt: 4 }}>
-            {/* Column 1 - Right side */}
-            <Grid item xs={12} md={6}>
-              <Box sx={{ p: 2, textAlign: "right" }}>
-                {/* Main Heading with Number 03 */}
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    fontFamily: "Tajawal",
-                    mb: 1,
-                    fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  }}
-                >
-                  03 -  استخدم سيناريوهات واقعية في التسويق:
-                </Typography>
-
-                <Typography
-                    component="ul"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                      pl: 4, // padding for bullets
-                    }}
-                  >
-                    <li>إذا عندك فعالية مزدحمة… خلي محتواك يشوفه الكل من أي جهة</li>
-                    <li>في ممرات المعارض؟ وجهين أفضل من واحد!</li>
-                  </Typography>
-              </Box>
-            </Grid>
-
-            {/* Column 2 - Left side */}
-            <Grid item xs={12} md={6}>
-              <Box sx={{ p: 2, textAlign: "right" }}>
-                {/* Main Heading with Number 04 */}
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    fontFamily: "Tajawal",
-                    mb: 1,
-                    fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  }}
-                >
-                  04 - استخدم صور حقيقية أو موك آب:
-                </Typography>
-
-                {/* Unordered List */}
-                <Typography
-                  component="ul"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    pl: 4, // padding for bullets
-                  }}
-                >
-                  <li>عرض الشاشة في مكان مزدحم</li>
-                  <li>المحتوى ظاهر من الجهتين بشكل ملفت</li>
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-
-
-           <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
-            {/* Main Heading with Number 05 */}
-      
-            {/* Second Heading */}
-           <Typography
-            variant="h3"
-            sx={{
-              fontWeight: "bold",
-              fontFamily: "Tajawal",
-              pt: "40px", // padding top
-              pb: "40px", // padding bottom
-              fontSize: { xs: "1.5rem", md: "1.6rem" },
-            }}
-          >
-             حل  ذكي يعزز انتشار رسالتك بأناقة واحتراف
-          </Typography>
-
-
-            </Box>
-            {/* Image */}
-            <Grid item xs={12}>
-            {/* Outer wrapper for animated gradient border */}
-            <Box
-              sx={{
-                borderRadius: "10px",  // border radius for outer gradient
-                p: "2px",              // border thickness
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                "@keyframes gradient": {
-                  "0%": { backgroundPosition: "0% 50%" },
-                  "50%": { backgroundPosition: "100% 50%" },
-                  "100%": { backgroundPosition: "0% 50%" },
-                },
-                animation: "gradient 4s linear infinite",
-              }}
-            >
-              {/* Inner image */}
-              <Box
-                component="img"
-                src="https://i.ibb.co/CKzPjyH1/S8.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  borderRadius: "8px", // slightly smaller than outer radius to reveal border
-                  display: "block",
-                }}
-              />
-            </Box>
-          </Grid>
-
-          </Grid>
-        </Container>
-      </section>
-
-
-      <section
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          paddingBottom: "60px",
-        }}
-      >
-        <Container maxWidth="xl">
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              mt: "40px",
-              flexDirection: "column",
-              alignItems: "stretch",
-              direction: "rtl", // makes all child Grid items RTL
-            }}
-          >
-            {/* Heading */}
-            <Grid item xs={12}>
-              <Box sx={{ p: 2 }}>
-                <Box
-                  sx={{
-                    borderRadius: "10px",
-                    p: "2px",
-                    background:
-                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                    backgroundSize: "300% 300%",
-                    "@keyframes gradient": {
-                      "0%": { backgroundPosition: "0% 50%" },
-                      "50%": { backgroundPosition: "100% 50%" },
-                      "100%": { backgroundPosition: "0% 50%" },
-                    },
-                    animation: "gradient 4s linear infinite",
-                  }}
-                >
-                  <Card
-                    sx={{
-                      bgcolor: "#b0b0b0",
-                      p: 2,
-                      borderRadius: "8px",
-                      boxShadow: 3,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: "bold",
-                        color: "#333",
-                        fontSize: { xs: "1rem", sm: "2rem" },
-                        fontFamily: "Tajawal",
-                      }}
-                    >
-                        شاشة على عمود متعددة الاتجاهات
-                    </Typography>
-                  </Card>
-                </Box>
-              </Box>
-            </Grid>
-
-            {/* Intro Paragraphs */}
-            <Grid item xs={12}>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                  fontWeight:500,
-                }}
-              >
-                شاشة متعددة الاستخدامات.... تدريبي تثقيفي اعلاني  مبتكر
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                  fontWeight:500,
-                }}
-              >
-                مزايا الشاشة المتحركة:
-              </Typography>
-            </Grid>
-
-          {/* Two Columns Section */}
-            <Grid container spacing={2} sx={{ mt: 4 }}>
-              {/* Column 1 - Right side */}
-              <Grid item xs={12} md={6}>
-                <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading with Number 01 */}
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Tajawal",
-                      mb: 1,
-                      fontSize: { xs: "1.5rem", md: "1.6rem" },
-                    }}
-                  >
-                    01 - قابلة للدوران أفقيًا وعموديًا:
-                  </Typography>
-
-                  {/* Paragraph */}
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                      pl: "80px", // padding-left
-                    }}
-                  >
-                    لجذب الانتباه من كل الزوايا.
-                  </Typography>
-                </Box>
-              </Grid>
-
-              {/* Column 2 - Left side */}
-              <Grid item xs={12} md={6}>
-                <Box sx={{ p: 2, textAlign: "right" }}>
-                  {/* Main Heading with Number 02 */}
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      fontFamily: "Tajawal",
-                      mb: 1,
-                      fontSize: { xs: "1.5rem", md: "1.6rem" },
-                    }}
-                  >
-                    02 - بطارية تدوم حتى 8 ساعات:
-                  </Typography>
-
-                  {/* Paragraph */}
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontFamily: "Tajawal",
-                      fontSize: { xs: "1rem", md: "1.2rem" },
-                      textAlign: "justify",
-                    }}
-                  >
-                    ⁠دون الحاجة إلى مصدر كهربائي مباشر
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-
-
-          <Grid container spacing={2} sx={{ mt: 4 }}>
-            {/* Column 1 - Right side */}
-            <Grid item xs={12} md={6}>
-              <Box sx={{ p: 2, textAlign: "right" }}>
-                {/* Main Heading with Number 03 */}
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    fontFamily: "Tajawal",
-                    mb: 1,
-                    fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  }}
-                >
-                  03 - حجم صغير وعمود ثابت:
-                </Typography>
-
-                {/* Paragraph */}
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    pl: "80px", // padding-left
-                  }}
-                >
-                                    ⁠يجعلها مثالية للمساحات الضيقة
-                أو التنقل.
-                </Typography>
-              </Box>
-            </Grid>
-
-            {/* Column 2 - Left side */}
-            <Grid item xs={12} md={6}>
-              <Box sx={{ p: 2, textAlign: "right" }}>
-                {/* Main Heading with Number 04 */}
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    fontFamily: "Tajawal",
-                    mb: 1,
-                    fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  }}
-                >
-                  04 -مرونة في الاستخدام :
-                </Typography>
-
-                 <Typography
-                  variant="body1"
-                  sx={{
-                    fontFamily: "Tajawal",
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    pl: "80px", // padding-left
-                  }}
-                >
-                                داخل المعارض، الفعاليات، المداخل، 
-                  أو حتى قرب المنتجات
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-
-
-           <Box sx={{ textAlign: "center", px: 2, mt: 4 }}>
-            {/* Main Heading with Number 05 */}
-            <Typography
-              variant="h3"
-              sx={{
-                fontWeight: "bold",
-                fontFamily: "Tajawal",
-                mb: 1,
-                fontSize: { xs: "1.5rem", md: "1.6rem" },
-              }}
-            >
-              05 - مناسبة:
-            </Typography>
-
-            {/* Paragraph */}
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "Tajawal",
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                textAlign: "center",
-                mt: 2,
-                mb: 2,
-              }}
-            >
-                            لمدارس / المستشفيات / العيادات
-              مراكز التدريب / المحلات التجارية
-              ادارة المولات
-            </Typography>
-
-            {/* Second Heading */}
-           <Typography
-            variant="h3"
-            sx={{
-              fontWeight: "bold",
-              fontFamily: "Tajawal",
-              pt: "40px", // padding top
-              pb: "40px", // padding bottom
-              fontSize: { xs: "1.5rem", md: "1.6rem" },
-            }}
-          >
-            تتيح تجربة عرض احترافية وملفتة للأنظار
-          </Typography>
-
-
-            </Box>
-            {/* Image */}
-            <Grid item xs={12}>
-            {/* Outer wrapper for animated gradient border */}
-            <Box
-              sx={{
-                borderRadius: "10px",  // border radius for outer gradient
-                p: "2px",              // border thickness
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                "@keyframes gradient": {
-                  "0%": { backgroundPosition: "0% 50%" },
-                  "50%": { backgroundPosition: "100% 50%" },
-                  "100%": { backgroundPosition: "0% 50%" },
-                },
-                animation: "gradient 4s linear infinite",
-              }}
-            >
-              {/* Inner image */}
-              <Box
-                component="img"
-                src="https://i.ibb.co/XZhxzxRR/S9.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  borderRadius: "8px", // slightly smaller than outer radius to reveal border
-                  display: "block",
-                }}
-              />
-            </Box>
-          </Grid>
-
-          </Grid>
-        </Container>
-      </section>
-
-
-      <section style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <Container
-          maxWidth="xxl"
-          sx={{
-            mt: "60px",
-            mb: "30px",
-            px: { xs: "20px", sm: "100px" },
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              position: "relative",
-              borderRadius: "10px",
-              overflow: "hidden",
-              "&::before": {
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "85%",
-                paddingTop: "2px",
-                paddingLeft: "2px",
-                borderTopLeftRadius: "10px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                zIndex: 0,
-                WebkitMask:
-                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "destination-out",
-                maskComposite: "exclude",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", sm: "block" },
-              },
-              "@keyframes gradient": {
-                "0%": { backgroundPosition: "0% 50%" },
-                "50%": { backgroundPosition: "100% 50%" },
-                "100%": { backgroundPosition: "0% 50%" },
-              },
-            }}
-          >
-            {/* Image Section */}
-            <Grid item xs={12} md={7}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/vxcWqFr2/outdoor-led.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  objectFit: "cover",
-                  // maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "30px",
-                  pr: { xs: 0, sm: "150px" },
-                }}
-              />
-            </Grid>
-
-         {/* Text Content */}
-            <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
-              <Box sx={{ p: 2 }}>
-                {/* Gradient Border Wrapper */}
-                <Box
-                  sx={{
-                    borderRadius: "10px",
-                    p: "2px",
-                    background:
-                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                    backgroundSize: "300% 300%",
-                    animation: "gradient 4s linear infinite",
-                  }}
-                >
-                  <Card
-                    sx={{
-                      backgroundColor: "#b0b0b0",
-                      p: 2,
-                      borderRadius: "8px",
-                      boxShadow: 3,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: "bold",
-                        color: "#333",
-                        fontSize: { xs: "1rem", sm: "2rem" },
-                        fontFamily: "Tajawal",
-                        direction: "rtl",
-                      }}
-                    >
-                      الشاشات الإلكترونية الخارجية
-                    </Typography>
-                  </Card>
-                </Box>
-              </Box>
-
-              {/* Paragraph */}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                في شركة الليزر، نقدم حلولاً احترافية لتركيب الشاشات الخارجية بأنواعها،
-                سواء على الأبراج، أو الواجهات التجارية، أو أعمدة اليونيبول. نحن نضمن لك
-                ظهوراً بارزاً برسائل إعلانية واضحة، مع تقنيات عرض عالية الجودة تقاوم
-                الظروف المناخية وتلفت الأنظار من مسافات بعيدة. اختر الموقع، ودع الباقي
-                علينا.
-              </Typography>
-
-              {/* Subtitle */}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                  fontWeight: 500,
-                }}
-              >
-                مميزات الشاشات الخارجية بشركة الليزر
-              </Typography>
-
-              {/* Two Column Text */}
-              <Grid container spacing={2} sx={{ mt: 2, px: "20px" }}>
-                <Grid item xs={12} md={6}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontSize: { xs: "1rem", md: "1.1rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
-                      textAlign: "justify",
-                    }}
-                  >
-                    وضوح عالٍ حتى في النهار
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontSize: { xs: "1rem", md: "1.1rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
-                      textAlign: "justify",
-                    }}
-                  >
-                    مقاومة للعوامل الجوية
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid container spacing={2} sx={{ mt: 2, px: "20px" }}>
-                <Grid item xs={12} md={6}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontSize: { xs: "1rem", md: "1.1rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
-                      textAlign: "justify",
-                    }}
-                  >
-                    رؤية من مسافات بعيدة
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontSize: { xs: "1rem", md: "1.1rem" },
-                      fontFamily: "Tajawal",
-                      direction: "rtl",
-                      textAlign: "justify",
-                    }}
-                  >
-                    تأثير بصري قوي
-                  </Typography>
-                </Grid>
-              </Grid>  
-              {/* Paragraph */}
-            {/* Subtitle */}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "center",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  pt: 4, // <-- هنا أضفت Padding Top (مثلاً 4 = 32px)
-                  fontFamily: "Tajawal",
-                  fontWeight: 500,
-                }}
-              >
-                خيارات متعددة للمواقع
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "center",  // <-- هنا التغيير
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                (أبراج – محلات – شوارع رئيسية)
-              </Typography>
-
-               <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.6rem" },
-                  textAlign: "center",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  pt: 4, // <-- هنا أضفت Padding Top (مثلاً 4 = 32px)
-                  fontFamily: "Tajawal",
-                  fontWeight: 500,
-                }}
-              >
-                إعلاناتك... أوضح، أبعد، أقوى!
-              </Typography>
-
-
-      
-            </Grid>
-
-            {/* Decorative Borders */}
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                top:"85%",
-                width: "30%",
-                height: "2px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-                width: "2px",
-                height: "12%",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: "30%",
-                top:'80%',
-                transform: "translateX(-22%)",
-                width: "2px",
-                height: "32px",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: "12%",
-                right: 0,
-                width: "1%",
-                height: "2px",
-                transform: "translateY(-1%)",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-          </Grid>
-        </Container>
-      </section>
-
-      <section
-        style={{
-          width: "100%",
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "#d5d8dc",
-        }}
-      >
-        <Container
-          maxWidth="xxl"
-          sx={{
-            mb: "15px",
-            px: { xs: "20px", sm: "100px" },
-            marginBottom: "50px",
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              mt: "40px",
-              position: "relative",
-              flexDirection: { xs: "column", sm: "row" },
-              borderRadius: "10px",
-              overflow: "hidden",
-
-              "&::before": {
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "67%",
-                borderTop: "2px solid transparent",   // apply only top border
-                borderRight: "2px solid transparent", // apply only right border
-                borderTopRightRadius: "10px",
-                background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                display: { xs: "none", sm: "block" },
-                zIndex: 0,
-
-                // masking ensures gradient shows only on the borders
-                WebkitMask:
-                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "destination-out",
-                maskComposite: "exclude",
-
-                animation: "gradient 4s linear infinite",
-              },
-
-              "@keyframes gradient": {
-                "0%": { backgroundPosition: "0% 50%" },
-                "50%": { backgroundPosition: "100% 50%" },
-                "100%": { backgroundPosition: "0% 50%" },
-              },
-            }}
-          >
-
-            {/* Text Section */}
-            <Grid item xs={12} sm={5}>
-              <Box p={2}>
-              <Box
-                sx={{
-                  borderRadius: "12px", // slightly larger than card for border
-                  p: "2px",             // border thickness
-                  background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                  backgroundSize: "300% 300%",
-                  "@keyframes gradient": {
-                    "0%": { backgroundPosition: "0% 50%" },
-                    "50%": { backgroundPosition: "100% 50%" },
-                    "100%": { backgroundPosition: "0% 50%" },
-                  },
-                  animation: "gradient 4s linear infinite",
-                }}
-              >
-                <Card
-                  sx={{
-                    bgcolor: "#b0b0b0", // inner card background
-                    p: 2,
-                    borderRadius: "10px", // slightly smaller to show gradient border
-                    boxShadow: 3,
-                    width: "100%",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      textAlign: "center",
-                      direction: "rtl",
-                      fontFamily: "Tajawal",
-                    }}
-                  >
-                       الشاشات الداخلية
-                  </Typography>
-                </Card>
-              </Box>
-
-              <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                    fontWeight: 500,
-                  }}
-                >
-                  صورة راقية... وتأثير لا يُنسى
-                </Typography>
-              
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                  شاشات داخلية تضيف لمكانك بُعدًا بصريًا أنيقًا، وتعرض محتواك بأسلوب يجذب ويُبهر.
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                 اعرض منتجاتك ورسائلك الاعلانية بجودة عالية
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                 متوفرة بأحجام متعددة وتصاميم أنيقة تناسب جميع المحلات والمطارات وغيرها
-                </Typography>
-                 <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                    fontWeight: 500,
-                  }}
-                >
-                  المزايا التسويقية:
-                </Typography>
-
-                <Typography
-                  component="ul"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "40px", // تباعد مناسب للقائمة
-                    fontFamily: "Tajawal",
-                    listStyleType: "disc", // شكل النقاط
-                  }}
-                >
-                  <li>تعزز تجربة العميل داخل المكان</li>
-                  <li>تعرض العروض، المنتجات، الخدمات، أو الرسائل التوعوية</li>
-                  <li>تصميمات أنيقة تندمج مع الديكور الداخلي</li>
-                  <li>وضوح عالٍ ومحتوى ديناميكي قابل للتغيير في أي وقت</li>
-                  <li>مناسبة لعرض الفيديوهات، الصور، والنصوص</li>
-                </Typography>
-                  <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                    fontWeight: 500,
-                  }}
-                >
-                  الفئات المستهدفة:
-                </Typography>
-
-                <Typography
-                  component="ul"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "40px", // تباعد مناسب للقائمة
-                    fontFamily: "Tajawal",
-                    listStyleType: "disc", // شكل النقاط
-                  }}
-                >
-                  <li>المحلات التجارية والعلامات الكبرى</li>
-                  <li>الشركات والمراكز الطبية</li>
-                  <li>المطاعم والمقاهي</li>
-                  <li>صالات الانتظار في المطارات</li>
-                  <li>الفنادق والمولات</li>
-                </Typography>
-
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "2rem" },
-                    textAlign: "center",
-                    direction: "rtl",
-                    fontFamily: "Tajawal",
-                    pt: 4, // ← padding top (يمكنك تعديل القيمة حسب الحاجة)
-                  }}
-                >
-                  الشاشات الداخلية – حضور بصري أنيق وفعّال
-                </Typography>
-
-              </Box>
-            </Grid>
-
-            {/* Image Section */}
-            <Grid item xs={12} sm={7}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/hJws9svz/2f6d9352-2357-4039-827f-3563fc0a24c4.webp"
-                alt="Indoor LED Screen"
-                sx={{
-                  width: "100%",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  objectFit: "cover",
-                  pb: "30px",
-                  pr: "30px",
-                  pl: { xs: 0, sm: "150px" },
-                }}
-              />
-            </Grid>
-
-          {/* Decorative Borders (hidden on mobile) */}
-            <Box
-              sx={{
-                display: { xs: "none", sm: "block" },
-                position: "absolute",
-                bottom: "33%",
-                right: 0,
-                width: "30%",
-                borderBottom: "2px solid",
-                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
-                animation: "gradient 4s linear infinite",
-                "@keyframes gradient": {
-                  "0%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
-                  "50%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #40e0d0, #7b2ff7, #ff0080, #ff0080, #ff8c00)" },
-                  "100%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
-                },
-              }}
-            />
-
-            <Box
-              sx={{
-                display: { xs: "none", sm: "block" },
-                position: "absolute",
-                top: 0,
-                left: 0,
-                height: "9%",
-                width: "20%",
-                borderLeft: "2px solid",
-                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
-                animation: "gradient 4s linear infinite",
-              }}
-            />
-
-            <Box
-              sx={{
-                display: { xs: "none", md: "block" },
-                position: "absolute",
-                bottom: 0,
-                top: "63%",
-                right: "30%",
-                transform: "translateX(-22%)",
-                width: "2px",
-                height: "30px",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-              }}
-            />
-
-            <Box
-              sx={{
-                display: { xs: "none", md: "block" },
-                position: "absolute",
-                left: 0,
-                top: "9%",
-                transform: "translateY(-1%)",
-                width: "1.8%",
-                height: "2px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-              }}
-            />
-
-            {/* Example for a Box with gradient border effect */}
-            <Box
-              sx={{
-                borderRadius: "10px",       // outer radius
-                p: "2px",                   // border thickness
-                display: { xs: "none", sm: "block" },
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                "@keyframes gradient": {
-                  "0%": { backgroundPosition: "0% 50%" },
-                  "50%": { backgroundPosition: "100% 50%" },
-                  "100%": { backgroundPosition: "0% 50%" },
-                },
-                animation: "gradient 4s linear infinite",
-              }}
-            >
-              {/* Content here */}
-            </Box>
-          </Grid>
-        </Container>
-      </section>
-
-
-      <section style={{ width: "100%", display: "flex", justifyContent: "center", paddingBottom: "60px" }}>
-        <Container
-          maxWidth="xxl"
-          sx={{
-            mt: "60px",
-            mb: "30px",
-            px: { xs: "20px", sm: "100px" },
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              position: "relative",
-              borderRadius: "10px",
-              overflow: "hidden",
-              "&::before": {
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "75%",
-                paddingTop: "2px",
-                paddingLeft: "2px",
-                borderTopLeftRadius: "10px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                zIndex: 0,
-                WebkitMask:
-                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "destination-out",
-                maskComposite: "exclude",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", sm: "block" },
-              },
-              "@keyframes gradient": {
-                "0%": { backgroundPosition: "0% 50%" },
-                "50%": { backgroundPosition: "100% 50%" },
-                "100%": { backgroundPosition: "0% 50%" },
-              },
-            }}
-          >
-            {/* Image Section */}
-            <Grid item xs={12} md={7}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/svcqkpHS/Gemini-Generated-Image-ugkra8ugkra8ugkr.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "30px",
-                  pr: { xs: 0, sm: "150px" },
-                }}
-              />
-            </Grid>
-
-            {/* Text Content */}
-            <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
-              <Box sx={{ p: 2 }}>
-                {/* Gradient Border Wrapper */}
-                <Box
-                  sx={{
-                    borderRadius: "10px",
-                    p: "2px",
-                    background:
-                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                    backgroundSize: "300% 300%",
-                    animation: "gradient 4s linear infinite",
-                  }}
-                >
-                  <Card
-                    sx={{
-                      backgroundColor: "#b0b0b0",
-                      p: 2,
-                      borderRadius: "8px",
-                      boxShadow: 3,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: "bold",
-                        color: "#333",
-                        fontSize: { xs: "1rem", sm: "2rem" },
-                        fontFamily: "Tajawal",
-                        direction: "rtl",
-                      }}
-                    >
-                       الشاشات النصية 
-                    </Typography>
-                  </Card>
-                </Box>
-              </Box>
-
-              {/* Paragraph */}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                
-                              حل ذكي لإيصال رسائلك بوضوح وتأثير.  
-              توفر شركة الليزر شاشات LED نصية مخصصة، لعرض العروض والتنبيهات والمعلومات العامة بشكل احترافي. 
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                  fontWeight:500,
-                }}
-              >
-                تُعد خيارًا مثاليًا للعرض المستمر والمباشر
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                  fontWeight: 500,
-                }}
-              >
-                فائدتها :  
-              </Typography>
-
-              <Typography
-                component="ul"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "40px", // تباعد مناسب للقائمة
-                  fontFamily: "Tajawal",
-                  listStyleType: "disc", // شكل النقاط
-                }}
-              >
-                <li>تُستخدم للإعلانات النصية، العروض، التنبيهات، أو الأسعار.</li>
-                <li>فعالة في جذب الانتباه برسائل واضحة ومباشرة.</li>
-              </Typography>
-              <Typography
-              variant="body1"
-              sx={{
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                textAlign: "justify",
-                direction: "rtl",
-                px: "20px",
-                mt: 2,
-                fontFamily: "Tajawal",
-                fontWeight: 500,
-              }}
-            >
-              مناسبة :
-            </Typography>
-
-            <Typography
-              component="ul"
-              sx={{
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                textAlign: "justify",
-                direction: "rtl",
-                px: "40px", // تباعد مناسب للقائمة
-                fontFamily: "Tajawal",
-                listStyleType: "disc", // شكل النقاط
-              }}
-            >
-              <li>
-                للمساجد والمحلات، محطات الوقود، المدارس، المراكز الطبية،
-                والمراكز التجارية، والمطارات.
-              </li>
-  
-            </Typography>
-
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                textAlign: "justify",
-                direction: "rtl",
-                px: "20px",
-                mt: 2,
-                fontFamily: "Tajawal",
-                fontWeight: 500,
-              }}
-            >
-              أبرز المميزات: 
-            </Typography>
-
-            <Typography
-              component="ul"
-              sx={{
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                textAlign: "justify",
-                direction: "rtl",
-                px: "40px", // تباعد مناسب للقائمة
-                fontFamily: "Tajawal",
-                listStyleType: "disc", // شكل النقاط
-              }}
-            >
-              <li>نصوص قابلة للتعديل بسهولة.</li>
-              <li>إمكانية عرض الوقت والتاريخ والرسائل المتغيرة.</li>
-              <li>ألوان متعددة وحجم مخصص حسب الطلب.</li>
-              <li>تعمل على مدار الساعة وبكفاءة طاقة عالية.</li>
-            </Typography>
-
-            <Typography
-              variant="h3"
-              sx={{
-                fontWeight: "bold",
-                color: "#333",
-                fontSize: { xs: "1rem", sm: "2rem" },
-                textAlign: "center",
-                direction: "rtl",
-                fontFamily: "Tajawal",
-                pt: "40px", // ✅ مسافة علوية (يمكنك تعديلها حسب الحاجة)
-              }}
-            >
-              اختر الحجم واللون والمحتوى، ودعنا نهتم بالباقي
-            </Typography>
-            </Grid>
-
-            {/* Decorative Borders */}
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                top:"75%",
-                width: "30%",
-                height: "2px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-                width: "2px",
-                height: "10%",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                top:"71%",
-                left: "30%",
-                transform: "translateX(-22%)",
-                width: "2px",
-                height: "30px",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: "10%",
-                right: 0,
-                width: "1%",
-                height: "2px",
-                transform: "translateY(-1%)",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-          </Grid>
-        </Container>
-      </section>
-
-
-      <section
-        style={{
-          width: "100%",
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "#d5d8dc",
-        }}
-      >
-        <Container
-          maxWidth="xxl"
-          sx={{
-            mb: "15px",
-            px: { xs: "20px", sm: "100px" },
-            marginBottom: "50px",
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              mt: "40px",
-              position: "relative",
-              flexDirection: { xs: "column", sm: "row" },
-              borderRadius: "10px",
-              overflow: "hidden",
-
-              "&::before": {
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "67%",
-                borderTop: "2px solid transparent",   // apply only top border
-                borderRight: "2px solid transparent", // apply only right border
-                borderTopRightRadius: "10px",
-                background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                display: { xs: "none", sm: "block" },
-                zIndex: 0,
-
-                // masking ensures gradient shows only on the borders
-                WebkitMask:
-                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "destination-out",
-                maskComposite: "exclude",
-
-                animation: "gradient 4s linear infinite",
-              },
-
-              "@keyframes gradient": {
-                "0%": { backgroundPosition: "0% 50%" },
-                "50%": { backgroundPosition: "100% 50%" },
-                "100%": { backgroundPosition: "0% 50%" },
-              },
-            }}
-          >
-
-            {/* Text Section */}
-            <Grid item xs={12} sm={5}>
-              <Box p={2}>
-              <Box
-                sx={{
-                  borderRadius: "12px", // slightly larger than card for border
-                  p: "2px",             // border thickness
-                  background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                  backgroundSize: "300% 300%",
-                  "@keyframes gradient": {
-                    "0%": { backgroundPosition: "0% 50%" },
-                    "50%": { backgroundPosition: "100% 50%" },
-                    "100%": { backgroundPosition: "0% 50%" },
-                  },
-                  animation: "gradient 4s linear infinite",
-                }}
-              >
-                <Card
-                  sx={{
-                    bgcolor: "#b0b0b0", // inner card background
-                    p: 2,
-                    borderRadius: "10px", // slightly smaller to show gradient border
-                    boxShadow: 3,
-                    width: "100%",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      textAlign: "center",
-                      direction: "rtl",
-                      fontFamily: "Tajawal",
-                    }}
-                  >
-                       الشاشات الداخلية
-                  </Typography>
-                </Card>
-              </Box>
-              
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                  توفر شركة الليزر مجموعة من الشاشات الرقمية الداخلية عالية الجودة، المصممة خصيصًا لعرض المحتوى الإعلاني أو التوعوي داخل المساحات التجارية والمرافق العامة.
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                 سواءً داخل المحلات أو المولات أو المطارات، تتيح هذه الشاشات عرض الفيديوهات والعروض الترويجية بجودة فائقة وتصميم يتماشى مع هوية المكان، مما يعزز تفاعل الزوار ويُضفي لمسة تقنية عصرية
-                </Typography>
-                 <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                    fontWeight: 500,
-                  }}
-                >
-                  المزايا التسويقية:
-                </Typography>
-
-                <Typography
-                  component="ul"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "40px", // تباعد مناسب للقائمة
-                    fontFamily: "Tajawal",
-                    listStyleType: "disc", // شكل النقاط
-                  }}
-                >
-                  <li>- تعزز تجربة العميل داخل المكان.</li>
-                  <li>تعرض العروض، المنتجات، الخدمات، أو الرسائل التوعوية.</li>
-                  <li>تصميمات أنيقة تندمج مع الديكور الداخلي.</li>
-                  <li>وضوح عالٍ ومحتوى ديناميكي قابل للتغيير في أي وقت.</li>
-                  <li>مناسبة لعرض الفيديوهات، الصور، والنصوص.</li>
-                </Typography>
-                  <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                    fontWeight: 500,
-                  }}
-                >
-                  الفئات المستهدفة:
-                </Typography>
-
-                <Typography
-                  component="ul"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "40px", // تباعد مناسب للقائمة
-                    fontFamily: "Tajawal",
-                    listStyleType: "disc", // شكل النقاط
-                  }}
-                >
-                  <li>المحلات التجارية والعلامات الكبرى</li>
-                  <li>الشركات والمراكز الطبية</li>
-                  <li>المطاعم والمقاهي</li>
-                  <li>صالات الانتظار في المطارات</li>
-                  <li>الفنادق والمولات</li>
-                </Typography>
-
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "2rem" },
-                    textAlign: "center",
-                    direction: "rtl",
-                    fontFamily: "Tajawal",
-                    pt: 4, // ← padding top (يمكنك تعديل القيمة حسب الحاجة)
-                  }}
-                >
-                  الشاشات الإلكترونية الداخلية
-                </Typography>
-
-              </Box>
-            </Grid>
-
-            {/* Image Section */}
-            <Grid item xs={12} sm={7}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/C5YsPnf7/12-Indoor-led-screen-display-billboards-mockup.webp"
-                alt="Indoor LED Screen"
-                sx={{
-                  width: "100%",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  objectFit: "cover",
-                  pb: "30px",
-                  pr: "30px",
-                  pl: { xs: 0, sm: "150px" },
-                }}
-              />
-            </Grid>
-
-          {/* Decorative Borders (hidden on mobile) */}
-            <Box
-              sx={{
-                display: { xs: "none", sm: "block" },
-                position: "absolute",
-                bottom: "33%",
-                right: 0,
-                width: "30%",
-                borderBottom: "2px solid",
-                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
-                animation: "gradient 4s linear infinite",
-                "@keyframes gradient": {
-                  "0%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
-                  "50%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #40e0d0, #7b2ff7, #ff0080, #ff0080, #ff8c00)" },
-                  "100%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
-                },
-              }}
-            />
-
-            <Box
-              sx={{
-                display: { xs: "none", sm: "block" },
-                position: "absolute",
-                top: 0,
-                left: 0,
-                height: "9%",
-                width: "20%",
-                borderLeft: "2px solid",
-                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
-                animation: "gradient 4s linear infinite",
-              }}
-            />
-
-            <Box
-              sx={{
-                display: { xs: "none", md: "block" },
-                position: "absolute",
-                bottom: 0,
-                top: "63%",
-                right: "30%",
-                transform: "translateX(-22%)",
-                width: "2px",
-                height: "30px",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-              }}
-            />
-
-            <Box
-              sx={{
-                display: { xs: "none", md: "block" },
-                position: "absolute",
-                left: 0,
-                top: "9%",
-                transform: "translateY(-1%)",
-                width: "1.8%",
-                height: "2px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-              }}
-            />
-
-            {/* Example for a Box with gradient border effect */}
-            <Box
-              sx={{
-                borderRadius: "10px",       // outer radius
-                p: "2px",                   // border thickness
-                display: { xs: "none", sm: "block" },
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                "@keyframes gradient": {
-                  "0%": { backgroundPosition: "0% 50%" },
-                  "50%": { backgroundPosition: "100% 50%" },
-                  "100%": { backgroundPosition: "0% 50%" },
-                },
-                animation: "gradient 4s linear infinite",
-              }}
-            >
-              {/* Content here */}
-            </Box>
-          </Grid>
-        </Container>
-      </section>
-
-      <section style={{ width: "100%", display: "flex", justifyContent: "center", paddingBottom: "60px" }}>
-        <Container
-          maxWidth="xxl"
-          sx={{
-            mt: "60px",
-            mb: "30px",
-            px: { xs: "20px", sm: "100px" },
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              position: "relative",
-              borderRadius: "10px",
-              overflow: "hidden",
-              "&::before": {
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                paddingTop: "2px",
-                paddingLeft: "2px",
-                borderTopLeftRadius: "10px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                zIndex: 0,
-                WebkitMask:
-                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "destination-out",
-                maskComposite: "exclude",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", sm: "block" },
-              },
-              "@keyframes gradient": {
-                "0%": { backgroundPosition: "0% 50%" },
-                "50%": { backgroundPosition: "100% 50%" },
-                "100%": { backgroundPosition: "0% 50%" },
-              },
-            }}
-          >
-            {/* Image Section */}
-            <Grid item xs={12} md={7}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/q3RJqF1G/interactive-kiosk-Faisalabad.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "30px",
-                  pr: { xs: 0, sm: "150px" },
-                }}
-              />
-            </Grid>
-
-            {/* Text Content */}
-            <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
-              <Box sx={{ p: 2 }}>
-                {/* Gradient Border Wrapper */}
-                <Box
-                  sx={{
-                    borderRadius: "10px",
-                    p: "2px",
-                    background:
-                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                    backgroundSize: "300% 300%",
-                    animation: "gradient 4s linear infinite",
-                  }}
-                >
-                  <Card
-                    sx={{
-                      backgroundColor: "#b0b0b0",
-                      p: 2,
-                      borderRadius: "8px",
-                      boxShadow: 3,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: "bold",
-                        color: "#333",
-                        fontSize: { xs: "1rem", sm: "2rem" },
-                        fontFamily: "Tajawal",
-                        direction: "rtl",
-                      }}
-                    >
-                       الشـــــاشات التفــــاعلـية
-                    </Typography>
-                  </Card>
-                </Box>
-              </Box>
-
-              {/* Paragraph */}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                  fontWeight:500,
-                }}
-              >
-                تجربة تفاعلية... تترك الأثر 
-              </Typography>
-
-                 {/* Paragraph */}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                
-                في عالم يتجه نحو التفاعل والابتكار، تقدم لك شركة الليزر الشاشات التفاعلية التي تحول المحتوى إلى تجربة حية.  
-                سواء كنت في معرض، أو فعالية، أو مساحة عرض، تتيح لك هذه الشاشات جذب الانتباه، إشراك الجمهور، وتقديم المعلومات بطريقة ممتعة وسلسة.
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                
-                نقدم خيارات متعددة من الأحجام والتقنيات تناسب جميع الاحتياجات مع تصميمات أنيقة وتقنيات تشغيل عالية الأداء 
-              </Typography>
-
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: "bold",
-                  fontFamily: "Tajawal",
-                  pt: "40px", // padding top
-                  pb: "40px", // padding bottom
-                  fontSize: { xs: "1.5rem", md: "1.6rem" },
-                  textAlign: "center", // <-- هنا الإضافة
-                }}
-              >
-                اختر التقنية التي تناسبك .. واترك للبصمة الرقمية أن تتكلم
-              </Typography>  
-            </Grid>
-
-            {/* Decorative Borders */}
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                width: "30%",
-                height: "2px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-                width: "2px",
-                height: "13%",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: "30%",
-                transform: "translateX(-22%)",
-                width: "2px",
-                height: "30px",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: "13%",
-                right: 0,
-                width: "1%",
-                height: "2px",
-                transform: "translateY(-1%)",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-          </Grid>
-        </Container>
-      </section>
-
-
-      <section
-        style={{
-          width: "100%",
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "#d5d8dc",
-        }}
-      >
-        <Container
-          maxWidth="xxl"
-          sx={{
-            mb: "15px",
-            px: { xs: "20px", sm: "100px" },
-            marginBottom: "50px",
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              mt: "40px",
-              position: "relative",
-              flexDirection: { xs: "column", sm: "row" },
-              borderRadius: "10px",
-              overflow: "hidden",
-
-              "&::before": {
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                borderTop: "2px solid transparent",   // apply only top border
-                borderRight: "2px solid transparent", // apply only right border
-                borderTopRightRadius: "10px",
-                background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                display: { xs: "none", sm: "block" },
-                zIndex: 0,
-
-                // masking ensures gradient shows only on the borders
-                WebkitMask:
-                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "destination-out",
-                maskComposite: "exclude",
-
-                animation: "gradient 4s linear infinite",
-              },
-
-              "@keyframes gradient": {
-                "0%": { backgroundPosition: "0% 50%" },
-                "50%": { backgroundPosition: "100% 50%" },
-                "100%": { backgroundPosition: "0% 50%" },
-              },
-            }}
-          >
-
-            {/* Text Section */}
-            <Grid item xs={12} sm={5}>
-              <Box p={2}>
-              <Box
-                sx={{
-                  borderRadius: "12px", // slightly larger than card for border
-                  p: "2px",             // border thickness
-                  background: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                  backgroundSize: "300% 300%",
-                  "@keyframes gradient": {
-                    "0%": { backgroundPosition: "0% 50%" },
-                    "50%": { backgroundPosition: "100% 50%" },
-                    "100%": { backgroundPosition: "0% 50%" },
-                  },
-                  animation: "gradient 4s linear infinite",
-                }}
-              >
-                <Card
-                  sx={{
-                    bgcolor: "#b0b0b0", // inner card background
-                    p: 2,
-                    borderRadius: "10px", // slightly smaller to show gradient border
-                    boxShadow: 3,
-                    width: "100%",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#333",
-                      fontSize: { xs: "1rem", sm: "2rem" },
-                      textAlign: "center",
-                      direction: "rtl",
-                      fontFamily: "Tajawal",
-                    }}
-                  >
-                   شاشات محطات الوقود
-                  </Typography>
-                </Card>
-              </Box>
-              
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                                  توفر شركة الليزر شاشات إلكترونية عالية الدقة لعرض أسعار البنزين والديزل في محطات الوقود.  
-                تتميّز هذه الشاشات بتصميمها العملي وحجمها المناسب، مع وضوح فائق في جميع الظروف المناخية، لتعرض الأسعار بشكل مباشر وواضح للعملاء. 
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1rem", md: "1.2rem" },
-                    textAlign: "justify",
-                    direction: "rtl",
-                    px: "20px",
-                    mt: 2,
-                    fontFamily: "Tajawal",
-                  }}
-                >
-                  نعتمد في تصنيعها على تقنيات موثوقة تدعم التحديث السريع للأسعار وتقاوم الحرارة والغبار، مما يجعلها الخيار المثالي لمحطات الوقود الحديثة.
-                </Typography>
-                 <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: "bold",
-                    color: "#333",
-                    fontSize: { xs: "1rem", sm: "2rem" },
-                    textAlign: "center",
-                    direction: "rtl",
-                    fontFamily: "Tajawal",
-                    pt: 3, // padding top
-                    pb: 3, // padding bottom
-                    px: 2, // padding left & right
-                  }}
-                >
-                  أسعارك واضحة... وعميلك مطمئن
-                </Typography>
-
-              </Box>
-            </Grid>
-
-            {/* Image Section */}
-            <Grid item xs={12} sm={7}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/C3TL6s5Y/Ha830c6b132ba4daa87daa57571a5b4c7u.webp"
-                alt="Indoor LED Screen"
-                sx={{
-                  width: "100%",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  objectFit: "cover",
-                  pb: "30px",
-                  pr: "30px",
-                  pl: { xs: 0, sm: "150px" },
-                }}
-              />
-            </Grid>
-
-          {/* Decorative Borders (hidden on mobile) */}
-            <Box
-              sx={{
-                display: { xs: "none", sm: "block" },
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                width: "30%",
-                borderBottom: "2px solid",
-                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
-                animation: "gradient 4s linear infinite",
-                "@keyframes gradient": {
-                  "0%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
-                  "50%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #40e0d0, #7b2ff7, #ff0080, #ff0080, #ff8c00)" },
-                  "100%": { borderImageSlice: 1, borderImageSource: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)" },
-                },
-              }}
-            />
-
-            <Box
-              sx={{
-                display: { xs: "none", sm: "block" },
-                position: "absolute",
-                top: 0,
-                left: 0,
-                height: "15%",
-                width: "20%",
-                borderLeft: "2px solid",
-                borderImage: "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080) 1",
-                animation: "gradient 4s linear infinite",
-              }}
-            />
-
-            <Box
-              sx={{
-                display: { xs: "none", md: "block" },
-                position: "absolute",
-                bottom: 0,
-                right: "30%",
-                transform: "translateX(-22%)",
-                width: "2px",
-                height: "30px",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-              }}
-            />
-
-            <Box
-              sx={{
-                display: { xs: "none", md: "block" },
-                position: "absolute",
-                left: 0,
-                top: "15%",
-                transform: "translateY(-1%)",
-                width: "1.8%",
-                height: "2px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-              }}
-            />
-
-            {/* Example for a Box with gradient border effect */}
-            <Box
-              sx={{
-                borderRadius: "10px",       // outer radius
-                p: "2px",                   // border thickness
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                "@keyframes gradient": {
-                  "0%": { backgroundPosition: "0% 50%" },
-                  "50%": { backgroundPosition: "100% 50%" },
-                  "100%": { backgroundPosition: "0% 50%" },
-                },
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", sm: "block" },
-              }}
-            >
-              {/* Content here */}
-            </Box>
-          </Grid>
-        </Container>
-      </section>
-
-
-
-
-      <section style={{ width: "100%", display: "flex", justifyContent: "center", paddingBottom: "60px" }}>
-        <Container
-          maxWidth="xxl"
-          sx={{
-            mt: "60px",
-            mb: "30px",
-            px: { xs: "20px", sm: "100px" },
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              position: "relative",
-              borderRadius: "10px",
-              overflow: "hidden",
-              "&::before": {
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "63%",
-                paddingTop: "2px",
-                paddingLeft: "2px",
-                borderTopLeftRadius: "10px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                zIndex: 0,
-                WebkitMask:
-                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "destination-out",
-                maskComposite: "exclude",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", sm: "block" },
-              },
-              "@keyframes gradient": {
-                "0%": { backgroundPosition: "0% 50%" },
-                "50%": { backgroundPosition: "100% 50%" },
-                "100%": { backgroundPosition: "0% 50%" },
-              },
-            }}
-          >
-            {/* Image Section */}
-            <Grid item xs={12} md={7}>
-              <Box
-                component="img"
-                src="https://i.ibb.co/pBDwQmRq/IC-3-displays-s.webp"
-                alt="Outdoor LED Screen"
-                sx={{
-                  width: "100%",
-                  objectFit: "cover",
-                  maxHeight: { xs: 250, sm: 350, md: 500 },
-                  pb: "30px",
-                  pr: { xs: 0, sm: "150px" },
-                }}
-              />
-            </Grid>
-
-            {/* Text Content */}
-            <Grid item xs={12} md={5} sx={{ pl: { sm: "150px", xs: 0 } }}>
-              <Box sx={{ p: 2 }}>
-                {/* Gradient Border Wrapper */}
-                <Box
-                  sx={{
-                    borderRadius: "10px",
-                    p: "2px",
-                    background:
-                      "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                    backgroundSize: "300% 300%",
-                    animation: "gradient 4s linear infinite",
-                  }}
-                >
-                  <Card
-                    sx={{
-                      backgroundColor: "#b0b0b0",
-                      p: 2,
-                      borderRadius: "8px",
-                      boxShadow: 3,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: "bold",
-                        color: "#333",
-                        fontSize: { xs: "1rem", sm: "2rem" },
-                        fontFamily: "Tajawal",
-                        direction: "rtl",
-                      }}
-                    >
-                       شاشات أرقام الانتظار
-                    </Typography>
-                  </Card>
-                </Box>
-              </Box>
-
-              {/* Paragraph */}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                }}
-              >
-                في بيئة تعتمد على راحة العميل وسرعة الخدمة، تقدم شركة الليزر شاشات رقمية لعرض أرقام الانتظار بدقة ووضوح، لتوفير تجربة منظمة وراقية داخل المنشآت.  
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                  fontWeight:500,
-                }}
-              >
-                تمكِّنك من إدارة الزحام بسلاسة، وترك انطباع مميز لدى عملائك
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                  fontWeight: 500,
-                }}
-              >
-                الفكرة:
-              </Typography>
-
-                  <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: "justify",
-                  direction: "rtl",
-                  px: "20px",
-                  mt: 2,
-                  fontFamily: "Tajawal",
-                  fontWeight:500,
-                }}
-              >
-               تنظيم حركة الزبائن بطريقة احترافية ومريحة، وإظهار رقم العميل التالي بوضوح داخل الفرع.
-              </Typography>
-
-              <Typography
-              variant="body1"
-              sx={{
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                textAlign: "justify",
-                direction: "rtl",
-                px: "20px",
-                mt: 2,
-                fontFamily: "Tajawal",
-                fontWeight: 500,
-              }}
-            >
-              المميزات التسويقية:  
-            </Typography>
-
-            <Typography
-              component="ul"
-              sx={{
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                textAlign: "justify",
-                direction: "rtl",
-                px: "40px", // تباعد مناسب للقائمة
-                fontFamily: "Tajawal",
-                listStyleType: "disc", // شكل النقاط
-              }}
-            >
-              <li>تخفف التزاحم وتقلل التوتر  </li>
-              <li>تعطي انطباعًا بالنظام والاحتراف</li>
-              <li>يمكن دمجها مع صوت أو شاشة إضافية لعرض المحتوى</li>
-              <li>مخصصة للعيادات، البنوك، المعارض، مراكز الخدمة</li>
-  
-            </Typography>
-
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                textAlign: "justify",
-                direction: "rtl",
-                px: "20px",
-                mt: 2,
-                fontFamily: "Tajawal",
-                fontWeight: 500,
-              }}
-            >
-              الجهات المستهدفة: 
-            </Typography>
-
-            <Typography
-              component="ul"
-              sx={{
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                textAlign: "justify",
-                direction: "rtl",
-                px: "40px", // تباعد مناسب للقائمة
-                fontFamily: "Tajawal",
-                listStyleType: "disc", // شكل النقاط
-              }}
-            >
-              <li>المستشفيات والعيادات</li>
-              <li>مراكز صيانة وخدمات العملاء</li>
-              <li>المؤسسات الحكومية والخاصة</li>
-              <li>البنوك وشركات التمويل</li>
-            </Typography>
-
-            <Typography
-              variant="h3"
-              sx={{
-                fontWeight: "bold",
-                color: "#333",
-                fontSize: { xs: "1rem", sm: "2rem" },
-                textAlign: "center",
-                direction: "rtl",
-                fontFamily: "Tajawal",
-                pt: "40px", // ✅ مسافة علوية (يمكنك تعديلها حسب الحاجة)
-              }}
-            >
-              نظام عرض أرقام الانتظار – تنظيم باحترافية
-            </Typography>
-            </Grid>
-
-            {/* Decorative Borders */}
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                top:"63%",
-                width: "30%",
-                height: "2px",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-                width: "2px",
-                height: "10%",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                top:"59%",
-                left: "30%",
-                transform: "translateX(-22%)",
-                width: "2px",
-                height: "30px",
-                background:
-                  "linear-gradient(180deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                top: "10%",
-                right: 0,
-                width: "1%",
-                height: "2px",
-                transform: "translateY(-1%)",
-                background:
-                  "linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #7b2ff7, #ff0080)",
-                backgroundSize: "300% 300%",
-                animation: "gradient 4s linear infinite",
-                display: { xs: "none", md: "block" },
-              }}
-            />
-          </Grid>
-        </Container>
-      </section>
-
-
     </>
   );
 };
