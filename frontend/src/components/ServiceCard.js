@@ -204,10 +204,10 @@ function ServiceCard() {
             loading="lazy"
             style={{
               width: "100%",
-              maxHeight: "400px",
+              maxHeight: "700px",
               objectFit: "cover",
               borderRadius: "20px",
-              paddingBottom: "30px",
+              paddingBottom: "50px",
             }}
           />
          {/* <Button
