@@ -197,7 +197,8 @@ function ServiceCard() {
         </Grid>
 
         {/* Banner Images and Button */}
-        <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
+      <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
+        <a href="https://sssplatform.com" target="_blank" rel="noopener noreferrer">
           <img
             src="https://i.ibb.co/9HP3WBP9/01.webp"
             alt="Banner"
@@ -208,34 +209,15 @@ function ServiceCard() {
               objectFit: "cover",
               borderRadius: "20px",
               paddingBottom: "50px",
+              cursor: "pointer", // makes it look clickable
             }}
           />
-         {/* <Button
-          variant="contained"
-          size="small"
-          sx={{
-            position: "absolute",
-            top: { xs: "43%", sm: "55%" }, // mobile 43%, larger 55%
-            left: "30%",
-            transform: "translate(-50%, -50%)",
-            backgroundColor: "white",
-            color: "#096e69",
-            fontFamily: "Tajawal",
-            fontWeight: 700,
-            fontSize: { xs: "5px", sm: "14px", md: "14px" }, // smaller font only on mobile
-            px: { xs: 1, sm: 2 }, // horizontal padding (2px 8px ≈ px:1)
-            py: { xs: 0.25, sm: 0.5 }, // vertical padding
-            borderRadius: "25px",
-            boxShadow: 2,
-            "&:hover": {
-              backgroundColor: "#e6e6e6",
-            },
-          }}
-        >
-          المزيد من الخدمات
-        </Button> */}
+        </a>
 
-        </Box>
+        {/* Button (currently commented out) */}
+        {/* ... */}
+      </Box>
+
       </Container>
     </Box>
   );
