@@ -273,6 +273,7 @@ const ScreensSection = () => {
                 }}
               />
             </Box>
+
         </Box>
       </Container>
       </Box>
@@ -286,6 +287,21 @@ const ScreensSection = () => {
     width: "100%",
   }}
 >
+
+    <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+    <img
+      src="https://i.ibb.co/hJd60qFJ/Whats-App-Image-2025-11-20-at-11-09-42-AM.webp"
+      alt="Image 01"
+      style={{
+        objectFit: "cover",
+        width: "100%",
+        height: "auto",
+        display: "block",
+        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+      }}
+    />
+  </Box>
+
   {/* IMAGE 01 */}
   <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
