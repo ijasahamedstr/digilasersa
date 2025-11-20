@@ -11,8 +11,7 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Container, Grid, Typography, Box, Button, Card, CircularProgress } from "@mui/material";
-import demoVideoh from "./video/scrren.mp4";
+import { Container, Grid, Box, Button, CircularProgress } from "@mui/material";
 
 const carouselItems = [
   { id: 1, img: "https://i.ibb.co/LX7hG42y/image.webp" },
@@ -231,13 +230,14 @@ const ScreensSection = () => {
          <Box
             sx={{
               width: "100%",
-              py: 6,
+              py: 3,
               backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`, // ✅ Your background image here
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               display: "flex",
               justifyContent: "center",
+              paddingTop:'0px'
             }}
           >
         <Container maxWidth="xl">
@@ -253,7 +253,7 @@ const ScreensSection = () => {
                   height: "auto",
                   display: "block",
                   boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-                  marginBottom:'50px'
+                  marginBottom:'30px'
                 }}
               />
             </Box>
