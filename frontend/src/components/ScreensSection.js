@@ -260,7 +260,7 @@ const ScreensSection = () => {
           </Grid>
 
           {/* Image Section */}
-            <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+            {/* <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
               <img
                 src="https://i.ibb.co/YBgThJg7/01.webp"
                 alt="Image 01"
@@ -272,7 +272,7 @@ const ScreensSection = () => {
                   boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                 }}
               />
-            </Box>
+            </Box> */}
 
         </Box>
       </Container>

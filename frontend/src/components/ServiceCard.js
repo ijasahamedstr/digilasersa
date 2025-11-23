@@ -198,7 +198,7 @@ function ServiceCard() {
 
         {/* Banner Images and Button */}
       <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
-        <a href="https://sssplatform.com" target="_blank" rel="noopener noreferrer">
+        {/* <a href="https://sssplatform.com" target="_blank" rel="noopener noreferrer">
           <img
             src="https://i.ibb.co/YBgThJg7/01.webp"
             alt="Banner"
@@ -212,7 +212,7 @@ function ServiceCard() {
               cursor: "pointer", // makes it look clickable
             }}
           />
-        </a>
+        </a> */}
 
         {/* Button (currently commented out) */}
         {/* ... */}
