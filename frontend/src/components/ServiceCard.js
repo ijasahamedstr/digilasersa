@@ -212,7 +212,7 @@ function ServiceCard() {
               cursor: "pointer", // makes it look clickable
             }}
           />
-        </a>
+        {/* </a> */}
 
         {/* Button (currently commented out) */}
         {/* ... */}
