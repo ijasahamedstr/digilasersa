@@ -261,6 +261,7 @@ const ScreensSection = () => {
 
           {/* Image Section */}
             <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+              <a href="https://sssplatform.com" target="_blank" rel="noopener noreferrer">
               <img
                 src="https://i.ibb.co/YFmVDcNp/Whats-App-Image-2025-11-25-at-1-17-10-PM.jpg"
                 alt="Image 01"
@@ -272,6 +273,7 @@ const ScreensSection = () => {
                   boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
                 }}
               />
+              </a>
             </Box>
 
         </Box>
