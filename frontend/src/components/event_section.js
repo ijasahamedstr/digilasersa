@@ -11,21 +11,10 @@ import {
   Pagination,
   Stack,
 } from "@mui/material";
-import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 import axios from "axios";
 
-// RTL News / Events section
+// RTL News / Events section (videos removed - image-only)
 function FeedbackCard({ item }) {
-  const [playVideo, setPlayVideo] = useState(false);
-
-  const onActivate = () => setPlayVideo(true);
-  const onKeyDown = (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      onActivate();
-    }
-  };
-
   return (
     <Box px={1} height="100%" mb={10}>
       {/* More bottom space */}
@@ -41,7 +30,7 @@ function FeedbackCard({ item }) {
           direction: "rtl",
         }}
       >
-        {/* MEDIA AREA */}
+        {/* MEDIA AREA - image only */}
         <CardMedia
           component="div"
           sx={{
@@ -63,94 +52,20 @@ function FeedbackCard({ item }) {
               justifyContent: "center",
             }}
           >
-            {item.type === "image" ? (
-              <Box
-                component="img"
-                src={item.image}
-                alt={item.name}
-                loading="lazy"
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  objectPosition: "center",
-                  display: "block",
-                  backgroundColor: "#000",
-                }}
-              />
-            ) : !playVideo ? (
-              <Box
-                onClick={onActivate}
-                onKeyDown={onKeyDown}
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  position: "relative",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                role="button"
-                tabIndex={0}
-                aria-label={`تشغيل الفيديو: ${item.name}`}
-              >
-                <Box
-                  component="img"
-                  src={item.poster || item.image || ""}
-                  alt={`${item.name} thumbnail`}
-                  loading="lazy"
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    objectPosition: "center",
-                    display: "block",
-                    backgroundColor: "#000",
-                  }}
-                />
-
-                <PlayCircleFilledWhiteIcon
-                  sx={{
-                    position: "absolute",
-                    bottom: 12,
-                    right: 12,
-                    fontSize: { xs: 48, md: 64 },
-                    color: "rgba(255,255,255,0.95)",
-                    filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.6))",
-                  }}
-                />
-              </Box>
-            ) : (
-              <Box
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#000",
-                }}
-              >
-                <video
-                  controls
-                  autoPlay
-                  muted
-                  playsInline
-                  poster={item.poster || item.image || ""}
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    width: "auto",
-                    height: "auto",
-                    objectFit: "contain",
-                    display: "block",
-                  }}
-                >
-                  <source src={item.video} type="video/mp4" />
-                  متصفحك لا يدعم تشغيل الفيديو.
-                </video>
-              </Box>
-            )}
+            <Box
+              component="img"
+              src={item.image || item.poster || ""}
+              alt={item.name}
+              loading="lazy"
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                objectPosition: "center",
+                display: "block",
+                backgroundColor: "#000",
+              }}
+            />
           </Box>
         </CardMedia>
 
@@ -180,7 +95,7 @@ function FeedbackCard({ item }) {
 
 /**
  * Eventsection
- * - Accepts optional `title` prop (default: "الأخبار والفعاليات")
+ * - Accepts optional `title` prop (default: "آخر أخبارنا")
  * - Heading is centered and uses same RTL styling
  */
 export default function Eventsection({ title = " آخر أخبارنا" }) {
@@ -230,20 +145,10 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
         const images = Array.isArray(ev.newsimagelinks)
           ? ev.newsimagelinks
           : [];
-        const mainImage = images[0];
-        const videoUrl =
-          ev.newsvideolink || ev.videolink || ev.video || ev.videoUrl;
+        const mainImage = images[0] || ev.image || ev.mainImage || null;
 
-        if (videoUrl)
-          return {
-            name,
-            type: "video",
-            video: videoUrl,
-            poster: mainImage,
-            text,
-          };
-        if (mainImage)
-          return { name, type: "image", image: mainImage, text };
+        // Videos intentionally ignored. Only image entries are returned.
+        if (mainImage) return { name, type: "image", image: mainImage, text };
         return null;
       })
       .filter(Boolean);
@@ -289,7 +194,7 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
       style={{
         backgroundColor: "#f0f0f0",
         paddingTop: 40,
-        paddingBottom: 40,
+        paddingBottom: 80,
       }}
     >
       <Container maxWidth="xl">
