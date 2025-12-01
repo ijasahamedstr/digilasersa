@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import {
   AppBar,
@@ -7,46 +7,15 @@ import {
   Container,
   Typography,
   Grid,
-  TextField,
   Button,
   Box,
 } from "@mui/material";
 import { Twitter, Instagram, LinkedIn, YouTube, WhatsApp } from "@mui/icons-material";
 import { FaSnapchat, FaTiktok } from "react-icons/fa";
 
-const INITIAL_FORM_STATE = {
-  name: "",
-  phone: "",
-  message: "",
-};
-
 export default function Footer() {
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const location = useLocation();
-
   const isAboutPage = location.pathname.includes("من نحن");
-
-  const handleChange = ({ target: { name, value } }) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const isFormValid = () =>
-    Object.values(formData).every((field) => field.trim() !== "");
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!isFormValid()) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-    const { name, phone, message } = formData;
-    const whatsappNumber = "966505868888";
-    const text = `👋 مرحبًا، لدي استفسار:\n\n📛 الاسم: ${name}\n📞 الجوال: ${phone}\n📝 الرسالة: ${message}`;
-    const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
-    window.open(whatsappUrl, "_blank");
-  };
 
   return (
     <>
@@ -55,13 +24,8 @@ export default function Footer() {
           <Grid container spacing={4}>
             <RightTextSection />
 
-            {!isAboutPage && (
-              <LeftFormSection
-                formData={formData}
-                handleChange={handleChange}
-                handleFormSubmit={handleFormSubmit}
-              />
-            )}
+            {/* When NOT on the about page show the single "سؤال" button instead of the form */}
+            {!isAboutPage && <AskButtonSection />}
           </Grid>
         </Container>
       </Box>
@@ -78,13 +42,13 @@ export default function Footer() {
           >
             <Grid container justifyContent="center" spacing={1}>
               {[
-                { icon: <Twitter />, label: "twitter", url: "https://x.com/digilasersa" },
-                { icon: <Instagram />, label: "instagram", url: "https://www.instagram.com/digilasersa" },
-                { icon: <LinkedIn />, label: "linkedin", url: "https://www.linkedin.com/company/digilasersa" },
-                { icon: <YouTube />, label: "youtube", url: "https://youtube.com/@digilaserSa" },
                 { icon: <WhatsApp />, label: "whatsapp", url: "http://wa.me/966571978888" },
+                { icon: <Instagram />, label: "instagram", url: "https://www.instagram.com/digilasersa" },
                 { icon: <FaTiktok />, label: "tiktok", url: "https://www.tiktok.com/@digilasersa" },
                 { icon: <FaSnapchat />, label: "snapchat", url: "https://www.snapchat.com/add/digilasersa" },
+                { icon: <Twitter />, label: "twitter", url: "https://x.com/digilasersa" },
+                { icon: <YouTube />, label: "youtube", url: "https://youtube.com/@digilaserSa" },
+                { icon: <LinkedIn />, label: "linkedin", url: "https://www.linkedin.com/company/digilasersa" },
               ].map(({ icon, label, url }) => (
                 <Grid item key={label}>
                   <IconButton
@@ -118,7 +82,7 @@ export default function Footer() {
 }
 
 // ================================
-// Right Text Section
+// Right Text Section (unchanged behavior)
 // ================================
 function RightTextSection() {
   const location = useLocation();
@@ -138,19 +102,132 @@ function RightTextSection() {
       sx={{
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        mt: { xs: 4, md: 0 },
+        textAlign: "center",
+      }}
+    >
+      {/* 🔵 Heading Above the Button */}
+      <Typography
+        variant="h5"
+        sx={{
+          mb: 2,
+          color: "#FFFF",
+          direction: "rtl",
+        }}
+      >
+        للشكوى؟
+      </Typography>
+
+      <Button
+        variant="contained"
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        startIcon={<WhatsApp />}
+        sx={{
+          backgroundColor: "#00fffc",
+          color: "#0a0a0aff",
+          fontWeight: "bold",
+          fontSize: "18px",
+          px: 4,
+          py: 1.5,
+          mb: 5,
+          borderRadius: "30px",
+          width: { xs: "80%", sm: "60%", md: "40%" },
+          animation: "blinker 1.2s linear infinite",
+          "@keyframes blinker": {
+            "50%": { opacity: 0.3 },
+          },
+        }}
+      >
+        سؤال
+      </Button>
+
+      {/* Show this second pair ONLY on the main (home) page */}
+      {isHome && (
+        <>
+          <Typography
+            variant="h5"
+            sx={{
+              mb: 2,
+              color: "#fff",
+              direction: "rtl",
+            }}
+          >
+            للاستفسار؟
+          </Typography>
+
+          <Button
+            variant="contained"
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            startIcon={<WhatsApp />}
+            sx={{
+              backgroundColor: "#00fffc",
+              color: "#0a0a0aff",
+              fontWeight: "bold",
+              fontSize: "18px",
+              px: 4,
+              py: 1.5,
+              borderRadius: "30px",
+              width: { xs: "80%", sm: "60%", md: "40%" },
+              animation: "blinker 1.2s linear infinite",
+              "@keyframes blinker": {
+                "50%": { opacity: 0.3 },
+              },
+            }}
+          >
+            للشكاوى
+          </Button>
+        </>
+      )}
+    </Grid>
+  );
+}
+
+// ================================
+
+// Ask Button Section (replaces the form)
+// ================================
+function AskButtonSection() {
+  const location = useLocation();
+  const decodedPath = decodeURIComponent(location.pathname);
+  const isHome = decodedPath === "/" || decodedPath === "/الرئيسية";
+
+  // user requested button should send to 0571978888 only
+  const localNumber = "0571978888";
+  // convert to international format for wa.me (Saudi code 966, remove leading 0)
+  const internationalNumber = `966${localNumber.replace(/^0+/, "")}`; // => 966571978888
+  const presetText = "👋 مرحبًا، لدي سؤال.";
+  const whatsappUrl = `https://wa.me/${internationalNumber}?text=${encodeURIComponent(presetText)}`;
+
+  return (
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
         alignItems: "flex-end",
         textAlign: "justify",
         pr: 5,
-        mt: { xs: 0, md: "90px" },
+        mt: { xs: 0, md: 0 },
       }}
     >
-      <Typography
-        variant="h4"
-        color="white"
-        sx={{ fontSize: { xs: "22px", md: "30px" } }}
-      >
-        Contact Us
-      </Typography>
+      {/* ← الآن العنوان يظهر فقط على الصفحة الرئيسية */}
+      {isHome && (
+        <Typography
+          variant="h4"
+          color="white"
+          sx={{ fontSize: { xs: "22px", md: "30px" } }}
+        >
+          اتصل بنا
+        </Typography>
+      )}
 
       {isHome && (
         <Grid
@@ -161,13 +238,10 @@ function RightTextSection() {
             mt: "20px",
             direction: "rtl",
             alignItems: "center",
-            mr: { xs: 0, sm: 0, md: "100px" },
+            mr: { xs: 0, sm: 0, md: 0 },
           }}
         >
-          {[
-            { label: "رقم الاتصال", value: "8888 197 057" },
-            { label: "بريد إلكتروني", value: "info@digilaser.sa" },
-          ].map(({ label, value }) => (
+          {[{ label: "رقم الاتصال", value: "8888 197 057" }, { label: "بريد إلكتروني", value: "info@digilaser.sa" }].map(({ label, value }) => (
             <React.Fragment key={label}>
               <Grid item xs={4}>
                 <Typography
@@ -213,12 +287,26 @@ function RightTextSection() {
       {!isHome && (
         <Box
           sx={{
-            mt: { xs: 12, sm: 14, md: 18 },
             display: "flex",
-            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
             width: "100%",
+            textAlign: "center",
           }}
         >
+          {/* 🔵 Heading Above Button (يظهر فقط على الصفحات غير الرئيسية) */}
+          <Typography
+            variant="h5"
+            sx={{
+              mb: 2,
+              fontWeight: "bold",
+              color: "#fff",
+              direction: "rtl",
+            }}
+          >
+            للاستفسار؟
+          </Typography>
+
           <Button
             variant="contained"
             href={whatsappUrl}
@@ -249,74 +337,6 @@ function RightTextSection() {
 }
 
 // ================================
-// Left Form Section
-// ================================
-function LeftFormSection({ formData, handleChange, handleFormSubmit }) {
-  const fields = [
-    { label: "الاسم", name: "name", type: "text" },
-    { label: "جـوال", name: "phone", type: "text" },
-    { label: "رسالتك", name: "message", type: "textarea" },
-  ];
-
-  return (
-    <Grid item xs={12} sm={6}>
-      <Typography
-        variant="h5"
-        sx={{ ...styles.formTitle, fontSize: { xs: "22px", md: "30px" } }}
-      >
-        للإستفسار ..
-      </Typography>
-      <Typography
-        variant="h5"
-        color="#00fffc"
-        sx={{ textAlign: "center", direction: "rtl", mb: 3, fontSize: { xs: "22px", md: "30px" } }}
-      >
-        للطلب والإستفسار /
-      </Typography>
-      <Box component="form" sx={styles.form} onSubmit={handleFormSubmit}>
-        {fields.map(({ label, name, type }) => (
-          <Box key={name} sx={styles.formGroup}>
-            <Typography sx={{ ...styles.label, fontSize: { xs: "18px", md: "30px" } }}>
-              {label}
-            </Typography>
-            <TextField
-              variant="outlined"
-              multiline={type === "textarea"}
-              rows={type === "textarea" ? 3 : 1}
-              name={name}
-              value={formData[name]}
-              onChange={handleChange}
-              sx={{
-                ...styles.input,
-                "& .MuiInputBase-input": { fontSize: { xs: "16px", md: "30px" } },
-              }}
-              fullWidth
-            />
-          </Box>
-        ))}
-
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{
-              backgroundColor: "#00fffc",
-              color: "#1e272e",
-              width: "50%",
-              borderRadius: "30px",
-              fontWeight: "bold",
-              fontSize: { xs: "18px", md: "30px" },
-            }}
-          >
-            ارسال
-          </Button>
-        </Box>
-      </Box>
-    </Grid>
-  );
-}
-
-// ================================
 // Styles
 // ================================
 const styles = {
@@ -330,25 +350,5 @@ const styles = {
     padding: "50px 0",
     mt: "-30px",
     direction: "ltr",
-  },
-  formTitle: {
-    color: "white",
-    fontFamily: "Tajawal",
-    textAlign: "right",
-    mb: 2,
-    direction: "rtl",
-  },
-  form: { display: "flex", flexDirection: "column", gap: 2, direction: "rtl" },
-  formGroup: { display: "flex", alignItems: "center", gap: 2 },
-  label: {
-    color: "white",
-    fontFamily: "Tajawal",
-    width: "150px",
-    textAlign: "right",
-  },
-  input: {
-    backgroundColor: "#17202a",
-    borderRadius: "5px",
-    "& .MuiInputBase-input": { color: "#fff" },
   },
 };

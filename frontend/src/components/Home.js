@@ -122,7 +122,6 @@ export default function Home() {
       <Partner />
       <Hr />
       <Eventsection />
-      <CardServerice/>
     </>
   );
 }
