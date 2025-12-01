@@ -119,7 +119,7 @@ function RightTextSection() {
               direction: "rtl",
             }}
           >
-            للاستفسار؟
+           للاستفسارات العامة
           </Typography>
 
           <Button
@@ -135,7 +135,7 @@ function RightTextSection() {
               fontSize: "18px",
               px: 4,
               py: 1.2,
-              mb: 4, // reduced so elements sit closer
+              mb: 10,
               borderRadius: "30px",
               width: { xs: "80%", sm: "60%", md: "40%" },
               animation: "blinker 1.2s linear infinite",
@@ -144,7 +144,7 @@ function RightTextSection() {
               },
             }}
           >
-            للشكاوى
+            اضغط هنا
           </Button>
         </>
       )}
@@ -158,7 +158,7 @@ function RightTextSection() {
           direction: "rtl",
         }}
       >
-        للشكوى؟
+        للشكوى
       </Typography>
 
       <Button
@@ -183,7 +183,7 @@ function RightTextSection() {
           },
         }}
       >
-        سؤال
+        اضغط هنا
       </Button>
 
       {/* Show this second pair ONLY on the main (home) page (KEEPING original phone pair if desired) */}
@@ -258,7 +258,7 @@ function AskButtonSection() {
         alignItems: "flex-end",
         textAlign: "justify",
         pr: 5,
-        mt: { xs: 0, md: 0 },
+        mt: { xs: 0, md: 0 }, 
       }}
     >
       {/* ← الآن العنوان يظهر فقط على الصفحة الرئيسية */}
@@ -346,7 +346,7 @@ function AskButtonSection() {
               direction: "rtl",
             }}
           >
-            للاستفسار؟
+            للاستفسارات العامة
           </Typography>
 
           <Button
@@ -370,7 +370,7 @@ function AskButtonSection() {
               },
             }}
           >
-            للشكاوى
+            اضغط هنا
           </Button>
         </Box>
       )}
@@ -382,14 +382,14 @@ function AskButtonSection() {
 // Styles
 // ================================
 const styles = {
-  section: {
+ section: {
     backgroundColor: "#000",
     backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
     width: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "50px 0",
+    padding: "100px 0",  // ← تم تغييرها من 50px إلى 80px (Top Padding)
     mt: "-30px",
     direction: "ltr",
   },

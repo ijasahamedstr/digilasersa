@@ -201,12 +201,12 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
         {/* Centered heading */}
         <Box sx={{ width: "100%", mb: 4 }}>
           <Typography
-            variant="h3"
+            variant="h2"
             align="center"
             sx={{
               color: "#fff",
-              fontFamily: "Tajawal",
-              fontWeight: 700,
+              fontFamily: "Changa,sans-serif",
+              fontWeight: 600,
               color: "#096e69",
               mb: 2,
             }}
