@@ -27,7 +27,8 @@ function FeedbackCard({ item }) {
   };
 
   return (
-    <Box px={1} height="100%" mb={10}> {/* More bottom space */}
+    <Box px={1} height="100%" mb={10}>
+      {/* More bottom space */}
       <Card
         sx={{
           height: "100%",
@@ -177,7 +178,12 @@ function FeedbackCard({ item }) {
   );
 }
 
-export default function Eventsection() {
+/**
+ * Eventsection
+ * - Accepts optional `title` prop (default: "الأخبار والفعاليات")
+ * - Heading is centered and uses same RTL styling
+ */
+export default function Eventsection({ title = " آخر أخبارنا" }) {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -274,10 +280,7 @@ export default function Eventsection() {
   if (finalList.length === 0) return null;
 
   const totalPages = Math.ceil(finalList.length / PER_PAGE);
-  const pagedItems = finalList.slice(
-    (page - 1) * PER_PAGE,
-    page * PER_PAGE
-  );
+  const pagedItems = finalList.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
   return (
     <section
@@ -290,7 +293,23 @@ export default function Eventsection() {
       }}
     >
       <Container maxWidth="xl">
-        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}></Box>
+        {/* Centered heading */}
+        <Box sx={{ width: "100%", mb: 4 }}>
+          <Typography
+            variant="h4"
+            align="center"
+            sx={{
+              color: "#fff",
+              fontFamily: "Tajawal",
+              fontWeight: 700,
+              mb: 2,
+            }}
+          >
+            {title}
+          </Typography>
+        </Box>
+
+        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }} />
 
         {/* More vertical space between rows */}
         <Grid container spacing={4} alignItems="stretch">
