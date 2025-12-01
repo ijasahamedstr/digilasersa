@@ -82,7 +82,7 @@ export default function Footer() {
 }
 
 // ================================
-// Right Text Section (unchanged behavior)
+// Right Text Section (moved inquiry block up, tightened spacing)
 // ================================
 function RightTextSection() {
   const location = useLocation();
@@ -104,15 +104,56 @@ function RightTextSection() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        mt: { xs: 4, md: 0 },
+        mt: { xs: 2, md: 0 },
         textAlign: "center",
       }}
     >
-      {/* 🔵 Heading Above the Button */}
+      {/* === MOVED: show this pair first so it appears higher on the column */}
+      {isHome && (
+        <>
+          <Typography
+            variant="h5"
+            sx={{
+              mb: 1,
+              color: "#fff",
+              direction: "rtl",
+            }}
+          >
+            للاستفسار؟
+          </Typography>
+
+          <Button
+            variant="contained"
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            startIcon={<WhatsApp />}
+            sx={{
+              backgroundColor: "#00fffc",
+              color: "#0a0a0aff",
+              fontWeight: "bold",
+              fontSize: "18px",
+              px: 4,
+              py: 1.2,
+              mb: 4, // reduced so elements sit closer
+              borderRadius: "30px",
+              width: { xs: "80%", sm: "60%", md: "40%" },
+              animation: "blinker 1.2s linear infinite",
+              "@keyframes blinker": {
+                "50%": { opacity: 0.3 },
+              },
+            }}
+          >
+            للشكاوى
+          </Button>
+        </>
+      )}
+
+      {/* 🔵 Heading Above the (original) Button */}
       <Typography
         variant="h5"
         sx={{
-          mb: 2,
+          mb: 1,
           color: "#FFFF",
           direction: "rtl",
         }}
@@ -132,8 +173,8 @@ function RightTextSection() {
           fontWeight: "bold",
           fontSize: "18px",
           px: 4,
-          py: 1.5,
-          mb: 5,
+          py: 1.2,
+          mb: 2, // reduced
           borderRadius: "30px",
           width: { xs: "80%", sm: "60%", md: "40%" },
           animation: "blinker 1.2s linear infinite",
@@ -145,8 +186,10 @@ function RightTextSection() {
         سؤال
       </Button>
 
-      {/* Show this second pair ONLY on the main (home) page */}
-      {isHome && (
+      {/* Show this second pair ONLY on the main (home) page (KEEPING original phone pair if desired) */}
+      {/* Note: we've already shown the isHome pair above — if you prefer to keep both, uncomment this block.
+          Otherwise the above block replaces it visually so it doesn't repeat. */}
+      {/* {isHome && (
         <>
           <Typography
             variant="h5"
@@ -183,7 +226,7 @@ function RightTextSection() {
             للشكاوى
           </Button>
         </>
-      )}
+      )} */}
     </Grid>
   );
 }

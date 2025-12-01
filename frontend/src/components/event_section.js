@@ -287,7 +287,7 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
       ref={mainRef}
       dir="rtl"
       style={{
-        backgroundColor: "#030909",
+        backgroundColor: "#f0f0f0",
         paddingTop: 40,
         paddingBottom: 40,
       }}
@@ -296,12 +296,13 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
         {/* Centered heading */}
         <Box sx={{ width: "100%", mb: 4 }}>
           <Typography
-            variant="h4"
+            variant="h3"
             align="center"
             sx={{
               color: "#fff",
               fontFamily: "Tajawal",
               fontWeight: 700,
+              color: "#096e69",
               mb: 2,
             }}
           >
