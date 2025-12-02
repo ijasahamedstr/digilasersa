@@ -29,7 +29,7 @@ function FeedbackCard({ item }) {
           direction: "rtl",
         }}
       >
-        {/* MEDIA AREA - image only */}
+        {/* MEDIA AREA */}
         <CardMedia
           component="div"
           sx={{
@@ -68,10 +68,24 @@ function FeedbackCard({ item }) {
           </Box>
         </CardMedia>
 
-        <CardContent sx={{ flexGrow: 1, px: 2, py: 2, direction: "rtl" }}>
+        {/* CONTENT */}
+        <CardContent
+          sx={{
+            flexGrow: 1,
+            px: 2,
+            pt: 0,
+            pb: 0, // REMOVE BOTTOM SPACE
+            direction: "rtl",
+            "&:last-child": { paddingBottom: 1 }, // REMOVE DEFAULT MUI PADDING
+          }}
+        >
           <Typography
             variant="h6"
-            sx={{ mb: 1, textAlign: "right", fontFamily: "Tajawal" }}
+            sx={{
+              mb: 1,
+              textAlign: "right",
+              fontFamily: "Tajawal",
+            }}
           >
             {item.name}
           </Typography>
@@ -92,19 +106,20 @@ function FeedbackCard({ item }) {
   );
 }
 
-/**
- * Eventsection
- * - Accepts optional `title` prop (default: "آخر أخبارنا")
- * - Heading is centered and uses same RTL styling
- */
+/* --------------------------------------------------------------- */
+/* MAIN SECTION COMPONENT */
+/* --------------------------------------------------------------- */
+
 export default function Eventsection({ title = " آخر أخبارنا" }) {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const PER_PAGE = 6;
+
   const mainRef = useRef(null);
 
+  /* FETCH DATA */
   useEffect(() => {
     let cancelled = false;
 
@@ -134,6 +149,7 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
     setPage(1);
   }, [events.length]);
 
+  /* FORMAT DATA */
   const finalList = useMemo(() => {
     return events
       .map((ev) => {
@@ -144,15 +160,17 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
         const images = Array.isArray(ev.newsimagelinks)
           ? ev.newsimagelinks
           : [];
-        const mainImage = images[0] || ev.image || ev.mainImage || null;
 
-        // Videos intentionally ignored. Only image entries are returned.
+        const mainImage =
+          images[0] || ev.image || ev.mainImage || null;
+
         if (mainImage) return { name, type: "image", image: mainImage, text };
         return null;
       })
       .filter(Boolean);
   }, [events]);
 
+  /* LOADING */
   if (loading)
     return (
       <Box
@@ -167,6 +185,7 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
       </Box>
     );
 
+  /* ERROR */
   if (error)
     return (
       <Box
@@ -186,6 +205,7 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
   const totalPages = Math.ceil(finalList.length / PER_PAGE);
   const pagedItems = finalList.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
+  /* RENDER UI */
   return (
     <section
       ref={mainRef}
@@ -198,7 +218,7 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
       }}
     >
       <Container maxWidth="xl">
-        {/* Centered heading */}
+        {/* TITLE */}
         <Box sx={{ width: "100%", mb: 4 }}>
           <Typography
             variant="h2"
@@ -214,9 +234,6 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
           </Typography>
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }} />
-
-        {/* More vertical space between rows */}
         <Grid container spacing={4} alignItems="stretch">
           {pagedItems.map((item, index) => (
             <Grid item key={`${item.name}-${index}`} xs={12} sm={6} md={4}>
@@ -225,6 +242,7 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
           ))}
         </Grid>
 
+        {/* PAGINATION */}
         {totalPages > 1 && (
           <Stack spacing={2} alignItems="center" sx={{ mt: 4 }}>
             <Pagination

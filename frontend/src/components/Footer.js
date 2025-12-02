@@ -82,16 +82,24 @@ export default function Footer() {
 }
 
 // ================================
-// Right Text Section (moved inquiry block up, tightened spacing)
+// Right Text Section
 // ================================
 function RightTextSection() {
   const location = useLocation();
   const decodedPath = decodeURIComponent(location.pathname);
   const isHome = decodedPath === "/" || decodedPath === "/الرئيسية";
 
-  const whatsappNumber = "966505868888";
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  // ✅ للإستفسارات العامة → 0571978888  (966571978888)
+  const inquiryLocalNumber = "0571978888";
+  const inquiryInternationalNumber = `966${inquiryLocalNumber.replace(/^0+/, "")}`; // 966571978888
+  const inquiryWhatsappUrl = `https://wa.me/${inquiryInternationalNumber}?text=${encodeURIComponent(
     "👋 مرحبًا، أود الاستفسار."
+  )}`;
+
+  // ✅ للشكاوى → يبقى على الرقم السابق 966505868888
+  const complaintNumber = "966505868888";
+  const complaintWhatsappUrl = `https://wa.me/${complaintNumber}?text=${encodeURIComponent(
+    "👋 مرحبًا، لدي شكوى."
   )}`;
 
   return (
@@ -108,7 +116,7 @@ function RightTextSection() {
         textAlign: "center",
       }}
     >
-      {/* === MOVED: show this pair first so it appears higher on the column */}
+      {/* زر للإستفسارات العامة (Home فقط) */}
       {isHome && (
         <>
           <Typography
@@ -119,12 +127,12 @@ function RightTextSection() {
               direction: "rtl",
             }}
           >
-           للإستفسارات العامة 
+            للإستفسارات العامة
           </Typography>
 
           <Button
             variant="contained"
-            href={whatsappUrl}
+            href={inquiryWhatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             startIcon={<WhatsApp />}
@@ -149,7 +157,7 @@ function RightTextSection() {
         </>
       )}
 
-      {/* 🔵 Heading Above the (original) Button */}
+      {/* 🔵 Heading Above the complaints Button */}
       <Typography
         variant="h5"
         sx={{
@@ -158,12 +166,12 @@ function RightTextSection() {
           direction: "rtl",
         }}
       >
-        {isHome ? "للشكاوى" : "للشكاوى"} 
+        {isHome ? "للشكاوى" : "للشكاوى"}
       </Typography>
 
       <Button
         variant="contained"
-        href={whatsappUrl}
+        href={complaintWhatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         startIcon={<WhatsApp />}
@@ -174,7 +182,7 @@ function RightTextSection() {
           fontSize: "18px",
           px: 4,
           py: 1.2,
-          mb: 2, // reduced
+          mb: 2,
           borderRadius: "30px",
           width: { xs: "80%", sm: "60%", md: "40%" },
           animation: "blinker 1.2s linear infinite",
@@ -185,54 +193,11 @@ function RightTextSection() {
       >
         اضغط هنا
       </Button>
-
-      {/* Show this second pair ONLY on the main (home) page (KEEPING original phone pair if desired) */}
-      {/* Note: we've already shown the isHome pair above — if you prefer to keep both, uncomment this block.
-          Otherwise the above block replaces it visually so it doesn't repeat. */}
-      {/* {isHome && (
-        <>
-          <Typography
-            variant="h5"
-            sx={{
-              mb: 2,
-              color: "#fff",
-              direction: "rtl",
-            }}
-          >
-            للاستفسار؟
-          </Typography>
-
-          <Button
-            variant="contained"
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            startIcon={<WhatsApp />}
-            sx={{
-              backgroundColor: "#00fffc",
-              color: "#0a0a0aff",
-              fontWeight: "bold",
-              fontSize: "18px",
-              px: 4,
-              py: 1.5,
-              borderRadius: "30px",
-              width: { xs: "80%", sm: "60%", md: "40%" },
-              animation: "blinker 1.2s linear infinite",
-              "@keyframes blinker": {
-                "50%": { opacity: 0.3 },
-              },
-            }}
-          >
-            للشكاوى
-          </Button>
-        </>
-      )} */}
     </Grid>
   );
 }
 
 // ================================
-
 // Ask Button Section (replaces the form)
 // ================================
 function AskButtonSection() {
@@ -240,9 +205,8 @@ function AskButtonSection() {
   const decodedPath = decodeURIComponent(location.pathname);
   const isHome = decodedPath === "/" || decodedPath === "/الرئيسية";
 
-  // user requested button should send to 0571978888 only
+  // زر الاستفسار / الطلب (نفس الرقم 0571978888)
   const localNumber = "0571978888";
-  // convert to international format for wa.me (Saudi code 966, remove leading 0)
   const internationalNumber = `966${localNumber.replace(/^0+/, "")}`; // => 966571978888
   const presetText = "👋 مرحبًا، لدي سؤال.";
   const whatsappUrl = `https://wa.me/${internationalNumber}?text=${encodeURIComponent(presetText)}`;
@@ -258,10 +222,10 @@ function AskButtonSection() {
         alignItems: "flex-end",
         textAlign: "justify",
         pr: 5,
-        mt: { xs: 0, md: 0 }, 
+        mt: { xs: 0, md: 0 },
       }}
     >
-      {/* ← الآن العنوان يظهر فقط على الصفحة الرئيسية */}
+      {/* عنوان واتصل بنا (Home فقط) */}
       {isHome && (
         <Typography
           variant="h4"
@@ -284,7 +248,10 @@ function AskButtonSection() {
             mr: { xs: 0, sm: 0, md: 0 },
           }}
         >
-          {[{ label: "رقم الاتصال", value: "8888 197 057" }, { label: "بريد إلكتروني", value: "info@digilaser.sa" }].map(({ label, value }) => (
+          {[
+            { label: "رقم الاتصال", value: "8888 197 057" },
+            { label: "بريد إلكتروني", value: "info@digilaser.sa" },
+          ].map(({ label, value }) => (
             <React.Fragment key={label}>
               <Grid item xs={4}>
                 <Typography
@@ -337,7 +304,7 @@ function AskButtonSection() {
             textAlign: "center",
           }}
         >
-          {/* 🔵 Heading Above Button (يظهر فقط على الصفحات غير الرئيسية) */}
+          {/* 🔵 Heading Above Button (non-home pages) */}
           <Typography
             variant="h5"
             sx={{
@@ -382,14 +349,14 @@ function AskButtonSection() {
 // Styles
 // ================================
 const styles = {
- section: {
+  section: {
     backgroundColor: "#000",
     backgroundImage: 'url("https://i.ibb.co/k3LmJgK/image.webp")',
     width: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "100px 0",  // ← تم تغييرها من 50px إلى 80px (Top Padding)
+    padding: "100px 0", // Top/Bottom padding
     mt: "-30px",
     direction: "ltr",
   },
