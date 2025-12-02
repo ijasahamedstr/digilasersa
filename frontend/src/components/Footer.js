@@ -119,7 +119,7 @@ function RightTextSection() {
               direction: "rtl",
             }}
           >
-           للاستفسارات العامة
+           للإستفسارات العامة 
           </Typography>
 
           <Button
@@ -158,7 +158,7 @@ function RightTextSection() {
           direction: "rtl",
         }}
       >
-        {isHome ? "للشكوى" : "للشكاوى"} 
+        {isHome ? "للشكاوى" : "للشكاوى"} 
       </Typography>
 
       <Button
