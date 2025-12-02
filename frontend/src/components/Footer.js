@@ -42,7 +42,7 @@ export default function Footer() {
           >
             <Grid container justifyContent="center" spacing={1}>
               {[
-                // نفس الرقم 0571978888 على الأيقونة أيضاً
+                // أيقونة الواتساب – نفس رقم الإستفسارات العامة 0571978888
                 { icon: <WhatsApp />, label: "whatsapp", url: "http://wa.me/966571978888" },
                 { icon: <Instagram />, label: "instagram", url: "https://www.instagram.com/digilasersa" },
                 { icon: <FaTiktok />, label: "tiktok", url: "https://www.tiktok.com/@digilasersa" },
@@ -90,15 +90,17 @@ function RightTextSection() {
   const decodedPath = decodeURIComponent(location.pathname);
   const isHome = decodedPath === "/" || decodedPath === "/الرئيسية";
 
-  // ✅ رقم واحد فقط لكل أزرار الواتساب: 0571978888 (966571978888)
-  const localNumber = "0571978888";
-  const internationalNumber = `966${localNumber.replace(/^0+/, "")}`; // 966571978888
-
-  const inquiryWhatsappUrl = `https://wa.me/${internationalNumber}?text=${encodeURIComponent(
+  // ✅ للإستفسارات العامة → 0571978888 (966571978888)
+  const inquiryLocalNumber = "0571978888";
+  const inquiryInternationalNumber = `966${inquiryLocalNumber.replace(/^0+/, "")}`; // 966571978888
+  const inquiryWhatsappUrl = `https://wa.me/${inquiryInternationalNumber}?text=${encodeURIComponent(
     "👋 مرحبًا، أود الاستفسار."
   )}`;
 
-  const complaintWhatsappUrl = `https://wa.me/${internationalNumber}?text=${encodeURIComponent(
+  // ✅ للشكاوى → رقم مختلف 0505868888 (966505868888)
+  const complaintLocalNumber = "0505868888";
+  const complaintInternationalNumber = `966${complaintLocalNumber.replace(/^0+/, "")}`; // 966505868888
+  const complaintWhatsappUrl = `https://wa.me/${complaintInternationalNumber}?text=${encodeURIComponent(
     "👋 مرحبًا، لدي شكوى."
   )}`;
 
@@ -205,7 +207,7 @@ function AskButtonSection() {
   const decodedPath = decodeURIComponent(location.pathname);
   const isHome = decodedPath === "/" || decodedPath === "/الرئيسية";
 
-  // نفس الرقم 0571978888
+  // نفس الرقم 0571978888 (للاستفسار / الطلب)
   const localNumber = "0571978888";
   const internationalNumber = `966${localNumber.replace(/^0+/, "")}`; // => 966571978888
   const presetText = "👋 مرحبًا، لدي سؤال.";
