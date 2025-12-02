@@ -42,6 +42,7 @@ export default function Footer() {
           >
             <Grid container justifyContent="center" spacing={1}>
               {[
+                // نفس الرقم 0571978888 على الأيقونة أيضاً
                 { icon: <WhatsApp />, label: "whatsapp", url: "http://wa.me/966571978888" },
                 { icon: <Instagram />, label: "instagram", url: "https://www.instagram.com/digilasersa" },
                 { icon: <FaTiktok />, label: "tiktok", url: "https://www.tiktok.com/@digilasersa" },
@@ -89,16 +90,15 @@ function RightTextSection() {
   const decodedPath = decodeURIComponent(location.pathname);
   const isHome = decodedPath === "/" || decodedPath === "/الرئيسية";
 
-  // ✅ للإستفسارات العامة → 0571978888  (966571978888)
-  const inquiryLocalNumber = "0571978888";
-  const inquiryInternationalNumber = `966${inquiryLocalNumber.replace(/^0+/, "")}`; // 966571978888
-  const inquiryWhatsappUrl = `https://wa.me/${inquiryInternationalNumber}?text=${encodeURIComponent(
+  // ✅ رقم واحد فقط لكل أزرار الواتساب: 0571978888 (966571978888)
+  const localNumber = "0571978888";
+  const internationalNumber = `966${localNumber.replace(/^0+/, "")}`; // 966571978888
+
+  const inquiryWhatsappUrl = `https://wa.me/${internationalNumber}?text=${encodeURIComponent(
     "👋 مرحبًا، أود الاستفسار."
   )}`;
 
-  // ✅ للشكاوى → يبقى على الرقم السابق 966505868888
-  const complaintNumber = "966505868888";
-  const complaintWhatsappUrl = `https://wa.me/${complaintNumber}?text=${encodeURIComponent(
+  const complaintWhatsappUrl = `https://wa.me/${internationalNumber}?text=${encodeURIComponent(
     "👋 مرحبًا، لدي شكوى."
   )}`;
 
@@ -205,7 +205,7 @@ function AskButtonSection() {
   const decodedPath = decodeURIComponent(location.pathname);
   const isHome = decodedPath === "/" || decodedPath === "/الرئيسية";
 
-  // زر الاستفسار / الطلب (نفس الرقم 0571978888)
+  // نفس الرقم 0571978888
   const localNumber = "0571978888";
   const internationalNumber = `966${localNumber.replace(/^0+/, "")}`; // => 966571978888
   const presetText = "👋 مرحبًا، لدي سؤال.";
