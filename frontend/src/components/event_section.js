@@ -192,9 +192,10 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
       ref={mainRef}
       dir="rtl"
       style={{
-        backgroundColor: "#f0f0f0",
+        
         paddingTop: 40,
         paddingBottom: 80,
+        backgroundImage: "url('https://i.ibb.co/q3L8N4T9/Whats-App-Image-2025-12-01-at-7-59-08-PM.webp')",
       }}
     >
       <Container maxWidth="xl">
