@@ -16,8 +16,7 @@ import axios from "axios";
 // RTL News / Events section (videos removed - image-only)
 function FeedbackCard({ item }) {
   return (
-    <Box px={1} height="100%" mb={10}>
-      {/* More bottom space */}
+    <Box px={1} height="100%" mb={0}>
       <Card
         sx={{
           height: "100%",
@@ -192,10 +191,10 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
       ref={mainRef}
       dir="rtl"
       style={{
-        
         paddingTop: 40,
         paddingBottom: 80,
-        backgroundImage: "url('https://i.ibb.co/q3L8N4T9/Whats-App-Image-2025-12-01-at-7-59-08-PM.webp')",
+        backgroundImage:
+          "url('https://i.ibb.co/q3L8N4T9/Whats-App-Image-2025-12-01-at-7-59-08-PM.webp')",
       }}
     >
       <Container maxWidth="xl">
@@ -205,7 +204,6 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
             variant="h2"
             align="center"
             sx={{
-              color: "#fff",
               fontFamily: "Changa,sans-serif",
               fontWeight: 600,
               color: "#096e69",
