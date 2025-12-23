@@ -13,7 +13,7 @@ import Drawer from "@mui/material/Drawer";
 import Menu from "@mui/material/Menu";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-const pages1 = ["الرئيسية", "أقسامنا", "من نحن", "إتصل بنا"];
+const pages1 = ["الرئيسية", "أقسامنا", "من نحن", "اتصل بنا"];
 const sections = [
   "قسم الشاشات",
   "قسم الطباعة",
