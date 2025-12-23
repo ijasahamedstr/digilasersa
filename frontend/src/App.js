@@ -118,7 +118,7 @@ function App() {
           <Route path="/Motion-graphics" element={<Motiongraphics />} />
           <Route path="/AIVideos" element={<AIVideos />} />
           <Route path="/3D-Animation" element={<Animation />} />
-          <Route path="/إتصل بنا" element={<ContactusForm />} />
+          <Route path="/اتصل بنا" element={<ContactusForm />} />
           <Route path="/update/:id" element={<UpdateFild />} />
           <Route path="/قسم الصوتيات" element={<SoundSection />} />
           <Route path="/قسم الفن التشكيلي" element={<ComingSoonPage />} />
