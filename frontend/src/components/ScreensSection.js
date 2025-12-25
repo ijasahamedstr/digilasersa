@@ -307,7 +307,7 @@ const ScreensSection = () => {
   {/* IMAGE 01 */}
   <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
-      src="https://i.ibb.co/rf5bqrNQ/1.webp"
+      src="https://i.ibb.co/DPP7FB7Q/01-copy.webp"
       alt="Image 01"
       style={{
         objectFit: "cover",
@@ -322,7 +322,7 @@ const ScreensSection = () => {
   {/* IMAGE 02 */}
   <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
-      src="https://i.ibb.co/676b6B74/2.webp"
+      src="https://i.ibb.co/2HYxrqw/02-copy.webp"
       alt="Image 02"
       style={{
         objectFit: "cover",
@@ -337,7 +337,7 @@ const ScreensSection = () => {
   {/* IMAGE 03 */}
   <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
-      src="https://i.ibb.co/nq1GpbcY/3.webp"
+      src="https://i.ibb.co/MD2tbqmP/03-copy.webp"
       alt="Image 03"
       style={{
         objectFit: "cover",
@@ -350,7 +350,7 @@ const ScreensSection = () => {
   </Box>
   <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
-      src="https://i.ibb.co/1GLKj5dz/04.webp"
+      src="https://i.ibb.co/FqX9JpSF/0004.webp"
       alt="Image 03"
       style={{
         objectFit: "cover",
@@ -361,64 +361,39 @@ const ScreensSection = () => {
       }}
     />
   </Box>
-<Box
-  sx={{
-    display: "flex",
-    gap: 2,
-    width: "100%",
-    overflow: "hidden",
-    mb: 0,          // ⬅️ Remove bottom margin
-    pb: 0,          // ⬅️ Remove bottom padding
-  }}
->
-  {/* Image 1 - GIF */}
-  <Box
-    sx={{
-      flex: "0 0 30%",
-      position: "relative",
-      mb: 0,
-      pb: 0,
-    }}
-  >
-    <img
-      src="https://i.ibb.co/p7gDtSH/scrren.gif"
-      alt="GIF Image"
-      style={{
-        objectFit: "fill",
-        width: "100%",
-        height: "95%",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-        marginBottom: "0",   // ⬅️ Force no bottom space
-        paddingBottom: "0",
-      }}
-    />
-  </Box>
 
-  {/* Image 2 - WebP */}
-  <Box
-    sx={{
-      flex: "0 0 70%",
-      position: "relative",
-      mb: 0,
-      pb: 0,
-    }}
-  >
+
+
+<Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
-      src="https://i.ibb.co/4gVbPdHj/5.webp"
-      alt="WebP Image"
+      src="https://i.ibb.co/YF7NRprV/05-copy.webp"
+      alt="Image 03"
       style={{
-        objectFit: "fill",
+        objectFit: "cover",
         width: "100%",
-        height: "95%",
+        height: "auto",
         display: "block",
         boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-        marginBottom: "0",  // ⬅️ Remove bottom space
-        paddingBottom: "0",
       }}
     />
   </Box>
-</Box>
+  <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+    <img
+      src="https://i.ibb.co/hRnfDVsy/copy.webp"
+      alt="Image 03"
+      style={{
+        objectFit: "cover",
+        width: "100%",
+        height: "auto",
+        display: "block",
+        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+      }}
+    />
+  </Box>
+  
+
+  
+
 
 
 </Container>
