@@ -33,6 +33,7 @@ import ComingSoonPage from "./components/ComingSoonPage";
 import ContactusForm from "./components/Contact";
 import SoundSection from "./components/Sound";
 import WebsiteSection from "./components/websiteSection";
+import FineArts from "./components/FineArts";
 // import Votemain from "./components/Votemain";
 // import Vote from "./components/Vote";
 // import VoteImage from "./components/Voteimage";
@@ -121,7 +122,7 @@ function App() {
           <Route path="/اتصل بنا" element={<ContactusForm />} />
           <Route path="/update/:id" element={<UpdateFild />} />
           <Route path="/قسم الصوتيات" element={<SoundSection />} />
-          <Route path="/قسم الفن التشكيلي" element={<ComingSoonPage />} />
+          <Route path="/قسم الفن التشكيلي" element={<FineArts />} />
           {/* <Route path="/تصويت" element={<Vote />} />
           <Route path="/قسم الفن التشكيلي" element={<Votemain />} />
           <Route path="/تصويت" element={<Vote />} />

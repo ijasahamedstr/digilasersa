@@ -249,7 +249,7 @@ function ResponsiveAppBar() {
                       : "inherit",
                     display: "flex",
                     fontFamily: "Tajawal",
-                    fontSize: { xs: "12px", sm: "14px", md: "16px" },
+                    fontSize: { xs: "12px", sm: "14px", md: "22px" },
                     borderRadius: "50px",
                     backgroundColor: location.pathname.includes("/sections")
                       ? "#0b5097"
@@ -278,7 +278,7 @@ function ResponsiveAppBar() {
                         : "inherit",
                     display: "block",
                     fontFamily: "Tajawal",
-                    fontSize: { xs: "12px", sm: "14px", md: "16px" },
+                    fontSize: { xs: "12px", sm: "14px", md: "22px" },
                     borderRadius: "50px",
                     backgroundColor:
                       location.pathname === `/${page.toLowerCase()}`
@@ -318,12 +318,35 @@ function ResponsiveAppBar() {
               whiteSpace: "nowrap",
             }}
           >
-            +966 57 197 8888
+            057 197 8888
           </Button>
 
           <Button
             component="a"
             href="https://digilaser.com.sa"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{
+              color: "#000000",
+              background: "rgb(15, 245, 236)",
+              fontFamily: "Tajawal",
+              fontSize: { xs: "12px", sm: "14px", md: "16px" },
+              borderRadius: "50px",
+              padding: "10px 20px",
+              "&:hover": {
+                backgroundImage: "linear-gradient(to right, #005bb5, #003f8e)",
+              },
+              ml: 2,
+              display: { xs: "none", md: "block" },
+              whiteSpace: "nowrap",
+            }}
+          >
+             منصة الصيانة
+          </Button>
+
+           <Button
+            component="a"
+            href="https://sssplatform.com/login"
             target="_blank"
             rel="noopener noreferrer"
             sx={{
