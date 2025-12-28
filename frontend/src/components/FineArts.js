@@ -164,22 +164,6 @@ const FineArts = () => {
       }}
     />
   </Box>
-       <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-    <img
-      src="https://i.ibb.co/cSjLf6jg/w-2.webp"
-      alt="Image 01"
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "auto",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-      }}
-    />
-  </Box>
-
-
-
 </Container>
     </>
   );
