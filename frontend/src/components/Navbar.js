@@ -13,13 +13,14 @@ import Drawer from "@mui/material/Drawer";
 import Menu from "@mui/material/Menu";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import CallIcon from "@mui/icons-material/Call";
+import { Stack } from "@mui/material";
 
 
 const pages1 = ["الرئيسية", "أقسامنا", "من نحن", "اتصل بنا"];
 const sections = [
   "قسم الشاشات",
-  "قسم الطباعة",
   "قسم الفن التشكيلي",
+  "قسم الطباعة",
   "قسم الهدايا الدعائية",
   "قسم الإعلام والميديا",
   "قسم السوشيال ميديا",
@@ -316,58 +317,79 @@ function ResponsiveAppBar() {
               display: { xs: "none", md: "block" },
               direction: "ltr",
               fontWeight: "600",
-              paddingLeft: { xs: "10px", sm: "50px", md: "200px" },
+              paddingLeft: { xs: "10px", sm: "50px", md: "55px" },
               whiteSpace: "nowrap",
             }}
           >
-             <CallIcon /> 057 197 8888
+            <CallIcon
+            sx={{
+              mr: 1.5,                 // space between icon and number
+              backgroundColor: "white",// or any color you want
+              color: "green",          // icon color
+              borderRadius: "50%",     // makes it round
+              padding: "6px",          // creates the circle
+              fontSize: "28px",        // optional: icon size
+            }}
+          />
+
+            057 197 8888
           </Button>
 
-          <Button
-            component="a"
-            href="https://digilaser.com.sa"
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={{
-              color: "#000000",
-              background: "rgb(15, 245, 236)",
-              fontFamily: "Tajawal",
-              fontSize: { xs: "12px", sm: "14px", md: "16px" },
-              borderRadius: "50px",
-              padding: "10px 20px",
-              "&:hover": {
-                backgroundImage: "linear-gradient(to right, #005bb5, #003f8e)",
-              },
-              ml: 2,
-              display: { xs: "none", md: "block" },
-              whiteSpace: "nowrap",
-            }}
-          >
-             منصة الصيانة
-          </Button>
 
-           <Button
-            component="a"
-            href="https://sssplatform.com/login"
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={{
-              color: "#000000",
-              background: "rgb(15, 245, 236)",
-              fontFamily: "Tajawal",
-              fontSize: { xs: "12px", sm: "14px", md: "16px" },
-              borderRadius: "50px",
-              padding: "10px 20px",
-              "&:hover": {
-                backgroundImage: "linear-gradient(to right, #005bb5, #003f8e)",
-              },
-              ml: 2,
-              display: { xs: "none", md: "block" },
-              whiteSpace: "nowrap",
-            }}
-          >
-            متجر الليزر
-          </Button>
+              <Stack
+              direction="row"
+              sx={{
+                display: { xs: "none", md: "flex" },
+                alignItems: "center",
+                gap: "50px", // ✅ MORE space between buttons
+              }}
+            >
+              <Button
+                component="a"
+                href="https://sssplatform.com/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: "#000000",
+                  minWidth: "180px",
+                  background: "rgb(15, 245, 236)",
+                  fontFamily: "Tajawal",
+                  fontSize: { xs: "12px", sm: "14px", md: "16px" },
+                  borderRadius: "50px",
+                  padding: "10px 20px",
+                  whiteSpace: "nowrap",
+                  "&:hover": {
+                    backgroundImage: "linear-gradient(to right, #005bb5, #003f8e)",
+                  },
+                }}
+              >
+                منصة الصيانة
+              </Button>
+
+              <Button
+                component="a"
+                href="https://digilaser.com.sa"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: "#000000",
+                  minWidth: "180px",
+                  background: "rgb(15, 245, 236)",
+                  fontFamily: "Tajawal",
+                  fontSize: { xs: "12px", sm: "14px", md: "16px" },
+                  borderRadius: "50px",
+                  padding: "10px 20px",
+                  whiteSpace: "nowrap",
+                  "&:hover": {
+                    backgroundImage: "linear-gradient(to right, #005bb5, #003f8e)",
+                  },
+                }}
+              >
+                متجر الليزر
+              </Button>
+            </Stack>
+
+
 
           {/* Mobile Menu (Drawer) */}
           <Box

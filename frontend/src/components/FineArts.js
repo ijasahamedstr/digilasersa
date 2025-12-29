@@ -113,58 +113,74 @@ const FineArts = () => {
         </Box>
       </Box>
 
-   <Container
-    maxWidth={false}
-    disableGutters
-    sx={{
-        padding: 0,
-        margin: 0,
-        width: "100%",
-    }}
-    >
+      <Container
+        maxWidth={false}
+        disableGutters
+        sx={{
+            padding: 0,
+            margin: 0,
+            width: "100%",
+        }}
+        >
 
-    <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-    <img
-      src="https://i.ibb.co/HfdGFLhj/image.webp"
-      alt="Image 01"
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "auto",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-      }}
-    />
-  </Box>
+        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+        <img
+          src="https://i.ibb.co/HfdGFLhj/image.webp"
+          alt="Image 01"
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            height: "auto",
+            display: "block",
+            boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+          }}
+        />
+      </Box>
 
-      <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-    <img
-      src="https://i.ibb.co/ch6Pqwc4/1.webp"
-      alt="Image 01"
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "auto",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-      }}
-    />
-  </Box>
+          <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+        <img
+          src="https://i.ibb.co/ch6Pqwc4/1.webp"
+          alt="Image 01"
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            height: "auto",
+            display: "block",
+            boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+          }}
+        />
+      </Box>
 
-      <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-    <img
-      src="https://i.ibb.co/jkwLkfpX/image.jpg"
-      alt="Image 01"
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "auto",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-      }}
-    />
-  </Box>
-</Container>
+      <Box
+        sx={{
+          width: "100%",
+          position: "relative",
+          overflow: "hidden",
+          "&::after": {
+            content: '""',
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            height: "10px", // thickness of the line
+            background: "rgb(15, 245, 236)",
+          },
+        }}
+      >
+        <img
+          src="https://i.ibb.co/jkwLkfpX/image.jpg"
+          alt="Image 01"
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            height: "auto",
+            display: "block",
+            boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+          }}
+        />
+      </Box>
+
+    </Container>
     </>
   );
 };
