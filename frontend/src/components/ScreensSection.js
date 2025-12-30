@@ -12,7 +12,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Container, Grid, Box, Button, CircularProgress } from "@mui/material";
-import Hr from "./hr";
 
 const carouselItems = [
   { id: 1, img: "https://i.ibb.co/TD4r1DbM/image.webp" },
@@ -421,21 +420,32 @@ const ScreensSection = () => {
     />
   </Box>
 </Box>
-  <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-    <img
-      src="https://i.ibb.co/Y7twRGkm/copy-1.jpg"
-      alt="Image 03"
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "auto",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-      }}
-    />
-  </Box>
+<Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+  {/* Horizontal line above the image */}
+
+  <img
+    src="https://i.ibb.co/Y7twRGkm/copy-1.jpg"
+    alt="Image 03"
+    style={{
+      objectFit: "cover",
+      width: "100%",
+      height: "auto",
+      display: "block",
+      boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+    }}
+  />
+
+  {/* Optional: Horizontal line below the image */}
+  <Box
+    sx={{
+      width: "100%",
+      height: "10px",
+      backgroundColor: "#00fffc",
+    }}
+  />
+</Box>
+
 </Container>
-      <Hr />
     </>
   );
 };
