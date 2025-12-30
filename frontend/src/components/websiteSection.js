@@ -24,15 +24,15 @@ import { useState, useEffect } from "react";
 const carouselItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/gb37pbS6/pro-001.webp",
+    img: "https://i.ibb.co/cKdNcSTQ/001-1.jpg",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/gb37pbS6/pro-001.webp",
+    img: "https://i.ibb.co/cKdNcSTQ/001-1.jpg",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/gb37pbS6/pro-001.webp",
+    img: "https://i.ibb.co/cKdNcSTQ/001-1.jpg",
   },
 ];
 
@@ -230,52 +230,50 @@ const WebsiteSection = () => {
         </Box>
       </Box>
     </Container>
-    <Container
-          maxWidth={false}
-          disableGutters
+      <Container maxWidth="xl" disableGutters>
+        <Box
           sx={{
-            padding: 0,
-            margin: 0,
             width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            mt: 8,   // 👈 MORE TOP SPACE (64px)
+            mb: 8,   // 👈 MORE BOTTOM SPACE (64px)
           }}
         >
-          <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-            <img
-              src="https://i.ibb.co/Gfp73X4r/Pro-002.webp"
-              alt="main-slide"
-              style={{
-                objectFit: "cover",
-                width: "100%",
-                height: "auto",
-                display: "block",
-                boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-              }}
-            />
-          </Box>
-        </Container>
-        <Container
-      maxWidth={false}
-      disableGutters
-      sx={{
-        padding: 0,
-        margin: 0,
-        width: "100%",
-      }}
-    >
-      <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-        <img
-          src="https://i.ibb.co/MyRcg8Ss/Pro-003.webp"
-          alt="main-slide"
-          style={{
-            objectFit: "cover",
+          <img
+            src="https://i.ibb.co/vxQNxvFf/002-1.jpg"
+            alt="Image 01"
+            style={{
+              width: "100%",
+              maxWidth: "1400px",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </Box>
+
+        <Box
+          sx={{
             width: "100%",
-            height: "auto",
-            display: "block",
-            boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+            display: "flex",
+            justifyContent: "center",
+            mt: 8,
+            mb: 8,
           }}
-        />
-      </Box>
-    </Container>
+        >
+          <img
+            src="https://i.ibb.co/m5GXsqS1/003-1.jpg"
+            alt="Image 02"
+            style={{
+              width: "100%",
+              maxWidth: "1400px",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </Box>
+      </Container>
+
     </>
   );
 };

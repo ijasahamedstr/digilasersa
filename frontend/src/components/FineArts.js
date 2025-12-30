@@ -14,8 +14,8 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Container, Grid, Box, Button, CircularProgress } from "@mui/material";
 
 const carouselItems = [
-  { id: 1, img: "https://i.ibb.co/TBWgkXqD/image.webp" },
-  { id: 2, img: "https://i.ibb.co/TBWgkXqD/image.webp" },
+  { id: 1, img: "https://i.ibb.co/ch6Pqwc4/1.webp" },
+  { id: 2, img: "https://i.ibb.co/ch6Pqwc4/1.webp" },
   { id: 3, img: "https://i.ibb.co/TBWgkXqD/image.webp" },
 ];
 
@@ -112,75 +112,72 @@ const FineArts = () => {
           ))}
         </Box>
       </Box>
-
-      <Container
-        maxWidth={false}
-        disableGutters
-        sx={{
-            padding: 0,
-            margin: 0,
+      <Container maxWidth="xl" disableGutters>
+        <Box
+          sx={{
             width: "100%",
-        }}
+            display: "flex",
+            justifyContent: "center",
+            mt: 8,   // 👈 MORE TOP SPACE (64px)
+            mb: 8,   // 👈 MORE BOTTOM SPACE (64px)
+          }}
         >
+          <img
+            src="https://i.ibb.co/HfdGFLhj/image.webp"
+            alt="Image 01"
+            style={{
+              width: "100%",
+              maxWidth: "1400px",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </Box>
 
-        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-        <img
-          src="https://i.ibb.co/HfdGFLhj/image.webp"
-          alt="Image 01"
-          style={{
-            objectFit: "cover",
+        <Box
+          sx={{
             width: "100%",
-            height: "auto",
-            display: "block",
-            boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+            display: "flex",
+            justifyContent: "center",
+            mt: 8,
+            mb: 8,
           }}
-        />
-      </Box>
+        >
+          <img
+            src="https://i.ibb.co/TBWgkXqD/image.webp"
+            alt="Image 02"
+            style={{
+              width: "100%",
+              maxWidth: "1400px",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </Box>
 
-          <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-        <img
-          src="https://i.ibb.co/ch6Pqwc4/1.webp"
-          alt="Image 01"
-          style={{
-            objectFit: "cover",
+        <Box
+          sx={{
             width: "100%",
-            height: "auto",
-            display: "block",
-            boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+            display: "flex",
+            justifyContent: "center",
+            mt: 8,
+            mb: 8,
+            position: "relative",
           }}
-        />
-      </Box>
+        >
+          <img
+            src="https://i.ibb.co/jkwLkfpX/image.jpg"
+            alt="Image 03"
+            style={{
+              width: "100%",
+              maxWidth: "1400px",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </Box>
+      </Container>
 
-      <Box
-        sx={{
-          width: "100%",
-          position: "relative",
-          overflow: "hidden",
-          "&::after": {
-            content: '""',
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            width: "100%",
-            height: "10px", // thickness of the line
-            background: "rgb(15, 245, 236)",
-          },
-        }}
-      >
-        <img
-          src="https://i.ibb.co/jkwLkfpX/image.jpg"
-          alt="Image 01"
-          style={{
-            objectFit: "cover",
-            width: "100%",
-            height: "auto",
-            display: "block",
-            boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-          }}
-        />
-      </Box>
-
-    </Container>
     </>
   );
 };
