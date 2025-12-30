@@ -21,20 +21,7 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { useState, useEffect } from "react";
 
 
-const carouselItems = [
-  {
-    id: 1,
-    img: "https://i.ibb.co/cKdNcSTQ/001-1.jpg",
-  },
-  {
-    id: 2,
-    img: "https://i.ibb.co/cKdNcSTQ/001-1.jpg",
-  },
-  {
-    id: 3,
-    img: "https://i.ibb.co/cKdNcSTQ/001-1.jpg",
-  },
-];
+
 
 
 const WebsiteSection = () => {
@@ -105,56 +92,6 @@ const WebsiteSection = () => {
       style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}
     >
       <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-        <Carousel
-          fade
-          nextIcon={
-            <span
-              className="carousel-control-next-icon"
-              style={{ backgroundColor: "black" }}
-            />
-          }
-          prevIcon={
-            <span
-              className="carousel-control-prev-icon"
-              style={{ backgroundColor: "black" }}
-            />
-          }
-        >
-          {carouselItems.map((item) => (
-            <Carousel.Item key={item.id}>
-              <img
-                className="d-block w-100"
-                src={item.img}
-                alt={item.title}
-                style={{
-                  objectFit: "cover",
-                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-                }}
-              />
-              <Carousel.Caption>
-                <Typography
-                  variant="h4"
-                  sx={{
-                    color: "white",
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                  }}
-                >
-                  {item.title}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "white",
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                  }}
-                >
-                  {item.content}
-                </Typography>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-
         {/* Social Media Icons - Hidden on Mobile */}
         <Box
           sx={{
@@ -241,6 +178,26 @@ const WebsiteSection = () => {
           }}
         >
           <img
+            src="https://i.ibb.co/cKdNcSTQ/001-1.jpg"
+            alt="Image 01"
+            style={{
+              width: "100%",
+              maxWidth: "1400px",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </Box>
+          <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            mt: 8,   // 👈 MORE TOP SPACE (64px)
+            mb: 8,   // 👈 MORE BOTTOM SPACE (64px)
+          }}
+        >
+          <img
             src="https://i.ibb.co/vxQNxvFf/002-1.jpg"
             alt="Image 01"
             style={{
@@ -273,7 +230,6 @@ const WebsiteSection = () => {
           />
         </Box>
       </Container>
-
     </>
   );
 };

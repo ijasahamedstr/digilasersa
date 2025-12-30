@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import Carousel from "react-bootstrap/Carousel";
-import Modal from "react-bootstrap/Modal";
 import {
   FaInstagram,
   FaLinkedin,
@@ -12,12 +10,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Container, Grid, Box, Button, CircularProgress } from "@mui/material";
-
-const carouselItems = [
-  { id: 1, img: "https://i.ibb.co/ch6Pqwc4/1.webp" },
-  { id: 2, img: "https://i.ibb.co/ch6Pqwc4/1.webp" },
-  { id: 3, img: "https://i.ibb.co/TBWgkXqD/image.webp" },
-];
 
 const socialLinks = [
   { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
@@ -58,23 +50,6 @@ const FineArts = () => {
     <>
       {/* Carousel Section */}
       <Box sx={{ width: "100%", overflow: "hidden", mt: "100px", position: "relative" }}>
-        <Carousel
-          fade
-          nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
-          prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: "black" }} />}
-        >
-          {carouselItems.map((item) => (
-            <Carousel.Item key={item.id}>
-              <img
-                className="d-block w-100"
-                src={item.img}
-                alt={`slide-${item.id}`}
-                style={{ objectFit: "cover", boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)" }}
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel>
-
         {/* Social Media Icons */}
         <Box
           sx={{
@@ -113,6 +88,28 @@ const FineArts = () => {
         </Box>
       </Box>
       <Container maxWidth="xl" disableGutters>
+
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            mt: 8,   // 👈 MORE TOP SPACE (64px)
+            mb: 8,   // 👈 MORE BOTTOM SPACE (64px)
+          }}
+        >
+          <img
+            src="https://i.ibb.co/ch6Pqwc4/1.webp"
+            alt="Image 01"
+            style={{
+              width: "100%",
+              maxWidth: "1400px",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </Box>
+
         <Box
           sx={{
             width: "100%",
