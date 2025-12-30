@@ -12,6 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Container, Grid, Box, Button, CircularProgress } from "@mui/material";
+import Hr from "./hr";
 
 const carouselItems = [
   { id: 1, img: "https://i.ibb.co/TD4r1DbM/image.webp" },
@@ -433,13 +434,8 @@ const ScreensSection = () => {
       }}
     />
   </Box>
-  
-
-  
-
-
-
 </Container>
+      <Hr />
     </>
   );
 };
