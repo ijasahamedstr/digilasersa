@@ -364,22 +364,65 @@ const ScreensSection = () => {
 
 
 
-<Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+<Box
+  sx={{
+    display: "flex",
+    gap: 2,
+    width: "100%",
+    overflow: "hidden",
+  }}
+>
+  {/* Image 1 - GIF */}
+  <Box
+    sx={{
+      flex: "0 0 30%",
+      position: "relative",
+      mb: 0,
+      pb: 0,
+    }}
+  >
     <img
-      src="https://i.ibb.co/YF7NRprV/05-copy.webp"
-      alt="Image 03"
+      src="https://i.ibb.co/p7gDtSH/scrren.gif"
+      alt="GIF Image"
       style={{
-        objectFit: "cover",
+        objectFit: "fill",
         width: "100%",
-        height: "auto",
+        height: "95%",
         display: "block",
         boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+        marginBottom: "0",   // ⬅️ Force no bottom space
+        paddingBottom: "0",
       }}
     />
   </Box>
+
+  {/* Image 2 - WebP */}
+  <Box
+    sx={{
+      flex: "0 0 70%",
+      position: "relative",
+      mb: 0,
+      pb: 0,
+    }}
+  >
+    <img
+      src="https://i.ibb.co/4gVbPdHj/5.webp"
+      alt="WebP Image"
+      style={{
+        objectFit: "fill",
+        width: "100%",
+        height: "95%",
+        display: "block",
+        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+        marginBottom: "0",  // ⬅️ Remove bottom space
+        paddingBottom: "0",
+      }}
+    />
+  </Box>
+</Box>
   <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
-      src="https://i.ibb.co/hRnfDVsy/copy.webp"
+      src="https://i.ibb.co/Y7twRGkm/copy-1.jpg"
       alt="Image 03"
       style={{
         objectFit: "cover",
