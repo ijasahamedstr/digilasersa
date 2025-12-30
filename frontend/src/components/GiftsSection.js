@@ -334,7 +334,7 @@ const GiftsSection = () => {
                     image={item.giftimagelink}
                     alt={`Slide ${index + 1}`}
                     sx={{
-                      height: { xs: 180, sm: 220 },
+                      height: { xs: 180, sm: 350 },
                       objectFit: "cover",
                       borderTopLeftRadius: 3,
                       borderTopRightRadius: 3,
@@ -396,7 +396,7 @@ const GiftsSection = () => {
                     image={item.giftimagelink}
                     alt={`Slide ${index + 1}`}
                     sx={{
-                      height: { xs: 180, sm: 220 },
+                      height: { xs: 180, sm: 350 },
                       objectFit: "cover",
                       borderTopLeftRadius: 3,
                       borderTopRightRadius: 3,
@@ -458,7 +458,7 @@ const GiftsSection = () => {
                     image={item.giftimagelink}
                     alt={`Slide ${index + 1}`}
                     sx={{
-                      height: { xs: 180, sm: 220 },
+                      height: { xs: 180, sm: 350 },
                       objectFit: "cover",
                       borderTopLeftRadius: 3,
                       borderTopRightRadius: 3,
