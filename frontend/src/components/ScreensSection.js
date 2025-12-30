@@ -337,7 +337,7 @@ const ScreensSection = () => {
   {/* IMAGE 03 */}
   <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
     <img
-      src="https://i.ibb.co/MD2tbqmP/03-copy.webp"
+      src="https://i.ibb.co/DHpw8CQ4/03.webp"
       alt="Image 03"
       style={{
         objectFit: "cover",
