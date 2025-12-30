@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Container, Grid, Box, Button, CircularProgress } from "@mui/material";
+import { Container, Box } from "@mui/material";
 
 const socialLinks = [
   { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
@@ -31,14 +31,13 @@ const FineArts = () => {
 
   // 🔹 Force a one-time refresh on first load
   useEffect(() => {
-    const hasReloaded = sessionStorage.getItem("hasReloaded");
-    if (!hasReloaded) {
+    if (!sessionStorage.getItem("hasReloaded")) {
       sessionStorage.setItem("hasReloaded", "true");
       window.location.reload();
     }
   }, []);
 
-  // 🔹 Auto close modal after 2 second
+  // 🔹 Auto close modal after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowModal(false);
@@ -48,133 +47,96 @@ const FineArts = () => {
 
   return (
     <>
-      {/* Carousel Section */}
-      <Box sx={{ width: "100%", overflow: "hidden", mt: "100px", position: "relative" }}>
-        {/* Social Media Icons */}
-        <Box
-          sx={{
-            position: "fixed",
-            top: "50%",
-            left: 0,
-            transform: "translateY(-50%)",
-            display: { xs: "none", md: "flex" },
-            flexDirection: "column",
-            gap: 2,
-            zIndex: 1200,
-            pl: 2,
-          }}
-        >
-          {socialLinks.map(({ icon, link }, idx) => (
-            <a key={idx} href={link} target="_blank" rel="noopener noreferrer">
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: 3,
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                {icon}
-              </Box>
-            </a>
-          ))}
-        </Box>
+  
+
+      {/* Social Media Icons */}
+      <Box
+        sx={{
+          position: "fixed",
+          top: "50%",
+          left: 0,
+          transform: "translateY(-50%)",
+          display: { xs: "none", md: "flex" },
+          flexDirection: "column",
+          gap: 2,
+          zIndex: 1200,
+          pl: 2,
+        }}
+      >
+        {socialLinks.map(({ icon, link }, idx) => (
+          <a key={idx} href={link} target="_blank" rel="noopener noreferrer">
+            <Box
+              sx={{
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                backgroundColor: "#06f9f3",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "#17202a",
+                boxShadow: 3,
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.2)" },
+              }}
+            >
+              {icon}
+            </Box>
+          </a>
+        ))}
       </Box>
-      <Container maxWidth="xl" disableGutters>
 
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            mt: 8,   // 👈 MORE TOP SPACE (64px)
-            mb: 8,   // 👈 MORE BOTTOM SPACE (64px)
-          }}
-        >
-          <img
-            src="https://i.ibb.co/ch6Pqwc4/1.webp"
-            alt="Image 01"
-            style={{
-              width: "100%",
-              maxWidth: "1400px",
-              height: "auto",
-              display: "block",
-            }}
-          />
-        </Box>
+      <Box
+        sx={{
+          width: "100%",
+          overflow: "hidden",
+          mt: "100px",
+          position: "relative",
+          backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
 
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            mt: 8,   // 👈 MORE TOP SPACE (64px)
-            mb: 8,   // 👈 MORE BOTTOM SPACE (64px)
-          }}
-        >
-          <img
-            src="https://i.ibb.co/HfdGFLhj/image.webp"
-            alt="Image 01"
-            style={{
+         <Container maxWidth="xl" disableGutters>
+        {/* Images */}
+        {[
+          "https://i.ibb.co/ch6Pqwc4/1.webp",
+          "https://i.ibb.co/HfdGFLhj/image.webp",
+          "https://i.ibb.co/TBWgkXqD/image.webp",
+          "https://i.ibb.co/jkwLkfpX/image.jpg",
+        ].map((src, index) => (
+          <Box
+            key={index}
+            sx={{
               width: "100%",
-              maxWidth: "1400px",
-              height: "auto",
-              display: "block",
+              display: "flex",
+              justifyContent: "center",
+              mt: 8,
+              mb: 8,
+              position: index === 3 ? "relative" : "static",
             }}
-          />
-        </Box>
-
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            mt: 8,
-            mb: 8,
-          }}
-        >
-          <img
-            src="https://i.ibb.co/TBWgkXqD/image.webp"
-            alt="Image 02"
-            style={{
-              width: "100%",
-              maxWidth: "1400px",
-              height: "auto",
-              display: "block",
-            }}
-          />
-        </Box>
-
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            mt: 8,
-            mb: 8,
-            position: "relative",
-          }}
-        >
-          <img
-            src="https://i.ibb.co/jkwLkfpX/image.jpg"
-            alt="Image 03"
-            style={{
-              width: "100%",
-              maxWidth: "1400px",
-              height: "auto",
-              display: "block",
-            }}
-          />
-        </Box>
+          >
+            <img
+              src={src}
+              alt={`Image ${index + 1}`}
+              style={{
+                width: "100%",
+                maxWidth: "1400px",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </Box>
+        ))}
       </Container>
 
+      </Box>
+
+     
     </>
   );
 };

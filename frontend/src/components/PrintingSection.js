@@ -57,7 +57,7 @@ const PrintingSection = () => {
   return (
     <>
       {/* Carousel Section */}
-      <Box sx={{ width: "100%", overflow: "hidden", mt: "100px", position: "relative",mb: "120px", }}>
+      <Box sx={{ width: "100%", overflow: "hidden", position: "relative" }}>
         <Carousel
           fade
           nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
@@ -113,9 +113,23 @@ const PrintingSection = () => {
         </Box>
       </Box>
 
+            <Box
+              sx={{
+                width: "100%",
+                overflow: "hidden",
+                position: "relative",
+                backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+
       <Container maxWidth="xl" disableGutters sx={{
           mt: 10,        // 🔥 TOP SPACE
-          padding: 0,
+          padding: 15,
           margin: "0 auto",
           width: "100%",
         }}>
@@ -126,9 +140,9 @@ const PrintingSection = () => {
         <Box sx={{ width: "100%", overflow: "hidden", mb: 10 }}>
           <img src="https://i.ibb.co/398ddbZ2/005-1.jpg" width="100%" />
         </Box>
-      </Container>';[P'
+      </Container>
 
-
+      </Box>
 
 
     

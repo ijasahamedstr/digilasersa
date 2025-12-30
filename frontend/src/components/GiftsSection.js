@@ -289,6 +289,21 @@ const GiftsSection = () => {
         </Box>
       </Container>
 
+            <Box
+        sx={{
+          width: "100%",
+          overflow: "hidden",
+          mt: "100px",
+          position: "relative",
+          backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+
       <section style={{ width: "100%", margin: "0 auto", padding: "50px 0", marginBottom: '30px' }}>
         <Container maxWidth="xl" sx={{ px: 3 }}>
           <Card
@@ -537,6 +552,8 @@ const GiftsSection = () => {
           </Slider>
         </Container>
       </section>
+
+      </Box>
 
       {/* Dialog for Image View */}
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>

@@ -167,6 +167,20 @@ const WebsiteSection = () => {
         </Box>
       </Box>
     </Container>
+    
+      <Box
+        sx={{
+          width: "100%",
+          overflow: "hidden",
+          position: "relative",
+          backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
       <Container maxWidth="xl" disableGutters>
         <Box
           sx={{
@@ -230,6 +244,7 @@ const WebsiteSection = () => {
           />
         </Box>
       </Container>
+      </Box>
     </>
   );
 };
