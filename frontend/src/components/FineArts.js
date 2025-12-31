@@ -133,7 +133,6 @@ const FineArts = () => {
           </Box>
         ))}
       </Container>
-
       </Box>
 
      
