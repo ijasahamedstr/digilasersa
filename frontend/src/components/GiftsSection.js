@@ -294,7 +294,7 @@ const GiftsSection = () => {
                 width: "100%",
                 overflow: "hidden",
                 position: "relative",
-                backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`,
+                backgroundImage: `url("https://i.ibb.co/Kx0StNYq/rock-texture-wallpaper-min.webp")`,
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
