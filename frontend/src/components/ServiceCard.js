@@ -200,7 +200,7 @@ function ServiceCard() {
       <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
         <a href="https://sssplatform.com" target="_blank" rel="noopener noreferrer">
           <img
-            src="https://i.ibb.co/YFmVDcNp/Whats-App-Image-2025-11-25-at-1-17-10-PM.jpg"
+            src="https://i.ibb.co/YTwy8KSF/image.webp"
             alt="Banner"
             loading="lazy"
             style={{
