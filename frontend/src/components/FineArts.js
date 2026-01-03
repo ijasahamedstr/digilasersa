@@ -364,7 +364,7 @@ const FineArts = () => {
     {/* FRONT IMAGE */}
     <Box
       component="img"
-      src="https://i.ibb.co/HfdGFLhj/image.webp"
+      src="https://i.ibb.co/ZRhj4MH7/image.webp"
       alt="4 Side Layer Image"
       sx={{
         width: "100%",
