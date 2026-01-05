@@ -233,7 +233,7 @@ const WebsiteSection = () => {
           }}
         >
           <img
-            src="https://i.ibb.co/m5GXsqS1/003-1.jpg"
+            src="https://i.ibb.co/jP91GYsT/003-1-1-min.jpg"
             alt="Image 02"
             style={{
               width: "100%",
