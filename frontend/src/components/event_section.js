@@ -13,128 +13,138 @@ import {
 } from "@mui/material";
 import axios from "axios";
 
-// RTL News / Events section (videos removed - image-only)
+const BORDER_THICKNESS = 8;
+
+/* --------------------------------------------------------------- */
+/* 3D GLOW WRAPPER */
+/* --------------------------------------------------------------- */
+function Glow3DCard({ children }) {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        perspective: "1600px",
+        width: "100%",
+      }}
+    >
+      <Box
+        sx={{
+          position: "relative",
+          width: "100%",
+          transformStyle: "preserve-3d",
+        }}
+      >
+        {/* MAIN CONTENT */}
+        <Box sx={{ position: "relative", zIndex: 10 }}>
+          {children}
+        </Box>
+
+        {/* GLOW BORDER */}
+        <Box
+          sx={{
+            position: "absolute",
+            inset: "-6px",
+            borderRadius: "28px",
+            background:
+              "linear-gradient(135deg,#06f9f3,#00b3ff,#06f9f3)",
+            filter: "blur(14px)",
+            transform: `translateZ(-${BORDER_THICKNESS}px)`,
+            zIndex: 6,
+          }}
+        />
+
+        {/* SHADOW DEPTH */}
+        <Box
+          sx={{
+            position: "absolute",
+            inset: "-25px",
+            borderRadius: "36px",
+            background: "rgba(0,0,0,0.9)",
+            filter: "blur(35px)",
+            transform: `translateZ(-${BORDER_THICKNESS * 4}px)`,
+            zIndex: 1,
+          }}
+        />
+      </Box>
+    </Box>
+  );
+}
+
+/* --------------------------------------------------------------- */
+/* CARD */
+/* --------------------------------------------------------------- */
 function FeedbackCard({ item }) {
   return (
-    <Box px={1} height="100%" mb={0}>
+    <Glow3DCard>
       <Card
         sx={{
           height: "100%",
-          display: "flex",
-          flexDirection: "column",
           backgroundColor: "#0d1a1a",
           color: "#fff",
-          borderRadius: 2,
+          borderRadius: "22px",
           overflow: "hidden",
+          boxShadow: "35px 35px 45px rgba(0,0,0,0.65)",
           direction: "rtl",
         }}
       >
-        {/* MEDIA AREA */}
         <CardMedia
-          component="div"
+          component="img"
+          src={item.image}
+          alt={item.name}
           sx={{
-            width: { xs: "100%", sm: 469 },
             height: 360,
-            position: "relative",
+            objectFit: "contain",
             backgroundColor: "#000",
-            overflow: "hidden",
-            marginInline: "auto",
-            flexShrink: 0,
           }}
-        >
-          <Box
-            sx={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Box
-              component="img"
-              src={item.image || item.poster || ""}
-              alt={item.name}
-              loading="lazy"
-              sx={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                objectPosition: "center",
-                display: "block",
-                backgroundColor: "#000",
-              }}
-            />
-          </Box>
-        </CardMedia>
+        />
 
-        {/* CONTENT */}
-        <CardContent
-          sx={{
-            flexGrow: 1,
-            px: 2,
-            pt: 0,
-            pb: 0, // REMOVE BOTTOM SPACE
-            direction: "rtl",
-            "&:last-child": { paddingBottom: 1 }, // REMOVE DEFAULT MUI PADDING
-          }}
-        >
+        <CardContent sx={{ px: 2, py: 2 }}>
           <Typography
             variant="h6"
-            sx={{
-              mb: 1,
-              textAlign: "right",
-              fontFamily: "Tajawal",
-            }}
+            sx={{ mb: 1, fontFamily: "Tajawal", textAlign: "right" }}
           >
             {item.name}
           </Typography>
 
           <Typography
             variant="body2"
-            sx={{
-              textAlign: "right",
-              fontFamily: "Tajawal",
-              whiteSpace: "pre-line",
-            }}
+            sx={{ fontFamily: "Tajawal", textAlign: "right" }}
           >
             {item.text}
           </Typography>
         </CardContent>
       </Card>
-    </Box>
+    </Glow3DCard>
   );
 }
 
 /* --------------------------------------------------------------- */
-/* MAIN SECTION COMPONENT */
+/* MAIN SECTION */
 /* --------------------------------------------------------------- */
-
-export default function Eventsection({ title = " آخر أخبارنا" }) {
+export default function Eventsection({ title = "آخر أخبارنا" }) {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const PER_PAGE = 6;
 
+  const PER_PAGE = 6;
   const mainRef = useRef(null);
 
-  /* FETCH DATA */
   useEffect(() => {
     let cancelled = false;
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(
+        const res = await axios.get(
           `${process.env.REACT_APP_API_HOST}/News`
         );
-        if (cancelled) return;
-
-        const data = Array.isArray(response.data)
-          ? response.data.reverse()
-          : [];
-        setEvents(data);
-      } catch (err) {
+        if (!cancelled) {
+          setEvents(
+            Array.isArray(res.data) ? res.data.reverse() : []
+          );
+        }
+      } catch {
         if (!cancelled) setError("فشل في جلب البيانات");
       } finally {
         if (!cancelled) setLoading(false);
@@ -145,11 +155,6 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
     return () => (cancelled = true);
   }, []);
 
-  useEffect(() => {
-    setPage(1);
-  }, [events.length]);
-
-  /* FORMAT DATA */
   const finalList = useMemo(() => {
     return events
       .map((ev) => {
@@ -157,55 +162,32 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
         const text = Array.isArray(ev.newsdec)
           ? ev.newsdec[0]
           : ev.newsdec || "";
-        const images = Array.isArray(ev.newsimagelinks)
-          ? ev.newsimagelinks
-          : [];
-
-        const mainImage =
-          images[0] || ev.image || ev.mainImage || null;
-
-        if (mainImage) return { name, type: "image", image: mainImage, text };
-        return null;
+        const image = ev.newsimagelinks?.[0] || ev.image;
+        return image ? { name, image, text } : null;
       })
       .filter(Boolean);
   }, [events]);
 
-  /* LOADING */
   if (loading)
     return (
-      <Box
-        sx={{
-          backgroundColor: "#030909",
-          py: 10,
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <CircularProgress color="inherit" />
+      <Box sx={{ py: 10, textAlign: "center" }}>
+        <CircularProgress />
       </Box>
     );
 
-  /* ERROR */
   if (error)
     return (
-      <Box
-        sx={{
-          backgroundColor: "#030909",
-          py: 10,
-          color: "#fff",
-          textAlign: "center",
-        }}
-      >
+      <Box sx={{ py: 10, textAlign: "center", color: "#fff" }}>
         <Typography>{error}</Typography>
       </Box>
     );
 
-  if (finalList.length === 0) return null;
-
   const totalPages = Math.ceil(finalList.length / PER_PAGE);
-  const pagedItems = finalList.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+  const pagedItems = finalList.slice(
+    (page - 1) * PER_PAGE,
+    page * PER_PAGE
+  );
 
-  /* RENDER UI */
   return (
     <section
       ref={mainRef}
@@ -217,34 +199,31 @@ export default function Eventsection({ title = " آخر أخبارنا" }) {
           "url('https://i.ibb.co/q3L8N4T9/Whats-App-Image-2025-12-01-at-7-59-08-PM.webp')",
       }}
     >
-      <Container maxWidth="xl">
-        {/* TITLE */}
-        <Box sx={{ width: "100%", mb: 4 }}>
-          <Typography
-            variant="h2"
-            align="center"
-            sx={{
-              fontFamily: "Changa,sans-serif",
-              fontWeight: 600,
-              color: "#096e69",
-              mb: 2,
-            }}
-          >
-            {title}
-          </Typography>
-        </Box>
+      {/* 🔥 EXTRA WIDE CONTAINER */}
+      <Container maxWidth={false} sx={{ maxWidth: "1700px" }}>
+        <Typography
+          variant="h2"
+          align="center"
+          sx={{
+            fontFamily: "Changa,sans-serif",
+            fontWeight: 600,
+            color: "rgb(15, 245, 236)",
+            mb: 6,
+          }}
+        >
+          {title}
+        </Typography>
 
-        <Grid container spacing={4} alignItems="stretch">
+        <Grid container spacing={15}>
           {pagedItems.map((item, index) => (
-            <Grid item key={`${item.name}-${index}`} xs={12} sm={6} md={4}>
+            <Grid item xs={12} sm={6} md={4} key={index}>
               <FeedbackCard item={item} />
             </Grid>
           ))}
         </Grid>
 
-        {/* PAGINATION */}
         {totalPages > 1 && (
-          <Stack spacing={2} alignItems="center" sx={{ mt: 4 }}>
+          <Stack alignItems="center" sx={{ mt: 6 }}>
             <Pagination
               count={totalPages}
               page={page}
