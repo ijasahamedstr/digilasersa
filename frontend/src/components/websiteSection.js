@@ -1,13 +1,4 @@
-import { Carousel } from "react-bootstrap";
-import {
-  Box,
-  Typography,
-  CircularProgress
-} from "@mui/material";
-import Container from "@mui/material/Container";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { useState, useEffect } from "react";
 import {
   FaInstagram,
   FaLinkedin,
@@ -18,232 +9,152 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { useState, useEffect } from "react";
+import { Container, Box, Stack } from "@mui/material";
 
+const socialLinks = [
+  { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
+  { icon: <FaInstagram size={25} />, link: "https://www.instagram.com/digilasersa" },
+  { icon: <FaLinkedin size={25} />, link: "https://www.linkedin.com/company/digilasersa" },
+  { icon: <FaYoutube size={25} />, link: "https://youtube.com/@digilaserSa" },
+  { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
+  { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
+  { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+];
 
-
-
+const BORDER_THICKNESS = 18;
+const IMAGE_GAP = "200px"; // 🔥 CONTROL ALL IMAGE SPACING HERE
 
 const WebsiteSection = () => {
-  const [loading, setLoading] = useState(true); // 🔹 Splash screen state
+  const [showModal, setShowModal] = useState(true);
 
-
-   // 🔹 Show splash for 2s then remove
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-    // 🔹 Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // 🔹 Force a one-time refresh on first load
   useEffect(() => {
-    const hasReloaded = sessionStorage.getItem("hasReloaded");
-    if (!hasReloaded) {
+    if (!sessionStorage.getItem("hasReloaded")) {
       sessionStorage.setItem("hasReloaded", "true");
       window.location.reload();
     }
   }, []);
 
-    // --- Splash Screen Overlay ---
-  if (loading) {
-    return (
-      <Box
-        sx={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100vh",
-          bgcolor: "#000",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          zIndex: 9999,
-          flexDirection: "column",
-          p: 2,
-        }}
-      >
+  useEffect(() => {
+    const timer = setTimeout(() => setShowModal(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const ImageBlock = ({ src }) => (
+    <Box sx={{ display: "flex", justifyContent: "center", perspective: "1600px" }}>
+      <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d" }}>
+
         <Box
           component="img"
-          src="https://i.ibb.co/hRZ1bMy/78-removebg-preview.png"
-          alt="Company Logo"
+          src={src}
+          alt="Fine Arts"
           sx={{
-            width: { xs: "70%", sm: "50%", md: "40%", lg: "30%" },
-            maxWidth: "500px",
-            height: "auto",
-            mb: 2,
+            width: "100%",
+            borderRadius: "22px",
+            zIndex: 10,
+            boxShadow: "35px 35px 45px rgba(0,0,0,0.65)",
           }}
         />
-        <CircularProgress sx={{ color: "#00fffc" }} />
-      </Box>
-    );
-  }
 
+        {/* GLOW */}
+        <Box
+          sx={{
+            position: "absolute",
+            inset: "-6px",
+            borderRadius: "28px",
+            background: "linear-gradient(135deg,#06f9f3,#00b3ff,#06f9f3)",
+            filter: "blur(14px)",
+            transform: `translateZ(-${BORDER_THICKNESS}px)`,
+            zIndex: 6,
+          }}
+        />
+
+        {/* DEPTH PLATE */}
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            borderRadius: "22px",
+            background: "#031d1d",
+            transform: `translateZ(-${BORDER_THICKNESS * 2.5}px)`,
+            zIndex: 4,
+          }}
+        />
+
+        {/* SHADOW */}
+        <Box
+          sx={{
+            position: "absolute",
+            inset: "-25px",
+            borderRadius: "36px",
+            background: "rgba(0,0,0,0.9)",
+            filter: "blur(35px)",
+            transform: `translateZ(-${BORDER_THICKNESS * 4}px)`,
+            zIndex: 1,
+          }}
+        />
+      </Box>
+    </Box>
+  );
 
   return (
     <>
-    <Container
-      maxWidth={false}
-      sx={{ padding: 0 }}
-      style={{ paddingLeft: "0px", paddingRight: "0px", paddingTop: "100px" }}
-    >
-      <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-        {/* Social Media Icons - Hidden on Mobile */}
-        <Box
-          sx={{
-            position: "fixed",
-            top: "50%",
-            left: 0,
-            transform: "translateY(-50%)",
-            display: {
-              xs: "none", // Hide on extra-small and small screens
-              md: "flex", // Show on medium screens and up
-            },
-            flexDirection: "column",
-            gap: "15px",
-            zIndex: 2,
-            paddingLeft: 2,
-          }}
-        >
-          {[
-            {
-              icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />,
-              link: "https://x.com/digilasersa",
-            },
-            {
-              icon: <FaInstagram size={25} />,
-              link: "https://www.instagram.com/digilasersa",
-            },
-            {
-              icon: <FaLinkedin size={25} />,
-              link: "https://www.linkedin.com/company/digilasersa",
-            },
-            {
-              icon: <FaYoutube size={25} />,
-              link: "https://youtube.com/@digilaserSa",
-            },
-            {
-              icon: <FaSnapchat size={25} />,
-              link: "https://www.snapchat.com/add/digilasersa",
-            },
-            {
-              icon: <FaTiktok size={25} />,
-              link: "https://www.tiktok.com/@digilasersa",
-            },
-            {
-              icon: <FaWhatsapp size={25} />,
-              link: "http://wa.me/966571978888",
-            },
-          ].map((social, index) => (
-            <a
-              key={index}
-              href={social.link}
-              target="_blank"
-              rel="noopener noreferrer"
+      {/* SOCIAL ICONS */}
+      <Box
+        sx={{
+          position: "fixed",
+          top: "50%",
+          left: 0,
+          transform: "translateY(-50%)",
+          display: { xs: "none", md: "flex" },
+          flexDirection: "column",
+          gap: 2,
+          zIndex: 1200,
+          pl: 2,
+        }}
+      >
+        {socialLinks.map(({ icon, link }, idx) => (
+          <a key={idx} href={link} target="_blank" rel="noopener noreferrer">
+            <Box
+              sx={{
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                backgroundColor: "#06f9f3",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "#17202a",
+                boxShadow: 3,
+                "&:hover": { transform: "scale(1.2)" },
+              }}
             >
-              <Box
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#06f9f3",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#17202a",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                  transition: "transform 0.3s ease",
-                  "&:hover": { transform: "scale(1.2)" },
-                }}
-              >
-                {social.icon}
-              </Box>
-            </a>
-          ))}
-        </Box>
+              {icon}
+            </Box>
+          </a>
+        ))}
       </Box>
-    </Container>
-    
+
+      {/* MAIN SECTION */}
       <Box
         sx={{
           width: "100%",
-          overflow: "hidden",
-          position: "relative",
+          mt: "100px",
           backgroundImage: `url("https://i.ibb.co/Kx0StNYq/rock-texture-wallpaper-min.webp")`,
           backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
-          display: "flex",
-          justifyContent: "center",
         }}
       >
-      <Container maxWidth="xl" disableGutters>
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            mt: 8,   // 👈 MORE TOP SPACE (64px)
-            mb: 8,   // 👈 MORE BOTTOM SPACE (64px)
-          }}
-        >
-          <img
-            src="https://i.ibb.co/cKdNcSTQ/001-1.jpg"
-            alt="Image 01"
-            style={{
-              width: "100%",
-              maxWidth: "1400px",
-              height: "auto",
-              display: "block",
-            }}
-          />
-        </Box>
-          <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            mt: 8,   // 👈 MORE TOP SPACE (64px)
-            mb: 8,   // 👈 MORE BOTTOM SPACE (64px)
-          }}
-        >
-          <img
-            src="https://i.ibb.co/vxQNxvFf/002-1.jpg"
-            alt="Image 01"
-            style={{
-              width: "100%",
-              maxWidth: "1400px",
-              height: "auto",
-              display: "block",
-            }}
-          />
-        </Box>
-
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            mt: 8,
-            mb: 8,
-          }}
-        >
-          <img
-            src="https://i.ibb.co/jP91GYsT/003-1-1-min.jpg"
-            alt="Image 02"
-            style={{
-              width: "100%",
-              maxWidth: "1400px",
-              height: "auto",
-              display: "block",
-            }}
-          />
-        </Box>
-      </Container>
+        <Container maxWidth="xxl" disableGutters sx={{ mt: 10, p: 15 }}>
+          <Stack spacing={IMAGE_GAP}>
+            <ImageBlock src="https://i.ibb.co/Y4Gt7Fjh/001-1.jpg" />
+            <ImageBlock src="https://i.ibb.co/67JvCw35/002-1-1.webp" />
+            <ImageBlock src="https://i.ibb.co/m5GXsqS1/003-1.jpg" />
+          </Stack>
+        </Container>
       </Box>
     </>
   );

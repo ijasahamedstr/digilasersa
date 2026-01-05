@@ -11,7 +11,9 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Container, Grid, Box, Button, CircularProgress } from "@mui/material";
+import { Container, Box, } from "@mui/material";
+
+const BORDER_THICKNESS = 18;
 
 const carouselItems = [
   { id: 1, img: "https://i.ibb.co/5rsMjx9/New-Web-Print.webp" },
@@ -127,20 +129,106 @@ const PrintingSection = () => {
               }}
             >
 
-      <Container maxWidth="xl" disableGutters sx={{
-          mt: 10,        // 🔥 TOP SPACE
-          padding: 15,
-          margin: "0 auto",
-          width: "100%",
-        }}>
-        <Box sx={{ width: "100%", overflow: "hidden", mb: 10 }}>
-          <img src="https://i.ibb.co/ZzBGQ2bq/004-1.jpg" width="100%" />
-        </Box>
+             <Container maxWidth="xxl" disableGutters sx={{ mt: 10, padding: 15 }}>
 
-        <Box sx={{ width: "100%", overflow: "hidden", mb: 10 }}>
-          <img src="https://i.ibb.co/398ddbZ2/005-1.jpg" width="100%" />
-        </Box>
-      </Container>
+          {/* IMAGE BLOCK 1 */}
+          <Box sx={{ display: "flex", justifyContent: "center", mb: "200px", perspective: "1600px" }}>
+            <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d" }}>
+
+              <Box
+                component="img"
+                src="https://i.ibb.co/r2xFBdXD/004-1.jpg"
+                alt="Fine Arts"
+                sx={{
+                  width: "100%",
+                  borderRadius: "22px",
+                  zIndex: 10,
+                  boxShadow: "35px 35px 45px rgba(0,0,0,0.65)",
+                }}
+              />
+
+              {/* GLOW */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  inset: "-6px",
+                  borderRadius: "28px",
+                  background: "linear-gradient(135deg,#06f9f3,#00b3ff,#06f9f3)",
+                  filter: "blur(14px)",
+                  transform: `translateZ(-${BORDER_THICKNESS}px)`,
+                  zIndex: 6,
+                }}
+              />
+
+              {/* DEPTH PLATE */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: "22px",
+                  background: "#031d1d",
+                  transform: `translateZ(-${BORDER_THICKNESS * 2.5}px)`,
+                  zIndex: 4,
+                }}
+              />
+
+              {/* DARK SHADOW */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  inset: "-25px",
+                  borderRadius: "36px",
+                  background: "rgba(0,0,0,0.9)",
+                  filter: "blur(35px)",
+                  transform: `translateZ(-${BORDER_THICKNESS * 4}px)`,
+                  zIndex: 1,
+                }}
+              />
+            </Box>
+          </Box>
+
+          {/* IMAGE BLOCK 2 */}
+          <Box sx={{ display: "flex", justifyContent: "center", perspective: "1600px" }}>
+            <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d" }}>
+
+              <Box
+                component="img"
+                src="https://i.ibb.co/ksrBBTCj/005-1.jpg"
+                alt="Fine Arts"
+                sx={{
+                  width: "100%",
+                  borderRadius: "22px",
+                  zIndex: 10,
+                  boxShadow: "35px 35px 45px rgba(0,0,0,0.65)",
+                }}
+              />
+
+              <Box
+                sx={{
+                  position: "absolute",
+                  inset: "-6px",
+                  borderRadius: "28px",
+                  background: "linear-gradient(135deg,#06f9f3,#00b3ff,#06f9f3)",
+                  filter: "blur(14px)",
+                  transform: `translateZ(-${BORDER_THICKNESS}px)`,
+                  zIndex: 6,
+                }}
+              />
+
+              <Box
+                sx={{
+                  position: "absolute",
+                  inset: "-25px",
+                  borderRadius: "36px",
+                  background: "rgba(0,0,0,0.9)",
+                  filter: "blur(35px)",
+                  transform: `translateZ(-${BORDER_THICKNESS * 4}px)`,
+                  zIndex: 1,
+                }}
+              />
+            </Box>
+          </Box>
+        </Container>
 
       </Box>
 
