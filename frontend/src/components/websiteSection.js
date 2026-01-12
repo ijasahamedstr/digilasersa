@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Carousel from "react-bootstrap/Carousel";
 import {
   FaInstagram,
   FaLinkedin,
@@ -19,6 +20,13 @@ const socialLinks = [
   { icon: <FaSnapchat size={25} />, link: "https://www.snapchat.com/add/digilasersa" },
   { icon: <FaTiktok size={25} />, link: "https://www.tiktok.com/@digilasersa" },
   { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
+];
+
+
+const carouselItems = [
+  { id: 1, img: "https://i.ibb.co/39HQp1cf/image.webp" },
+  { id: 2, img: "https://i.ibb.co/39HQp1cf/image.webp" },
+  { id: 3, img: "https://i.ibb.co/39HQp1cf/image.webp" },
 ];
 
 const BORDER_THICKNESS = 18;
@@ -102,6 +110,61 @@ const WebsiteSection = () => {
 
   return (
     <>
+          <Box sx={{ width: "100%", overflow: "hidden", position: "relative" }}>
+            <Carousel
+              fade
+              nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
+              prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: "black" }} />}
+            >
+              {carouselItems.map((item) => (
+                <Carousel.Item key={item.id}>
+                  <img
+                    className="d-block w-100"
+                    src={item.img}
+                    alt={`slide-${item.id}`}
+                    style={{ objectFit: "cover", boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)" }}
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+    
+            {/* Social Media Icons */}
+            <Box
+              sx={{
+                position: "fixed",
+                top: "50%",
+                left: 0,
+                transform: "translateY(-50%)",
+                display: { xs: "none", md: "flex" },
+                flexDirection: "column",
+                gap: 2,
+                zIndex: 1200,
+                pl: 2,
+              }}
+            >
+              {socialLinks.map(({ icon, link }, idx) => (
+                <a key={idx} href={link} target="_blank" rel="noopener noreferrer">
+                  <Box
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: "50%",
+                      backgroundColor: "#06f9f3",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      color: "#17202a",
+                      boxShadow: 3,
+                      transition: "transform 0.3s ease",
+                      "&:hover": { transform: "scale(1.2)" },
+                    }}
+                  >
+                    {icon}
+                  </Box>
+                </a>
+              ))}
+            </Box>
+          </Box>
       {/* SOCIAL ICONS */}
       <Box
         sx={{
