@@ -138,7 +138,6 @@ function WebsiteSection() {
       >
         <Container maxWidth="xxl" sx={{ px: { xs: 2, md: 15 } }}>
           <Stack spacing={IMAGE_GAP}>
-            <ImageBlock src="https://i.ibb.co/Y4Gt7Fjh/001-1.jpg" />
             <ImageBlock src="https://i.ibb.co/67JvCw35/002-1-1.webp" />
             <ImageBlock src="https://i.ibb.co/m5GXsqS1/003-1.jpg" />
           </Stack>
