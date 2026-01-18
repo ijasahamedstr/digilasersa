@@ -68,48 +68,6 @@ const FadeCarousel = () => {
     });
   };
 
-  const handleProgressClick = (e, index) => {
-    const progressBar = e.currentTarget;
-    const rect = progressBar.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const percentage = clickX / rect.width;
-    const currentVideo = videoRefs.current[index];
-    currentVideo.currentTime = percentage * currentVideo.duration;
-  };
-
-  const handleDrag = (e, index) => {
-    if (videoStates[index].isDragging) {
-      const progressBar = e.currentTarget;
-      const rect = progressBar.getBoundingClientRect();
-      const posX = e.clientX - rect.left;
-      let percentage = posX / rect.width;
-      percentage = Math.max(0, Math.min(1, percentage));
-      const currentVideo = videoRefs.current[index];
-      currentVideo.currentTime = percentage * currentVideo.duration;
-      setVideoStates((prev) => {
-        const updated = [...prev];
-        updated[index].currentTime = currentVideo.currentTime;
-        return updated;
-      });
-    }
-  };
-
-  const startDrag = (index) => {
-    setVideoStates((prev) => {
-      const updated = [...prev];
-      updated[index].isDragging = true;
-      return updated;
-    });
-  };
-
-  const stopDrag = (index) => {
-    setVideoStates((prev) => {
-      const updated = [...prev];
-      updated[index].isDragging = false;
-      return updated;
-    });
-  };
-
   return (
     <Box sx={{ mt: { xs: "100px" } }}>
       <Carousel
