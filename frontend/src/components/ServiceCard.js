@@ -193,12 +193,7 @@ function ServiceCard() {
           }}
         >
           {/* FIXED: Changed href="#" to a valid URL */}
-          <a
-            href="https://sssplatform.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-          >
+
             <Box
               component="img"
               src="https://i.ibb.co/Cp6pRWhk/image.webp"
@@ -227,7 +222,6 @@ function ServiceCard() {
                 },
               }}
             />
-          </a>
         </Box>
 
         {/* Banner 2 */}
