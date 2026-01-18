@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-
 const products = [
   {
     id: 1,
@@ -77,7 +76,7 @@ function ServiceCard() {
       sx={{
         width: "100%",
         py: 6,
-        backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`, // ✅ Your background image here
+        backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
@@ -108,13 +107,7 @@ function ServiceCard() {
         {/* Grid Cards */}
         <Grid container spacing={3} justifyContent="center">
           {products.slice(0, 8).map((product) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={3} // 3 per row on medium and above (12/4 = 3)
-              key={product.id}
-            >
+            <Grid item xs={12} sm={6} md={3} key={product.id}>
               <Link to={product.link} style={{ textDecoration: "none" }}>
                 <Card
                   sx={{
@@ -124,7 +117,7 @@ function ServiceCard() {
                     borderRadius: "20px",
                     overflow: "hidden",
                     width: "300px",
-                    margin: "0 auto", // Center the card
+                    margin: "0 auto",
                   }}
                 >
                   <Box
@@ -190,108 +183,100 @@ function ServiceCard() {
           ))}
         </Grid>
 
-<Box 
-  mt={6} 
-  sx={{ 
-    position: "relative", 
-    textAlign: "center",
-    px: { xs: 2, md: 0 } // Padding for mobile screens
-  }}
->
-  <a href="#" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-    <Box
-      component="img"
-      src="https://i.ibb.co/Cp6pRWhk/image.webp"
-      alt="SSS Platform Banner"
-      loading="lazy"
-      sx={{
-        width: "100%",
-        maxHeight: "700px",
-        objectFit: "cover",
-        
-        // 1. FULL RADIUS & BORDER
-        borderRadius: "30px", 
-        border: "1px solid rgba(255, 255, 255, 0.2)", // Glass effect border
-        
-        // 2. PREMIUM BOX SHADOW (Neon Glow)
-        boxShadow: "0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(6, 249, 243, 0.2)", 
-        
-        paddingBottom: "0px", 
-        cursor: "pointer",
-        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)", // Smooth bounce effect
-        
-        // 3. HOVER EFFECTS
-        "&:hover": {
-          transform: "translateY(-10px) scale(1.02)", // Lifts up on hover
-          boxShadow: "0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(6, 249, 243, 0.5)", // Stronger glow
-        },
-        
-        // 4. FLOATING ANIMATION
-        animation: "floating 6s ease-in-out infinite",
-        "@keyframes floating": {
-          "0%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-15px)" },
-          "100%": { transform: "translateY(0px)" },
-        }
-      }}
-    />
-  </a>
-</Box>
+        {/* Fixed Banner 1 */}
+        <Box
+          mt={6}
+          sx={{
+            position: "relative",
+            textAlign: "center",
+            px: { xs: 2, md: 0 },
+          }}
+        >
+          {/* FIXED: Changed href="#" to a valid URL */}
+          <a
+            href="https://sssplatform.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <Box
+              component="img"
+              src="https://i.ibb.co/Cp6pRWhk/image.webp"
+              alt="SSS Platform Banner"
+              loading="lazy"
+              sx={{
+                width: "100%",
+                maxHeight: "700px",
+                objectFit: "cover",
+                borderRadius: "30px",
+                border: "1px solid rgba(255, 255, 255, 0.2)",
+                boxShadow:
+                  "0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(6, 249, 243, 0.2)",
+                cursor: "pointer",
+                transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                "&:hover": {
+                  transform: "translateY(-10px) scale(1.02)",
+                  boxShadow:
+                    "0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(6, 249, 243, 0.5)",
+                },
+                animation: "floating 6s ease-in-out infinite",
+                "@keyframes floating": {
+                  "0%": { transform: "translateY(0px)" },
+                  "50%": { transform: "translateY(-15px)" },
+                  "100%": { transform: "translateY(0px)" },
+                },
+              }}
+            />
+          </a>
+        </Box>
 
-        {/* Banner Images and Button */}
-  <Box 
-  mt={6} 
-  sx={{ 
-    position: "relative", 
-    textAlign: "center",
-    // Added perspective to make the 3D hover effect look better
-    perspective: "1000px" 
-  }}
->
-  <a href="https://sssplatform.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-    <Box
-      component="img"
-      src="https://i.ibb.co/YTwy8KSF/image.webp"
-      alt="Banner"
-      loading="lazy"
-      sx={{
-        width: "100%",
-        maxHeight: "700px",
-        objectFit: "cover",
-        cursor: "pointer",
-        
-        // 1. MODERN RADIUS & GLASS BORDER
-        borderRadius: "30px", 
-        border: "1px solid rgba(255, 255, 255, 0.15)",
-        
-        // 2. PRESET SPACING (Replacing your paddingBottom)
-        mb: "50px", 
-
-        // 3. THE "BEAUTIFUL" NEON EFFECT (Deep Shadow + Brand Glow)
-        boxShadow: "0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(6, 249, 243, 0.2)",
-        
-        // 4. SMOOTH TRANSITION
-        transition: "all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-        
-        // 5. HOVER ACTION (Lift + Glow)
-        "&:hover": {
-          transform: "translateY(-15px) rotateX(2deg)", // 3D Lift effect
-          boxShadow: "0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(6, 249, 243, 0.6)",
-          filter: "brightness(1.1)", // Makes the image "pop" on hover
-        },
-
-        // 6. FLOATING ANIMATION (Gentle up and down movement)
-        animation: "bannerFloating 6s ease-in-out infinite",
-        "@keyframes bannerFloating": {
-          "0%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
-          "100%": { transform: "translateY(0px)" },
-        }
-      }}
-    />
-  </a>
-</Box>
-
+        {/* Banner 2 */}
+        <Box
+          mt={6}
+          sx={{
+            position: "relative",
+            textAlign: "center",
+            perspective: "1000px",
+          }}
+        >
+          <a
+            href="https://sssplatform.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <Box
+              component="img"
+              src="https://i.ibb.co/YTwy8KSF/image.webp"
+              alt="Banner"
+              loading="lazy"
+              sx={{
+                width: "100%",
+                maxHeight: "700px",
+                objectFit: "cover",
+                cursor: "pointer",
+                borderRadius: "30px",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                mb: "50px",
+                boxShadow:
+                  "0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(6, 249, 243, 0.2)",
+                transition: "all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                "&:hover": {
+                  transform: "translateY(-15px) rotateX(2deg)",
+                  boxShadow:
+                    "0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(6, 249, 243, 0.6)",
+                  filter: "brightness(1.1)",
+                },
+                animation: "bannerFloating 6s ease-in-out infinite",
+                "@keyframes bannerFloating": {
+                  "0%": { transform: "translateY(0px)" },
+                  "50%": { transform: "translateY(-20px)" },
+                  "100%": { transform: "translateY(0px)" },
+                },
+              }}
+            />
+          </a>
+        </Box>
       </Container>
     </Box>
   );
