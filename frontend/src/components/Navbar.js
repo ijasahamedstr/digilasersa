@@ -368,7 +368,7 @@ function ResponsiveAppBar() {
 
               <Button
                 component="a"
-                href="https://digilaser.com.sa"
+                href="https://shop.digilaser.sa"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
