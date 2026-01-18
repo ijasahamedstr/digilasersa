@@ -382,7 +382,7 @@ function ResponsiveAppBar() {
           </Box>
 
           {/* Desktop - Right Side Actions */}
-  <Button
+          <Button
             component="a"
             href="https://wa.link/yo3er5"
             target="_blank"

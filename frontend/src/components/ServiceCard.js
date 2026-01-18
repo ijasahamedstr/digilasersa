@@ -190,27 +190,107 @@ function ServiceCard() {
           ))}
         </Grid>
 
-        {/* Banner Images and Button */}
-      <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
-        <a href="https://sssplatform.com" target="_blank" rel="noopener noreferrer">
-          <img
-            src="https://i.ibb.co/YTwy8KSF/image.webp"
-            alt="Banner"
-            loading="lazy"
-            style={{
-              width: "100%",
-              maxHeight: "700px",
-              objectFit: "cover",
-              borderRadius: "20px",
-              paddingBottom: "50px",
-              cursor: "pointer", // makes it look clickable
-            }}
-          />
-        </a>
+<Box 
+  mt={6} 
+  sx={{ 
+    position: "relative", 
+    textAlign: "center",
+    px: { xs: 2, md: 0 } // Padding for mobile screens
+  }}
+>
+  <a href="#" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+    <Box
+      component="img"
+      src="https://i.ibb.co/Cp6pRWhk/image.webp"
+      alt="SSS Platform Banner"
+      loading="lazy"
+      sx={{
+        width: "100%",
+        maxHeight: "700px",
+        objectFit: "cover",
+        
+        // 1. FULL RADIUS & BORDER
+        borderRadius: "30px", 
+        border: "1px solid rgba(255, 255, 255, 0.2)", // Glass effect border
+        
+        // 2. PREMIUM BOX SHADOW (Neon Glow)
+        boxShadow: "0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(6, 249, 243, 0.2)", 
+        
+        paddingBottom: "0px", 
+        cursor: "pointer",
+        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)", // Smooth bounce effect
+        
+        // 3. HOVER EFFECTS
+        "&:hover": {
+          transform: "translateY(-10px) scale(1.02)", // Lifts up on hover
+          boxShadow: "0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(6, 249, 243, 0.5)", // Stronger glow
+        },
+        
+        // 4. FLOATING ANIMATION
+        animation: "floating 6s ease-in-out infinite",
+        "@keyframes floating": {
+          "0%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-15px)" },
+          "100%": { transform: "translateY(0px)" },
+        }
+      }}
+    />
+  </a>
+</Box>
 
-        {/* Button (currently commented out) */}
-        {/* ... */}
-      </Box>
+        {/* Banner Images and Button */}
+  <Box 
+  mt={6} 
+  sx={{ 
+    position: "relative", 
+    textAlign: "center",
+    // Added perspective to make the 3D hover effect look better
+    perspective: "1000px" 
+  }}
+>
+  <a href="https://sssplatform.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+    <Box
+      component="img"
+      src="https://i.ibb.co/YTwy8KSF/image.webp"
+      alt="Banner"
+      loading="lazy"
+      sx={{
+        width: "100%",
+        maxHeight: "700px",
+        objectFit: "cover",
+        cursor: "pointer",
+        
+        // 1. MODERN RADIUS & GLASS BORDER
+        borderRadius: "30px", 
+        border: "1px solid rgba(255, 255, 255, 0.15)",
+        
+        // 2. PRESET SPACING (Replacing your paddingBottom)
+        mb: "50px", 
+
+        // 3. THE "BEAUTIFUL" NEON EFFECT (Deep Shadow + Brand Glow)
+        boxShadow: "0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(6, 249, 243, 0.2)",
+        
+        // 4. SMOOTH TRANSITION
+        transition: "all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        
+        // 5. HOVER ACTION (Lift + Glow)
+        "&:hover": {
+          transform: "translateY(-15px) rotateX(2deg)", // 3D Lift effect
+          boxShadow: "0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(6, 249, 243, 0.6)",
+          filter: "brightness(1.1)", // Makes the image "pop" on hover
+        },
+
+        // 6. FLOATING ANIMATION (Gentle up and down movement)
+        animation: "bannerFloating 6s ease-in-out infinite",
+        "@keyframes bannerFloating": {
+          "0%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-20px)" },
+          "100%": { transform: "translateY(0px)" },
+        }
+      }}
+    />
+  </a>
+</Box>
 
       </Container>
     </Box>

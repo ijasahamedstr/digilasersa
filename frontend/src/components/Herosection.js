@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 
 function Herosection() {
   return (
@@ -23,6 +23,7 @@ function Herosection() {
           textAlign: "center",
         }}
       >
+  
         <Typography
           variant="h5"
           sx={{
@@ -55,6 +56,24 @@ function Herosection() {
           نسرد قصة الإعلان بشكل مختلف تبصره العين وينبهر به العقل ، ويجد مكانا
           في خيال الناس
         </Typography>
+
+           <Box
+          component="img"
+          src="https://i.ibb.co/gZXS9ppL/32-1-1.webp"
+          alt="Logo"
+          sx={{
+            // Larger responsive widths: 200px on mobile, up to 450px on desktop
+            width: { xs: "200px", sm: "300px", md: "400px", lg: "450px" }, 
+            height: "auto",
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto",
+            transition: "transform 0.3s ease-in-out",
+            "&:hover": {
+              transform: "scale(1.02)", // Slight zoom on hover
+            },
+          }}
+        />
       </Container>
     </section>
   );
