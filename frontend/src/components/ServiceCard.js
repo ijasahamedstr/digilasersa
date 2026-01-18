@@ -9,14 +9,8 @@ import {
   Box,
   Button,
 } from "@mui/material";
-import { keyframes } from "@emotion/react";
 import { Link } from "react-router-dom";
 
-// Animation
-const pumpAnimation = keyframes`
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-`;
 
 const products = [
   {

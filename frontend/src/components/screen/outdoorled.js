@@ -160,19 +160,6 @@ const Outdoorled = () => {
     ],
   };
 
-  const handleImageClick = (index, imageSrc) => {
-    const updatedImages = [...mainImages];
-    updatedImages[index] = imageSrc; // Update the image for the specific project
-    setMainImages(updatedImages);
-  };
-
-  // const images = [
-  //   "https://i.ibb.co/crGY2Sp/customerservice.png",
-  //   "https://i.ibb.co/FXr5DWX/advertising-plan.png",
-  //   "https://i.ibb.co/NVDMdFy/the-camera-lens-canon-eos-5d-mark-ii-wallpaper-preview.png",
-  //   "https://i.ibb.co/6WYNt6b/1632994991100.png",
-  // ];
-
   return (
     <>
       <Container
@@ -387,24 +374,7 @@ const Outdoorled = () => {
                       <Slider {...sliderSettings}>
                         {project?.projectimage?.map((img, imgIndex) => (
                           <Box key={imgIndex} p={1}>
-                            <img
-                              src={`${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${img}`}
-                              alt={`Project ${index} Image ${imgIndex}`}
-                              loading="lazy"
-                              onClick={() =>
-                                handleImageClick(
-                                  index,
-                                  `${process.env.REACT_APP_API_HOST}/uploads/Screenssection/${img}`,
-                                )
-                              }
-                              style={{
-                                width: "100%",
-                                height: "100px",
-                                objectFit: "cover",
-                                cursor: "pointer",
-                                borderRadius: "5px",
-                              }}
-                            />
+                     
                           </Box>
                         ))}
                       </Slider>

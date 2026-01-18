@@ -11,10 +11,10 @@ export default function UpdateField() {
     gifttype: "",
     gifttimage: null, // Initially null as there's no image uploaded
   });
-  const [previewImage, setPreviewImage] = useState(null); // State for image preview
+  const [ setPreviewImage] = useState(null); // State for image preview
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [updatedFile, setUpdatedFile] = useState(null);
+  const [updatedFile] = useState(null);
 
   // Fetch the data when the component mounts
   useEffect(() => {
@@ -160,36 +160,7 @@ export default function UpdateField() {
                 </Form.Select>
               </Form.Group>
 
-              {/* Display Image or Default Image */}
-              {previewImage ? (
-                <img
-                  src={previewImage}
-                  alt="Gift"
-                  style={{
-                    maxWidth: "150px", // Set a smaller size for the image
-                    borderRadius: "8px",
-                  }}
-                />
-              ) : formData.gifttimage ? (
-                <img
-                  src={`${process.env.REACT_APP_API_HOST}/uploads/Promotionalgifts/${formData.gifttimage}`}
-                  alt="Gift"
-                  style={{
-                    maxWidth: "150px", // Set a smaller size for the image
-                    borderRadius: "8px",
-                  }}
-                />
-              ) : (
-                <img
-                  src="https://img.freepik.com/premium-vector/no-photo-available-vector-icon-default-image-symbol-picture-coming-soon-web-site-mobile-app_87543-18055.jpg"
-                  alt="Default Image"
-                  style={{
-                    maxWidth: "50px", // Set a smaller size for the image
-                    borderRadius: "8px",
-                  }}
-                />
-              )}
-
+  
               <Form.Group className="mb-3" controlId="formGridGiftImage">
                 <Form.Label>وثيقة الإثبات</Form.Label>
                 <Form.Control
