@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   FaInstagram,
   FaLinkedin,
@@ -25,12 +25,12 @@ const BORDER_THICKNESS = 18;
 const IMAGE_GAP = "200px"; // 🔥 CONTROL ALL IMAGE SPACING HERE
 
 const FineArts = () => {
-  const [showModal, setShowModal] = useState(true);
-
+  // 🔹 Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  // 🔹 Force a one-time refresh on first load
   useEffect(() => {
     if (!sessionStorage.getItem("hasReloaded")) {
       sessionStorage.setItem("hasReloaded", "true");
@@ -38,19 +38,13 @@ const FineArts = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShowModal(false), 5000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const ImageBlock = ({ src }) => (
+  const ImageBlock = ({ src, altText }) => (
     <Box sx={{ display: "flex", justifyContent: "center", perspective: "1600px" }}>
       <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d" }}>
-
         <Box
           component="img"
           src={src}
-          alt="Fine Arts"
+          alt={altText}
           sx={{
             width: "100%",
             borderRadius: "22px",
@@ -129,6 +123,7 @@ const FineArts = () => {
                 alignItems: "center",
                 color: "#17202a",
                 boxShadow: 3,
+                transition: "transform 0.3s ease",
                 "&:hover": { transform: "scale(1.2)" },
               }}
             >
@@ -150,10 +145,10 @@ const FineArts = () => {
       >
         <Container maxWidth="xxl" disableGutters sx={{ mt: 10, p: 15 }}>
           <Stack spacing={IMAGE_GAP}>
-            <ImageBlock src="https://i.ibb.co/ch6Pqwc4/1.webp" />
-            <ImageBlock src="https://i.ibb.co/HfdGFLhj/image.webp" />
-            <ImageBlock src="https://i.ibb.co/TBWgkXqD/image.webp" />
-            <ImageBlock src="https://i.ibb.co/ZRhj4MH7/image.webp" />
+            <ImageBlock src="https://i.ibb.co/ch6Pqwc4/1.webp" altText="Fine Arts Portfolio Item 1" />
+            <ImageBlock src="https://i.ibb.co/HfdGFLhj/image.webp" altText="Fine Arts Portfolio Item 2" />
+            <ImageBlock src="https://i.ibb.co/TBWgkXqD/image.webp" altText="Fine Arts Portfolio Item 3" />
+            <ImageBlock src="https://i.ibb.co/ZRhj4MH7/image.webp" altText="Fine Arts Portfolio Item 4" />
           </Stack>
         </Container>
       </Box>

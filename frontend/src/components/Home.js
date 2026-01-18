@@ -15,7 +15,6 @@ import Progress from "./progress";
 import ServiceCard from "./ServiceCard";
 import FadeCarousel from "./Slider";
 import VisionandMission from "./vision_and_Mission";
-import CardServerice from "./CardServerice";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);

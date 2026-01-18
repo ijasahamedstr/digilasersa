@@ -31,20 +31,20 @@ const socialLinks = [
 
 const ScreensSection = () => {
   const [showModal, setShowModal] = useState(true);
-  const [loading, setLoading] = useState(true); // 🔹 Splash screen state
+  const [loading, setLoading] = useState(true); // Splash screen state
 
-   // 🔹 Show splash for 2s then remove
+  // Show splash for 2s then remove
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  // 🔹 Scroll to top on component mount
+  // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // 🔹 Force a one-time refresh on first load
+  // Force a one-time refresh on first load
   useEffect(() => {
     const hasReloaded = sessionStorage.getItem("hasReloaded");
     if (!hasReloaded) {
@@ -53,7 +53,7 @@ const ScreensSection = () => {
     }
   }, []);
 
-  // 🔹 Auto close modal after 2 second
+  // Auto close modal after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowModal(false);
@@ -96,10 +96,9 @@ const ScreensSection = () => {
     );
   }
 
-
   return (
     <>
-      {/* Image Modal */}
+      {/* Welcome Modal */}
       <Modal
         show={showModal}
         onHide={() => setShowModal(false)}
@@ -131,7 +130,7 @@ const ScreensSection = () => {
         >
           <img
             src="https://i.ibb.co/JRM6pZqR/11488254-copy.webp"
-            alt="Welcome"
+            alt="Welcome Banner"
             style={{ width: "100%", height: "100%", objectFit: "fit" }}
           />
           <Button
@@ -164,7 +163,7 @@ const ScreensSection = () => {
               },
             }}
           >
-            تخطي
+            تخطى
           </Button>
         </Modal.Body>
       </Modal>
@@ -181,7 +180,7 @@ const ScreensSection = () => {
               <img
                 className="d-block w-100"
                 src={item.img}
-                alt={`slide-${item.id}`}
+                alt={`Slide number ${item.id}`}
                 style={{ objectFit: "cover", boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)" }}
               />
             </Carousel.Item>
@@ -226,226 +225,213 @@ const ScreensSection = () => {
         </Box>
       </Box>
 
-
-         <Box
-            sx={{
-              width: "100%",
-              py: 3,
-              backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`, // ✅ Your background image here
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              display: "flex",
-              justifyContent: "center",
-              paddingTop:'0px'
-            }}
-          >
+      {/* Main Content Sections */}
+      <Box
+        sx={{
+          width: "100%",
+          py: 3,
+          backgroundImage: `url("https://i.ibb.co/mFyqzbng/grey-textured-background-1.jpg")`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: '0px'
+        }}
+      >
         <Container maxWidth="xl">
-        <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
-          <Grid item xs={12}>
-             <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-              <img
-                src="https://i.ibb.co/JW96kTbM/1.webp"
-                alt="Image 01"
-                style={{
-                  objectFit: "cover",
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-                  marginBottom:'30px'
-                }}
-              />
-            </Box>
-          </Grid>
+          <Box mt={6} sx={{ position: "relative", textAlign: "center" }}>
+            <Grid item xs={12}>
+              <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+                <img
+                  src="https://i.ibb.co/JW96kTbM/1.webp"
+                  alt="Promotional Banner One"
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                    boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                    marginBottom: '30px'
+                  }}
+                />
+              </Box>
+            </Grid>
 
-          {/* Image Section */}
             <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
               <a href="https://sssplatform.com" target="_blank" rel="noopener noreferrer">
-              <img
-                src="https://i.ibb.co/YTwy8KSF/image.webp"
-                alt="Image 01"
-                style={{
-                  objectFit: "cover",
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-                }}
-              />
+                <img
+                  src="https://i.ibb.co/YTwy8KSF/image.webp"
+                  alt="SSS Platform Integration"
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                    boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                  }}
+                />
               </a>
             </Box>
-
-        </Box>
-      </Container>
+          </Box>
+        </Container>
       </Box>
 
-   <Container
-  maxWidth={false}
-  disableGutters
-  sx={{
-    padding: 0,
-    margin: 0,
-    width: "100%",
-  }}
->
+      <Container
+        maxWidth={false}
+        disableGutters
+        sx={{
+          padding: 0,
+          margin: 0,
+          width: "100%",
+        }}
+      >
+        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+          <img
+            src="https://i.ibb.co/hJd60qFJ/Whats-App-Image-2025-11-20-at-11-09-42-AM.webp"
+            alt="Featured Project Showcase"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "auto",
+              display: "block",
+              boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+            }}
+          />
+        </Box>
 
-    <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-    <img
-      src="https://i.ibb.co/hJd60qFJ/Whats-App-Image-2025-11-20-at-11-09-42-AM.webp"
-      alt="Image 01"
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "auto",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-      }}
-    />
-  </Box>
+        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+          <img
+            src="https://i.ibb.co/DPP7FB7Q/01-copy.webp"
+            alt="Detail View One"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "auto",
+              display: "block",
+              boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+            }}
+          />
+        </Box>
 
-  {/* IMAGE 01 */}
-  <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-    <img
-      src="https://i.ibb.co/DPP7FB7Q/01-copy.webp"
-      alt="Image 01"
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "auto",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-      }}
-    />
-  </Box>
+        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+          <img
+            src="https://i.ibb.co/2HYxrqw/02-copy.webp"
+            alt="Detail View Two"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "auto",
+              display: "block",
+              boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+            }}
+          />
+        </Box>
 
-  {/* IMAGE 02 */}
-  <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-    <img
-      src="https://i.ibb.co/2HYxrqw/02-copy.webp"
-      alt="Image 02"
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "auto",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-      }}
-    />
-  </Box>
+        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+          <img
+            src="https://i.ibb.co/DHpw8CQ4/03.webp"
+            alt="Detail View Three"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "auto",
+              display: "block",
+              boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+            }}
+          />
+        </Box>
 
-  {/* IMAGE 03 */}
-  <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-    <img
-      src="https://i.ibb.co/DHpw8CQ4/03.webp"
-      alt="Image 03"
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "auto",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-      }}
-    />
-  </Box>
-  <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-    <img
-      src="https://i.ibb.co/FqX9JpSF/0004.webp"
-      alt="Image 03"
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "auto",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-      }}
-    />
-  </Box>
+        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+          <img
+            src="https://i.ibb.co/FqX9JpSF/0004.webp"
+            alt="Detail View Four"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "auto",
+              display: "block",
+              boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+            }}
+          />
+        </Box>
 
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            width: "100%",
+            overflow: "hidden",
+          }}
+        >
+          <Box
+            sx={{
+              flex: "0 0 30%",
+              position: "relative",
+              mb: 0,
+              pb: 0,
+            }}
+          >
+            <img
+              src="https://i.ibb.co/p7gDtSH/scrren.gif"
+              alt="Animated Screen Display"
+              style={{
+                objectFit: "fill",
+                width: "100%",
+                height: "95%",
+                display: "block",
+                boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                marginBottom: "0",
+                paddingBottom: "0",
+              }}
+            />
+          </Box>
 
+          <Box
+            sx={{
+              flex: "0 0 70%",
+              position: "relative",
+              mb: 0,
+              pb: 0,
+            }}
+          >
+            <img
+              src="https://i.ibb.co/4gVbPdHj/5.webp"
+              alt="Comprehensive View"
+              style={{
+                objectFit: "fill",
+                width: "100%",
+                height: "95%",
+                display: "block",
+                boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+                marginBottom: "0",
+                paddingBottom: "0",
+              }}
+            />
+          </Box>
+        </Box>
 
-<Box
-  sx={{
-    display: "flex",
-    gap: 2,
-    width: "100%",
-    overflow: "hidden",
-  }}
->
-  {/* Image 1 - GIF */}
-  <Box
-    sx={{
-      flex: "0 0 30%",
-      position: "relative",
-      mb: 0,
-      pb: 0,
-    }}
-  >
-    <img
-      src="https://i.ibb.co/p7gDtSH/scrren.gif"
-      alt="GIF Image"
-      style={{
-        objectFit: "fill",
-        width: "100%",
-        height: "95%",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-        marginBottom: "0",   // ⬅️ Force no bottom space
-        paddingBottom: "0",
-      }}
-    />
-  </Box>
-
-  {/* Image 2 - WebP */}
-  <Box
-    sx={{
-      flex: "0 0 70%",
-      position: "relative",
-      mb: 0,
-      pb: 0,
-    }}
-  >
-    <img
-      src="https://i.ibb.co/4gVbPdHj/5.webp"
-      alt="WebP Image"
-      style={{
-        objectFit: "fill",
-        width: "100%",
-        height: "95%",
-        display: "block",
-        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-        marginBottom: "0",  // ⬅️ Remove bottom space
-        paddingBottom: "0",
-      }}
-    />
-  </Box>
-</Box>
-<Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
-  {/* Horizontal line above the image */}
-
-  <img
-    src="https://i.ibb.co/Y7twRGkm/copy-1.jpg"
-    alt="Image 03"
-    style={{
-      objectFit: "cover",
-      width: "100%",
-      height: "auto",
-      display: "block",
-      boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
-    }}
-  />
-
-  {/* Optional: Horizontal line below the image */}
-  <Box
-    sx={{
-      width: "100%",
-      height: "10px",
-      backgroundColor: "#00fffc",
-    }}
-  />
-</Box>
-
-</Container>
+        <Box sx={{ width: "100%", position: "relative", overflow: "hidden" }}>
+          <img
+            src="https://i.ibb.co/Y7twRGkm/copy-1.jpg"
+            alt="Closing Section Content"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "auto",
+              display: "block",
+              boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+            }}
+          />
+          <Box
+            sx={{
+              width: "100%",
+              height: "10px",
+              backgroundColor: "#00fffc",
+            }}
+          />
+        </Box>
+      </Container>
     </>
   );
 };

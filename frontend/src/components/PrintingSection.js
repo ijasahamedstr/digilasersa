@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import Modal from "react-bootstrap/Modal";
 import {
   FaInstagram,
   FaLinkedin,
@@ -11,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Container, Box, } from "@mui/material";
+import { Container, Box } from "@mui/material";
 
 const BORDER_THICKNESS = 18;
 
@@ -32,8 +31,6 @@ const socialLinks = [
 ];
 
 const PrintingSection = () => {
-  const [showModal, setShowModal] = useState(true);
-
   // 🔹 Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -46,14 +43,6 @@ const PrintingSection = () => {
       sessionStorage.setItem("hasReloaded", "true");
       window.location.reload();
     }
-  }, []);
-
-  // 🔹 Auto close modal after 2 second
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowModal(false);
-    }, 5000);
-    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -115,30 +104,27 @@ const PrintingSection = () => {
         </Box>
       </Box>
 
-            <Box
-              sx={{
-                width: "100%",
-                overflow: "hidden",
-                position: "relative",
-                backgroundImage: `url("https://i.ibb.co/Kx0StNYq/rock-texture-wallpaper-min.webp")`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-
-             <Container maxWidth="xxl" disableGutters sx={{ mt: 10, padding: 15 }}>
-
+      <Box
+        sx={{
+          width: "100%",
+          overflow: "hidden",
+          position: "relative",
+          backgroundImage: `url("https://i.ibb.co/Kx0StNYq/rock-texture-wallpaper-min.webp")`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Container maxWidth="xxl" disableGutters sx={{ mt: 10, padding: 15 }}>
           {/* IMAGE BLOCK 1 */}
           <Box sx={{ display: "flex", justifyContent: "center", mb: "200px", perspective: "1600px" }}>
             <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d" }}>
-
               <Box
                 component="img"
                 src="https://i.ibb.co/r2xFBdXD/004-1.jpg"
-                alt="Fine Arts"
+                alt="Fine Arts 1"
                 sx={{
                   width: "100%",
                   borderRadius: "22px",
@@ -190,11 +176,10 @@ const PrintingSection = () => {
           {/* IMAGE BLOCK 2 */}
           <Box sx={{ display: "flex", justifyContent: "center", perspective: "1600px" }}>
             <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d" }}>
-
               <Box
                 component="img"
                 src="https://i.ibb.co/ksrBBTCj/005-1.jpg"
-                alt="Fine Arts"
+                alt="Fine Arts 2"
                 sx={{
                   width: "100%",
                   borderRadius: "22px",
@@ -229,11 +214,7 @@ const PrintingSection = () => {
             </Box>
           </Box>
         </Container>
-
       </Box>
-
-
-    
     </>
   );
 };
