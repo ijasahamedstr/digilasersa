@@ -184,16 +184,17 @@ function ServiceCard() {
         </Grid>
 
         {/* Fixed Banner 1 */}
-        <Box
-          mt={6}
-          sx={{
-            position: "relative",
-            textAlign: "center",
-            px: { xs: 2, md: 0 },
-          }}
-        >
-          {/* FIXED: Changed href="#" to a valid URL */}
-
+      
+          <Box
+            mt={6}
+            sx={{
+              position: "relative",
+              textAlign: "center",
+              px: { xs: 2, md: 0 },
+              display: "flex",           // Ensures centering
+              justifyContent: "center",  // Ensures centering
+            }}
+          >
             <Box
               component="img"
               src="https://i.ibb.co/Cp6pRWhk/image.webp"
@@ -201,7 +202,9 @@ function ServiceCard() {
               loading="lazy"
               sx={{
                 width: "100%",
-                maxHeight: "700px",
+                // Medium screen optimization
+                maxWidth: { xs: "100%", md: "800px", lg: "1000px" }, 
+                maxHeight: { xs: "400px", md: "700px" },
                 objectFit: "cover",
                 borderRadius: "30px",
                 border: "1px solid rgba(255, 255, 255, 0.2)",
@@ -222,8 +225,7 @@ function ServiceCard() {
                 },
               }}
             />
-        </Box>
-
+          </Box>
         {/* Banner 2 */}
         <Box
           mt={6}
