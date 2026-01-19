@@ -197,7 +197,7 @@ function ServiceCard() {
           >
             <Box
               component="img"
-              src="https://i.ibb.co/1fC4Gthk/image.webp"
+              src="https://i.ibb.co/BVhY25d9/image.webp"
               alt="SSS Platform Banner"
               loading="lazy"
               sx={{
