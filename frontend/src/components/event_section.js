@@ -207,7 +207,7 @@ export default function Eventsection({ title = "آخر أخبارنا" }) {
           sx={{
             fontFamily: "Changa,sans-serif",
             fontWeight: 600,
-            color: "rgb(15, 245, 236)",
+            color: "rgba(0,0,0,0.9)",
             mb: 6,
           }}
         >

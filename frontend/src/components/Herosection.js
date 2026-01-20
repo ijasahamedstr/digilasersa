@@ -2,20 +2,7 @@ import { Container, Typography, Box } from "@mui/material";
 
 function Herosection() {
   return (
-    <section
-      style={{
-        backgroundColor: "#f2f3f4",
-        width: "100%",
-        margin: "0 auto",
-        marginBottom: "30px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "auto",
-        paddingTop: "20px",
-        paddingBottom: "20px",
-      }}
-    >
+    // Wrapper Box for background color and section padding
       <Container
         maxWidth="xl"
         sx={{
@@ -23,59 +10,61 @@ function Herosection() {
           textAlign: "center",
         }}
       >
-  
         <Typography
           variant="h5"
           sx={{
             fontWeight: "bold",
             fontFamily: "Tajawal",
-            // Keep text in one row and scale size for mobile
             whiteSpace: "nowrap",
-            fontSize: { xs: "18px", sm: "24px", md: "inherit" }, 
+            fontSize: { xs: "18px", sm: "24px", md: "40px" }, 
+            color: "#1a1a1a"
           }}
         >
           <span 
             style={{ 
-              // Responsive font size for the highlighted word
               fontSize: "clamp(24px, 8vw, 50px)", 
-              color: "" 
+              // color: "#c5a059" // Elegant Gold/Bronze accent
             }}
           >
             قصتنا{" "}
           </span>
           صناع الإعلان بالمملكة
         </Typography>
+
         <Typography
           variant="h6"
           sx={{
             marginTop: "15px",
+            marginBottom: "40px", // Space between text and image
             fontSize: { xs: "14px", sm: "16px", md: "18px" },
             fontFamily: "Tajawal",
+            color: "#555",
+            maxWidth: "700px",
+            marginX: "auto"
           }}
         >
           نسرد قصة الإعلان بشكل مختلف تبصره العين وينبهر به العقل ، ويجد مكانا
           في خيال الناس
         </Typography>
 
-           <Box
+        <Box
           component="img"
           src="https://i.ibb.co/gZXS9ppL/32-1-1.webp"
           alt="Logo"
           sx={{
-            // Larger responsive widths: 200px on mobile, up to 450px on desktop
             width: { xs: "200px", sm: "300px", md: "400px", lg: "450px" }, 
             height: "auto",
             display: "block",
             marginLeft: "auto",
             marginRight: "auto",
+            pb: { xs: 4, md: 6 }, // <--- IMAGE BOTTOM PADDING
             transition: "transform 0.3s ease-in-out",
             "&:hover": {
-              transform: "scale(1.02)", // Slight zoom on hover
+              transform: "scale(1.02)",
             },
           }}
         />
       </Container>
-    </section>
   );
 }
 
