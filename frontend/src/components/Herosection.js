@@ -49,7 +49,7 @@ function Herosection() {
 
         <Box
           component="img"
-          src="https://i.ibb.co/gZXS9ppL/32-1-1.webp"
+          src="https://i.ibb.co/jvp8zKzf/32-1-copy-1.webp"
           alt="Logo"
           sx={{
             width: { xs: "200px", sm: "300px", md: "400px", lg: "450px" }, 
