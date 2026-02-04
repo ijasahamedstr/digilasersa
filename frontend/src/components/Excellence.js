@@ -92,7 +92,6 @@ const Excellence = () => {
 
       <Container maxWidth="xl" sx={{ pt: 15, textAlign: 'center' }}>
         <Typography variant="h2" sx={{ 
-          color: "white", 
           mb: 8, 
           fontFamily: "Tajawal", 
           fontWeight: "bold", 
