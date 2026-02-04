@@ -35,6 +35,14 @@ import SoundSection from "./components/Sound";
 import WebsiteSection from "./components/websiteSection";
 import FineArts from "./components/FineArts";
 import Excellence from "./components/Excellence";
+import Excellence01 from "./components/Excellence/01";
+import Excellence02 from "./components/Excellence/02";
+import Excellence03 from "./components/Excellence/03";
+import Excellence04 from "./components/Excellence/04";
+import Excellence06 from "./components/Excellence/05";
+import Excellence05 from "./components/Excellence/05";
+import Excellence07 from "./components/Excellence/07";
+import Excellence08 from "./components/Excellence/08";
 // import Votemain from "./components/Votemain";
 // import Vote from "./components/Vote";
 // import VoteImage from "./components/Voteimage";
@@ -125,6 +133,14 @@ function App() {
           <Route path="/قسم الصوتيات" element={<SoundSection />} />
           <Route path="/قسم الفن التشكيلي" element={<FineArts />} />
           <Route path="/Excellence" element={<Excellence />} />
+          <Route path="/gifts" element={<Excellence01 />} />
+          <Route path="/printing" element={<Excellence02 />} />
+          <Route path="/fine-arts" element={<Excellence03 />} />
+          <Route path="/screens" element={<Excellence04 />} />
+          <Route path="/audio" element={<Excellence05 />} />
+          <Route path="/software" element={<Excellence06 />} />
+          <Route path="/social-media" element={<Excellence07/>} />
+          <Route path="/media" element={<Excellence08/>} />
           {/* <Route path="/تصويت" element={<Vote />} />
           <Route path="/قسم الفن التشكيلي" element={<Votemain />} />
           <Route path="/تصويت" element={<Vote />} />
