@@ -91,14 +91,15 @@ const Excellence = () => {
       </Box>
 
       <Container maxWidth="xl" sx={{ pt: 15, textAlign: 'center' }}>
-        <Typography variant="h3" sx={{ 
+        <Typography variant="h2" sx={{ 
           color: "white", 
           mb: 8, 
           fontFamily: "Tajawal", 
           fontWeight: "bold", 
-          textShadow: "2px 2px 4px rgba(0,0,0,0.5)" 
+          textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+          color: "#096e69", 
         }}>
-           الخط العربي
+          فنون الخط العربي
         </Typography>
         
         <Grid container spacing={4} direction="column" alignItems="center">
@@ -125,25 +126,25 @@ const Excellence = () => {
                     sx={{ 
                       height: "100%",
                       width: "100%",
-                      objectFit: "contain", // Changed to 'cover' to ensure full background coverage
+                      objectFit: "contain", // Set to cover to fill the card
                       objectPosition: "center"
                     }} 
                   />
 
-                  {/* BOTTOM LEFT CONTENT OVERLAY */}
+                  {/* BOTTOM RIGHT CONTENT OVERLAY */}
                   <CardContent sx={{ 
                     position: "absolute",
                     top: 0,
-                    left: 0,
+                    right: 0, // Anchored to the right
                     width: "100%",
                     height: "100%",
                     display: "flex", 
                     flexDirection: "column", 
-                    justifyContent: "flex-end", // Moves content to the bottom
-                    alignItems: "flex-start",    // Moves content to the left
-                    background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 40%, transparent 100%)", 
-                    p: { xs: 3, sm: 5, md: 7 }, // Increased padding for corner look
-                    textAlign: "left"
+                    justifyContent: "flex-end", // Bottom
+                    alignItems: "flex-end",    // Right side alignment
+                    background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 40%, transparent 100%)", 
+                    p: { xs: 3, sm: 5, md: 7 }, 
+                    textAlign: "right" // Right-aligned text for Arabic
                   }}>
                     
                     <Typography 
@@ -154,7 +155,7 @@ const Excellence = () => {
                         fontFamily: "Tajawal",
                         mb: 2,
                         textShadow: "0 4px 15px rgba(0,0,0,0.8)",
-                        fontSize: { xs: "1.5rem", sm: "2.2rem", md: "3.5rem" }
+                        fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3.5rem" }
                       }}
                     >
                       {product.name}
