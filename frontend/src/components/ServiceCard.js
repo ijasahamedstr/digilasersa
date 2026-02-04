@@ -11,6 +11,19 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
+const interactiveStyles = {
+  cursor: "pointer",
+  borderRadius: "30px",
+  border: "1px solid rgba(255, 255, 255, 0.15)",
+  boxShadow: "0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(6, 249, 243, 0.2)",
+  transition: "all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+  "&:hover": {
+    transform: "translateY(-15px) rotateX(2deg)",
+    boxShadow: "0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(6, 249, 243, 0.6)",
+    filter: "brightness(1.1)",
+  },
+};
+
 const products = [
   {
     id: 1,
@@ -183,80 +196,28 @@ function ServiceCard() {
           ))}
         </Grid>
 
-        {/* Fixed Banner 1 */}
+         <Grid container spacing={10} mt={1} mb={10} sx={{ perspective: "1200px" }}>
+          <Grid item xs={12} md={6}>            
+              <Box
+                component="img"
+                src="https://i.ibb.co/fGy5XMBQ/c3-jpg.webp"
+                alt="Real Estate"
+                sx={{ ...interactiveStyles, width: "100%", height: "auto" }}
+              />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Link to="/Excellence">
+              <Box
+                component="img"
+                src="https://i.ibb.co/BVhY25d9/image.webp"
+                alt="Contact Us"
+                sx={{ ...interactiveStyles, width: "100%", height: "auto" }}
+              />
+            </Link>
+          </Grid>
+        </Grid>
+        
 
-     <Box
-        mt={8} // Added more margin top for a "big" hero feel
-        sx={{
-          position: "relative",
-          width: "100%", // Ensures the row uses full available width
-          px: { xs: 2, md: 4 },
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          justifyContent: "center",
-          alignItems: "stretch", // Makes both images the same height naturally
-          gap: { xs: 4, md: 2 }, 
-        }}
-      >
-        {/* FIRST IMAGE - LARGE SCALE */}
-        <Box
-          component="img"
-          src="https://i.ibb.co/M5t4gnW9/c3-jpg.webp"
-          alt="Platform Banner Left Large"
-          loading="lazy"
-          sx={{
-            width: { xs: "100%", md: "49%" }, // Takes up nearly half the screen
-            maxWidth: "1200px",               // Increased for ultra-wide screens
-            height: "auto",
-            maxHeight: { xs: "500px", md: "900px" }, // Much taller limit
-            objectFit: "cover",
-            borderRadius: "40px", // Larger radius for a bigger image
-            border: "1.5px solid rgba(255, 255, 255, 0.2)",
-            boxShadow: "0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(6, 249, 243, 0.15)",
-            cursor: "pointer",
-            transition: "all 0.5s ease-in-out",
-            "&:hover": {
-              transform: "scale(1.03)", // Focus on growth rather than just jumping up
-              boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 50px rgba(6, 249, 243, 0.4)",
-              zIndex: 10, // Brings the hovered image to the front
-            },
-            animation: "floatingBig 8s ease-in-out infinite",
-            "@keyframes floatingBig": {
-              "0%, 100%": { transform: "translateY(0px)" },
-              "50%": { transform: "translateY(-25px)" }, // Larger floating movement
-            },
-          }}
-        />
-
-        {/* SECOND IMAGE - LARGE SCALE */}
-        <Box
-          component="img"
-          src="https://i.ibb.co/BVhY25d9/image.webp" // Higher resolution placeholder
-          alt="Platform Banner Right Large"
-          loading="lazy"
-          sx={{
-            width: { xs: "100%", md: "49%" },
-            maxWidth: "1200px",
-            height: "auto",
-            maxHeight: { xs: "500px", md: "900px" },
-            objectFit: "cover",
-            borderRadius: "40px",
-            border: "1.5px solid rgba(255, 255, 255, 0.2)",
-            boxShadow: "0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(6, 249, 243, 0.15)",
-            cursor: "pointer",
-            transition: "all 0.5s ease-in-out",
-            "&:hover": {
-              transform: "scale(1.03)",
-              boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 50px rgba(6, 249, 243, 0.4)",
-              zIndex: 10,
-            },
-            animation: "floatingBig 8s ease-in-out infinite",
-            animationDelay: "1s",
-          }}
-        />
-      </Box>
-      
-       
         {/* Banner 2 */}
         <Box
           mt={6}
@@ -293,12 +254,6 @@ function ServiceCard() {
                   boxShadow:
                     "0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(6, 249, 243, 0.6)",
                   filter: "brightness(1.1)",
-                },
-                animation: "bannerFloating 6s ease-in-out infinite",
-                "@keyframes bannerFloating": {
-                  "0%": { transform: "translateY(0px)" },
-                  "50%": { transform: "translateY(-20px)" },
-                  "100%": { transform: "translateY(0px)" },
                 },
               }}
             />
