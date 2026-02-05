@@ -200,7 +200,7 @@ function ServiceCard() {
           <Grid item xs={12} md={6}>            
               <Box
                 component="img"
-                src="https://i.ibb.co/fGy5XMBQ/c3-jpg.webp"
+                src="https://i.ibb.co/n8MSzwBt/c3-jpg-1.webp"
                 alt="Real Estate"
                 sx={{ ...interactiveStyles, width: "100%", height: "auto" }}
               />
@@ -209,7 +209,7 @@ function ServiceCard() {
             <Link to="/Excellence">
               <Box
                 component="img"
-                src="https://i.ibb.co/BVhY25d9/image.webp"
+                src="https://i.ibb.co/wrwD0qxh/4-copy-jpg.webp"
                 alt="Contact Us"
                 sx={{ ...interactiveStyles, width: "100%", height: "auto" }}
               />
