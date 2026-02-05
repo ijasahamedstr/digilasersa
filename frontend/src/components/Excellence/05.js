@@ -33,9 +33,9 @@ const socialLinks = [
 const products = [
   { 
     id: 1, 
-    name: "قسم الهدايا الدعائية", 
+    // name: "قسم الهدايا الدعائية", 
     imageUrl: "https://i.ibb.co/2Bcnr1T/FLORA-Cinematic-Calligraphy-Composition-20b8bf10-jpg.webp",
-    link: "/gifts" 
+    // link: "/gifts" 
   },
   // Add other products here...
 ];
@@ -117,7 +117,7 @@ const Excellence05 = () => {
                     alt={product.name}
                   />
                   
-                  <CardContent sx={{
+                  {/* <CardContent sx={{
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
@@ -135,7 +135,7 @@ const Excellence05 = () => {
                     }}>
                       {product.name}
                     </Typography>
-                  </CardContent>
+                  </CardContent> */}
                 </Card>
               </Link>
             </Grid>

@@ -33,9 +33,9 @@ const socialLinks = [
 const products = [
   { 
     id: 1, 
-    name: "قسم الهدايا الدعائية", 
+    // name: "قسم الهدايا الدعائية", 
     imageUrl: "https://i.ibb.co/HTqDMPHd/FLORA-Desk-Top-Shenanigans-3b3ce98b-jpg.webp",
-    link: "/gifts" 
+    // link: "/gifts" 
   },
   // Add other products here...
 ];
@@ -117,7 +117,7 @@ const Excellence06 = () => {
                     alt={product.name}
                   />
                   
-                  <CardContent sx={{
+                  {/* <CardContent sx={{
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
@@ -135,7 +135,7 @@ const Excellence06 = () => {
                     }}>
                       {product.name}
                     </Typography>
-                  </CardContent>
+                  </CardContent> */}
                 </Card>
               </Link>
             </Grid>

@@ -33,9 +33,9 @@ const socialLinks = [
 const products = [
   { 
     id: 1, 
-    name: "قسم الهدايا الدعائية", 
+    // name: "قسم الهدايا الدعائية", 
     imageUrl: "https://i.ibb.co/ksp7j3wv/FLORA-Islamic-Calligraphy-Art-fc3e0b17-jpg.webp",
-    link: "/gifts" 
+    // link: "/gifts" 
   },
   // Add other products here...
 ];
@@ -117,7 +117,7 @@ const Excellence03 = () => {
                     alt={product.name}
                   />
                   
-                  <CardContent sx={{
+                  {/* <CardContent sx={{
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
@@ -135,7 +135,7 @@ const Excellence03 = () => {
                     }}>
                       {product.name}
                     </Typography>
-                  </CardContent>
+                  </CardContent> */}
                 </Card>
               </Link>
             </Grid>

@@ -33,9 +33,9 @@ const socialLinks = [
 const products = [
   { 
     id: 1, 
-    name: "قسم الهدايا الدعائية", 
+    // name: "قسم الهدايا الدعائية", 
     imageUrl: "https://i.ibb.co/VccbB1X3/FLORA-Calligraphy-on-Wall-0b76d717-jpg.webp",
-    link: "/gifts" 
+    // link: "/gifts" 
   },
   // Add other products here...
 ];
@@ -117,7 +117,7 @@ const Excellence08 = () => {
                     alt={product.name}
                   />
                   
-                  <CardContent sx={{
+                  {/* <CardContent sx={{
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
@@ -135,7 +135,7 @@ const Excellence08 = () => {
                     }}>
                       {product.name}
                     </Typography>
-                  </CardContent>
+                  </CardContent> */}
                 </Card>
               </Link>
             </Grid>
