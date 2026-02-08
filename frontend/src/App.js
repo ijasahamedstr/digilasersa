@@ -141,6 +141,7 @@ function App() {
           <Route path="/software" element={<Excellence06 />} />
           <Route path="/social-media" element={<Excellence07/>} />
           <Route path="/media" element={<Excellence08/>} />
+           <Route path="/Event-organization" element={<ComingSoonPage/>} />
           {/* <Route path="/تصويت" element={<Vote />} />
           <Route path="/قسم الفن التشكيلي" element={<Votemain />} />
           <Route path="/تصويت" element={<Vote />} />

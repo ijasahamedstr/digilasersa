@@ -197,13 +197,15 @@ function ServiceCard() {
         </Grid>
 
          <Grid container spacing={10} mt={1} mb={10} sx={{ perspective: "1200px" }}>
-          <Grid item xs={12} md={6}>            
+          <Grid item xs={12} md={6}>  
+               <Link to="/Event-organization">
               <Box
                 component="img"
                 src="https://i.ibb.co/n8MSzwBt/c3-jpg-1.webp"
                 alt="Real Estate"
                 sx={{ ...interactiveStyles, width: "100%", height: "auto" }}
               />
+              </Link>        
           </Grid>
           <Grid item xs={12} md={6}>
             <Link to="/Excellence">
