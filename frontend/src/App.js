@@ -10,7 +10,7 @@ import { Box, CircularProgress } from "@mui/material"; // ✅ Added import
 import Footer from "./components/Footer";
 import Aboutus from "./components/About";
 import ScreensSection from "./components/ScreensSection";
-import PrintingSection from "./components/PrintingSection";
+// import PrintingSection from "./components/PrintingSection";
 import GiftsSection from "./components/GiftsSection";
 import SocialSection from "./components/SocialSection";
 import VRSection from "./components/VR";
@@ -32,7 +32,6 @@ import UpdateFild from "./components/Update";
 import ComingSoonPage from "./components/ComingSoonPage";
 import ContactusForm from "./components/Contact";
 import SoundSection from "./components/Sound";
-import FineArts from "./components/FineArts";
 import Excellence from "./components/Excellence";
 import Excellence01 from "./components/Excellence/01";
 import Excellence02 from "./components/Excellence/02";
@@ -54,6 +53,10 @@ const theme = createTheme({
 });
 
 const WebsiteSection = lazy(() => import('./components/websiteSection'));
+
+const PrintingSection = lazy(() => import('./components/PrintingSection'));
+
+const FineArts = lazy(() => import('./components/FineArts'));
 
 function App() {
   const [loading, setLoading] = useState(true);
