@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { 
   FaInstagram, FaLinkedin, FaYoutube, FaSnapchat, FaTiktok, FaWhatsapp 
@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 // Configuration
 const HERO_IMAGE = "https://i.ibb.co/HfQ3t7qN/image.webp";
 const BORDER_THICKNESS = 18;
-// Use a single variable for all vertical gaps
 const SECTION_SPACING = "120px"; 
 
 const socialLinks = [
@@ -24,18 +23,24 @@ const socialLinks = [
   { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
 ];
 
+// Optimized Image Component
 const ImageBlock = ({ src }) => (
   <Box sx={{ display: "flex", justifyContent: "center", perspective: "1600px" }}>
     <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d" }}>
       <Box
         component="img"
         src={src}
+        loading="lazy" // Native Lazy Loading
+        decoding="async" // Non-blocking image decoding
+        alt="Project Preview"
         sx={{
           width: "100%",
           borderRadius: "22px",
           zIndex: 10,
           boxShadow: "35px 35px 45px rgba(0,0,0,0.65)",
-          display: "block"
+          display: "block",
+          minHeight: "200px", // Prevents layout shift
+          backgroundColor: "#1a1a1a" // Placeholder color while loading
         }}
       />
       <Box sx={{
@@ -59,58 +64,28 @@ function WebsiteSection() {
   return (
     <Box sx={{ width: "100%", m: 0, p: 0, overflowX: "hidden", backgroundColor: "#000" }}>
       
-      {/* 1. HERO SECTION */}
-    <div 
-      style={{
-        width: '100%',
-        margin: 0,
-        padding: 0,
-        paddingTop: '3.25%', // 16:9 Aspect Ratio
-        overflow: 'hidden',
-        position: 'relative',
-        backgroundColor: '#000' // Fallback color
-      }}
-    >
-      <img
-        src={HERO_IMAGE}
-        alt="Lyceum Campus Hero"
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'block'
-        }}
-      />
-      
-      {/* Optional: Add an overlay if you want to place text over the image later */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        background: 'rgba(0,0,0,0.1)' // Very light dark tint
-      }} />
-    </div>
+      {/* 1. HERO SECTION - Eager loaded (High Priority) */}
+      <div style={{ width: '100%', margin: 0, padding: 0, position: 'relative', backgroundColor: '#000' }}>
+        <img
+          src={HERO_IMAGE}
+          alt="Hero"
+          style={{ width: '100%', height: 'auto', display: 'block' }}
+        />
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.1)' }} />
+      </div>
 
       {/* 2. FIXED SOCIAL ICONS */}
-      <Box
-        sx={{
-          position: "fixed", top: "50%", left: 0,
-          transform: "translateY(-50%)",
-          display: { xs: "none", md: "flex" },
-          flexDirection: "column", gap: 2, zIndex: 1200, pl: 2,
-        }}
-      >
+      <Box sx={{
+          position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)",
+          display: { xs: "none", md: "flex" }, flexDirection: "column", gap: 2, zIndex: 1200, pl: 2,
+        }}>
         {socialLinks.map(({ icon, link }, idx) => (
           <a key={idx} href={link} target="_blank" rel="noopener noreferrer">
             <Box sx={{
-                width: 42, height: 42, borderRadius: "50%",
-                backgroundColor: "#06f9f3", display: "flex",
-                justifyContent: "center", alignItems: "center",
-                color: "#17202a", transition: "transform 0.3s ease",
-                "&:hover": { transform: "scale(1.2)" },
-              }}
-            >
+                width: 42, height: 42, borderRadius: "50%", backgroundColor: "#06f9f3", 
+                display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a", 
+                transition: "transform 0.3s ease", "&:hover": { transform: "scale(1.2)" },
+              }}>
               {icon}
             </Box>
           </a>
@@ -118,29 +93,19 @@ function WebsiteSection() {
       </Box>
 
       {/* 3. MAIN CONTENT SECTION */}
-      <Box
-        sx={{
-          width: "100%",
+      <Box sx={{
+          width: "100%", 
           backgroundImage: `url("https://i.ibb.co/Kx0StNYq/rock-texture-wallpaper-min.webp")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          // Standard padding for TOP and BOTTOM
-          pt: SECTION_SPACING, 
-          pb: SECTION_SPACING 
-        }}
-      >
+          backgroundSize: "cover", backgroundPosition: "center", pt: SECTION_SPACING, pb: SECTION_SPACING 
+        }}>
         <Container maxWidth="xxl" sx={{ px: { xs: 2, md: 30 } }}>
-          {/* Standard gap BETWEEN images */}
           <Stack spacing={SECTION_SPACING}>
-            
             <Link to="/project01" style={{ textDecoration: 'none' }}>
                 <ImageBlock src="https://i.ibb.co/mCSvD9zV/002-1-1-optimized.webp" />
             </Link>
-
             <Link to="/project02" style={{ textDecoration: 'none' }}>
                 <ImageBlock src="https://i.ibb.co/s9zfwQ9h/003-1.webp" />
             </Link>
-
           </Stack>
         </Container>
       </Box>

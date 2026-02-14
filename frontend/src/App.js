@@ -32,7 +32,6 @@ import UpdateFild from "./components/Update";
 import ComingSoonPage from "./components/ComingSoonPage";
 import ContactusForm from "./components/Contact";
 import SoundSection from "./components/Sound";
-import WebsiteSection from "./components/websiteSection";
 import FineArts from "./components/FineArts";
 import Excellence from "./components/Excellence";
 import Excellence01 from "./components/Excellence/01";
@@ -43,6 +42,7 @@ import Excellence06 from "./components/Excellence/05";
 import Excellence05 from "./components/Excellence/05";
 import Excellence07 from "./components/Excellence/07";
 import Excellence08 from "./components/Excellence/08";
+import { lazy } from 'react';
 // import Votemain from "./components/Votemain";
 // import Vote from "./components/Vote";
 // import VoteImage from "./components/Voteimage";
@@ -52,6 +52,8 @@ const theme = createTheme({
     fontFamily: "Changa, sans-serif",
   },
 });
+
+const WebsiteSection = lazy(() => import('./components/websiteSection'));
 
 function App() {
   const [loading, setLoading] = useState(true);
