@@ -132,7 +132,7 @@ function App() {
           <Route path="/update/:id" element={<UpdateFild />} />
           <Route path="/قسم الصوتيات" element={<SoundSection />} />
           <Route path="/قسم الفن التشكيلي" element={<FineArts />} />
-          <Route path="/Excellence" element={<Excellence />} />
+          <Route path="/الخط العربي" element={<Excellence />} />
           <Route path="/gifts" element={<Excellence01 />} />
           <Route path="/printing" element={<Excellence02 />} />
           <Route path="/fine-arts" element={<Excellence03 />} />
@@ -141,7 +141,15 @@ function App() {
           <Route path="/software" element={<Excellence06 />} />
           <Route path="/social-media" element={<Excellence07/>} />
           <Route path="/media" element={<Excellence08/>} />
-           <Route path="/Event-organization" element={<ComingSoonPage/>} />
+          <Route path="/تنظيم الفعاليات" element={<ComingSoonPage/>} />
+
+          <Route path="/FineArts1" element={<ComingSoonPage/>} />
+          <Route path="/FineArts2" element={<ComingSoonPage/>} />
+          <Route path="/FineArts3" element={<ComingSoonPage/>} />
+          <Route path="/FineArts4" element={<ComingSoonPage/>} />
+
+          <Route path="/project01" element={<ComingSoonPage/>} />
+          <Route path="/project02" element={<ComingSoonPage/>} />
           {/* <Route path="/تصويت" element={<Vote />} />
           <Route path="/قسم الفن التشكيلي" element={<Votemain />} />
           <Route path="/تصويت" element={<Vote />} />

@@ -1,21 +1,18 @@
 import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { 
-  FaInstagram, 
-  FaLinkedin, 
-  FaYoutube, 
-  FaSnapchat, 
-  FaTiktok, 
-  FaWhatsapp 
+  FaInstagram, FaLinkedin, FaYoutube, FaSnapchat, FaTiktok, FaWhatsapp 
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Container, Box, Stack } from "@mui/material";
+import { Link } from "react-router-dom";
 
 // Configuration
 const HERO_IMAGE = "https://i.ibb.co/HfQ3t7qN/image.webp";
 const BORDER_THICKNESS = 18;
-const IMAGE_GAP = "200px";
+// Use a single variable for all vertical gaps
+const SECTION_SPACING = "120px"; 
 
 const socialLinks = [
   { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
@@ -38,6 +35,7 @@ const ImageBlock = ({ src }) => (
           borderRadius: "22px",
           zIndex: 10,
           boxShadow: "35px 35px 45px rgba(0,0,0,0.65)",
+          display: "block"
         }}
       />
       <Box sx={{
@@ -59,10 +57,10 @@ function WebsiteSection() {
   }, []);
 
   return (
-    <Box sx={{ width: "100%", m: 0, p: 0, overflowX: "hidden" }}>
+    <Box sx={{ width: "100%", m: 0, p: 0, overflowX: "hidden", backgroundColor: "#000" }}>
       
-      {/* 1. HERO SECTION - Account for 100px padding top */}
-      <div 
+      {/* 1. HERO SECTION */}
+    <div 
       style={{
         width: '100%',
         margin: 0,
@@ -97,26 +95,19 @@ function WebsiteSection() {
       {/* 2. FIXED SOCIAL ICONS */}
       <Box
         sx={{
-          position: "fixed",
-          top: "50%",
-          left: 0,
+          position: "fixed", top: "50%", left: 0,
           transform: "translateY(-50%)",
           display: { xs: "none", md: "flex" },
-          flexDirection: "column",
-          gap: 2,
-          zIndex: 1200,
-          pl: 2,
+          flexDirection: "column", gap: 2, zIndex: 1200, pl: 2,
         }}
       >
         {socialLinks.map(({ icon, link }, idx) => (
-          <a key={idx} href={link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-            <Box
-              sx={{
+          <a key={idx} href={link} target="_blank" rel="noopener noreferrer">
+            <Box sx={{
                 width: 42, height: 42, borderRadius: "50%",
                 backgroundColor: "#06f9f3", display: "flex",
                 justifyContent: "center", alignItems: "center",
-                color: "#17202a", boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
-                transition: "transform 0.3s ease",
+                color: "#17202a", transition: "transform 0.3s ease",
                 "&:hover": { transform: "scale(1.2)" },
               }}
             >
@@ -126,20 +117,30 @@ function WebsiteSection() {
         ))}
       </Box>
 
-      {/* 3. MAIN SECTION - Content below the Hero */}
+      {/* 3. MAIN CONTENT SECTION */}
       <Box
         sx={{
           width: "100%",
           backgroundImage: `url("https://i.ibb.co/Kx0StNYq/rock-texture-wallpaper-min.webp")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          py: 10
+          // Standard padding for TOP and BOTTOM
+          pt: SECTION_SPACING, 
+          pb: SECTION_SPACING 
         }}
       >
-        <Container maxWidth="xxl" sx={{ px: { xs: 2, md: 15 } }}>
-          <Stack spacing={IMAGE_GAP}>
-            <ImageBlock src="https://i.ibb.co/67JvCw35/002-1-1.webp" />
-            <ImageBlock src="https://i.ibb.co/m5GXsqS1/003-1.jpg" />
+        <Container maxWidth="xxl" sx={{ px: { xs: 2, md: 30 } }}>
+          {/* Standard gap BETWEEN images */}
+          <Stack spacing={SECTION_SPACING}>
+            
+            <Link to="/project01" style={{ textDecoration: 'none' }}>
+                <ImageBlock src="https://i.ibb.co/mCSvD9zV/002-1-1-optimized.webp" />
+            </Link>
+
+            <Link to="/project02" style={{ textDecoration: 'none' }}>
+                <ImageBlock src="https://i.ibb.co/s9zfwQ9h/003-1.webp" />
+            </Link>
+
           </Stack>
         </Container>
       </Box>

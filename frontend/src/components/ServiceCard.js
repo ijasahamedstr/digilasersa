@@ -208,7 +208,7 @@ function ServiceCard() {
               </Link>        
           </Grid>
           <Grid item xs={12} md={6}>
-            <Link to="/Excellence">
+            <Link to="/الخط العربي">
               <Box
                 component="img"
                 src="https://i.ibb.co/wrwD0qxh/4-copy-jpg.webp"

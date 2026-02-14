@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Carousel from "react-bootstrap/Carousel";
 import {
   FaInstagram,
   FaLinkedin,
@@ -11,14 +10,11 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Container, Box } from "@mui/material";
+const HERO_IMAGE = "https://i.ibb.co/5rsMjx9/New-Web-Print.webp";
 
 const BORDER_THICKNESS = 18;
-
-const carouselItems = [
-  { id: 1, img: "https://i.ibb.co/5rsMjx9/New-Web-Print.webp" },
-  { id: 2, img: "https://i.ibb.co/5rsMjx9/New-Web-Print.webp" },
-  { id: 3, img: "https://i.ibb.co/5rsMjx9/New-Web-Print.webp" },
-];
+// Use a constant for spacing to keep it "Same" everywhere
+const SECTION_SPACING = { xs: 10, md: 20 }; 
 
 const socialLinks = [
   { icon: <FontAwesomeIcon icon={faXTwitter} size="lg" />, link: "https://x.com/digilasersa" },
@@ -31,12 +27,10 @@ const socialLinks = [
 ];
 
 const PrintingSection = () => {
-  // 🔹 Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // 🔹 Force a one-time refresh on first load
   useEffect(() => {
     const hasReloaded = sessionStorage.getItem("hasReloaded");
     if (!hasReloaded) {
@@ -49,24 +43,37 @@ const PrintingSection = () => {
     <>
       {/* Carousel Section */}
       <Box sx={{ width: "100%", overflow: "hidden", position: "relative" }}>
-        <Carousel
-          fade
-          nextIcon={<span className="carousel-control-next-icon" style={{ backgroundColor: "black" }} />}
-          prevIcon={<span className="carousel-control-prev-icon" style={{ backgroundColor: "black" }} />}
-        >
-          {carouselItems.map((item) => (
-            <Carousel.Item key={item.id}>
+           <div 
+              style={{
+                width: '100%',
+                margin: 0,
+                padding: 0,
+                paddingTop: '3.25%', // 16:9 Aspect Ratio
+                overflow: 'hidden',
+                position: 'relative',
+                backgroundColor: '#000' // Fallback color
+              }}
+            >
               <img
-                className="d-block w-100"
-                src={item.img}
-                alt={`slide-${item.id}`}
-                style={{ objectFit: "cover", boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)" }}
+                src={HERO_IMAGE}
+                alt="Lyceum Campus Hero"
+                style={{
+                  width: '100%',
+                  display: 'block'
+                }}
               />
-            </Carousel.Item>
-          ))}
-        </Carousel>
+              
+              {/* Optional: Add an overlay if you want to place text over the image later */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                background: 'rgba(0,0,0,0.1)' // Very light dark tint
+              }} />
+            </div>
 
-        {/* Social Media Icons */}
+        {/* Floating Social Icons */}
         <Box
           sx={{
             position: "fixed",
@@ -104,77 +111,59 @@ const PrintingSection = () => {
         </Box>
       </Box>
 
+      {/* Main Content Area */}
       <Box
         sx={{
           width: "100%",
-          overflow: "hidden",
-          position: "relative",
           backgroundImage: `url("https://i.ibb.co/Kx0StNYq/rock-texture-wallpaper-min.webp")`,
           backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
           backgroundPosition: "center",
-          display: "flex",
-          justifyContent: "center",
+          // 🔹 Uniform Top and Bottom Padding
+          pt: SECTION_SPACING, 
+          pb: SECTION_SPACING,
         }}
       >
-        <Container maxWidth="xxl" disableGutters sx={{ mt: 10, padding: 15 }}>
+        <Container 
+          maxWidth="xl" 
+          sx={{ 
+            px: { xs: 3, md: 6 }, 
+            display: "flex",
+            flexDirection: "column",
+            // 🔹 Uniform Space BETWEEN items
+            gap: SECTION_SPACING, 
+          }}
+        >
           {/* IMAGE BLOCK 1 */}
-          <Box sx={{ display: "flex", justifyContent: "center", mb: "200px", perspective: "1600px" }}>
+          <Box sx={{ perspective: "1600px" }}>
             <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d" }}>
               <Box
                 component="img"
-                src="https://i.ibb.co/r2xFBdXD/004-1.jpg"
+                src="https://i.ibb.co/XZYQG598/004-1.webp"
                 alt="Fine Arts 1"
                 sx={{
                   width: "100%",
                   borderRadius: "22px",
                   zIndex: 10,
-                  boxShadow: "35px 35px 45px rgba(0,0,0,0.65)",
+                  boxShadow: { xs: "15px 15px 25px rgba(0,0,0,0.5)", md: "35px 35px 45px rgba(0,0,0,0.65)" },
                 }}
               />
-
-              {/* GLOW */}
               <Box
                 sx={{
                   position: "absolute",
-                  inset: "-6px",
-                  borderRadius: "28px",
+                  inset: "-4px",
+                  borderRadius: "26px",
                   background: "linear-gradient(135deg,#06f9f3,#00b3ff,#06f9f3)",
-                  filter: "blur(14px)",
+                  filter: "blur(12px)",
                   transform: `translateZ(-${BORDER_THICKNESS}px)`,
                   zIndex: 6,
-                }}
-              />
-
-              {/* DEPTH PLATE */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "22px",
-                  background: "#031d1d",
-                  transform: `translateZ(-${BORDER_THICKNESS * 2.5}px)`,
-                  zIndex: 4,
-                }}
-              />
-
-              {/* DARK SHADOW */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  inset: "-25px",
-                  borderRadius: "36px",
-                  background: "rgba(0,0,0,0.9)",
-                  filter: "blur(35px)",
-                  transform: `translateZ(-${BORDER_THICKNESS * 4}px)`,
-                  zIndex: 1,
                 }}
               />
             </Box>
           </Box>
 
           {/* IMAGE BLOCK 2 */}
-          <Box sx={{ display: "flex", justifyContent: "center", perspective: "1600px" }}>
+          <Box sx={{ perspective: "1600px" }}>
             <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d" }}>
               <Box
                 component="img"
@@ -184,31 +173,18 @@ const PrintingSection = () => {
                   width: "100%",
                   borderRadius: "22px",
                   zIndex: 10,
-                  boxShadow: "35px 35px 45px rgba(0,0,0,0.65)",
+                  boxShadow: { xs: "15px 15px 25px rgba(0,0,0,0.5)", md: "35px 35px 45px rgba(0,0,0,0.65)" },
                 }}
               />
-
               <Box
                 sx={{
                   position: "absolute",
-                  inset: "-6px",
-                  borderRadius: "28px",
+                  inset: "-4px",
+                  borderRadius: "26px",
                   background: "linear-gradient(135deg,#06f9f3,#00b3ff,#06f9f3)",
-                  filter: "blur(14px)",
+                  filter: "blur(12px)",
                   transform: `translateZ(-${BORDER_THICKNESS}px)`,
                   zIndex: 6,
-                }}
-              />
-
-              <Box
-                sx={{
-                  position: "absolute",
-                  inset: "-25px",
-                  borderRadius: "36px",
-                  background: "rgba(0,0,0,0.9)",
-                  filter: "blur(35px)",
-                  transform: `translateZ(-${BORDER_THICKNESS * 4}px)`,
-                  zIndex: 1,
                 }}
               />
             </Box>
