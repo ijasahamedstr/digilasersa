@@ -5,7 +5,7 @@ import {
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Container, Box } from "@mui/material";
+import { Container, Box, Typography } from "@mui/material";
 
 const HERO_IMAGE = "https://i.ibb.co/5rsMjx9/New-Web-Print.webp";
 const BORDER_THICKNESS = 18;
@@ -30,6 +30,7 @@ const LazyImageBlock = ({ src, alt }) => (
       transition: "transform 0.5s ease", 
       "&:hover": { transform: "translateZ(10px)" } 
     }}>
+      {/* The Main Image */}
       <Box
         component="img"
         src={src}
@@ -46,6 +47,43 @@ const LazyImageBlock = ({ src, alt }) => (
           minHeight: { xs: "200px", md: "400px" } 
         }}
       />
+
+      {/* NEW: Bottom Right Button (Matching your image) */}
+      <Box sx={{
+        position: "absolute",
+        bottom: { xs: 15, md: 30 },
+        right: { xs: 15, md: 40 },
+        zIndex: 15,
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        border: "2px solid #06f9f3", // Teal glow border
+        borderRadius: "50px", // Pill shape
+        px: { xs: 2, md: 4 },
+        py: { xs: 0.5, md: 1 },
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        transition: "all 0.3s ease",
+        "&:hover": {
+            backgroundColor: "#06f9f3",
+            "& .btn-text": { color: "#000" }
+        },
+        boxShadow: "0 0 15px rgba(6, 249, 243, 0.4)"
+      }}>
+        <Typography 
+          className="btn-text"
+          sx={{ 
+            color: "#06f9f3", 
+            fontWeight: "bold", 
+            fontSize: { xs: "0.8rem", md: "1.1rem" },
+            fontFamily: "inherit",
+            direction: "rtl" // For correct Arabic rendering
+          }}
+        >
+          انتقل إلى القسم
+        </Typography>
+      </Box>
+
+      {/* 3D Border Effect */}
       <Box sx={{
           position: "absolute", 
           inset: "-4px", 
@@ -66,39 +104,23 @@ const PrintingSection = () => {
 
   return (
     <>
-      {/* HERO SECTION - Height reduced to 50% of viewport */}
       <Box sx={{ 
-        width: "100%",          // Sets the section height to 50% of the screen
+        width: "100%", 
         overflow: "hidden", 
         position: "relative", 
         backgroundColor: '#000',
-        pt: '60px'                // Padding to accommodate your navbar height
+        pt: '60px' 
       }}>
         <img
           src={HERO_IMAGE}
           alt="Printing Hero"
-          fetchpriority="high"
-          loading="eager"
-          decoding="sync"
-          style={{ 
-            width: '100%', 
-            height: '100%',       // Force image to fill the 50vh container
-            objectFit: 'cover',   // Prevents stretching/distortion
-            display: 'block'
-          }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
 
         {/* Floating Social Icons */}
         <Box sx={{
-          position: "fixed", 
-          top: "50%", 
-          left: 0, 
-          transform: "translateY(-50%)",
-          display: { xs: "none", md: "flex" }, 
-          flexDirection: "column", 
-          gap: 2, 
-          zIndex: 1200, 
-          pl: 2,
+          position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)",
+          display: { xs: "none", md: "flex" }, flexDirection: "column", gap: 2, zIndex: 1200, pl: 2,
         }}>
           {socialLinks.map(({ icon, link }, idx) => (
             <a key={idx} href={link} target="_blank" rel="noopener noreferrer">
@@ -125,18 +147,13 @@ const PrintingSection = () => {
         pb: SECTION_SPACING,
       }}>
         <Container maxWidth="xl" sx={{ 
-          px: { xs: 3, md: 6 }, 
-          display: "flex", 
-          flexDirection: "column", 
-          gap: SECTION_SPACING 
+          px: { xs: 3, md: 6 }, display: "flex", flexDirection: "column", gap: SECTION_SPACING 
         }}>
           
-          {/* LINKED IMAGE 1 */}
           <Link to="/project01" style={{ textDecoration: 'none' }}>
             <LazyImageBlock src="https://i.ibb.co/XZYQG598/004-1.webp" alt="Arabic Calligraphy" />
           </Link>
 
-          {/* LINKED IMAGE 2 */}
           <Link to="/project01" style={{ textDecoration: 'none' }}>
             <LazyImageBlock src="https://i.ibb.co/ksrBBTCj/005-1.jpg" alt="Fine Arts" />
           </Link>
