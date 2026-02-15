@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
 import {
   FaInstagram, FaLinkedin, FaYoutube, FaSnapchat, FaTiktok, FaWhatsapp,
 } from "react-icons/fa";
@@ -23,7 +23,13 @@ const socialLinks = [
 
 const LazyImageBlock = ({ src, alt }) => (
   <Box sx={{ perspective: "1600px", cursor: "pointer" }}>
-    <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d", transition: "transform 0.5s ease", "&:hover": { transform: "translateZ(10px)" } }}>
+    <Box sx={{ 
+      position: "relative", 
+      width: "100%", 
+      transformStyle: "preserve-3d", 
+      transition: "transform 0.5s ease", 
+      "&:hover": { transform: "translateZ(10px)" } 
+    }}>
       <Box
         component="img"
         src={src}
@@ -41,9 +47,13 @@ const LazyImageBlock = ({ src, alt }) => (
         }}
       />
       <Box sx={{
-          position: "absolute", inset: "-4px", borderRadius: "26px",
+          position: "absolute", 
+          inset: "-4px", 
+          borderRadius: "26px",
           background: "linear-gradient(135deg,#06f9f3,#00b3ff,#06f9f3)",
-          filter: "blur(12px)", transform: `translateZ(-${BORDER_THICKNESS}px)`, zIndex: 6,
+          filter: "blur(12px)", 
+          transform: `translateZ(-${BORDER_THICKNESS}px)`, 
+          zIndex: 6,
       }} />
     </Box>
   </Box>
@@ -56,23 +66,39 @@ const PrintingSection = () => {
 
   return (
     <>
-      {/* HERO SECTION */}
-      <Box sx={{ width: "100%", overflow: "hidden", position: "relative", backgroundColor: '#000' }}>
-        <Box sx={{ width: '100%', position: 'relative', aspectRatio: { xs: "16/9", md: "21/9" }, backgroundColor: "#111" }}>
-          <img
-            src={HERO_IMAGE}
-            alt="Printing Hero"
-            fetchpriority="high"
-            loading="eager"
-            decoding="sync"
-            style={{ width: '100%', display: 'block',marginTop:'60px' }}
-          />
-        </Box>
+      {/* HERO SECTION - Height reduced to 50% of viewport */}
+      <Box sx={{ 
+        width: "100%",          // Sets the section height to 50% of the screen
+        overflow: "hidden", 
+        position: "relative", 
+        backgroundColor: '#000',
+        pt: '60px'                // Padding to accommodate your navbar height
+      }}>
+        <img
+          src={HERO_IMAGE}
+          alt="Printing Hero"
+          fetchpriority="high"
+          loading="eager"
+          decoding="sync"
+          style={{ 
+            width: '100%', 
+            height: '100%',       // Force image to fill the 50vh container
+            objectFit: 'cover',   // Prevents stretching/distortion
+            display: 'block'
+          }}
+        />
 
         {/* Floating Social Icons */}
         <Box sx={{
-          position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)",
-          display: { xs: "none", md: "flex" }, flexDirection: "column", gap: 2, zIndex: 1200, pl: 2,
+          position: "fixed", 
+          top: "50%", 
+          left: 0, 
+          transform: "translateY(-50%)",
+          display: { xs: "none", md: "flex" }, 
+          flexDirection: "column", 
+          gap: 2, 
+          zIndex: 1200, 
+          pl: 2,
         }}>
           {socialLinks.map(({ icon, link }, idx) => (
             <a key={idx} href={link} target="_blank" rel="noopener noreferrer">
@@ -99,7 +125,10 @@ const PrintingSection = () => {
         pb: SECTION_SPACING,
       }}>
         <Container maxWidth="xl" sx={{ 
-          px: { xs: 3, md: 6 }, display: "flex", flexDirection: "column", gap: SECTION_SPACING 
+          px: { xs: 3, md: 6 }, 
+          display: "flex", 
+          flexDirection: "column", 
+          gap: SECTION_SPACING 
         }}>
           
           {/* LINKED IMAGE 1 */}
