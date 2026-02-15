@@ -65,7 +65,7 @@ const PrintingSection = () => {
             fetchpriority="high"
             loading="eager"
             decoding="sync"
-            style={{ width: '100%', display: 'block' }}
+            style={{ width: '100%', display: 'block',marginTop:'60px' }}
           />
         </Box>
 

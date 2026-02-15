@@ -13,11 +13,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 
 import demoVideo from "./video/slider.mp4";
+import demoVideo1 from "./video/Videos.mp4";
+import demoVideo2 from "./video/video_new.mp4";
 
 const carouselItems = [
   { id: 1, video: demoVideo },
-  { id: 2, video: demoVideo },
-  { id: 3, video: demoVideo },
+  { id: 2, video: demoVideo1 },
+  { id: 3, video: demoVideo2 },
 ];
 
 const socialLinks = [

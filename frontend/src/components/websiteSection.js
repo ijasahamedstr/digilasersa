@@ -9,7 +9,7 @@ import { Container, Box, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 
 // Configuration
-const HERO_IMAGE = "https://i.ibb.co/HfQ3t7qN/image.webp";
+const HERO_IMAGE = "https://i.ibb.co/6JRwt37p/02-jpg-1.webp";
 const BORDER_THICKNESS = 18;
 const SECTION_SPACING = "120px"; 
 
@@ -64,15 +64,16 @@ function WebsiteSection() {
   return (
     <Box sx={{ width: "100%", m: 0, p: 0, overflowX: "hidden", backgroundColor: "#000" }}>
       
-      {/* 1. HERO SECTION - Eager loaded (High Priority) */}
-      <div style={{ width: '100%', margin: 0, padding: 0, position: 'relative', backgroundColor: '#000' }}>
-        <img
-          src={HERO_IMAGE}
-          alt="Hero"
-          style={{ width: '100%', height: 'auto', display: 'block' }}
-        />
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.1)' }} />
-      </div>
+        <Box sx={{ width: '100%', position: 'relative', aspectRatio: { xs: "16/9", md: "21/9" }, backgroundColor: "#111" }}>
+          <img
+            src={HERO_IMAGE}
+            alt="Printing Hero"
+            fetchpriority="high"
+            loading="eager"
+            decoding="sync"
+            style={{ width: '100%', display: 'block',marginTop:'60px' }}
+          />
+        </Box>
 
       {/* 2. FIXED SOCIAL ICONS */}
       <Box sx={{
