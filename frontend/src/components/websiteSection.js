@@ -23,15 +23,14 @@ const socialLinks = [
   { icon: <FaWhatsapp size={25} />, link: "http://wa.me/966571978888" },
 ];
 
-// Optimized Image Component
 const ImageBlock = ({ src }) => (
   <Box sx={{ display: "flex", justifyContent: "center", perspective: "1600px" }}>
     <Box sx={{ position: "relative", width: "100%", transformStyle: "preserve-3d" }}>
       <Box
         component="img"
         src={src}
-        loading="lazy" // Native Lazy Loading
-        decoding="async" // Non-blocking image decoding
+        loading="lazy"
+        decoding="async"
         alt="Project Preview"
         sx={{
           width: "100%",
@@ -39,8 +38,8 @@ const ImageBlock = ({ src }) => (
           zIndex: 10,
           boxShadow: "35px 35px 45px rgba(0,0,0,0.65)",
           display: "block",
-          minHeight: "200px", // Prevents layout shift
-          backgroundColor: "#1a1a1a" // Placeholder color while loading
+          minHeight: "200px",
+          backgroundColor: "#1a1a1a"
         }}
       />
       <Box sx={{
@@ -64,16 +63,23 @@ function WebsiteSection() {
   return (
     <Box sx={{ width: "100%", m: 0, p: 0, overflowX: "hidden", backgroundColor: "#000" }}>
       
-        <Box sx={{ width: '100%', position: 'relative', aspectRatio: { xs: "16/9", md: "21/9" }, backgroundColor: "#111" }}>
-          <img
-            src={HERO_IMAGE}
-            alt="Printing Hero"
-            fetchpriority="high"
-            loading="eager"
-            decoding="sync"
-            style={{ width: '100%', display: 'block',marginTop:'60px' }}
-          />
-        </Box>
+      {/* 1. HERO SECTION - High Priority */}
+      <Box sx={{ width: '100%', position: 'relative', backgroundColor: "#000" }}>
+        <img
+          src={HERO_IMAGE}
+          alt="Printing Hero"
+          fetchpriority="high"
+          loading="eager"
+          decoding="sync"
+          style={{ 
+            width: '100%', 
+            marginTop: '60px',    // Top margin requested
+            display: 'block',
+
+            objectPosition: 'center' 
+          }}
+        />
+      </Box>
 
       {/* 2. FIXED SOCIAL ICONS */}
       <Box sx={{
@@ -97,7 +103,10 @@ function WebsiteSection() {
       <Box sx={{
           width: "100%", 
           backgroundImage: `url("https://i.ibb.co/Kx0StNYq/rock-texture-wallpaper-min.webp")`,
-          backgroundSize: "cover", backgroundPosition: "center", pt: SECTION_SPACING, pb: SECTION_SPACING 
+          backgroundSize: "cover", 
+          backgroundPosition: "center", 
+          pt: SECTION_SPACING, 
+          pb: SECTION_SPACING 
         }}>
         <Container maxWidth="xxl" sx={{ px: { xs: 2, md: 30 } }}>
           <Stack spacing={SECTION_SPACING}>
