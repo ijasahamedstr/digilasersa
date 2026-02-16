@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Container, Box, Typography } from "@mui/material";
 
-const HERO_IMAGE = "https://i.ibb.co/5rsMjx9/New-Web-Print.webp";
+const HERO_IMAGE = "https://i.ibb.co/r2TfpHPS/jpg-2.webp";
 const BORDER_THICKNESS = 18;
 const SECTION_SPACING = { xs: 10, md: 20 };
 
