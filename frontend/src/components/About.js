@@ -77,7 +77,7 @@ const Aboutus = ({ setFooterVisible }) => {
       {/* lineHeight: 0 is crucial to remove the tiny space below images */}
       <Box sx={{ width: "100%", position: "relative", overflow: "hidden", lineHeight: 0, m: 0, p: 0 }}>
         <img
-          src="https://i.ibb.co/k2VcktBp/copy-jpg-1-1-1.webp"
+          src="https://i.ibb.co/JjLm9LTH/copy-jpg-1-1-1.webp"
           alt="main-slide"
           style={{
             objectFit: "cover",
