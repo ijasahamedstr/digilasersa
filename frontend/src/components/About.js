@@ -56,13 +56,45 @@ const Aboutus = ({ setFooterVisible }) => {
   }
 
   return (
-    <>
-      <Box mt={12.5}>
-        {/* 100px / 8 = 12.5 (MUI spacing unit) */}
+    // Main Container: Flex Column with 0 gap
+    <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        width: "100%", 
+        m: 0, 
+        p: 0, 
+        gap: 0 
+      }}
+    >
+      
+      {/* About Section Wrapper */}
+      <Box>
         <AboutSection />
       </Box>
-      <VisionandMission />
-    </>
+
+      {/* Image Wrapper */}
+      {/* lineHeight: 0 is crucial to remove the tiny space below images */}
+      <Box sx={{ width: "100%", position: "relative", overflow: "hidden", lineHeight: 0, m: 0, p: 0 }}>
+        <img
+          src="https://i.ibb.co/k2VcktBp/copy-jpg-1-1-1.webp"
+          alt="main-slide"
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            height: "auto",
+            display: "block", // Ensures image behaves as a block
+            boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.8)",
+          }}
+        />
+      </Box>
+
+      {/* Vision Section Wrapper */}
+      <Box >
+        <VisionandMission />
+      </Box>
+      
+    </Box>
   );
 };
 

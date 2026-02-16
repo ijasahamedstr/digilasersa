@@ -15,7 +15,6 @@ function AboutSection() {
         backgroundRepeat: "no-repeat",
         width: "100%",
         margin: "0 auto",
-        marginBottom: "30px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
