@@ -13,12 +13,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 
 import demoVideo from "./video/slider.mp4";
-import demoVideo2 from "./video/video_new.mp4";
+import demoVideo2 from "./video/V.mp4";
+import demoVideo3 from "./video/video_n.mp4";
 
 const carouselItems = [
   { id: 1, type: "video", url: demoVideo },
-  { id: 2, type: "image", url: "https://i.ibb.co/7tLfWVtH/003-1.webp" }, 
-  { id: 4, type: "video", url: demoVideo2 },
+  { id: 2, type: "video", url: demoVideo2 },
+  // { id: 3, type: "image", url: "https://i.ibb.co/Zzcf17Z6/jpg-2.webp" }, 
+  { id: 4, type: "video", url: demoVideo3 },
 ];
 
 const socialLinks = [
