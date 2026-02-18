@@ -230,7 +230,7 @@ function ServiceCard() {
           }}
         >
           <a
-            href="https://sssplatform.com"
+            href="https://care.digilaser.sa/login"
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none" }}
