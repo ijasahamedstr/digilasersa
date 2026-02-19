@@ -1,18 +1,14 @@
+import React, { useEffect, useRef, useState } from "react";
 import { Carousel } from "react-bootstrap";
-import { useEffect, useRef, React, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, IconButton, Slider, Stack } from "@mui/material";
 import {
-  FaInstagram,
-  FaLinkedin,
-  FaYoutube,
-  FaSnapchat,
-  FaTiktok,
-  FaWhatsapp,
+  FaInstagram, FaLinkedin, FaYoutube, FaSnapchat,
+  FaTiktok, FaWhatsapp, FaPlay, FaPause, FaVolumeMute, FaVolumeUp
 } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 
-// Assuming these paths remain the same
+// Video Assets
 import demoVideo from "./video/slider.mp4";
 import demoVideo2 from "./video/V.mp4";
 import demoVideo3 from "./video/video_n.mp4";
@@ -35,152 +31,207 @@ const socialLinks = [
 
 const FadeCarousel = () => {
   const videoRefs = useRef([]);
+  const controlsTimerRef = useRef(null); // Ref for the hide timer
   const [index, setIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const [showControls, setShowControls] = useState(true); // Control visibility state
+
   const [videoStates, setVideoStates] = useState(
     carouselItems.map(() => ({ currentTime: 0, duration: 0 }))
   );
 
-  // Scroll to top on mount
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  // --- SHOW/HIDE CONTROLS LOGIC ---
+  const handleMouseMove = () => {
+    setShowControls(true); // Show when mouse moves
+    
+    // Clear existing timer
+    if (controlsTimerRef.current) clearTimeout(controlsTimerRef.current);
 
-  // Sync Video Playback with Slide Index
+    // Hide after 3 seconds of inactivity
+    controlsTimerRef.current = setTimeout(() => {
+      if (isPlaying) { // Only hide if video is actually playing
+        setShowControls(false);
+      }
+    }, 3000);
+  };
+
   useEffect(() => {
-    // Pause all videos first
     videoRefs.current.forEach((video, i) => {
       if (video) {
         video.pause();
-        if (i !== index) video.currentTime = 0; // Reset inactive videos
+        if (i !== index) video.currentTime = 0;
       }
     });
 
-    // Play the current video
-    if (videoRefs.current[index]) {
-      videoRefs.current[index].play().catch((err) => console.warn("Autoplay prevented:", err));
+    const activeVideo = videoRefs.current[index];
+    if (activeVideo && isPlaying) {
+      activeVideo.play().catch((err) => console.warn("Autoplay blocked", err));
     }
-  }, [index]);
+    setIsUserInteracting(false);
+  }, [index, isPlaying]);
 
-  const handleSelect = (selectedIndex) => {
-    setIndex(selectedIndex);
-  };
-
-  const goToNextSlide = () => {
-    const nextIndex = (index + 1) % carouselItems.length;
-    setIndex(nextIndex);
-  };
+  const handleNext = () => setIndex((prev) => (prev + 1) % carouselItems.length);
 
   const handleTimeUpdate = (idx) => {
-    const currentVideo = videoRefs.current[idx];
-    if (currentVideo && idx === index) {
-      const time = currentVideo.currentTime;
-
-      // Update UI Timer
+    const video = videoRefs.current[idx];
+    if (video && idx === index) {
+      const time = video.currentTime;
       setVideoStates((prev) => {
         const updated = [...prev];
         updated[idx] = { ...updated[idx], currentTime: time };
         return updated;
       });
-
-      // KEY LOGIC: If video reaches 5 seconds, move to next
-      if (time >= 5) {
-        goToNextSlide();
-      }
+      if (!isUserInteracting && time >= 5) handleNext();
     }
   };
 
-  const handleLoadedMetadata = (idx) => {
-    const currentVideo = videoRefs.current[idx];
-    if (currentVideo) {
-      setVideoStates((prev) => {
-        const updated = [...prev];
-        updated[idx] = { ...updated[idx], duration: currentVideo.duration };
-        return updated;
-      });
-    }
+  const handleLoadedMetadata = (idx, e) => {
+    setVideoStates((prev) => {
+      const updated = [...prev];
+      updated[idx] = { ...updated[idx], duration: e.target.duration };
+      return updated;
+    });
+  };
+
+  const handleSeek = (event, newValue) => {
+    setIsUserInteracting(true);
+    const video = videoRefs.current[index];
+    if (video) video.currentTime = newValue;
+  };
+
+  const handleManualNav = (idx) => {
+    setIsUserInteracting(true);
+    setIndex(idx);
+  };
+
+  const formatTime = (time) => {
+    const mins = Math.floor(time / 60);
+    const secs = Math.floor(time % 60);
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
   return (
-    <Box sx={{ mt: { xs: "100px" }, position: "relative", overflow: "hidden" }}>
-      <style>
-        {`
-          .carousel-indicators { bottom: 60px; z-index: 10; }
-          .carousel-indicators [data-bs-target] {
-            width: 18px !important; height: 18px !important;
-            border-radius: 50% !important; background-color: #06f9f3 !important;
-            border: 2px solid #17202a !important; margin: 0 8px !important;
-            opacity: 0.5; transition: all 0.3s ease;
-          }
-          .carousel-indicators .active { opacity: 1 !important; transform: scale(1.2); }
-          .carousel-control-prev-icon, .carousel-control-next-icon {
-            background-color: rgba(0,0,0,0.5); border-radius: 50%;
-            padding: 20px; background-size: 50%;
-          }
-        `}
-      </style>
-
-      <Carousel 
-        fade 
-        indicators={true} 
-        activeIndex={index} 
-        onSelect={handleSelect} 
-        interval={null} // We control the timing manually
-        pause={false}
+    <Box 
+      onMouseMove={handleMouseMove} // Detect movement here
+      sx={{ mt: { xs: "100px" }, position: "relative", bgcolor: "black", overflow: "hidden", cursor: showControls ? "default" : "none" }}
+    >
+      <Carousel
+        fade
+        activeIndex={index}
+        onSelect={(i) => setIndex(i)}
+        interval={null}
+        indicators={false}
       >
         {carouselItems.map((item, idx) => (
           <Carousel.Item key={item.id}>
-            <Box sx={{ 
-              position: "relative", 
-              height: "80vh", 
-              bgcolor: "black",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center" 
-            }}>
+            <Box sx={{ position: "relative", height: "80vh", display: "flex", justifyContent: "center" }}>
               <video
                 ref={(el) => (videoRefs.current[idx] = el)}
-                className="d-block w-100"
                 src={item.url}
-                muted 
+                muted={isMuted}
                 playsInline
-                onEnded={goToNextSlide} // Fallback if video is shorter than 5s
+                onEnded={handleNext}
                 onTimeUpdate={() => handleTimeUpdate(idx)}
-                onLoadedMetadata={() => handleLoadedMetadata(idx)}
-                style={{ 
-                  height: "100%", 
-                  width: "100%", 
-                  objectFit: item.fit || "cover" 
-                }}
+                onLoadedMetadata={(e) => handleLoadedMetadata(idx, e)}
+                style={{ height: "100%", width: "100%", objectFit: item.fit }}
               />
-              
-              {/* Progress Overlay (5s Limit) */}
+
+              {/* VIDEO CONTROLLER OVERLAY */}
               <Box sx={{
-                position: "absolute", top: 20, right: 20,
-                backgroundColor: "rgba(0,0,0,0.6)", padding: "4px 12px",
-                borderRadius: "15px", color: "#06f9f3", border: "1px solid #06f9f3", zIndex: 5
+                position: "absolute", bottom: 0, left: 0, right: 0,
+                background: "linear-gradient(transparent, rgba(0,0,0,0.95))",
+                p: 4, pt: 12, zIndex: 20,
+                // ANIMATION FOR HIDING
+                opacity: showControls ? 1 : 0,
+                pointerEvents: showControls ? "auto" : "none",
+                transition: "opacity 0.5s ease-in-out"
               }}>
-                <Typography variant="caption" sx={{ fontWeight: "bold", fontFamily: "monospace" }}>
-                  {/* Showing current time vs the 5s limit */}
-                  00:{Math.floor(videoStates[idx]?.currentTime || 0).toString().padStart(2, "0")} / 00:05
-                </Typography>
+
+                {/* BIG ROUNDED SLIDE INDICATORS */}
+                <Stack direction="row" spacing={1.5} justifyContent="center" sx={{ mb: 3 }}>
+                  {carouselItems.map((_, i) => {
+                    const isActive = i === index;
+                    return (
+                      <Box
+                        key={i}
+                        onClick={() => handleManualNav(i)}
+                        sx={{
+                          width: isActive ? 50 : 12,
+                          height: 8,
+                          borderRadius: 10,
+                          bgcolor: isActive ? "#06f9f3" : "rgba(255,255,255,0.25)",
+                          cursor: "pointer",
+                          transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                          boxShadow: isActive ? "0px 0px 10px rgba(6, 249, 243, 0.5)" : "none",
+                          "&:hover": { bgcolor: "#06f9f3" }
+                        }}
+                      />
+                    );
+                  })}
+                </Stack>
+
+                {/* SEEK BAR */}
+                <Slider
+                  size="small"
+                  value={videoStates[idx]?.currentTime || 0}
+                  max={videoStates[idx]?.duration || 1}
+                  onChange={handleSeek}
+                  onMouseDown={() => setIsUserInteracting(true)}
+                  sx={{
+                    color: isUserInteracting ? "#fff" : "#06f9f3", mb: 1.5,
+                    '& .MuiSlider-track': { transition: 'none', height: 4 },
+                    '& .MuiSlider-rail': { height: 4, opacity: 0.3 },
+                    '& .MuiSlider-thumb': {
+                      width: 14, height: 14, backgroundColor: '#fff',
+                      display: isUserInteracting ? 'block' : 'none'
+                    }
+                  }}
+                />
+
+                {/* CONTROLS & STATUS */}
+                <Stack direction="row" alignItems="center" justifyContent="space-between">
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <IconButton onClick={() => setIsPlaying(!isPlaying)} sx={{ color: "#06f9f3" }}>
+                      {isPlaying ? <FaPause size={22} /> : <FaPlay size={22} />}
+                    </IconButton>
+                    <IconButton onClick={() => setIsMuted(!isMuted)} sx={{ color: "#06f9f3" }}>
+                      {isMuted ? <FaVolumeMute size={22} /> : <FaVolumeUp size={22} />}
+                    </IconButton>
+                    <Typography variant="caption" sx={{ color: "#06f9f3", fontFamily: "monospace", ml: 2, fontSize: '0.9rem' }}>
+                      {formatTime(videoStates[idx]?.currentTime)} / {formatTime(videoStates[idx]?.duration)}
+                    </Typography>
+                  </Stack>
+
+                  <Typography variant="caption" sx={{
+                    color: isUserInteracting ? "#fff" : "#06f9f3",
+                    fontWeight: 'bold', border: '1.5px solid', px: 2, py: 0.5, borderRadius: 1.5,
+                    letterSpacing: 1.2, fontSize: '0.75rem',
+                    transition: "0.3s all ease"
+                  }}>
+                    {isUserInteracting ? "FULL VIEW MODE" : "AUTO-PREVIEW (5S)"}
+                  </Typography>
+                </Stack>
               </Box>
             </Box>
           </Carousel.Item>
         ))}
       </Carousel>
 
-      {/* Social Media Sidebar */}
+      {/* SOCIAL SIDEBAR */}
       <Box sx={{
         position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)",
         display: { xs: "none", md: "flex" }, flexDirection: "column", gap: 1.5, zIndex: 1200, pl: 2,
+        opacity: showControls ? 1 : 0.3, // Dim sidebar when controls hide
+        transition: "opacity 0.5s ease"
       }}>
         {socialLinks.map(({ icon, link }, i) => (
-          <a key={i} href={link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+          <a key={i} href={link} target="_blank" rel="noopener noreferrer">
             <Box sx={{
               width: 38, height: 38, borderRadius: "50%", backgroundColor: "#06f9f3",
-              display: "flex", justifyContent: "center", alignItems: "center",
-              color: "#17202a", boxShadow: "0px 4px 10px rgba(0,0,0,0.3)", transition: "0.3s",
-              "&:hover": { transform: "translateX(5px)", backgroundColor: "#fff" },
+              display: "flex", justifyContent: "center", alignItems: "center", color: "#17202a",
+              transition: "0.3s", "&:hover": { transform: "translateX(5px)", backgroundColor: "#fff" },
             }}>
               {icon}
             </Box>
