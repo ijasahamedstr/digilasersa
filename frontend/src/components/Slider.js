@@ -16,7 +16,6 @@ import demoVideo from "./video/slider.mp4";
 import demoVideo2 from "./video/V.mp4";
 import demoVideo3 from "./video/video_n.mp4";
 
-// Added 'fit' property to the items
 const carouselItems = [
   { id: 1, type: "video", url: demoVideo, fit: "cover" },
   { id: 2, type: "video", url: demoVideo2, fit: "cover" },
@@ -35,6 +34,7 @@ const socialLinks = [
 
 const FadeCarousel = () => {
   const videoRefs = useRef([]);
+  const [index, setIndex] = useState(0); // Track current slide index
   const [videoStates, setVideoStates] = useState(
     carouselItems.map(() => ({ currentTime: 0, duration: 0 }))
   );
@@ -43,23 +43,34 @@ const FadeCarousel = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const handleTimeUpdate = (index) => {
-    const currentVideo = videoRefs.current[index];
+  // Handle manual selection (clicking indicators/arrows)
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
+
+  // Logic to move to next slide when video ends
+  const handleVideoEnd = () => {
+    const nextIndex = (index + 1) % carouselItems.length;
+    setIndex(nextIndex);
+  };
+
+  const handleTimeUpdate = (idx) => {
+    const currentVideo = videoRefs.current[idx];
     if (currentVideo) {
       setVideoStates((prev) => {
         const updated = [...prev];
-        updated[index] = { ...updated[index], currentTime: currentVideo.currentTime };
+        updated[idx] = { ...updated[idx], currentTime: currentVideo.currentTime };
         return updated;
       });
     }
   };
 
-  const handleLoadedMetadata = (index) => {
-    const currentVideo = videoRefs.current[index];
+  const handleLoadedMetadata = (idx) => {
+    const currentVideo = videoRefs.current[idx];
     if (currentVideo) {
       setVideoStates((prev) => {
         const updated = [...prev];
-        updated[index] = { ...updated[index], duration: currentVideo.duration };
+        updated[idx] = { ...updated[idx], duration: currentVideo.duration };
         return updated;
       });
     }
@@ -84,8 +95,15 @@ const FadeCarousel = () => {
         `}
       </style>
 
-      <Carousel fade indicators={true} interval={6000} pause="hover">
-        {carouselItems.map((item, index) => (
+      <Carousel 
+        fade 
+        indicators={true} 
+        activeIndex={index} // Controlled component
+        onSelect={handleSelect} 
+        interval={null} // Disable auto-timer so video completion controls it
+        pause={false}
+      >
+        {carouselItems.map((item, idx) => (
           <Carousel.Item key={item.id}>
             <Box sx={{ 
               position: "relative", 
@@ -96,16 +114,18 @@ const FadeCarousel = () => {
               alignItems: "center" 
             }}>
               <video
-                ref={(el) => (videoRefs.current[index] = el)}
+                ref={(el) => (videoRefs.current[idx] = el)}
                 className="d-block w-100"
                 src={item.url}
-                autoPlay muted loop playsInline
-                onTimeUpdate={() => handleTimeUpdate(index)}
-                onLoadedMetadata={() => handleLoadedMetadata(index)}
+                autoPlay 
+                muted 
+                playsInline
+                onEnded={handleVideoEnd} // TRIGGER NEXT SLIDE HERE
+                onTimeUpdate={() => handleTimeUpdate(idx)}
+                onLoadedMetadata={() => handleLoadedMetadata(idx)}
                 style={{ 
                   height: "100%", 
                   width: "100%", 
-                  // Uses the 'fit' property defined in carouselItems
                   objectFit: item.fit || "cover" 
                 }}
               />
@@ -117,10 +137,10 @@ const FadeCarousel = () => {
                 borderRadius: "15px", color: "#06f9f3", border: "1px solid #06f9f3", zIndex: 5
               }}>
                 <Typography variant="caption" sx={{ fontWeight: "bold", fontFamily: "monospace" }}>
-                  {Math.floor((videoStates[index]?.currentTime || 0) / 60).toString().padStart(2, "0")}:
-                  {Math.floor((videoStates[index]?.currentTime || 0) % 60).toString().padStart(2, "0")} / 
-                  {Math.floor((videoStates[index]?.duration || 0) / 60).toString().padStart(2, "0")}:
-                  {Math.floor((videoStates[index]?.duration || 0) % 60).toString().padStart(2, "0")}
+                  {Math.floor((videoStates[idx]?.currentTime || 0) / 60).toString().padStart(2, "0")}:
+                  {Math.floor((videoStates[idx]?.currentTime || 0) % 60).toString().padStart(2, "0")} / 
+                  {Math.floor((videoStates[idx]?.duration || 0) / 60).toString().padStart(2, "0")}:
+                  {Math.floor((videoStates[idx]?.duration || 0) % 60).toString().padStart(2, "0")}
                 </Typography>
               </Box>
             </Box>
@@ -133,8 +153,8 @@ const FadeCarousel = () => {
         position: "fixed", top: "50%", left: 0, transform: "translateY(-50%)",
         display: { xs: "none", md: "flex" }, flexDirection: "column", gap: 1.5, zIndex: 1200, pl: 2,
       }}>
-        {socialLinks.map(({ icon, link }, index) => (
-          <a key={index} href={link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+        {socialLinks.map(({ icon, link }, i) => (
+          <a key={i} href={link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
             <Box sx={{
               width: 38, height: 38, borderRadius: "50%", backgroundColor: "#06f9f3",
               display: "flex", justifyContent: "center", alignItems: "center",
