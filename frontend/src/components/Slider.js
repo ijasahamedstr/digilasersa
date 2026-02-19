@@ -16,11 +16,11 @@ import demoVideo from "./video/slider.mp4";
 import demoVideo2 from "./video/V.mp4";
 import demoVideo3 from "./video/video_n.mp4";
 
+// Added 'fit' property to the items
 const carouselItems = [
-  { id: 1, type: "video", url: demoVideo },
-  { id: 2, type: "video", url: demoVideo2 },
-  // { id: 3, type: "image", url: "https://i.ibb.co/Zzcf17Z6/jpg-2.webp" }, 
-  { id: 4, type: "video", url: demoVideo3 },
+  { id: 1, type: "video", url: demoVideo, fit: "cover" },
+  { id: 2, type: "video", url: demoVideo2, fit: "cover" },
+  { id: 3, type: "video", url: demoVideo3, fit: "none" },
 ];
 
 const socialLinks = [
@@ -87,40 +87,43 @@ const FadeCarousel = () => {
       <Carousel fade indicators={true} interval={6000} pause="hover">
         {carouselItems.map((item, index) => (
           <Carousel.Item key={item.id}>
-            {item.type === "video" ? (
-              <Box sx={{ position: "relative", height: "80vh", bgcolor: "black" }}>
-                <video
-                  ref={(el) => (videoRefs.current[index] = el)}
-                  className="d-block w-100"
-                  src={item.url}
-                  autoPlay muted loop playsInline
-                  onTimeUpdate={() => handleTimeUpdate(index)}
-                  onLoadedMetadata={() => handleLoadedMetadata(index)}
-                  style={{ height: "100%", width: "100%", objectFit: "cover" }}
-                />
-                {/* Time Display Overlay */}
-                <Box sx={{
-                  position: "absolute", top: 20, right: 20,
-                  backgroundColor: "rgba(0,0,0,0.6)", padding: "4px 12px",
-                  borderRadius: "15px", color: "#06f9f3", border: "1px solid #06f9f3", zIndex: 5
-                }}>
-                  <Typography variant="caption" sx={{ fontWeight: "bold", fontFamily: "monospace" }}>
-                    {Math.floor((videoStates[index]?.currentTime || 0) / 60).toString().padStart(2, "0")}:
-                    {Math.floor((videoStates[index]?.currentTime || 0) % 60).toString().padStart(2, "0")} / 
-                    {Math.floor((videoStates[index]?.duration || 0) / 60).toString().padStart(2, "0")}:
-                    {Math.floor((videoStates[index]?.duration || 0) % 60).toString().padStart(2, "0")}
-                  </Typography>
-                </Box>
-              </Box>
-            ) : (
-              <Box
-                component="img"
+            <Box sx={{ 
+              position: "relative", 
+              height: "80vh", 
+              bgcolor: "black",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center" 
+            }}>
+              <video
+                ref={(el) => (videoRefs.current[index] = el)}
                 className="d-block w-100"
                 src={item.url}
-                alt={`Slide ${index}`}
-                sx={{ height: "80vh", width: "100%", objectFit: "cover", backgroundColor: "black" }}
+                autoPlay muted loop playsInline
+                onTimeUpdate={() => handleTimeUpdate(index)}
+                onLoadedMetadata={() => handleLoadedMetadata(index)}
+                style={{ 
+                  height: "100%", 
+                  width: "100%", 
+                  // Uses the 'fit' property defined in carouselItems
+                  objectFit: item.fit || "cover" 
+                }}
               />
-            )}
+              
+              {/* Time Display Overlay */}
+              <Box sx={{
+                position: "absolute", top: 20, right: 20,
+                backgroundColor: "rgba(0,0,0,0.6)", padding: "4px 12px",
+                borderRadius: "15px", color: "#06f9f3", border: "1px solid #06f9f3", zIndex: 5
+              }}>
+                <Typography variant="caption" sx={{ fontWeight: "bold", fontFamily: "monospace" }}>
+                  {Math.floor((videoStates[index]?.currentTime || 0) / 60).toString().padStart(2, "0")}:
+                  {Math.floor((videoStates[index]?.currentTime || 0) % 60).toString().padStart(2, "0")} / 
+                  {Math.floor((videoStates[index]?.duration || 0) / 60).toString().padStart(2, "0")}:
+                  {Math.floor((videoStates[index]?.duration || 0) % 60).toString().padStart(2, "0")}
+                </Typography>
+              </Box>
+            </Box>
           </Carousel.Item>
         ))}
       </Carousel>
