@@ -1,5 +1,5 @@
 import { Carousel } from "react-bootstrap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, React, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import {
   FaInstagram,
@@ -12,6 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 
+// Assuming these paths remain the same
 import demoVideo from "./video/slider.mp4";
 import demoVideo2 from "./video/V.mp4";
 import demoVideo3 from "./video/video_n.mp4";
@@ -34,34 +35,57 @@ const socialLinks = [
 
 const FadeCarousel = () => {
   const videoRefs = useRef([]);
-  const [index, setIndex] = useState(0); // Track current slide index
+  const [index, setIndex] = useState(0);
   const [videoStates, setVideoStates] = useState(
     carouselItems.map(() => ({ currentTime: 0, duration: 0 }))
   );
 
+  // Scroll to top on mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // Handle manual selection (clicking indicators/arrows)
+  // Sync Video Playback with Slide Index
+  useEffect(() => {
+    // Pause all videos first
+    videoRefs.current.forEach((video, i) => {
+      if (video) {
+        video.pause();
+        if (i !== index) video.currentTime = 0; // Reset inactive videos
+      }
+    });
+
+    // Play the current video
+    if (videoRefs.current[index]) {
+      videoRefs.current[index].play().catch((err) => console.warn("Autoplay prevented:", err));
+    }
+  }, [index]);
+
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
 
-  // Logic to move to next slide when video ends
-  const handleVideoEnd = () => {
+  const goToNextSlide = () => {
     const nextIndex = (index + 1) % carouselItems.length;
     setIndex(nextIndex);
   };
 
   const handleTimeUpdate = (idx) => {
     const currentVideo = videoRefs.current[idx];
-    if (currentVideo) {
+    if (currentVideo && idx === index) {
+      const time = currentVideo.currentTime;
+
+      // Update UI Timer
       setVideoStates((prev) => {
         const updated = [...prev];
-        updated[idx] = { ...updated[idx], currentTime: currentVideo.currentTime };
+        updated[idx] = { ...updated[idx], currentTime: time };
         return updated;
       });
+
+      // KEY LOGIC: If video reaches 5 seconds, move to next
+      if (time >= 5) {
+        goToNextSlide();
+      }
     }
   };
 
@@ -98,9 +122,9 @@ const FadeCarousel = () => {
       <Carousel 
         fade 
         indicators={true} 
-        activeIndex={index} // Controlled component
+        activeIndex={index} 
         onSelect={handleSelect} 
-        interval={null} // Disable auto-timer so video completion controls it
+        interval={null} // We control the timing manually
         pause={false}
       >
         {carouselItems.map((item, idx) => (
@@ -117,10 +141,9 @@ const FadeCarousel = () => {
                 ref={(el) => (videoRefs.current[idx] = el)}
                 className="d-block w-100"
                 src={item.url}
-                autoPlay 
                 muted 
                 playsInline
-                onEnded={handleVideoEnd} // TRIGGER NEXT SLIDE HERE
+                onEnded={goToNextSlide} // Fallback if video is shorter than 5s
                 onTimeUpdate={() => handleTimeUpdate(idx)}
                 onLoadedMetadata={() => handleLoadedMetadata(idx)}
                 style={{ 
@@ -130,17 +153,15 @@ const FadeCarousel = () => {
                 }}
               />
               
-              {/* Time Display Overlay */}
+              {/* Progress Overlay (5s Limit) */}
               <Box sx={{
                 position: "absolute", top: 20, right: 20,
                 backgroundColor: "rgba(0,0,0,0.6)", padding: "4px 12px",
                 borderRadius: "15px", color: "#06f9f3", border: "1px solid #06f9f3", zIndex: 5
               }}>
                 <Typography variant="caption" sx={{ fontWeight: "bold", fontFamily: "monospace" }}>
-                  {Math.floor((videoStates[idx]?.currentTime || 0) / 60).toString().padStart(2, "0")}:
-                  {Math.floor((videoStates[idx]?.currentTime || 0) % 60).toString().padStart(2, "0")} / 
-                  {Math.floor((videoStates[idx]?.duration || 0) / 60).toString().padStart(2, "0")}:
-                  {Math.floor((videoStates[idx]?.duration || 0) % 60).toString().padStart(2, "0")}
+                  {/* Showing current time vs the 5s limit */}
+                  00:{Math.floor(videoStates[idx]?.currentTime || 0).toString().padStart(2, "0")} / 00:05
                 </Typography>
               </Box>
             </Box>
